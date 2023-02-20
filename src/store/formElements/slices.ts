@@ -1,14 +1,12 @@
-import { IFormConstructor, IFormElementHolder } from "./types";
-import { createSlice, SliceCaseReducers, ValidateSliceCaseReducers } from "@reduxjs/toolkit"
+import { IFormConstructor, IFormElementHolder } from './types'
+import { createSlice, SliceCaseReducers, ValidateSliceCaseReducers } from '@reduxjs/toolkit'
 
 const initialState: IFormConstructor = {
-    allElementsMap: new Map<string, IFormElementHolder>(),
-    selectedFormElement: ''
+  allElementsMap: new Map<string, IFormElementHolder>(),
+  selectedFormElement: '',
 }
 
-const createFormConstructorSlice = <
-  Reducers extends SliceCaseReducers<IFormConstructor>
->({
+const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
   name = '',
   initialState,
   reducers,
@@ -25,8 +23,7 @@ const createFormConstructorSlice = <
 }
 
 export const FormConstructorSlice = createFormConstructorSlice({
-    name: "formConstructor",
-    initialState,
-    reducers: {}
+  name: 'formConstructor',
+  initialState,
+  reducers: {},
 })
-

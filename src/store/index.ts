@@ -1,14 +1,14 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import formConstructorReducer from "./formElements";
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import formConstructorReducer from './formElements'
 
 const rootReducer = combineReducers({
-    formConstructor: formConstructorReducer
+  formConstructor: formConstructorReducer,
 })
 
 export function setupStore() {
-    return configureStore({
-        reducer: rootReducer
-    })
+  return configureStore({
+    reducer: rootReducer,
+  })
 }
 
 export type RootState = ReturnType<typeof rootReducer>

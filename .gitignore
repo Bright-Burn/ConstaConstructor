@@ -11,6 +11,9 @@
 # production
 /build
 
+#webpack-build
+/config/build
+
 # misc
 .DS_Store
 .env.local
