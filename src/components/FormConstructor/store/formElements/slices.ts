@@ -33,7 +33,10 @@ export const formConstructorSlice = createFormConstructorSlice({
   initialState,
   reducers: {
     addNewElement: (state, action: PayloadAction<AddNewFormElementPayload>) => {
-      state.allElementsMap.set(action.payload.parent, [...state.allElementsMap.get(action.payload.parent) || [], action.payload.element])
+      state.allElementsMap.set(action.payload.parent, [
+        ...(state.allElementsMap.get(action.payload.parent) || []),
+        action.payload.element,
+      ])
     },
   },
 })
