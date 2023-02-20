@@ -12,6 +12,7 @@ function setupStore() {
     reducer: rootReducer,
     middleware: getDefaultMiddleware => {
       const customizedMiddleware = getDefaultMiddleware({
+        /// По хорошему надо от этого избавиться
         serializableCheck: false,
       })
       return customizedMiddleware

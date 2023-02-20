@@ -10,7 +10,6 @@ export enum FormElementTypes {
 export interface ILayoutElement {
   id: string
   selected: boolean
-  formElement: ILayoutElement
   childrenFromElements: IFormElement[]
   childrenLayoutElements: ILayoutElement[]
 }

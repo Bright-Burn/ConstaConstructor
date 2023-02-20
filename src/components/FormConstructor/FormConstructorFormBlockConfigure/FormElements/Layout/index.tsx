@@ -1,5 +1,5 @@
 import { Layout } from '@consta/uikit/Layout'
 
 export const LayoutFromElement = () => {
-  return <Layout />
+  return <Layout flex={1} style={{ background: 'red' }} />
 }
