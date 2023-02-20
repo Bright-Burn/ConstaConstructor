@@ -3,7 +3,7 @@ import { FormConstructorPage } from './pages/FormConstructor'
 
 function App() {
   return (
-    <div className='App'>
+    <div>
       <FormConstructorPage />
     </div>
   )
