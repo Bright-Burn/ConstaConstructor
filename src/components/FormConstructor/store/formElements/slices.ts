@@ -1,8 +1,14 @@
-import { IFormConstructor, IFormElementHolder } from './types'
-import { createSlice, SliceCaseReducers, ValidateSliceCaseReducers } from '@reduxjs/toolkit'
+import { IFormConstructor, IFormElement, ILayoutElement } from './types'
+import {
+  createSlice,
+  SliceCaseReducers,
+  PayloadAction,
+  ValidateSliceCaseReducers,
+} from '@reduxjs/toolkit'
+import { AddNewFormElementPayload } from './payload'
 
 const initialState: IFormConstructor = {
-  allElementsMap: new Map<string, IFormElementHolder>(),
+  allElementsMap: new Map<string, (ILayoutElement | IFormElement)[]>(),
   selectedFormElement: '',
 }
 
@@ -22,8 +28,15 @@ const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormCons
   })
 }
 
-export const FormConstructorSlice = createFormConstructorSlice({
+export const formConstructorSlice = createFormConstructorSlice({
   name: 'formConstructor',
   initialState,
-  reducers: {},
+  reducers: {
+    addNewElement: (state, action: PayloadAction<AddNewFormElementPayload>) => {
+      state.allElementsMap.set(action.payload.parent, [
+        ...(state.allElementsMap.get(action.payload.parent) || []),
+        action.payload.element,
+      ])
+    },
+  },
 })

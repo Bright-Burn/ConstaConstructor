@@ -1,9 +1,15 @@
-export enum FormElementEnum {
+export enum ElementTypes {
   Layout = 'Layout',
+  Form = 'Form',
+}
+
+export enum FormElementTypes {
   Button = 'Button',
 }
 
-export interface IFormElementHolder {
+export interface ILayoutElement {
+  id: string
+  selected: boolean
   childrenFromElements: IFormElement[]
   childrenLayoutElements: ILayoutElement[]
 }
@@ -11,12 +17,12 @@ export interface IFormElementHolder {
 export interface IFormElement {
   id: string
   selected: boolean
+  type: FormElementTypes
 }
 
-export interface ILayoutElement extends IFormElement {}
 export interface IButtonElement extends IFormElement {}
 
 export interface IFormConstructor {
-  allElementsMap: Map<string, IFormElementHolder>
+  allElementsMap: Map<string, (ILayoutElement | IFormElement)[]>
   selectedFormElement: string
 }
