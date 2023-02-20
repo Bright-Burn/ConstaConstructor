@@ -1,13 +1,23 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import formConstructorReducer from './formElements'
+import { formConstructorReducer } from './formElements'
+import { enableMapSet } from 'immer';
 
+enableMapSet()
 const rootReducer = combineReducers({
   formConstructor: formConstructorReducer,
 })
 
+
+
 function setupStore() {
   return configureStore({
     reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => {
+      const customizedMiddleware = getDefaultMiddleware({
+        serializableCheck: false
+      })
+      return customizedMiddleware
+    },
   })
 }
 
