@@ -6,9 +6,4 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-
-  padding: 0.05rem;
-  border: 0.2rem solid rgba(0, 65, 102, 0.2);
-  border-radius: 0.5rem;
-  margin: 0.2rem;
 }

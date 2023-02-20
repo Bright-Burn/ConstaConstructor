@@ -3,10 +3,14 @@ import { IComponentCard } from './types'
 import { Text } from '@consta/uikit/Text'
 import styles from './styles.module.css'
 
-export const ComponentCard: FC<IComponentCard> = ({ name }) => {
+export const ComponentCard: FC<IComponentCard> = ({ name, formElementType }) => {
+  const onDragFormElementStart = (event: React.DragEvent) => {
+    event.dataTransfer.setData('FormElementType', formElementType)
+  }
+
   return (
-    <div className={styles.componentCard}>
-      <Text>{name}</Text>
+    <div className={styles.componentCard} draggable={true}>
+      <Text onDragStart={onDragFormElementStart}>{name}</Text>
     </div>
   )
 }
