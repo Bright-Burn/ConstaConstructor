@@ -9,7 +9,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType }) => 
   }
 
   return (
-    <div className={styles.componentCard} draggable={true}>
+    <div className={`${styles.componentCard} borderCard`} draggable={true}>
       <Text onDragStart={onDragFormElementStart}>{name}</Text>
     </div>
   )
