@@ -6,7 +6,7 @@ import { ILayoutFormElement } from './types'
 export const LayoutFromElement: FC<ILayoutFormElement> = ({ layoutElement }) => {
   /// backround временно
   return (
-    <Layout flex={1} className={'borderCard'}>
+    <Layout flex={1}>
       <DroppableLayer parentElementId={layoutElement.id} />
     </Layout>
   )

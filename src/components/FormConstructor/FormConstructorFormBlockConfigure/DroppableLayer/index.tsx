@@ -12,6 +12,7 @@ import { ButtonFormElement } from '../FormElements/ButtonFormElement'
 import { LayoutFromElement } from '../FormElements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
+import { getElementType } from '../../utils/getElementType'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -32,7 +33,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     console.log(parentElementId)
     event.stopPropagation()
     event.preventDefault()
-    
+
     if (elemType) {
       const layoutElement: ILayoutElement = {
         id: uuid(),
@@ -71,12 +72,13 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       onDragOver={event => event.preventDefault()}
     >
       {elementsOnLayer.map(el => {
-        // Это надо как то иначе сделать
         // Тут происходит проверка, является ли элемент Layout елементом
-        if ('childrenFromElements' in el) {
-          return <LayoutFromElement key={el.id} layoutElement={el} />
+        if (getElementType(el) === ElementTypes.Layout) {
+          const element = el as ILayoutElement
+          return <LayoutFromElement key={el.id} layoutElement={element} />
         } else {
-          if (el.type === FormElementTypes.Button) {
+          const element = el as IFormElement
+          if (element.type === FormElementTypes.Button) {
             return <ButtonFormElement key={el.id} />
           }
         }
