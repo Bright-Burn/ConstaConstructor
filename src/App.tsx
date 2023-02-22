@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormConstructorPage } from './pages/FormConstructor'
+import { FormConstructorPage } from './pages/FormConstructorPage'
 
 function App() {
   return (
