@@ -29,7 +29,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
     const elemType = event.dataTransfer.getData('ElementType') as ElementTypes
 
-    console.log(event)
+    console.log(parentElementId)
+    event.stopPropagation()
+    event.preventDefault()
+    
     if (elemType) {
       const layoutElement: ILayoutElement = {
         id: uuid(),
@@ -59,8 +62,6 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
         }),
       )
     }
-
-    event.stopPropagation()
   }
 
   return (
