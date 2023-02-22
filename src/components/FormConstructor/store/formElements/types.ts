@@ -20,8 +20,6 @@ export interface IFormElement {
   type: FormElementTypes
 }
 
-export interface IButtonElement extends IFormElement {}
-
 export interface IFormConstructor {
   allElementsMap: Map<string, (ILayoutElement | IFormElement)[]>
   selectedFormElement: string
