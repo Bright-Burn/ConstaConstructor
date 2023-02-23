@@ -8,7 +8,8 @@ import {
 import { AddNewElementPayload, SetNewSelectedElement } from './payload'
 
 const initialState: IFormConstructor = {
-  allElementsMap: new Map<string, (ILayoutElement | IFormElement)[]>(),
+  allElementsTree: new Map<string, (ILayoutElement | IFormElement)[]>(),
+  allElementsMap: new Map<string, ILayoutElement | IFormElement>(),
   selectedElement: null,
 }
 
@@ -39,9 +40,16 @@ export const formConstructorSlice = createFormConstructorSlice({
     },
     addNewElement: (state, action: PayloadAction<AddNewElementPayload>) => {
       const element = action.payload.element
-      const newMap = new Map<string, (ILayoutElement | IFormElement)[]>(state.allElementsMap)
-      newMap.set(action.payload.parent, [...(newMap.get(action.payload.parent) || []), element])
-      state.allElementsMap = newMap
+      const newTreeMap = new Map<string, (ILayoutElement | IFormElement)[]>(state.allElementsTree)
+      newTreeMap.set(action.payload.parent, [
+        ...(newTreeMap.get(action.payload.parent) || []),
+        element,
+      ])
+      state.allElementsTree = newTreeMap
+
+      const newAllelementMap = new Map<string, ILayoutElement | IFormElement>(state.allElementsMap)
+      newAllelementMap.set(element.id, element)
+      state.allElementsMap = newAllelementMap
     },
   },
 })
