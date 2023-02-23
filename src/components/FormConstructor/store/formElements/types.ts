@@ -4,6 +4,9 @@ import { Props } from '@consta/uikit/Button'
 export type ButtonElementProps = Props
 export type LayoutElementProps = LayoutProps
 
+/// По мере расширения сюда подем дописывать новые объединения
+export type UnionProps = ButtonElementProps | LayoutElementProps
+
 export enum ElementTypes {
   Layout = 'Layout',
   FormElement = 'FormElement',
@@ -32,6 +35,9 @@ export interface IFormElementButton extends IFormElement {
   props: ButtonElementProps
 }
 
+// По мере добавление новых элементов сюда будем добавлять новые объединения
+export type FormElementUnion = IFormElementButton
+
 export interface ISelectedElement {
   elementId: string
   elemntType: ElementTypes
@@ -39,6 +45,7 @@ export interface ISelectedElement {
 }
 
 export interface IFormConstructor {
-  allElementsMap: Map<string, (ILayoutElement | IFormElement)[]>
+  allElementsTree: Map<string, (ILayoutElement | IFormElement)[]>
+  allElementsMap: Map<string, ILayoutElement | IFormElement>
   selectedElement: ISelectedElement | null
 }

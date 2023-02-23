@@ -19,14 +19,14 @@ import { getElementType } from '../../utils/getElementType'
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
-  const { allElementsMap } = useAppSelector(state => state.formConstructor)
+  const { allElementsTree } = useAppSelector(state => state.formConstructor)
   const [elementsOnLayer, setElementsOnLayer] = useState<(ILayoutElement | IFormElement)[]>([])
   const dispatch = useDispatch()
 
   useEffect(() => {
     /// Подгружаем все эелементы на текущем уровне
-    setElementsOnLayer(allElementsMap.get(parentElementId) || [])
-  }, [allElementsMap, parentElementId])
+    setElementsOnLayer(allElementsTree.get(parentElementId) || [])
+  }, [allElementsTree, parentElementId])
 
   const handleOnDrop = (event: React.DragEvent) => {
     const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
