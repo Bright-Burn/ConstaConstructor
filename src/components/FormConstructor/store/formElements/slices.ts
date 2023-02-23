@@ -38,12 +38,10 @@ export const formConstructorSlice = createFormConstructorSlice({
       }
     },
     addNewElement: (state, action: PayloadAction<AddNewElementPayload>) => {
-      const newMap = state.allElementsMap
-      newMap.set(action.payload.parent, [
-        ...(state.allElementsMap.get(action.payload.parent) || []),
-        action.payload.element,
-      ])
-      state.allElementsMap = new Map(newMap)
+      const element = action.payload.element
+      const newMap = new Map<string, (ILayoutElement | IFormElement)[]>(state.allElementsMap)
+      newMap.set(action.payload.parent, [...(newMap.get(action.payload.parent) || []), element])
+      state.allElementsMap = newMap
     },
   },
 })

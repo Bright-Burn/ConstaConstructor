@@ -6,10 +6,12 @@ import {
   ElementTypes,
   FormElementTypes,
   IFormElement,
+  IFormElementButton,
   ILayoutElement,
+  ILayoutElementWithProps,
 } from '../../store/formElements/types'
-import { ButtonFormElement } from '../FormElements/ButtonFormElement'
-import { LayoutFromElement } from '../FormElements/LayoutFromElement'
+import { ButtonFormElement } from '../Elements/ButtonFormElement'
+import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
 import { getElementType } from '../../utils/getElementType'
@@ -34,33 +36,43 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     event.preventDefault()
 
     if (elemType) {
-      const layoutElement: ILayoutElement = {
+      const layoutElement: ILayoutElementWithProps = {
         id: uuid(),
-        selected: false,
         childrenFromElements: [],
         childrenLayoutElements: [],
+        props: {
+          flex: 1,
+        },
       }
-      dispatch(
-        formConstructorSlice.actions.addNewElement({
-          parent: parentElementId,
-          element: layoutElement,
-        }),
-      )
+      addFormElement(layoutElement)
       return
     }
 
     if (formElemType) {
-      const formElement: IFormElement = {
-        id: uuid(),
-        type: formElemType,
+      switch (formElemType) {
+        case FormElementTypes.Button:
+          const newButton: IFormElementButton = {
+            id: uuid(),
+            type: FormElementTypes.Button,
+            props: {
+              disabled: true,
+              label: 'Кнопка',
+              view: 'primary',
+            },
+          }
+          addFormElement(newButton)
+          break
       }
-      dispatch(
-        formConstructorSlice.actions.addNewElement({
-          parent: parentElementId,
-          element: formElement,
-        }),
-      )
     }
+  }
+
+  const addFormElement = (element: IFormElement | ILayoutElement) => {
+    dispatch(
+      formConstructorSlice.actions.addNewElement({
+        parent: parentElementId,
+        element: element,
+      }),
+    )
   }
 
   return (
