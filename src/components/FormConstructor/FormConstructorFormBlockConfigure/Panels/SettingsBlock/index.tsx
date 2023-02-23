@@ -6,6 +6,7 @@ export const Settings: FC = () => {
   const { selectedElement } = useAppSelector(state => state.formConstructor)
 
   useLayoutEffect(() => {
+    /// В зависимости от типа и id selected element применяем пропсы
     console.log(selectedElement)
   }, [selectedElement])
 

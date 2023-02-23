@@ -1,3 +1,9 @@
+import { LayoutProps } from '@consta/uikit/Layout'
+import { Props } from '@consta/uikit/Button'
+
+export type ButtonElementProps = Props
+export type LayoutElementProps = LayoutProps
+
 export enum ElementTypes {
   Layout = 'Layout',
   FormElement = 'FormElement',
@@ -9,14 +15,21 @@ export enum FormElementTypes {
 
 export interface ILayoutElement {
   id: string
-  selected: boolean
   childrenFromElements: IFormElement[]
   childrenLayoutElements: ILayoutElement[]
+}
+
+export interface ILayoutElementWithProps extends ILayoutElement {
+  props: LayoutElementProps
 }
 
 export interface IFormElement {
   id: string
   type: FormElementTypes
+}
+
+export interface IFormElementButton extends IFormElement {
+  props: ButtonElementProps
 }
 
 export interface ISelectedElement {
