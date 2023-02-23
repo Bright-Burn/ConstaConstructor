@@ -1,8 +1,9 @@
 import { ReactNode } from 'react'
-import { ElementTypes } from '../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../store/formElements/types'
 
 export interface ISelectableLayer {
   parentElementId: string
-  type: ElementTypes
+  elementType: ElementTypes
+  formElementType?: FormElementTypes
   children?: ReactNode
 }

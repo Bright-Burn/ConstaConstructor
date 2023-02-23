@@ -16,7 +16,7 @@ export const ComponentItems = () => {
       id: uuid(),
       name: 'Кнопка',
       formElementType: FormElementTypes.Button,
-      elemType: ElementTypes.Form,
+      elemType: ElementTypes.FormElement,
     },
   ])
 

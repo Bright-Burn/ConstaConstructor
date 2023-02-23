@@ -5,31 +5,42 @@ import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../stor
 import { ElementTypes } from '../../store/formElements/types'
 
 /// Уровень содержащий логику по выделению родительского комопнента
-export const SelectableLayer: FC<ISelectableLayer> = ({ children, parentElementId, type }) => {
+export const SelectableLayer: FC<ISelectableLayer> = ({
+  children,
+  parentElementId,
+  elementType,
+  formElementType,
+}) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
-  const { selectedElementId } = useAppSelector(state => state.formConstructor)
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
 
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
-    if (selectedElementId === parentElementId) {
+    if (selectedElement?.elementId === parentElementId) {
       setIsSelected(true)
     } else {
       setIsSelected(false)
     }
-  }, [selectedElementId, parentElementId])
+  }, [selectedElement, parentElementId])
 
   const onClickElement = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
     event.preventDefault()
 
-    dispatch(formConstructorSlice.actions.setSelectedElement({ elementId: parentElementId }))
+    dispatch(
+      formConstructorSlice.actions.setSelectedElement({
+        elementId: parentElementId,
+        elemntType: elementType,
+        formElementType: formElementType,
+      }),
+    )
   }
 
   return (
     <div
       className={`${
-        type === ElementTypes.Form
+        elementType === ElementTypes.FormElement
           ? styles.selectableLayerFormElement
           : styles.selectableLayerLayoutElement
       } ${isSelected ? styles.selectedElement : ''}`}

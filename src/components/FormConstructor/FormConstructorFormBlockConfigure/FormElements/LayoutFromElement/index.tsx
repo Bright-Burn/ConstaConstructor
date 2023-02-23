@@ -8,7 +8,7 @@ import { ILayoutFormElement } from './types'
 export const LayoutFromElement: FC<ILayoutFormElement> = ({ layoutElement }) => {
   return (
     <Layout flex={1}>
-      <SelectableLayer parentElementId={layoutElement.id} type={ElementTypes.Layout}>
+      <SelectableLayer parentElementId={layoutElement.id} elementType={ElementTypes.Layout}>
         <DroppableLayer parentElementId={layoutElement.id} />
       </SelectableLayer>
     </Layout>

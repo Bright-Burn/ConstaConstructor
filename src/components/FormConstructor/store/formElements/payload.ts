@@ -1,4 +1,4 @@
-import { IFormElement, ILayoutElement } from './types'
+import { ElementTypes, FormElementTypes, IFormElement, ILayoutElement } from './types'
 
 export interface AddNewElementPayload {
   element: IFormElement | ILayoutElement
@@ -7,4 +7,6 @@ export interface AddNewElementPayload {
 
 export interface SetNewSelectedElement {
   elementId: string
+  elemntType: ElementTypes
+  formElementType?: FormElementTypes
 }

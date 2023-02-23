@@ -1,6 +1,6 @@
 export enum ElementTypes {
   Layout = 'Layout',
-  Form = 'Form',
+  FormElement = 'FormElement',
 }
 
 export enum FormElementTypes {
@@ -19,7 +19,13 @@ export interface IFormElement {
   type: FormElementTypes
 }
 
+export interface ISelectedElement {
+  elementId: string
+  elemntType: ElementTypes
+  formElementType?: FormElementTypes
+}
+
 export interface IFormConstructor {
   allElementsMap: Map<string, (ILayoutElement | IFormElement)[]>
-  selectedElementId: string
+  selectedElement: ISelectedElement | null
 }
