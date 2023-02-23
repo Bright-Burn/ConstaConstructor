@@ -30,7 +30,6 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
     const elemType = event.dataTransfer.getData('ElementType') as ElementTypes
 
-    console.log(parentElementId)
     event.stopPropagation()
     event.preventDefault()
 
@@ -53,7 +52,6 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     if (formElemType) {
       const formElement: IFormElement = {
         id: uuid(),
-        selected: false,
         type: formElemType,
       }
       dispatch(
@@ -79,7 +77,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
         } else {
           const element = el as IFormElement
           if (element.type === FormElementTypes.Button) {
-            return <ButtonFormElement key={el.id} />
+            return <ButtonFormElement key={el.id} formElement={element} />
           }
         }
         return <></>

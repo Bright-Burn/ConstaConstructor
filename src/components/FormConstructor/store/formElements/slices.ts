@@ -5,11 +5,11 @@ import {
   PayloadAction,
   ValidateSliceCaseReducers,
 } from '@reduxjs/toolkit'
-import { AddNewFormElementPayload } from './payload'
+import { AddNewElementPayload, SetNewSelectedElement } from './payload'
 
 const initialState: IFormConstructor = {
   allElementsMap: new Map<string, (ILayoutElement | IFormElement)[]>(),
-  selectedFormElement: '',
+  selectedElementId: '',
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
@@ -32,11 +32,16 @@ export const formConstructorSlice = createFormConstructorSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
-    addNewElement: (state, action: PayloadAction<AddNewFormElementPayload>) => {
-      state.allElementsMap.set(action.payload.parent, [
+    setSelectedElement: (state, action: PayloadAction<SetNewSelectedElement>) => {
+      state.selectedElementId = action.payload.elementId
+    },
+    addNewElement: (state, action: PayloadAction<AddNewElementPayload>) => {
+      const newMap = state.allElementsMap
+      newMap.set(action.payload.parent, [
         ...(state.allElementsMap.get(action.payload.parent) || []),
         action.payload.element,
       ])
+      state.allElementsMap = new Map(newMap)
     },
   },
 })

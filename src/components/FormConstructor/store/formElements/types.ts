@@ -16,11 +16,10 @@ export interface ILayoutElement {
 
 export interface IFormElement {
   id: string
-  selected: boolean
   type: FormElementTypes
 }
 
 export interface IFormConstructor {
   allElementsMap: Map<string, (ILayoutElement | IFormElement)[]>
-  selectedFormElement: string
+  selectedElementId: string
 }
