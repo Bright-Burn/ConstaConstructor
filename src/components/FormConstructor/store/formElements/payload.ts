@@ -1,6 +1,10 @@
 import { IFormElement, ILayoutElement } from './types'
 
-export interface AddNewFormElementPayload {
+export interface AddNewElementPayload {
   element: IFormElement | ILayoutElement
   parent: string
+}
+
+export interface SetNewSelectedElement {
+  elementId: string
 }
