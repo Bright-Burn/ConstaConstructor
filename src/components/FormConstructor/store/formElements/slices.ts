@@ -12,6 +12,8 @@ import {
   ValidateSliceCaseReducers,
 } from '@reduxjs/toolkit'
 import { AddNewElementPayload, SetNewSelectedElement } from './payload'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '..'
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, (ILayoutElement | IFormElement)[]>(),
@@ -64,3 +66,8 @@ export const formConstructorSlice = createFormConstructorSlice({
     },
   },
 })
+
+export const formConstructorReducer = formConstructorSlice.reducer
+
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
