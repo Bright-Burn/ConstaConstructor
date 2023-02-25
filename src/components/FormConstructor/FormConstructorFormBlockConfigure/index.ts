@@ -1,0 +1,1 @@
+export { FormConstructorFormBlockConfigure } from './FormConstructorFormBlockConfigure'

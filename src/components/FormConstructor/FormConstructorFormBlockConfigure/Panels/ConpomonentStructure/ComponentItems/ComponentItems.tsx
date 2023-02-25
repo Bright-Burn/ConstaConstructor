@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import uuid from 'react-uuid'
 import { FormElementTypes, FormGroupsTypes } from '../../../../store/formElements/types'
-import { ComponentCard } from './ComponentCard'
-import { IComponentCard } from './ComponentCard/types'
+import { ComponentCard, IComponentCard } from './ComponentCard'
 import styles from './styles.module.css'
 
 export const ComponentItems = () => {
