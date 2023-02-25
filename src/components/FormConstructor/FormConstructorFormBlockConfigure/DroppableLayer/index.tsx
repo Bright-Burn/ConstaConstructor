@@ -5,10 +5,10 @@ import { formConstructorSlice, useAppSelector } from '../../store/formElements'
 import {
   ElementTypes,
   FormElementTypes,
+  FormGroupsTypes,
   IFormElement,
   IFormElementButton,
   ILayoutElement,
-  ILayoutElementWithProps,
 } from '../../store/formElements/types'
 import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
@@ -30,21 +30,25 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
   const handleOnDrop = (event: React.DragEvent) => {
     const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
-    const elemType = event.dataTransfer.getData('ElementType') as ElementTypes
+    const groupElementType = event.dataTransfer.getData('FormGroupsType') as FormGroupsTypes
 
     event.stopPropagation()
     event.preventDefault()
 
-    if (elemType) {
-      const layoutElement: ILayoutElementWithProps = {
-        id: uuid(),
-        childrenFromElements: [],
-        childrenLayoutElements: [],
-        props: {
-          flex: 1,
-        },
+    if (groupElementType) {
+      switch (groupElementType) {
+        case FormGroupsTypes.Layout:
+          const layoutElement: ILayoutElement = {
+            id: uuid(),
+            childrenFromElements: [],
+            childrenLayoutElements: [],
+            props: {
+              flex: 1,
+            },
+          }
+          addFormElement(layoutElement)
+          break
       }
-      addFormElement(layoutElement)
       return
     }
 
@@ -83,7 +87,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     >
       {elementsOnLayer.map(el => {
         // Тут происходит проверка, является ли элемент Layout елементом
-        if (getElementType(el) === ElementTypes.Layout) {
+        if (getElementType(el) === ElementTypes.FormGroups) {
           const element = el as ILayoutElement
           return <LayoutFromElement key={el.id} layoutElement={element} />
         } else {
