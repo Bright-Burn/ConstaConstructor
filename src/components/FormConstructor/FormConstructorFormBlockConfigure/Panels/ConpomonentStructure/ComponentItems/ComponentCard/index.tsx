@@ -3,12 +3,12 @@ import { IComponentCard } from './types'
 import { Text } from '@consta/uikit/Text'
 import styles from './styles.module.css'
 
-export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, elemType }) => {
+export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   const onDragFormElementStart = (event: React.DragEvent) => {
     if (formElementType) {
       event.dataTransfer.setData('FormElementType', formElementType)
-    } else {
-      event.dataTransfer.setData('ElementType', elemType)
+    } else if (groupElementType) {
+      event.dataTransfer.setData('FormGroupsType', groupElementType)
     }
   }
 

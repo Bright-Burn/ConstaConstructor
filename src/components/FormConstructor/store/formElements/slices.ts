@@ -1,4 +1,10 @@
-import { IFormConstructor, IFormElement, ILayoutElement } from './types'
+import {
+  FormElementUnion,
+  GroupElementUnion,
+  IFormConstructor,
+  IFormElement,
+  ILayoutElement,
+} from './types'
 import {
   createSlice,
   SliceCaseReducers,
@@ -11,6 +17,7 @@ const initialState: IFormConstructor = {
   allElementsTree: new Map<string, (ILayoutElement | IFormElement)[]>(),
   allElementsMap: new Map<string, ILayoutElement | IFormElement>(),
   selectedElement: null,
+  selectedElementProps: null,
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
@@ -34,8 +41,12 @@ export const formConstructorSlice = createFormConstructorSlice({
   initialState,
   reducers: {
     setSelectedElement: (state, action: PayloadAction<SetNewSelectedElement>) => {
-      state.selectedElement = {
-        ...action.payload,
+      const element = state.allElementsMap.get(action.payload.elementId)
+      if (element) {
+        state.selectedElementProps = (element as FormElementUnion | GroupElementUnion).props
+        state.selectedElement = {
+          ...action.payload,
+        }
       }
     },
     addNewElement: (state, action: PayloadAction<AddNewElementPayload>) => {

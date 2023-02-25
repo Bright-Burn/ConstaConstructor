@@ -4,7 +4,7 @@ export const getElementType: (element: IFormElement | ILayoutElement) => Element
   element: IFormElement | ILayoutElement,
 ) => {
   if ('childrenFromElements' in element) {
-    return ElementTypes.Layout
+    return ElementTypes.FormGroups
   }
   return ElementTypes.FormElement
 }

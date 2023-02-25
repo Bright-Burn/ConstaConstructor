@@ -1,7 +1,13 @@
 import { formConstructorSlice } from './slices'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
-import { ButtonElementProps, LayoutElementProps, UnionProps, FormElementUnion } from './types'
+import {
+  ButtonElementProps,
+  LayoutElementProps,
+  UnionProps,
+  FormElementUnion,
+  GroupElementUnion,
+} from './types'
 
 const formConstructorReducer = formConstructorSlice.reducer
 
@@ -17,4 +23,5 @@ export {
   type ButtonElementProps,
   type LayoutElementProps,
   type FormElementUnion,
+  type GroupElementUnion,
 }
