@@ -1,0 +1,1 @@
+export { ConpomonentStructure } from './ComponentStructure'
