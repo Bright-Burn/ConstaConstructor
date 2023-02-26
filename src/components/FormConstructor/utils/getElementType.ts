@@ -1,9 +1,14 @@
-import { ElementTypes, IFormElement, ILayoutElement } from '../store/formElements/types'
+import {
+  ElementTypes,
+  FormGroupsTypes,
+  IFormElement,
+  ILayoutElement,
+} from '../store/formElements/types'
 
 export const getElementType: (element: IFormElement | ILayoutElement) => ElementTypes = (
   element: IFormElement | ILayoutElement,
 ) => {
-  if ('childrenFromElements' in element) {
+  if (element.type === FormGroupsTypes.Layout) {
     return ElementTypes.FormGroups
   }
   return ElementTypes.FormElement

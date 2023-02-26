@@ -14,12 +14,12 @@ import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
-import { getElementType } from '../../utils/getElementType'
+import { getElementType, getNewLayoutParentLevel } from '../../utils'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
-  const { allElementsTree } = useAppSelector(state => state.formConstructor)
+  const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
   const [elementsOnLayer, setElementsOnLayer] = useState<(ILayoutElement | IFormElement)[]>([])
   const dispatch = useDispatch()
 
@@ -40,13 +40,13 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
         case FormGroupsTypes.Layout:
           const layoutElement: ILayoutElement = {
             id: uuid(),
-            childrenFromElements: [],
-            childrenLayoutElements: [],
+            parentId: parentElementId,
+            type: FormGroupsTypes.Layout,
             props: {
               flex: 1,
             },
           }
-          addFormElement(layoutElement)
+          addLayout(layoutElement)
           break
       }
       return
@@ -64,13 +64,26 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
               view: 'primary',
             },
           }
-          addFormElement(newButton)
+          addElement(newButton, parentElementId)
           break
       }
     }
   }
 
-  const addFormElement = (element: IFormElement | ILayoutElement) => {
+  const addLayout = (layoutElement: ILayoutElement) => {
+    const newParentElementId = getNewLayoutParentLevel(
+      parentElementId,
+      allElementsTree,
+      allElementsMap,
+    )
+
+    if (newParentElementId) {
+      console.log(newParentElementId)
+      addElement(layoutElement, newParentElementId)
+    }
+  }
+
+  const addElement = (element: IFormElement | ILayoutElement, parentElementId: string) => {
     dispatch(
       formConstructorSlice.actions.addNewElement({
         parent: parentElementId,
