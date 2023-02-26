@@ -64,8 +64,7 @@ export type GroupElementUnion = ILayoutElement
 
 export interface ISelectedElement {
   elementId: string
-  elemntType: ElementTypes
-  formElementType?: FormElementTypes
+  elementType: FormGroupsTypes | FormElementTypes
 }
 
 export interface IFormConstructor {

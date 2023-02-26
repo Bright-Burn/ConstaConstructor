@@ -1,16 +1,23 @@
-import React, { FC, useLayoutEffect, useState } from 'react'
-import { UnionProps, useAppSelector } from '../../../store/formElements'
+import React, { FC } from 'react'
+import { useAppSelector } from '../../../store/formElements'
+import { FormGroupsTypes } from '../../../store/formElements/types'
+import { LayoutSettings } from './LayoutSettings'
 import styles from './styles.module.css'
 
 export const Settings: FC = () => {
-  const [props, setProps] = useState<UnionProps | undefined>()
-  const { selectedElementProps } = useAppSelector(state => state.formConstructor)
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
 
-  useLayoutEffect(() => {
-    if (selectedElementProps) {
-      setProps(selectedElementProps)
+  const getSettingsPanel = () => {
+    if (selectedElement) {
+      console.log(selectedElement.elementType)
+      switch (selectedElement.elementType) {
+        case FormGroupsTypes.Layout:
+          return <LayoutSettings />
+        default:
+          return <>Not implement</>
+      }
     }
-  }, [selectedElementProps])
+  }
 
-  return <div className={`${styles.settingsBlock} borderCard`}>{JSON.stringify(props)}</div>
+  return <div className={`${styles.settingsBlock} borderCard`}>{getSettingsPanel()}</div>
 }

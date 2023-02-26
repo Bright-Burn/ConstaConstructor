@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import { formConstructorSlice, useAppSelector } from '../../store/formElements'
 import {
-  ElementTypes,
   FormElementTypes,
   FormGroupsTypes,
   IFormElement,
@@ -14,7 +13,7 @@ import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
-import { getElementType, getNewLayoutParentLevel } from '../../utils'
+import { getNewLayoutParentLevel } from '../../utils'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -100,10 +99,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     >
       {elementsOnLayer.map(el => {
         // Тут происходит проверка, является ли элемент Layout елементом
-        if (getElementType(el) === ElementTypes.FormGroups) {
+        if (el.type === FormGroupsTypes.Layout) {
           const element = el as ILayoutElement
           return <LayoutFromElement key={el.id} layoutElement={element} />
-        } else {
+        } else if (el.type === FormElementTypes.Button) {
           const element = el as IFormElement
           if (element.type === FormElementTypes.Button) {
             return <ButtonFormElement key={el.id} formElement={element} />
