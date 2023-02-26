@@ -10,9 +10,13 @@ import {
   UnionProps,
   FormElementUnion,
   GroupElementUnion,
+  FormElementArray,
 } from './types'
 
+import { AddNewElementPayload, SetNewSelectedElement } from './payload'
+
 export {
+  FormElementArray,
   formConstructorReducer,
   formConstructorSlice,
   useAppSelector,
@@ -22,4 +26,6 @@ export {
   type LayoutElementProps,
   type FormElementUnion,
   type GroupElementUnion,
+  type SetNewSelectedElement,
+  type AddNewElementPayload,
 }

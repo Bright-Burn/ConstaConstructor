@@ -16,7 +16,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
 
 const initialState: IFormConstructor = {
-  allElementsTree: new Map<string, (ILayoutElement | IFormElement)[]>(),
+  allElementsTree: new Map<string, string[]>(),
   allElementsMap: new Map<string, ILayoutElement | IFormElement>(),
   selectedElement: null,
   selectedElementProps: null,
@@ -45,18 +45,30 @@ export const formConstructorSlice = createFormConstructorSlice({
     setSelectedElement: (state, action: PayloadAction<SetNewSelectedElement>) => {
       const element = state.allElementsMap.get(action.payload.elementId)
       if (element) {
+        const newProps = action.payload.newProps
+
+        if (newProps) {
+          element.props = newProps
+        }
+
         state.selectedElementProps = (element as FormElementUnion | GroupElementUnion).props
         state.selectedElement = {
           ...action.payload,
         }
+
+        const newAllelementMap = new Map<string, ILayoutElement | IFormElement>(
+          state.allElementsMap,
+        )
+        state.allElementsMap = newAllelementMap
+        newAllelementMap.set(element.id, element)
       }
     },
     addNewElement: (state, action: PayloadAction<AddNewElementPayload>) => {
       const element = action.payload.element
-      const newTreeMap = new Map<string, (ILayoutElement | IFormElement)[]>(state.allElementsTree)
+      const newTreeMap = new Map<string, string[]>(state.allElementsTree)
       newTreeMap.set(action.payload.parent, [
         ...(newTreeMap.get(action.payload.parent) || []),
-        element,
+        element.id,
       ])
       state.allElementsTree = newTreeMap
 

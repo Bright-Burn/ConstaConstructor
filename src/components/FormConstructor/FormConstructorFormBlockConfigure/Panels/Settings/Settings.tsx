@@ -9,7 +9,6 @@ export const Settings: FC = () => {
 
   const getSettingsPanel = () => {
     if (selectedElement) {
-      console.log(selectedElement.elementType)
       switch (selectedElement.elementType) {
         case FormGroupsTypes.Layout:
           return <LayoutSettings />

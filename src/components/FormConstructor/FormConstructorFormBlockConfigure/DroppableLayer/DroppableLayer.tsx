@@ -24,8 +24,14 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
   useEffect(() => {
     /// Подгружаем все эелементы на текущем уровне
-    setElementsOnLayer(allElementsTree.get(parentElementId) || [])
-  }, [allElementsTree, parentElementId])
+    const layerIds = allElementsTree.get(parentElementId) || []
+    const elementsOnLayer: (ILayoutElement | IFormElement)[] = []
+    layerIds.forEach(ids => {
+      const elem = allElementsMap.get(ids)
+      elem && elementsOnLayer.push(elem)
+    })
+    setElementsOnLayer([...elementsOnLayer])
+  }, [allElementsTree, parentElementId, allElementsMap])
 
   const handleOnDrop = (event: React.DragEvent) => {
     const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
@@ -77,7 +83,6 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     )
 
     if (newParentElementId) {
-      console.log(newParentElementId)
       addElement(layoutElement, newParentElementId)
     }
   }
