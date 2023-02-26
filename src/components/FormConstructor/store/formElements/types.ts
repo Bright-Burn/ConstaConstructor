@@ -37,10 +37,13 @@ export enum FormElementTypes {
   Button = 'Button',
 }
 
-export interface ILayoutElement {
+export interface IGroupElement {
+  parentId: string
+  type: FormGroupsTypes
+}
+
+export interface ILayoutElement extends IGroupElement {
   id: string
-  childrenFromElements: IFormElement[]
-  childrenLayoutElements: ILayoutElement[]
   props: LayoutElementProps
 }
 
