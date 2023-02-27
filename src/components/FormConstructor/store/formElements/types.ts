@@ -26,7 +26,8 @@ export enum ElementTypes {
 
 // Виды группирующих панелей
 export enum FormGroupsTypes {
-  Layout = 'Layout',
+  LayoutInner = 'LayoutInner',
+  LayoutOuter = 'LayoutOuter',
 }
 
 // Виды обычных элементов формы ввода
@@ -38,13 +39,13 @@ export enum FormElementTypes {
 export const FormElementArray = [FormElementTypes.Button]
 
 export interface IGroupElement {
+  id: string
   parentId: string
   type: FormGroupsTypes
   props: GroupElementProps
 }
 
 export interface ILayoutElement extends IGroupElement {
-  id: string
   props: LayoutElementProps
 }
 
@@ -80,7 +81,7 @@ export interface ISelectedElement {
 
 export interface IFormConstructor {
   allElementsTree: Map<string, string[]>
-  allElementsMap: Map<string, ILayoutElement | IFormElement>
+  allElementsMap: Map<string, IGroupElement | IFormElement>
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
 }

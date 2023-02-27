@@ -8,7 +8,6 @@ import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import styles from './styles.module.css'
 import { useDispatch } from 'react-redux'
-import { FormGroupsTypes } from '../../../../store/formElements/types'
 export const LayoutSettings = () => {
   const [props, setProps] = useState<LayoutElementProps | undefined>()
   const [directions] = useState<string[]>(['row', 'column'])
@@ -35,7 +34,7 @@ export const LayoutSettings = () => {
         newProps[propsName] = value ? Number(value) : 1
         dispatch(
           formConstructorSlice.actions.setSelectedElement({
-            elementType: FormGroupsTypes.Layout,
+            elementType: selectedElement.elementType,
             elementId: selectedElement.elementId,
             newProps: newProps,
           }),
@@ -55,7 +54,7 @@ export const LayoutSettings = () => {
         newProps[propsName] = value
         dispatch(
           formConstructorSlice.actions.setSelectedElement({
-            elementType: FormGroupsTypes.Layout,
+            elementType: selectedElement.elementType,
             elementId: selectedElement.elementId,
             newProps: newProps,
           }),

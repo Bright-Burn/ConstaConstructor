@@ -8,8 +8,13 @@ export const ComponentItems = () => {
   const [componentCards] = useState<IComponentCard[]>([
     {
       id: uuid(),
-      name: 'Панель',
-      groupElementType: FormGroupsTypes.Layout,
+      name: 'Панель внутренняя',
+      groupElementType: FormGroupsTypes.LayoutInner,
+    },
+    {
+      id: uuid(),
+      name: 'Панель внешняя',
+      groupElementType: FormGroupsTypes.LayoutOuter,
     },
     {
       id: uuid(),

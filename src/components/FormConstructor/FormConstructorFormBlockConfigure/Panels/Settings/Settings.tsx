@@ -10,7 +10,7 @@ export const Settings: FC = () => {
   const getSettingsPanel = () => {
     if (selectedElement) {
       switch (selectedElement.elementType) {
-        case FormGroupsTypes.Layout:
+        case FormGroupsTypes.LayoutInner || FormGroupsTypes.LayoutOuter:
           return <LayoutSettings />
         default:
           return <>Not implement</>

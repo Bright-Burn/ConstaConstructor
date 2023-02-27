@@ -7,6 +7,7 @@ import {
   FormGroupsTypes,
   IFormElement,
   IFormElementButton,
+  IGroupElement,
   ILayoutElement,
 } from '../../store/formElements/types'
 import { ButtonFormElement } from '../Elements/ButtonFormElement'
@@ -42,17 +43,31 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
     if (groupElementType) {
       switch (groupElementType) {
-        case FormGroupsTypes.Layout:
+        case FormGroupsTypes.LayoutInner:
           const layoutElement: ILayoutElement = {
             id: uuid(),
             parentId: parentElementId,
-            type: FormGroupsTypes.Layout,
+            type: groupElementType,
             props: {
               flex: 1,
+              direction: 'row',
             },
           }
-          addLayout(layoutElement)
+          addLayoutInner(layoutElement)
           break
+        case FormGroupsTypes.LayoutOuter: {
+          const layoutElement: ILayoutElement = {
+            id: uuid(),
+            parentId: parentElementId,
+            type: groupElementType,
+            props: {
+              flex: 1,
+              direction: 'row',
+            },
+          }
+          addLayoutOuter(layoutElement)
+          break
+        }
       }
       return
     }
@@ -75,7 +90,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     }
   }
 
-  const addLayout = (layoutElement: ILayoutElement) => {
+  const addLayoutOuter = (layoutElement: ILayoutElement) => {
     const newParentElementId = getNewLayoutParentLevel(
       parentElementId,
       allElementsTree,
@@ -87,7 +102,11 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     }
   }
 
-  const addElement = (element: IFormElement | ILayoutElement, parentElementId: string) => {
+  const addLayoutInner = (layoutElement: ILayoutElement) => {
+    addElement(layoutElement, parentElementId)
+  }
+
+  const addElement = (element: IFormElement | IGroupElement, parentElementId: string) => {
     dispatch(
       formConstructorSlice.actions.addNewElement({
         parent: parentElementId,
@@ -104,12 +123,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     >
       {elementsOnLayer.map(el => {
         // Тут происходит проверка, является ли элемент Layout елементом
-        if (el.type === FormGroupsTypes.Layout) {
-          const element = el as ILayoutElement
-          return <LayoutFromElement key={el.id} layoutElement={element} />
+        if (el.type === FormGroupsTypes.LayoutInner || el.type === FormGroupsTypes.LayoutOuter) {
+          return <LayoutFromElement key={el.id} layoutElement={el} />
         } else if (el.type === FormElementTypes.Button) {
-          const element = el as IFormElement
-          return <ButtonFormElement key={el.id} formElement={element} />
+          return <ButtonFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}
