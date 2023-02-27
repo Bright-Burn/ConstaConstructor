@@ -1,12 +1,12 @@
-import { ElementTypes, FormElementTypes, IFormElement, ILayoutElement } from './types'
+import { FormElementTypes, FormGroupsTypes, IFormElement, IGroupElement, UnionProps } from './types'
 
 export interface AddNewElementPayload {
-  element: IFormElement | ILayoutElement
+  element: IFormElement | IGroupElement
   parent: string
 }
 
 export interface SetNewSelectedElement {
   elementId: string
-  elemntType: ElementTypes
-  formElementType?: FormElementTypes
+  elementType: FormGroupsTypes | FormElementTypes
+  newProps?: UnionProps
 }

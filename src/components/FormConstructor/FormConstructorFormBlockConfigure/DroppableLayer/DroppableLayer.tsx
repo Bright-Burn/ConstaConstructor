@@ -3,18 +3,18 @@ import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import { formConstructorSlice, useAppSelector } from '../../store/formElements'
 import {
-  ElementTypes,
   FormElementTypes,
   FormGroupsTypes,
   IFormElement,
   IFormElementButton,
+  IGroupElement,
   ILayoutElement,
 } from '../../store/formElements/types'
 import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
-import { getElementType, getNewLayoutParentLevel } from '../../utils'
+import { getNewLayoutParentLevel } from '../../utils'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -25,8 +25,14 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
   useEffect(() => {
     /// Подгружаем все эелементы на текущем уровне
-    setElementsOnLayer(allElementsTree.get(parentElementId) || [])
-  }, [allElementsTree, parentElementId])
+    const layerIds = allElementsTree.get(parentElementId) || []
+    const elementsOnLayer: (ILayoutElement | IFormElement)[] = []
+    layerIds.forEach(ids => {
+      const elem = allElementsMap.get(ids)
+      elem && elementsOnLayer.push(elem)
+    })
+    setElementsOnLayer([...elementsOnLayer])
+  }, [allElementsTree, parentElementId, allElementsMap])
 
   const handleOnDrop = (event: React.DragEvent) => {
     const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
@@ -37,17 +43,31 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
     if (groupElementType) {
       switch (groupElementType) {
-        case FormGroupsTypes.Layout:
+        case FormGroupsTypes.LayoutInner:
           const layoutElement: ILayoutElement = {
             id: uuid(),
             parentId: parentElementId,
-            type: FormGroupsTypes.Layout,
+            type: groupElementType,
             props: {
               flex: 1,
+              direction: 'row',
             },
           }
-          addLayout(layoutElement)
+          addLayoutInner(layoutElement)
           break
+        case FormGroupsTypes.LayoutOuter: {
+          const layoutElement: ILayoutElement = {
+            id: uuid(),
+            parentId: parentElementId,
+            type: groupElementType,
+            props: {
+              flex: 1,
+              direction: 'row',
+            },
+          }
+          addLayoutOuter(layoutElement)
+          break
+        }
       }
       return
     }
@@ -70,7 +90,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     }
   }
 
-  const addLayout = (layoutElement: ILayoutElement) => {
+  const addLayoutOuter = (layoutElement: ILayoutElement) => {
     const newParentElementId = getNewLayoutParentLevel(
       parentElementId,
       allElementsTree,
@@ -78,12 +98,15 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     )
 
     if (newParentElementId) {
-      console.log(newParentElementId)
       addElement(layoutElement, newParentElementId)
     }
   }
 
-  const addElement = (element: IFormElement | ILayoutElement, parentElementId: string) => {
+  const addLayoutInner = (layoutElement: ILayoutElement) => {
+    addElement(layoutElement, parentElementId)
+  }
+
+  const addElement = (element: IFormElement | IGroupElement, parentElementId: string) => {
     dispatch(
       formConstructorSlice.actions.addNewElement({
         parent: parentElementId,
@@ -100,14 +123,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     >
       {elementsOnLayer.map(el => {
         // Тут происходит проверка, является ли элемент Layout елементом
-        if (getElementType(el) === ElementTypes.FormGroups) {
-          const element = el as ILayoutElement
-          return <LayoutFromElement key={el.id} layoutElement={element} />
-        } else {
-          const element = el as IFormElement
-          if (element.type === FormElementTypes.Button) {
-            return <ButtonFormElement key={el.id} formElement={element} />
-          }
+        if (el.type === FormGroupsTypes.LayoutInner || el.type === FormGroupsTypes.LayoutOuter) {
+          return <LayoutFromElement key={el.id} layoutElement={el} />
+        } else if (el.type === FormElementTypes.Button) {
+          return <ButtonFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}

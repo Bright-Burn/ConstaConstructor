@@ -4,7 +4,8 @@
 }
 
 .selectableLayerLayoutElement {
-  all: inherit;
+  flex: inherit;
+  flex-direction: inherit;
 }
 
 .selectedElement {

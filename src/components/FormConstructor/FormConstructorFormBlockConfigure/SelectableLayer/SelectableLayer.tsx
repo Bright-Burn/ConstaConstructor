@@ -8,8 +8,8 @@ import { ElementTypes } from '../../store/formElements/types'
 export const SelectableLayer: FC<ISelectableLayer> = ({
   children,
   parentElementId,
+  elementTypeUsage,
   elementType,
-  formElementType,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const { selectedElement } = useAppSelector(state => state.formConstructor)
@@ -31,8 +31,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
         elementId: parentElementId,
-        elemntType: elementType,
-        formElementType: formElementType,
+        elementType: elementType,
       }),
     )
   }
@@ -40,7 +39,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   return (
     <div
       className={`${
-        elementType === ElementTypes.FormElement
+        elementTypeUsage === ElementTypes.FormElement
           ? styles.selectableLayerFormElement
           : styles.selectableLayerLayoutElement
       } ${isSelected ? styles.selectedElement : ''}`}

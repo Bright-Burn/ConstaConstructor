@@ -20,8 +20,8 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ formElement }) => {
   return (
     <SelectableLayer
       parentElementId={formElement.id}
-      elementType={ElementTypes.FormElement}
-      formElementType={FormElementTypes.Button}
+      elementTypeUsage={ElementTypes.FormElement}
+      elementType={FormElementTypes.Button}
     >
       <Button {...buttonProps} />
     </SelectableLayer>
