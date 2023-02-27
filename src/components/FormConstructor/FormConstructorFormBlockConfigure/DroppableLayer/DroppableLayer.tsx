@@ -109,9 +109,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <LayoutFromElement key={el.id} layoutElement={element} />
         } else if (el.type === FormElementTypes.Button) {
           const element = el as IFormElement
-          if (element.type === FormElementTypes.Button) {
-            return <ButtonFormElement key={el.id} formElement={element} />
-          }
+          return <ButtonFormElement key={el.id} formElement={element} />
         }
         return <></>
       })}

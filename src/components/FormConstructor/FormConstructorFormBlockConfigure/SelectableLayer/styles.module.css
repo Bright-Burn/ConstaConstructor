@@ -4,7 +4,8 @@
 }
 
 .selectableLayerLayoutElement {
-  display: inline-flex;
+  flex: inherit;
+  flex-direction: inherit;
 }
 
 .selectedElement {
