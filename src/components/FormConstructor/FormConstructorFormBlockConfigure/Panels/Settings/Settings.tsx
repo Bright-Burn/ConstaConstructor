@@ -1,11 +1,13 @@
 import React, { FC } from 'react'
-import { useAppSelector } from '../../../store/formElements'
+import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../../store/formElements'
 import { FormGroupsTypes } from '../../../store/formElements/types'
 import { LayoutSettings } from './LayoutSettings'
+import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
 
 export const Settings: FC = () => {
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElement, isGridVisible } = useAppSelector(state => state.formConstructor)
+  const dispatch = useAppDispatch()
 
   const getSettingsPanel = () => {
     if (selectedElement) {
@@ -18,5 +20,20 @@ export const Settings: FC = () => {
     }
   }
 
-  return <div className={`${styles.settingsBlock} borderCard`}>{getSettingsPanel()}</div>
+  const onClickShowGrid = () => {
+    dispatch(
+      formConstructorSlice.actions.showGrid({
+        isGridVisible: !isGridVisible,
+      }),
+    )
+  }
+
+  return (
+    <div className={`${styles.settingsBlock} borderCard`}>
+      <>
+        <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
+        {getSettingsPanel()}
+      </>
+    </div>
+  )
 }

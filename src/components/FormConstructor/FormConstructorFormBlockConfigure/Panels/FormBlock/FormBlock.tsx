@@ -6,7 +6,9 @@ export const FormBlock: FC = () => {
   const [formBlockParentId] = useState<string>('root')
   return (
     <div className={`${styles.formBlock} borderCard`}>
-      <DroppableLayer parentElementId={formBlockParentId} />
+      <div className={`${styles.formBlockContent}`}>
+        <DroppableLayer parentElementId={formBlockParentId} />
+      </div>
     </div>
   )
 }

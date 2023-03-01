@@ -20,6 +20,7 @@ import { getNewLayoutParentLevel } from '../../utils'
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
   const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
+
   const [elementsOnLayer, setElementsOnLayer] = useState<(ILayoutElement | IFormElement)[]>([])
   const dispatch = useDispatch()
 
@@ -49,8 +50,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             parentId: parentElementId,
             type: groupElementType,
             props: {
-              flex: 1,
-              direction: 'row',
+              constaProps: {
+                flex: 1,
+                direction: 'row',
+              },
             },
           }
           addLayoutInner(layoutElement)
@@ -61,8 +64,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             parentId: parentElementId,
             type: groupElementType,
             props: {
-              flex: 1,
-              direction: 'row',
+              constaProps: {
+                flex: 1,
+                direction: 'row',
+              },
             },
           }
           addLayoutOuter(layoutElement)
@@ -91,11 +96,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   }
 
   const addLayoutOuter = (layoutElement: ILayoutElement) => {
-    const newParentElementId = getNewLayoutParentLevel(
-      parentElementId,
-      allElementsTree,
-      allElementsMap,
-    )
+    const newParentElementId = getNewLayoutParentLevel(parentElementId, allElementsMap)
 
     if (newParentElementId) {
       addElement(layoutElement, newParentElementId)
@@ -117,7 +118,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
   return (
     <div
-      className={styles.droppableContainer}
+      className={`${styles.droppableContainer}`}
       onDrop={handleOnDrop}
       onDragOver={event => event.preventDefault()}
     >

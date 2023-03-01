@@ -2,7 +2,6 @@ import { IFormElement, ILayoutElement } from '../store/formElements/types'
 
 export const getNewLayoutParentLevel = (
   currentParentId: string,
-  allElementsTree: Map<string, string[]>,
   allElementsMap: Map<string, ILayoutElement | IFormElement>,
 ): string | undefined => {
   if (currentParentId === 'root') {
