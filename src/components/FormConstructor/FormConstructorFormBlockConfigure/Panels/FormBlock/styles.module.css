@@ -7,3 +7,9 @@
   flex-direction: column;
   overflow-y: auto;
 }
+
+.formBlockContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}

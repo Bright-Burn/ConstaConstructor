@@ -22,3 +22,7 @@ code {
   border-radius: 0.5rem;
   margin: 0.2rem;
 }
+
+.dottedCard {
+  border: 1px dotted;
+}

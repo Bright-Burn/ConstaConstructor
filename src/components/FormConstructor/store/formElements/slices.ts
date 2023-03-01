@@ -11,7 +11,7 @@ import {
   PayloadAction,
   ValidateSliceCaseReducers,
 } from '@reduxjs/toolkit'
-import { AddNewElementPayload, SetNewSelectedElement } from './payload'
+import { AddNewElementPayload, SetNewSelectedElement, ShowGrid } from './payload'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
 
@@ -20,6 +20,7 @@ const initialState: IFormConstructor = {
   allElementsMap: new Map<string, ILayoutElement | IFormElement>(),
   selectedElement: null,
   selectedElementProps: null,
+  isGridVisible: true,
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
@@ -42,6 +43,9 @@ export const formConstructorSlice = createFormConstructorSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
+    showGrid: (state, action: PayloadAction<ShowGrid>) => {
+      state.isGridVisible = action.payload.isGridVisible
+    },
     setSelectedElement: (state, action: PayloadAction<SetNewSelectedElement>) => {
       const element = state.allElementsMap.get(action.payload.elementId)
       if (element) {

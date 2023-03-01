@@ -10,3 +10,7 @@ export interface SetNewSelectedElement {
   elementType: FormGroupsTypes | FormElementTypes
   newProps?: UnionProps
 }
+
+export interface ShowGrid {
+  isGridVisible: boolean
+}

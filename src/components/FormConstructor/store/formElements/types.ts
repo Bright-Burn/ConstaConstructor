@@ -1,21 +1,7 @@
 import { Props } from '@consta/uikit/Button'
-import {
-  LayoutPropDirection,
-  LayoutPropHorizontalAlign,
-  LayoutPropVerticalAlign,
-} from '@consta/uikit/Layout'
+import { LayoutElementPropsStyles } from './layoutTypes'
 
 export type ButtonElementProps = Props
-
-// Нет возможности использовать тип импортированный из консты, как это сделано с типом ButtonElementProps, так как нет возможности создать State, содержащий поле типа HTMLElement
-// В будущем решим эту проблему, пока что описал вручную
-export type LayoutElementProps = {
-  flex?: number | 'none'
-  fixed?: boolean
-  verticalAlign?: LayoutPropVerticalAlign
-  horizontalAlign?: LayoutPropHorizontalAlign
-  direction?: LayoutPropDirection
-}
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -35,9 +21,6 @@ export enum FormElementTypes {
   Button = 'Button',
 }
 
-// Нужно такое предстваление в utils, в будущем можно будет переделать
-export const FormElementArray = [FormElementTypes.Button]
-
 export interface IGroupElement {
   id: string
   parentId: string
@@ -46,7 +29,7 @@ export interface IGroupElement {
 }
 
 export interface ILayoutElement extends IGroupElement {
-  props: LayoutElementProps
+  props: LayoutElementPropsStyles
 }
 
 export interface IFormElement {
@@ -63,7 +46,7 @@ export interface IFormElementButton extends IFormElement {
 export type FormElementProps = ButtonElementProps
 
 // Все Union пропсы для GropElement
-export type GroupElementProps = LayoutElementProps
+export type GroupElementProps = LayoutElementPropsStyles
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
 export type FormElementUnion = IFormElementButton
@@ -84,4 +67,5 @@ export interface IFormConstructor {
   allElementsMap: Map<string, IGroupElement | IFormElement>
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
+  isGridVisible: boolean
 }
