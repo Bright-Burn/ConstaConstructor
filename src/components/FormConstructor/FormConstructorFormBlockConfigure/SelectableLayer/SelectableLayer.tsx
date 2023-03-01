@@ -35,15 +35,22 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
       }),
     )
   }
-
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (selectedElement && e.code === 'Delete') {
+      dispatch(formConstructorSlice.actions.deleteElement({
+        elementId: selectedElement.elementId
+      }))
+    }
+  }
   return (
     <div
-      className={`${
-        elementTypeUsage === ElementTypes.FormElement
-          ? styles.selectableLayerFormElement
-          : styles.selectableLayerLayoutElement
-      } ${isSelected ? styles.selectedElement : ''}`}
+      className={`${elementTypeUsage === ElementTypes.FormElement
+        ? styles.selectableLayerFormElement
+        : styles.selectableLayerLayoutElement
+        } ${isSelected ? styles.selectedElement : ''}`}
       onClick={onClickElement}
+      onKeyDown={onKeyDown}
+      tabIndex={0}
     >
       {children}
     </div>

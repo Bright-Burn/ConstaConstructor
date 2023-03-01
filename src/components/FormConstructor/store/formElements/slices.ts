@@ -11,7 +11,7 @@ import {
   PayloadAction,
   ValidateSliceCaseReducers,
 } from '@reduxjs/toolkit'
-import { AddNewElementPayload, SetNewSelectedElement, ShowGrid } from './payload'
+import { AddNewElementPayload, DeleteElementPayload, SetNewSelectedElement, ShowGrid } from './payload'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
 
@@ -80,6 +80,10 @@ export const formConstructorSlice = createFormConstructorSlice({
       newAllelementMap.set(element.id, element)
       state.allElementsMap = newAllelementMap
     },
+    deleteElement: (state, action: PayloadAction<DeleteElementPayload>) => {
+      const elementId = action.payload.elementId
+      state.allElementsMap.delete(elementId)
+    }
   },
 })
 
