@@ -3,6 +3,7 @@ import { IFormConstructor, ISelectedElement, UnionProps } from '../store/formEle
 /// По мере расширения сопсобов сохранения, будет дополнять enum
 export enum ProjectSaveWays {
   STORAGE = 'STORAGE',
+  FILE = 'FILE',
 }
 
 export interface ProjectData {

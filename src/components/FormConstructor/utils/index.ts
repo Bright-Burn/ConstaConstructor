@@ -1,3 +1,6 @@
 import { getNewGroupParentLevel } from './getNewGroupParentLevel'
+import { getNewLayoutParentLevel } from './getNewLayoutParentLevel'
+import { readFile } from './readFile'
 
-export { getNewGroupParentLevel }
+export { getNewLayoutParentLevel, readFile, getNewGroupParentLevel }
+
