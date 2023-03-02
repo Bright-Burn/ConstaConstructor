@@ -9,8 +9,8 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ formElement }) => {
   const [badgeProps, setbadgeProps] = useState<BadgeProps | undefined>()
 
   useLayoutEffect(() => {
-    const badgeProps = formElement as IFormElementBadge
-    setbadgeProps(badgeProps.props)
+    const badgeFormElement = formElement as IFormElementBadge
+    setbadgeProps(badgeFormElement.props)
   }, [formElement])
 
   return (
