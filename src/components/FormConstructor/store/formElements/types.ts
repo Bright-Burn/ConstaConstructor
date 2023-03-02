@@ -1,8 +1,18 @@
 import { Props } from '@consta/uikit/Button'
+import { Props as CardProps } from '@consta/uikit/Card'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
 import { LayoutElementPropsStyles } from './layoutTypes'
 
-export type ButtonElementProps = Props & BaseProps
+export type ButtonElementProps = Props
+export type CardElementProps = CardProps
+
+export interface CardElementPropsStyles extends BaseProps { 
+  constaProps: CardElementProps
+}
+
+export interface ButtonElementPropsStyles extends BaseProps { 
+  constaProps: ButtonElementProps
+}
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -20,6 +30,7 @@ export enum FormGroupsTypes {
 // Виды обычных элементов формы ввода
 export enum FormElementTypes {
   Button = 'Button',
+  Card = 'Card',
 }
 
 export interface IGroupElement {
@@ -40,11 +51,15 @@ export interface IFormElement {
 }
 
 export interface IFormElementButton extends IFormElement {
-  props: ButtonElementProps
+  props: ButtonElementPropsStyles
+}
+
+export interface IFormElementCard extends IFormElement {
+  props: CardElementPropsStyles
 }
 
 // Все Union пропсы для FormElement
-export type FormElementProps = ButtonElementProps
+export type FormElementProps = ButtonElementPropsStyles | CardElementPropsStyles
 
 // Все Union пропсы для GropElement
 export type GroupElementProps = LayoutElementPropsStyles

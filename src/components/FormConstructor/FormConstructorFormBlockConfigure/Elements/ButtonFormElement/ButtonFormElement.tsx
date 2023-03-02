@@ -3,14 +3,14 @@ import { Button } from '@consta/uikit/Button'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IButtonFormElement } from './types'
 import {
-  ButtonElementProps,
+  ButtonElementPropsStyles,
   ElementTypes,
   FormElementTypes,
   IFormElementButton,
 } from '../../../store/formElements/types'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ formElement }) => {
-  const [buttonProps, setButtonProps] = useState<ButtonElementProps | undefined>()
+  const [buttonProps, setButtonProps] = useState<ButtonElementPropsStyles | undefined>()
 
   useLayoutEffect(() => {
     const btnFormElement = formElement as IFormElementButton
@@ -23,7 +23,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ formElement }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Button}
     >
-      <Button {...buttonProps} />
+      <Button {...buttonProps?.constaProps} />
     </SelectableLayer>
   )
 }

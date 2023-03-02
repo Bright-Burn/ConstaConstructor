@@ -7,6 +7,7 @@ import {
   FormGroupsTypes,
   IFormElement,
   IFormElementButton,
+  IFormElementCard,
   IGroupElement,
   ILayoutElement,
 } from '../../store/formElements/types'
@@ -15,6 +16,7 @@ import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
 import { getNewLayoutParentLevel } from '../../utils'
+import { CardFormElement } from '../Elements/CardFormElement'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -88,15 +90,33 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             id: uuid(),
             type: FormElementTypes.Button,
             props: {
-              disabled: true,
-              label: 'Кнопка',
-              view: 'primary',
+              constaProps: {
+                disabled: true,
+                label: 'Кнопка',
+                view: 'primary',
+              },
               className: '',
               baseProps: {},
             },
           }
           addElement(newButton, parentElementId)
           break
+          case FormElementTypes.Card:
+            const newCard: IFormElementCard = {
+              id: uuid(),
+              type: FormElementTypes.Card,
+              props: {
+                constaProps: {
+                  verticalSpace: "m",
+                  horizontalSpace: "m",
+                  status: undefined,
+                  form: 'square',
+                },
+                baseProps:{},
+                className:'',
+              },
+            }
+            addElement(newCard, parentElementId)
       }
     }
   }
@@ -134,6 +154,9 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <LayoutFromElement key={el.id} layoutElement={el} />
         } else if (el.type === FormElementTypes.Button) {
           return <ButtonFormElement key={el.id} formElement={el} />
+        }
+        else if (el.type === FormElementTypes.Card) {
+          return <CardFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../../store/formElements'
-import { FormGroupsTypes } from '../../../store/formElements/types'
+import { FormGroupsTypes, FormElementTypes } from '../../../store/formElements/types'
 import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
@@ -8,6 +8,7 @@ import { Button } from '@consta/uikit/Button'
 import { SaveModalCard } from './SaveModalCard'
 import { BaseSettings } from './BaseSettings/BaseSettings'
 import { defaultTestName } from '../../../projectSaveLoad'
+import { CardSettings } from './CardSettings'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -22,6 +23,12 @@ export const Settings: FC = () => {
           return (
             <>
               <LayoutSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Card:
+          return (
+            <>
+              <CardSettings /> <BaseSettings />
             </>
           )
         default:
