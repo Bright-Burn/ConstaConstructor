@@ -1,7 +1,7 @@
 import { Props } from '@consta/uikit/Button'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
 import { CardElementPropsStyles } from './cardTypes'
-import { BadgeProps, IFormElementBadge } from './badge'
+import { BadgeProps, IFormElementBadge } from './badgeTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
 
 export type ButtonElementProps = Props & BaseProps

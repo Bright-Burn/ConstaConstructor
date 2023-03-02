@@ -1,1 +1,1 @@
-export {BadgeSettings} from './BadgeSettings'
+export { BadgeSettings } from './BadgeSettings'

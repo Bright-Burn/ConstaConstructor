@@ -3,7 +3,7 @@ import { ElementTypes, FormElementTypes } from '../../../store/formElements/type
 import { SelectableLayer } from '../../SelectableLayer'
 import { IBadgeFormElement } from './types'
 import { Badge } from '@consta/uikit/Badge'
-import { BadgeProps, IFormElementBadge } from '../../../store/formElements/badge'
+import { BadgeProps, IFormElementBadge } from '../../../store/formElements/badgeTypes'
 
 export const BadgeFormElement: FC<IBadgeFormElement> = ({ formElement }) => {
   const [badgeProps, setbadgeProps] = useState<BadgeProps | undefined>()
