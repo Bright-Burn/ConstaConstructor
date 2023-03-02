@@ -7,8 +7,6 @@ export type BadgeProps = {
   status?: BadgePropStatus
   form?: BadgePropForm
   minified?: boolean
-  // Надо будет подумать, как менять иконки
-  // icon?: IconComponent;
   label?: string
   children?: never
 } & BaseProps
