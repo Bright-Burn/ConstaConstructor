@@ -1,0 +1,16 @@
+.saveCard {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+}
+
+.saveCardButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.saveCardRow {
+  padding-top: 1rem;
+}

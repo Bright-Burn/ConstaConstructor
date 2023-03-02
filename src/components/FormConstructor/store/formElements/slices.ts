@@ -14,11 +14,20 @@ import {
 import {
   AddNewElementPayload,
   DeleteElementPayload,
+  LoadProjectFromStorage,
+  SaveNewProject,
   SetNewSelectedElement,
   ShowGrid,
 } from './payload'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
+import {
+  projectFromSerilizable,
+  ProjectSaveWays,
+  saveProjectData,
+  SaveProjectIntent,
+} from '../../projectSaveLoad'
+import { ProjectDataSerializable } from '../../projectSaveLoad/types'
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
@@ -48,6 +57,30 @@ export const formConstructorSlice = createFormConstructorSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
+    loadProjectFromStorage: (state, action: PayloadAction<LoadProjectFromStorage>) => {
+      const projectJson = localStorage.getItem(action.payload.name)
+      if (projectJson) {
+        const projectSerilizable: ProjectDataSerializable = {
+          ...JSON.parse(projectJson),
+        }
+        const newSate = projectFromSerilizable(projectSerilizable.project)
+        state.allElementsMap = newSate.allElementsMap
+        state.allElementsTree = newSate.allElementsTree
+        state.isGridVisible = newSate.isGridVisible
+        state.selectedElement = newSate.selectedElement
+        state.selectedElementProps = newSate.selectedElementProps
+        console.log("reloaded")
+      }
+    },
+    saveProjectToMemmoryStorage: (state, action: PayloadAction<SaveNewProject>) => {
+      const intent: SaveProjectIntent = {
+        description: action.payload.description,
+        name: action.payload.name,
+        saveWay: ProjectSaveWays.STORAGE,
+        project: state,
+      }
+      saveProjectData(intent)
+    },
     showGrid: (state, action: PayloadAction<ShowGrid>) => {
       state.isGridVisible = action.payload.isGridVisible
     },

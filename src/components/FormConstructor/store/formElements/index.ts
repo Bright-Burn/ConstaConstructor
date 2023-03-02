@@ -8,7 +8,14 @@ import { ButtonElementProps, UnionProps, FormElementUnion, GroupElementUnion } f
 
 import { LayoutElementProps, LayoutElementPropsStyles, LayoutElementStyles } from './layoutTypes'
 
-import { AddNewElementPayload, SetNewSelectedElement } from './payload'
+import {
+  AddNewElementPayload,
+  SetNewSelectedElement,
+  DeleteElementPayload,
+  LoadProjectFromStorage,
+  SaveNewProject,
+  ShowGrid,
+} from './payload'
 
 export {
   formConstructorReducer,
@@ -24,4 +31,8 @@ export {
   type GroupElementUnion,
   type SetNewSelectedElement,
   type AddNewElementPayload,
+  type DeleteElementPayload,
+  type LoadProjectFromStorage,
+  type SaveNewProject,
+  type ShowGrid,
 }

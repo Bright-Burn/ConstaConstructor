@@ -7,6 +7,7 @@ export interface AddNewElementPayload {
 export interface DeleteElementPayload {
   elementId: string
 }
+
 export interface SetNewSelectedElement {
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes
@@ -15,4 +16,13 @@ export interface SetNewSelectedElement {
 
 export interface ShowGrid {
   isGridVisible: boolean
+}
+
+export interface SaveNewProject {
+  name: string
+  description: string
+}
+
+export interface LoadProjectFromStorage {
+  name: string
 }
