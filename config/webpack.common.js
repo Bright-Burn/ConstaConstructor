@@ -10,7 +10,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: resolve(__dirname, 'build'),
-},
+  },
 
   plugins: [
     new CleanWebpackPlugin(),
