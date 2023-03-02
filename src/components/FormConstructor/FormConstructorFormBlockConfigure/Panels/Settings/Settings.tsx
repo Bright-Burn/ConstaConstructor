@@ -7,7 +7,8 @@ import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
 import { SaveModalCard } from './SaveModalCard'
 import { BaseSettings } from './BaseSettings/BaseSettings'
-import { defaultTestName } from '../../../projectSaveLoad'
+import { FileField } from '@consta/uikit/FileField'
+import { readFile } from '../../../utils'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -42,20 +43,12 @@ export const Settings: FC = () => {
     )
   }
 
-  const onLoadProjectClick = () => {
-    dispatch(
-      formConstructorSlice.actions.loadProjectFromStorage({
-        name: defaultTestName,
-      }),
-    )
-  }
-
   const onSaveProjectClick = () => {
     setShowSaveModal(true)
   }
 
   const onSaveProject = (name: string, description: string) => {
-    dispatch(formConstructorSlice.actions.saveProjectToMemmoryStorage({ name, description }))
+    dispatch(formConstructorSlice.actions.saveProjectToFile({ name, description }))
     onClose()
   }
 
@@ -63,29 +56,47 @@ export const Settings: FC = () => {
     setShowSaveModal(false)
   }
 
+  const onChange = (e: DragEvent | React.ChangeEvent) => {
+    const targer = e?.target as HTMLInputElement
+    const files = targer?.files ? targer?.files : undefined
+    if (files) {
+      const file = files[0]
+      readFile(file).then(json => {
+        dispatch(formConstructorSlice.actions.loadProjectFromJson({ projectJson: json as string }))
+      })
+    }
+  }
+
   return (
     <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer}`}>
-      <>
-        <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
+      <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
+      <div className={styles.buttonsSaveLoad}>
+        <FileField id={'loader'} onChange={onChange}>
+          {props => (
+            <Button
+              id={'btn'}
+              {...props}
+              className='m-t-s'
+              label={'Загрузить проект'}
+              size={'s'}
+              view={'secondary'}
+            />
+          )}
+        </FileField>
         <Button
-          label={'Загрузить проект'}
-          onClick={onLoadProjectClick}
-          size={'xs'}
-          view={'secondary'}
-        />
-        <Button
+          className='m-t-s'
           label={'Сохранить проект'}
           onClick={onSaveProjectClick}
-          size={'xs'}
+          size={'s'}
           view={'secondary'}
         />
-        <SaveModalCard
-          onCloseModalCard={onClose}
-          onSaveProject={onSaveProject}
-          showSaveModal={showSaveModal}
-        />
-        {getSettingsPanel()}
-      </>
+      </div>
+      <SaveModalCard
+        onCloseModalCard={onClose}
+        onSaveProject={onSaveProject}
+        showSaveModal={showSaveModal}
+      />
+      <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
     </div>
   )
 }
