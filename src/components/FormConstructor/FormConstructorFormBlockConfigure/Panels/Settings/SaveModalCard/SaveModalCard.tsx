@@ -18,15 +18,19 @@ export const SaveModalCard: FC<ISaveModalCard> = ({
     onSaveProject(name, 'Description')
   }
 
-  const handleChangeName = ({ value }: { value: string | null }) => setName(value || '');
-  const handleChangeDescription = ({ value }: { value: string | null }) => setDescription(value || '');
-
+  const handleChangeName = ({ value }: { value: string | null }) => setName(value || '')
+  const handleChangeDescription = ({ value }: { value: string | null }) =>
+    setDescription(value || '')
 
   return (
     <Modal isOpen={showSaveModal} onClickOutside={onCloseModalCard}>
       <div className={styles.saveCard}>
-        <TextField className={styles.saveCardRow} value={name} onChange={handleChangeName}/>
-        <TextField className={styles.saveCardRow} value={description} onChange={handleChangeDescription}/>
+        <TextField className={styles.saveCardRow} value={name} onChange={handleChangeName} />
+        <TextField
+          className={styles.saveCardRow}
+          value={description}
+          onChange={handleChangeDescription}
+        />
         <div className={styles.saveCardButtons}>
           <Button label={'Закрыть'} size={'s'} view={'ghost'} onClick={onCloseModalCard} />
           <Button label={'Сохранить'} size={'s'} view={'secondary'} onClick={onSaveClick} />
