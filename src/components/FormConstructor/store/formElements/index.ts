@@ -6,6 +6,8 @@ import {
 } from './slices'
 import { ButtonElementProps, UnionProps, FormElementUnion, GroupElementUnion } from './types'
 
+import { IFormElementBadge } from './badge'
+
 import { LayoutElementProps, LayoutElementPropsStyles, LayoutElementStyles } from './layoutTypes'
 
 import {
@@ -24,6 +26,7 @@ export {
   formConstructorSlice,
   useAppSelector,
   useAppDispatch,
+  type IFormElementBadge,
   type LayoutElementPropsStyles,
   type LayoutElementStyles,
   type UnionProps,

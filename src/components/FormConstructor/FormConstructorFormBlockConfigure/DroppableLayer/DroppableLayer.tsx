@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, useAppSelector } from '../../store/formElements'
+import { formConstructorSlice, IFormElementBadge, useAppSelector } from '../../store/formElements'
 import {
   FormElementTypes,
   FormGroupsTypes,
@@ -17,6 +17,7 @@ import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
 import { CardFormElement } from '../Elements/CardFormElement'
 import { getNewGroupParentLevel } from '../../utils'
+import { BadgeFormElement } from '../Elements/Badge'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -121,6 +122,23 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           }
           addElement(newButton, parentElementId)
           break
+
+        case FormElementTypes.Badge:
+          const newBadge: IFormElementBadge = {
+            id: uuid(),
+            type: FormElementTypes.Badge,
+            props: {
+              label: 'Badge',
+              form: 'default',
+              size: 's',
+              status: 'success',
+              view: 'filled',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newBadge, parentElementId)
+          break
       }
     }
   }
@@ -160,6 +178,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <ButtonFormElement key={el.id} formElement={el} />
         } else if (el.type === FormGroupsTypes.Card) {
           return <CardFormElement key={el.id} cardElement={el as ICardElement} />
+        } else if (el.type === FormElementTypes.Badge) {
+          return <BadgeFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}

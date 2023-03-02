@@ -1,0 +1,1 @@
+export {BadgeSettings} from './BadgeSettings'

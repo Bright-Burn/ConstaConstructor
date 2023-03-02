@@ -26,6 +26,11 @@ export const ComponentItems = () => {
       name: 'Карточка',
       groupElementType: FormGroupsTypes.Card,
     },
+    {
+      id: uuid(),
+      name: 'Badge',
+      formElementType: FormElementTypes.Badge,
+    },
   ])
 
   return (

@@ -1,16 +1,16 @@
 import React, { FC, useState } from 'react'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../../store/formElements'
-import { FormGroupsTypes } from '../../../store/formElements/types'
+import { FormElementTypes, FormGroupsTypes } from '../../../store/formElements/types'
 import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
 import { SaveModalCard } from './SaveModalCard'
 import { BaseSettings } from './BaseSettings/BaseSettings'
-import { defaultTestName } from '../../../projectSaveLoad'
 import { CardSettings } from './CardSettings'  
 import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
+import { BadgeSettings } from './BadgeSettings'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -21,6 +21,12 @@ export const Settings: FC = () => {
   const getSettingsPanel = () => {
     if (selectedElement) {
       switch (selectedElement.elementType) {
+        case FormElementTypes.Badge:
+          return (
+            <>
+              <BadgeSettings /> <BaseSettings />
+            </>
+          )
         case FormGroupsTypes.LayoutInner || FormGroupsTypes.LayoutOuter:
           return (
             <>
