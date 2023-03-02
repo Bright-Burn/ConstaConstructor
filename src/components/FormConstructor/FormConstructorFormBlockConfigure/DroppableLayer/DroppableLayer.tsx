@@ -18,6 +18,7 @@ import styles from './styles.module.css'
 import { CardFormElement } from '../Elements/CardFormElement'
 import { getNewGroupParentLevel } from '../../utils'
 import { BadgeFormElement } from '../Elements/Badge'
+import { IFormElementTabs } from '../../store/formElements/tabsTypes'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -138,6 +139,24 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             },
           }
           addElement(newBadge, parentElementId)
+          break
+
+        case FormElementTypes.Tabs:
+          const items = [{ label: 'tab1' }, { label: 'tab2' }]
+          const newTabs: IFormElementTabs = {
+            id: uuid(),
+            type: FormElementTypes.Tabs,
+            props: {
+              view: 'clear',
+              className: '',
+              baseProps: {},
+              value: items[0],
+              items: items,
+              onChange: () => {},
+              linePosition: 'bottom',
+            },
+          }
+          addElement(newTabs, parentElementId)
           break
       }
     }
