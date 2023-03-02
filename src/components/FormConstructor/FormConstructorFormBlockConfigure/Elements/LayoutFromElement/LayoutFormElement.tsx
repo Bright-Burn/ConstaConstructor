@@ -17,7 +17,7 @@ export const LayoutFromElement: FC<ILayoutFormElement> = ({ layoutElement }) => 
 
   return (
     <Layout
-      className={`${isGridVisible ? 'dottedCard' : ''}`}
+      className={`${isGridVisible ? 'dottedCard' : ''} ${layoutProps?.className}`}
       {...layoutProps?.constaProps}
       style={{ ...layoutProps?.styles }}
     >

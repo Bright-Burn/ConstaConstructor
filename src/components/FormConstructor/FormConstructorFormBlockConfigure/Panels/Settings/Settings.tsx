@@ -4,6 +4,7 @@ import { FormGroupsTypes } from '../../../store/formElements/types'
 import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
+import { BaseSettings } from './BaseSettings/BaseSettings'
 
 export const Settings: FC = () => {
   const { selectedElement, isGridVisible } = useAppSelector(state => state.formConstructor)
@@ -13,9 +14,9 @@ export const Settings: FC = () => {
     if (selectedElement) {
       switch (selectedElement.elementType) {
         case FormGroupsTypes.LayoutInner || FormGroupsTypes.LayoutOuter:
-          return <LayoutSettings />
+          return <><LayoutSettings /> <BaseSettings /></>
         default:
-          return <>Not implement</>
+          return <><BaseSettings /></>
       }
     }
   }
@@ -29,7 +30,7 @@ export const Settings: FC = () => {
   }
 
   return (
-    <div className={`${styles.settingsBlock} borderCard`}>
+    <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer}`}>
       <>
         <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
         {getSettingsPanel()}
