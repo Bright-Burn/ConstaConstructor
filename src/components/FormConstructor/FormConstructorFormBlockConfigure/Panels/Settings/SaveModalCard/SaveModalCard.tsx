@@ -2,7 +2,6 @@ import { Button } from '@consta/uikit/Button'
 import { Modal } from '@consta/uikit/Modal'
 import { TextField } from '@consta/uikit/TextField'
 import React, { FC, useState } from 'react'
-import { defaultDescription, defaultTestName } from '../../../../projectSaveLoad'
 import styles from './styles.module.css'
 import { ISaveModalCard } from './types'
 
@@ -11,11 +10,11 @@ export const SaveModalCard: FC<ISaveModalCard> = ({
   onCloseModalCard,
   onSaveProject,
 }) => {
-  const [name, setName] = useState<string>(defaultTestName)
-  const [description, setDescription] = useState<string>(defaultTestName)
+  const [name, setName] = useState<string>('New project')
+  const [description, setDescription] = useState<string>('My new project')
 
   const onSaveClick = () => {
-    onSaveProject(name, 'Description')
+    onSaveProject(name, description)
   }
 
   const handleChangeName = ({ value }: { value: string | null }) => setName(value || '')

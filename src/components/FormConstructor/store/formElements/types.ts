@@ -1,6 +1,7 @@
 import { Props } from '@consta/uikit/Button'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
 import { CardElementPropsStyles } from './cardTypes'
+import { BadgeProps, IFormElementBadge } from './badgeTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
 
 export type ButtonElementProps = Props & BaseProps
@@ -22,6 +23,7 @@ export enum FormGroupsTypes {
 // Виды обычных элементов формы ввода
 export enum FormElementTypes {
   Button = 'Button',
+  Badge = 'Badge',
 }
 
 export interface IGroupElement {
@@ -50,13 +52,13 @@ export interface ICardElement extends IGroupElement {
 }
 
 // Все Union пропсы для FormElement
-export type FormElementProps = ButtonElementProps
+export type FormElementProps = ButtonElementProps | BadgeProps
 
 // Все Union пропсы для GropElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
-export type FormElementUnion = IFormElementButton
+export type FormElementUnion = IFormElementButton | IFormElementBadge
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement

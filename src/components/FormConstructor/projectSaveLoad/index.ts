@@ -2,8 +2,6 @@ import {
   ProjectData,
   ProjectSaveWays,
   SaveProjectIntent,
-  defaultDescription,
-  defaultTestName,
   IFormConstructorSerializable,
 } from './types'
 
@@ -16,6 +14,4 @@ export {
   type SaveProjectIntent,
   saveProjectData,
   projectFromSerilizable,
-  defaultDescription,
-  defaultTestName,
 }
