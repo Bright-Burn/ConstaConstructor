@@ -54,6 +54,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
                 flex: 1,
                 direction: 'row',
               },
+              className: '',
+              baseProps: {},
             },
           }
           addLayoutInner(layoutElement)
@@ -68,6 +70,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
                 flex: 1,
                 direction: 'row',
               },
+              className: '',
+              baseProps: {},
             },
           }
           addLayoutOuter(layoutElement)
@@ -87,6 +91,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
               disabled: true,
               label: 'Кнопка',
               view: 'primary',
+              className: '',
+              baseProps: {},
             },
           }
           addElement(newButton, parentElementId)

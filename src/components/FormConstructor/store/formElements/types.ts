@@ -2,7 +2,7 @@ import { Props } from '@consta/uikit/Button'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
 import { LayoutElementPropsStyles } from './layoutTypes'
 
-export type ButtonElementProps = Props
+export type ButtonElementProps = Props & BaseProps
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -56,7 +56,7 @@ export type FormElementUnion = IFormElementButton
 export type GroupElementUnion = ILayoutElement
 
 /// По мере расширения сюда подем дописывать новые объединения
-export type UnionProps = (FormElementProps | GroupElementProps ) & BaseProps
+export type UnionProps = FormElementProps | GroupElementProps
 
 export interface BaseProps {
   className: string
