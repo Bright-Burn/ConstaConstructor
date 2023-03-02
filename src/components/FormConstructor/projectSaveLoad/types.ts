@@ -29,6 +29,3 @@ export interface ProjectDataSerializable {
 export interface SaveProjectIntent extends ProjectData {
   saveWay: ProjectSaveWays
 }
-
-export const defaultTestName = 'SimpleProject'
-export const defaultDescription = 'Description'
