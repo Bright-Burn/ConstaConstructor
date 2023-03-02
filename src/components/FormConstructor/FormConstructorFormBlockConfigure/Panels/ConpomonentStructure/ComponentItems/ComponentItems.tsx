@@ -21,6 +21,11 @@ export const ComponentItems = () => {
       name: 'Кнопка',
       formElementType: FormElementTypes.Button,
     },
+    {
+      id: uuid(),
+      name: 'Карточка',
+      groupElementType: FormGroupsTypes.Card,
+    },
   ])
 
   return (

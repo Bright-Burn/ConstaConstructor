@@ -7,6 +7,8 @@ import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
 import { SaveModalCard } from './SaveModalCard'
 import { BaseSettings } from './BaseSettings/BaseSettings'
+import { defaultTestName } from '../../../projectSaveLoad'
+import { CardSettings } from './CardSettings'  
 import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
 
@@ -23,6 +25,12 @@ export const Settings: FC = () => {
           return (
             <>
               <LayoutSettings /> <BaseSettings />
+            </>
+          )
+        case FormGroupsTypes.Card:
+          return (
+            <>
+              <CardSettings /> <BaseSettings />
             </>
           )
         default:

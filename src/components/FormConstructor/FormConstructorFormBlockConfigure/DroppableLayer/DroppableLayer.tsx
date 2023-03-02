@@ -5,6 +5,7 @@ import { formConstructorSlice, useAppSelector } from '../../store/formElements'
 import {
   FormElementTypes,
   FormGroupsTypes,
+  ICardElement,
   IFormElement,
   IFormElementButton,
   IGroupElement,
@@ -14,20 +15,21 @@ import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
-import { getNewLayoutParentLevel } from '../../utils'
+import { CardFormElement } from '../Elements/CardFormElement'
+import { getNewGroupParentLevel } from '../../utils'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
   const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
 
-  const [elementsOnLayer, setElementsOnLayer] = useState<(ILayoutElement | IFormElement)[]>([])
+  const [elementsOnLayer, setElementsOnLayer] = useState<(IGroupElement | IFormElement)[]>([])
   const dispatch = useDispatch()
 
   useEffect(() => {
     /// Подгружаем все эелементы на текущем уровне
     const layerIds = allElementsTree.get(parentElementId) || []
-    const elementsOnLayer: (ILayoutElement | IFormElement)[] = []
+    const elementsOnLayer: (IGroupElement | IFormElement)[] = []
     layerIds.forEach(ids => {
       const elem = allElementsMap.get(ids)
       elem && elementsOnLayer.push(elem)
@@ -77,6 +79,28 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           addLayoutOuter(layoutElement)
           break
         }
+        case FormGroupsTypes.Card:
+          const newCard: ICardElement = {
+            id: uuid(),
+            parentId: parentElementId,
+            type: groupElementType,
+            props: {
+              constaProps: {
+                verticalSpace: 'm',
+                horizontalSpace: 'm',
+                status: undefined,
+                form: 'square',
+              },
+              baseProps: {},
+              className: '',
+              styles: {
+                width: '376px',
+                height: '227px',
+              },
+            },
+          }
+          addElement(newCard, parentElementId)
+          break
       }
       return
     }
@@ -102,7 +126,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   }
 
   const addLayoutOuter = (layoutElement: ILayoutElement) => {
-    const newParentElementId = getNewLayoutParentLevel(parentElementId, allElementsMap)
+    const newParentElementId = getNewGroupParentLevel(parentElementId, allElementsMap)
 
     if (newParentElementId) {
       addElement(layoutElement, newParentElementId)
@@ -131,9 +155,11 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       {elementsOnLayer.map(el => {
         // Тут происходит проверка, является ли элемент Layout елементом
         if (el.type === FormGroupsTypes.LayoutInner || el.type === FormGroupsTypes.LayoutOuter) {
-          return <LayoutFromElement key={el.id} layoutElement={el} />
+          return <LayoutFromElement key={el.id} layoutElement={el as ILayoutElement} />
         } else if (el.type === FormElementTypes.Button) {
           return <ButtonFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormGroupsTypes.Card) {
+          return <CardFormElement key={el.id} cardElement={el as ICardElement} />
         }
         return <></>
       })}

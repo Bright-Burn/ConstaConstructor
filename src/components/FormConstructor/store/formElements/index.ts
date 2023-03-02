@@ -17,6 +17,8 @@ import {
   ShowGrid,
 } from './payload'
 
+import { CardElementPropsStyles } from './cardTypes'
+
 export {
   formConstructorReducer,
   formConstructorSlice,
@@ -35,4 +37,5 @@ export {
   type LoadProjectFromStorage,
   type SaveNewProject,
   type ShowGrid,
+  type CardElementPropsStyles,
 }
