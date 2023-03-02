@@ -16,19 +16,20 @@ import {
 } from '@consta/uikit/Layout'
 import { AlignItems, JustifyContentProps } from '../../../../store/formElements/layoutTypes'
 export const LayoutSettings = () => {
-  const [propsStyles, setPropsStyles] = useState<LayoutElementPropsStyles | undefined>()
-  const [directions] = useState<LayoutPropDirection[]>(['row', 'column'])
-  const [verticalAligns] = useState<LayoutPropVerticalAlign[]>(['top', 'bottom'])
-  const [horizontalAligns] = useState<LayoutPropHorizontalAlign[]>(['left', 'right'])
-  const [justifyContentProps] = useState<JustifyContentProps[]>([
+  const directions: LayoutPropDirection[] = ['row', 'column']
+  const verticalAligns: LayoutPropVerticalAlign[] = ['top', 'bottom']
+  const horizontalAligns: LayoutPropHorizontalAlign[] = ['left', 'right']
+  const justifyContentProps: JustifyContentProps[] = [
     'start',
     'center',
     'end',
     'space-between',
     'space-around',
     'space-evenly',
-  ])
+  ]
   const alignItems: AlignItems[] = ['center', 'start', 'end', 'flex-end', 'flex-start']
+
+  const [propsStyles, setPropsStyles] = useState<LayoutElementPropsStyles | undefined>()
   const [widthValue, setWidthValue] = useState<string>('0')
   const [heightValue, setHeightValue] = useState<string>('0')
 
@@ -48,66 +49,66 @@ export const LayoutSettings = () => {
 
   const onChangeFlex =
     () =>
-      ({ value }: { value: string | null }) => {
-        if (selectedElement) {
-          const newProps: LayoutElementPropsStyles = {
-            ...(selectedElementProps as LayoutElementPropsStyles),
-          }
-          newProps.constaProps = { ...newProps.constaProps }
-
-          const newValue = Number(value)
-
-          // @ts-ignore
-          newProps.constaProps['flex'] = value != null ? newValue : 1
-          onDispatch(selectedElement, newProps)
+    ({ value }: { value: string | null }) => {
+      if (selectedElement) {
+        const newProps: LayoutElementPropsStyles = {
+          ...(selectedElementProps as LayoutElementPropsStyles),
         }
+        newProps.constaProps = { ...newProps.constaProps }
+
+        const newValue = Number(value)
+
+        // @ts-ignore
+        newProps.constaProps['flex'] = value != null ? newValue : 1
+        onDispatch(selectedElement, newProps)
       }
+    }
 
   const onChangeDirection =
     () =>
-      ({ value }: { value: string | null }) => {
-        if (selectedElement) {
-          const newProps: LayoutElementPropsStyles = {
-            ...(selectedElementProps as LayoutElementPropsStyles),
-          }
-          newProps.constaProps = { ...newProps.constaProps }
-
-          // @ts-ignore
-          newProps.constaProps['direction'] = value
-          onDispatch(selectedElement, newProps)
+    ({ value }: { value: string | null }) => {
+      if (selectedElement) {
+        const newProps: LayoutElementPropsStyles = {
+          ...(selectedElementProps as LayoutElementPropsStyles),
         }
+        newProps.constaProps = { ...newProps.constaProps }
+
+        // @ts-ignore
+        newProps.constaProps['direction'] = value
+        onDispatch(selectedElement, newProps)
       }
+    }
 
   const onChangeVerticalAligment =
     () =>
-      ({ value }: { value: string | null }) => {
-        if (selectedElement) {
-          const newProps: LayoutElementPropsStyles = {
-            ...(selectedElementProps as LayoutElementPropsStyles),
-          }
-          newProps.constaProps = { ...newProps.constaProps }
-
-          // @ts-ignore
-          newProps.constaProps['verticalAlign'] = value
-          onDispatch(selectedElement, newProps)
+    ({ value }: { value: string | null }) => {
+      if (selectedElement) {
+        const newProps: LayoutElementPropsStyles = {
+          ...(selectedElementProps as LayoutElementPropsStyles),
         }
+        newProps.constaProps = { ...newProps.constaProps }
+
+        // @ts-ignore
+        newProps.constaProps['verticalAlign'] = value
+        onDispatch(selectedElement, newProps)
       }
+    }
 
   const onChangeHorizontalAligment =
     () =>
-      ({ value }: { value: string | null }) => {
-        if (selectedElement) {
-          const newProps: LayoutElementPropsStyles = {
-            ...(selectedElementProps as LayoutElementPropsStyles),
-          }
-
-          newProps.constaProps = { ...newProps.constaProps }
-
-          // @ts-ignore
-          newProps.constaProps['horizontalAlign'] = value
-          onDispatch(selectedElement, newProps)
+    ({ value }: { value: string | null }) => {
+      if (selectedElement) {
+        const newProps: LayoutElementPropsStyles = {
+          ...(selectedElementProps as LayoutElementPropsStyles),
         }
+
+        newProps.constaProps = { ...newProps.constaProps }
+
+        // @ts-ignore
+        newProps.constaProps['horizontalAlign'] = value
+        onDispatch(selectedElement, newProps)
       }
+    }
 
   const onChangeJustifyContent = ({ value }: { value: string | null }) => {
     if (selectedElement) {
@@ -143,7 +144,6 @@ export const LayoutSettings = () => {
 
     if (selectedElement) {
       if (value && value !== '0') {
-
         newProps.styles.maxWidth = `${value}px`
         newProps.styles.minWidth = `${value}px`
         onDispatch(selectedElement, newProps)
