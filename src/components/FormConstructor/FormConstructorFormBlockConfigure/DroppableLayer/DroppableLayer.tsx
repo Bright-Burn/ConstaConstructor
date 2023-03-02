@@ -118,7 +118,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
   return (
     <div
-      className={`${styles.droppableContainer}`}
+      className={styles.droppableContainer}
       onDrop={handleOnDrop}
       onDragOver={event => event.preventDefault()}
     >
