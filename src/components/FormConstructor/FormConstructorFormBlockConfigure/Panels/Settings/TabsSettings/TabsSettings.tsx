@@ -94,14 +94,6 @@ export const TabsSettings = () => {
         </>
       )}
       <Select
-        label='Расположение табов'
-        getItemKey={() => linePositionArray.findIndex(item => item === itemsProps.linePosition)}
-        getItemLabel={(item: LinePosition) => item}
-        value={itemsProps.linePosition}
-        items={linePositionArray}
-        onChange={({ value }) => onChangeLinePosition(value)}
-      />
-      <Select
         label='size'
         getItemKey={() => sizeArray.findIndex(item => item === itemsProps.size)}
         getItemLabel={(item: Size) => item}
@@ -118,13 +110,23 @@ export const TabsSettings = () => {
         onChange={({ value }) => onChangeView(value)}
       />
       <Select
-        label='fitMode'
-        getItemKey={() => fitModeArray.findIndex(item => item === itemsProps.fitMode)}
-        getItemLabel={(item: FitMode) => item}
-        value={itemsProps.fitMode}
-        items={fitModeArray}
-        onChange={({ value }) => onChangeFitMode(value)}
+        label='Расположение табов'
+        getItemKey={() => linePositionArray.findIndex(item => item === itemsProps.linePosition)}
+        getItemLabel={(item: LinePosition) => item}
+        value={itemsProps.linePosition}
+        items={linePositionArray}
+        onChange={({ value }) => onChangeLinePosition(value)}
       />
+      {((itemsProps.linePosition === 'bottom') || (itemsProps.linePosition === 'top')) &&
+        <Select
+          label='fitMode'
+          getItemKey={() => fitModeArray.findIndex(item => item === itemsProps.fitMode)}
+          getItemLabel={(item: FitMode) => item}
+          value={itemsProps.fitMode}
+          items={fitModeArray}
+          onChange={({ value }) => onChangeFitMode(value)}
+        />
+      }
     </>
   )
 }

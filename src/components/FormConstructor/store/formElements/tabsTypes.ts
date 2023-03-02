@@ -12,6 +12,7 @@ import {
 
 export type ITEM = {
   label: string | number
+  key?: number
 }
 
 export type TabsProps = {
@@ -23,9 +24,13 @@ export type TabsProps = {
   value?: ITEM | null
   getItemLabel?: TabsPropGetItemLabel<ITEM>
   onChange: () => void
-  linePosition?: LinePosition
-  fitMode?: FitMode
-}
+} & ({
+  linePosition?: Extract<LinePosition, 'bottom' | 'top'>;
+  fitMode?: FitMode;
+} | {
+  linePosition: Extract<LinePosition, 'left' | 'right'>;
+  fitMode?: never;
+})
 
 export type TabsElementProps = TabsProps & BaseProps
 

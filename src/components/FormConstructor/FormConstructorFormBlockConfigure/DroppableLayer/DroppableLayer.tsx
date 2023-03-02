@@ -19,6 +19,7 @@ import { CardFormElement } from '../Elements/CardFormElement'
 import { getNewGroupParentLevel } from '../../utils'
 import { BadgeFormElement } from '../Elements/Badge'
 import { IFormElementTabs } from '../../store/formElements/tabsTypes'
+import { TabsFormElement } from '../Elements/TabsFormElement'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -153,7 +154,9 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
               value: items[0],
               items: items,
               onChange: () => {},
-              linePosition: 'bottom',
+              linePosition: 'top',
+              fitMode: 'dropdown',
+              size: 'm',
             },
           }
           addElement(newTabs, parentElementId)
@@ -199,6 +202,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <CardFormElement key={el.id} cardElement={el as ICardElement} />
         } else if (el.type === FormElementTypes.Badge) {
           return <BadgeFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Tabs) {
+          return <TabsFormElement key={el.id} formElement={el as IFormElementTabs} />
         }
         return <></>
       })}
