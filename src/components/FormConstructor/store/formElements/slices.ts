@@ -69,7 +69,6 @@ export const formConstructorSlice = createFormConstructorSlice({
         state.isGridVisible = newSate.isGridVisible
         state.selectedElement = newSate.selectedElement
         state.selectedElementProps = newSate.selectedElementProps
-        console.log("reloaded")
       }
     },
     saveProjectToMemmoryStorage: (state, action: PayloadAction<SaveNewProject>) => {
