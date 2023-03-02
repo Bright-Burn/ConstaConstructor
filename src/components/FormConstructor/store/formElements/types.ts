@@ -3,6 +3,7 @@ import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settin
 import { CardElementPropsStyles } from './cardTypes'
 import { BadgeProps, IFormElementBadge } from './badgeTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
+import { IFormElementInformer, InformerElementProps } from './informerTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -24,6 +25,7 @@ export enum FormGroupsTypes {
 export enum FormElementTypes {
   Button = 'Button',
   Badge = 'Badge',
+  Informer = 'Informer',
 }
 
 export interface IGroupElement {
@@ -52,13 +54,13 @@ export interface ICardElement extends IGroupElement {
 }
 
 // Все Union пропсы для FormElement
-export type FormElementProps = ButtonElementProps | BadgeProps
+export type FormElementProps = ButtonElementProps | BadgeProps | InformerElementProps
 
 // Все Union пропсы для GropElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
-export type FormElementUnion = IFormElementButton | IFormElementBadge
+export type FormElementUnion = IFormElementButton | IFormElementBadge | IFormElementInformer
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement

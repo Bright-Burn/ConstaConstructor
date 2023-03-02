@@ -1,7 +1,12 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, IFormElementBadge, useAppSelector } from '../../store/formElements'
+import {
+  IFormElementInformer,
+  formConstructorSlice,
+  IFormElementBadge,
+  useAppSelector,
+} from '../../store/formElements'
 import {
   FormElementTypes,
   FormGroupsTypes,
@@ -18,6 +23,7 @@ import styles from './styles.module.css'
 import { CardFormElement } from '../Elements/CardFormElement'
 import { getNewGroupParentLevel } from '../../utils'
 import { BadgeFormElement } from '../Elements/Badge'
+import { InformerFormElement } from '../Elements/InformerFormElement'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -139,6 +145,22 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           }
           addElement(newBadge, parentElementId)
           break
+        case FormElementTypes.Informer:
+          const newInformer: IFormElementInformer = {
+            id: uuid(),
+            type: FormElementTypes.Informer,
+            props: {
+              label: 'Informer',
+              title: 'Title',
+              size: 's',
+              status: 'success',
+              view: 'filled',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newInformer, parentElementId)
+          break
       }
     }
   }
@@ -180,6 +202,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <CardFormElement key={el.id} cardElement={el as ICardElement} />
         } else if (el.type === FormElementTypes.Badge) {
           return <BadgeFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Informer) {
+          return <InformerFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}

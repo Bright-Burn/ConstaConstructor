@@ -1,0 +1,1 @@
+export { InformerSettings } from './InformerSettings'
