@@ -1,3 +1,3 @@
-import { getNewLayoutParentLevel } from './getNewLayoutParentLevel'
+import { getNewGroupParentLevel } from './getNewGroupParentLevel'
 
-export { getNewLayoutParentLevel }
+export { getNewGroupParentLevel }

@@ -1,18 +1,3 @@
-.cardName{
-  padding-bottom: 1.6rem;
-}
-
-.cardInfo{
-  align-items: center;
-  display: flex;
-  padding-bottom: 81px;
-  border-bottom: solid 0.1rem var(--color-bg-border);
-}
-
-.cardInfoIcon{
-  margin-right: 8px;
-}
-
-.cardFooter{
-  padding-top: 16px;
+.body {
+  padding: 0;
 }

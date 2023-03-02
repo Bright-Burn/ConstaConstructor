@@ -3,7 +3,7 @@ import {
   GroupElementUnion,
   IFormConstructor,
   IFormElement,
-  IGroupElement
+  IGroupElement,
 } from './types'
 import {
   createSlice,
@@ -97,9 +97,7 @@ export const formConstructorSlice = createFormConstructorSlice({
           ...action.payload,
         }
 
-        const newAllelementMap = new Map<string, IFormElement | IGroupElement>(
-          state.allElementsMap,
-        )
+        const newAllelementMap = new Map<string, IFormElement | IGroupElement>(state.allElementsMap)
         state.allElementsMap = newAllelementMap
         newAllelementMap.set(element.id, element)
       }

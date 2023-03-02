@@ -15,8 +15,8 @@ import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
-import { getNewLayoutParentLevel } from '../../utils'
 import { CardFormElement } from '../Elements/CardFormElement'
+import { getNewGroupParentLevel } from '../../utils'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -79,20 +79,24 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           addLayoutOuter(layoutElement)
           break
         }
-        case FormGroupsTypes.Card: 
+        case FormGroupsTypes.Card:
           const newCard: ICardElement = {
             id: uuid(),
             parentId: parentElementId,
             type: groupElementType,
             props: {
               constaProps: {
-                verticalSpace: "m",
-                horizontalSpace: "m",
+                verticalSpace: 'm',
+                horizontalSpace: 'm',
                 status: undefined,
                 form: 'square',
               },
-              baseProps:{},
-              className:'',
+              baseProps: {},
+              className: '',
+              styles: {
+                width: '376px',
+                height: '227px',
+              },
             },
           }
           addElement(newCard, parentElementId)
@@ -122,7 +126,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   }
 
   const addLayoutOuter = (layoutElement: ILayoutElement) => {
-    const newParentElementId = getNewLayoutParentLevel(parentElementId, allElementsMap)
+    const newParentElementId = getNewGroupParentLevel(parentElementId, allElementsMap)
 
     if (newParentElementId) {
       addElement(layoutElement, newParentElementId)
@@ -151,12 +155,11 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       {elementsOnLayer.map(el => {
         // Тут происходит проверка, является ли элемент Layout елементом
         if (el.type === FormGroupsTypes.LayoutInner || el.type === FormGroupsTypes.LayoutOuter) {
-          return <LayoutFromElement key={el.id} layoutElement={el} />
+          return <LayoutFromElement key={el.id} layoutElement={el as ILayoutElement} />
         } else if (el.type === FormElementTypes.Button) {
           return <ButtonFormElement key={el.id} formElement={el} />
-        }
-        else if (el.type === FormGroupsTypes.Card) {
-          return <CardFormElement key={el.id} cardElement={el} />
+        } else if (el.type === FormGroupsTypes.Card) {
+          return <CardFormElement key={el.id} cardElement={el as ICardElement} />
         }
         return <></>
       })}
