@@ -5,9 +5,9 @@ import { formConstructorSlice, useAppSelector } from '../../store/formElements'
 import {
   FormElementTypes,
   FormGroupsTypes,
+  ICardElement,
   IFormElement,
   IFormElementButton,
-  IFormElementCard,
   IGroupElement,
   ILayoutElement,
 } from '../../store/formElements/types'
@@ -23,13 +23,13 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
   const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
 
-  const [elementsOnLayer, setElementsOnLayer] = useState<(ILayoutElement | IFormElement)[]>([])
+  const [elementsOnLayer, setElementsOnLayer] = useState<(IGroupElement | IFormElement)[]>([])
   const dispatch = useDispatch()
 
   useEffect(() => {
     /// Подгружаем все эелементы на текущем уровне
     const layerIds = allElementsTree.get(parentElementId) || []
-    const elementsOnLayer: (ILayoutElement | IFormElement)[] = []
+    const elementsOnLayer: (IGroupElement | IFormElement)[] = []
     layerIds.forEach(ids => {
       const elem = allElementsMap.get(ids)
       elem && elementsOnLayer.push(elem)
@@ -79,6 +79,24 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           addLayoutOuter(layoutElement)
           break
         }
+        case FormGroupsTypes.Card: 
+          const newCard: ICardElement = {
+            id: uuid(),
+            parentId: parentElementId,
+            type: groupElementType,
+            props: {
+              constaProps: {
+                verticalSpace: "m",
+                horizontalSpace: "m",
+                status: undefined,
+                form: 'square',
+              },
+              baseProps:{},
+              className:'',
+            },
+          }
+          addElement(newCard, parentElementId)
+          break
       }
       return
     }
@@ -90,33 +108,15 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             id: uuid(),
             type: FormElementTypes.Button,
             props: {
-              constaProps: {
-                disabled: true,
-                label: 'Кнопка',
-                view: 'primary',
-              },
+              disabled: true,
+              label: 'Кнопка',
+              view: 'primary',
               className: '',
               baseProps: {},
             },
           }
           addElement(newButton, parentElementId)
           break
-          case FormElementTypes.Card:
-            const newCard: IFormElementCard = {
-              id: uuid(),
-              type: FormElementTypes.Card,
-              props: {
-                constaProps: {
-                  verticalSpace: "m",
-                  horizontalSpace: "m",
-                  status: undefined,
-                  form: 'square',
-                },
-                baseProps:{},
-                className:'',
-              },
-            }
-            addElement(newCard, parentElementId)
       }
     }
   }
@@ -155,8 +155,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
         } else if (el.type === FormElementTypes.Button) {
           return <ButtonFormElement key={el.id} formElement={el} />
         }
-        else if (el.type === FormElementTypes.Card) {
-          return <CardFormElement key={el.id} formElement={el} />
+        else if (el.type === FormGroupsTypes.Card) {
+          return <CardFormElement key={el.id} cardElement={el} />
         }
         return <></>
       })}

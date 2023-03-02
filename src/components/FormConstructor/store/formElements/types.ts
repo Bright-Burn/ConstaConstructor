@@ -1,18 +1,9 @@
 import { Props } from '@consta/uikit/Button'
-import { Props as CardProps } from '@consta/uikit/Card'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
+import { CardElementPropsStyles } from './cardTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
 
-export type ButtonElementProps = Props
-export type CardElementProps = CardProps
-
-export interface CardElementPropsStyles extends BaseProps { 
-  constaProps: CardElementProps
-}
-
-export interface ButtonElementPropsStyles extends BaseProps { 
-  constaProps: ButtonElementProps
-}
+export type ButtonElementProps = Props & BaseProps
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -25,12 +16,12 @@ export enum ElementTypes {
 export enum FormGroupsTypes {
   LayoutInner = 'LayoutInner',
   LayoutOuter = 'LayoutOuter',
+  Card = 'Card',
 }
 
 // Виды обычных элементов формы ввода
 export enum FormElementTypes {
   Button = 'Button',
-  Card = 'Card',
 }
 
 export interface IGroupElement {
@@ -51,24 +42,24 @@ export interface IFormElement {
 }
 
 export interface IFormElementButton extends IFormElement {
-  props: ButtonElementPropsStyles
+  props: ButtonElementProps
 }
 
-export interface IFormElementCard extends IFormElement {
+export interface ICardElement extends IGroupElement {
   props: CardElementPropsStyles
 }
 
 // Все Union пропсы для FormElement
-export type FormElementProps = ButtonElementPropsStyles | CardElementPropsStyles
+export type FormElementProps = ButtonElementProps
 
 // Все Union пропсы для GropElement
-export type GroupElementProps = LayoutElementPropsStyles
+export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
 export type FormElementUnion = IFormElementButton
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
-export type GroupElementUnion = ILayoutElement
+export type GroupElementUnion = ILayoutElement | ICardElement
 
 /// По мере расширения сюда подем дописывать новые объединения
 export type UnionProps = FormElementProps | GroupElementProps

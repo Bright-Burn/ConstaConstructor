@@ -3,7 +3,7 @@ import {
   GroupElementUnion,
   IFormConstructor,
   IFormElement,
-  ILayoutElement,
+  IGroupElement
 } from './types'
 import {
   createSlice,
@@ -31,7 +31,7 @@ import { ProjectDataSerializable } from '../../projectSaveLoad/types'
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
-  allElementsMap: new Map<string, ILayoutElement | IFormElement>(),
+  allElementsMap: new Map<string, IGroupElement | IFormElement>(),
   selectedElement: null,
   selectedElementProps: null,
   isGridVisible: true,
@@ -97,7 +97,7 @@ export const formConstructorSlice = createFormConstructorSlice({
           ...action.payload,
         }
 
-        const newAllelementMap = new Map<string, ILayoutElement | IFormElement>(
+        const newAllelementMap = new Map<string, IFormElement | IGroupElement>(
           state.allElementsMap,
         )
         state.allElementsMap = newAllelementMap
@@ -113,7 +113,7 @@ export const formConstructorSlice = createFormConstructorSlice({
       ])
       state.allElementsTree = newTreeMap
 
-      const newAllelementMap = new Map<string, ILayoutElement | IFormElement>(state.allElementsMap)
+      const newAllelementMap = new Map<string, IGroupElement | IFormElement>(state.allElementsMap)
       newAllelementMap.set(element.id, element)
       state.allElementsMap = newAllelementMap
     },

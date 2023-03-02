@@ -1,5 +1,5 @@
-import { IFormElement } from '../../../store/formElements/types'
+import { ICardElement } from '../../../store/formElements/types'
 
 export interface ICardFormElement {
-  formElement: IFormElement
+  cardElement: ICardElement
 }

@@ -1,46 +1,31 @@
 import { FC, useLayoutEffect, useState } from 'react'
 import { Card } from '@consta/uikit/Card'
-import { IconUser } from '@consta/uikit/IconUser'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ICardFormElement } from './types'
 import {
-  CardElementPropsStyles,
   ElementTypes,
-  FormElementTypes,
-  IFormElementCard,
+  FormGroupsTypes,
+  ICardElement,
 } from '../../../store/formElements/types'
-import { Text } from '@consta/uikit/Text'
-import styles from './styles.module.css'
+import { DroppableLayer } from '../../DroppableLayer'
+import { CardElementPropsStyles } from '../../../store/formElements/cardTypes'
 
-export const CardFormElement: FC<ICardFormElement> = ({ formElement }) => {
+export const CardFormElement: FC<ICardFormElement> = ({ cardElement }) => {
   const [cardProps, setCardProps] = useState<CardElementPropsStyles | undefined>()
 
   useLayoutEffect(() => {
-    const cardFormElement = formElement as IFormElementCard
+    const cardFormElement = cardElement as ICardElement
     setCardProps(cardFormElement.props)
-  }, [formElement])
+  }, [cardElement])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={cardElement.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Card}
+      elementType={FormGroupsTypes.Card}
     >
-       <Card {...cardProps?.constaProps} className={`${styles.body} ${cardProps?.className}`}> 
-        <Text className={styles.cardName}>
-          Название
-        </Text>
-        <div className={styles.cardInfo}>
-          <IconUser size='s'  className={styles.cardInfoIcon}/>
-          <Text >
-            Инфо
-          </Text>
-        </div>
-        <div className={styles.cardFooter}>
-          <Text size="xs" view="secondary">
-            Изменено: 1 час назад
-          </Text>
-        </div>
+       <Card {...cardProps?.constaProps} className={cardProps?.className}
+       style={{ ...cardProps?.styles }}> 
       </Card>
     </SelectableLayer>
   )

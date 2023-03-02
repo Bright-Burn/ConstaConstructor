@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../../store/formElements'
-import { FormGroupsTypes, FormElementTypes } from '../../../store/formElements/types'
+import { FormGroupsTypes } from '../../../store/formElements/types'
 import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
@@ -25,7 +25,7 @@ export const Settings: FC = () => {
               <LayoutSettings /> <BaseSettings />
             </>
           )
-        case FormElementTypes.Card:
+        case FormGroupsTypes.Card:
           return (
             <>
               <CardSettings /> <BaseSettings />
