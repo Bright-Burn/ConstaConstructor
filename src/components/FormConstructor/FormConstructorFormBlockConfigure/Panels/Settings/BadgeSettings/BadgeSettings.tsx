@@ -26,45 +26,17 @@ export const BadgeSettings = () => {
     }
   }, [selectedElementProps, selectedElement])
 
-  const onChangeSize = (value: BadgePropSize) => {
+  const onChangeField = (
+    value: BadgePropSize | BadgePropView | BadgePropStatus | BadgePropForm,
+    field: keyof BadgeProps,
+  ) => {
     if (selectedElement) {
       const newProps: BadgeProps = {
         ...(selectedElementProps as BadgeProps),
       }
-      newProps.size = value
 
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeView = (value: BadgePropView) => {
-    if (selectedElement) {
-      const newProps: BadgeProps = {
-        ...(selectedElementProps as BadgeProps),
-      }
-      newProps.view = value
-
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeStatus = (value: BadgePropStatus) => {
-    if (selectedElement) {
-      const newProps: BadgeProps = {
-        ...(selectedElementProps as BadgeProps),
-      }
-      newProps.status = value
-
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeForm = (value: BadgePropForm) => {
-    if (selectedElement) {
-      const newProps: BadgeProps = {
-        ...(selectedElementProps as BadgeProps),
-      }
-      newProps.form = value
+      // @ts-ignore
+      newProps[field] = value
 
       onDispatch(selectedElement, newProps)
     }
@@ -116,7 +88,7 @@ export const BadgeSettings = () => {
             label='Size'
             value={props.size || 's'}
             onChange={({ value }) => {
-              onChangeSize(value as BadgePropSize)
+              onChangeField(value as BadgePropSize, 'size')
             }}
           />
           <Select
@@ -126,7 +98,7 @@ export const BadgeSettings = () => {
             label='View'
             value={props.view || 'filled'}
             onChange={({ value }) => {
-              onChangeView(value as BadgePropView)
+              onChangeField(value as BadgePropView, 'view')
             }}
           />
           <Select
@@ -136,7 +108,7 @@ export const BadgeSettings = () => {
             label='Status'
             value={props.status || 'success'}
             onChange={({ value }) => {
-              onChangeStatus(value as BadgePropStatus)
+              onChangeField(value as BadgePropStatus, 'status')
             }}
           />
           <Select
@@ -144,9 +116,9 @@ export const BadgeSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={forms}
             label='Form'
-            value={props.status || 'success'}
+            value={props.form || 'default'}
             onChange={({ value }) => {
-              onChangeForm(value as BadgePropForm)
+              onChangeField(value as BadgePropForm, 'form')
             }}
           />
           <Checkbox
