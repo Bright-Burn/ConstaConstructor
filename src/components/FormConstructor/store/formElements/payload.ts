@@ -26,3 +26,7 @@ export interface SaveNewProject {
 export interface LoadProjectFromStorage {
   name: string
 }
+
+export interface LoadProjectFromFile {
+  projectJson: string
+}

@@ -14,6 +14,7 @@ import {
 import {
   AddNewElementPayload,
   DeleteElementPayload,
+  LoadProjectFromFile,
   LoadProjectFromStorage,
   SaveNewProject,
   SetNewSelectedElement,
@@ -71,11 +72,35 @@ export const formConstructorSlice = createFormConstructorSlice({
         state.selectedElementProps = newSate.selectedElementProps
       }
     },
+    loadProjectFromJson: (state, action: PayloadAction<LoadProjectFromFile>) => {
+      const projectJson = action.payload.projectJson
+      if (projectJson) {
+        const projectSerilizable: ProjectDataSerializable = {
+          ...JSON.parse(projectJson as string),
+        }
+        console.log(projectJson)
+        const newSate = projectFromSerilizable(projectSerilizable.project)
+        state.allElementsMap = newSate.allElementsMap
+        state.allElementsTree = newSate.allElementsTree
+        state.isGridVisible = newSate.isGridVisible
+        state.selectedElement = newSate.selectedElement
+        state.selectedElementProps = newSate.selectedElementProps
+      }
+    },
     saveProjectToMemmoryStorage: (state, action: PayloadAction<SaveNewProject>) => {
       const intent: SaveProjectIntent = {
         description: action.payload.description,
         name: action.payload.name,
         saveWay: ProjectSaveWays.STORAGE,
+        project: state,
+      }
+      saveProjectData(intent)
+    },
+    saveProjectToFile: (state, action: PayloadAction<SaveNewProject>) => {
+      const intent: SaveProjectIntent = {
+        description: action.payload.description,
+        name: action.payload.name,
+        saveWay: ProjectSaveWays.FILE,
         project: state,
       }
       saveProjectData(intent)
