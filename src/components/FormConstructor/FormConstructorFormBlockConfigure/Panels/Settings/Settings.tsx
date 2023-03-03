@@ -47,12 +47,12 @@ export const Settings: FC = () => {
               <CardSettings /> <BaseSettings />
             </>
           )
-          case FormElementTypes.Checkbox:
-            return (
-              <>
-                <CheckboxSettings /> <BaseSettings />
-              </>
-            )
+        case FormElementTypes.Checkbox:
+          return (
+            <>
+              <CheckboxSettings /> <BaseSettings />
+            </>
+          )
         default:
           return (
             <>

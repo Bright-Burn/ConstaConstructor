@@ -6,7 +6,7 @@ import {
   formConstructorSlice,
   IFormElementBadge,
   useAppSelector,
-  IFormElementCheckbox
+  IFormElementCheckbox,
 } from '../../store/formElements'
 import {
   FormElementTypes,
@@ -156,20 +156,20 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
               title: 'Title',
               size: 's',
               status: 'success',
-              view: 'filled',              
+              view: 'filled',
               className: '',
               baseProps: {},
-            }
+            },
           }
           addElement(newInformer, parentElementId)
           break
 
-          case FormElementTypes.Checkbox:
+        case FormElementTypes.Checkbox:
           const newCheckbox: IFormElementCheckbox = {
             id: uuid(),
             type: FormElementTypes.Checkbox,
             props: {
-              checked: false,
+              checked: undefined,
               size: 's',
               view: 'primary',
               align: 'center',
