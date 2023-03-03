@@ -30,6 +30,8 @@ import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFormElement } from '../Elements/TextFormElement'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
+import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
+import { IFormElementTextField } from '../../store/formElements/textFieldTypes'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -222,6 +224,31 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           }
           addElement(newCheckbox, parentElementId)
           break
+
+        case FormElementTypes.TextField:
+          const newTextField: IFormElementTextField = {
+            id: uuid(),
+            type: FormElementTypes.TextField,
+            props: {
+              type: 'text',
+              width: 'default',
+              form: 'default',
+              size: 'm',
+              view: 'default',
+              caption: 'Подпись',
+              label: 'Заголовок',
+              labelPosition: 'top',
+              maxLength: 200,
+              placeholder: 'Подсказка в поле',
+              step: '1',
+              min: '0',
+              max: '200',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newTextField, parentElementId)
+          break
       }
     }
   }
@@ -271,6 +298,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <InformerFormElement key={el.id} formElement={el} />
         } else if (el.type === FormElementTypes.Checkbox) {
           return <CheckboxFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.TextField) {
+          return <TextFieldFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}

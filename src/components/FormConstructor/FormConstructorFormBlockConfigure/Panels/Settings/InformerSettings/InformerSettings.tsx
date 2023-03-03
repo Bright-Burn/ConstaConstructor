@@ -9,7 +9,7 @@ import { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/
 import { useDispatch } from 'react-redux'
 import { useLayoutEffect, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
-import { TextField, TextFieldPropValue } from '@consta/uikit/TextField'
+import { TextField } from '@consta/uikit/TextField'
 
 export const InformerSettings = () => {
   const [props, setProps] = useState<InformerElementProps | undefined>()
