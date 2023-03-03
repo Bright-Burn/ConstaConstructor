@@ -3,6 +3,7 @@ import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settin
 import { CardElementPropsStyles } from './cardTypes'
 import { BadgeProps, IFormElementBadge } from './badgeTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
+import { IFormElementTabs, TabsElementProps } from './tabsTypes'
 import { IFormElementInformer, InformerElementProps } from './informerTypes'
 import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { TextElementProps, IFormElementText } from './textTypes'
@@ -27,6 +28,7 @@ export enum FormGroupsTypes {
 export enum FormElementTypes {
   Button = 'Button',
   Badge = 'Badge',
+  Tabs = 'Tabs',
   Informer = 'Informer',
   Checkbox = 'Checkbox',
   Text = 'Text',
@@ -64,6 +66,7 @@ export type FormElementProps =
   | TextElementProps
   | InformerElementProps
   | CheckboxProps
+  | TabsElementProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -75,6 +78,7 @@ export type FormElementUnion =
   | IFormElementText
   | IFormElementInformer
   | IFormElementCheckbox
+  | IFormElementTabs
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement

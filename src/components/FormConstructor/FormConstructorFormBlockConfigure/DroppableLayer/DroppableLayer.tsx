@@ -25,6 +25,8 @@ import styles from './styles.module.css'
 import { CardFormElement } from '../Elements/CardFormElement'
 import { getNewGroupParentLevel } from '../../utils'
 import { BadgeFormElement } from '../Elements/Badge'
+import { IFormElementTabs } from '../../store/formElements/tabsTypes'
+import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFormElement } from '../Elements/TextFormElement'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
@@ -149,6 +151,30 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           }
           addElement(newBadge, parentElementId)
           break
+
+        case FormElementTypes.Tabs:
+          const items = [
+            { id: 0, label: 'tab1' },
+            { id: 1, label: 'tab2' },
+          ]
+          const newTabs: IFormElementTabs = {
+            id: uuid(),
+            type: FormElementTypes.Tabs,
+            props: {
+              view: 'clear',
+              className: '',
+              baseProps: {},
+              value: items[0],
+              items: items,
+              onChange: () => {},
+              linePosition: 'top',
+              fitMode: 'dropdown',
+              size: 'm',
+            },
+          }
+          addElement(newTabs, parentElementId)
+          break
+
         case FormElementTypes.Text:
           const newText: IFormElementText = {
             id: uuid(),
@@ -237,6 +263,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <CardFormElement key={el.id} cardElement={el as ICardElement} />
         } else if (el.type === FormElementTypes.Badge) {
           return <BadgeFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Tabs) {
+          return <TabsFormElement key={el.id} formElement={el as IFormElementTabs} />
         } else if (el.type === FormElementTypes.Text) {
           return <TextFormElement key={el.id} formElement={el} />
         } else if (el.type === FormElementTypes.Informer) {

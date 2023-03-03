@@ -33,6 +33,11 @@ export const ComponentItems = () => {
     },
     {
       id: uuid(),
+      name: 'Табы',
+      formElementType: FormElementTypes.Tabs,
+    },
+    {
+      id: uuid(),
       name: 'Informer',
       formElementType: FormElementTypes.Informer,
     },
