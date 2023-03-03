@@ -169,7 +169,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             id: uuid(),
             type: FormElementTypes.Checkbox,
             props: {
-              checked: undefined,
+              checked: false,
               size: 's',
               view: 'primary',
               align: 'center',
