@@ -21,6 +21,10 @@ import {
 
 import { CardElementPropsStyles } from './cardTypes'
 
+import { IFormElementText, TextElementProps } from './textTypes'
+import { IFormElementInformer, InformerElementProps } from './informerTypes'
+import { IFormElementCheckbox, CheckboxProps } from './checkboxTypes'
+
 export {
   formConstructorReducer,
   formConstructorSlice,
@@ -42,4 +46,10 @@ export {
   type SaveNewProject,
   type ShowGrid,
   type CardElementPropsStyles,
+  type IFormElementText,
+  type TextElementProps,
+  type IFormElementInformer,
+  type InformerElementProps,
+  type CheckboxProps,
+  type IFormElementCheckbox,
 }

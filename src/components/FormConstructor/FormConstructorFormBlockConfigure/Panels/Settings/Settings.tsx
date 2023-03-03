@@ -12,6 +12,9 @@ import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
 import { TabsSettings } from './TabsSettings/TabsSettings'
+import { InformerSettings } from './InformerSettings'
+import { CheckboxSettings } from './CheckboxSettings'
+import { TextSettings } from './TextSettings'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -22,6 +25,18 @@ export const Settings: FC = () => {
   const getSettingsPanel = () => {
     if (selectedElement) {
       switch (selectedElement.elementType) {
+        case FormElementTypes.Text:
+          return (
+            <>
+              <TextSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Informer:
+          return (
+            <>
+              <InformerSettings /> <BaseSettings />
+            </>
+          )
         case FormElementTypes.Badge:
           return (
             <>
@@ -44,6 +59,12 @@ export const Settings: FC = () => {
           return (
             <>
               <TabsSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Checkbox:
+          return (
+            <>
+              <CheckboxSettings /> <BaseSettings />
             </>
           )
         default:

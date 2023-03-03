@@ -4,6 +4,9 @@ import { CardElementPropsStyles } from './cardTypes'
 import { BadgeProps, IFormElementBadge } from './badgeTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
 import { IFormElementTabs, TabsElementProps } from './tabsTypes'
+import { IFormElementInformer, InformerElementProps } from './informerTypes'
+import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
+import { TextElementProps, IFormElementText } from './textTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -26,6 +29,9 @@ export enum FormElementTypes {
   Button = 'Button',
   Badge = 'Badge',
   Tabs = 'Tabs',
+  Informer = 'Informer',
+  Checkbox = 'Checkbox',
+  Text = 'Text',
 }
 
 export interface IGroupElement {
@@ -54,13 +60,25 @@ export interface ICardElement extends IGroupElement {
 }
 
 // Все Union пропсы для FormElement
-export type FormElementProps = ButtonElementProps | BadgeProps | TabsElementProps
+export type FormElementProps =
+  | ButtonElementProps
+  | BadgeProps
+  | TextElementProps
+  | InformerElementProps
+  | CheckboxProps
+  | TabsElementProps
 
-// Все Union пропсы для GropElement
+// Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
-export type FormElementUnion = IFormElementButton | IFormElementBadge | IFormElementTabs
+export type FormElementUnion =
+  | IFormElementButton
+  | IFormElementBadge
+  | IFormElementText
+  | IFormElementInformer
+  | IFormElementCheckbox
+  | IFormElementTabs
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement

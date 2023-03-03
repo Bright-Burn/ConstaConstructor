@@ -1,0 +1,4 @@
+.badgeSettings {
+  display: flex;
+  flex-direction: column;
+}

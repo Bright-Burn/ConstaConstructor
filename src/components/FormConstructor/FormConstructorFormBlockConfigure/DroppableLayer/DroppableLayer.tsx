@@ -1,7 +1,14 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, IFormElementBadge, useAppSelector } from '../../store/formElements'
+import {
+  IFormElementBadge,
+  IFormElementText,
+  useAppSelector,
+  IFormElementInformer,
+  formConstructorSlice,
+  IFormElementCheckbox,
+} from '../../store/formElements'
 import {
   FormElementTypes,
   FormGroupsTypes,
@@ -20,6 +27,9 @@ import { getNewGroupParentLevel } from '../../utils'
 import { BadgeFormElement } from '../Elements/Badge'
 import { IFormElementTabs } from '../../store/formElements/tabsTypes'
 import { TabsFormElement } from '../Elements/TabsFormElement'
+import { TextFormElement } from '../Elements/TextFormElement'
+import { InformerFormElement } from '../Elements/InformerFormElement'
+import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -164,6 +174,54 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           }
           addElement(newTabs, parentElementId)
           break
+
+        case FormElementTypes.Text:
+          const newText: IFormElementText = {
+            id: uuid(),
+            type: FormElementTypes.Text,
+            props: {
+              content: 'Text',
+              size: 's',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newText, parentElementId)
+          break
+        case FormElementTypes.Informer:
+          const newInformer: IFormElementInformer = {
+            id: uuid(),
+            type: FormElementTypes.Informer,
+            props: {
+              label: 'Informer',
+              title: 'Title',
+              size: 's',
+              status: 'success',
+              view: 'filled',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newInformer, parentElementId)
+          break
+
+        case FormElementTypes.Checkbox:
+          const newCheckbox: IFormElementCheckbox = {
+            id: uuid(),
+            type: FormElementTypes.Checkbox,
+            props: {
+              checked: undefined,
+              size: 's',
+              view: 'primary',
+              align: 'center',
+              disabled: false,
+              label: 'Checkbox',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newCheckbox, parentElementId)
+          break
       }
     }
   }
@@ -207,6 +265,12 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <BadgeFormElement key={el.id} formElement={el} />
         } else if (el.type === FormElementTypes.Tabs) {
           return <TabsFormElement key={el.id} formElement={el as IFormElementTabs} />
+        } else if (el.type === FormElementTypes.Text) {
+          return <TextFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Informer) {
+          return <InformerFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Checkbox) {
+          return <CheckboxFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}
