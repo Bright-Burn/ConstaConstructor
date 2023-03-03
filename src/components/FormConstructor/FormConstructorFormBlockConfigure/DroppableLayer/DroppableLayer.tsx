@@ -143,7 +143,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           break
 
         case FormElementTypes.Tabs:
-          const items = [{ label: 'tab1' }, { label: 'tab2' }]
+          const items = [
+            { id: 0, label: 'tab1' },
+            { id: 1, label: 'tab2' },
+          ]
           const newTabs: IFormElementTabs = {
             id: uuid(),
             type: FormElementTypes.Tabs,

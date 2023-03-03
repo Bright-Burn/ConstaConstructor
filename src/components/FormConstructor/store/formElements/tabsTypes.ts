@@ -5,14 +5,12 @@ import {
   TabsPropView,
 } from '@consta/uikit/__internal__/src/components/Tabs/types'
 import { IconPropSize } from '@consta/uikit/Icon'
-import {
-  FitMode,
-  LinePosition,
-} from '../../FormConstructorFormBlockConfigure/Panels/Settings/TabsSettings/types'
+import { FitMode } from '../../FormConstructorFormBlockConfigure/Panels/Settings/TabsSettings/types'
+import { TabsPropLinePosition } from '@consta/uikit/TabsDeprecated'
 
 export type ITEM = {
-  label: string | number
-  key?: number
+  id: number
+  label: string
 }
 
 export type TabsProps = {
@@ -24,13 +22,16 @@ export type TabsProps = {
   value?: ITEM | null
   getItemLabel?: TabsPropGetItemLabel<ITEM>
   onChange: () => void
-} & ({
-  linePosition?: Extract<LinePosition, 'bottom' | 'top'>;
-  fitMode?: FitMode;
-} | {
-  linePosition: Extract<LinePosition, 'left' | 'right'>;
-  fitMode?: never;
-})
+} & (
+  | {
+      linePosition?: Extract<TabsPropLinePosition, 'bottom' | 'top'>
+      fitMode?: FitMode
+    }
+  | {
+      linePosition: Extract<TabsPropLinePosition, 'left' | 'right'>
+      fitMode?: never
+    }
+)
 
 export type TabsElementProps = TabsProps & BaseProps
 

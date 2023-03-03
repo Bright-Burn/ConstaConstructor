@@ -3,17 +3,8 @@ import React, { useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
-import { TabsItemDefault } from '@consta/uikit/__internal__/src/components/Tabs/types'
-import {
-  FitMode,
-  fitModeArray,
-  LinePosition,
-  linePositionArray,
-  Size,
-  sizeArray,
-  View,
-  viewArray,
-} from './types'
+import { FitMode, fitModeArray, linePositionArray, sizeArray, viewArray } from './types'
+import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/TabsDeprecated'
 import { ITEM } from '../../../../store/formElements/tabsTypes'
 export const TabsSettings = () => {
   const {
@@ -26,7 +17,7 @@ export const TabsSettings = () => {
     onChangeSize,
     onChangeFitMode,
   } = useItemsHandlers()
-  const [tabs, setTabs] = useState<TabsItemDefault[]>(itemsProps.items)
+  const [tabs, setTabs] = useState<ITEM[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {
     setTabs(itemsProps.items)
@@ -38,7 +29,7 @@ export const TabsSettings = () => {
   }
   const onTabLabelEdit = (value: string | null, index: number) => {
     const newTabs = [...tabs]
-    newTabs[index] = { ...newTabs[index], label: value + '' }
+    newTabs[index] = { ...newTabs[index], label: `${value}` }
     setTabs([...newTabs])
   }
 
@@ -49,17 +40,13 @@ export const TabsSettings = () => {
           <TextField
             label='Количество табов'
             type='number'
-            value={itemsProps.items.length + ''}
+            value={`${itemsProps.items.length}`}
             onChange={onChangeItemsCount}
           />
           <Select
-            getItemKey={() =>
-              itemsProps.items.findIndex(
-                (item: ITEM) => itemsProps.activeItem?.label === item.label,
-              )
-            }
+            getItemKey={item => item.id}
             label='Активный таб'
-            getItemLabel={item => item.label + ''}
+            getItemLabel={item => item.label}
             items={itemsProps.items}
             value={itemsProps.activeItem}
             onChange={onChangeActiveItem}
@@ -78,8 +65,8 @@ export const TabsSettings = () => {
             return (
               <TextField
                 key={index}
-                label={index + 1 + ''}
-                value={tab.label + ''}
+                label={`${index + 1}`}
+                value={`${tab.label}`}
                 onChange={event => onTabLabelEdit(event.value, index)}
               />
             )
@@ -95,38 +82,38 @@ export const TabsSettings = () => {
       )}
       <Select
         label='size'
-        getItemKey={() => sizeArray.findIndex(item => item === itemsProps.size)}
-        getItemLabel={(item: Size) => item}
+        getItemKey={(key: TabsPropSize) => key}
+        getItemLabel={(label: TabsPropSize) => label}
         value={itemsProps.size}
         items={sizeArray}
         onChange={({ value }) => onChangeSize(value)}
       />
       <Select
         label='view'
-        getItemKey={() => viewArray.findIndex(item => item === itemsProps.view)}
-        getItemLabel={(item: View) => item}
+        getItemKey={(key: TabsPropView) => key}
+        getItemLabel={(label: TabsPropView) => label}
         value={itemsProps.view}
         items={viewArray}
         onChange={({ value }) => onChangeView(value)}
       />
       <Select
         label='Расположение табов'
-        getItemKey={() => linePositionArray.findIndex(item => item === itemsProps.linePosition)}
-        getItemLabel={(item: LinePosition) => item}
+        getItemKey={(key: TabsPropLinePosition) => key}
+        getItemLabel={(label: TabsPropLinePosition) => label}
         value={itemsProps.linePosition}
         items={linePositionArray}
         onChange={({ value }) => onChangeLinePosition(value)}
       />
-      {((itemsProps.linePosition === 'bottom') || (itemsProps.linePosition === 'top')) &&
+      {(itemsProps.linePosition === 'bottom' || itemsProps.linePosition === 'top') && (
         <Select
           label='fitMode'
-          getItemKey={() => fitModeArray.findIndex(item => item === itemsProps.fitMode)}
-          getItemLabel={(item: FitMode) => item}
+          getItemKey={(key: FitMode) => key}
+          getItemLabel={(label: FitMode) => label}
           value={itemsProps.fitMode}
           items={fitModeArray}
           onChange={({ value }) => onChangeFitMode(value)}
         />
-      }
+      )}
     </>
   )
 }

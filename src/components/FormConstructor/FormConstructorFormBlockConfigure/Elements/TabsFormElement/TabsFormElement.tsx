@@ -9,7 +9,10 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ formElement }) => {
   const [tabsProps, setTabsProps] = useState<TabsElementProps>({
     className: '',
     baseProps: {},
-    items: [{ label: 'tab1' }, { label: 'tab2' }],
+    items: [
+      { id: 0, label: 'tab1' },
+      { id: 1, label: 'tab2' },
+    ],
     onChange: () => {},
   })
 

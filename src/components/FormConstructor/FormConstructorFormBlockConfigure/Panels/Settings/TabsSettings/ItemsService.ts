@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux'
 import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
-import { TabsItemDefault } from '@consta/uikit/Tabs'
-import { FitMode, LinePosition, Size, View } from './types'
-import { TabsElementProps } from '../../../../store/formElements/tabsTypes'
+import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
+import { FitMode } from './types'
+import { ITEM, TabsElementProps } from '../../../../store/formElements/tabsTypes'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -25,8 +25,8 @@ export const useItemsHandlers = () => {
       let itemsProps = [...newProps.items]
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
-        for (let i = 0; i < Number(value) - currentLength; i++) {
-          itemsProps = [...itemsProps, { label: 'tab' + (itemsProps.length + 1) }]
+        for (let i = currentLength; i < Number(value); i++) {
+          itemsProps = [...itemsProps, { id: i, label: 'tab' + (itemsProps.length + 1) }]
         }
       } else {
         for (let i = 0; i < currentLength - Number(value); i++) {
@@ -37,7 +37,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeActiveItem = ({ value }: { value: TabsItemDefault | null }) => {
+  const onChangeActiveItem = ({ value }: { value: ITEM | null }) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
         ...(selectedElementProps as TabsElementProps),
@@ -46,7 +46,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeItems = (items: TabsItemDefault[]) => {
+  const onChangeItems = (items: ITEM[]) => {
     if (selectedElement && items) {
       const newProps: TabsElementProps = {
         ...(selectedElementProps as TabsElementProps),
@@ -56,7 +56,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeLinePosition = (value: LinePosition | null) => {
+  const onChangeLinePosition = (value: TabsPropLinePosition | null) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
         ...(selectedElementProps as TabsElementProps),
@@ -65,7 +65,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeView = (value: View | null) => {
+  const onChangeView = (value: TabsPropView | null) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
         ...(selectedElementProps as TabsElementProps),
@@ -74,7 +74,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeSize = (value: Size | null) => {
+  const onChangeSize = (value: TabsPropSize | null) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
         ...(selectedElementProps as TabsElementProps),
