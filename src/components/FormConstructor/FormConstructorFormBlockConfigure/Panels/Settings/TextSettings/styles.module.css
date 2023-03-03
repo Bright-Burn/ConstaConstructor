@@ -1,0 +1,4 @@
+.textSettings {
+  display: flex;
+  flex-direction: column;
+}

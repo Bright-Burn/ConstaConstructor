@@ -31,6 +31,11 @@ export const ComponentItems = () => {
       name: 'Badge',
       formElementType: FormElementTypes.Badge,
     },
+    {
+      id: uuid(),
+      name: 'Text',
+      formElementType: FormElementTypes.Text,
+    },
   ])
 
   return (

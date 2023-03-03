@@ -21,6 +21,7 @@ import {
 
 import { CardElementPropsStyles } from './cardTypes'
 
+import { IFormElementText, TextElementProps } from './textTypes'
 export {
   formConstructorReducer,
   formConstructorSlice,
@@ -42,4 +43,6 @@ export {
   type SaveNewProject,
   type ShowGrid,
   type CardElementPropsStyles,
+  type IFormElementText,
+  type TextElementProps,
 }

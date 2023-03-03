@@ -11,6 +11,7 @@ import { CardSettings } from './CardSettings'
 import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
+import { TextSettings } from './TextSettings'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -21,6 +22,12 @@ export const Settings: FC = () => {
   const getSettingsPanel = () => {
     if (selectedElement) {
       switch (selectedElement.elementType) {
+        case FormElementTypes.Text:
+          return (
+            <>
+              <TextSettings /> <BaseSettings />
+            </>
+          )
         case FormElementTypes.Badge:
           return (
             <>
