@@ -28,6 +28,8 @@ export const Settings: FC = () => {
           return (
             <>
               <TextSettings /> <BaseSettings />
+            </>
+          )
         case FormElementTypes.Informer:
           return (
             <>

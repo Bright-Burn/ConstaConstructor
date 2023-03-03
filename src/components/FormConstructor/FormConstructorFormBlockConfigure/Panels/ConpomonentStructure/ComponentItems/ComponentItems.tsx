@@ -34,7 +34,8 @@ export const ComponentItems = () => {
     {
       id: uuid(),
       name: 'Informer',
-      formElementType: FormElementTypes.Informer,},
+      formElementType: FormElementTypes.Informer,
+    },
     {
       id: uuid(),
       name: 'Text',

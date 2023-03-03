@@ -2,14 +2,11 @@ import React, { FC, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
-  formConstructorSlice,
   IFormElementBadge,
   IFormElementText,
   useAppSelector,
   IFormElementInformer,
   formConstructorSlice,
-  IFormElementBadge,
-  useAppSelector,
   IFormElementCheckbox,
 } from '../../store/formElements'
 import {
