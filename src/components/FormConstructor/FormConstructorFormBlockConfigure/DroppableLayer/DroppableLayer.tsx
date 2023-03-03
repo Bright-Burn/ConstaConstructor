@@ -2,10 +2,11 @@ import React, { FC, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
+  IFormElementBadge,
+  IFormElementText,
+  useAppSelector,
   IFormElementInformer,
   formConstructorSlice,
-  IFormElementBadge,
-  useAppSelector,
   IFormElementCheckbox,
 } from '../../store/formElements'
 import {
@@ -24,6 +25,7 @@ import styles from './styles.module.css'
 import { CardFormElement } from '../Elements/CardFormElement'
 import { getNewGroupParentLevel } from '../../utils'
 import { BadgeFormElement } from '../Elements/Badge'
+import { TextFormElement } from '../Elements/TextFormElement'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
 
@@ -147,6 +149,19 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           }
           addElement(newBadge, parentElementId)
           break
+        case FormElementTypes.Text:
+          const newText: IFormElementText = {
+            id: uuid(),
+            type: FormElementTypes.Text,
+            props: {
+              content: 'Text',
+              size: 's',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newText, parentElementId)
+          break
         case FormElementTypes.Informer:
           const newInformer: IFormElementInformer = {
             id: uuid(),
@@ -222,6 +237,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <CardFormElement key={el.id} cardElement={el as ICardElement} />
         } else if (el.type === FormElementTypes.Badge) {
           return <BadgeFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Text) {
+          return <TextFormElement key={el.id} formElement={el} />
         } else if (el.type === FormElementTypes.Informer) {
           return <InformerFormElement key={el.id} formElement={el} />
         } else if (el.type === FormElementTypes.Checkbox) {

@@ -13,6 +13,7 @@ import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
 import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
+import { TextSettings } from './TextSettings'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -23,6 +24,12 @@ export const Settings: FC = () => {
   const getSettingsPanel = () => {
     if (selectedElement) {
       switch (selectedElement.elementType) {
+        case FormElementTypes.Text:
+          return (
+            <>
+              <TextSettings /> <BaseSettings />
+            </>
+          )
         case FormElementTypes.Informer:
           return (
             <>

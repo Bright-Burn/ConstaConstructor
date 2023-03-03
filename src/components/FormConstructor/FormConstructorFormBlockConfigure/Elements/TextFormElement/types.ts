@@ -1,5 +1,5 @@
 import { IFormElement } from '../../../store/formElements/types'
 
-export interface ICheckboxFormElement {
+export interface ITextFormElement {
   formElement: IFormElement
 }

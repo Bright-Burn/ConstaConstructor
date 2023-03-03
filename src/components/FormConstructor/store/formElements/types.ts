@@ -5,6 +5,7 @@ import { BadgeProps, IFormElementBadge } from './badgeTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
 import { IFormElementInformer, InformerElementProps } from './informerTypes'
 import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
+import { TextElementProps, IFormElementText } from './textTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -28,6 +29,7 @@ export enum FormElementTypes {
   Badge = 'Badge',
   Informer = 'Informer',
   Checkbox = 'Checkbox',
+  Text = 'Text',
 }
 
 export interface IGroupElement {
@@ -59,6 +61,7 @@ export interface ICardElement extends IGroupElement {
 export type FormElementProps =
   | ButtonElementProps
   | BadgeProps
+  | TextElementProps
   | InformerElementProps
   | CheckboxProps
 
@@ -69,6 +72,7 @@ export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyle
 export type FormElementUnion =
   | IFormElementButton
   | IFormElementBadge
+  | IFormElementText
   | IFormElementInformer
   | IFormElementCheckbox
 

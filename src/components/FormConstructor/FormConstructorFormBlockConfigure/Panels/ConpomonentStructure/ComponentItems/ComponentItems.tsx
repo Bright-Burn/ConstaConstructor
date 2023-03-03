@@ -38,6 +38,11 @@ export const ComponentItems = () => {
     },
     {
       id: uuid(),
+      name: 'Text',
+      formElementType: FormElementTypes.Text,
+    },
+    {
+      id: uuid(),
       name: 'Checkbox',
       formElementType: FormElementTypes.Checkbox,
     },
