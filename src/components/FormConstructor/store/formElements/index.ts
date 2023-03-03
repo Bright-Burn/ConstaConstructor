@@ -22,6 +22,7 @@ import {
 import { CardElementPropsStyles } from './cardTypes'
 
 import { IFormElementInformer, InformerElementProps } from './informerTypes'
+import { IFormElementCheckbox, CheckboxProps } from './checkboxTypes'
 
 export {
   formConstructorReducer,
@@ -46,4 +47,6 @@ export {
   type CardElementPropsStyles,
   type IFormElementInformer,
   type InformerElementProps,
+  type CheckboxProps,
+  type IFormElementCheckbox,
 }
