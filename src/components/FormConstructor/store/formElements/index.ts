@@ -21,6 +21,8 @@ import {
 
 import { CardElementPropsStyles } from './cardTypes'
 
+import { IFormElementInformer, InformerElementProps } from './informerTypes'
+
 export {
   formConstructorReducer,
   formConstructorSlice,
@@ -42,4 +44,6 @@ export {
   type SaveNewProject,
   type ShowGrid,
   type CardElementPropsStyles,
+  type IFormElementInformer,
+  type InformerElementProps,
 }
