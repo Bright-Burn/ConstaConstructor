@@ -12,6 +12,7 @@ import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
 import { InformerSettings } from './InformerSettings'
+import { CheckboxSettings } from './CheckboxSettings'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -46,6 +47,12 @@ export const Settings: FC = () => {
               <CardSettings /> <BaseSettings />
             </>
           )
+          case FormElementTypes.Checkbox:
+            return (
+              <>
+                <CheckboxSettings /> <BaseSettings />
+              </>
+            )
         default:
           return (
             <>
