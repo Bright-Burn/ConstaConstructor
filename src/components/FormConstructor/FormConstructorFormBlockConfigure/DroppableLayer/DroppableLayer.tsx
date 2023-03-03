@@ -6,6 +6,11 @@ import {
   IFormElementBadge,
   IFormElementText,
   useAppSelector,
+  IFormElementInformer,
+  formConstructorSlice,
+  IFormElementBadge,
+  useAppSelector,
+  IFormElementCheckbox,
 } from '../../store/formElements'
 import {
   FormElementTypes,
@@ -24,6 +29,8 @@ import { CardFormElement } from '../Elements/CardFormElement'
 import { getNewGroupParentLevel } from '../../utils'
 import { BadgeFormElement } from '../Elements/Badge'
 import { TextFormElement } from '../Elements/TextFormElement'
+import { InformerFormElement } from '../Elements/InformerFormElement'
+import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -158,6 +165,40 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           }
           addElement(newText, parentElementId)
           break
+        case FormElementTypes.Informer:
+          const newInformer: IFormElementInformer = {
+            id: uuid(),
+            type: FormElementTypes.Informer,
+            props: {
+              label: 'Informer',
+              title: 'Title',
+              size: 's',
+              status: 'success',
+              view: 'filled',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newInformer, parentElementId)
+          break
+
+        case FormElementTypes.Checkbox:
+          const newCheckbox: IFormElementCheckbox = {
+            id: uuid(),
+            type: FormElementTypes.Checkbox,
+            props: {
+              checked: undefined,
+              size: 's',
+              view: 'primary',
+              align: 'center',
+              disabled: false,
+              label: 'Checkbox',
+              className: '',
+              baseProps: {},
+            },
+          }
+          addElement(newCheckbox, parentElementId)
+          break
       }
     }
   }
@@ -201,6 +242,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <BadgeFormElement key={el.id} formElement={el} />
         } else if (el.type === FormElementTypes.Text) {
           return <TextFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Informer) {
+          return <InformerFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Checkbox) {
+          return <CheckboxFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}

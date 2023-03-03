@@ -11,6 +11,8 @@ import { CardSettings } from './CardSettings'
 import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
+import { InformerSettings } from './InformerSettings'
+import { CheckboxSettings } from './CheckboxSettings'
 import { TextSettings } from './TextSettings'
 
 export const Settings: FC = () => {
@@ -26,6 +28,10 @@ export const Settings: FC = () => {
           return (
             <>
               <TextSettings /> <BaseSettings />
+        case FormElementTypes.Informer:
+          return (
+            <>
+              <InformerSettings /> <BaseSettings />
             </>
           )
         case FormElementTypes.Badge:
@@ -44,6 +50,12 @@ export const Settings: FC = () => {
           return (
             <>
               <CardSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Checkbox:
+          return (
+            <>
+              <CheckboxSettings /> <BaseSettings />
             </>
           )
         default:
