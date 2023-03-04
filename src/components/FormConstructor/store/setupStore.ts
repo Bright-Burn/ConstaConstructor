@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { formConstructorReducer } from './formElements'
 import { enableMapSet } from 'immer'
+import { baseComponentsReducer } from './baseComponentsItems'
 
 enableMapSet()
 const rootReducer = combineReducers({
   formConstructor: formConstructorReducer,
+  baseComponents: baseComponentsReducer,
 })
 
 function setupStore() {

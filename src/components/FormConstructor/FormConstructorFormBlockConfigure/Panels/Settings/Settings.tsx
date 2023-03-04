@@ -5,7 +5,7 @@ import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
-import { SaveModalCard } from './SaveModalCard'
+import { SaveModalCard } from '../../../../SaveModalCard'
 import { BaseSettings } from './BaseSettings/BaseSettings'
 import { CardSettings } from './CardSettings'
 import { FileField } from '@consta/uikit/FileField'
@@ -142,7 +142,7 @@ export const Settings: FC = () => {
       </div>
       <SaveModalCard
         onCloseModalCard={onClose}
-        onSaveProject={onSaveProject}
+        onSave={onSaveProject}
         showSaveModal={showSaveModal}
       />
       <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
