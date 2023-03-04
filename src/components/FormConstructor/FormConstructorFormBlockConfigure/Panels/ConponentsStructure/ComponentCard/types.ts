@@ -1,4 +1,4 @@
-import { FormElementTypes, FormGroupsTypes } from '../../../../../store/formElements/types'
+import { FormElementTypes, FormGroupsTypes } from '../../../../store/formElements/types'
 
 export interface IComponentCard {
   id: string

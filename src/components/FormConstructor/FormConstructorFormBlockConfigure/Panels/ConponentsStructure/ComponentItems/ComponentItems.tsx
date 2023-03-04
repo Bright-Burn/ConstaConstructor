@@ -1,66 +1,11 @@
-import { useState } from 'react'
-import uuid from 'react-uuid'
-import { FormElementTypes, FormGroupsTypes } from '../../../../store/formElements/types'
-import { ComponentCard, IComponentCard } from './ComponentCard'
+import { ComponentCard } from '../ComponentCard'
+import { constaCards } from './content'
 import styles from './styles.module.css'
 
 export const ComponentItems = () => {
-  const [componentCards] = useState<IComponentCard[]>([
-    {
-      id: uuid(),
-      name: 'Панель внутренняя',
-      groupElementType: FormGroupsTypes.LayoutInner,
-    },
-    {
-      id: uuid(),
-      name: 'Панель внешняя',
-      groupElementType: FormGroupsTypes.LayoutOuter,
-    },
-    {
-      id: uuid(),
-      name: 'Кнопка',
-      formElementType: FormElementTypes.Button,
-    },
-    {
-      id: uuid(),
-      name: 'Карточка',
-      groupElementType: FormGroupsTypes.Card,
-    },
-    {
-      id: uuid(),
-      name: 'Badge',
-      formElementType: FormElementTypes.Badge,
-    },
-    {
-      id: uuid(),
-      name: 'Табы',
-      formElementType: FormElementTypes.Tabs,
-    },
-    {
-      id: uuid(),
-      name: 'Informer',
-      formElementType: FormElementTypes.Informer,
-    },
-    {
-      id: uuid(),
-      name: 'Text',
-      formElementType: FormElementTypes.Text,
-    },
-    {
-      id: uuid(),
-      name: 'Checkbox',
-      formElementType: FormElementTypes.Checkbox,
-    },
-    {
-      id: uuid(),
-      name: 'Текстовое поле',
-      formElementType: FormElementTypes.TextField,
-    },
-  ])
-
   return (
     <div className={`${styles.componentItems} borderCard`}>
-      {componentCards.map(cc => {
+      {constaCards.map(cc => {
         return (
           <ComponentCard
             id={cc.id}

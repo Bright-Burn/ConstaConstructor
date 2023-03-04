@@ -13,21 +13,23 @@ export const ConponentsStructure = () => {
   const getTabContentRenderer = () => {
     switch (tabValue) {
       case componentsTabItems[0]:
-        return <ComponentItems />
-      case componentsTabItems[1]:
         return <BaseComponents />
+      case componentsTabItems[1]:
+        return <ComponentItems />
     }
   }
 
   return (
     <div className={`${styles.componentStructure} borderCard`}>
-      <Tabs
-        value={tabValue}
-        onChange={({ value }) => setTabValue(value)}
-        items={componentsTabItems}
-        getItemIcon={(item: ComponentsTabItem) => item.icon}
-        size='xs'
-      />
+      <div className={styles.tabs}>
+        <Tabs
+          value={tabValue}
+          onChange={({ value }) => setTabValue(value)}
+          items={componentsTabItems}
+          getItemIcon={(item: ComponentsTabItem) => item.icon}
+          size='xs'
+        />
+      </div>
       {getTabContentRenderer()}
       <ComponentTree />
     </div>
