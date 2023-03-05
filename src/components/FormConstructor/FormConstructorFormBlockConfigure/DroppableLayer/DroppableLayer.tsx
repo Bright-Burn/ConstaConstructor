@@ -61,6 +61,9 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     if (draggableBaseComponent) {
       const childParentMap = new Map<string, string>(draggableBaseComponent.childParentMap)
       const elementsToAdd = draggableBaseComponent.childrenElementList
+
+
+      // Ниже создаем новые id, но необходимо сохранить старые взаимосвязи элемент-родитель
       const mappedIds = new Map<string, string>([])
 
       elementsToAdd.forEach(elem => {
@@ -96,6 +99,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
         }
       })
 
+      // После перетаскивания, очищаем соответсвующее поле в сторе
       dispathBaseComponents(
         baseComponentsSlice.actions.setDraggableBaseComponent({ baseComponent: null }),
       )
