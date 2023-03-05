@@ -111,6 +111,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
     if (isBaseComponent === 'true') {
       handleOnDropBaseComponent()
+      return
     }
 
     if (groupElementType) {
