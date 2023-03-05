@@ -1,16 +1,27 @@
 import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
-import React, { FC } from 'react'
-import { IBaseComponent } from '../../../../store/baseComponentsItems'
-import { readFile } from '../../../../utils'
+import React, { FC, useState } from 'react'
+import { IBaseComponent, useBaseComponentsSelector } from '../../../../store/baseComponentsItems'
+import { readFile, saveToFile } from '../../../../utils'
 import styles from './styles.module.css'
 import {
   baseComponentsSlice,
   useBaseComponentsDispatch,
-  useBaseComponentsSelector,
 } from '../../../../store/baseComponentsItems'
+import { SaveModalCard } from '../../../../../SaveModalCard'
+import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/formElements'
+import uuid from 'react-uuid'
+import { BaseComponentsCard } from './BaseComponentsCard'
 
 export const BaseComponents: FC = () => {
+  const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
+
+  const { selectedElement, allElementsTree, allElementsMap } = useAppSelector(
+    state => state.formConstructor,
+  )
+
+  const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
+
   const dispatch = useBaseComponentsDispatch()
 
   const onChange = (e: DragEvent | React.ChangeEvent) => {
@@ -32,7 +43,52 @@ export const BaseComponents: FC = () => {
     }
   }
 
-  const onNewBaseComponentClick = () => {}
+  const onSaveInFileBtnClick = () => {
+    setSaveModalOpen(true)
+  }
+
+  const onCloseSaveModal = () => {
+    setSaveModalOpen(false)
+  }
+
+  const onSaveComponent = (name: string, description: string) => {
+    if (selectedElement) {
+      const elementsList: (IFormElement | IGroupElement)[] = []
+      const childParentMap: Map<string, string> = new Map<string, string>([])
+
+      const prepareDataLayer = (currentId: string) => {
+        const elem = allElementsMap.get(currentId)
+        let childrenElemsIds: string[] = []
+        if (elem) {
+          elementsList.push(elem)
+          childrenElemsIds = allElementsTree.get(elem.id) || []
+          // childrenComponentsTree.set(elem.id, childrenElemsIds)
+          childrenElemsIds.forEach(childId => {
+            childParentMap.set(childId, elem.id)
+          })
+        }
+        if (childrenElemsIds.length) {
+          childrenElemsIds.forEach(elemId => {
+            prepareDataLayer(elemId)
+          })
+        }
+      }
+
+      const id = selectedElement.elementId
+      prepareDataLayer(id)
+
+      const baseComponent: IBaseComponent = {
+        id: uuid(),
+        name: name,
+        description: description,
+        childrenElementList: elementsList,
+        childParentMap: Array.from(childParentMap.entries()),
+      }
+
+      const fileData = JSON.stringify(baseComponent)
+      saveToFile(fileData, `${name}_BaseComponent.json`)
+    }
+  }
 
   return (
     <div className={`${styles.baseComponentsPanel} borderCard`}>
@@ -52,12 +108,21 @@ export const BaseComponents: FC = () => {
         <Button
           className='m-t-s'
           label={'Сохранить в файл'}
-          onClick={onNewBaseComponentClick}
+          onClick={onSaveInFileBtnClick}
           size={'xs'}
           view={'secondary'}
         />
       </div>
-      <div className={styles.baseComponents}></div>
+      <div className={styles.baseComponents}>
+        {baseComponents.map(bc => {
+          return <BaseComponentsCard key={bc.id} {...bc} />
+        })}
+      </div>
+      <SaveModalCard
+        onCloseModalCard={onCloseSaveModal}
+        onSave={onSaveComponent}
+        showSaveModal={saveModalOpen}
+      />
     </div>
   )
 }

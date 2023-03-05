@@ -1,4 +1,4 @@
-import { AddBaseComponent } from './payload'
+import { AddBaseComponent, SetDraggableBaseComponent } from './payload'
 import {
   baseComponentsSlice,
   baseComponentsReducer,
@@ -8,6 +8,7 @@ import {
 import { IBaseComponent, IBaseComponentsItems } from './types'
 
 export {
+  type SetDraggableBaseComponent,
   type IBaseComponent,
   type AddBaseComponent,
   type IBaseComponentsItems,

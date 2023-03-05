@@ -4,7 +4,19 @@ import {
   useAppDispatch,
   useAppSelector,
 } from './slices'
-import { ButtonElementProps, UnionProps, FormElementUnion, GroupElementUnion } from './types'
+import {
+  ButtonElementProps,
+  UnionProps,
+  FormElementUnion,
+  GroupElementUnion,
+  IFormElement,
+  IGroupElement,
+  FormElementTypes,
+  ICardElement,
+  FormGroupsTypes,
+  IFormElementButton,
+  ILayoutElement,
+} from './types'
 
 import { IFormElementBadge, BadgeProps } from './badgeTypes'
 
@@ -30,6 +42,13 @@ export {
   formConstructorSlice,
   useAppSelector,
   useAppDispatch,
+  FormElementTypes,
+  FormGroupsTypes,
+  type ICardElement,
+  type IFormElementButton,
+  type ILayoutElement,
+  type IFormElement,
+  type IGroupElement,
   type BadgeProps,
   type IFormElementBadge,
   type LayoutElementPropsStyles,

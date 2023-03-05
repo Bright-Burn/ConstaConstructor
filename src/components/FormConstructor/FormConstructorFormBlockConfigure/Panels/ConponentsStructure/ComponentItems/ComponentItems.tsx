@@ -1,4 +1,4 @@
-import { ComponentCard } from '../ComponentCard'
+import { ComponentCard } from './ComponentCard'
 import { constaCards } from './content'
 import styles from './styles.module.css'
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { IComponentCard } from '../ComponentCard/types'
+import { IComponentCard } from './types'
 import { Text } from '@consta/uikit/Text'
 import styles from './styles.module.css'
 

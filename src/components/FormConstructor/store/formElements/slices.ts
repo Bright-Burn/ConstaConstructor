@@ -78,7 +78,6 @@ export const formConstructorSlice = createFormConstructorSlice({
         const projectSerilizable: ProjectDataSerializable = {
           ...JSON.parse(projectJson as string),
         }
-        console.log(projectJson)
         const newSate = projectFromSerilizable(projectSerilizable.project)
         state.allElementsMap = newSate.allElementsMap
         state.allElementsTree = newSate.allElementsTree
@@ -142,6 +141,7 @@ export const formConstructorSlice = createFormConstructorSlice({
     },
     deleteElement: (state, action: PayloadAction<DeleteElementPayload>) => {
       const elementId = action.payload.elementId
+      /// Добавить удаление из дерева, включая дочерние элементы
       state.allElementsMap.delete(elementId)
     },
   },

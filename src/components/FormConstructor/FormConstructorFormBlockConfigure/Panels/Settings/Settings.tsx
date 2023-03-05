@@ -120,7 +120,7 @@ export const Settings: FC = () => {
     <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer}`}>
       <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
       <div className={styles.buttonsSaveLoad}>
-        <FileField id={'loader'} onChange={onChange}>
+        <FileField id={'loader_project'} onChange={onChange}>
           {props => (
             <Button
               id={'btn'}
