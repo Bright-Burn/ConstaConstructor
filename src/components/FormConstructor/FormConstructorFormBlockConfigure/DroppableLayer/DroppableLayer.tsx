@@ -61,8 +61,39 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     if (draggableBaseComponent) {
       const childParentMap = new Map<string, string>(draggableBaseComponent.childParentMap)
       const elementsToAdd = draggableBaseComponent.childrenElementList
+      const mappedIds = new Map<string, string>([])
+
       elementsToAdd.forEach(elem => {
-        addElement(elem, childParentMap.get(elem.id) || parentElementId)
+        const prevId = elem.id
+        const prevParentId = childParentMap.get(prevId)
+        if (!prevParentId) {
+          let newId = mappedIds.get(prevId)
+          if (!newId) {
+            newId = uuid()
+            mappedIds.set(prevId, newId)
+          }
+          elem = { ...elem, id: newId }
+          addElement(elem, parentElementId)
+        } else {
+          let newId = mappedIds.get(prevId)
+          if (!newId) {
+            newId = uuid()
+            mappedIds.set(prevId, newId)
+          }
+          elem = { ...elem, id: newId }
+          let newParentId = mappedIds.get(prevParentId)
+          if (!newParentId) {
+            newParentId = uuid()
+            mappedIds.set(prevParentId, newParentId)
+          }
+          if (
+            'parentId' in elem
+          ) {
+            elem.parentId = newParentId
+          }
+          console.log(elem, newParentId)
+          addElement(elem, newParentId)
+        }
       })
 
       dispathBaseComponents(
