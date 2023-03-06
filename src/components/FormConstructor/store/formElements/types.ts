@@ -7,6 +7,7 @@ import { IFormElementTabs, TabsElementProps } from './tabsTypes'
 import { IFormElementInformer, InformerElementProps } from './informerTypes'
 import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { TextElementProps, IFormElementText } from './textTypes'
+import { IconElementProps } from './iconTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -32,6 +33,7 @@ export enum FormElementTypes {
   Informer = 'Informer',
   Checkbox = 'Checkbox',
   Text = 'Text',
+  Icon = 'Icon'
 }
 
 export interface IGroupElement {
@@ -67,6 +69,7 @@ export type FormElementProps =
   | InformerElementProps
   | CheckboxProps
   | TabsElementProps
+  | IconElementProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles

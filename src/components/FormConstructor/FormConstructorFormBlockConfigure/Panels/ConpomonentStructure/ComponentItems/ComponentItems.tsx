@@ -51,6 +51,11 @@ export const ComponentItems = () => {
       name: 'Checkbox',
       formElementType: FormElementTypes.Checkbox,
     },
+    {
+      id: uuid(),
+      name: 'Icon',
+      formElementType: FormElementTypes.Icon,
+    },
   ])
 
   return (
