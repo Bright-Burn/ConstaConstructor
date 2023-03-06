@@ -15,6 +15,7 @@ import { TabsSettings } from './TabsSettings/TabsSettings'
 import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
 import { TextSettings } from './TextSettings'
+import { IconSettings } from './IconSettings'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -35,6 +36,12 @@ export const Settings: FC = () => {
           return (
             <>
               <InformerSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Icon:
+          return (
+            <>
+              <IconSettings /> <BaseSettings />
             </>
           )
         case FormElementTypes.Badge:

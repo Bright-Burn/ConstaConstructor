@@ -19,6 +19,8 @@ import {
   ShowGrid,
 } from './payload'
 
+import { IFormElementIcon, IconElementProps } from './iconTypes'
+
 import { CardElementPropsStyles } from './cardTypes'
 
 import { IFormElementText, TextElementProps } from './textTypes'
@@ -52,4 +54,6 @@ export {
   type InformerElementProps,
   type CheckboxProps,
   type IFormElementCheckbox,
+  type IFormElementIcon,
+  type IconElementProps,
 }

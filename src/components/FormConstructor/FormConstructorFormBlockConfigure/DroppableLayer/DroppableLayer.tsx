@@ -8,6 +8,7 @@ import {
   IFormElementInformer,
   formConstructorSlice,
   IFormElementCheckbox,
+  IFormElementIcon,
 } from '../../store/formElements'
 import {
   FormElementTypes,
@@ -30,6 +31,7 @@ import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFormElement } from '../Elements/TextFormElement'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
+import { IconFormElement } from '../Elements/IconFormElement'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -205,6 +207,20 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           addElement(newInformer, parentElementId)
           break
 
+          case FormElementTypes.Icon:
+            const newIcon: IFormElementIcon = {
+              id: uuid(),
+              type: FormElementTypes.Icon,
+              props: {
+                size: 's',
+                view: 'primary',
+                className: '',
+                baseProps: {},
+              },
+            }
+            addElement(newIcon, parentElementId)
+            break
+
         case FormElementTypes.Checkbox:
           const newCheckbox: IFormElementCheckbox = {
             id: uuid(),
@@ -271,6 +287,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <InformerFormElement key={el.id} formElement={el} />
         } else if (el.type === FormElementTypes.Checkbox) {
           return <CheckboxFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.Icon) {
+          return <IconFormElement key={el.id} formElement={el} />
         }
         return <></>
       })}
