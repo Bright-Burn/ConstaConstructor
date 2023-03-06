@@ -11,6 +11,7 @@ export const SaveModalCard: FC<ISaveModalCard> = ({ showSaveModal, onCloseModalC
 
   const onSaveClick = () => {
     onSave(name, description)
+    onCloseModalCard()
   }
 
   const handleChangeName = ({ value }: { value: string | null }) => setName(value || '')

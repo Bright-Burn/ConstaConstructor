@@ -5,7 +5,6 @@ import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
-import { SaveModalCard } from '../../../../SaveModalCard'
 import { BaseSettings } from './BaseSettings/BaseSettings'
 import { CardSettings } from './CardSettings'
 import { FileField } from '@consta/uikit/FileField'
@@ -16,6 +15,7 @@ import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
 import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
+import { SaveModalCard } from '../../../SaveModalCard'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)

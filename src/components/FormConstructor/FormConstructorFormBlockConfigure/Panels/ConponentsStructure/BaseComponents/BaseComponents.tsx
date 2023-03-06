@@ -8,10 +8,10 @@ import {
   baseComponentsSlice,
   useBaseComponentsDispatch,
 } from '../../../../store/baseComponentsItems'
-import { SaveModalCard } from '../../../../../SaveModalCard'
 import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/formElements'
 import uuid from 'react-uuid'
 import { BaseComponentsCard } from './BaseComponentsCard'
+import { SaveModalCard } from '../../../../SaveModalCard'
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)

@@ -62,7 +62,6 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       const childParentMap = new Map<string, string>(draggableBaseComponent.childParentMap)
       const elementsToAdd = draggableBaseComponent.childrenElementList
 
-
       // Ниже создаем новые id, но необходимо сохранить старые взаимосвязи элемент-родитель
       const mappedIds = new Map<string, string>([])
 
@@ -89,9 +88,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             newParentId = uuid()
             mappedIds.set(prevParentId, newParentId)
           }
-          if (
-            'parentId' in elem
-          ) {
+          if ('parentId' in elem) {
             elem.parentId = newParentId
           }
           console.log(elem, newParentId)
