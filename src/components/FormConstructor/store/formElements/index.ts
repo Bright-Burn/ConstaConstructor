@@ -16,7 +16,10 @@ import {
   FormGroupsTypes,
   IFormElementButton,
   ILayoutElement,
+  ElementTypes,
 } from './types'
+
+import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 
 import { IFormElementBadge, BadgeProps } from './badgeTypes'
 
@@ -44,6 +47,9 @@ export {
   useAppDispatch,
   FormElementTypes,
   FormGroupsTypes,
+  ElementTypes,
+  type IFormElementTextField,
+  type TextFieldProps,
   type ICardElement,
   type IFormElementButton,
   type ILayoutElement,

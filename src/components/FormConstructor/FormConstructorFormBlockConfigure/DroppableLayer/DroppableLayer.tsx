@@ -29,7 +29,7 @@ import { TextFormElement } from '../Elements/TextFormElement'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
-import { IFormElementTextField } from '../../store/formElements/textFieldTypes'
+import { IFormElementTextField } from '../../store/formElements'
 import {
   baseComponentsSlice,
   useBaseComponentsDispatch,

@@ -1,4 +1,4 @@
-import { FormElementTypes, FormGroupsTypes } from '../../../../store/formElements/types'
+import { FormElementTypes, FormGroupsTypes } from '../../../../store/formElements'
 import uuid from 'react-uuid'
 
 export const constaCards = [
@@ -46,5 +46,10 @@ export const constaCards = [
     id: uuid(),
     name: 'Checkbox',
     formElementType: FormElementTypes.Checkbox,
+  },
+  {
+    id: uuid(),
+    name: 'TextField',
+    formElementType: FormElementTypes.TextField,
   },
 ]
