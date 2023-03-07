@@ -15,6 +15,7 @@ import { TabsSettings } from './TabsSettings/TabsSettings'
 import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
 import { TextSettings } from './TextSettings'
+import { TextFieldSettings } from './TextFieldSettings'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -65,6 +66,12 @@ export const Settings: FC = () => {
           return (
             <>
               <CheckboxSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.TextField:
+          return (
+            <>
+              <TextFieldSettings /> <BaseSettings />
             </>
           )
         default:

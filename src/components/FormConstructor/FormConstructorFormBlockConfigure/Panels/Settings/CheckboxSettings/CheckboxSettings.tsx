@@ -6,7 +6,6 @@ import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/u
 import { useDispatch } from 'react-redux'
 import { useLayoutEffect, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
-import { Checkbox } from '@consta/uikit/Checkbox'
 import { TextField } from '@consta/uikit/TextField'
 
 export const CheckboxSettings = () => {
