@@ -8,16 +8,14 @@ import {
   IFormElementInformer,
   formConstructorSlice,
   IFormElementCheckbox,
-} from '../../store/formElements'
-import {
   FormElementTypes,
   FormGroupsTypes,
   ICardElement,
-  IFormElement,
   IFormElementButton,
-  IGroupElement,
   ILayoutElement,
-} from '../../store/formElements/types'
+  IFormElement,
+  IGroupElement,
+} from '../../store/formElements'
 import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
@@ -31,15 +29,22 @@ import { TextFormElement } from '../Elements/TextFormElement'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
-import { IFormElementTextField } from '../../store/formElements/textFieldTypes'
+import { IFormElementTextField } from '../../store/formElements'
+import {
+  baseComponentsSlice,
+  useBaseComponentsDispatch,
+  useBaseComponentsSelector,
+} from '../../store/baseComponentsItems'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
   const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
+  const { draggableBaseComponent } = useBaseComponentsSelector(state => state.baseComponents)
 
   const [elementsOnLayer, setElementsOnLayer] = useState<(IGroupElement | IFormElement)[]>([])
   const dispatch = useDispatch()
+  const dispathBaseComponents = useBaseComponentsDispatch()
 
   useEffect(() => {
     /// Подгружаем все эелементы на текущем уровне
@@ -52,12 +57,63 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     setElementsOnLayer([...elementsOnLayer])
   }, [allElementsTree, parentElementId, allElementsMap])
 
-  const handleOnDrop = (event: React.DragEvent) => {
-    const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
-    const groupElementType = event.dataTransfer.getData('FormGroupsType') as FormGroupsTypes
+  const handleOnDropBaseComponent = () => {
+    if (draggableBaseComponent) {
+      const childParentMap = new Map<string, string>(draggableBaseComponent.childParentMap)
+      const elementsToAdd = draggableBaseComponent.childrenElementList
 
+      // Ниже создаем новые id, но необходимо сохранить старые взаимосвязи элемент-родитель
+      const mappedIds = new Map<string, string>([])
+
+      elementsToAdd.forEach(elem => {
+        const prevId = elem.id
+        const prevParentId = childParentMap.get(prevId)
+        if (!prevParentId) {
+          let newId = mappedIds.get(prevId)
+          if (!newId) {
+            newId = uuid()
+            mappedIds.set(prevId, newId)
+          }
+          elem = { ...elem, id: newId }
+          addElement(elem, parentElementId)
+        } else {
+          let newId = mappedIds.get(prevId)
+          if (!newId) {
+            newId = uuid()
+            mappedIds.set(prevId, newId)
+          }
+          elem = { ...elem, id: newId }
+          let newParentId = mappedIds.get(prevParentId)
+          if (!newParentId) {
+            newParentId = uuid()
+            mappedIds.set(prevParentId, newParentId)
+          }
+          if ('parentId' in elem) {
+            elem.parentId = newParentId
+          }
+          console.log(elem, newParentId)
+          addElement(elem, newParentId)
+        }
+      })
+
+      // После перетаскивания, очищаем соответсвующее поле в сторе
+      dispathBaseComponents(
+        baseComponentsSlice.actions.setDraggableBaseComponent({ baseComponent: null }),
+      )
+    }
+  }
+
+  const handleOnDrop = (event: React.DragEvent) => {
     event.stopPropagation()
     event.preventDefault()
+
+    const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
+    const groupElementType = event.dataTransfer.getData('FormGroupsType') as FormGroupsTypes
+    const isBaseComponent = event.dataTransfer.getData('BaseComponent')
+    if (isBaseComponent === 'true') {
+      handleOnDropBaseComponent()
+      return
+    }
 
     if (groupElementType) {
       switch (groupElementType) {

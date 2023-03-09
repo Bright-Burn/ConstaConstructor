@@ -5,7 +5,6 @@ import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
-import { SaveModalCard } from './SaveModalCard'
 import { BaseSettings } from './BaseSettings/BaseSettings'
 import { CardSettings } from './CardSettings'
 import { FileField } from '@consta/uikit/FileField'
@@ -16,6 +15,7 @@ import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
 import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
+import { SaveModalCard } from '../../../SaveModalCard'
 
 export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
@@ -120,7 +120,7 @@ export const Settings: FC = () => {
     <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer}`}>
       <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
       <div className={styles.buttonsSaveLoad}>
-        <FileField id={'loader'} onChange={onChange}>
+        <FileField id={'loader_project'} onChange={onChange}>
           {props => (
             <Button
               id={'btn'}
@@ -142,7 +142,7 @@ export const Settings: FC = () => {
       </div>
       <SaveModalCard
         onCloseModalCard={onClose}
-        onSaveProject={onSaveProject}
+        onSave={onSaveProject}
         showSaveModal={showSaveModal}
       />
       <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>

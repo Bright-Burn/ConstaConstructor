@@ -3,5 +3,5 @@ import { IFormConstructorFormBlock } from '../types'
 
 export interface IFormConstructorFormBlockConfigure extends IFormConstructorFormBlock {
   Settings: FC
-  ConpomonentStructure: FC
+  ConponentsStructure: FC
 }

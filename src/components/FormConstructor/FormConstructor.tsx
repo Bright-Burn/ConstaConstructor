@@ -6,7 +6,7 @@ export const FormConstructor = () => {
   return (
     <div className={css.formConstructor}>
       <FormConstructorFormBlockConfigure>
-        <FormConstructorFormBlockConfigure.ConpomonentStructure />
+        <FormConstructorFormBlockConfigure.ConponentsStructure />
         <FormConstructorFormBlockConfigure.WhiteFormBlock />
         <FormConstructorFormBlockConfigure.Settings />
       </FormConstructorFormBlockConfigure>

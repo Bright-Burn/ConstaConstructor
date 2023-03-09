@@ -5,16 +5,13 @@ import React, { FC, useState } from 'react'
 import styles from './styles.module.css'
 import { ISaveModalCard } from './types'
 
-export const SaveModalCard: FC<ISaveModalCard> = ({
-  showSaveModal,
-  onCloseModalCard,
-  onSaveProject,
-}) => {
-  const [name, setName] = useState<string>('New project')
-  const [description, setDescription] = useState<string>('My new project')
+export const SaveModalCard: FC<ISaveModalCard> = ({ showSaveModal, onCloseModalCard, onSave }) => {
+  const [name, setName] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
 
   const onSaveClick = () => {
-    onSaveProject(name, description)
+    onSave(name, description)
+    onCloseModalCard()
   }
 
   const handleChangeName = ({ value }: { value: string | null }) => setName(value || '')

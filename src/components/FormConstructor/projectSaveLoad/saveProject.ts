@@ -1,4 +1,5 @@
 import { IFormConstructor } from '../store/formElements/types'
+import { saveToFile } from '../utils'
 import {
   IFormConstructorSerializable,
   ProjectDataSerializable,
@@ -17,7 +18,7 @@ export const saveProject = (saveIntent: SaveProjectIntent) => {
       saveToStorage(projData)
       break
     case ProjectSaveWays.FILE:
-      saveToFile(projData)
+      saveFile(projData)
       break
   }
 }
@@ -26,14 +27,9 @@ const saveToStorage = (data: ProjectDataSerializable) => {
   localStorage.setItem(data.name, JSON.stringify(data))
 }
 
-const saveToFile = (projData: ProjectDataSerializable) => {
+const saveFile = (projData: ProjectDataSerializable) => {
   const fileData = JSON.stringify(projData)
-  const blob = new Blob([fileData], { type: 'text/plain' })
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.download = `${projData.name}_ConstaConstructor.json`
-  link.href = url
-  link.click()
+  saveToFile(fileData, `${projData.name}_ConstaConstructor.json`)
 }
 
 export const projectToSerilizable = (proj: IFormConstructor): IFormConstructorSerializable => {

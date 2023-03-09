@@ -1,1 +1,0 @@
-export { ConpomonentStructure } from './ComponentStructure'

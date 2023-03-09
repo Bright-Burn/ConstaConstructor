@@ -1,5 +1,5 @@
 import { FormBlock } from './FormBlock'
-import { ConpomonentStructure } from './ConpomonentStructure'
 import { Settings } from './Settings'
+import { ConponentsStructure } from './ConponentsStructure'
 
-export { Settings, FormBlock, ConpomonentStructure }
+export { Settings, FormBlock, ConponentsStructure }
