@@ -1,6 +1,6 @@
 import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { IBaseComponent, useBaseComponentsSelector } from '../../../../store/baseComponentsItems'
 import { readFile, saveToFile } from '../../../../utils'
 import styles from './styles.module.css'
@@ -12,6 +12,7 @@ import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/f
 import uuid from 'react-uuid'
 import { BaseComponentsCard } from './BaseComponentsCard'
 import { SaveModalCard } from '../../../../SaveModalCard'
+import { headerMock } from '../../../Elements/HeaderWithBreadcrumbs/mocks'
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
@@ -23,7 +24,12 @@ export const BaseComponents: FC = () => {
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
 
   const dispatch = useBaseComponentsDispatch()
-
+  useEffect(() => {
+    if (!baseComponents.some(component => component.id === headerMock.id))
+      dispatch(
+        baseComponentsSlice.actions.addNewBaseElement({ baseComponent: headerMock }),
+      )
+  }, [])
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const targer = e?.target as HTMLInputElement
     const files = targer?.files ? targer?.files : undefined
