@@ -16,6 +16,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.container-row {
+  display: flex;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.align-center {
+  align-items: center;
+}
+
 .borderCard {
   padding: 0.05rem;
   border: 0.2rem solid rgba(0, 65, 102, 0.2);

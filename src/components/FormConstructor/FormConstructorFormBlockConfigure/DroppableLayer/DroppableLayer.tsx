@@ -15,6 +15,7 @@ import {
   ILayoutElement,
   IFormElement,
   IGroupElement,
+  IFormElementHeaderWithBreadcrumbs,
 } from '../../store/formElements'
 import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
@@ -35,6 +36,7 @@ import {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store/baseComponentsItems'
+import { HeaderWithBreadcrumbs } from '../Elements/HeaderWithBreadcrumbs'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -224,7 +226,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
               baseProps: {},
               value: items[0],
               items: items,
-              onChange: () => {},
+              onChange: () => { },
               linePosition: 'top',
               fitMode: 'dropdown',
               size: 'm',
@@ -305,6 +307,17 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           }
           addElement(newTextField, parentElementId)
           break
+        case FormElementTypes.HeaderWithBreadcrumbs:
+          const newHeader: IFormElementHeaderWithBreadcrumbs = {
+            id: uuid(),
+            type: FormElementTypes.HeaderWithBreadcrumbs,
+            props: {
+              className: '',
+              baseProps: {},
+            }
+          }
+          addElement(newHeader, parentElementId)
+          break
       }
     }
   }
@@ -356,6 +369,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <CheckboxFormElement key={el.id} formElement={el} />
         } else if (el.type === FormElementTypes.TextField) {
           return <TextFieldFormElement key={el.id} formElement={el} />
+        } else if (el.type === FormElementTypes.HeaderWithBreadcrumbs) {
+          return <HeaderWithBreadcrumbs key={el.id} formElement={el} />
         }
         return <></>
       })}

@@ -34,6 +34,7 @@ export enum FormElementTypes {
   Checkbox = 'Checkbox',
   Text = 'Text',
   TextField = 'TextField',
+  HeaderWithBreadcrumbs = 'HeaderWithBreadcrumbs'
 }
 
 export interface IGroupElement {
