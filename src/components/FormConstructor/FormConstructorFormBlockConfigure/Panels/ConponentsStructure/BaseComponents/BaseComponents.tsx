@@ -13,6 +13,8 @@ import uuid from 'react-uuid'
 import { BaseComponentsCard } from './BaseComponentsCard'
 import { SaveModalCard } from '../../../../SaveModalCard'
 import { headerMock } from '../../../Elements/HeaderWithBreadcrumbs/mocks'
+import { headerWithStatusMock } from '../../../Elements/HeaderWithStatus/mocks'
+import { HeaderWithStatus } from '../../../Elements/HeaderWithStatus'
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
@@ -26,10 +28,13 @@ export const BaseComponents: FC = () => {
   const dispatch = useBaseComponentsDispatch()
   useEffect(() => {
     if (!baseComponents.some(component => component.id === headerMock.id))
+      dispatch(baseComponentsSlice.actions.addNewBaseElement({ baseComponent: headerMock }))
+    if (!baseComponents.some(component => component.id === headerWithStatusMock.id))
       dispatch(
-        baseComponentsSlice.actions.addNewBaseElement({ baseComponent: headerMock }),
+        baseComponentsSlice.actions.addNewBaseElement({ baseComponent: headerWithStatusMock }),
       )
   }, [])
+
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const targer = e?.target as HTMLInputElement
     const files = targer?.files ? targer?.files : undefined
