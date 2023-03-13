@@ -226,7 +226,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
               baseProps: {},
               value: items[0],
               items: items,
-              onChange: () => { },
+              onChange: () => {},
               linePosition: 'top',
               fitMode: 'dropdown',
               size: 'm',
@@ -314,7 +314,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             props: {
               className: '',
               baseProps: {},
-            }
+            },
           }
           addElement(newHeader, parentElementId)
           break
