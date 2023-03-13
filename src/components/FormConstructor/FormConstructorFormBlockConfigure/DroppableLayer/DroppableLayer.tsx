@@ -92,8 +92,6 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     event.stopPropagation()
     event.preventDefault()
 
-    // const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
-    // const groupElementType = event.dataTransfer.getData('FormGroupsType') as FormGroupsTypes
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
     if (isBaseComponent === 'true') {
       handleOnDropBaseComponent()
@@ -112,7 +110,11 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   }
 
   const addLayoutOuter = (layoutElement: ILayoutElement) => {
-    const newParentElementId = getNewGroupParentLevel(parentElementId, allElementsMap)
+    const newParentElementId = getNewGroupParentLevel(
+      parentElementId,
+      allElementsMap,
+      allElementsTree,
+    )
 
     if (newParentElementId) {
       addElement(layoutElement, newParentElementId)
@@ -136,7 +138,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     >
       {elementsOnLayer.map(el => {
         let Component = FormGroupsDict[el.type]
-        return <Component key={el.id} formElement={el} />
+        return <Component key={el.id} element={el} />
       })}
     </div>
   )

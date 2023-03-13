@@ -4,30 +4,28 @@ import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
   formConstructorSlice,
-  FormElementTypes,
-  IFormElementCheckbox,
+  FormGroupsTypes,
+  ILayoutElement,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
-export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
+export const ComponentCardInnerLayout: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
-    const newCheckbox: IFormElementCheckbox = {
+    const layoutElement: ILayoutElement = {
       id: uuid(),
-      type: FormElementTypes.Checkbox,
+      type: FormGroupsTypes.LayoutInner,
       props: {
-        checked: undefined,
-        size: 's',
-        view: 'primary',
-        align: 'center',
-        disabled: false,
-        label: 'Checkbox',
+        constaProps: {
+          flex: 1,
+          direction: 'row',
+        },
         className: '',
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newCheckbox }))
+    dispatch(formConstructorSlice.actions.setDraggableElement({ element: layoutElement }))
   }
 
   return (

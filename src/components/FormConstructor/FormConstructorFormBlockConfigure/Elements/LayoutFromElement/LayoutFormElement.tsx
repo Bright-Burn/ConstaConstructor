@@ -6,14 +6,14 @@ import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ILayoutFormElement } from './types'
 
-export const LayoutFromElement: FC<ILayoutFormElement> = ({ layoutElement }) => {
+export const LayoutFromElement: FC<ILayoutFormElement> = ({ element }) => {
   const [layoutProps, setLayoutProps] = useState<LayoutElementPropsStyles | undefined>()
   const { isGridVisible } = useAppSelector(state => state.formConstructor)
 
   useLayoutEffect(() => {
-    const layoutElementWithProps = layoutElement as ILayoutElement
+    const layoutElementWithProps = element as ILayoutElement
     setLayoutProps(layoutElementWithProps.props)
-  }, [layoutElement])
+  }, [element])
 
   return (
     <Layout
@@ -22,11 +22,11 @@ export const LayoutFromElement: FC<ILayoutFormElement> = ({ layoutElement }) => 
       style={{ ...layoutProps?.styles }}
     >
       <SelectableLayer
-        parentElementId={layoutElement.id}
+        parentElementId={element.id}
         elementType={FormGroupsTypes.LayoutInner}
         elementTypeUsage={ElementTypes.FormGroups}
       >
-        <DroppableLayer parentElementId={layoutElement.id} />
+        <DroppableLayer parentElementId={element.id} />
       </SelectableLayer>
     </Layout>
   )

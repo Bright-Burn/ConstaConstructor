@@ -39,7 +39,6 @@ export enum FormElementTypes {
 
 export interface IGroupElement extends IUnion {
   id: string
-  parentId: string
   type: FormGroupsTypes
   props: GroupElementProps
 }

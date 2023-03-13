@@ -5,28 +5,36 @@ import uuid from 'react-uuid'
 import {
   formConstructorSlice,
   FormElementTypes,
-  IFormElementBadge,
+  IFormElementTextField,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
-export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
+export const ComponentCardTextField: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
-    const newBadge: IFormElementBadge = {
+    const newTextField: IFormElementTextField = {
       id: uuid(),
-      type: FormElementTypes.Badge,
+      type: FormElementTypes.TextField,
       props: {
-        label: 'Badge',
+        type: 'text',
+        width: 'default',
         form: 'default',
-        size: 's',
-        status: 'success',
-        view: 'filled',
+        size: 'm',
+        view: 'default',
+        caption: 'Подпись',
+        label: 'Заголовок',
+        labelPosition: 'top',
+        maxLength: 200,
+        placeholder: 'Подсказка в поле',
+        step: '1',
+        min: '0',
+        max: '200',
         className: '',
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newBadge }))
+    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newTextField }))
   }
 
   return (

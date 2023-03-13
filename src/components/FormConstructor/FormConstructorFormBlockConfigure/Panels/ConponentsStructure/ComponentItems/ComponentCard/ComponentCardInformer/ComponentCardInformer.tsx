@@ -5,29 +5,28 @@ import uuid from 'react-uuid'
 import {
   formConstructorSlice,
   FormElementTypes,
-  IFormElementCheckbox,
+  IFormElementInformer,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
-export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
+export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
-    const newCheckbox: IFormElementCheckbox = {
+    const newInformer: IFormElementInformer = {
       id: uuid(),
-      type: FormElementTypes.Checkbox,
+      type: FormElementTypes.Informer,
       props: {
-        checked: undefined,
+        label: 'Informer',
+        title: 'Title',
         size: 's',
-        view: 'primary',
-        align: 'center',
-        disabled: false,
-        label: 'Checkbox',
+        status: 'success',
+        view: 'filled',
         className: '',
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newCheckbox }))
+    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newInformer }))
   }
 
   return (
