@@ -7,26 +7,12 @@ import { SwitchComponent } from '../../../../SwitchComponent'
 import { FormElementTypes } from '../../../../../store/formElements'
 
 export const ComponentCard: FC<IComponentCard> = ({
-  id,
   name,
   formElementType,
   groupElementType,
 }) => {
-  const onDragFormElementStart = (event: React.DragEvent) => {
-    if (formElementType) {
-      event.dataTransfer.setData('FormElementType', formElementType)
-    } else if (groupElementType) {
-      event.dataTransfer.setData('FormGroupsType', groupElementType)
-    }
-    event.stopPropagation()
-  }
-
   return (
-    <div
-      className={`${styles.componentCard}`}
-      draggable={true}
-      onDragStart={onDragFormElementStart}
-    >
+    <div className={`${styles.componentCard}`}>
       <SwitchComponent testValue={formElementType || groupElementType || ''}>
         <ComponentCardBadge name={name} value={FormElementTypes.Badge} />
         <ComponentCardCheckbox name={name} value={FormElementTypes.Checkbox} />
