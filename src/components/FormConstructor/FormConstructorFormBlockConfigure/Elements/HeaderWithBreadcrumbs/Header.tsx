@@ -14,17 +14,17 @@ import { User } from '@consta/uikit/User'
 import style from './styles.module.css'
 import { pages } from './mocks'
 
-export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ formElement }) => {
+export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) => {
   const [headerProps, setHeaderProps] = useState<headerWithBreadcrumbsProps | undefined>()
 
   useLayoutEffect(() => {
-    const badgeFormElement = formElement as IFormElementHeaderWithBreadcrumbs
+    const badgeFormElement = element as IFormElementHeaderWithBreadcrumbs
     setHeaderProps(badgeFormElement.props)
-  }, [formElement])
+  }, [element])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Badge}
     >
