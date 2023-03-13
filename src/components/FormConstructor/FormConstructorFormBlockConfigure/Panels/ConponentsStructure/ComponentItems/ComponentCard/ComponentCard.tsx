@@ -5,8 +5,7 @@ import { ComponentCardBadge } from './ComponentCardBadge'
 import { ComponentCardCheckbox } from './ComponentCardCheckbox'
 import { SwitchComponent } from '../../../../SwitchComponent'
 import { FormElementTypes, FormGroupsTypes } from '../../../../../store/formElements'
-import { ComponentCardInnerLayout } from './ComponentCardInnerLayout'
-import { ComponentCardOuterLayout } from './ComponentCardOuterLayout'
+import { ComponentCardLayout } from './ComponentCardLayout'
 import { ComponentCardTabs } from './ComponentCardTabs'
 import { ComponentCardText } from './ComponentCardText'
 import { ComponentCardTextField } from './ComponentCardTextField'
@@ -19,8 +18,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
       <SwitchComponent testValue={formElementType || groupElementType || ''}>
         <ComponentCardBadge name={name} value={FormElementTypes.Badge} />
         <ComponentCardCheckbox name={name} value={FormElementTypes.Checkbox} />
-        <ComponentCardInnerLayout name={name} value={FormGroupsTypes.LayoutInner} />
-        <ComponentCardOuterLayout name={name} value={FormGroupsTypes.LayoutOuter} />
+        <ComponentCardLayout name={name} value={FormGroupsTypes.Layout} />
         <ComponentCardText name={name} value={FormGroupsTypes.Card} />
         <ComponentCardTabs name={name} value={FormElementTypes.Tabs} />
         <ComponentCardTextField name={name} value={FormElementTypes.TextField} />

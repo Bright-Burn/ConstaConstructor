@@ -44,7 +44,7 @@ export const Settings: FC = () => {
               <BadgeSettings /> <BaseSettings />
             </>
           )
-        case FormGroupsTypes.LayoutInner || FormGroupsTypes.LayoutOuter:
+        case FormGroupsTypes.Layout:
           return (
             <>
               <LayoutSettings /> <BaseSettings />

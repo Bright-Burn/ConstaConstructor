@@ -4,13 +4,8 @@ import uuid from 'react-uuid'
 export const constaCards = [
   {
     id: uuid(),
-    name: 'Панель внутренняя',
-    groupElementType: FormGroupsTypes.LayoutInner,
-  },
-  {
-    id: uuid(),
-    name: 'Панель внешняя',
-    groupElementType: FormGroupsTypes.LayoutOuter,
+    name: 'Панель',
+    groupElementType: FormGroupsTypes.Layout,
   },
   {
     id: uuid(),

@@ -23,7 +23,7 @@ export const LayoutFromElement: FC<ILayoutFormElement> = ({ element }) => {
     >
       <SelectableLayer
         parentElementId={element.id}
-        elementType={FormGroupsTypes.LayoutInner}
+        elementType={FormGroupsTypes.Layout}
         elementTypeUsage={ElementTypes.FormGroups}
       >
         <DroppableLayer parentElementId={element.id} />

@@ -11,8 +11,7 @@ import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
-  LayoutOuter: LayoutFromElement,
-  LayoutInner: LayoutFromElement,
+  Layout: LayoutFromElement,
   Button: ButtonFormElement,
   Badge: BadgeFormElement,
   Card: CardFormElement,

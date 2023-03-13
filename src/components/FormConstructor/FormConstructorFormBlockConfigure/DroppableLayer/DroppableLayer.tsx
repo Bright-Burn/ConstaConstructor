@@ -4,8 +4,6 @@ import uuid from 'react-uuid'
 import {
   useAppSelector,
   formConstructorSlice,
-  FormGroupsTypes,
-  ILayoutElement,
   IFormElement,
   IGroupElement,
 } from '../../store/formElements'
@@ -99,26 +97,19 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     }
 
     if (draggableElement) {
-      if (draggableElement.type === FormGroupsTypes.LayoutOuter) {
-        addLayoutOuter(draggableElement as ILayoutElement)
+      if ('isOuter' in draggableElement && draggableElement.isOuter) {
+        const newParentElementId = getNewGroupParentLevel(
+          parentElementId,
+          allElementsMap,
+          allElementsTree,
+        )
+        newParentElementId && addElement(draggableElement, newParentElementId)
       } else {
         addElement(draggableElement, parentElementId)
       }
     }
 
     dispatch(formConstructorSlice.actions.setDraggableElement({ element: null }))
-  }
-
-  const addLayoutOuter = (layoutElement: ILayoutElement) => {
-    const newParentElementId = getNewGroupParentLevel(
-      parentElementId,
-      allElementsMap,
-      allElementsTree,
-    )
-
-    if (newParentElementId) {
-      addElement(layoutElement, newParentElementId)
-    }
   }
 
   const addElement = (element: IFormElement | IGroupElement, parentElementId: string) => {

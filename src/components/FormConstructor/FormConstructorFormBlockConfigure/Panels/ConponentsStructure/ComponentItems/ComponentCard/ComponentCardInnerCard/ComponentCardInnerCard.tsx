@@ -16,6 +16,7 @@ export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
     const newCard: ICardElement = {
       id: uuid(),
       type: FormGroupsTypes.Card,
+      isOuter: false,
       props: {
         constaProps: {
           verticalSpace: 'm',

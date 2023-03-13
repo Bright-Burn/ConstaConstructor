@@ -20,8 +20,7 @@ export enum ElementTypes {
 
 // Виды группирующих панелей
 export enum FormGroupsTypes {
-  LayoutInner = 'LayoutInner',
-  LayoutOuter = 'LayoutOuter',
+  Layout = 'Layout',
   Card = 'Card',
 }
 
@@ -40,6 +39,7 @@ export enum FormElementTypes {
 export interface IGroupElement extends IUnion {
   id: string
   type: FormGroupsTypes
+  isOuter: boolean
   props: GroupElementProps
 }
 

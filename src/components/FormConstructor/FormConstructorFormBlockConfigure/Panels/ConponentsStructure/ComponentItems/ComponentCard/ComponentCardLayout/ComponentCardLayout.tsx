@@ -1,5 +1,6 @@
+import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
@@ -8,14 +9,17 @@ import {
   ILayoutElement,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
+import styles from './styles.module.css'
 
-export const ComponentCardInnerLayout: FC<IComponetCardElement> = ({ name }) => {
+export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
+  const [isOuter, setIsOuter] = useState<boolean>(false)
   const dispatch = useDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const layoutElement: ILayoutElement = {
       id: uuid(),
-      type: FormGroupsTypes.LayoutInner,
+      type: FormGroupsTypes.Layout,
+      isOuter: isOuter,
       props: {
         constaProps: {
           flex: 1,
@@ -28,11 +32,21 @@ export const ComponentCardInnerLayout: FC<IComponetCardElement> = ({ name }) => 
     dispatch(formConstructorSlice.actions.setDraggableElement({ element: layoutElement }))
   }
 
+  const onChange = () => {
+    setIsOuter(!isOuter)
+  }
+
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div className={styles.cardLayout} draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text>{name}</Text>
+      <Switch
+        className='m-l-s'
+        label={isOuter ? 'Out' : 'In'}
+        checked={isOuter}
+        view={'ghost'}
+        size={'s'}
+        onChange={onChange}
+      />
     </div>
   )
 }
