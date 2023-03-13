@@ -5,17 +5,17 @@ import { ICheckboxFormElement } from './types'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
 import { CheckboxProps, IFormElementCheckbox } from '../../../store/formElements/checkboxTypes'
 
-export const CheckboxFormElement: FC<ICheckboxFormElement> = ({ formElement }) => {
+export const CheckboxFormElement: FC<ICheckboxFormElement> = ({ element }) => {
   const [checkboxProps, setCheckboxProps] = useState<CheckboxProps | undefined>()
 
   useLayoutEffect(() => {
-    const checkboxFormElement = formElement as IFormElementCheckbox
+    const checkboxFormElement = element as IFormElementCheckbox
     setCheckboxProps(checkboxFormElement.props)
-  }, [formElement])
+  }, [element])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Checkbox}
     >

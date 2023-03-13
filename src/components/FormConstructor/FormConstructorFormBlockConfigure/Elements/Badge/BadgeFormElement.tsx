@@ -5,17 +5,17 @@ import { IBadgeFormElement } from './types'
 import { Badge } from '@consta/uikit/Badge'
 import { BadgeProps, IFormElementBadge } from '../../../store/formElements/badgeTypes'
 
-export const BadgeFormElement: FC<IBadgeFormElement> = ({ formElement }) => {
+export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const [badgeProps, setbadgeProps] = useState<BadgeProps | undefined>()
 
   useLayoutEffect(() => {
-    const badgeFormElement = formElement as IFormElementBadge
+    const badgeFormElement = element as IFormElementBadge
     setbadgeProps(badgeFormElement.props)
-  }, [formElement])
+  }, [element])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Badge}
     >

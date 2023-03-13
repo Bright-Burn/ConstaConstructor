@@ -5,7 +5,7 @@ import { ITabsFormElement } from './types'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
 import { IFormElementTabs, TabsElementProps } from '../../../store/formElements/tabsTypes'
 
-export const TabsFormElement: FC<ITabsFormElement> = ({ formElement }) => {
+export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
   const [tabsProps, setTabsProps] = useState<TabsElementProps>({
     className: '',
     baseProps: {},
@@ -17,13 +17,13 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ formElement }) => {
   })
 
   useLayoutEffect(() => {
-    const tabsFormElementWithProps = formElement as IFormElementTabs
+    const tabsFormElementWithProps = element as IFormElementTabs
     setTabsProps(tabsFormElementWithProps.props)
-  }, [formElement])
+  }, [element])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Tabs}
     >

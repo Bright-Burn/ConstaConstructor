@@ -6,17 +6,17 @@ import { ElementTypes, FormGroupsTypes, ICardElement } from '../../../store/form
 import { DroppableLayer } from '../../DroppableLayer'
 import { CardElementPropsStyles } from '../../../store/formElements/cardTypes'
 import styles from './styles.module.css'
-export const CardFormElement: FC<ICardFormElement> = ({ cardElement }) => {
+export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
   const [cardProps, setCardProps] = useState<CardElementPropsStyles | undefined>()
 
   useLayoutEffect(() => {
-    const cardFormElement = cardElement as ICardElement
+    const cardFormElement = element as ICardElement
     setCardProps(cardFormElement.props)
-  }, [cardElement])
+  }, [element])
 
   return (
     <SelectableLayer
-      parentElementId={cardElement.id}
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormGroupsTypes.Card}
     >
@@ -25,7 +25,7 @@ export const CardFormElement: FC<ICardFormElement> = ({ cardElement }) => {
         className={`${cardProps?.className} ${styles.body}`}
         style={{ ...cardProps?.styles }}
       >
-        <DroppableLayer parentElementId={cardElement.id} />
+        <DroppableLayer parentElementId={element.id} />
       </Card>
     </SelectableLayer>
   )

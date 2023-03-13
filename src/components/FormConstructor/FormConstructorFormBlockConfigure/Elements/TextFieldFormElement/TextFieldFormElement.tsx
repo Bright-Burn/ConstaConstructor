@@ -5,17 +5,17 @@ import { ITextFieldFormElement } from './types'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { IFormElementTextField, TextFieldProps } from '../../../store/formElements'
 
-export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ formElement }) => {
+export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => {
   const [textFieldProps, setTextFieldProps] = useState<TextFieldProps | undefined>()
 
   useLayoutEffect(() => {
-    const textFieldFormElement = formElement as IFormElementTextField
+    const textFieldFormElement = element as IFormElementTextField
     setTextFieldProps(textFieldFormElement.props)
-  }, [formElement])
+  }, [element])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.TextField}
     >
