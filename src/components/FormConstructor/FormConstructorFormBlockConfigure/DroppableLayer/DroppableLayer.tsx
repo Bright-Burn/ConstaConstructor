@@ -30,13 +30,13 @@ import { TextFormElement } from '../Elements/TextFormElement'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
-import { IFormElementTextField } from '../../store/formElements'
 import {
   baseComponentsSlice,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store/baseComponentsItems'
 import { HeaderWithBreadcrumbs } from '../Elements/HeaderWithBreadcrumbs'
+import { SwitchComponent } from '../SwitchComponent'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -109,217 +109,225 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     event.stopPropagation()
     event.preventDefault()
 
-    const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
-    const groupElementType = event.dataTransfer.getData('FormGroupsType') as FormGroupsTypes
+    // const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
+    // const groupElementType = event.dataTransfer.getData('FormGroupsType') as FormGroupsTypes
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
+    const data = event.dataTransfer.getData('element')
+    const element = JSON.parse(data) as IFormElement | IGroupElement
     if (isBaseComponent === 'true') {
       handleOnDropBaseComponent()
       return
     }
 
-    if (groupElementType) {
-      switch (groupElementType) {
-        case FormGroupsTypes.LayoutInner:
-          const layoutElement: ILayoutElement = {
-            id: uuid(),
-            parentId: parentElementId,
-            type: groupElementType,
-            props: {
-              constaProps: {
-                flex: 1,
-                direction: 'row',
-              },
-              className: '',
-              baseProps: {},
-            },
-          }
-          addLayoutInner(layoutElement)
-          break
-        case FormGroupsTypes.LayoutOuter: {
-          const layoutElement: ILayoutElement = {
-            id: uuid(),
-            parentId: parentElementId,
-            type: groupElementType,
-            props: {
-              constaProps: {
-                flex: 1,
-                direction: 'row',
-              },
-              className: '',
-              baseProps: {},
-            },
-          }
-          addLayoutOuter(layoutElement)
-          break
-        }
-        case FormGroupsTypes.Card:
-          const newCard: ICardElement = {
-            id: uuid(),
-            parentId: parentElementId,
-            type: groupElementType,
-            props: {
-              constaProps: {
-                verticalSpace: 'm',
-                horizontalSpace: 'm',
-                status: undefined,
-                form: 'square',
-              },
-              baseProps: {},
-              className: '',
-              styles: {
-                width: '376px',
-                height: '227px',
-              },
-            },
-          }
-          addElement(newCard, parentElementId)
-          break
-      }
-      return
+    if (element.type === FormGroupsTypes.LayoutOuter) {
+      addLayoutOuter(element as ILayoutElement)
+    } else {
+      addElement(element, parentElementId)
     }
 
-    if (formElemType) {
-      switch (formElemType) {
-        case FormElementTypes.Button:
-          const newButton: IFormElementButton = {
-            id: uuid(),
-            type: FormElementTypes.Button,
-            props: {
-              disabled: true,
-              label: 'Кнопка',
-              view: 'primary',
-              className: '',
-              baseProps: {},
-            },
-          }
-          addElement(newButton, parentElementId)
-          break
+    // if (groupElementType) {
+    //   switch (groupElementType) {
+    //     case FormGroupsTypes.LayoutInner:
+    //       const layoutElement: ILayoutElement = {
+    //         id: uuid(),
+    //         parentId: parentElementId,
+    //         type: groupElementType,
+    //         props: {
+    //           constaProps: {
+    //             flex: 1,
+    //             direction: 'row',
+    //           },
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addLayoutInner(layoutElement)
+    //       break
+    //     case FormGroupsTypes.LayoutOuter: {
+    //       const layoutElement: ILayoutElement = {
+    //         id: uuid(),
+    //         parentId: parentElementId,
+    //         type: groupElementType,
+    //         props: {
+    //           constaProps: {
+    //             flex: 1,
+    //             direction: 'row',
+    //           },
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addLayoutOuter(layoutElement)
+    //       break
+    //     }
+    //     case FormGroupsTypes.Card:
+    //       const newCard: ICardElement = {
+    //         id: uuid(),
+    //         parentId: parentElementId,
+    //         type: groupElementType,
+    //         props: {
+    //           constaProps: {
+    //             verticalSpace: 'm',
+    //             horizontalSpace: 'm',
+    //             status: undefined,
+    //             form: 'square',
+    //           },
+    //           baseProps: {},
+    //           className: '',
+    //           styles: {
+    //             width: '376px',
+    //             height: '227px',
+    //           },
+    //         },
+    //       }
+    //       addElement(newCard, parentElementId)
+    //       break
+    //   }
+    //   return
+    // }
 
-        case FormElementTypes.Badge:
-          const newBadge: IFormElementBadge = {
-            id: uuid(),
-            type: FormElementTypes.Badge,
-            props: {
-              label: 'Badge',
-              form: 'default',
-              size: 's',
-              status: 'success',
-              view: 'filled',
-              className: '',
-              baseProps: {},
-            },
-          }
-          addElement(newBadge, parentElementId)
-          break
+    // if (formElemType) {
+    //   switch (formElemType) {
+    //     case FormElementTypes.Button:
+    //       const newButton: IFormElementButton = {
+    //         id: uuid(),
+    //         type: FormElementTypes.Button,
+    //         props: {
+    //           disabled: true,
+    //           label: 'Кнопка',
+    //           view: 'primary',
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addElement(newButton, parentElementId)
+    //       break
 
-        case FormElementTypes.Tabs:
-          const items = [
-            { id: 0, label: 'tab1' },
-            { id: 1, label: 'tab2' },
-          ]
-          const newTabs: IFormElementTabs = {
-            id: uuid(),
-            type: FormElementTypes.Tabs,
-            props: {
-              view: 'clear',
-              className: '',
-              baseProps: {},
-              value: items[0],
-              items: items,
-              onChange: () => {},
-              linePosition: 'top',
-              fitMode: 'dropdown',
-              size: 'm',
-            },
-          }
-          addElement(newTabs, parentElementId)
-          break
+    //     case FormElementTypes.Badge:
+    //       const newBadge: IFormElementBadge = {
+    //         id: uuid(),
+    //         type: FormElementTypes.Badge,
+    //         props: {
+    //           label: 'Badge',
+    //           form: 'default',
+    //           size: 's',
+    //           status: 'success',
+    //           view: 'filled',
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addElement(newBadge, parentElementId)
+    //       break
 
-        case FormElementTypes.Text:
-          const newText: IFormElementText = {
-            id: uuid(),
-            type: FormElementTypes.Text,
-            props: {
-              content: 'Text',
-              size: 's',
-              className: '',
-              baseProps: {},
-            },
-          }
-          addElement(newText, parentElementId)
-          break
-        case FormElementTypes.Informer:
-          const newInformer: IFormElementInformer = {
-            id: uuid(),
-            type: FormElementTypes.Informer,
-            props: {
-              label: 'Informer',
-              title: 'Title',
-              size: 's',
-              status: 'success',
-              view: 'filled',
-              className: '',
-              baseProps: {},
-            },
-          }
-          addElement(newInformer, parentElementId)
-          break
+    //     case FormElementTypes.Tabs:
+    //       const items = [
+    //         { id: 0, label: 'tab1' },
+    //         { id: 1, label: 'tab2' },
+    //       ]
+    //       const newTabs: IFormElementTabs = {
+    //         id: uuid(),
+    //         type: FormElementTypes.Tabs,
+    //         props: {
+    //           view: 'clear',
+    //           className: '',
+    //           baseProps: {},
+    //           value: items[0],
+    //           items: items,
+    //           onChange: () => {},
+    //           linePosition: 'top',
+    //           fitMode: 'dropdown',
+    //           size: 'm',
+    //         },
+    //       }
+    //       addElement(newTabs, parentElementId)
+    //       break
 
-        case FormElementTypes.Checkbox:
-          const newCheckbox: IFormElementCheckbox = {
-            id: uuid(),
-            type: FormElementTypes.Checkbox,
-            props: {
-              checked: undefined,
-              size: 's',
-              view: 'primary',
-              align: 'center',
-              disabled: false,
-              label: 'Checkbox',
-              className: '',
-              baseProps: {},
-            },
-          }
-          addElement(newCheckbox, parentElementId)
-          break
+    //     case FormElementTypes.Text:
+    //       const newText: IFormElementText = {
+    //         id: uuid(),
+    //         type: FormElementTypes.Text,
+    //         props: {
+    //           content: 'Text',
+    //           size: 's',
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addElement(newText, parentElementId)
+    //       break
+    //     case FormElementTypes.Informer:
+    //       const newInformer: IFormElementInformer = {
+    //         id: uuid(),
+    //         type: FormElementTypes.Informer,
+    //         props: {
+    //           label: 'Informer',
+    //           title: 'Title',
+    //           size: 's',
+    //           status: 'success',
+    //           view: 'filled',
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addElement(newInformer, parentElementId)
+    //       break
 
-        case FormElementTypes.TextField:
-          const newTextField: IFormElementTextField = {
-            id: uuid(),
-            type: FormElementTypes.TextField,
-            props: {
-              type: 'text',
-              width: 'default',
-              form: 'default',
-              size: 'm',
-              view: 'default',
-              caption: 'Подпись',
-              label: 'Заголовок',
-              labelPosition: 'top',
-              maxLength: 200,
-              placeholder: 'Подсказка в поле',
-              step: '1',
-              min: '0',
-              max: '200',
-              className: '',
-              baseProps: {},
-            },
-          }
-          addElement(newTextField, parentElementId)
-          break
-        case FormElementTypes.HeaderWithBreadcrumbs:
-          const newHeader: IFormElementHeaderWithBreadcrumbs = {
-            id: uuid(),
-            type: FormElementTypes.HeaderWithBreadcrumbs,
-            props: {
-              className: '',
-              baseProps: {},
-            },
-          }
-          addElement(newHeader, parentElementId)
-          break
-      }
-    }
+    //     case FormElementTypes.Checkbox:
+    //       const newCheckbox: IFormElementCheckbox = {
+    //         id: uuid(),
+    //         type: FormElementTypes.Checkbox,
+    //         props: {
+    //           checked: undefined,
+    //           size: 's',
+    //           view: 'primary',
+    //           align: 'center',
+    //           disabled: false,
+    //           label: 'Checkbox',
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addElement(newCheckbox, parentElementId)
+    //       break
+
+    //     case FormElementTypes.TextField:
+    //       const newTextField: IFormElementTextField = {
+    //         id: uuid(),
+    //         type: FormElementTypes.TextField,
+    //         props: {
+    //           type: 'text',
+    //           width: 'default',
+    //           form: 'default',
+    //           size: 'm',
+    //           view: 'default',
+    //           caption: 'Подпись',
+    //           label: 'Заголовок',
+    //           labelPosition: 'top',
+    //           maxLength: 200,
+    //           placeholder: 'Подсказка в поле',
+    //           step: '1',
+    //           min: '0',
+    //           max: '200',
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addElement(newTextField, parentElementId)
+    //       break
+    //     case FormElementTypes.HeaderWithBreadcrumbs:
+    //       const newHeader: IFormElementHeaderWithBreadcrumbs = {
+    //         id: uuid(),
+    //         type: FormElementTypes.HeaderWithBreadcrumbs,
+    //         props: {
+    //           className: '',
+    //           baseProps: {},
+    //         },
+    //       }
+    //       addElement(newHeader, parentElementId)
+    //       break
+    //   }
+    // }
   }
 
   const addLayoutOuter = (layoutElement: ILayoutElement) => {
@@ -328,10 +336,6 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     if (newParentElementId) {
       addElement(layoutElement, newParentElementId)
     }
-  }
-
-  const addLayoutInner = (layoutElement: ILayoutElement) => {
-    addElement(layoutElement, parentElementId)
   }
 
   const addElement = (element: IFormElement | IGroupElement, parentElementId: string) => {
@@ -350,7 +354,22 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       onDragOver={event => event.preventDefault()}
     >
       {elementsOnLayer.map(el => {
-        // Тут происходит проверка, является ли элемент Layout елементом
+        return (
+          <SwitchComponent key={`${el.id}_switch`} testValue={el.type}>
+            <CheckboxFormElement
+              key={el.id}
+              value={FormElementTypes.Checkbox}
+              formElement={el as IFormElement}
+            />
+            <BadgeFormElement
+              key={el.id}
+              value={FormElementTypes.Badge}
+              formElement={el as IFormElement}
+            />
+          </SwitchComponent>
+        )
+      })}
+      {/* {elementsOnLayer.map(el => {
         if (el.type === FormGroupsTypes.LayoutInner || el.type === FormGroupsTypes.LayoutOuter) {
           return <LayoutFromElement key={el.id} layoutElement={el as ILayoutElement} />
         } else if (el.type === FormElementTypes.Button) {
@@ -373,7 +392,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           return <HeaderWithBreadcrumbs key={el.id} formElement={el} />
         }
         return <></>
-      })}
+      })} */}
     </div>
   )
 }

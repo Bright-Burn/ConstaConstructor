@@ -1,0 +1,36 @@
+import { Text } from '@consta/uikit/Text'
+import { FC } from 'react'
+import uuid from 'react-uuid'
+import { FormElementTypes, IFormElementCheckbox } from '../../../../../../store/formElements'
+import { IComponetCardElement } from '../types'
+
+export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
+  const onStartDragComponentCard = (event: React.DragEvent) => {
+    /// Устанвливаем базовые настройки для badgeElement
+
+    const newCheckbox: IFormElementCheckbox = {
+      id: uuid(),
+      type: FormElementTypes.Checkbox,
+      props: {
+        checked: undefined,
+        size: 's',
+        view: 'primary',
+        align: 'center',
+        disabled: false,
+        label: 'Checkbox',
+        className: '',
+        baseProps: {},
+      },
+    }
+
+    event.dataTransfer.setData('element', JSON.stringify(newCheckbox))
+  }
+
+  return (
+    <div>
+      <Text draggable={true} onDragStart={onStartDragComponentCard}>
+        {name}
+      </Text>
+    </div>
+  )
+}
