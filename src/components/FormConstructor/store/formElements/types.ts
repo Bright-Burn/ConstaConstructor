@@ -37,7 +37,7 @@ export enum FormElementTypes {
   HeaderWithBreadcrumbs = 'HeaderWithBreadcrumbs',
 }
 
-export interface IGroupElement {
+export interface IGroupElement extends IUnion {
   id: string
   parentId: string
   type: FormGroupsTypes
@@ -48,12 +48,15 @@ export interface ILayoutElement extends IGroupElement {
   props: LayoutElementPropsStyles
 }
 
-export interface IFormElement {
+export interface IFormElement extends IUnion {
   id: string
   type: FormElementTypes
   props: FormElementProps
 }
-
+export interface IUnion {
+  id: string
+  type: FormElementTypes | FormGroupsTypes
+}
 export interface IFormElementButton extends IFormElement {
   props: ButtonElementProps
 }

@@ -6,11 +6,7 @@ import { ComponentCardCheckbox } from './ComponentCardCheckbox'
 import { SwitchComponent } from '../../../../SwitchComponent'
 import { FormElementTypes } from '../../../../../store/formElements'
 
-export const ComponentCard: FC<IComponentCard> = ({
-  name,
-  formElementType,
-  groupElementType,
-}) => {
+export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
     <div className={`${styles.componentCard}`}>
       <SwitchComponent testValue={formElementType || groupElementType || ''}>

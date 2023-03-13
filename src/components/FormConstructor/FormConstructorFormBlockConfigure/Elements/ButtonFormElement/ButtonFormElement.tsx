@@ -9,17 +9,17 @@ import {
   IFormElementButton,
 } from '../../../store/formElements/types'
 
-export const ButtonFormElement: FC<IButtonFormElement> = ({ formElement }) => {
+export const ButtonFormElement: FC<IButtonFormElement> = ({ Element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonElementProps | undefined>()
 
   useLayoutEffect(() => {
-    const btnFormElement = formElement as IFormElementButton
+    const btnFormElement = Element as IFormElementButton
     setButtonProps(btnFormElement.props)
-  }, [formElement])
+  }, [Element])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={Element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Button}
     >
