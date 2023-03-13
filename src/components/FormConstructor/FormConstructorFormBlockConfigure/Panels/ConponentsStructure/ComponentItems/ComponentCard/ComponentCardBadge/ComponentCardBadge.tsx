@@ -1,10 +1,17 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
+import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { FormElementTypes, IFormElementBadge } from '../../../../../../store/formElements'
+import {
+  formConstructorSlice,
+  FormElementTypes,
+  IFormElementBadge,
+} from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
+  const dispatch = useDispatch()
+
   const onStartDragComponentCard = (event: React.DragEvent) => {
     /// Устанвливаем базовые настройки для badgeElement
 
@@ -21,8 +28,7 @@ export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-
-    event.dataTransfer.setData('element', JSON.stringify(newBadge))
+    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newBadge }))
   }
 
   return (

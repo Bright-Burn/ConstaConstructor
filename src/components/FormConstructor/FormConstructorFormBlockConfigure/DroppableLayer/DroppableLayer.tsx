@@ -2,46 +2,32 @@ import React, { FC, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
-  IFormElementBadge,
-  IFormElementText,
   useAppSelector,
-  IFormElementInformer,
   formConstructorSlice,
-  IFormElementCheckbox,
   FormElementTypes,
   FormGroupsTypes,
-  ICardElement,
-  IFormElementButton,
   ILayoutElement,
   IFormElement,
   IGroupElement,
-  IFormElementHeaderWithBreadcrumbs,
 } from '../../store/formElements'
-import { ButtonFormElement } from '../Elements/ButtonFormElement'
-import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
-import { CardFormElement } from '../Elements/CardFormElement'
 import { getNewGroupParentLevel } from '../../utils'
 import { BadgeFormElement } from '../Elements/Badge'
-import { IFormElementTabs } from '../../store/formElements/tabsTypes'
-import { TabsFormElement } from '../Elements/TabsFormElement'
-import { TextFormElement } from '../Elements/TextFormElement'
-import { InformerFormElement } from '../Elements/InformerFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
-import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
 import {
   baseComponentsSlice,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store/baseComponentsItems'
-import { HeaderWithBreadcrumbs } from '../Elements/HeaderWithBreadcrumbs'
 import { SwitchComponent } from '../SwitchComponent'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
-  const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
+  const { allElementsTree, allElementsMap, draggableElement } = useAppSelector(
+    state => state.formConstructor,
+  )
   const { draggableBaseComponent } = useBaseComponentsSelector(state => state.baseComponents)
 
   const [elementsOnLayer, setElementsOnLayer] = useState<(IGroupElement | IFormElement)[]>([])
@@ -112,18 +98,20 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     // const formElemType = event.dataTransfer.getData('FormElementType') as FormElementTypes
     // const groupElementType = event.dataTransfer.getData('FormGroupsType') as FormGroupsTypes
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
-    const data = event.dataTransfer.getData('element')
-    const element = JSON.parse(data) as IFormElement | IGroupElement
     if (isBaseComponent === 'true') {
       handleOnDropBaseComponent()
       return
     }
 
-    if (element.type === FormGroupsTypes.LayoutOuter) {
-      addLayoutOuter(element as ILayoutElement)
-    } else {
-      addElement(element, parentElementId)
+    if (draggableElement) {
+      if (draggableElement.type === FormGroupsTypes.LayoutOuter) {
+        addLayoutOuter(draggableElement as ILayoutElement)
+      } else {
+        addElement(draggableElement, parentElementId)
+      }
     }
+
+    dispatch(formConstructorSlice.actions.setDraggableElement({ element: null }))
 
     // if (groupElementType) {
     //   switch (groupElementType) {

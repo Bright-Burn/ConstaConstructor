@@ -1,10 +1,17 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
+import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { FormElementTypes, IFormElementCheckbox } from '../../../../../../store/formElements'
+import {
+  formConstructorSlice,
+  FormElementTypes,
+  IFormElementCheckbox,
+} from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
+  const dispatch = useDispatch()
+
   const onStartDragComponentCard = (event: React.DragEvent) => {
     /// Устанвливаем базовые настройки для badgeElement
 
@@ -22,8 +29,7 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-
-    event.dataTransfer.setData('element', JSON.stringify(newCheckbox))
+    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newCheckbox }))
   }
 
   return (

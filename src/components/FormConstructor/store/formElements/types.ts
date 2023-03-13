@@ -106,4 +106,5 @@ export interface IFormConstructor {
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
+  draggableElement: IGroupElement | IFormElement | null
 }
