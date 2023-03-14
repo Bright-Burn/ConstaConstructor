@@ -10,6 +10,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   parentElementId,
   elementTypeUsage,
   elementType,
+  className
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const { selectedElement } = useAppSelector(state => state.formConstructor)
@@ -46,11 +47,10 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   }
   return (
     <div
-      className={`${
-        elementTypeUsage === ElementTypes.FormElement
-          ? styles.selectableLayerFormElement
-          : styles.selectableLayerLayoutElement
-      } ${isSelected ? styles.selectedElement : ''}`}
+      className={`${elementTypeUsage === ElementTypes.FormElement
+        ? styles.selectableLayerFormElement
+        : styles.selectableLayerLayoutElement
+        } ${isSelected ? styles.selectedElement : ''} ${className ?? ''}`}
       onClick={onClickElement}
       onKeyDown={onKeyDown}
       tabIndex={0}

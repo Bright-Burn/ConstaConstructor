@@ -13,6 +13,7 @@ import { Header } from '@consta/uikit/Header'
 import { User } from '@consta/uikit/User'
 import style from './styles.module.css'
 import { pages } from './mocks'
+import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 
 export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) => {
   const [headerProps, setHeaderProps] = useState<headerWithBreadcrumbsProps | undefined>()
@@ -23,7 +24,7 @@ export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) =
   }, [element])
 
   return (
-    <SelectableLayer
+    <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Badge}
@@ -54,6 +55,6 @@ export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) =
           </>
         }
       />
-    </SelectableLayer>
+    </SelectableLayerFullWidth>
   )
 }
