@@ -5,6 +5,7 @@ import { ButtonFormElement } from '../Elements/ButtonFormElement'
 import { CardFormElement } from '../Elements/CardFormElement'
 import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
 import { HeaderWithBreadcrumbs } from '../Elements/HeaderWithBreadcrumbs'
+import { HeaderWithStatus } from '../Elements/HeaderWithStatus'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { TabsFormElement } from '../Elements/TabsFormElement'
@@ -18,6 +19,7 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   Card: CardFormElement,
   Checkbox: CheckboxFormElement,
   HeaderWithBreadcrumbs: HeaderWithBreadcrumbs,
+  HeaderWithStatus: HeaderWithStatus,
   Informer: InformerFormElement,
   Tabs: TabsFormElement,
   Text: TextFieldFormElement,

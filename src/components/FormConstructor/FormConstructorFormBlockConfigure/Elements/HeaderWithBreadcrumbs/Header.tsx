@@ -1,6 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
-import { SelectableLayer } from '../../SelectableLayer'
 import { IHeaderWithBreadcrumbs } from './types'
 import { Text } from '@consta/uikit/Text'
 import { IconRing } from '@consta/uikit/IconRing'

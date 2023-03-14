@@ -1,6 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
-import { SelectableLayer } from '../../SelectableLayer'
 import { IHeaderWithStatus } from './types'
 import { Text } from '@consta/uikit/Text'
 import { IconHamburger } from '@consta/uikit/IconHamburger'
@@ -13,18 +12,19 @@ import { Header } from '@consta/uikit/Header'
 import { User } from '@consta/uikit/User'
 import { Button } from '@consta/uikit/Button'
 import style from './styles.module.css'
+import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 
-export const HeaderWithStatus: FC<IHeaderWithStatus> = ({ formElement }) => {
+export const HeaderWithStatus: FC<IHeaderWithStatus> = ({ element }) => {
   const [headerProps, setHeaderProps] = useState<headerWithStatusProps | undefined>()
 
   useLayoutEffect(() => {
-    const badgeFormElement = formElement as IFormElementHeaderWithStatus
+    const badgeFormElement = element as IFormElementHeaderWithStatus
     setHeaderProps(badgeFormElement.props)
-  }, [formElement])
+  }, [element])
 
   return (
-    <SelectableLayer
-      parentElementId={formElement.id}
+    <SelectableLayerFullWidth
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Badge}
     >
@@ -75,6 +75,6 @@ export const HeaderWithStatus: FC<IHeaderWithStatus> = ({ formElement }) => {
           </>
         }
       />
-    </SelectableLayer>
+    </SelectableLayerFullWidth>
   )
 }
