@@ -40,7 +40,10 @@ import { IFormElementText, TextElementProps } from './textTypes'
 import { IFormElementInformer, InformerElementProps } from './informerTypes'
 import { IFormElementCheckbox, CheckboxProps } from './checkboxTypes'
 
-export type {IFormElementHeaderWithBreadcrumbs, headerWithBreadcrumbsProps} from './headerWithBreadcrumbsTypes'
+export type {
+  IFormElementHeaderWithBreadcrumbs,
+  headerWithBreadcrumbsProps,
+} from './headerWithBreadcrumbsTypes'
 export {
   formConstructorReducer,
   formConstructorSlice,

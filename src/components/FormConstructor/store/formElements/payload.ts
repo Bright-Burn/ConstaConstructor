@@ -30,3 +30,7 @@ export interface LoadProjectFromStorage {
 export interface LoadProjectFromFile {
   projectJson: string
 }
+
+export interface SetNewElementDraggableElem {
+  element: IFormElement | IGroupElement | null
+}

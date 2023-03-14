@@ -17,6 +17,7 @@ import {
   LoadProjectFromFile,
   LoadProjectFromStorage,
   SaveNewProject,
+  SetNewElementDraggableElem,
   SetNewSelectedElement,
   ShowGrid,
 } from './payload'
@@ -36,6 +37,7 @@ const initialState: IFormConstructor = {
   selectedElement: null,
   selectedElementProps: null,
   isGridVisible: true,
+  draggableElement: null,
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
@@ -58,6 +60,9 @@ export const formConstructorSlice = createFormConstructorSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
+    setDraggableElement: (state, action: PayloadAction<SetNewElementDraggableElem>) => {
+      state.draggableElement = action.payload.element
+    },
     loadProjectFromStorage: (state, action: PayloadAction<LoadProjectFromStorage>) => {
       const projectJson = localStorage.getItem(action.payload.name)
       if (projectJson) {

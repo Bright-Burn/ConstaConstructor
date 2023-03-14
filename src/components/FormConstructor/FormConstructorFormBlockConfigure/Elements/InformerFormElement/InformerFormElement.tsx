@@ -5,17 +5,17 @@ import { IInformerFormElement } from './types'
 import { IFormElementInformer, InformerElementProps } from '../../../store/formElements'
 import { Informer } from '@consta/uikit/Informer'
 
-export const InformerFormElement: FC<IInformerFormElement> = ({ formElement }) => {
+export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
   const [informerProps, setInformerProps] = useState<InformerElementProps | undefined>()
 
   useLayoutEffect(() => {
-    const informerFormElement = formElement as IFormElementInformer
+    const informerFormElement = element as IFormElementInformer
     setInformerProps(informerFormElement.props)
-  }, [formElement])
+  }, [element])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Informer}
     >

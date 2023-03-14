@@ -20,8 +20,7 @@ export enum ElementTypes {
 
 // Виды группирующих панелей
 export enum FormGroupsTypes {
-  LayoutInner = 'LayoutInner',
-  LayoutOuter = 'LayoutOuter',
+  Layout = 'Layout',
   Card = 'Card',
 }
 
@@ -34,13 +33,13 @@ export enum FormElementTypes {
   Checkbox = 'Checkbox',
   Text = 'Text',
   TextField = 'TextField',
-  HeaderWithBreadcrumbs = 'HeaderWithBreadcrumbs'
+  HeaderWithBreadcrumbs = 'HeaderWithBreadcrumbs',
 }
 
-export interface IGroupElement {
+export interface IGroupElement extends IUnion {
   id: string
-  parentId: string
   type: FormGroupsTypes
+  isOuter: boolean
   props: GroupElementProps
 }
 
@@ -48,12 +47,15 @@ export interface ILayoutElement extends IGroupElement {
   props: LayoutElementPropsStyles
 }
 
-export interface IFormElement {
+export interface IFormElement extends IUnion {
   id: string
   type: FormElementTypes
   props: FormElementProps
 }
-
+export interface IUnion {
+  id: string
+  type: FormElementTypes | FormGroupsTypes
+}
 export interface IFormElementButton extends IFormElement {
   props: ButtonElementProps
 }
@@ -106,4 +108,5 @@ export interface IFormConstructor {
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
+  draggableElement: IGroupElement | IFormElement | null
 }

@@ -43,6 +43,7 @@ export const projectToSerilizable = (proj: IFormConstructor): IFormConstructorSe
 export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFormConstructor => {
   return {
     ...proj,
+    draggableElement: null,
     allElementsMap: new Map(JSON.parse(proj.allElementsMap)),
     allElementsTree: new Map(JSON.parse(proj.allElementsTree)),
   }

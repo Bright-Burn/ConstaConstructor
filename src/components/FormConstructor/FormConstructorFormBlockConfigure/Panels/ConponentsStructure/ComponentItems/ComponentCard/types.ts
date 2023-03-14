@@ -6,3 +6,8 @@ export interface IComponentCard {
   groupElementType?: FormGroupsTypes
   formElementType?: FormElementTypes
 }
+
+export interface IComponetCardElement {
+  name: string
+  value: FormGroupsTypes | FormElementTypes
+}

@@ -5,17 +5,17 @@ import { ITextFormElement } from './types'
 import { Text } from '@consta/uikit/Text'
 import { IFormElementText, TextElementProps } from '../../../store/formElements'
 
-export const TextFormElement: FC<ITextFormElement> = ({ formElement }) => {
+export const TextFormElement: FC<ITextFormElement> = ({ element }) => {
   const [textProps, setTextProps] = useState<TextElementProps | undefined>()
 
   useLayoutEffect(() => {
-    const textFormElement = formElement as IFormElementText
+    const textFormElement = element as IFormElementText
     setTextProps(textFormElement.props)
-  }, [formElement])
+  }, [element])
 
   return (
     <SelectableLayer
-      parentElementId={formElement.id}
+      parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Text}
     >

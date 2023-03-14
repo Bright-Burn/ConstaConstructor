@@ -26,9 +26,7 @@ export const BaseComponents: FC = () => {
   const dispatch = useBaseComponentsDispatch()
   useEffect(() => {
     if (!baseComponents.some(component => component.id === headerMock.id))
-      dispatch(
-        baseComponentsSlice.actions.addNewBaseElement({ baseComponent: headerMock }),
-      )
+      dispatch(baseComponentsSlice.actions.addNewBaseElement({ baseComponent: headerMock }))
   }, [])
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const targer = e?.target as HTMLInputElement
