@@ -25,6 +25,7 @@ export const BaseComponents: FC = () => {
 
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
   const baseComponentMocks = [headerMock, placeholderMock, headerWithStatusMock];
+
   const dispatch = useBaseComponentsDispatch()
   useEffect(() => {
     baseComponentMocks.forEach(mock => {
