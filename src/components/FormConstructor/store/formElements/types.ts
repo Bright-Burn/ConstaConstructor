@@ -34,6 +34,7 @@ export enum FormElementTypes {
   Text = 'Text',
   TextField = 'TextField',
   HeaderWithBreadcrumbs = 'HeaderWithBreadcrumbs',
+  Placeholder = 'Placeholder',
 }
 
 export interface IGroupElement extends IUnion {

@@ -9,6 +9,7 @@ import { InformerFormElement } from '../Elements/InformerFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
+import { PlaceholderFormElement } from "../Elements/PlaceholderFormElement";
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
   Layout: LayoutFromElement,
@@ -21,4 +22,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   Tabs: TabsFormElement,
   Text: TextFieldFormElement,
   TextField: TextFieldFormElement,
+  Placeholder: PlaceholderFormElement,
 }

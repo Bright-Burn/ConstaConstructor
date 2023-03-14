@@ -13,6 +13,7 @@ import uuid from 'react-uuid'
 import { BaseComponentsCard } from './BaseComponentsCard'
 import { SaveModalCard } from '../../../../SaveModalCard'
 import { headerMock } from '../../../Elements/HeaderWithBreadcrumbs/mocks'
+import { placeholderMock } from "../../../Elements/PlaceholderFormElement/mocks";
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
@@ -22,11 +23,13 @@ export const BaseComponents: FC = () => {
   )
 
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
-
+  const baseComponentMocks = [headerMock, placeholderMock];
   const dispatch = useBaseComponentsDispatch()
   useEffect(() => {
-    if (!baseComponents.some(component => component.id === headerMock.id))
-      dispatch(baseComponentsSlice.actions.addNewBaseElement({ baseComponent: headerMock }))
+    baseComponentMocks.forEach(mock => {
+      if (!baseComponents.some(component => component.id === mock.id))
+        dispatch(baseComponentsSlice.actions.addNewBaseElement({ baseComponent: mock }))
+    });
   }, [])
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const targer = e?.target as HTMLInputElement
