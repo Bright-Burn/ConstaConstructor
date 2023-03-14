@@ -44,6 +44,7 @@ export type {
   IFormElementHeaderWithBreadcrumbs,
   headerWithBreadcrumbsProps,
 } from './headerWithBreadcrumbsTypes'
+export type { IFormElementHeaderWithStatus, headerWithStatusProps } from './headerWithStatusTypes'
 export {
   formConstructorReducer,
   formConstructorSlice,

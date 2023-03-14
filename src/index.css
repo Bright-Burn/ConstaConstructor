@@ -28,8 +28,12 @@ code {
   flex-grow: 1;
 }
 
-.align-center {
+.space-center {
   align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .borderCard {
