@@ -5,12 +5,12 @@ import { Text } from '@consta/uikit/Text';
 import {ElementTypes, FormElementTypes} from '../../../store/formElements/types'
 import {IPlaceholderFormElement} from './types'
 import {IFormElementPlaceholder, PlaceholderProps} from "../../../store/formElements/placeholderTypes";
-import {SelectableLayerFullWidth} from "../../SelectableLayer/SelectableLayerFullWidth";
 
 
 import style from './styles.module.css'
 import ImageSvg from './image.svg';
 import {Button} from "@consta/uikit/Button";
+import {SelectableLayerFitSpace} from "../../SelectableLayer/SelectableLayerFitSpace";
 
 export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({element}) => {
     const [placeholderProps, setPlaceholderProps] = useState<PlaceholderProps | undefined>()
@@ -21,7 +21,7 @@ export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({element}) =
     }, [element])
 
     return (
-        <SelectableLayerFullWidth
+        <SelectableLayerFitSpace
             parentElementId={element.id}
             elementTypeUsage={ElementTypes.FormElement}
             elementType={FormElementTypes.Placeholder}
@@ -34,6 +34,6 @@ export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({element}) =
 
                 <Button view="primary" size="m" label="Создать проект" className={style.button} />
             </div>
-        </SelectableLayerFullWidth>
+        </SelectableLayerFitSpace>
     )
 }

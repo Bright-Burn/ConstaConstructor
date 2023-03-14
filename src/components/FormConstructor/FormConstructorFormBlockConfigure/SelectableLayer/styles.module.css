@@ -14,3 +14,7 @@
   border: 0.2rem solid rgba(39, 50, 245, 0.8);
   border-radius: 0.5rem;
 }
+
+.fitSpace {
+  flex-grow: 1;
+}
