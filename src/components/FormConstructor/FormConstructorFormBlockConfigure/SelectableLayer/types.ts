@@ -6,4 +6,5 @@ export interface ISelectableLayer {
   elementTypeUsage: ElementTypes
   elementType: FormGroupsTypes | FormElementTypes
   children?: ReactNode
+  className?: string
 }
