@@ -37,7 +37,7 @@ export const HeaderCognitiveGeologist: FC<IHeaderCognitiveGeologist> = ({ elemen
               <IconRing size='m' view='secondary' className={style.userContainer} />
               <User
                 name='Михаил Петров'
-                info='Геологист'
+                info='Геолог'
                 status='available'
                 view='clear'
                 iconRight={IconSelect}
