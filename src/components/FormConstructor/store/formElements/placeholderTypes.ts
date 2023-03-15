@@ -1,9 +1,9 @@
 import { BaseProps, IFormElement } from './types'
 
 export type PlaceholderProps = {
-    children?: never
+  children?: never
 } & BaseProps
 
 export interface IFormElementPlaceholder extends IFormElement {
-    props: PlaceholderProps
+  props: PlaceholderProps
 }
