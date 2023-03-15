@@ -16,6 +16,7 @@ import { headerMock } from '../../../Elements/HeaderWithBreadcrumbs/mocks'
 import { placeholderMock } from '../../../Elements/PlaceholderFormElement/mocks'
 import { headerWithStatusMock } from '../../../Elements/HeaderWithStatus/mocks'
 import { cardMock } from '../../../Elements/CardWithBarChart/mocks'
+import { headerCognitiveGeologistMock } from '../../../Elements/HeaderCognitiveGeologist'
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
@@ -25,7 +26,13 @@ export const BaseComponents: FC = () => {
   )
 
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
-  const baseComponentMocks = [headerMock, placeholderMock, headerWithStatusMock, cardMock]
+  const baseComponentMocks = [
+    headerMock,
+    placeholderMock,
+    headerWithStatusMock,
+    headerCognitiveGeologistMock,
+    cardMock
+  ]
 
   const dispatch = useBaseComponentsDispatch()
   useEffect(() => {

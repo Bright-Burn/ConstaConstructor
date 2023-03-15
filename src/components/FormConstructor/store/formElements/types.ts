@@ -34,6 +34,7 @@ export enum FormElementTypes {
   Text = 'Text',
   TextField = 'TextField',
   HeaderWithBreadcrumbs = 'HeaderWithBreadcrumbs',
+  HeaderCognitiveGeologist = 'HeaderCognitiveGeologist',
   Placeholder = 'Placeholder',
   HeaderWithStatus = 'HeaderWithStatus',
   CardWithBarChart = 'CardWithBarChart',
