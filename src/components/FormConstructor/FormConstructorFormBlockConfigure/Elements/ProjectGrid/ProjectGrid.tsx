@@ -57,7 +57,8 @@ export const ProjectGrid: FC<IProjectGrid> = ({ element }) => {
       className={style.TableView}
       parentElementId={element.id}
       elementType={FormElementTypes.ProjectGrid}
-      elementTypeUsage={ElementTypes.FormElement}>
+      elementTypeUsage={ElementTypes.FormElement}
+    >
       <div className={style.HeaderButtons}>
         <Text size='2xl' as='h1'>
           Проекты
