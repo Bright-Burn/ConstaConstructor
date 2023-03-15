@@ -52,7 +52,7 @@
   },
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.js",
-    "build": "webpack --config config/webpack.dev.js --progress",
+    "build": "webpack --config config/webpack.prod.js --progress",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
