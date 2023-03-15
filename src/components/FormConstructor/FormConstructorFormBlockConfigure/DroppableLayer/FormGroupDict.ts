@@ -8,6 +8,7 @@ import { HeaderWithBreadcrumbs } from '../Elements/HeaderWithBreadcrumbs'
 import { HeaderWithStatus } from '../Elements/HeaderWithStatus'
 import { InformerFormElement } from '../Elements/InformerFormElement'
 import { LayoutFromElement } from '../Elements/LayoutFromElement'
+import { ProjectGrid } from '../Elements/ProjectGrid'
 import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
 import { PlaceholderFormElement } from '../Elements/PlaceholderFormElement'
@@ -29,4 +30,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   TextField: TextFieldFormElement,
   Placeholder: PlaceholderFormElement,
   CardWithBarChart: CardWithBarChart,
+  ProjectGrid: ProjectGrid,
 }

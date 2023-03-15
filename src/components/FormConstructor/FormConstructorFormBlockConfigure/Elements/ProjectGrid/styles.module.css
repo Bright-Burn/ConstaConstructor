@@ -1,0 +1,30 @@
+.ProjectGrid {
+  font-size: 1.2rem;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: -20px;
+}
+
+.FilterButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.TableView {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 3rem;
+  gap: 40px;
+}
+
+.HeaderButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}

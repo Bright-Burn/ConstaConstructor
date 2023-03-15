@@ -17,6 +17,7 @@ import { placeholderMock } from '../../../Elements/PlaceholderFormElement/mocks'
 import { headerWithStatusMock } from '../../../Elements/HeaderWithStatus/mocks'
 import { cardMock } from '../../../Elements/CardWithBarChart/mocks'
 import { headerCognitiveGeologistMock } from '../../../Elements/HeaderCognitiveGeologist'
+import { gridMock } from '../../../Elements/ProjectGrid'
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
@@ -31,7 +32,8 @@ export const BaseComponents: FC = () => {
     placeholderMock,
     headerWithStatusMock,
     headerCognitiveGeologistMock,
-    cardMock
+    cardMock,
+    gridMock,
   ]
 
   const dispatch = useBaseComponentsDispatch()

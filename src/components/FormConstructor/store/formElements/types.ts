@@ -33,6 +33,7 @@ export enum FormElementTypes {
   Checkbox = 'Checkbox',
   Text = 'Text',
   TextField = 'TextField',
+  ProjectGrid = 'ProjectGrid',
   HeaderWithBreadcrumbs = 'HeaderWithBreadcrumbs',
   HeaderCognitiveGeologist = 'HeaderCognitiveGeologist',
   Placeholder = 'Placeholder',
