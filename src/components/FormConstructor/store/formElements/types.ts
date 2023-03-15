@@ -38,6 +38,7 @@ export enum FormElementTypes {
   HeaderCognitiveGeologist = 'HeaderCognitiveGeologist',
   Placeholder = 'Placeholder',
   HeaderWithStatus = 'HeaderWithStatus',
+  CardWithBarChart = 'CardWithBarChart',
 }
 
 export interface IGroupElement extends IUnion {

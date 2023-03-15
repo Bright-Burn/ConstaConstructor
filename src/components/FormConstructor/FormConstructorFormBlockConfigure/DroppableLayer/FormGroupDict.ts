@@ -12,6 +12,7 @@ import { ProjectGrid } from '../Elements/ProjectGrid'
 import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
 import { PlaceholderFormElement } from '../Elements/PlaceholderFormElement'
+import { CardWithBarChart } from '../Elements/CardWithBarChart'
 import { HeaderCognitiveGeologist } from '../Elements/HeaderCognitiveGeologist'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -28,5 +29,6 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   Text: TextFieldFormElement,
   TextField: TextFieldFormElement,
   Placeholder: PlaceholderFormElement,
+  CardWithBarChart: CardWithBarChart,
   ProjectGrid: ProjectGrid,
 }
