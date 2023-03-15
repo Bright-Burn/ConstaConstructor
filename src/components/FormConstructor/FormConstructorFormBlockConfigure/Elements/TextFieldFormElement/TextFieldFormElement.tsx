@@ -6,7 +6,7 @@ import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { IFormElementTextField, TextFieldProps } from '../../../store/formElements'
 
 export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => {
-  const [textFieldProps, setTextFieldProps] = useState<TextFieldProps | undefined>()
+  const [textFieldProps, setTextFieldProps] = useState<TextFieldProps>()
 
   useLayoutEffect(() => {
     const textFieldFormElement = element as IFormElementTextField

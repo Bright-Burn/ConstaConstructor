@@ -1,0 +1,1 @@
+export { ComponentCardText } from './ComponentCardText'

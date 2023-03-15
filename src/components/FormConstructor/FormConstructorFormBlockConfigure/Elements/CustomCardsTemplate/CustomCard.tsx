@@ -74,7 +74,7 @@ function CustomCard({
                 <Tag
                   className={style.tags}
                   mode='check'
-                  onChange={()=>{}}
+                  onChange={() => {}}
                   label={'+' + (tags.length - 3)}
                   checked={false}
                 />

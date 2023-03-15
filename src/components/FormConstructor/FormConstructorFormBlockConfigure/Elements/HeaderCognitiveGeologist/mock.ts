@@ -12,4 +12,4 @@ export const headerCognitiveGeologistMock = {
     },
   ],
   childParentMap: [],
-} as IBaseComponent
+} satisfies IBaseComponent

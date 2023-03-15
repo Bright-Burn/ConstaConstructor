@@ -6,7 +6,7 @@ import { IFormElementInformer, InformerElementProps } from '../../../store/formE
 import { Informer } from '@consta/uikit/Informer'
 
 export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
-  const [informerProps, setInformerProps] = useState<InformerElementProps | undefined>()
+  const [informerProps, setInformerProps] = useState<InformerElementProps>()
 
   useLayoutEffect(() => {
     const informerFormElement = element as IFormElementInformer

@@ -10,7 +10,7 @@ import { TextFieldProps } from '../../../../store/formElements/textFieldTypes'
 import { IconPhoto } from '@consta/uikit/IconPhoto'
 
 export const TextFieldSettings = () => {
-  const [props, setProps] = useState<TextFieldProps | undefined>()
+  const [props, setProps] = useState<TextFieldProps>()
 
   const status: string[] = ['alert', 'success', 'warning', 'undefined']
   const types: string[] = ['text', 'textarea', 'number', 'password']

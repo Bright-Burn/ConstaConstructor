@@ -12,7 +12,7 @@ import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 
 export const InformerSettings = () => {
-  const [props, setProps] = useState<InformerElementProps | undefined>()
+  const [props, setProps] = useState<InformerElementProps>()
 
   const sizes: InformerPropSize[] = ['m', 's']
   const views: InformerPropView[] = ['filled', 'bordered']

@@ -1,3 +1,1 @@
-import { TextFormElement } from './TextFormElement'
-
-export { TextFormElement }
+export { TextFormElement } from './TextFormElement'

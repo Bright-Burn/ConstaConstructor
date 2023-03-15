@@ -61,7 +61,7 @@ function CustomCardsTemplate() {
     rightChoiceGroupItems[0],
   )
 
-  useEffect(() => { }, [showBlocks])
+  useEffect(() => {}, [showBlocks])
 
   const onChangeLeftSelectValue = (value: choiceGroupValueType) => {
     setLeftChoiceGroupValue(value)
@@ -71,7 +71,7 @@ function CustomCardsTemplate() {
     setRightChoiceGroupValue(value)
   }
 
-  const onButtonClick = () => { }
+  const onButtonClick = () => {}
 
   return (
     <div className='container-column align-center m-l-xl m-r-xl'>
@@ -129,5 +129,3 @@ function CustomCardsTemplate() {
 }
 
 export default CustomCardsTemplate
-
-

@@ -6,7 +6,7 @@ import { ElementTypes, FormElementTypes } from '../../../store/formElements/type
 import { CheckboxProps, IFormElementCheckbox } from '../../../store/formElements/checkboxTypes'
 
 export const CheckboxFormElement: FC<ICheckboxFormElement> = ({ element }) => {
-  const [checkboxProps, setCheckboxProps] = useState<CheckboxProps | undefined>()
+  const [checkboxProps, setCheckboxProps] = useState<CheckboxProps>()
 
   useLayoutEffect(() => {
     const checkboxFormElement = element as IFormElementCheckbox

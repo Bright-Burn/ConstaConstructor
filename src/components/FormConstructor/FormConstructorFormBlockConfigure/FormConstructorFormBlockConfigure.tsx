@@ -1,8 +1,8 @@
-import React, { FC, ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 import { Provider } from 'react-redux'
 import { store } from '../store'
 import { IFormConstructorFormBlockConfigure } from './types'
-import { ConponentsStructure, FormBlock, Settings } from './Panels'
+import { ComponentsStructure, FormBlock, Settings } from './Panels'
 
 interface Props {
   children?: ReactNode
@@ -16,4 +16,4 @@ export const FormConstructorFormBlockConfigure: FC<Props> & IFormConstructorForm
 
 FormConstructorFormBlockConfigure.Settings = Settings
 FormConstructorFormBlockConfigure.WhiteFormBlock = FormBlock
-FormConstructorFormBlockConfigure.ConponentsStructure = ConponentsStructure
+FormConstructorFormBlockConfigure.ComponentsStructure = ComponentsStructure

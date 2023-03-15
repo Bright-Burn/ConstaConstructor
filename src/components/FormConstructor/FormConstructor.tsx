@@ -1,12 +1,12 @@
-import React from 'react'
+import { FC } from 'react'
 import { FormConstructorFormBlockConfigure } from './FormConstructorFormBlockConfigure'
 import css from './styles.module.css'
 
-export const FormConstructor = () => {
+export const FormConstructor: FC = () => {
   return (
     <div className={css.formConstructor}>
       <FormConstructorFormBlockConfigure>
-        <FormConstructorFormBlockConfigure.ConponentsStructure />
+        <FormConstructorFormBlockConfigure.ComponentsStructure />
         <FormConstructorFormBlockConfigure.WhiteFormBlock />
         <FormConstructorFormBlockConfigure.Settings />
       </FormConstructorFormBlockConfigure>

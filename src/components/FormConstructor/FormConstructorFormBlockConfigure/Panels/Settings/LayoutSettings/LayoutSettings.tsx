@@ -29,7 +29,7 @@ export const LayoutSettings = () => {
   ]
   const alignItems: AlignItems[] = ['center', 'start', 'end', 'flex-end', 'flex-start']
 
-  const [propsStyles, setPropsStyles] = useState<LayoutElementPropsStyles | undefined>()
+  const [propsStyles, setPropsStyles] = useState<LayoutElementPropsStyles>()
   const [widthValue, setWidthValue] = useState<string>('0')
   const [heightValue, setHeightValue] = useState<string>('0')
 
