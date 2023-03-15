@@ -9,7 +9,8 @@ module.exports = {
 
   output: {
     filename: '[name].bundle.js',
-    path: resolve(__dirname, 'build'),
+    publicPath: '/',
+    path: resolve(__dirname, '../build'),
   },
 
   plugins: [
@@ -29,7 +30,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'webpack Boilerplate',
-      template: paths.src + '/index.html',
+      template: './src/index.html',
       filename: 'index.html',
     }),
   ],
