@@ -11,6 +11,7 @@ import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
 import { PlaceholderFormElement } from '../Elements/PlaceholderFormElement'
+import { HeaderCognitiveGeologist } from '../Elements/HeaderCognitiveGeologist'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
   Layout: LayoutFromElement,
@@ -20,6 +21,7 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   Checkbox: CheckboxFormElement,
   HeaderWithBreadcrumbs: HeaderWithBreadcrumbs,
   HeaderWithStatus: HeaderWithStatus,
+  HeaderCognitiveGeologist: HeaderCognitiveGeologist,
   Informer: InformerFormElement,
   Tabs: TabsFormElement,
   Text: TextFieldFormElement,
