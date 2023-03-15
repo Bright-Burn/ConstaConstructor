@@ -11,6 +11,7 @@ import { LayoutFromElement } from '../Elements/LayoutFromElement'
 import { TabsFormElement } from '../Elements/TabsFormElement'
 import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
 import { PlaceholderFormElement } from '../Elements/PlaceholderFormElement'
+import { CardWithBarChart } from '../Elements/CardWithBarChart'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
   Layout: LayoutFromElement,
@@ -25,4 +26,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   Text: TextFieldFormElement,
   TextField: TextFieldFormElement,
   Placeholder: PlaceholderFormElement,
+  CardWithBarChart: CardWithBarChart,
 }
