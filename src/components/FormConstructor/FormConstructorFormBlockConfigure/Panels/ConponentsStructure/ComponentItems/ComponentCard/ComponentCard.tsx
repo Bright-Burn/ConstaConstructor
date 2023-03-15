@@ -11,6 +11,7 @@ import { ComponentCardText } from './ComponentCardText'
 import { ComponentCardTextField } from './ComponentCardTextField'
 import { ComponentCardInformer } from './ComponentCardInformer'
 import { ComponentCardButton } from './ComponentCardButton'
+import { ComponentCardInnerCard } from './ComponentCardInnerCard'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
@@ -19,7 +20,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
         <ComponentCardBadge name={name} value={FormElementTypes.Badge} />
         <ComponentCardCheckbox name={name} value={FormElementTypes.Checkbox} />
         <ComponentCardLayout name={name} value={FormGroupsTypes.Layout} />
-        <ComponentCardText name={name} value={FormGroupsTypes.Card} />
+        <ComponentCardInnerCard name={name} value={FormGroupsTypes.Card} />
         <ComponentCardTabs name={name} value={FormElementTypes.Tabs} />
         <ComponentCardTextField name={name} value={FormElementTypes.TextField} />
         <ComponentCardText name={name} value={FormElementTypes.Text} />
