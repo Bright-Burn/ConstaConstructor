@@ -113,6 +113,11 @@ export const formConstructorSlice = createFormConstructorSlice({
       state.isGridVisible = action.payload.isGridVisible
     },
     setSelectedElement: (state, action: PayloadAction<SetNewSelectedElement>) => {
+      if (!action.payload) {
+        state.selectedElementProps = null
+        state.selectedElement = null
+        return
+      }
       const element = state.allElementsMap.get(action.payload.elementId)
       if (element) {
         const newProps = action.payload.newProps
