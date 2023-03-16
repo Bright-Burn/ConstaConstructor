@@ -12,6 +12,7 @@ import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/f
 import uuid from 'react-uuid'
 import { BaseComponentsCard } from './BaseComponentsCard'
 import { SaveModalCard } from '../../../../SaveModalCard'
+import { customCardsTemplateMock } from '../../../Elements/CustomCardsTemplate/mock'
 import { headerMock } from '../../../Elements/HeaderWithBreadcrumbs/mocks'
 import { placeholderMock } from '../../../Elements/PlaceholderFormElement/mocks'
 import { headerWithStatusMock } from '../../../Elements/HeaderWithStatus/mocks'
@@ -29,6 +30,7 @@ export const BaseComponents: FC = () => {
 
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
   const baseComponentMocks = [
+    customCardsTemplateMock,
     headerMock,
     placeholderMock,
     headerWithStatusMock,
