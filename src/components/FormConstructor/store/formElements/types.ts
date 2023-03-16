@@ -39,6 +39,7 @@ export enum FormElementTypes {
   Placeholder = 'Placeholder',
   HeaderWithStatus = 'HeaderWithStatus',
   CardWithBarChart = 'CardWithBarChart',
+  Dashboard = 'Dashboard',
 }
 
 export interface IGroupElement extends IUnion {
