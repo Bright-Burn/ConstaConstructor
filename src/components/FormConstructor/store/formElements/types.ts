@@ -39,7 +39,7 @@ export enum FormElementTypes {
   Placeholder = 'Placeholder',
   HeaderWithStatus = 'HeaderWithStatus',
   CardWithBarChart = 'CardWithBarChart',
-  CustomCards='CustomCards'
+  CustomCards='CustomCards',
   Dashboard = 'Dashboard',
 }
 
