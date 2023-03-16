@@ -5,6 +5,8 @@
   "dependencies": {
     "@consta/charts": "^0.7.1",
     "@consta/uikit": "^4.13.0",
+    "@consta/stats": "^1.1.0",
+    "@consta/widgets": "^4.3.1",
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

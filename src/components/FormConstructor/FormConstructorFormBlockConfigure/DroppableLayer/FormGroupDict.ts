@@ -15,6 +15,7 @@ import { PlaceholderFormElement } from '../Elements/PlaceholderFormElement'
 import { CardWithBarChart } from '../Elements/CardWithBarChart'
 import { HeaderCognitiveGeologist } from '../Elements/HeaderCognitiveGeologist'
 import { CustomCards } from '../Elements/CustomCardsTemplate'
+import { Dashboard } from "../Elements/Dashboard";
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
   Layout: LayoutFromElement,
@@ -33,4 +34,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   CardWithBarChart: CardWithBarChart,
   ProjectGrid: ProjectGrid,
   CustomCards: CustomCards,
+  Dashboard: Dashboard,
 }
