@@ -12,4 +12,4 @@ export const customCardsTemplateMock: IBaseComponent = {
     },
   ],
   childParentMap: [],
-} as IBaseComponent
+}

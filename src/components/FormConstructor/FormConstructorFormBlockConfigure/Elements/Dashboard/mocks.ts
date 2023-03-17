@@ -191,4 +191,4 @@ export const dashboardMock: IBaseComponent = {
     },
   ],
   childParentMap: [],
-} as IBaseComponent
+}
