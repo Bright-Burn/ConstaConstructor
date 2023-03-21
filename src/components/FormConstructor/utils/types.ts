@@ -1,1 +1,1 @@
-export type Values<T extends Record<string, string>> = T[keyof T]
+export type Values<T extends Record<string | number | symbol, unknown>> = T[keyof T]
