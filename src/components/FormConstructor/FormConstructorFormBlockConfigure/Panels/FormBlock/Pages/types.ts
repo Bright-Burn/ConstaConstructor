@@ -6,7 +6,4 @@ export type PageOfLayout = {
 
 export interface PagesProps {
   pages: PageOfLayout[]
-  addNewPage: () => void
-  changeActivePage: (index: number) => void
-  closePage: (index: number) => void
 }

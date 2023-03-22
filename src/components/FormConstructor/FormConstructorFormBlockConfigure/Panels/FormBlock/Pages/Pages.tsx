@@ -4,8 +4,23 @@ import { Button } from '@consta/uikit/Button'
 import { IconClose } from '@consta/uikit/IconClose'
 import { PagesProps } from './types'
 import { Card } from '@consta/uikit/Card'
+import { pagesSlice, usePagesDispatch } from '../../../../store/pagesOfLayout'
 
-export const Pages = ({ pages, addNewPage, changeActivePage, closePage }: PagesProps) => {
+export const Pages = ({ pages }: PagesProps) => {
+  const dispatch = usePagesDispatch()
+
+  const changeActivePage = (index: number) => {
+    dispatch(pagesSlice.actions.changeActivePage({ index }))
+  }
+
+  const closePage = (index: number) => {
+    dispatch(pagesSlice.actions.closePage({ index }))
+  }
+
+  const addNewPage = () => {
+    dispatch(pagesSlice.actions.addNewPage())
+  }
+
   return (
     <div className={`container-row space-center borderCard ${styles.pagesBlock}`}>
       <>
