@@ -10,7 +10,7 @@ import { Checkbox } from '@consta/uikit/Checkbox'
 import { TextField } from '@consta/uikit/TextField'
 
 export const BadgeSettings = () => {
-  const [props, setProps] = useState<BadgeProps | undefined>()
+  const [props, setProps] = useState<BadgeProps>()
 
   const sizes: BadgePropSize[] = ['l', 'm', 's', 'xs']
   const views: BadgePropView[] = ['filled', 'stroked']

@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect, useState } from 'react'
+import { FC, useLayoutEffect, useState } from 'react'
 import { Button } from '@consta/uikit/Button'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IButtonFormElement } from './types'
@@ -10,7 +10,7 @@ import {
 } from '../../../store/formElements/types'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
-  const [buttonProps, setButtonProps] = useState<ButtonElementProps | undefined>()
+  const [buttonProps, setButtonProps] = useState<ButtonElementProps>()
 
   useLayoutEffect(() => {
     const btnFormElement = element as IFormElementButton

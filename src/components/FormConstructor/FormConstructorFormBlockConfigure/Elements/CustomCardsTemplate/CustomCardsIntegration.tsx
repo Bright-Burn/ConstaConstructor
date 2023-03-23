@@ -23,7 +23,8 @@ export const CustomCards: FC<ICustomCardFormElement> = ({ element }) => {
     <SelectableLayerFitSpace
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.CustomCards}>
+      elementType={FormElementTypes.CustomCards}
+    >
       <CustomCardsTemplate />
       <DroppableLayer parentElementId={element.id} />
     </SelectableLayerFitSpace>

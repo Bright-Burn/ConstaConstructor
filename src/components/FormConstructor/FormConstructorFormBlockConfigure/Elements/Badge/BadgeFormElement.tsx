@@ -6,7 +6,7 @@ import { Badge } from '@consta/uikit/Badge'
 import { BadgeProps, IFormElementBadge } from '../../../store/formElements/badgeTypes'
 
 export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
-  const [badgeProps, setbadgeProps] = useState<BadgeProps | undefined>()
+  const [badgeProps, setbadgeProps] = useState<BadgeProps>()
 
   useLayoutEffect(() => {
     const badgeFormElement = element as IFormElementBadge

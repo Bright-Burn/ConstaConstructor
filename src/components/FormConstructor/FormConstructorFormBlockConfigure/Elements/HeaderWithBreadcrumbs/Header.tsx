@@ -15,7 +15,7 @@ import { pages } from './mocks'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 
 export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) => {
-  const [headerProps, setHeaderProps] = useState<headerWithBreadcrumbsProps | undefined>()
+  const [headerProps, setHeaderProps] = useState<headerWithBreadcrumbsProps>()
 
   useLayoutEffect(() => {
     const badgeFormElement = element as IFormElementHeaderWithBreadcrumbs

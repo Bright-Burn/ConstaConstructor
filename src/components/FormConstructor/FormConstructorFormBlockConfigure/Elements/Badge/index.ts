@@ -1,3 +1,1 @@
-import { BadgeFormElement } from './BadgeFormElement'
-
-export { BadgeFormElement }
+export { BadgeFormElement } from './BadgeFormElement'

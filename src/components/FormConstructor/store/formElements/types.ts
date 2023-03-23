@@ -8,40 +8,50 @@ import { IFormElementInformer, InformerElementProps } from './informerTypes'
 import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { TextElementProps, IFormElementText } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
+import { Values } from '../../utils'
 
 export type ButtonElementProps = Props & BaseProps
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
-export enum ElementTypes {
-  FormGroups = 'FormGroups',
-  FormElement = 'FormElement',
-}
+export const ElementTypes = {
+  FormGroups: 'FormGroups',
+  FormElement: 'FormElement',
+} as const
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export type ElementTypes = Values<typeof ElementTypes>
 
 // Виды группирующих панелей
-export enum FormGroupsTypes {
-  Layout = 'Layout',
-  Card = 'Card',
-}
+export const FormGroupsTypes = {
+  Layout: 'Layout',
+  Card: 'Card',
+} as const
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export type FormGroupsTypes = Values<typeof FormGroupsTypes>
 
 // Виды обычных элементов формы ввода
-export enum FormElementTypes {
-  Button = 'Button',
-  Badge = 'Badge',
-  Tabs = 'Tabs',
-  Informer = 'Informer',
-  Checkbox = 'Checkbox',
-  Text = 'Text',
-  TextField = 'TextField',
-  ProjectGrid = 'ProjectGrid',
-  HeaderWithBreadcrumbs = 'HeaderWithBreadcrumbs',
-  HeaderCognitiveGeologist = 'HeaderCognitiveGeologist',
-  Placeholder = 'Placeholder',
-  HeaderWithStatus = 'HeaderWithStatus',
-  CardWithBarChart = 'CardWithBarChart',
-  CustomCards='CustomCards',
-  Dashboard = 'Dashboard',
-}
+export const FormElementTypes = {
+  Button: 'Button',
+  Badge: 'Badge',
+  Tabs: 'Tabs',
+  Informer: 'Informer',
+  Checkbox: 'Checkbox',
+  Text: 'Text',
+  TextField: 'TextField',
+  ProjectGrid: 'ProjectGrid',
+  HeaderWithBreadcrumbs: 'HeaderWithBreadcrumbs',
+  HeaderCognitiveGeologist: 'HeaderCognitiveGeologist',
+  Placeholder: 'Placeholder',
+  HeaderWithStatus: 'HeaderWithStatus',
+  CardWithBarChart: 'CardWithBarChart',
+  CustomCards: 'CustomCards',
+  Dashboard: 'Dashboard',
+} as const
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export type FormElementTypes = Values<typeof FormElementTypes>
 
 export interface IGroupElement extends IUnion {
   id: string

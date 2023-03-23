@@ -46,4 +46,4 @@ export const gridMock = {
     },
   ],
   childParentMap: [],
-} as IBaseComponent
+} satisfies IBaseComponent

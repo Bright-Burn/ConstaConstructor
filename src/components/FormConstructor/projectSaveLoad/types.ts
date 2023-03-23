@@ -1,10 +1,15 @@
 import { IFormConstructor, ISelectedElement, UnionProps } from '../store/formElements/types'
+import { Values } from '../utils'
 
-/// По мере расширения сопсобов сохранения, будет дополнять enum
-export enum ProjectSaveWays {
-  STORAGE = 'STORAGE',
-  FILE = 'FILE',
-}
+/// По мере расширения сопсобов сохранения, будет дополнять объект
+
+export const ProjectSaveWays = {
+  STORAGE: 'STORAGE',
+  FILE: 'FILE',
+} as const
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export type ProjectSaveWays = Values<typeof ProjectSaveWays>
 
 export interface ProjectData {
   project: IFormConstructor

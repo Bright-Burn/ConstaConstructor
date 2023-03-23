@@ -15,7 +15,7 @@ import style from './styles.module.css'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 
 export const HeaderWithStatus: FC<IHeaderWithStatus> = ({ element }) => {
-  const [headerProps, setHeaderProps] = useState<headerWithStatusProps | undefined>()
+  const [headerProps, setHeaderProps] = useState<headerWithStatusProps>()
 
   useLayoutEffect(() => {
     const badgeFormElement = element as IFormElementHeaderWithStatus

@@ -12,4 +12,4 @@ export const placeholderMock: IBaseComponent = {
     },
   ],
   childParentMap: [],
-} as IBaseComponent
+} satisfies IBaseComponent

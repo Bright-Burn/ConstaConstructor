@@ -56,4 +56,4 @@ export const cardMock = {
     },
   ],
   childParentMap: [],
-} as IBaseComponent
+} satisfies IBaseComponent

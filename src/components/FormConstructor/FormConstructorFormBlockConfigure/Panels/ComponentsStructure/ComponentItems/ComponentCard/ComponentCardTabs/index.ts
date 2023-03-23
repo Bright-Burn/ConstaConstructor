@@ -1,0 +1,1 @@
+export { ComponentCardTabs } from './ComponentCardTabs'

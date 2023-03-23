@@ -13,7 +13,7 @@ import css from './styles.module.css'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 
 export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
-  const [cardProps, setCardProps] = useState<cardWithChartProps | undefined>()
+  const [cardProps, setCardProps] = useState<cardWithChartProps>()
 
   useLayoutEffect(() => {
     const cardFormElement = element as IFormElementCardWithChart

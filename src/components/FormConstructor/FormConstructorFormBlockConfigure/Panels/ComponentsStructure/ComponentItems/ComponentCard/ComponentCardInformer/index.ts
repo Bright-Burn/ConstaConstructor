@@ -1,0 +1,1 @@
+export { ComponentCardInformer } from './ComponentCardInformer'

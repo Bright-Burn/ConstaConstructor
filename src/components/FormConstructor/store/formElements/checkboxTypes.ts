@@ -2,7 +2,7 @@ import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/u
 import { BaseProps, IFormElement } from './types'
 
 export type CheckboxProps = {
-  checked?: boolean | undefined
+  checked?: boolean
   size?: CheckboxPropSize
   view?: CheckboxPropView
   align?: CheckboxPropAlign

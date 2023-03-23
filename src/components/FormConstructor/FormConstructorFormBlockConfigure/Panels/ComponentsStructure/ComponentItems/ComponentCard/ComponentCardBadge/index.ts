@@ -1,0 +1,1 @@
+export { ComponentCardBadge } from './ComponentCardBadge'

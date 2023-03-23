@@ -13,7 +13,7 @@ import { TextField } from '@consta/uikit/TextField'
 import { ISelectedElement } from '../../../../store/formElements/types'
 
 export const CardSettings = () => {
-  const [props, setProps] = useState<CardElementPropsStyles | undefined>()
+  const [props, setProps] = useState<CardElementPropsStyles>()
   const status: string[] = ['alert', 'success', 'warning', 'undefined']
   const form: string[] = ['round', 'square']
   const space: string[] = ['m', 'xs', 's', 'l', 'xl', '2xl', '3xl', '4xl', '5xl']

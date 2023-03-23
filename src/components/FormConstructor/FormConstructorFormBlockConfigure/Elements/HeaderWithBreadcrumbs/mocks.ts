@@ -27,4 +27,4 @@ export const headerMock = {
     },
   ],
   childParentMap: [],
-} as IBaseComponent
+} satisfies IBaseComponent

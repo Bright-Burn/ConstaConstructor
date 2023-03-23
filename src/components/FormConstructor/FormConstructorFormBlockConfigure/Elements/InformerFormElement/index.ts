@@ -1,3 +1,1 @@
-import { InformerFormElement } from './InformerFormElement'
-
-export { InformerFormElement }
+export { InformerFormElement } from './InformerFormElement'

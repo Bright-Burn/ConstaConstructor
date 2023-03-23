@@ -1,3 +1,2 @@
-import { HeaderCognitiveGeologist } from './HeaderCognitiveGeologist'
-import { headerCognitiveGeologistMock } from './mock'
-export { HeaderCognitiveGeologist, headerCognitiveGeologistMock }
+export { HeaderCognitiveGeologist } from './HeaderCognitiveGeologist'
+export { headerCognitiveGeologistMock } from './mock'

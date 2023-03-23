@@ -1,24 +1,26 @@
 import { FC } from 'react'
 import { FormElementTypes, FormGroupsTypes } from '../../store/formElements/types'
-import { BadgeFormElement } from '../Elements/Badge'
-import { ButtonFormElement } from '../Elements/ButtonFormElement'
-import { CardFormElement } from '../Elements/CardFormElement'
-import { CheckboxFormElement } from '../Elements/CheckboxFormElement'
-import { HeaderWithBreadcrumbs } from '../Elements/HeaderWithBreadcrumbs'
-import { HeaderWithStatus } from '../Elements/HeaderWithStatus'
-import { InformerFormElement } from '../Elements/InformerFormElement'
-import { LayoutFromElement } from '../Elements/LayoutFromElement'
-import { ProjectGrid } from '../Elements/ProjectGrid'
-import { TabsFormElement } from '../Elements/TabsFormElement'
-import { TextFieldFormElement } from '../Elements/TextFieldFormElement'
-import { PlaceholderFormElement } from '../Elements/PlaceholderFormElement'
-import { CardWithBarChart } from '../Elements/CardWithBarChart'
-import { HeaderCognitiveGeologist } from '../Elements/HeaderCognitiveGeologist'
-import { CustomCards } from '../Elements/CustomCardsTemplate'
-import { Dashboard } from "../Elements/Dashboard";
+import {
+  BadgeFormElement,
+  ButtonFormElement,
+  CardFormElement,
+  CheckboxFormElement,
+  HeaderWithBreadcrumbs,
+  HeaderWithStatus,
+  InformerFormElement,
+  ProjectGrid,
+  TabsFormElement,
+  TextFieldFormElement,
+  PlaceholderFormElement,
+  CardWithBarChart,
+  HeaderCognitiveGeologist,
+  Dashboard,
+  CustomCards,
+  LayoutFormElement,
+} from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
-  Layout: LayoutFromElement,
+  Layout: LayoutFormElement,
   Button: ButtonFormElement,
   Badge: BadgeFormElement,
   Card: CardFormElement,

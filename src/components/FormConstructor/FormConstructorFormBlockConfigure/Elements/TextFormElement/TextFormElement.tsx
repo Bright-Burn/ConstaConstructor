@@ -6,7 +6,7 @@ import { Text } from '@consta/uikit/Text'
 import { IFormElementText, TextElementProps } from '../../../store/formElements'
 
 export const TextFormElement: FC<ITextFormElement> = ({ element }) => {
-  const [textProps, setTextProps] = useState<TextElementProps | undefined>()
+  const [textProps, setTextProps] = useState<TextElementProps>()
 
   useLayoutEffect(() => {
     const textFormElement = element as IFormElementText

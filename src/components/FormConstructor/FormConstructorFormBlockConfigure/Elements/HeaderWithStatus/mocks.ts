@@ -12,4 +12,4 @@ export const headerWithStatusMock = {
     },
   ],
   childParentMap: [],
-} as IBaseComponent
+} satisfies IBaseComponent

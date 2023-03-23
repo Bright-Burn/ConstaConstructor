@@ -6,7 +6,7 @@ import {
 import { ISelectedElement } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
 import { useDispatch } from 'react-redux'
-import { useLayoutEffect, useState } from 'react'
+import { FC, useLayoutEffect, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import { TextField } from '@consta/uikit/TextField'
@@ -35,7 +35,7 @@ import {
   display,
 } from './textConstants'
 
-export const TextSettings = () => {
+export const TextSettings: FC = () => {
   const [props, setProps] = useState<TextElementProps | undefined>()
 
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

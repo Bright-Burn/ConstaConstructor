@@ -7,7 +7,7 @@ import { DroppableLayer } from '../../DroppableLayer'
 import { CardElementPropsStyles } from '../../../store/formElements/cardTypes'
 import styles from './styles.module.css'
 export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
-  const [cardProps, setCardProps] = useState<CardElementPropsStyles | undefined>()
+  const [cardProps, setCardProps] = useState<CardElementPropsStyles>()
 
   useLayoutEffect(() => {
     const cardFormElement = element as ICardElement

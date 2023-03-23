@@ -15,7 +15,7 @@ import { Button } from '@consta/uikit/Button'
 import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
 
 export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({ element }) => {
-  const [placeholderProps, setPlaceholderProps] = useState<PlaceholderProps | undefined>()
+  const [placeholderProps, setPlaceholderProps] = useState<PlaceholderProps>()
 
   useLayoutEffect(() => {
     const placeholderFormElement = element as IFormElementPlaceholder

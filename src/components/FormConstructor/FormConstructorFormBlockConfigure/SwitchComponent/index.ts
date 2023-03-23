@@ -1,2 +1,1 @@
-import { SwitchComponent } from './SwitchComponent'
-export { SwitchComponent }
+export { SwitchComponent } from './SwitchComponent'
