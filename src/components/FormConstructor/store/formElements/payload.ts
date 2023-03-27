@@ -8,11 +8,11 @@ export interface DeleteElementPayload {
   elementId: string
 }
 
-export interface SetNewSelectedElement {
+export type SetNewSelectedElement = {
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes
   newProps?: UnionProps
-}
+} | null
 
 export interface ShowGrid {
   isGridVisible: boolean
