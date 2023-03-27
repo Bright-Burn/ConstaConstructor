@@ -127,12 +127,12 @@ export const Settings: FC = () => {
     <>
       {isOpened ? (
         <>
-          <div className={styles.openAndCloseBatton}>
+          <div className={styles.toggleButton}>
             <Button
               onlyIcon
               iconLeft={IconArrowRight}
               onClick={openAndCloseSetting}
-              view='ghost'
+              // view='ghost'
               size='s'
             />
           </div>
@@ -168,12 +168,12 @@ export const Settings: FC = () => {
           </div>
         </>
       ) : (
-        <div className={styles.openAndCloseBatton}>
+        <div className={styles.toggleButton}>
           <Button
             onlyIcon
             iconLeft={IconArrowLeft}
             onClick={openAndCloseSetting}
-            view='ghost'
+            // view='ghost'
             size='s'
           />
         </div>
