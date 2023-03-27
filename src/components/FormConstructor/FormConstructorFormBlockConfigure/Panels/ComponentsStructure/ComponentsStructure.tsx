@@ -10,7 +10,7 @@ import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
 
-export const ConponentsStructure = () => {
+export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
   const [isOpened, setIsOpened] = useState<boolean>(true)
 
@@ -23,7 +23,7 @@ export const ConponentsStructure = () => {
     }
   }
 
-  const openAndCloseSetting = () => {
+  const toggleSetting = () => {
     setIsOpened(!isOpened)
   }
 
@@ -44,23 +44,23 @@ export const ConponentsStructure = () => {
             {getTabContentRenderer()}
             <ComponentTree />
           </div>
-          <div className={styles.openAndCloseBatton}>
+          <div className={styles.toggleButton}>
             <Button
               onlyIcon
               iconLeft={IconArrowLeft}
-              onClick={openAndCloseSetting}
-              view='ghost'
+              onClick={toggleSetting}
+              // view='ghost'
               size='s'
             />
           </div>
         </>
       ) : (
-        <div className={styles.openAndCloseBatton}>
+        <div className={styles.toggleButton}>
           <Button
             onlyIcon
             iconLeft={IconArrowRight}
-            onClick={openAndCloseSetting}
-            view='ghost'
+            onClick={toggleSetting}
+            // view='ghost'
             size='s'
           />
         </div>
@@ -68,4 +68,3 @@ export const ConponentsStructure = () => {
     </>
   )
 }
->>>>>>> fa8337a (Реализовать возможность сворачивать и):src/components/FormConstructor/FormConstructorFormBlockConfigure/Panels/ConponentsStructure/ConponentsStructure.tsx
