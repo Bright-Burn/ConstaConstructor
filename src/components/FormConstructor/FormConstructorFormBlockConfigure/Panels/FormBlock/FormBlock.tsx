@@ -10,9 +10,7 @@ export const FormBlock: FC = () => {
 
   useEffect(() => {
     const escHandler = (e: KeyboardEvent) => {
-      console.log(e)
       if (e.key === 'Escape') {
-        console.log(selectedElement)
         dispatch(
           formConstructorSlice.actions.setSelectedElement(null),
         )
