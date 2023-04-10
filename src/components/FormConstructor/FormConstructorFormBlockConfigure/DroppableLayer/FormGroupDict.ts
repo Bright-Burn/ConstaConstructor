@@ -17,6 +17,7 @@ import {
   Dashboard,
   CustomCards,
   LayoutFormElement,
+  SimpleForm,
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -37,4 +38,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   ProjectGrid: ProjectGrid,
   CustomCards: CustomCards,
   Dashboard: Dashboard,
+  SimpleForm: SimpleForm,
 }
