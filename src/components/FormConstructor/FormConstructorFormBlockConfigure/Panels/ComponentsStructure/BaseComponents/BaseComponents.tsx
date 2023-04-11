@@ -13,13 +13,16 @@ import uuid from 'react-uuid'
 import { BaseComponentsCard } from './BaseComponentsCard'
 import { SaveModalCard } from '../../../../SaveModalCard'
 import { customCardsTemplateMock } from '../../../Elements/CustomCardsTemplate/mock'
-import { headerMock } from '../../../Elements'
-import { placeholderMock } from '../../../Elements'
-import { headerWithStatusMock } from '../../../Elements'
-import { cardMock } from '../../../Elements/CardWithBarChart'
-import { headerCognitiveGeologistMock } from '../../../Elements'
-import { gridMock } from '../../../Elements'
-import { dashboardMock } from '../../../Elements'
+import {
+  headerMock,
+  placeholderMock,
+  headerWithStatusMock,
+  headerCognitiveGeologistMock,
+  gridMock,
+  dashboardMock,
+  simpleFormMock,
+  cardMock,
+} from '../../../Elements'
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
@@ -38,6 +41,7 @@ export const BaseComponents: FC = () => {
     cardMock,
     gridMock,
     dashboardMock,
+    simpleFormMock,
   ]
 
   const dispatch = useBaseComponentsDispatch()
