@@ -18,6 +18,7 @@ import {
   CustomCards,
   LayoutFormElement,
   SimpleForm,
+  WizardForm,
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -39,4 +40,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   CustomCards: CustomCards,
   Dashboard: Dashboard,
   SimpleForm: SimpleForm,
+  WizardForm: WizardForm,
 }
