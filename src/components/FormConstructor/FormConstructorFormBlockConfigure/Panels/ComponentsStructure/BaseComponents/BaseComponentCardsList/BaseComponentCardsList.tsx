@@ -3,6 +3,13 @@ import { IBaseComponentCardsList } from './types'
 import { BaseComponentGroupCard } from './BaseComponentGroupCard'
 import { IBaseComponent } from '../../../../../store/baseComponentsItems'
 import { GroupCards, GroupCardsTypes } from './BaseComponentGroupCard/types'
+import { customCardsTemplateMockId } from '../../../../Elements/CustomCardsTemplate'
+import { dashboardMockId } from '../../../../Elements/Dashboard/mocks'
+import { headerGeologistId } from '../../../../Elements/HeaderCognitiveGeologist'
+import { headerMockId } from '../../../../Elements/HeaderWithBreadcrumbs'
+import { headerWithStatusMockId } from '../../../../Elements/HeaderWithStatus'
+import { simpleFormMockId } from '../../../../Elements/SimpleForm'
+import { cardMockId } from '../../../../Elements/CardWithBarChart'
 
 export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseComponents }) => {
   const [groupComponentsMap, setGroupComponentsMap] = useState<
@@ -14,25 +21,25 @@ export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseCompon
 
     baseComponents.forEach(bc => {
       switch (bc.id) {
-        case '83f6c798-7750-4663-9172-32398cff8ab4':
+        case headerMockId:
           map.set('Headers', [...(map.get('Headers') || []), bc])
           break
-        case 'af96797e-04cd-4c63-b0a7-16e630919b7e':
+        case headerGeologistId:
           map.set('Headers', [...(map.get('Headers') || []), bc])
           break
-        case 'c7e739e6-f1c0-4456-b438-2d2aa3ca4008':
+        case headerWithStatusMockId:
           map.set('Headers', [...(map.get('Headers') || []), bc])
           break
-        case 'f49f44ce-27e4-458d-4fd5-faa976accccc':
+        case simpleFormMockId:
           map.set('Forms', [...(map.get('Forms') || []), bc])
           break
-        case 'c7d1d7bd-f13e-28e9-67a8-2699f5de1feb':
+        case dashboardMockId:
           map.set('Dashboards', [...(map.get('Dashboards') || []), bc])
           break
-        case 'f49f44ce-27e4-458d-4fd5-faa976aba100':
+        case cardMockId:
           map.set('Dashboards', [...(map.get('Dashboards') || []), bc])
           break
-        case 'ac3039a1-eb0f-4525-a537-39c157f96ef0':
+        case customCardsTemplateMockId:
           map.set('Cards', [...(map.get('Cards') || []), bc])
           break
         default:

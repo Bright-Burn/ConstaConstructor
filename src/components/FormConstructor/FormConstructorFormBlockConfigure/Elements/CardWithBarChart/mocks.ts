@@ -44,8 +44,9 @@ export const pieDataMocks = [
   { type: 'Вариант 2', value: 43 },
 ]
 
+export const cardMockId = 'f49f44ce-27e4-458d-4fd5-faa976aba100'
 export const cardMock = {
-  id: 'f49f44ce-27e4-458d-4fd5-faa976aba100',
+  id: cardMockId,
   name: 'CardWithBarChart',
   description: 'CardWithBarChart',
   childrenElementList: [

@@ -1,7 +1,8 @@
 import { IBaseComponent } from '../../../store/baseComponentsItems'
 
+export const simpleFormMockId = 'f49f44ce-27e4-458d-4fd5-faa976accccc'
 export const simpleFormMock = {
-  id: 'f49f44ce-27e4-458d-4fd5-faa976accccc',
+  id: simpleFormMockId,
   name: 'Простая форма',
   description: 'Простая форма',
   childrenElementList: [

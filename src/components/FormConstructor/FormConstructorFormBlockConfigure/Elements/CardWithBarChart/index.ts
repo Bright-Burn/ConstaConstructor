@@ -1,2 +1,2 @@
 export { CardWithBarChart } from './Card'
-export { cardMock } from './mocks'
+export { cardMock, cardMockId } from './mocks'

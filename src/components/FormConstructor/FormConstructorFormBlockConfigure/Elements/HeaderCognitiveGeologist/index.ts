@@ -1,2 +1,2 @@
 export { HeaderCognitiveGeologist } from './HeaderCognitiveGeologist'
-export { headerCognitiveGeologistMock } from './mock'
+export { headerCognitiveGeologistMock, headerGeologistId } from './mock'

@@ -1,2 +1,2 @@
 export { CustomCards } from './CustomCardsIntegration'
-export { customCardsTemplateMock } from './mock'
+export { customCardsTemplateMock, customCardsTemplateMockId } from './mock'

@@ -1,2 +1,2 @@
 export { HeaderWithStatus } from './Header'
-export { headerWithStatusMock } from './mocks'
+export { headerWithStatusMock, headerWithStatusMockId } from './mocks'

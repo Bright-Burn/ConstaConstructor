@@ -1,7 +1,8 @@
 import { IBaseComponent } from '../../../store/baseComponentsItems'
 
+export const customCardsTemplateMockId = 'ac3039a1-eb0f-4525-a537-39c157f96ef0'
 export const customCardsTemplateMock: IBaseComponent = {
-  id: 'ac3039a1-eb0f-4525-a537-39c157f96ef0',
+  id: customCardsTemplateMockId,
   name: 'CustomCards',
   description: 'CustomCards',
   childrenElementList: [
