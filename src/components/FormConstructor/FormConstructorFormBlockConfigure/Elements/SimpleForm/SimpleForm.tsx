@@ -17,7 +17,7 @@ import css from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
 
 export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
-  const [formProps, setFormProps] = useState<simpleFormProps>()
+  const [, setFormProps] = useState<simpleFormProps>()
 
   useLayoutEffect(() => {
     const simpleFormElement = element as IFormElementSimpleForm
