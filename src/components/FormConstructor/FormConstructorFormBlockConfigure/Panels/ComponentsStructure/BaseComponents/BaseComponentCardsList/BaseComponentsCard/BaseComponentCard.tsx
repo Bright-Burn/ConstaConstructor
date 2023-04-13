@@ -4,9 +4,9 @@ import styles from './styles.module.css'
 import { Text } from '@consta/uikit/Text'
 import { Collapse } from '@consta/uikit/Collapse'
 import {
-  useBaseComponentsDispatch,
   baseComponentsSlice,
-} from '../../../../../store/baseComponentsItems'
+  useBaseComponentsDispatch,
+} from '../../../../../../store/baseComponentsItems'
 
 export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
   const [isOpen, setOpen] = useState<boolean>(false)
@@ -27,7 +27,7 @@ export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
     >
       <Collapse
         size={'xs'}
-        label={<Text>{baseComponent.name}</Text>}
+        label={<Text size='s'>{baseComponent.name}</Text>}
         isOpen={isOpen}
         onClick={() => setOpen(!isOpen)}
       >

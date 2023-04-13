@@ -46,8 +46,8 @@ export const pieDataMocks = [
 
 export const cardMock = {
   id: 'f49f44ce-27e4-458d-4fd5-faa976aba100',
-  name: 'Карточка',
-  description: 'Карточка',
+  name: 'CardWithBarChart',
+  description: 'CardWithBarChart',
   childrenElementList: [
     {
       id: '1657c7e0-9f56-a296-526e-af516ab09f10',

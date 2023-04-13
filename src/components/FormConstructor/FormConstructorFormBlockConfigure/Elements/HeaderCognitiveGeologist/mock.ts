@@ -1,7 +1,7 @@
 import { IBaseComponent } from '../../../store/baseComponentsItems'
 
 export const headerCognitiveGeologistMock = {
-  id: '061a1f81-47c2-4cf8-9c0b-1997ade03297',
+  id: 'af96797e-04cd-4c63-b0a7-16e630919b7e',
   name: 'Хедер геологист',
   description: 'Хедер',
   childrenElementList: [

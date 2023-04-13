@@ -1,7 +1,7 @@
 import { IBaseComponent } from '../../../store/baseComponentsItems'
 
 export const headerWithStatusMock = {
-  id: 'f49f44ce-27e4-458d-4fd5-faa976aba016',
+  id: 'c7e739e6-f1c0-4456-b438-2d2aa3ca4008',
   name: 'Хедер c статусом',
   description: 'Хедер2',
   childrenElementList: [
