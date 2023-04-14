@@ -49,6 +49,7 @@ export const FormElementTypes = {
   CustomCards: 'CustomCards',
   Dashboard: 'Dashboard',
   SimpleForm: 'SimpleForm',
+  WizardForm: 'WizardForm',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

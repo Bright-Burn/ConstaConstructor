@@ -1,0 +1,21 @@
+.flexCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.selectWidth {
+  width: 542px;
+}
+
+.textWidth {
+  width: 200px;
+}
+
+.wizardForm__Info {
+  width: 750px;
+}
+
+.buttonPosition {
+  display: flex;
+  justify-content: end;
+}
