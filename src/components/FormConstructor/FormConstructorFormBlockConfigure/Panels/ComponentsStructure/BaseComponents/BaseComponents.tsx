@@ -10,7 +10,6 @@ import {
 } from '../../../../store/baseComponentsItems'
 import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/formElements'
 import uuid from 'react-uuid'
-import { BaseComponentsCard } from './BaseComponentsCard'
 import { SaveModalCard } from '../../../../SaveModalCard'
 import { customCardsTemplateMock } from '../../../Elements/CustomCardsTemplate/mock'
 import {
@@ -23,6 +22,7 @@ import {
   simpleFormMock,
   cardMock,
 } from '../../../Elements'
+import { BaseComponentCardsList } from './BaseComponentCardsList'
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
@@ -142,9 +142,7 @@ export const BaseComponents: FC = () => {
         />
       </div>
       <div className={styles.baseComponents}>
-        {baseComponents.map(bc => {
-          return <BaseComponentsCard key={bc.id} {...bc} />
-        })}
+        <BaseComponentCardsList baseComponents={baseComponents} />
       </div>
       <SaveModalCard
         onCloseModalCard={onCloseSaveModal}

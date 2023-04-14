@@ -1,2 +1,2 @@
 export { ProjectGrid } from './ProjectGrid'
-export { gridMock } from './mocks'
+export { gridMock, gridMockId } from './mocks'

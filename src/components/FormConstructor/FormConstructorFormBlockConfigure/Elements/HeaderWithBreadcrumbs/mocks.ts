@@ -15,8 +15,9 @@ export const pages = [
   },
 ]
 
+export const headerMockId: string = '83f6c798-7750-4663-9172-32398cff8ab4'
 export const headerMock = {
-  id: 'f49f44ce-27e4-458d-4fd5-faa976aba015',
+  id: headerMockId,
   name: 'Хедер с хлебными крошками',
   description: 'Хедер',
   childrenElementList: [

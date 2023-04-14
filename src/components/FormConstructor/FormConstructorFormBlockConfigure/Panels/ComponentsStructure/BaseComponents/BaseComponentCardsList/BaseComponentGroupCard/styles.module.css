@@ -1,0 +1,7 @@
+.componentGroupCard {
+  display: flex;
+}
+
+.componentGroupCardCollapse {
+  flex: 1;
+}

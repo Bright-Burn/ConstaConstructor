@@ -179,8 +179,9 @@ export const selectIdleTypeData = [
   },
 ]
 
+export const dashboardMockId = 'c7d1d7bd-f13e-28e9-67a8-2699f5de1feb'
 export const dashboardMock: IBaseComponent = {
-  id: 'c7d1d7bd-f13e-28e9-67a8-2699f5de1feb',
+  id: dashboardMockId,
   name: 'Дашборд',
   description: '',
   childrenElementList: [

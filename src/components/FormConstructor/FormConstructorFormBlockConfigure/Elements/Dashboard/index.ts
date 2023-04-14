@@ -1,2 +1,2 @@
 export { Dashboard } from './Dashboard'
-export { dashboardMock } from './mocks'
+export { dashboardMock, dashboardMockId } from './mocks'

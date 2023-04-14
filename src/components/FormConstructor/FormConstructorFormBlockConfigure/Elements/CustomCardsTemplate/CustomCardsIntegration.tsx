@@ -1,6 +1,6 @@
 import { FC, useLayoutEffect, useState } from 'react'
 
-import { ElementTypes, FormGroupsTypes, FormElementTypes } from '../../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
 import { ICustomCardFormElement } from './types'
 import {
   IFormElementCustomCards,
@@ -12,7 +12,7 @@ import CustomCardsTemplate from './CustomCardsTemplate'
 import { DroppableLayer } from '../../DroppableLayer'
 
 export const CustomCards: FC<ICustomCardFormElement> = ({ element }) => {
-  const [customCardsProps, setCustomCardsProps] = useState<CustomCardsProps | undefined>()
+  const [, setCustomCardsProps] = useState<CustomCardsProps | undefined>()
 
   useLayoutEffect(() => {
     const customCards = element as IFormElementCustomCards

@@ -1,2 +1,2 @@
 export { SimpleForm } from './SimpleForm'
-export { simpleFormMock } from './mocks'
+export { simpleFormMock, simpleFormMockId } from './mocks'

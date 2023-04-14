@@ -9,7 +9,7 @@ import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { IconAdd } from '@consta/uikit/IconAdd'
 import { IconHamburger } from '@consta/uikit/IconHamburger'
 import { IconCards } from '@consta/uikit/IconCards'
-import { IconComponent, IconProps } from '@consta/uikit/Icon'
+import { IconComponent } from '@consta/uikit/Icon'
 
 function CustomCardsTemplate() {
   type choiceGroupValueType = {

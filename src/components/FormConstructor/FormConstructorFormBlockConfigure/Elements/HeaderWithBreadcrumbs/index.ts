@@ -1,2 +1,2 @@
 export { HeaderWithBreadcrumbs } from './Header'
-export { headerMock } from './mocks'
+export { headerMock, headerMockId } from './mocks'
