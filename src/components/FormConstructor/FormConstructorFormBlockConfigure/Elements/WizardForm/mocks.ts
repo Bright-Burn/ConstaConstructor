@@ -1,8 +1,9 @@
 import { IBaseComponent } from '../../../store/baseComponentsItems'
 import { progressStepBarItem, selectItem } from './types'
 
+export const wizardFormMockId = '9e176fa4-5b18-4722-94e6-c4dd5480f4cb'
 export const wizardFormMock = {
-  id: '9e176fa4-5b18-4722-94e6-c4dd5480f4cb',
+  id: wizardFormMockId,
   name: 'Форма Wizard',
   description: 'Форма Wizard',
   childrenElementList: [
