@@ -22,6 +22,7 @@ import {
   dashboardMock,
   simpleFormMock,
   cardMock,
+  footerWithSwitchMock,
 } from '../../../Elements'
 
 export const BaseComponents: FC = () => {
@@ -42,6 +43,7 @@ export const BaseComponents: FC = () => {
     gridMock,
     dashboardMock,
     simpleFormMock,
+    footerWithSwitchMock,
   ]
 
   const dispatch = useBaseComponentsDispatch()
