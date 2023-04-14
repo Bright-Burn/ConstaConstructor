@@ -3,13 +3,7 @@ import { IBaseComponentCardsList } from './types'
 import { BaseComponentGroupCard } from './BaseComponentGroupCard'
 import { IBaseComponent } from '../../../../../store/baseComponentsItems'
 import { GroupCards, GroupCardsTypes } from './BaseComponentGroupCard/types'
-import { customCardsTemplateMockId } from '../../../../Elements/CustomCardsTemplate'
-import { dashboardMockId } from '../../../../Elements/Dashboard/mocks'
-import { headerGeologistId } from '../../../../Elements/HeaderCognitiveGeologist'
-import { headerMockId } from '../../../../Elements/HeaderWithBreadcrumbs'
-import { headerWithStatusMockId } from '../../../../Elements/HeaderWithStatus'
-import { simpleFormMockId } from '../../../../Elements/SimpleForm'
-import { cardMockId } from '../../../../Elements/CardWithBarChart'
+import { componentsDict } from './ComponentsDict'
 
 export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseComponents }) => {
   const [groupComponentsMap, setGroupComponentsMap] = useState<
@@ -20,31 +14,10 @@ export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseCompon
     const map = new Map<GroupCardsTypes, IBaseComponent[]>()
 
     baseComponents.forEach(bc => {
-      switch (bc.id) {
-        case headerMockId:
-          map.set('Headers', [...(map.get('Headers') || []), bc])
-          break
-        case headerGeologistId:
-          map.set('Headers', [...(map.get('Headers') || []), bc])
-          break
-        case headerWithStatusMockId:
-          map.set('Headers', [...(map.get('Headers') || []), bc])
-          break
-        case simpleFormMockId:
-          map.set('Forms', [...(map.get('Forms') || []), bc])
-          break
-        case dashboardMockId:
-          map.set('Dashboards', [...(map.get('Dashboards') || []), bc])
-          break
-        case cardMockId:
-          map.set('Dashboards', [...(map.get('Dashboards') || []), bc])
-          break
-        case customCardsTemplateMockId:
-          map.set('Cards', [...(map.get('Cards') || []), bc])
-          break
-        default:
-          map.set('Others', [...(map.get('Others') || []), bc])
-          break
+      if (componentsDict[bc.id]) {
+        map.set(componentsDict[bc.id], [...(map.get(componentsDict[bc.id]) || []), bc])
+      } else {
+        map.set('Others', [...(map.get('Others') || []), bc])
       }
     })
 
