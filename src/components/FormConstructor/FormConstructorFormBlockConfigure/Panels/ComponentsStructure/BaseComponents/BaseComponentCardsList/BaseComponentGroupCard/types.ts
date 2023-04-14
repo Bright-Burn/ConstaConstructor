@@ -13,6 +13,7 @@ export const GroupCards = {
   Forms: 'Forms',
   Bodies: 'Bodies',
   Cards: 'Cards',
+  Tables: 'Tables'
 } as const
 
 export type GroupCardsTypes = Values<typeof GroupCards>

@@ -43,6 +43,10 @@ export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseCompon
         baseComponents={groupComponentsMap.get(GroupCards.Cards) || []}
       />
       <BaseComponentGroupCard
+        name='Таблицы'
+        baseComponents={groupComponentsMap.get(GroupCards.Tables) || []}
+      />
+      <BaseComponentGroupCard
         name='Другое'
         baseComponents={groupComponentsMap.get(GroupCards.Others) || []}
       />
