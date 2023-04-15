@@ -22,6 +22,7 @@ import {
   simpleFormMock,
   cardMock,
   wizardFormMock,
+  simpleFormMock2,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 
@@ -44,6 +45,7 @@ export const BaseComponents: FC = () => {
     dashboardMock,
     simpleFormMock,
     wizardFormMock,
+    simpleFormMock2,
   ]
 
   const dispatch = useBaseComponentsDispatch()

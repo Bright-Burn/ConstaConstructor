@@ -1,0 +1,24 @@
+.titleText {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.flexParent {
+  display: flex;
+}
+.flexChild {
+  text-align: center;
+  padding: 20px;
+  padding-top: 0px;
+  box-sizing: border-box;
+  width: 50%;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.borderBottomForText > :not(:last-child){
+  border-bottom-style: dotted;
+  border-bottom-width: 2px;
+}
