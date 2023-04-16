@@ -8,7 +8,7 @@ import { gridMockId } from '../../../../Elements/ProjectGrid'
 import { simpleFormMockId } from '../../../../Elements/SimpleForm'
 import { wizardFormMockId } from '../../../../Elements/WizardForm/mocks'
 import { GroupCardsTypes } from './BaseComponentGroupCard/types'
-import { FormWithTwoColumnsMockId } from '../../../../Elements/FormTwoColumns'
+import { FormWithTwoColumnsMockId } from '../../../../Elements/FormWithTwoColumns'
 
 export const componentsDict: Record<string, GroupCardsTypes> = {
   [headerMockId]: 'Headers',

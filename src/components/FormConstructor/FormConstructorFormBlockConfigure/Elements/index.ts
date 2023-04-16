@@ -17,5 +17,5 @@ export { TextFormElement } from './TextFormElement'
 export { CustomCards, customCardsTemplateMock } from './CustomCardsTemplate'
 export { SimpleForm, simpleFormMock } from './SimpleForm'
 export { WizardForm, wizardFormMock } from './WizardForm'
-export { FormWithTwoColumns, FormWithTwoColumnsMock } from './FormTwoColumns'
+export { FormWithTwoColumns, FormWithTwoColumnsMock } from './FormWithTwoColumns'
 
