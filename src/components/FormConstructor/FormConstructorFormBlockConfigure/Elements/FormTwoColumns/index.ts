@@ -1,3 +1,3 @@
-export { PlaceViolation } from './PlaceViolation'
-export { PlaceViolationMock, PlaceViolationMockId } from './mocks'
+export { FormWithTwoColumns } from './PlaceViolation'
+export { FormWithTwoColumnsMock, FormWithTwoColumnsMockId } from './mocks'
 

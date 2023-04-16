@@ -8,7 +8,7 @@ import { gridMockId } from '../../../../Elements/ProjectGrid'
 import { simpleFormMockId } from '../../../../Elements/SimpleForm'
 import { wizardFormMockId } from '../../../../Elements/WizardForm/mocks'
 import { GroupCardsTypes } from './BaseComponentGroupCard/types'
-import { PlaceViolationMockId } from '../../../../Elements/FormTwoColumns'
+import { FormWithTwoColumnsMockId } from '../../../../Elements/FormTwoColumns'
 
 export const componentsDict: Record<string, GroupCardsTypes> = {
   [headerMockId]: 'Headers',
@@ -20,5 +20,6 @@ export const componentsDict: Record<string, GroupCardsTypes> = {
   [cardMockId]: 'Dashboards',
   [customCardsTemplateMockId]: 'Cards',
   [gridMockId]: 'Tables',
-  [PlaceViolationMockId]: 'Forms',
+  [FormWithTwoColumnsMockId]: 'Forms',
 }
+

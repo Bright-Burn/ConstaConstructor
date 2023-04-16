@@ -1,28 +1,42 @@
-import { TextField } from '@consta/uikit/TextField'
-import { DatePicker } from '@consta/uikit/DatePicker'
 import { Text } from '@consta/uikit/Text'
-import { DragNDropField } from '@consta/uikit/DragNDropField'
 import { FC, useLayoutEffect, useState } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
-  IFormElementPlaceViolation,
-  PlaceViolationProps,
-} from '../../../store/formElements/simpleFormTypes2'
+  IFormFormWithTwoColumns,
+  FormWithTwoColumnsProps,
+} from '../../../store/formElements/FormWithTwoColumns'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
-import { IPlaceViolation } from './types'
-import { IconLock } from '@consta/icons/IconLock'
-import { IconCalendar } from '@consta/icons/IconCalendar'
-import { IconAttach } from '@consta/icons/IconAttach'
+import { IFormWithTwoColumns } from './types'
 import css from './styles.module.css'
-import { Button } from '@consta/uikit/Button'
 import { Combobox } from '@consta/uikit/Combobox'
 import { Switch } from '@consta/uikit/Switch'
 
-export const PlaceViolation: FC<IPlaceViolation> = ({ element }) => {
-  const [formProps, setFormProps] = useState<PlaceViolationProps>()
+type Item = {
+  label: string
+  id: number
+}
+
+const items: Item[] = [
+  {
+    label: 'Первый',
+    id: 1,
+  },
+  {
+    label: 'Второй',
+    id: 2,
+  },
+  {
+    label: 'Третий',
+    id: 3,
+  },
+]
+
+export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
+  const [formProps, setFormProps] = useState<FormWithTwoColumnsProps>()
+  const [value, setValue] = useState<Item | null>()
 
   useLayoutEffect(() => {
-    const simpleFormElement = element as IFormElementPlaceViolation
+    const simpleFormElement = element as IFormFormWithTwoColumns
     setFormProps(simpleFormElement.props)
   }, [element])
 
@@ -40,19 +54,7 @@ export const PlaceViolation: FC<IPlaceViolation> = ({ element }) => {
             </Text>
             <div>
               <div>
-                <Text
-                  style={{
-                    marginLeft: 18,
-                    paddingTop: 5,
-                    fontSize: 12,
-                    fontFamily: 'Inter',
-                    fontStyle: 'normal',
-                    // fontWeight: 400,
-                    lineHeight: '120%',
-                    color: '#002033BF',
-                    borderBottomStyle: 'dotted',
-                    borderBottomWidth: 2,
-                  }}>
+                <Text className={`${css.textDecoration}`}>
                   Работы на месте нарушения остановлены
                 </Text>
               </div>
@@ -67,87 +69,62 @@ export const PlaceViolation: FC<IPlaceViolation> = ({ element }) => {
           <div style={{ width: '50%', paddingLeft: 20, paddingRight: 20 }}>
             <Combobox
               required={true}
-              items={['123']}
-              onChange={() => console.log('123')}
-              getItemLabel={() => '123'}
+              items={items}
+              value={value}
+              onChange={({ value }) => setValue(value)}
+              placeholder='Введите последовательность для поиска...'
               size='s'
               className={`${css.borderBottomForText}`}
               label='Компания'
-              getItemKey={function (item: string): string | number {
-                throw new Error('Function not implemented.')
-              }}></Combobox>
+            />
           </div>
           <div className={`${css.flexParent}`}>
             <div className={`${css.flexChild}`}>
               <Combobox
-                style={{ paddingTop: 10 }}
+                placeholder='Введите последовательность для поиска...'
                 required={true}
-                items={['123']}
-                onChange={() => console.log('123')}
-                getItemLabel={() => '123'}
+                items={items}
+                value={value}
+                onChange={({ value }) => setValue(value)}
                 size='s'
                 className={`${css.borderBottomForText}`}
                 label='Месторождение'
-                getItemKey={function (item: string): string | number {
-                  throw new Error('Function not implemented.')
-                }}
               />
               <Combobox
-                style={{ paddingTop: 10 }}
                 required={true}
-                items={['123']}
-                onChange={() => console.log('123')}
-                getItemLabel={() => '123'}
+                items={items}
+                value={value}
+                onChange={({ value }) => setValue(value)}
                 size='s'
+                placeholder='Выберите значение из списка...'
                 label='Цех'
-                getItemKey={function (item: string): string | number {
-                  throw new Error('Function not implemented.')
-                }}></Combobox>
+              />
             </div>
             <div className={`${css.flexChild}`}>
-              <div className={`${css.Elem}`}>{''}</div>
               <Combobox
-                style={{ paddingTop: 10 }}
                 required={true}
-                items={['123']}
-                onChange={() => console.log('123')}
-                getItemLabel={() => '123'}
+                items={items}
+                value={value}
+                onChange={({ value }) => setValue(value)}
+                placeholder='Выберите значение из списка...'
                 size='s'
                 label='Объект'
-                getItemKey={function (item: string): string | number {
-                  throw new Error('Function not implemented.')
-                }}></Combobox>
+              />
               <Combobox
-                style={{ paddingTop: 10 }}
                 required={true}
-                items={['123']}
-                onChange={() => console.log('123')}
-                getItemLabel={() => '123'}
+                items={items}
+                value={value}
+                onChange={({ value }) => setValue(value)}
+                placeholder='Выберите значение из списка...'
                 size='s'
                 label='Место нарушения'
-                getItemKey={function (item: string): string | number {
-                  throw new Error('Function not implemented.')
-                }}></Combobox>
+              />
             </div>
           </div>
           <div style={{ display: 'flex', fontSize: 14 }}>
             <div>
               <div>
-                <Text
-                  style={{
-                    marginLeft: 20,
-                    paddingTop: 5,
-                    fontSize: 12,
-                    fontFamily: 'Inter',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    lineHeight: '120%',
-                    color: '#002033BF',
-                    borderBottomStyle: 'dotted',
-                    borderBottomWidth: 2,
-                  }}>
-                  Указать подрядную организацию
-                </Text>
+                <Text className={`${css.textDecoration}`}>Указать подрядную организацию</Text>
               </div>
             </div>
             <Switch style={{ paddingTop: 5, paddingLeft: 8 }} checked={true} size='m' />
@@ -156,29 +133,25 @@ export const PlaceViolation: FC<IPlaceViolation> = ({ element }) => {
           <div className={`${css.flexParent}`}>
             <div className={`${css.flexChild}`}>
               <Combobox
-                style={{ paddingTop: 10 }}
                 required={true}
-                items={['123']}
-                onChange={() => console.log('123')}
-                getItemLabel={() => '123'}
+                items={items}
+                value={value}
+                onChange={({ value }) => setValue(value)}
+                placeholder='Введите последовательность для поиска...'
                 size='s'
                 label='Наименование подрядной организации'
-                getItemKey={function (item: string): string | number {
-                  throw new Error('Function not implemented.')
-                }}></Combobox>
+              />
             </div>
             <div className={`${css.flexChild}`}>
               <Combobox
-                style={{ paddingTop: 10 }}
                 required={true}
-                items={['123']}
-                onChange={() => console.log('123')}
-                getItemLabel={() => '123'}
+                items={items}
+                value={value}
+                onChange={({ value }) => setValue(value)}
+                placeholder='Выберите значение из списка...'
                 size='s'
                 label='Деятельность'
-                getItemKey={function (item: string): string | number {
-                  throw new Error('Function not implemented.')
-                }}></Combobox>
+              />
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { IFormElement } from '../../../store/formElements'
 
-export interface IPlaceViolation {
+export interface IFormWithTwoColumns {
   element: IFormElement
 }
 
