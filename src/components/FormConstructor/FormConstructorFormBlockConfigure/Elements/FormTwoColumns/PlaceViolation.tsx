@@ -5,11 +5,11 @@ import { DragNDropField } from '@consta/uikit/DragNDropField'
 import { FC, useLayoutEffect, useState } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
-  IFormElementSimpleForm2,
-  simpleFormProps2,
+  IFormElementPlaceViolation,
+  PlaceViolationProps,
 } from '../../../store/formElements/simpleFormTypes2'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
-import { ISimpleForm2 } from './types'
+import { IPlaceViolation } from './types'
 import { IconLock } from '@consta/icons/IconLock'
 import { IconCalendar } from '@consta/icons/IconCalendar'
 import { IconAttach } from '@consta/icons/IconAttach'
@@ -18,11 +18,11 @@ import { Button } from '@consta/uikit/Button'
 import { Combobox } from '@consta/uikit/Combobox'
 import { Switch } from '@consta/uikit/Switch'
 
-export const SimpleForm2: FC<ISimpleForm2> = ({ element }) => {
-  const [formProps, setFormProps] = useState<simpleFormProps2>()
+export const PlaceViolation: FC<IPlaceViolation> = ({ element }) => {
+  const [formProps, setFormProps] = useState<PlaceViolationProps>()
 
   useLayoutEffect(() => {
-    const simpleFormElement = element as IFormElementSimpleForm2
+    const simpleFormElement = element as IFormElementPlaceViolation
     setFormProps(simpleFormElement.props)
   }, [element])
 

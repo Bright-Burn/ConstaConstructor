@@ -1,6 +1,6 @@
 import { IFormElement } from '../../../store/formElements'
 
-export interface ISimpleForm2 {
+export interface IPlaceViolation {
   element: IFormElement
 }
 

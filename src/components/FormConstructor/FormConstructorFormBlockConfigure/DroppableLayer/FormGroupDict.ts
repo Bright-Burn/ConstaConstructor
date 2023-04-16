@@ -19,7 +19,7 @@ import {
   LayoutFormElement,
   SimpleForm,
   WizardForm,
-  SimpleForm2,
+  PlaceViolation,
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -42,5 +42,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   Dashboard: Dashboard,
   SimpleForm: SimpleForm,
   WizardForm: WizardForm,
-  SimpleForm2: SimpleForm2,
+  PlaceViolation: PlaceViolation,
 }

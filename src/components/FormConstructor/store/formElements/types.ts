@@ -50,7 +50,7 @@ export const FormElementTypes = {
   Dashboard: 'Dashboard',
   SimpleForm: 'SimpleForm',
   WizardForm: 'WizardForm',
-  SimpleForm2: 'SimpleForm2',
+  PlaceViolation: 'PlaceViolation',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
