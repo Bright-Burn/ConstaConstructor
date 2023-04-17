@@ -17,12 +17,10 @@ import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
-import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
-  const [isOpen, setIsOpen] = useState(settingsPanelState)
 
   const { selectedElement, isGridVisible } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
@@ -130,55 +128,40 @@ export const Settings: FC = () => {
 
   return (
     <>
-      {settingsPanelState && isOpen ? (
-        <>
-          <div className={styles.toggleButton}>
+      {settingsPanelState ? (
+        <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer} `}>
+          <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
+          <div className={styles.buttonsSaveLoad}>
+            <FileField id={'loader_project'} onChange={onChange}>
+              {props => (
+                <Button
+                  id={'btn'}
+                  {...props}
+                  className='m-t-s'
+                  label={'Загрузить проект'}
+                  size={'s'}
+                  view={'secondary'}
+                />
+              )}
+            </FileField>
             <Button
-              onlyIcon
-              iconLeft={IconArrowRight}
-              onClick={toggleSettingsPanel}
-              size='s'
+              className='m-t-s'
+              label={'Сохранить проект'}
+              onClick={onSaveProjectClick}
+              size={'s'}
+              view={'secondary'}
             />
           </div>
-          <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer} `}>
-            <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
-            <div className={styles.buttonsSaveLoad}>
-              <FileField id={'loader_project'} onChange={onChange}>
-                {props => (
-                  <Button
-                    id={'btn'}
-                    {...props}
-                    className='m-t-s'
-                    label={'Загрузить проект'}
-                    size={'s'}
-                    view={'secondary'}
-                  />
-                )}
-              </FileField>
-              <Button
-                className='m-t-s'
-                label={'Сохранить проект'}
-                onClick={onSaveProjectClick}
-                size={'s'}
-                view={'secondary'}
-              />
-            </div>
-            <SaveModalCard
-              onCloseModalCard={onClose}
-              onSave={onSaveProject}
-              showSaveModal={showSaveModal}
-            />
-            <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
-          </div>
-        </>
+          <SaveModalCard
+            onCloseModalCard={onClose}
+            onSave={onSaveProject}
+            showSaveModal={showSaveModal}
+          />
+          <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
+        </div>
       ) : (
         <div className={styles.toggleButton}>
-          <Button
-            onlyIcon
-            iconLeft={IconArrowLeft}
-            onClick={toggleSettingsPanel}
-            size='s'
-          />
+          <Button onlyIcon iconLeft={IconArrowLeft} onClick={toggleSettingsPanel} size='s' />
         </div>
       )}
     </>
