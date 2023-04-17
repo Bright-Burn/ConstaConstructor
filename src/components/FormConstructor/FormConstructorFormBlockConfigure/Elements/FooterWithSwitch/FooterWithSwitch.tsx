@@ -1,15 +1,25 @@
 import { Button } from '@consta/uikit/Button'
 import { Switch } from '@consta/uikit/Switch'
-import { useState } from 'react'
-import { FC } from 'react'
+import { useLayoutEffect, useState, FC} from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IFooterWithSwitch } from './types'
 import style from './styles.module.css'
 import { Text } from '@consta/uikit/Text'
+import {
+  IFormElementFooterWithSwitch,
+  footerWithSwitchProps,
+} from '../../../store/formElements/footerWithSwitchTypes'
 
 export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
   const [checked, setChecked] = useState<boolean>(false)
+  const [footerProps, setFooterProps] = useState<footerWithSwitchProps>()
+
+  useLayoutEffect(() => {
+    const badgeFormElement = element as IFormElementFooterWithSwitch
+    setFooterProps(badgeFormElement.props)
+  }, [element])
+
   return (
     <SelectableLayerFullWidth
       parentElementId={element.id}

@@ -1,7 +1,8 @@
 import { IBaseComponent } from '../../../store/baseComponentsItems'
 
+export const footerWithSwitchMockId = '061a1f81-47c2-4cf8-9c0b-1997ade03298'
 export const footerWithSwitchMock = {
-  id: '061a1f81-47c2-4cf8-9c0b-1997ade03298',
+  id: footerWithSwitchMockId,
   name: 'Футер',
   description: 'Футер',
   childrenElementList: [
