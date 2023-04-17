@@ -1,6 +1,9 @@
 import { FC, ReactNode } from 'react'
 import { IFormConstructorFormBlockConfigure } from './types'
 import { ComponentsStructure, FormBlock, Settings } from './Panels'
+import { Provider } from 'react-redux'
+import { store } from '../store'
+import { FormConstructorFormBlockEventListener } from './FormConstructorFormBlockEventListener/FormConstructorFormBlockEventListener'
 
 interface Props {
   children?: ReactNode
@@ -9,7 +12,11 @@ interface Props {
 export const FormConstructorFormBlockConfigure: FC<Props> & IFormConstructorFormBlockConfigure = ({
   children,
 }) => {
-  return <>{children}</>
+  return (
+    <Provider store={store}>
+      <FormConstructorFormBlockEventListener>{children}</FormConstructorFormBlockEventListener>
+    </Provider>
+  )
 }
 
 FormConstructorFormBlockConfigure.Settings = Settings
