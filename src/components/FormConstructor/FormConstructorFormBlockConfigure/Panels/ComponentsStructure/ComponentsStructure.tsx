@@ -62,7 +62,6 @@ export const ComponentsStructure = () => {
               onlyIcon
               iconLeft={IconArrowLeft}
               onClick={toggleSettingsPanel}
-              // view='ghost'
               size='s'
             />
           </div>
@@ -73,7 +72,6 @@ export const ComponentsStructure = () => {
             onlyIcon
             iconLeft={IconArrowRight}
             onClick={toggleSettingsPanel}
-            // view='ghost'
             size='s'
           />
         </div>

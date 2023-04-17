@@ -10,8 +10,6 @@ interface Props {
   children?: ReactNode
 }
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
-  console.log(children)
-
   const dispatch = useAppDispatch()
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
   const componentsStructurePanelState = useAppSelector(

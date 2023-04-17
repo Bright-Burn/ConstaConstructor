@@ -120,7 +120,6 @@ export const Settings: FC = () => {
     }
   }
 
-  // не работает корреткно. Нужно выносить создать отдельное состояние для каждого компонента
   const toggleSettingsPanel = () => {
     dispatch(
       formConstructorSlice.actions.toggleSettingsPanelState({
@@ -138,7 +137,6 @@ export const Settings: FC = () => {
               onlyIcon
               iconLeft={IconArrowRight}
               onClick={toggleSettingsPanel}
-              // view='ghost'
               size='s'
             />
           </div>
@@ -179,7 +177,6 @@ export const Settings: FC = () => {
             onlyIcon
             iconLeft={IconArrowLeft}
             onClick={toggleSettingsPanel}
-            // view='ghost'
             size='s'
           />
         </div>
