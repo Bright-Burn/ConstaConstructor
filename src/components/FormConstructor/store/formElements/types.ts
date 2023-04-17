@@ -50,6 +50,7 @@ export const FormElementTypes = {
   Dashboard: 'Dashboard',
   SimpleForm: 'SimpleForm',
   WizardForm: 'WizardForm',
+  FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
 } as const
 

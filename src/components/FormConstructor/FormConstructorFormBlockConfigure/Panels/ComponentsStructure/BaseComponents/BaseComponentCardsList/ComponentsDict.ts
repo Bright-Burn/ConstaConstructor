@@ -8,6 +8,7 @@ import { gridMockId } from '../../../../Elements/ProjectGrid'
 import { simpleFormMockId } from '../../../../Elements/SimpleForm'
 import { wizardFormMockId } from '../../../../Elements/WizardForm/mocks'
 import { GroupCardsTypes } from './BaseComponentGroupCard/types'
+import { footerWithSwitchMockId } from '../../../../Elements/FooterWithSwitch/mocks'
 import { FormWithTwoColumnsMockId } from '../../../../Elements/FormWithTwoColumns'
 
 export const componentsDict: Record<string, GroupCardsTypes> = {
@@ -20,6 +21,7 @@ export const componentsDict: Record<string, GroupCardsTypes> = {
   [cardMockId]: 'Dashboards',
   [customCardsTemplateMockId]: 'Cards',
   [gridMockId]: 'Tables',
+  [footerWithSwitchMockId]: 'Footers',
   [FormWithTwoColumnsMockId]: 'Forms',
 }
 

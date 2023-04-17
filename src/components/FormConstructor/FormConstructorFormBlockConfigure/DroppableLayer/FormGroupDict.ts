@@ -19,6 +19,7 @@ import {
   LayoutFormElement,
   SimpleForm,
   WizardForm,
+  FooterWithSwitch,
   FormWithTwoColumns,
 } from '../Elements'
 
@@ -42,5 +43,6 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   Dashboard: Dashboard,
   SimpleForm: SimpleForm,
   WizardForm: WizardForm,
+  FooterWithSwitch: FooterWithSwitch,
   FormWithTwoColumns: FormWithTwoColumns,
 }

@@ -14,6 +14,7 @@ export const GroupCards = {
   Bodies: 'Bodies',
   Cards: 'Cards',
   Tables: 'Tables',
+  Footers: 'Footers',
 } as const
 
 export type GroupCardsTypes = Values<typeof GroupCards>
