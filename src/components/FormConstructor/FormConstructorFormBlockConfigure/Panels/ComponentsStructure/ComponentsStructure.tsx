@@ -9,10 +9,14 @@ import { Tabs } from '@consta/uikit/Tabs'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
+import {
+  formConstructorSlice,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../store/formElements/slices'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
-  const [isOpened, setIsOpened] = useState<boolean>(true)
 
   const getTabContentRenderer = () => {
     switch (tabValue) {
@@ -23,13 +27,22 @@ export const ComponentsStructure = () => {
     }
   }
 
-  const toggleSetting = () => {
-    setIsOpened(!isOpened)
+  const dispatch = useAppDispatch()
+  const componentsStructurePanelState = useAppSelector(
+    state => state.formConstructor.componentsStructurePanelState,
+  )
+
+  const toggleSettingsPanel = () => {
+    dispatch(
+      formConstructorSlice.actions.toggleComponentsStructurePanel({
+        componentsStructurePanelState: componentsStructurePanelState,
+      }),
+    )
   }
 
   return (
     <>
-      {isOpened ? (
+      {componentsStructurePanelState ? (
         <>
           <div className={`${styles.componentStructure} borderCard`}>
             <div className={styles.tabs}>
@@ -48,7 +61,7 @@ export const ComponentsStructure = () => {
             <Button
               onlyIcon
               iconLeft={IconArrowLeft}
-              onClick={toggleSetting}
+              onClick={toggleSettingsPanel}
               // view='ghost'
               size='s'
             />
@@ -59,7 +72,7 @@ export const ComponentsStructure = () => {
           <Button
             onlyIcon
             iconLeft={IconArrowRight}
-            onClick={toggleSetting}
+            onClick={toggleSettingsPanel}
             // view='ghost'
             size='s'
           />

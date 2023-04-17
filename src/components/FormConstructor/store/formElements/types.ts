@@ -126,4 +126,6 @@ export interface IFormConstructor {
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
   draggableElement: IGroupElement | IFormElement | null
+  componentsStructurePanelState : boolean
+  settingsPanelState : boolean
 }

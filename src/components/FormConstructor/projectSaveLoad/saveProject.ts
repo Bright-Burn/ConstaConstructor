@@ -46,5 +46,7 @@ export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFor
     draggableElement: null,
     allElementsMap: new Map(JSON.parse(proj.allElementsMap)),
     allElementsTree: new Map(JSON.parse(proj.allElementsTree)),
+    componentsStructurePanelState: false,
+    settingsPanelState: false,
   }
 }
