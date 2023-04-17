@@ -9,6 +9,7 @@ import { simpleFormMockId } from '../../../../Elements/SimpleForm'
 import { wizardFormMockId } from '../../../../Elements/WizardForm/mocks'
 import { GroupCardsTypes } from './BaseComponentGroupCard/types'
 import { footerWithSwitchMockId } from '../../../../Elements/FooterWithSwitch/mocks'
+import { FormWithTwoColumnsMockId } from '../../../../Elements/FormWithTwoColumns'
 
 export const componentsDict: Record<string, GroupCardsTypes> = {
   [headerMockId]: 'Headers',
@@ -21,4 +22,6 @@ export const componentsDict: Record<string, GroupCardsTypes> = {
   [customCardsTemplateMockId]: 'Cards',
   [gridMockId]: 'Tables',
   [footerWithSwitchMockId]: 'Footers',
+  [FormWithTwoColumnsMockId]: 'Forms',
 }
+

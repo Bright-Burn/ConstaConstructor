@@ -51,6 +51,7 @@ export const FormElementTypes = {
   SimpleForm: 'SimpleForm',
   WizardForm: 'WizardForm',
   FooterWithSwitch: 'FooterWithSwitch',
+  FormWithTwoColumns: 'FormWithTwoColumns',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -129,4 +130,6 @@ export interface IFormConstructor {
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
   draggableElement: IGroupElement | IFormElement | null
+  componentsStructurePanelState : boolean
+  settingsPanelState : boolean
 }

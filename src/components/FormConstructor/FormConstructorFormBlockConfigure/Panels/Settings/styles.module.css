@@ -22,3 +22,17 @@
   flex-direction: row;
   justify-content: space-between;
 }
+.toggleButton {
+  position: absolute; 
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+}
+.toggleButton:hover {
+  opacity: 1;
+}

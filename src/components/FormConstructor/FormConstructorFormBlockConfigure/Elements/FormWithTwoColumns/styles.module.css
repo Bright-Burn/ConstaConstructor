@@ -1,0 +1,36 @@
+.titleText {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.flexParent {
+  display: flex;
+}
+.flexChild {
+  text-align: center;
+  padding: 20px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  width: 50%;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.borderBottomForText > :not(:last-child){
+  border-bottom-style: dotted;
+  border-bottom-width: 2px;
+}
+
+.textDecoration {
+  margin-left: 20px;
+  padding-top: 5px;
+  font-size: 12px;
+  font-family: Inter;
+  font-style: normal;
+  line-height: 120%;
+  color: #002033BF;
+  border-bottom-style: dotted;
+  border-bottom-width: 2px;
+}

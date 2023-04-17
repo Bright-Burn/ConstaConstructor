@@ -16,6 +16,7 @@ import {
   DeleteElementPayload,
   LoadProjectFromFile,
   LoadProjectFromStorage,
+  PanelStatePayload,
   SaveNewProject,
   SetNewElementDraggableElem,
   SetNewSelectedElement,
@@ -38,6 +39,8 @@ const initialState: IFormConstructor = {
   selectedElementProps: null,
   isGridVisible: true,
   draggableElement: null,
+  componentsStructurePanelState: true,
+  settingsPanelState: true,
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
@@ -153,6 +156,25 @@ export const formConstructorSlice = createFormConstructorSlice({
       const elementId = action.payload.elementId
       /// Добавить удаление из дерева, включая дочерние элементы
       state.allElementsMap.delete(elementId)
+    },
+    togglePanelsByHotkey: (state, action: PayloadAction<PanelStatePayload>) => {
+      if (
+        (state.componentsStructurePanelState === true && state.settingsPanelState === false) ||
+        (state.componentsStructurePanelState === false && state.settingsPanelState === true) ||
+        (state.componentsStructurePanelState === true && state.settingsPanelState === true)
+      ) {
+        state.componentsStructurePanelState = false
+        state.settingsPanelState = false
+      } else if (state.componentsStructurePanelState === false && state.settingsPanelState === false) {
+        state.componentsStructurePanelState = true
+        state.settingsPanelState = true
+      }
+    },
+    toggleSettingsPanelState: (state, action: PayloadAction<PanelStatePayload>) => {
+      state.settingsPanelState = !state.settingsPanelState
+    },
+    toggleComponentsStructurePanel: (state, action: PayloadAction<PanelStatePayload>) => {
+      state.componentsStructurePanelState = !state.componentsStructurePanelState
     },
   },
 })
