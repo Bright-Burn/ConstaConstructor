@@ -1,10 +1,9 @@
 import { Button } from '@consta/uikit/Button'
 import { Switch } from '@consta/uikit/Switch'
-import { useLayoutEffect, useState, FC} from 'react'
+import { useLayoutEffect, useState, FC } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IFooterWithSwitch } from './types'
-import style from './styles.module.css'
 import { Text } from '@consta/uikit/Text'
 import {
   IFormElementFooterWithSwitch,
@@ -13,7 +12,7 @@ import {
 
 export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
   const [checked, setChecked] = useState<boolean>(false)
-  const [footerProps, setFooterProps] = useState<footerWithSwitchProps>()
+  const [, setFooterProps] = useState<footerWithSwitchProps>()
 
   useLayoutEffect(() => {
     const badgeFormElement = element as IFormElementFooterWithSwitch
@@ -24,9 +23,8 @@ export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Badge}
-    >
-      <div className={`container-row flex-grow-1 space-between m-t-xs m-b-xs ${style.container}`}>
+      elementType={FormElementTypes.Badge}>
+      <div className={`container-row flex-grow-1 space-between m-t-xs m-b-xs`}>
         <div className='left-side'>
           <Button view='ghost' label='Очистить Поля' className='m-l-xs' />
         </div>
@@ -47,3 +45,4 @@ export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
     </SelectableLayerFullWidth>
   )
 }
+

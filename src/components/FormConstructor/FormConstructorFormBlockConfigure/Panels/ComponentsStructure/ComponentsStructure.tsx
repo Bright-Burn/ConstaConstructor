@@ -6,7 +6,6 @@ import { ComponentItems } from './ComponentItems'
 import { ComponentTree } from './ComponentTree'
 import { componentsTabItems } from './content'
 import { Tabs } from '@consta/uikit/Tabs'
-import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
 import {
@@ -43,39 +42,25 @@ export const ComponentsStructure = () => {
   return (
     <>
       {componentsStructurePanelState ? (
-        <>
-          <div className={`${styles.componentStructure} borderCard`}>
-            <div className={styles.tabs}>
-              <Tabs
-                value={tabValue}
-                onChange={({ value }) => setTabValue(value)}
-                items={componentsTabItems}
-                getItemIcon={(item: ComponentsTabItem) => item.icon}
-                size='xs'
-              />
-            </div>
-            {getTabContentRenderer()}
-            <ComponentTree />
-          </div>
-          <div className={styles.toggleButton}>
-            <Button
-              onlyIcon
-              iconLeft={IconArrowLeft}
-              onClick={toggleSettingsPanel}
-              size='s'
+        <div className={`${styles.componentStructure} borderCard`}>
+          <div className={styles.tabs}>
+            <Tabs
+              value={tabValue}
+              onChange={({ value }) => setTabValue(value)}
+              items={componentsTabItems}
+              getItemIcon={(item: ComponentsTabItem) => item.icon}
+              size='xs'
             />
           </div>
-        </>
+          {getTabContentRenderer()}
+          <ComponentTree />
+        </div>
       ) : (
         <div className={styles.toggleButton}>
-          <Button
-            onlyIcon
-            iconLeft={IconArrowRight}
-            onClick={toggleSettingsPanel}
-            size='s'
-          />
+          <Button onlyIcon iconLeft={IconArrowRight} onClick={toggleSettingsPanel} size='s' />
         </div>
       )}
     </>
   )
 }
+

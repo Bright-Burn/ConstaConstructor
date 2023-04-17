@@ -20,19 +20,12 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     if (e.code === 'Space' && e.ctrlKey) {
       dispatch(
         formConstructorSlice.actions.togglePanelsByHotkey({
-          settingsPanelState: settingsPanelState,
-          componentsStructurePanelState: componentsStructurePanelState,
+          settingsPanelState: !settingsPanelState,
+          componentsStructurePanelState: !componentsStructurePanelState,
         }),
       )
     }
   }
-
-  useEffect(() => {
-    document.body.addEventListener('keydown', onKeyDown)
-    return () => {
-      window.removeEventListener('keydown', () => {})
-    }
-  }, [])
 
   return (
     <div className={css.formConstructerEventListener} onKeyDown={onKeyDown}>
@@ -40,3 +33,4 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     </div>
   )
 }
+
