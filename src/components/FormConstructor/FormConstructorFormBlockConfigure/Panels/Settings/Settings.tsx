@@ -20,8 +20,9 @@ import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 
 export const Settings: FC = () => {
+  const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
-  const [isOpened, setIsOpened] = useState<boolean>(true)
+  const [isOpen, setIsOpen] = useState(settingsPanelState)
 
   const { selectedElement, isGridVisible } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
@@ -119,19 +120,24 @@ export const Settings: FC = () => {
     }
   }
 
-  const openAndCloseSetting = () => {
-    setIsOpened(!isOpened)
+  // не работает корреткно. Нужно выносить создать отдельное состояние для каждого компонента
+  const toggleSettingsPanel = () => {
+    dispatch(
+      formConstructorSlice.actions.toggleSettingsPanelState({
+        settingsPanelState: settingsPanelState,
+      }),
+    )
   }
 
   return (
     <>
-      {isOpened ? (
+      {settingsPanelState && isOpen ? (
         <>
           <div className={styles.toggleButton}>
             <Button
               onlyIcon
               iconLeft={IconArrowRight}
-              onClick={openAndCloseSetting}
+              onClick={toggleSettingsPanel}
               // view='ghost'
               size='s'
             />
@@ -172,7 +178,7 @@ export const Settings: FC = () => {
           <Button
             onlyIcon
             iconLeft={IconArrowLeft}
-            onClick={openAndCloseSetting}
+            onClick={toggleSettingsPanel}
             // view='ghost'
             size='s'
           />

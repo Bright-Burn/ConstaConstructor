@@ -8,6 +8,11 @@ export interface DeleteElementPayload {
   elementId: string
 }
 
+export interface PanelStatePayload {
+  componentsStructurePanelState?: boolean
+  settingsPanelState? : boolean
+}
+
 export type SetNewSelectedElement = {
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes

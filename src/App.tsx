@@ -1,11 +1,14 @@
-import React from 'react'
+import { Provider } from 'react-redux'
+import { store } from './components/FormConstructor/store'
 import { FormConstructorPage } from './pages/FormConstructorPage'
 
 function App() {
   return (
-    <div>
-      <FormConstructorPage />
-    </div>
+    <Provider store={store}>
+      <div>
+        <FormConstructorPage />
+      </div>
+    </Provider>
   )
 }
 
