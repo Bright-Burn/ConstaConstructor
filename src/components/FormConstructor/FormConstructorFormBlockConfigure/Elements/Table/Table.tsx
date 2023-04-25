@@ -15,10 +15,10 @@ export const Table: FC<ITable> = ({ element }) => {
   const [tableProps, setTableProps] = useState<TableProps>()
   const result: { field: string }[] = []
 
-  const updateRow = (columnDefs: any) => {
+  const updateRow = (columnDefs: { field: string }[]) => {
     if (tableProps?.row) {
       const newArray = new Array(tableProps.row).fill(
-        columnDefs.reduce((accum: any, column: any) => {
+        columnDefs.reduce((accum, column) => {
           accum[column.field] = 'Item'
           return accum
         }, {} as Record<string, string>),
@@ -49,19 +49,13 @@ export const Table: FC<ITable> = ({ element }) => {
       updateRow(columnDefs)
       return
     }
-    if (tableProps?.column && columnDefs.length < tableProps.column) {
-      for (let i = columnDefs.length + 1; i <= tableProps.column; i++) {
+    if (tableProps?.column && columnDefs.length !== tableProps.column) {
+      for (let i = 1; i <= tableProps.column; i++) {
         result.push({ field: `Header${i}` })
       }
-      const NewColumns = [...columnDefs, ...result]
+      const NewColumns = [...result]
       setColumnDefs(NewColumns)
       updateRow(NewColumns)
-    }
-
-    if (tableProps?.column && columnDefs.length > tableProps.column) {
-      setColumnDefs(prev =>
-        prev.slice(0, tableProps?.column && tableProps.column - columnDefs.length),
-      )
     }
   }, [tableProps])
 
