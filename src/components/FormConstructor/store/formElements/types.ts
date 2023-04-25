@@ -2,6 +2,7 @@ import { Props } from '@consta/uikit/Button'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
 import { CardElementPropsStyles } from './cardTypes'
 import { BadgeProps, IFormElementBadge } from './badgeTypes'
+import { TableProps, IFormElementTable } from './tableTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
 import { IFormElementTabs, TabsElementProps } from './tabsTypes'
 import { IFormElementInformer, InformerElementProps } from './informerTypes'
@@ -52,6 +53,7 @@ export const FormElementTypes = {
   WizardForm: 'WizardForm',
   FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
+  Table: 'Table',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -94,6 +96,7 @@ export type FormElementProps =
   | CheckboxProps
   | TabsElementProps
   | TextFieldProps
+  | TableProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -107,6 +110,7 @@ export type FormElementUnion =
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
+  | IFormElementTable
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement
@@ -130,6 +134,6 @@ export interface IFormConstructor {
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
   draggableElement: IGroupElement | IFormElement | null
-  componentsStructurePanelState : boolean
-  settingsPanelState : boolean
+  componentsStructurePanelState: boolean
+  settingsPanelState: boolean
 }

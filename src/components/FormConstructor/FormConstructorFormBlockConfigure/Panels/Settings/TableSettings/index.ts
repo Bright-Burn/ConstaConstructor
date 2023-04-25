@@ -1,0 +1,1 @@
+export { TableSettings } from './TableSettings'
