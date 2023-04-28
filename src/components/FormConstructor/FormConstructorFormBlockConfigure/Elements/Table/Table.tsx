@@ -1,31 +1,16 @@
-import { FC, useEffect, useLayoutEffect, useState } from 'react'
+import { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { AgGridReact } from 'ag-grid-react'
 import { IFormElementTable, TableProps } from '../../../store/formElements/tableTypes'
-import css from './styles.module.css'
-
-import 'ag-grid-community/styles/ag-grid.css'
-import 'ag-grid-community/styles/ag-theme-alpine.css'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { ITable } from './types'
-
-type Row = Record<string, string>
+import 'ag-grid-community/styles/ag-grid.css'
+import 'ag-grid-community/styles/ag-theme-material.css'
 
 export const Table: FC<ITable> = ({ element }) => {
+  const gridRef = useRef()
   const [tableProps, setTableProps] = useState<TableProps>()
   const result: { field: string }[] = []
-
-  const updateRow = (columnDefs: { field: string }[]) => {
-    if (tableProps?.row) {
-      const newArray = new Array(tableProps.row).fill(
-        columnDefs.reduce((accum, column) => {
-          accum[column.field] = 'Item'
-          return accum
-        }, {} as Record<string, string>),
-      )
-      setRowData(newArray)
-    }
-  }
 
   const [rowData, setRowData] = useState([
     { Header1: 'Item', Header2: 'Item', Header3: 'Item' },
@@ -38,6 +23,23 @@ export const Table: FC<ITable> = ({ element }) => {
     { field: 'Header2' },
     { field: 'Header3' },
   ])
+
+  const updateRow = (columnDefs: { field: string }[]) => {
+    if (tableProps?.row) {
+      let someName: Record<string, string> = {}
+      columnDefs.forEach(cd => {
+        someName[cd.field] = 'Item'
+      })
+      const newArray = new Array(tableProps.row).fill(someName)
+      setRowData(newArray)
+    }
+  }
+
+  const sizeToFit = () => {
+    if (gridRef.current)
+      // @ts-ignore
+      gridRef.current.api?.sizeColumnsToFit()
+  }
 
   useLayoutEffect(() => {
     const tableElement = element as IFormElementTable
@@ -53,11 +55,15 @@ export const Table: FC<ITable> = ({ element }) => {
       for (let i = 1; i <= tableProps.column; i++) {
         result.push({ field: `Header${i}` })
       }
-      const NewColumns = [...result]
-      setColumnDefs(NewColumns)
-      updateRow(NewColumns)
+      const newColumns = [...result]
+      setColumnDefs(newColumns)
+      updateRow(newColumns)
     }
   }, [tableProps])
+
+  useEffect(() => {
+    sizeToFit()
+  }, [columnDefs.length])
 
   return (
     <SelectableLayerFullWidth
@@ -65,8 +71,14 @@ export const Table: FC<ITable> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Table}
       className={'container-row'}>
-      <div className='ag-theme-material' style={{ height: 400, width: 900 }}>
-        <AgGridReact rowData={rowData} columnDefs={columnDefs} {...tableProps}></AgGridReact>
+      <div className='ag-theme-material' style={{ height: 400, width: '100%' }}>
+        <AgGridReact
+          // @ts-ignore
+          ref={gridRef}
+          onFirstDataRendered={() => sizeToFit()}
+          rowData={rowData}
+          columnDefs={columnDefs}
+          {...tableProps}></AgGridReact>
       </div>
     </SelectableLayerFullWidth>
   )

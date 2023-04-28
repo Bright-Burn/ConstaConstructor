@@ -1,11 +1,8 @@
 import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
-import { BadgePropForm, BadgePropSize, BadgePropStatus, BadgePropView } from '@consta/uikit/Badge'
 import { useDispatch } from 'react-redux'
 import { useLayoutEffect, useState } from 'react'
-import { Select } from '@consta/uikit/Select'
-import { Checkbox } from '@consta/uikit/Checkbox'
 import { TextField } from '@consta/uikit/TextField'
 import { TableProps } from '../../../../store/formElements/tableTypes'
 
@@ -15,28 +12,22 @@ export const TableSettings = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useDispatch()
 
-  useLayoutEffect(() => {
-    if (selectedElement) {
-      setProps(selectedElementProps as TableProps)
-    }
-  }, [selectedElementProps, selectedElement])
-
   const handleOnChangeLabelRow = ({ value }: { value: string | null }) => {
     if (selectedElement) {
       const newProps: TableProps = {
         ...(selectedElementProps as TableProps),
       }
-      newProps.row = (value && +value) || undefined
+      newProps.row = value === null ? undefined : +value
       onDispatch(selectedElement, newProps)
     }
   }
+
   const handleOnChangeLabelColumn = ({ value }: { value: string | null }) => {
     if (selectedElement) {
       const newProps: TableProps = {
         ...(selectedElementProps as TableProps),
       }
-      newProps.column = (value && +value) || undefined
-
+      newProps.column = value === null ? undefined : +value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -50,6 +41,12 @@ export const TableSettings = () => {
       }),
     )
   }
+
+  useLayoutEffect(() => {
+    if (selectedElement) {
+      setProps(selectedElementProps as TableProps)
+    }
+  }, [selectedElementProps, selectedElement])
 
   return (
     <div className={styles.badgeSettings}>
@@ -78,3 +75,4 @@ export const TableSettings = () => {
     </div>
   )
 }
+
