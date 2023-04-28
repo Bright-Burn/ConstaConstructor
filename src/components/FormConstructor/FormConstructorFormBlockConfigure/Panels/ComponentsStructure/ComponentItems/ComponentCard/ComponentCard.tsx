@@ -12,6 +12,7 @@ import { ComponentCardTextField } from './ComponentCardTextField'
 import { ComponentCardInformer } from './ComponentCardInformer'
 import { ComponentCardButton } from './ComponentCardButton'
 import { ComponentCardInnerCard } from './ComponentCardInnerCard'
+import { ComponentCardList } from './ComponentCardList'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
@@ -26,6 +27,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
         <ComponentCardText name={name} value={FormElementTypes.Text} />
         <ComponentCardButton name={name} value={FormElementTypes.Button} />
         <ComponentCardInformer name={name} value={FormElementTypes.Informer} />
+        <ComponentCardList name={name} value={FormElementTypes.List} />
       </SwitchComponent>
     </div>
   )

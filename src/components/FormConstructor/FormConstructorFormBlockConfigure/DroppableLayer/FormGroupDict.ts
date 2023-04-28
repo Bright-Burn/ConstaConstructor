@@ -21,6 +21,7 @@ import {
   WizardForm,
   FooterWithSwitch,
   FormWithTwoColumns,
+  ListFormElement,
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -45,4 +46,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   WizardForm: WizardForm,
   FooterWithSwitch: FooterWithSwitch,
   FormWithTwoColumns: FormWithTwoColumns,
+  List: ListFormElement,
 }

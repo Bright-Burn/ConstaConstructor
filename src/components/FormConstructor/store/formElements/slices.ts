@@ -165,7 +165,10 @@ export const formConstructorSlice = createFormConstructorSlice({
       ) {
         state.componentsStructurePanelState = false
         state.settingsPanelState = false
-      } else if (state.componentsStructurePanelState === false && state.settingsPanelState === false) {
+      } else if (
+        state.componentsStructurePanelState === false &&
+        state.settingsPanelState === false
+      ) {
         state.componentsStructurePanelState = true
         state.settingsPanelState = true
       }
