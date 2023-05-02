@@ -57,7 +57,7 @@ export const TableSettings = () => {
             step='1'
             label='Row'
             min='0'
-            value={props.row ? `${props.row}` : '3'}
+            value={props.row ? `${props.row}` : `${props.row}`}
             onChange={handleOnChangeLabelRow}
           />
           <TextField
@@ -65,7 +65,7 @@ export const TableSettings = () => {
             step='1'
             min='0'
             label='Column'
-            value={props.column ? `${props.column}` : '3'}
+            value={props.column ? `${props.column}` : `${props.column}`}
             onChange={handleOnChangeLabelColumn}
           />
         </>
