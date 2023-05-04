@@ -1,20 +1,15 @@
 import { Select } from '@consta/uikit/Select'
-import React, { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
 import { FormArray, sizeArray, innerOffsetArray } from './types'
-import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/TabsDeprecated'
-import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
-import {
-  ItemList,
-  ListElementPropsStyles,
-  ListProps,
-} from '../../../../store/formElements/ListTypes'
+import { ItemList, ListProps } from '../../../../store/formElements/ListTypes'
 import styles from './styles.module.css'
 import { Switch } from '@consta/uikit/Switch'
-import { CardElementPropsStyles, useAppSelector } from '../../../../store/formElements'
+import { useAppSelector } from '../../../../store/formElements'
+
 export const ListSettings = () => {
   const [props, setProps] = useState<ListProps>()
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -117,13 +112,6 @@ export const ListSettings = () => {
         items={innerOffsetArray}
         onChange={({ value }) => onChangeInnerOffset(value)}
       />
-      {/* <Switch
-        className={styles.Switch}
-        style={{ paddingBottom: 10 }}
-        checked={props?.isInteractive ?? false}
-        label='isInteractive'
-        onChange={onChangeSwitch('isInteractive')}
-      /> */}
       <Select
         label='Form'
         getItemKey={(key: ListPropForm) => key}
@@ -132,81 +120,7 @@ export const ListSettings = () => {
         items={FormArray}
         onChange={({ value }) => onChangeForm(value)}
       />
-      {/* <Switch
-        className={styles.Switch}
-        checked={props?.withGroups ?? false}
-        label='withGroups'
-        onChange={onChangeSwitch('withGroups')}
-      />
-      {props?.withGroups === true ? (
-        <Switch
-          className={styles.Switch}
-          checked={props?.groupsWithLabel ?? false}
-          label='groupsWithLabel'
-          onChange={onChangeSwitch('groupsWithLabel')}
-        />
-      ) : (
-        <></>
-      )}
-      <Switch
-        className={styles.Switch}
-        checked={props?.disabled ?? false}
-        label='disabled'
-        onChange={onChangeSwitch('disabled')}
-      />
-       <Switch
-        className={styles.Switch}
-        checked={props?.withLeftSide ?? false}
-        label='withLeftSide'
-        onChange={onChangeSwitch('withLeftSide')}
-      />
-      <Switch
-        className={styles.Switch}
-        checked={props?.withLeftIcon ?? false}
-        label='withLeftIcon'
-        onChange={onChangeSwitch('withLeftIcon')}
-      />
-      <Switch
-        className={styles.Switch}
-        checked={props?.withRightSide ?? false}
-        label='withRightSide'
-        onChange={onChangeSwitch('withRightSide')}
-      />
-      <Switch
-        className={styles.Switch}
-        checked={props?.withRightIcon ?? false}
-        label='withRightIcon'
-        onChange={onChangeSwitch('withRightIcon')}
-      />
-      <Switch
-        className={styles.Switch}
-        checked={props?.withDisabledItems ?? false}
-        label='withDisabledItems'
-        onChange={onChangeSwitch('withDisabledItems')}
-      />
-       <Switch
-        className={styles.Switch}
-        checked={props?.isLoading ?? false}
-        label='isLoading'
-        onChange={onChangeSwitch('isLoading')}
-      /> 
-      <Switch
-        className={styles.Switch}
-        style={{ paddingBottom: 10 }}
-        checked={props?.withListAddItem ?? false}
-        label='withListAddItem'
-        onChange={onChangeSwitch('withListAddItem')}
-      />
-      {(itemsProps.linePosition === 'bottom' || itemsProps.linePosition === 'top') && (
-        <Select
-          label='fitMode'
-          getItemKey={(key: FitMode) => key}
-          getItemLabel={(label: FitMode) => label}
-          value={itemsProps.fitMode}
-          items={fitModeArray}
-          onChange={({ value }) => onChangeFitMode(value)}
-        />
-      )} */}
     </>
   )
 }
+

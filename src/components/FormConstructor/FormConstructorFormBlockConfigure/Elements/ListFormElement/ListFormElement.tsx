@@ -3,7 +3,6 @@ import { ElementTypes, FormElementTypes } from '../../../store/formElements/type
 import { SelectableLayer } from '../../SelectableLayer'
 import { IListFormElement } from './types'
 import { List } from '@consta/uikit/ListCanary'
-import { IFormElementText, TextElementProps } from '../../../store/formElements'
 import { IFormElementList, ListProps } from '../../../store/formElements/ListTypes'
 import { ListBox } from '@consta/uikit/ListCanary'
 
@@ -53,3 +52,4 @@ export const ListFormElement: FC<IListFormElement> = ({ element }) => {
     </SelectableLayer>
   )
 }
+

@@ -1,11 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
-import {
-  ItemList,
-  ListElementProps,
-  ListElementPropsStyles,
-} from '../../../../store/formElements/ListTypes'
+import { ItemList, ListElementProps } from '../../../../store/formElements/ListTypes'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
 
 export const useItemsHandlers = () => {
@@ -113,3 +109,4 @@ export const useItemsHandlers = () => {
     },
   }
 }
+
