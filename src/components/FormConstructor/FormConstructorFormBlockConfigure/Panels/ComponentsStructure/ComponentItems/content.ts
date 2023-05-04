@@ -47,4 +47,9 @@ export const constaCards = [
     name: 'TextField',
     formElementType: FormElementTypes.TextField,
   },
+  {
+    id: uuid(),
+    name: 'ComboBox',
+    formElementType: FormElementTypes.ComboBox,
+  },
 ]
