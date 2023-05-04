@@ -9,6 +9,7 @@ import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { TextElementProps, IFormElementText } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 import { Values } from '../../utils'
+import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -52,6 +53,7 @@ export const FormElementTypes = {
   WizardForm: 'WizardForm',
   FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
+  DataTime: 'DataTime',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -94,6 +96,7 @@ export type FormElementProps =
   | CheckboxProps
   | TabsElementProps
   | TextFieldProps
+  | DataTimeProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -107,6 +110,7 @@ export type FormElementUnion =
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
+  | IFormElementDataTime
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement
@@ -130,6 +134,6 @@ export interface IFormConstructor {
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
   draggableElement: IGroupElement | IFormElement | null
-  componentsStructurePanelState : boolean
-  settingsPanelState : boolean
+  componentsStructurePanelState: boolean
+  settingsPanelState: boolean
 }
