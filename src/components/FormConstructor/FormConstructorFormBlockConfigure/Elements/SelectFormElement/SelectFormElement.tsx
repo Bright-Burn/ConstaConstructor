@@ -29,8 +29,8 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
   })
 
   useLayoutEffect(() => {
-    const SelectFormElementWithProps = element as IFormElementSelect
-    setSelectProps(SelectFormElementWithProps.props)
+    const selectFormElementWithProps = element as IFormElementSelect
+    setSelectProps(selectFormElementWithProps.props)
   }, [element])
 
   return (

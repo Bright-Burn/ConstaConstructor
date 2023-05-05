@@ -1,4 +1,3 @@
-import { TabsPropLinePosition } from '@consta/uikit/Tabs'
 import {
   PropForm,
   PropSize,
@@ -27,6 +26,4 @@ export const formArray: PropForm[] = [
 export const statusArray: PropStatus[] = ['alert', 'success', 'warning']
 
 export const labelPositionArray: ['top', 'left'] = ['top', 'left']
-
-export const linePositionArray: TabsPropLinePosition[] = ['bottom', 'top', 'left', 'right']
 
