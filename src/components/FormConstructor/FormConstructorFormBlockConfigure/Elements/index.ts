@@ -19,4 +19,5 @@ export { SimpleForm, simpleFormMock } from './SimpleForm'
 export { WizardForm, wizardFormMock } from './WizardForm'
 export { FooterWithSwitch, footerWithSwitchMock } from './FooterWithSwitch'
 export { FormWithTwoColumns, FormWithTwoColumnsMock } from './FormWithTwoColumns'
-
+export { RadioButtonFormElement } from './RadioButtonFormElement'
+export { SwitchFormElement } from './SwitchFormElement'

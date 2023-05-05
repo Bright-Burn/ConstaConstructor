@@ -17,6 +17,8 @@ import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
+import { RadioButtonSettings } from './RadioButtonSettings'
+import { SwitchSettings } from './SwitchSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -74,6 +76,18 @@ export const Settings: FC = () => {
           return (
             <>
               <TextFieldSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.RadioButton:
+          return (
+            <>
+              <RadioButtonSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Switch:
+          return (
+            <>
+              <SwitchSettings /> <BaseSettings />
             </>
           )
         default:

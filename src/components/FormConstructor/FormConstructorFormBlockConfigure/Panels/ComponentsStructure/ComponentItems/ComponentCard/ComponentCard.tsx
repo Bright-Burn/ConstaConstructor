@@ -12,6 +12,8 @@ import { ComponentCardTextField } from './ComponentCardTextField'
 import { ComponentCardInformer } from './ComponentCardInformer'
 import { ComponentCardButton } from './ComponentCardButton'
 import { ComponentCardInnerCard } from './ComponentCardInnerCard'
+import { ComponentCardRadioButton } from './ComponentCardRadioButton'
+import { ComponentCardSwitch } from './ComponentCardSwitch'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
@@ -26,6 +28,8 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
         <ComponentCardText name={name} value={FormElementTypes.Text} />
         <ComponentCardButton name={name} value={FormElementTypes.Button} />
         <ComponentCardInformer name={name} value={FormElementTypes.Informer} />
+        <ComponentCardRadioButton name={name} value={FormElementTypes.RadioButton} />
+        <ComponentCardSwitch name={name} value={FormElementTypes.Switch} />
       </SwitchComponent>
     </div>
   )

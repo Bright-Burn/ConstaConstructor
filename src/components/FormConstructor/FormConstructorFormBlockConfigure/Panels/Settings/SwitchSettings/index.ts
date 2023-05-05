@@ -1,0 +1,1 @@
+export { SwitchSettings } from './SwitchSettings'
