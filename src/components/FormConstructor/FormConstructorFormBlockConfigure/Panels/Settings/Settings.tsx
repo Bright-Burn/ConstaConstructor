@@ -17,6 +17,7 @@ import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
+import { DatePickerSettings } from './DatePickerSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -74,6 +75,12 @@ export const Settings: FC = () => {
           return (
             <>
               <TextFieldSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.DatePicker:
+          return (
+            <>
+              <DatePickerSettings /> <BaseSettings />
             </>
           )
         default:
