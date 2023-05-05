@@ -3,10 +3,11 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { ISelectFormElement } from './types'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
 import { Select } from '@consta/uikit/Select'
+import style from './style.module.css'
 import { IFormElementSelect, SelectProps } from '../../../store/formElements/selectTypes'
 
 export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
-  const [SelectProps, setSelectProps] = useState<SelectProps>({
+  const [selectProps, setSelectProps] = useState<SelectProps>({
     className: '',
     baseProps: {},
     items: [
@@ -35,9 +36,11 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
   return (
     <SelectableLayer
       parentElementId={element.id}
+      className={style.Select}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Select}>
-      <Select style={{ width: '400px' }} {...SelectProps} />
+      <Select {...selectProps} />
     </SelectableLayer>
   )
 }
+

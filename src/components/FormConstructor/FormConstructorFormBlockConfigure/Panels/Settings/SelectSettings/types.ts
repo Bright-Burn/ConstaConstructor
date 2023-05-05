@@ -26,6 +26,7 @@ export const formArray: PropForm[] = [
 ]
 export const statusArray: PropStatus[] = ['alert', 'success', 'warning']
 
-export const labelPositionArray = ['top', 'left']
+export const labelPositionArray: ['top', 'left'] = ['top', 'left']
 
 export const linePositionArray: TabsPropLinePosition[] = ['bottom', 'top', 'left', 'right']
+

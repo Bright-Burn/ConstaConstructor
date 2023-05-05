@@ -88,6 +88,15 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+  const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
+    if (selectedElement && value) {
+      const newProps: SelectProps = {
+        ...(selectedElementProps as SelectProps),
+      }
+      newProps.labelPosition = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
   const onChangeField =
     (propsName: keyof SelectProps) =>
     ({ value }: { value: string | null }) => {
@@ -115,6 +124,7 @@ export const useItemsHandlers = () => {
   return {
     onChangeItemsCount,
     onChangeForm,
+    onChangeLabelPosition,
     onChangeItems,
     onChangeStatus,
     onChangeView,
@@ -127,15 +137,14 @@ export const useItemsHandlers = () => {
       view: (selectedElementProps as SelectProps).view,
       form: (selectedElementProps as SelectProps).form,
       items: (selectedElementProps as SelectProps).items,
-      activeItem: (selectedElementProps as SelectProps).value,
       required: (selectedElementProps as SelectProps).required,
       status: (selectedElementProps as SelectProps).status,
       caption: (selectedElementProps as SelectProps).caption,
       label: (selectedElementProps as SelectProps).label,
-      withLabelIcon: (selectedElementProps as SelectProps).withLabelIcon,
       labelPosition: (selectedElementProps as SelectProps).labelPosition,
       placeholder: (selectedElementProps as SelectProps).placeholder,
       isLoading: (selectedElementProps as SelectProps).isLoading,
     },
   }
 }
+

@@ -24,7 +24,6 @@ export type SelectProps = {
   status?: PropStatus
   caption?: string
   label?: string
-  withLabelIcon?: boolean
   labelPosition?: 'top' | 'left'
   placeholder?: string
   isLoading?: boolean

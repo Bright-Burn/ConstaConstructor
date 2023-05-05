@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
-import { formArray, sizeArray, statusArray, viewArray } from './types'
+import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
 import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { Switch } from '@consta/uikit/Switch'
 import {
@@ -24,6 +24,7 @@ export const SelectSettings = () => {
     onChangeSwitch,
     onChangeSize,
     onChangeField,
+    onChangeLabelPosition,
   } = useItemsHandlers()
   const [tabs, setTabs] = useState<ITEM[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
@@ -40,7 +41,6 @@ export const SelectSettings = () => {
     newTabs[index] = { ...newTabs[index], label: `${value}` }
     setTabs([...newTabs])
   }
-
   return (
     <>
       {!isLabelsEditing && (
@@ -133,11 +133,26 @@ export const SelectSettings = () => {
         value={`${itemsProps.label || ''}`}
         onChange={onChangeField('label')}
       />
+      <Select
+        label='labelPosition'
+        getItemKey={(key: 'top' | 'left') => key}
+        getItemLabel={(label: 'top' | 'left') => label}
+        value={itemsProps.labelPosition}
+        items={labelPositionArray}
+        onChange={({ value }) => onChangeLabelPosition(value)}
+      />
       <TextField
         label='placeholder'
         value={`${itemsProps.placeholder || ''}`}
         onChange={onChangeField('placeholder')}
       />
+      <Switch
+        style={{ marginTop: '8px' }}
+        onChange={onChangeSwitch('isLoading')}
+        label='isLoading'
+        checked={itemsProps.isLoading}
+      />
     </>
   )
 }
+
