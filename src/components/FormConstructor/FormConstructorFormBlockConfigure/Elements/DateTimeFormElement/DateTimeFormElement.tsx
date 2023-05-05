@@ -23,28 +23,11 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
         value={rangeValue}
         onChangeRange={({ value }) => setRangeValue(value)}
         {...dataTimeProps}
-        multiplicityHours={
-          dataTimeProps
-            ? dataTimeProps?.multiplicityHours
-              ? +dataTimeProps?.multiplicityHours
-              : 1
-            : 1
-        }
-        multiplicityMinutes={
-          dataTimeProps
-            ? dataTimeProps?.multiplicityMinutes
-              ? +dataTimeProps?.multiplicityMinutes
-              : 1
-            : 1
-        }
-        multiplicitySeconds={
-          dataTimeProps
-            ? dataTimeProps?.multiplicitySeconds
-              ? +dataTimeProps?.multiplicitySeconds
-              : 1
-            : 1
-        }
+        multiplicityHours={dataTimeProps && +dataTimeProps?.multiplicityHours}
+        multiplicityMinutes={dataTimeProps && +dataTimeProps?.multiplicityMinutes}
+        multiplicitySeconds={dataTimeProps && +dataTimeProps?.multiplicitySeconds}
       />
     </SelectableLayer>
   )
 }
+

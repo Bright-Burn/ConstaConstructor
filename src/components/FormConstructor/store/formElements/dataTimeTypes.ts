@@ -7,9 +7,9 @@ export type DataTimeProps = {
   minDate?: Date | undefined
   maxDate?: Date | undefined
   currentVisibleDate?: Date
-  multiplicityHours?: string
-  multiplicityMinutes?: string
-  multiplicitySeconds?: string
+  multiplicityHours: number
+  multiplicityMinutes: number
+  multiplicitySeconds: number
 } & BaseProps
 
 export interface IFormElementDataTime extends IFormElement {

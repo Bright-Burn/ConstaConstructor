@@ -57,7 +57,7 @@ export const useItemsHandlers = () => {
       const newProps: DataTimeProps = {
         ...(selectedElementProps as DataTimeProps),
       }
-      newProps.multiplicityHours = value
+      newProps.multiplicityHours = +value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -66,7 +66,7 @@ export const useItemsHandlers = () => {
       const newProps: DataTimeProps = {
         ...(selectedElementProps as DataTimeProps),
       }
-      newProps.multiplicityMinutes = value
+      newProps.multiplicityMinutes = +value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -75,7 +75,7 @@ export const useItemsHandlers = () => {
       const newProps: DataTimeProps = {
         ...(selectedElementProps as DataTimeProps),
       }
-      newProps.multiplicitySeconds = value
+      newProps.multiplicitySeconds = +value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -98,3 +98,4 @@ export const useItemsHandlers = () => {
     },
   }
 }
+

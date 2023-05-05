@@ -18,9 +18,9 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
         view: 'classic',
         className: '',
         baseProps: {},
-        multiplicityHours: '1',
-        multiplicityMinutes: '1',
-        multiplicitySeconds: '1',
+        multiplicityHours: 1,
+        multiplicityMinutes: 1,
+        multiplicitySeconds: 1,
       },
     }
     dispatch(formConstructorSlice.actions.setDraggableElement({ element: newDataTime }))
