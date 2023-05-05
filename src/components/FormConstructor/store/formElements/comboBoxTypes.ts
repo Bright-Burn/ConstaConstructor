@@ -6,7 +6,7 @@ import {
 } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
 import { BaseProps, IFormElement } from './types'
 
-type Item = {
+export type Item = {
   label: string
   id: number
 }

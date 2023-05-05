@@ -4,9 +4,10 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { IComboBoxFormElement } from './types'
 import { ComboboxProps, IFormElementComboBox } from '../../../store/formElements/comboBoxTypes'
 import { Combobox } from '@consta/uikit/Combobox'
+import style from './style.module.css'
 
 export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
-  const [textProps, setTextProps] = useState<ComboboxProps>({
+  const [comboboxProps, setComboboxProps] = useState<ComboboxProps>({
     className: '',
     baseProps: {},
     items: [
@@ -27,16 +28,17 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   })
 
   useLayoutEffect(() => {
-    const textFormElement = element as IFormElementComboBox
-    setTextProps(textFormElement.props)
+    const comboBoxFormElement = element as IFormElementComboBox
+    setComboboxProps(comboBoxFormElement.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
+      className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.ComboBox}>
-      <Combobox style={{ width: 400 }} {...textProps} />
+      <Combobox {...comboboxProps} />
     </SelectableLayer>
   )
 }

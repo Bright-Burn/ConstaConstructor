@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
-import { ITEM } from '../../../../store/formElements/tabsTypes'
+import { Item } from '../../../../store/formElements/comboBoxTypes'
 import { Switch } from '@consta/uikit/Switch'
 import {
   PropForm,
@@ -26,20 +26,20 @@ export const ComboBoxSettings = () => {
     onChangeForm,
     onChangeSwitch,
   } = useItemsHandlers()
-  const [tabs, setTabs] = useState<ITEM[]>(itemsProps.items)
+  const [lines, setLines] = useState<Item[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {
-    setTabs(itemsProps.items)
+    setLines(itemsProps.items)
     setIsLabelsEditing(value)
   }
-  const applyNewTabs = () => {
-    onChangeItems(tabs)
+  const applyNewLines = () => {
+    onChangeItems(lines)
     setIsLabelsEditing(false)
   }
-  const onTabLabelEdit = (value: string | null, index: number) => {
-    const newTabs = [...tabs]
-    newTabs[index] = { ...newTabs[index], label: `${value}` }
-    setTabs([...newTabs])
+  const onLinesLabelEdit = (value: string | null, index: number) => {
+    const newLines = [...lines]
+    newLines[index] = { ...newLines[index], label: `${value}` }
+    setLines([...newLines])
   }
 
   return (
@@ -55,20 +55,20 @@ export const ComboBoxSettings = () => {
           <Button
             view='secondary'
             className='m-b-xs m-t-xs'
-            label={'Сменить названия табов'}
+            label={'Сменить названия в списке'}
             onClick={() => labelsEditingHandler(true)}
           />
         </>
       )}
       {isLabelsEditing && (
         <>
-          {tabs.map((tab, index) => {
+          {lines.map((line, index) => {
             return (
               <TextField
                 key={index}
                 label={`${index + 1}`}
-                value={`${tab.label}`}
-                onChange={event => onTabLabelEdit(event.value, index)}
+                value={`${line.label}`}
+                onChange={event => onLinesLabelEdit(event.value, index)}
               />
             )
           })}
@@ -76,7 +76,7 @@ export const ComboBoxSettings = () => {
             size='xs'
             className='m-b-xs m-t-xs'
             label='Применить'
-            onClick={() => applyNewTabs()}
+            onClick={() => applyNewLines()}
           />
           <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
         </>
