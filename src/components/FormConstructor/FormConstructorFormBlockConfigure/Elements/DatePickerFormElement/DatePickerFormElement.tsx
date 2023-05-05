@@ -9,11 +9,11 @@ import {
 import { DatePicker } from '@consta/uikit/DatePicker'
 
 export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) => {
-  const [DatePickerProps, setDatePickerProps] = useState<DatePickerProps>()
+  const [datePickerProps, setDatePickerProps] = useState<DatePickerProps>()
 
   useLayoutEffect(() => {
-    const DatePickerFormElement = element as IFormElementDatePicker
-    setDatePickerProps(DatePickerFormElement.props)
+    const datePickerFormElement = element as IFormElementDatePicker
+    setDatePickerProps(datePickerFormElement.props)
   }, [element])
 
   return (
@@ -21,7 +21,8 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.DatePicker}>
-      <DatePicker {...DatePickerProps} />
+      <DatePicker {...datePickerProps} />
     </SelectableLayer>
   )
 }
+
