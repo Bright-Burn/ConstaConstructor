@@ -32,22 +32,22 @@ export const ListSettings = () => {
     onChangeItems,
   } = useItemsHandlers()
 
-  const [tabs, setTabs] = useState<ItemList[]>(itemsProps.items)
+  const [lines, setLines] = useState<ItemList[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {
-    setTabs(itemsProps.items)
+    setLines(itemsProps.items)
     setIsLabelsEditing(value)
   }
 
   const applyNewTabs = () => {
-    onChangeItems(tabs)
+    onChangeItems(lines)
     setIsLabelsEditing(false)
   }
 
   const onTabLabelEdit = (value: string | null, index: number) => {
-    const newTabs = [...tabs]
+    const newTabs = [...lines]
     newTabs[index] = { ...newTabs[index], label: `${value}` }
-    setTabs([...newTabs])
+    setLines([...newTabs])
   }
 
   return (
@@ -70,12 +70,12 @@ export const ListSettings = () => {
       )}
       {isLabelsEditing && (
         <>
-          {tabs.map((tab, index) => {
+          {lines.map((line, index) => {
             return (
               <TextField
                 key={index}
                 label={`${index + 1}`}
-                value={`${tab.label}`}
+                value={`${line.label}`}
                 onChange={event => onTabLabelEdit(event.value, index)}
               />
             )

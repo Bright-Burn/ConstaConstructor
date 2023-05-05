@@ -3,16 +3,10 @@ import { ElementTypes, FormElementTypes } from '../../../store/formElements/type
 import { SelectableLayer } from '../../SelectableLayer'
 import { IListFormElement } from './types'
 import { List } from '@consta/uikit/ListCanary'
-import { IFormElementList, ListProps } from '../../../store/formElements/ListTypes'
+import { IFormElementList, ItemList, ListProps } from '../../../store/formElements/ListTypes'
 import { ListBox } from '@consta/uikit/ListCanary'
 
-type Item = {
-  label: string
-  id: number
-  disabled: boolean
-}
-
-const items: Item[] = [
+const items: ItemList[] = [
   {
     label: '1',
     id: 1,
@@ -30,11 +24,11 @@ const items: Item[] = [
   },
 ]
 export const ListFormElement: FC<IListFormElement> = ({ element }) => {
-  const [textFieldProps, setTextFieldProps] = useState<ListProps>()
+  const [ListProps, setListProps] = useState<ListProps>()
 
   useLayoutEffect(() => {
     const ListFormElement = element as IFormElementList
-    setTextFieldProps(ListFormElement.props)
+    setListProps(ListFormElement.props)
   }, [element])
 
   return (
@@ -42,12 +36,12 @@ export const ListFormElement: FC<IListFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.List}>
-      {textFieldProps?.withListBox === true ? (
-        <ListBox form={textFieldProps.form} shadow border>
-          <List {...textFieldProps} />
+      {ListProps?.withListBox === true ? (
+        <ListBox form={ListProps.form} shadow border>
+          <List {...ListProps} />
         </ListBox>
       ) : (
-        <List items={items} {...textFieldProps} />
+        <List items={items} {...ListProps} />
       )}
     </SelectableLayer>
   )

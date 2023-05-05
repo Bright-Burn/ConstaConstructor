@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
-import { ItemList, ListElementProps } from '../../../../store/formElements/ListTypes'
+import { ItemList, ListProps } from '../../../../store/formElements/ListTypes'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
 
 export const useItemsHandlers = () => {
@@ -10,8 +10,8 @@ export const useItemsHandlers = () => {
 
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: ListElementProps = {
-        ...(selectedElementProps as ListElementProps),
+      const newProps: ListProps = {
+        ...(selectedElementProps as ListProps),
       }
       let itemsProps = [...newProps.items]
       const currentLength = itemsProps.length
@@ -34,19 +34,18 @@ export const useItemsHandlers = () => {
 
   const onChangeSize = (value: ListPropSize | null) => {
     if (selectedElement && value) {
-      const newProps: ListElementProps = {
-        ...(selectedElementProps as ListElementProps),
+      const newProps: ListProps = {
+        ...(selectedElementProps as ListProps),
       }
       newProps.size = value
-      debugger
       onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeItems = (items: ItemList[]) => {
     if (selectedElement && items) {
-      const newProps: ListElementProps = {
-        ...(selectedElementProps as ListElementProps),
+      const newProps: ListProps = {
+        ...(selectedElementProps as ListProps),
       }
       newProps.items = [...items]
       newProps.value = items[0]
@@ -56,8 +55,8 @@ export const useItemsHandlers = () => {
 
   const onChangeInnerOffset = (value: ListPropInnerOffset | null) => {
     if (selectedElement && value) {
-      const newProps: ListElementProps = {
-        ...(selectedElementProps as ListElementProps),
+      const newProps: ListProps = {
+        ...(selectedElementProps as ListProps),
       }
       newProps.innerOffset = value
       onDispatch(selectedElement, newProps)
@@ -65,26 +64,26 @@ export const useItemsHandlers = () => {
   }
   const onChangeForm = (value: ListPropForm | null) => {
     if (selectedElement && value) {
-      const newProps: ListElementProps = {
-        ...(selectedElementProps as ListElementProps),
+      const newProps: ListProps = {
+        ...(selectedElementProps as ListProps),
       }
       newProps.form = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeSwitch =
-    (propsName: keyof ListElementProps) =>
+    (propsName: keyof ListProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: ListElementProps = {
-          ...(selectedElementProps as ListElementProps),
+        const newProps: ListProps = {
+          ...(selectedElementProps as ListProps),
         }
         // @ts-ignore
         newProps[propsName] = checked
         onDispatch(selectedElement, newProps)
       }
     }
-  const onDispatch = (selectedElement: ISelectedElement, newProps: ListElementProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: ListProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
         elementType: selectedElement.elementType,
@@ -101,11 +100,11 @@ export const useItemsHandlers = () => {
     onChangeItemsCount,
     onChangeItems,
     itemsProps: {
-      activeItem: (selectedElementProps as ListElementProps).value,
-      items: (selectedElementProps as ListElementProps).items,
-      form: (selectedElementProps as ListElementProps).form,
-      size: (selectedElementProps as ListElementProps).size,
-      innerOffset: (selectedElementProps as ListElementProps).innerOffset,
+      activeItem: (selectedElementProps as ListProps).value,
+      items: (selectedElementProps as ListProps).items,
+      form: (selectedElementProps as ListProps).form,
+      size: (selectedElementProps as ListProps).size,
+      innerOffset: (selectedElementProps as ListProps).innerOffset,
     },
   }
 }
