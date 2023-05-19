@@ -6,12 +6,8 @@ import { Button } from '@consta/uikit/Button'
 import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
 import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { Switch } from '@consta/uikit/Switch'
-import {
-  TextFieldPropForm,
-  TextFieldPropSize,
-  TextFieldPropStatus,
-  TextFieldPropView,
-} from '@consta/uikit/TextField'
+import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
+import { PropForm } from '../../../../store/formElements/selectTypes'
 
 export const SelectSettings = () => {
   const {
@@ -103,8 +99,8 @@ export const SelectSettings = () => {
       />
       <Select
         label='form'
-        getItemKey={(key: TextFieldPropForm) => key}
-        getItemLabel={(label: TextFieldPropForm) => label}
+        getItemKey={(key: PropForm) => key}
+        getItemLabel={(label: PropForm) => label}
         value={itemsProps.form}
         items={formArray}
         onChange={({ value }) => onChangeForm(value)}

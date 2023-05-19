@@ -1,15 +1,24 @@
 import { BaseProps, IFormElement } from './types'
-import {
-  TextFieldPropSize,
-  TextFieldPropView,
-  TextFieldPropForm,
-  TextFieldPropStatus,
-} from '@consta/uikit/TextField'
+import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
 
 export type ITEM = {
   id: number
   label: string
 }
+
+export type PropForm =
+  | 'default'
+  | 'round'
+  | 'brick'
+  | 'clearRound'
+  | 'roundClear'
+  | 'clearDefault'
+  | 'defaultClear'
+  | 'defaultBrick'
+  | 'brickDefault'
+  | 'brickClear'
+  | 'clearBrick'
+  | 'clearClear'
 
 type TextContent = { content: string }
 
@@ -17,7 +26,7 @@ export type SelectProps = {
   disabled?: boolean
   size?: TextFieldPropSize
   view?: TextFieldPropView
-  form?: TextFieldPropForm
+  form?: PropForm
   items: ITEM[]
   value?: ITEM | null
   required?: boolean

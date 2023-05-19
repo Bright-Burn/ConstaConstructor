@@ -2,13 +2,8 @@ import { useDispatch } from 'react-redux'
 import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { ITEM } from '../../../../store/formElements/tabsTypes'
-import { SelectProps } from '../../../../store/formElements/selectTypes'
-import {
-  TextFieldPropSize,
-  TextFieldPropView,
-  TextFieldPropForm,
-  TextFieldPropStatus,
-} from '@consta/uikit/TextField'
+import { PropForm, SelectProps } from '../../../../store/formElements/selectTypes'
+import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -70,7 +65,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeForm = (value: TextFieldPropForm | null) => {
+  const onChangeForm = (value: PropForm | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
         ...(selectedElementProps as SelectProps),
