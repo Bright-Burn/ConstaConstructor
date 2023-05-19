@@ -1,10 +1,6 @@
-import {
-  PropForm,
-  PropSize,
-  PropStatus,
-  PropView,
-} from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+import { PropForm } from './selectTypes'
 import { BaseProps, IFormElement } from './types'
+import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 
 export type Item = {
   label: string
@@ -15,13 +11,13 @@ export type ComboboxProps = {
   items: Item[]
   value?: Item | null
   disabled?: boolean
-  size?: PropSize
-  view?: PropView
+  size?: TextFieldPropSize
+  view?: TextFieldPropView
   form?: PropForm
   required?: boolean
   caption?: string
   label?: string
-  status?: PropStatus
+  status?: TextFieldPropStatus
   labelPosition?: 'top' | 'left'
   placeholder?: string
   isLoading?: boolean

@@ -20,4 +20,6 @@ export { WizardForm, wizardFormMock } from './WizardForm'
 export { FooterWithSwitch, footerWithSwitchMock } from './FooterWithSwitch'
 export { FormWithTwoColumns, FormWithTwoColumnsMock } from './FormWithTwoColumns'
 export { ComboBoxFormElement } from './ComboBoxFormElement'
+export { SelectFormElement } from './SelectFormElement'
+export { DataTimeFormElement } from './DateTimeFormElement'
 
