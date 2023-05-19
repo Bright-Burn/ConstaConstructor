@@ -4,11 +4,11 @@ import { ISelectedElement } from '../../../../store/formElements/types'
 import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { SelectProps } from '../../../../store/formElements/selectTypes'
 import {
-  PropForm,
-  PropSize,
-  PropStatus,
-  PropView,
-} from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+  TextFieldPropSize,
+  TextFieldPropView,
+  TextFieldPropForm,
+  TextFieldPropStatus,
+} from '@consta/uikit/TextField'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -52,7 +52,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeSize = (value: PropSize | null) => {
+  const onChangeSize = (value: TextFieldPropSize | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
         ...(selectedElementProps as SelectProps),
@@ -61,7 +61,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeView = (value: PropView | null) => {
+  const onChangeView = (value: TextFieldPropView | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
         ...(selectedElementProps as SelectProps),
@@ -70,7 +70,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeForm = (value: PropForm | null) => {
+  const onChangeForm = (value: TextFieldPropForm | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
         ...(selectedElementProps as SelectProps),
@@ -79,7 +79,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeStatus = (value: PropStatus | null) => {
+  const onChangeStatus = (value: TextFieldPropStatus | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
         ...(selectedElementProps as SelectProps),

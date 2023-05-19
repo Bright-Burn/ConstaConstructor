@@ -52,4 +52,9 @@ export const constaCards = [
     name: 'Select',
     formElementType: FormElementTypes.Select,
   },
+  {
+    id: uuid(),
+    name: 'DataTime',
+    formElementType: FormElementTypes.DataTime,
+  },
 ]

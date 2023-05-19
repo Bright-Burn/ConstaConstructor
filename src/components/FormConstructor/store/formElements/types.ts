@@ -10,6 +10,7 @@ import { TextElementProps, IFormElementText } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 import { Values } from '../../utils'
 import { IFormElementSelect, SelectProps } from './selectTypes'
+import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -54,6 +55,7 @@ export const FormElementTypes = {
   FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
   Select: 'SelectForm',
+  DataTime: 'DataTime',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -97,6 +99,7 @@ export type FormElementProps =
   | TabsElementProps
   | TextFieldProps
   | SelectProps
+  | DataTimeProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -111,6 +114,7 @@ export type FormElementUnion =
   | IFormElementTabs
   | IFormElementTextField
   | IFormElementSelect
+  | IFormElementDataTime
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement

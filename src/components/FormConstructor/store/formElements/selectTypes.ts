@@ -1,10 +1,10 @@
 import { BaseProps, IFormElement } from './types'
 import {
-  PropSize,
-  PropView,
-  PropForm,
-  PropStatus,
-} from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+  TextFieldPropSize,
+  TextFieldPropView,
+  TextFieldPropForm,
+  TextFieldPropStatus,
+} from '@consta/uikit/TextField'
 
 export type ITEM = {
   id: number
@@ -15,13 +15,13 @@ type TextContent = { content: string }
 
 export type SelectProps = {
   disabled?: boolean
-  size?: PropSize
-  view?: PropView
-  form?: PropForm
+  size?: TextFieldPropSize
+  view?: TextFieldPropView
+  form?: TextFieldPropForm
   items: ITEM[]
   value?: ITEM | null
   required?: boolean
-  status?: PropStatus
+  status?: TextFieldPropStatus
   caption?: string
   label?: string
   labelPosition?: 'top' | 'left'
@@ -34,3 +34,4 @@ export type SelectProps = {
 export interface IFormElementSelect extends IFormElement {
   props: SelectProps
 }
+

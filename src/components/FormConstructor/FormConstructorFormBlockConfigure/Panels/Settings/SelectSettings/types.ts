@@ -1,20 +1,21 @@
 import {
-  PropForm,
-  PropSize,
-  PropStatus,
-  PropView,
-} from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+  TextFieldPropForm,
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropView,
+} from '@consta/uikit/TextField'
 
-export const sizeArray: PropSize[] = ['xs', 's', 'm', 'l']
+export const sizeArray: TextFieldPropSize[] = ['xs', 's', 'm', 'l']
 
-export const viewArray: PropView[] = ['default', 'clear']
+export const viewArray: TextFieldPropView[] = ['default', 'clear']
 
-export const formArray: PropForm[] = [
+export const formArray: TextFieldPropForm[] = [
   'default',
   'clearBrick',
   'brick',
   'brickClear',
   'brickDefault',
+  'brickRound',
   'clearDefault',
   'clearClear',
   'clearRound',
@@ -23,7 +24,7 @@ export const formArray: PropForm[] = [
   'round',
   'roundClear',
 ]
-export const statusArray: PropStatus[] = ['alert', 'success', 'warning']
+export const statusArray: TextFieldPropStatus[] = ['alert', 'success', 'warning']
 
 export const labelPositionArray: ['top', 'left'] = ['top', 'left']
 

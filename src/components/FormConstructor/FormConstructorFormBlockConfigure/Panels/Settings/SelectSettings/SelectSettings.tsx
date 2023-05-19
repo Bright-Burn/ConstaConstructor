@@ -7,11 +7,11 @@ import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from
 import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { Switch } from '@consta/uikit/Switch'
 import {
-  PropForm,
-  PropSize,
-  PropStatus,
-  PropView,
-} from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+  TextFieldPropForm,
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropView,
+} from '@consta/uikit/TextField'
 
 export const SelectSettings = () => {
   const {
@@ -87,24 +87,24 @@ export const SelectSettings = () => {
       />
       <Select
         label='size'
-        getItemKey={(key: PropSize) => key}
-        getItemLabel={(label: PropSize) => label}
+        getItemKey={(key: TextFieldPropSize) => key}
+        getItemLabel={(label: TextFieldPropSize) => label}
         value={itemsProps.size}
         items={sizeArray}
         onChange={({ value }) => onChangeSize(value)}
       />
       <Select
         label='view'
-        getItemKey={(key: PropView) => key}
-        getItemLabel={(label: PropView) => label}
+        getItemKey={(key: TextFieldPropView) => key}
+        getItemLabel={(label: TextFieldPropView) => label}
         value={itemsProps.view}
         items={viewArray}
         onChange={({ value }) => onChangeView(value)}
       />
       <Select
         label='form'
-        getItemKey={(key: PropForm) => key}
-        getItemLabel={(label: PropForm) => label}
+        getItemKey={(key: TextFieldPropForm) => key}
+        getItemLabel={(label: TextFieldPropForm) => label}
         value={itemsProps.form}
         items={formArray}
         onChange={({ value }) => onChangeForm(value)}
@@ -117,8 +117,8 @@ export const SelectSettings = () => {
       />
       <Select
         label='status'
-        getItemKey={(key: PropStatus) => key}
-        getItemLabel={(label: PropStatus) => label}
+        getItemKey={(key: TextFieldPropStatus) => key}
+        getItemLabel={(label: TextFieldPropStatus) => label}
         value={itemsProps.status}
         items={statusArray}
         onChange={({ value }) => onChangeStatus(value)}

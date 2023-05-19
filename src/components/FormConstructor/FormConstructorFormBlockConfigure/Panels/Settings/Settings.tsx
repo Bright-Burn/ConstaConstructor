@@ -18,6 +18,7 @@ import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
 import { SelectSettings } from './SelectSettings/SelectSettings'
+import { DataTimeSettings } from './DataTimeSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -81,6 +82,12 @@ export const Settings: FC = () => {
           return (
             <>
               <SelectSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.DataTime:
+          return (
+            <>
+              <DataTimeSettings /> <BaseSettings />
             </>
           )
         default:
