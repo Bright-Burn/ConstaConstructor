@@ -17,6 +17,7 @@ import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
+import { SelectSettings } from './SelectSettings/SelectSettings'
 import { DataTimeSettings } from './DataTimeSettings'
 
 export const Settings: FC = () => {
@@ -75,6 +76,12 @@ export const Settings: FC = () => {
           return (
             <>
               <TextFieldSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Select:
+          return (
+            <>
+              <SelectSettings /> <BaseSettings />
             </>
           )
         case FormElementTypes.DataTime:

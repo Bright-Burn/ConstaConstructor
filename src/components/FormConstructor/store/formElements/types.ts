@@ -9,6 +9,7 @@ import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { TextElementProps, IFormElementText } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 import { Values } from '../../utils'
+import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 
 export type ButtonElementProps = Props & BaseProps
@@ -53,6 +54,7 @@ export const FormElementTypes = {
   WizardForm: 'WizardForm',
   FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
+  Select: 'SelectForm',
   DataTime: 'DataTime',
 } as const
 
@@ -96,6 +98,7 @@ export type FormElementProps =
   | CheckboxProps
   | TabsElementProps
   | TextFieldProps
+  | SelectProps
   | DataTimeProps
 
 // Все Union пропсы для GroupElement
@@ -110,6 +113,7 @@ export type FormElementUnion =
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
+  | IFormElementSelect
   | IFormElementDataTime
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
