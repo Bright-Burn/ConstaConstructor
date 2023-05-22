@@ -54,6 +54,11 @@ export const constaCards = [
   },
   {
     id: uuid(),
+    name: 'List',
+    formElementType: FormElementTypes.List,
+  },
+  {
+    id: uuid(),
     name: 'Switch',
     formElementType: FormElementTypes.Switch,
   },

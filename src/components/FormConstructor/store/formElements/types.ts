@@ -9,6 +9,7 @@ import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { TextElementProps, IFormElementText } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 import { Values } from '../../utils'
+import { IFormElementList, ListProps } from './ListTypes'
 import { IFormElementRadioButton, RadioButtonProps } from './radioButtonTypes'
 import { IFormElementSwitch, SwitchProps } from './SwitchTypes'
 import { DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
@@ -58,6 +59,7 @@ export const FormElementTypes = {
   WizardForm: 'WizardForm',
   FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
+  List: 'List',
   RadioButton: 'RadioButton',
   Switch: 'Switch',
   DatePicker: 'DatePicker',
@@ -106,6 +108,7 @@ export type FormElementProps =
   | CheckboxProps
   | TabsElementProps
   | TextFieldProps
+  | ListProps
   | RadioButtonProps
   | SwitchProps
   | DatePickerProps
@@ -125,6 +128,7 @@ export type FormElementUnion =
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
+  | IFormElementList
   | IFormElementRadioButton
   | IFormElementSwitch
   | IFormElementDatePicker

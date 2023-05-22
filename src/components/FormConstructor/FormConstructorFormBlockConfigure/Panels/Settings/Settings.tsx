@@ -17,6 +17,7 @@ import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
+import { ListSettings } from './ListSettings/ListSettings'
 import { RadioButtonSettings } from './RadioButtonSettings'
 import { SwitchSettings } from './SwitchSettings'
 import { DatePickerSettings } from './DatePickerSettings'
@@ -81,6 +82,12 @@ export const Settings: FC = () => {
             <>
               <TextFieldSettings /> <BaseSettings />
             </>
+          )
+        case FormElementTypes.List:
+          return (
+            <>
+              <ListSettings /> <BaseSettings />
+              </>
           )
         case FormElementTypes.RadioButton:
           return (
