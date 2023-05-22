@@ -9,6 +9,7 @@ import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { TextElementProps, IFormElementText } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 import { Values } from '../../utils'
+import { DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
 import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
 import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
@@ -55,6 +56,7 @@ export const FormElementTypes = {
   WizardForm: 'WizardForm',
   FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
+  DatePicker: 'DatePicker',
   ComboBox: 'ComboBox',
   Select: 'SelectForm',
   DataTime: 'DataTime',
@@ -100,6 +102,7 @@ export type FormElementProps =
   | CheckboxProps
   | TabsElementProps
   | TextFieldProps
+  | DatePickerProps
   | ComboboxProps
   | SelectProps
   | DataTimeProps
@@ -116,6 +119,7 @@ export type FormElementUnion =
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
+  | IFormElementDatePicker
   | IFormElementComboBox
   | IFormElementSelect
   | IFormElementDataTime

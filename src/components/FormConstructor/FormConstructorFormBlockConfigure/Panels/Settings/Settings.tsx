@@ -17,6 +17,7 @@ import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
+import { DatePickerSettings } from './DatePickerSettings'
 import { ComboBoxSettings } from './ComboBoxSettings/ComboBoxSettings'
 import { SelectSettings } from './SelectSettings/SelectSettings'
 import { DataTimeSettings } from './DataTimeSettings'
@@ -78,6 +79,12 @@ export const Settings: FC = () => {
             <>
               <TextFieldSettings /> <BaseSettings />
             </>
+          )
+        case FormElementTypes.DatePicker:
+          return (
+            <>
+              <DatePickerSettings /> <BaseSettings />
+              </>
           )
         case FormElementTypes.ComboBox:
           return (

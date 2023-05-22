@@ -21,6 +21,7 @@ import {
   WizardForm,
   FooterWithSwitch,
   FormWithTwoColumns,
+  DatePickerFormElement,
   ComboBoxFormElement,
   SelectFormElement,
   DataTimeFormElement,
@@ -48,7 +49,8 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   WizardForm: WizardForm,
   FooterWithSwitch: FooterWithSwitch,
   FormWithTwoColumns: FormWithTwoColumns,
-  ComboBox: ComboBoxFormElement,
+  DatePicker: DatePickerFormElement,
   SelectForm: SelectFormElement,
+  ComboBox: ComboBoxFormElement,
   DataTime: DataTimeFormElement,
 }
