@@ -25,8 +25,7 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Tabs}
-    >
+      elementType={FormElementTypes.Tabs}>
       <Tabs {...tabsProps} />
     </SelectableLayer>
   )

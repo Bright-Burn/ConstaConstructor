@@ -12,6 +12,13 @@ import { ComponentCardTextField } from './ComponentCardTextField'
 import { ComponentCardInformer } from './ComponentCardInformer'
 import { ComponentCardButton } from './ComponentCardButton'
 import { ComponentCardInnerCard } from './ComponentCardInnerCard'
+import { ComponentCardList } from './ComponentCardList'
+import { ComponentCardRadioButton } from './ComponentCardRadioButton'
+import { ComponentCardSwitch } from './ComponentCardSwitch'
+import { ComponentCardDatePicker } from './ComponentCardDatePicker'
+import { ComponentCardComboBox } from './ComponentCardComboBox'
+import { ComponentCardSelect } from './ComponentCardSelect'
+import { ComponentCardDataTime } from './ComponentCardDataTime'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
@@ -26,6 +33,13 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
         <ComponentCardText name={name} value={FormElementTypes.Text} />
         <ComponentCardButton name={name} value={FormElementTypes.Button} />
         <ComponentCardInformer name={name} value={FormElementTypes.Informer} />
+        <ComponentCardList name={name} value={FormElementTypes.List} />
+        <ComponentCardRadioButton name={name} value={FormElementTypes.RadioButton} />
+        <ComponentCardSwitch name={name} value={FormElementTypes.Switch} />
+        <ComponentCardDatePicker name={name} value={FormElementTypes.DatePicker} />
+        <ComponentCardComboBox name={name} value={FormElementTypes.ComboBox} />
+        <ComponentCardSelect name={name} value={FormElementTypes.Select} />
+        <ComponentCardDataTime name={name} value={FormElementTypes.DataTime} />
       </SwitchComponent>
     </div>
   )

@@ -47,4 +47,39 @@ export const constaCards = [
     name: 'TextField',
     formElementType: FormElementTypes.TextField,
   },
+  {
+    id: uuid(),
+    name: 'RadioButton',
+    formElementType: FormElementTypes.RadioButton,
+  },
+  {
+    id: uuid(),
+    name: 'List',
+    formElementType: FormElementTypes.List,
+  },
+  {
+    id: uuid(),
+    name: 'Switch',
+    formElementType: FormElementTypes.Switch,
+  },
+    {
+    id: uuid(),
+    name: 'DatePicker',
+    formElementType: FormElementTypes.DatePicker,
+  },
+  {
+    id: uuid(),
+    name: 'ComboBox',
+    formElementType: FormElementTypes.ComboBox,
+  },
+  {
+    id: uuid(),
+    name: 'Select',
+    formElementType: FormElementTypes.Select,
+  },
+  {
+    id: uuid(),
+    name: 'DataTime',
+    formElementType: FormElementTypes.DataTime,
+  },
 ]

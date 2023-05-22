@@ -10,6 +10,13 @@ import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { TextElementProps, IFormElementText } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 import { Values } from '../../utils'
+import { IFormElementList, ListProps } from './ListTypes'
+import { IFormElementRadioButton, RadioButtonProps } from './radioButtonTypes'
+import { IFormElementSwitch, SwitchProps } from './SwitchTypes'
+import { DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
+import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
+import { IFormElementSelect, SelectProps } from './selectTypes'
+import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -54,6 +61,13 @@ export const FormElementTypes = {
   FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
   Table: 'Table',
+  List: 'List',
+  RadioButton: 'RadioButton',
+  Switch: 'Switch',
+  DatePicker: 'DatePicker',
+  ComboBox: 'ComboBox',
+  Select: 'SelectForm',
+  DataTime: 'DataTime',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -97,6 +111,13 @@ export type FormElementProps =
   | TabsElementProps
   | TextFieldProps
   | TableProps
+  | ListProps
+  | RadioButtonProps
+  | SwitchProps
+  | DatePickerProps
+  | ComboboxProps
+  | SelectProps
+  | DataTimeProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -111,6 +132,13 @@ export type FormElementUnion =
   | IFormElementTabs
   | IFormElementTextField
   | IFormElementTable
+  | IFormElementList
+  | IFormElementRadioButton
+  | IFormElementSwitch
+  | IFormElementDatePicker
+  | IFormElementComboBox
+  | IFormElementSelect
+  | IFormElementDataTime
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement
