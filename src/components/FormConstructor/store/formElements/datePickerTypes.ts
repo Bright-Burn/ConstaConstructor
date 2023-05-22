@@ -5,25 +5,21 @@ import {
   DatePickerPropDropdownForm,
   DatePickerPropType,
 } from '@consta/uikit/DatePicker'
-import {
-  PropForm,
-  PropSize,
-  PropStatus,
-  PropView,
-} from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
+import { PropForm } from './selectTypes'
 
 export type DatePickerProps = {
   type?: DatePickerPropType
   form?: PropForm
-  status?: PropStatus
+  status?: TextFieldPropStatus
   withClearButton?: boolean
   withAdditionalControls?: boolean
   label?: string
   labelPosition?: 'top' | 'left'
   required?: boolean
   caption?: string
-  size?: PropSize
-  view?: PropView
+  size?: TextFieldPropSize
+  view?: TextFieldPropView
   disabled?: boolean
   minDate?: Date
   maxDate?: Date

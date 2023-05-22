@@ -1,0 +1,21 @@
+version: "3.4"
+
+services:
+
+  consta-constructor:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: final
+      args:
+        DOCKER_REGISTRY: $DOCKER_REGISTRY
+        NPM_REGISTRY: $NPM_REGISTRY
+    ports:
+      - "8082:8080"
+    networks:
+      - local_default
+
+networks:
+  local_default:
+    external: true

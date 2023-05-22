@@ -19,12 +19,8 @@ import {
   typeArray,
   viewArray,
 } from './types'
-import {
-  PropForm,
-  PropSize,
-  PropStatus,
-  PropView,
-} from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
+import { PropForm } from '../../../../store/formElements/selectTypes'
 
 export const DatePickerSettings: FC = () => {
   const {
@@ -64,8 +60,8 @@ export const DatePickerSettings: FC = () => {
             onChange={({ value }) => onChangeForm(value)}
           />
           <Select
-            getItemKey={(item: PropStatus | undefined) => item || ''}
-            getItemLabel={(item: PropStatus | undefined) => item || ''}
+            getItemKey={(item: TextFieldPropStatus | undefined) => item || ''}
+            getItemLabel={(item: TextFieldPropStatus | undefined) => item || ''}
             items={statusArray}
             label='status'
             value={itemsProps.status}
@@ -101,16 +97,16 @@ export const DatePickerSettings: FC = () => {
             onChange={onChangeField('caption')}
           />
           <Select
-            getItemKey={(item: PropSize | undefined) => item || ''}
-            getItemLabel={(item: PropSize | undefined) => item || ''}
+            getItemKey={(item: TextFieldPropSize | undefined) => item || ''}
+            getItemLabel={(item: TextFieldPropSize | undefined) => item || ''}
             items={sizeArray}
             label='size'
             value={itemsProps.size}
             onChange={({ value }) => onChangeSize(value)}
           />
           <Select
-            getItemKey={(item: PropView) => item || ''}
-            getItemLabel={(item: PropView) => item || ''}
+            getItemKey={(item: TextFieldPropView) => item || ''}
+            getItemLabel={(item: TextFieldPropView) => item || ''}
             items={viewArray}
             label='view'
             value={itemsProps.view}

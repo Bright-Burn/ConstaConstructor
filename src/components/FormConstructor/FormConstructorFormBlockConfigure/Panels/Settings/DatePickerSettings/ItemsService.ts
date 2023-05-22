@@ -7,12 +7,8 @@ import {
   DatePickerPropDropdownForm,
   DatePickerPropType,
 } from '@consta/uikit/DatePicker'
-import {
-  PropForm,
-  PropSize,
-  PropStatus,
-  PropView,
-} from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
+import { PropForm } from '../../../../store/formElements/selectTypes'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -44,7 +40,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeStatus = (value: PropStatus | null) => {
+  const onChangeStatus = (value: TextFieldPropStatus | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
         ...(selectedElementProps as DatePickerProps),
@@ -62,7 +58,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeSize = (value: PropSize | null) => {
+  const onChangeSize = (value: TextFieldPropSize | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
         ...(selectedElementProps as DatePickerProps),
@@ -71,7 +67,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeView = (value: PropView | null) => {
+  const onChangeView = (value: TextFieldPropView | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
         ...(selectedElementProps as DatePickerProps),
