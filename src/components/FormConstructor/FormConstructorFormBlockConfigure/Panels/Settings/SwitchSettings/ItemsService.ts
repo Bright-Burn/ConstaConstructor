@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux'
 import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
-import { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
 import { SwitchProps } from '../../../../store/formElements/SwitchTypes'
-import { SwitchPropAlign, SwitchPropView } from '@consta/uikit/Switch'
+import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -26,7 +25,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeSize = (value: PropSize | null) => {
+  const onChangeSize = (value: SwitchPropSize | null) => {
     if (selectedElement && value) {
       const newProps: SwitchProps = {
         ...(selectedElementProps as SwitchProps),

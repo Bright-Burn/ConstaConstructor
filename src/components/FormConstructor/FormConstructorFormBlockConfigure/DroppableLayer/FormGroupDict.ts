@@ -23,6 +23,10 @@ import {
   FormWithTwoColumns,
   RadioButtonFormElement,
   SwitchFormElement,
+  DatePickerFormElement,
+  ComboBoxFormElement,
+  SelectFormElement,
+  DataTimeFormElement,
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -49,4 +53,8 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   FormWithTwoColumns: FormWithTwoColumns,
   RadioButton: RadioButtonFormElement,
   Switch: SwitchFormElement,
+  DatePicker: DatePickerFormElement,
+  SelectForm: SelectFormElement,
+  ComboBox: ComboBoxFormElement,
+  DataTime: DataTimeFormElement,
 }

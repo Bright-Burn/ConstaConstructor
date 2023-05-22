@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux'
 import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
-import { RadioPropAlign, RadioPropView } from '@consta/uikit/Radio'
+import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 import { RadioButtonProps } from '../../../../store/formElements/radioButtonTypes'
-import { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -26,7 +25,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeSize = (value: PropSize | null) => {
+  const onChangeSize = (value: RadioPropSize | null) => {
     if (selectedElement && value) {
       const newProps: RadioButtonProps = {
         ...(selectedElementProps as RadioButtonProps),

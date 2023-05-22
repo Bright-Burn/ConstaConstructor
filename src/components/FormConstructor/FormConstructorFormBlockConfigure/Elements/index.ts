@@ -21,3 +21,8 @@ export { FooterWithSwitch, footerWithSwitchMock } from './FooterWithSwitch'
 export { FormWithTwoColumns, FormWithTwoColumnsMock } from './FormWithTwoColumns'
 export { RadioButtonFormElement } from './RadioButtonFormElement'
 export { SwitchFormElement } from './SwitchFormElement'
+export { DatePickerFormElement } from './DatePickerFormElement'
+export { ComboBoxFormElement } from './ComboBoxFormElement'
+export { SelectFormElement } from './SelectFormElement'
+export { DataTimeFormElement } from './DateTimeFormElement'
+

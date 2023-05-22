@@ -1,9 +1,8 @@
 import { BaseProps, IFormElement } from './types'
-import { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
-import { RadioPropAlign, RadioPropView } from '@consta/uikit/Radio'
+import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 
 export type RadioButtonProps = {
-  size?: PropSize
+  size?: RadioPropSize
   view?: RadioPropView
   align?: RadioPropAlign
   label?: string

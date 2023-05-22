@@ -1,7 +1,6 @@
-import { SwitchPropAlign, SwitchPropView } from '@consta/uikit/Switch'
-import { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
-export const sizeArray: PropSize[] = ['xs', 's', 'm', 'l']
+export const sizeArray: SwitchPropSize[] = ['xs', 's', 'm', 'l']
 
 export const viewArray: SwitchPropView[] = ['ghost', 'primary']
 

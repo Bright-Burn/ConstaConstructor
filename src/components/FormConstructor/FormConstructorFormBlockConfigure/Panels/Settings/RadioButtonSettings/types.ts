@@ -1,7 +1,6 @@
-import { RadioPropAlign, RadioPropView } from '@consta/uikit/Radio'
-import { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 
-export const sizeArray: PropSize[] = ['xs', 's', 'm', 'l']
+export const sizeArray: RadioPropSize[] = ['xs', 's', 'm', 'l']
 
 export const viewArray: RadioPropView[] = ['ghost', 'primary']
 

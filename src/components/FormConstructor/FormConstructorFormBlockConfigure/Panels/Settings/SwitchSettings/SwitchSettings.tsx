@@ -2,8 +2,7 @@ import { Select } from '@consta/uikit/Select'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { alignArray, sizeArray, viewArray } from './types'
-import { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
-import { SwitchPropAlign, SwitchPropView } from '@consta/uikit/Switch'
+import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
 export const SwitchSettings = () => {
   const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField } =
@@ -13,8 +12,8 @@ export const SwitchSettings = () => {
     <>
       <Select
         label='size'
-        getItemKey={(key: PropSize) => key}
-        getItemLabel={(label: PropSize) => label}
+        getItemKey={(key: SwitchPropSize) => key}
+        getItemLabel={(label: SwitchPropSize) => label}
         value={itemsProps.size}
         items={sizeArray}
         onChange={({ value }) => onChangeSize(value)}
