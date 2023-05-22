@@ -157,11 +157,11 @@ export const formConstructorSlice = createFormConstructorSlice({
       /// Добавить удаление из дерева, включая дочерние элементы
       state.allElementsMap.delete(elementId)
     },
-    togglePanelsByHotkey: (state, action: PayloadAction<PanelStatePayload>) => {
+    togglePanelsByHotkey: (state: PanelStatePayload) => {
       if (
         (state.componentsStructurePanelState === true && state.settingsPanelState === false) ||
-        (state.componentsStructurePanelState === false && state.settingsPanelState === true) ||
-        (state.componentsStructurePanelState === true && state.settingsPanelState === true)
+        (state.componentsStructurePanelState === false && state.settingsPanelState) ||
+        (state.componentsStructurePanelState === true && state.settingsPanelState)
       ) {
         state.componentsStructurePanelState = false
         state.settingsPanelState = false

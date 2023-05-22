@@ -18,6 +18,12 @@ import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
 import { ListSettings } from './ListSettings/ListSettings'
+import { RadioButtonSettings } from './RadioButtonSettings'
+import { SwitchSettings } from './SwitchSettings'
+import { DatePickerSettings } from './DatePickerSettings'
+import { ComboBoxSettings } from './ComboBoxSettings/ComboBoxSettings'
+import { SelectSettings } from './SelectSettings/SelectSettings'
+import { DataTimeSettings } from './DataTimeSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -81,6 +87,42 @@ export const Settings: FC = () => {
           return (
             <>
               <ListSettings /> <BaseSettings />
+              </>
+          )
+        case FormElementTypes.RadioButton:
+          return (
+            <>
+              <RadioButtonSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Switch:
+          return (
+            <>
+              <SwitchSettings /> <BaseSettings />
+              </>
+          )
+        case FormElementTypes.DatePicker:
+          return (
+            <>
+              <DatePickerSettings /> <BaseSettings />
+              </>
+          )
+        case FormElementTypes.ComboBox:
+          return (
+            <>
+              <ComboBoxSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Select:
+          return (
+            <>
+              <SelectSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.DataTime:
+          return (
+            <>
+              <DataTimeSettings /> <BaseSettings />
             </>
           )
         default:
