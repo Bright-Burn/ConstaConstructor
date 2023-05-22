@@ -49,6 +49,11 @@ export const constaCards = [
   },
   {
     id: uuid(),
+    name: 'ComboBox',
+    formElementType: FormElementTypes.ComboBox,
+  },
+  {
+    id: uuid(),
     name: 'Select',
     formElementType: FormElementTypes.Select,
   },
