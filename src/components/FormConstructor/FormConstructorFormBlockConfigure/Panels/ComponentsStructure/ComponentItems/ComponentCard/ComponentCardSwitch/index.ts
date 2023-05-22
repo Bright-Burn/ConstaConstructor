@@ -1,0 +1,1 @@
+export { ComponentCardSwitch } from './ComponentCardSwitch'

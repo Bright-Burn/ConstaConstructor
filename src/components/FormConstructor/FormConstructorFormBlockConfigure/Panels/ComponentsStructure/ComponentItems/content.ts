@@ -49,6 +49,16 @@ export const constaCards = [
   },
   {
     id: uuid(),
+    name: 'RadioButton',
+    formElementType: FormElementTypes.RadioButton,
+  },
+  {
+    id: uuid(),
+    name: 'Switch',
+    formElementType: FormElementTypes.Switch,
+  },
+    {
+    id: uuid(),
     name: 'DatePicker',
     formElementType: FormElementTypes.DatePicker,
   },
