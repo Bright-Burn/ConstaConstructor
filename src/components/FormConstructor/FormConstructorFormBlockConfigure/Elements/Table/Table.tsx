@@ -4,6 +4,7 @@ import { AgGridReact } from 'ag-grid-react'
 import { IFormElementTable, TableProps } from '../../../store/formElements/tableTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { ITable } from './types'
+import style from './styles.module.css'
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-material.css'
 
@@ -70,19 +71,9 @@ export const Table: FC<ITable> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Table}
+      className={`${style.fullScreen}`}
       >
-      <div className='ag-theme-material' style={{ height: 250, width: '100%', 
-      marginBottom: `${tableProps?.baseProps.margin?.marginBottom == 'm-b-xs' ? '8px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-s' ? '12px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-m' ? '16px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-l' ? '20px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-xl' ? '24px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-2xl' ? '32px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-3xl' ? '40px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-4xl' ? '48px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-5xl' ? '72px'
-                     : tableProps?.baseProps.margin?.marginBottom == 'm-b-6xl' ? '96px': ''}`
-                     }}>
+      <div className='ag-theme-material' style={{ width: '100%'}}>
         <AgGridReact
           // @ts-ignore
           ref={gridRef}
