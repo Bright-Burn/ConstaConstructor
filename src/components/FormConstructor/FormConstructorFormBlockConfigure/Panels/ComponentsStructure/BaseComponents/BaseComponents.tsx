@@ -24,6 +24,7 @@ import {
   wizardFormMock,
   footerWithSwitchMock,
   FormWithTwoColumnsMock,
+  TableMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 
@@ -48,6 +49,7 @@ export const BaseComponents: FC = () => {
     wizardFormMock,
     footerWithSwitchMock,
     FormWithTwoColumnsMock,
+    TableMock,
   ]
 
   const dispatch = useBaseComponentsDispatch()
@@ -158,3 +160,4 @@ export const BaseComponents: FC = () => {
     </div>
   )
 }
+

@@ -10,6 +10,7 @@ import { CardSettings } from './CardSettings'
 import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
+import { TableSettings } from './TableSettings'
 import { TabsSettings } from './TabsSettings/TabsSettings'
 import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
@@ -51,6 +52,12 @@ export const Settings: FC = () => {
           return (
             <>
               <BadgeSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Table:
+          return (
+            <>
+              <TableSettings /> <BaseSettings />
             </>
           )
         case FormGroupsTypes.Layout:

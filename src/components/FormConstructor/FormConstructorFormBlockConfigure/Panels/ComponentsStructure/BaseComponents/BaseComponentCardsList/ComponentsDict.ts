@@ -10,6 +10,7 @@ import { wizardFormMockId } from '../../../../Elements/WizardForm/mocks'
 import { GroupCardsTypes } from './BaseComponentGroupCard/types'
 import { footerWithSwitchMockId } from '../../../../Elements/FooterWithSwitch/mocks'
 import { FormWithTwoColumnsMockId } from '../../../../Elements/FormWithTwoColumns'
+import { TableMockId } from '../../../../Elements/Table'
 
 export const componentsDict: Record<string, GroupCardsTypes> = {
   [headerMockId]: 'Headers',
@@ -23,5 +24,6 @@ export const componentsDict: Record<string, GroupCardsTypes> = {
   [gridMockId]: 'Tables',
   [footerWithSwitchMockId]: 'Footers',
   [FormWithTwoColumnsMockId]: 'Forms',
+  [TableMockId]: 'Tables',
 }
 

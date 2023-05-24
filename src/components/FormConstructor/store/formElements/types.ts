@@ -2,6 +2,7 @@ import { Props } from '@consta/uikit/Button'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
 import { CardElementPropsStyles } from './cardTypes'
 import { BadgeProps, IFormElementBadge } from './badgeTypes'
+import { TableProps, IFormElementTable } from './tableTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
 import { IFormElementTabs, TabsElementProps } from './tabsTypes'
 import { IFormElementInformer, InformerElementProps } from './informerTypes'
@@ -59,6 +60,7 @@ export const FormElementTypes = {
   WizardForm: 'WizardForm',
   FooterWithSwitch: 'FooterWithSwitch',
   FormWithTwoColumns: 'FormWithTwoColumns',
+  Table: 'Table',
   List: 'List',
   RadioButton: 'RadioButton',
   Switch: 'Switch',
@@ -108,6 +110,7 @@ export type FormElementProps =
   | CheckboxProps
   | TabsElementProps
   | TextFieldProps
+  | TableProps
   | ListProps
   | RadioButtonProps
   | SwitchProps
@@ -128,6 +131,7 @@ export type FormElementUnion =
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
+  | IFormElementTable
   | IFormElementList
   | IFormElementRadioButton
   | IFormElementSwitch
