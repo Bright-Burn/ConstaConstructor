@@ -27,4 +27,4 @@ export { DatePickerFormElement } from './DatePickerFormElement'
 export { ComboBoxFormElement } from './ComboBoxFormElement'
 export { SelectFormElement } from './SelectFormElement'
 export { DataTimeFormElement } from './DateTimeFormElement'
-
+export { ExpertiseForm, ExpertiseFormMock } from './ExpertiseForm'
