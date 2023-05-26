@@ -16,6 +16,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.css'
 import { IconClose } from '@consta/uikit/IconClose'
 import { wellInfo, wellType } from './mocks'
 import { InfoWindow } from './InfoWindow'
+import { defaultColDef, sideBar } from './config'
 
 export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
   const gridRef = useRef<AgGridReact<wellType>>(null)
@@ -38,40 +39,6 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
     { field: 'date', headerName: 'Дата', filter: 'agDateColumnFilter', minWidth: 150 },
     { field: 'oilField', headerName: 'Месторождение', minWidth: 150 },
   ])
-
-  const sideBar = useMemo<SideBarDef | string | string[] | boolean | null>(() => {
-    return {
-      toolPanels: [
-        {
-          id: 'filters',
-          labelKey: 'filters',
-          labelDefault: 'Filters',
-          iconKey: 'menu',
-          toolPanel: 'agFiltersToolPanel',
-          minWidth: 100,
-          maxWidth: 400,
-          width: 250,
-        },
-      ],
-      defaultToolPanel: 'filters',
-      position: 'left',
-    }
-  }, [])
-
-  const defaultColDef = useMemo<ColDef>(() => {
-    return {
-      flex: 1,
-      minWidth: 100,
-      // allow every column to be aggregated
-      enableValue: true,
-      // allow every column to be grouped
-      enableRowGroup: true,
-      // allow every column to be pivoted
-      enablePivot: true,
-      sortable: true,
-      filter: true,
-    }
-  }, [])
 
   const changeActiveRow = (event: any) => {
     setActiveRow(event.data)
