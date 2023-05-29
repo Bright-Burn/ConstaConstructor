@@ -1,11 +1,13 @@
 .titleText {
-  width: 100%;
-  margin-bottom: 10px;
+  width: 50%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .flexParent {
   display: flex;
 }
+
 .flexChild {
   text-align: center;
   padding: 20px;
@@ -33,4 +35,21 @@
   color: #002033BF;
   border-bottom-style: dotted;
   border-bottom-width: 2px;
+}
+
+.fullScreen {
+  display: flex;
+  flex: 1;
+}
+
+.infoPlaceCrush{
+  padding-left: 20px;
+  margin-bottom: 25px; 
+  display: flex
+}
+
+.widthComboBox {
+  width: 50%;
+  padding-left: 20px; 
+  padding-right: 20px; 
 }

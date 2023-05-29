@@ -19,3 +19,8 @@
   display: flex;
   justify-content: end;
 }
+
+.fullScreen {
+  display: flex;
+  flex: 1;
+}
