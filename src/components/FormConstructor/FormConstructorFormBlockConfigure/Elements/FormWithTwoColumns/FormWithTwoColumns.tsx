@@ -45,10 +45,10 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.CardWithBarChart}
-      className={'container-row'}>
-      <div className={`${css.flexCenter} m-t-2xl`}>
+      className={`${css.fullScreen}`}>
+      <div className={`m-t-2xl`} style={{ width: '100%' }}>
         <div className={`${css.simpleForm}`}>
-          <div style={{ paddingLeft: 20, marginBottom: 25, display: 'flex', fontSize: 14 }}>
+          <div className={`${css.infoPlaceCrush}`}>
             <Text transform='uppercase' weight='bold'>
               Данные о месте нарушения
             </Text>
@@ -66,7 +66,7 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
               size='m'
             />
           </div>
-          <div style={{ width: '50%', paddingLeft: 20, paddingRight: 20 }}>
+          <div className={`${css.titleText}`}>
             <Combobox
               required={true}
               items={items}
@@ -159,4 +159,3 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
     </SelectableLayerFullWidth>
   )
 }
-

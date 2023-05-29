@@ -100,8 +100,7 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.CardWithBarChart}
-      className={'container-row'}
-    >
+      className={`${css.fullScreen}`}>
       <Card className={css.cardStyle}>
         <div className={'m-b-l'}>Детализация ввода в эксплуатацию</div>
         <ChoiceGroup
