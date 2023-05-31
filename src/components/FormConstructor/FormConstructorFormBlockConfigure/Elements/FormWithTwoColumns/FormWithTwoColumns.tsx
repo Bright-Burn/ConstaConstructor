@@ -46,7 +46,7 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.CardWithBarChart}
       className={`${css.fullScreen}`}>
-      <div className={`m-t-2xl`} style={{ width: '100%' }}>
+      <div className={`${css.formFullWidth} m-t-2xl`}>
         <div className={`${css.simpleForm}`}>
           <div className={`${css.infoPlaceCrush}`}>
             <Text transform='uppercase' weight='bold'>
@@ -59,12 +59,7 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
                 </Text>
               </div>
             </div>
-            <Switch
-              view='ghost'
-              style={{ paddingTop: 5, paddingLeft: 8 }}
-              checked={false}
-              size='m'
-            />
+            <Switch view='ghost' className={`${css.switchDecoration}`} checked={false} size='m' />
           </div>
           <div className={`${css.titleText}`}>
             <Combobox
@@ -121,13 +116,13 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
               />
             </div>
           </div>
-          <div style={{ display: 'flex', fontSize: 14 }}>
+          <div className={`${css.textSwitch}`}>
             <div>
               <div>
                 <Text className={`${css.textDecoration}`}>Указать подрядную организацию</Text>
               </div>
             </div>
-            <Switch style={{ paddingTop: 5, paddingLeft: 8 }} checked={true} size='m' />
+            <Switch className={`${css.switchDecoration}`} checked={true} size='m' />
           </div>
 
           <div className={`${css.flexParent}`}>
