@@ -51,11 +51,12 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
         elementTypeUsage === ElementTypes.FormElement
           ? styles.selectableLayerFormElement
           : styles.selectableLayerLayoutElement
-      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''}`}
+      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''} ${
+        styles.selectedLayerOutline
+      }`}
       onClick={onClickElement}
       onKeyDown={onKeyDown}
-      tabIndex={0}
-    >
+      tabIndex={0}>
       {children}
     </div>
   )
