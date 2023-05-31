@@ -31,7 +31,7 @@ export const WizardForm: FC<IWizardForm> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.CardWithBarChart}
       className={`${css.fullScreen}`}>
-      <div className='m-t-m m-l-2xl m-r-2xl m-b-2xl' style={{ width: '90%' }}>
+      <div className={`${css.wizardFomr__Screen} m-t-m m-l-2xl m-r-2xl m-b-2xl`}>
         <div className='m-b-6xl'>
           <div className='container-row space-center m-b-2xl'>
             <Text size='l' className='m-r-m'>

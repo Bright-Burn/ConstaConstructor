@@ -24,3 +24,7 @@
   display: flex;
   flex: 1;
 }
+
+.wizardFomr__Screen {
+  width: 90%;
+}
