@@ -29,6 +29,7 @@ import {
   ComboBoxFormElement,
   SelectFormElement,
   DataTimeFormElement,
+  ExpertiseForm,
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -61,4 +62,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   SelectForm: SelectFormElement,
   ComboBox: ComboBoxFormElement,
   DataTime: DataTimeFormElement,
+  ExpertiseForm: ExpertiseForm,
 }

@@ -25,6 +25,7 @@ import {
   footerWithSwitchMock,
   FormWithTwoColumnsMock,
   TableMock,
+  ExpertiseFormMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 
@@ -50,6 +51,7 @@ export const BaseComponents: FC = () => {
     footerWithSwitchMock,
     FormWithTwoColumnsMock,
     TableMock,
+    ExpertiseFormMock
   ]
 
   const dispatch = useBaseComponentsDispatch()

@@ -68,6 +68,7 @@ export const FormElementTypes = {
   ComboBox: 'ComboBox',
   Select: 'SelectForm',
   DataTime: 'DataTime',
+  ExpertiseForm: 'ExpertiseForm',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
