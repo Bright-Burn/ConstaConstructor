@@ -5,3 +5,9 @@
 .componentGroupCardCollapse {
   flex: 1;
 }
+
+.componentGroupCardName{
+  padding-top: 12px;
+  padding-left: 12px;
+  font-size: 10px; 
+}

@@ -1,0 +1,49 @@
+.imgBlock{
+  height: 40px;
+  width: 90%;
+}
+  
+.itemBlocks{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4px;
+  gap: 4px;
+}
+
+.textBlock {
+  width: 64px;
+  height: 21px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+ -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.baseComponents {
+    display: flex;
+    flex-direction: column;
+    flex: content;
+    overflow-y: auto;
+    height: 85%;
+  }
+  
+  .componentCardItemBlock{
+    display: flex ;
+    flex-direction: row ;
+    align-items: flex-start ;
+    padding: 10px ;
+    padding-top: 0ppx ;
+    padding-bottom: 0px ;
+    padding-left: 12px ;
+    gap: 18px ;
+  }
+  
+  .componentCardItem{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }

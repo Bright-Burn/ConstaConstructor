@@ -24,7 +24,6 @@ export const FormBlock: FC = () => {
 
   return (
     <div className={`${styles.formBlock} borderCard`}>
-      <Pages pages={pages} />
       <div className={`${styles.formBlock} borderCard`}>
         {pages.map(page =>
           page.isActive ? (

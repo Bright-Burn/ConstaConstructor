@@ -5,12 +5,7 @@
 
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-}
-
-.tabs {
-  margin: 0.4rem;
-  height: 4%;
+  overflow-y: hidden;
 }
 
 .toggleButton {
@@ -26,4 +21,43 @@
 }
 .toggleButton:hover {
   opacity: 1;
+}
+
+.tabs{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+}
+
+.pageBlock {
+  display: flex;
+}
+
+.buttonLeftIsActive{
+  display: flex;
+  width: 90%;
+}
+
+.buttonLeft {
+  display: flex;
+  width: 90%;
+  background: none
+}
+
+.buttonRightIsActive{
+  display: flex;
+  width: 10%;
+}
+
+.buttonRight{
+  width: 10%;
+  background: none
+}
+
+.pages{
+  display: flex;
+  padding-top: 10px;
+  flex-direction: column;
+  min-height: 10%;
+  overflow-y: auto;
 }

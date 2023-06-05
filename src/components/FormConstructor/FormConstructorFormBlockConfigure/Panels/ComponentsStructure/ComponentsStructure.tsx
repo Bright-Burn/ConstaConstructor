@@ -3,9 +3,7 @@ import styles from './styles.module.css'
 import { ComponentsTabItem } from './types'
 import { BaseComponents } from './BaseComponents'
 import { ComponentItems } from './ComponentItems'
-import { ComponentTree } from './ComponentTree'
 import { componentsTabItems } from './content'
-import { Tabs } from '@consta/uikit/Tabs'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
 import {
@@ -13,6 +11,12 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../store/formElements/slices'
+import { Text } from '@consta/uikit/Text'
+import { pagesSlice, usePagesSelector } from '../../../store/pagesOfLayout'
+import { IconTrash } from '@consta/uikit/IconTrash'
+import { Card } from '@consta/uikit/Card'
+import { IconDownload } from '@consta/icons/IconDownload'
+import { IconAdd } from '@consta/icons/IconAdd'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
@@ -39,21 +43,69 @@ export const ComponentsStructure = () => {
     )
   }
 
+  const changeActivePage = (index: number) => {
+    dispatch(pagesSlice.actions.changeActivePage({ index }))
+  }
+
+  const closePage = (index: number) => {
+    dispatch(pagesSlice.actions.closePage({ index }))
+  }
+
+  const addNewPage = () => {
+    dispatch(pagesSlice.actions.addNewPage())
+  }
+  const pages = usePagesSelector((state: any) => state.pagesOfLayout.pages)
   return (
     <>
       {componentsStructurePanelState ? (
         <div className={`${styles.componentStructure} borderCard`}>
           <div className={styles.tabs}>
-            <Tabs
-              value={tabValue}
-              onChange={({ value }) => setTabValue(value)}
-              items={componentsTabItems}
-              getItemIcon={(item: ComponentsTabItem) => item.icon}
-              size='xs'
-            />
+            <Text>Страницы</Text>
+            <div>
+              <Button
+                iconLeft={IconAdd}
+                label='Новая'
+                view='ghost'
+                size='xs'
+                onClick={addNewPage}
+              />
+              <Button
+                iconLeft={IconDownload}
+                label='Импорт'
+                view='ghost'
+                size='xs'
+                onClick={addNewPage}
+              />
+            </div>
+          </div>
+          <div className={`${styles.pages}`}>
+            {pages.map((page: any, index: any) => (
+              <Card className={`${styles.pageBlock}`} form='round'>
+                <Button
+                  className={
+                    page.isActive ? `${styles.buttonLeftIsActive}` : `${styles.buttonLeft}`
+                  }
+                  label={`${page.name}`}
+                  view='ghost'
+                  size='xs'
+                  form='brick'
+                  onClick={() => changeActivePage(index)}
+                />
+                <Button
+                  className={
+                    page.isActive ? `${styles.buttonRightIsActive}` : `${styles.buttonRight}`
+                  }
+                  iconLeft={IconTrash}
+                  view='ghost'
+                  size='xs'
+                  form='brick'
+                  onlyIcon
+                  onClick={() => closePage(index)}
+                />
+              </Card>
+            ))}
           </div>
           {getTabContentRenderer()}
-          <ComponentTree />
         </div>
       ) : (
         <div className={styles.toggleButton}>
@@ -63,4 +115,3 @@ export const ComponentsStructure = () => {
     </>
   )
 }
-
