@@ -142,13 +142,11 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
                       <PieWithLabel
                         data={pieChart1Data}
                         withStatistic={true}
-                        title='Коэф. достижения целевого'></PieWithLabel>
+                        title='Коэф. достижения целевого'
+                      />
                     </Cell>
                     <Cell direction='column' grow='6'>
-                      <PieWithLabel
-                        data={pieChart2Data}
-                        withStatistic={true}
-                        title='Qn т./сут.'></PieWithLabel>
+                      <PieWithLabel data={pieChart2Data} withStatistic={true} title='Qn т./сут.' />
                     </Cell>
                     <Cell direction='column' grow='5'>
                       <Stats
@@ -240,7 +238,8 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
                       <PieWithLabel
                         data={pieChart3Data}
                         withStatistic={false}
-                        color={['#56b9f2', '#33b4ff80', '#eb5757']}></PieWithLabel>
+                        color={['#56b9f2', '#33b4ff80', '#eb5757']}
+                      />
                     </Cell>
                     <Cell direction='row' grow='2'>
                       <Stats
@@ -310,7 +309,8 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
                     css={{
                       width: '125px',
                       height: '125px',
-                    }}></PieWithLabel>
+                    }}
+                  />
                   <Stats
                     value={23.2}
                     rate='2.1%'
