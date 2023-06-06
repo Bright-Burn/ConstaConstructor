@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { FC, useLayoutEffect, useRef, useState } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
   IExpertiseFormProps,
@@ -9,7 +9,7 @@ import { IExpertiseForm } from './types'
 import { agGridAdapter } from '@consta/ag-grid-adapter/agGridAdapter'
 import { AgGridReact } from 'ag-grid-react'
 import style from './styles.module.css'
-import { ColDef, SideBarDef } from 'ag-grid-community'
+import { ColDef, RowClickedEvent } from 'ag-grid-community'
 import 'ag-grid-enterprise'
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-alpine.css'
@@ -40,7 +40,7 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
     { field: 'oilField', headerName: 'Месторождение', minWidth: 150 },
   ])
 
-  const changeActiveRow = (event: any) => {
+  const changeActiveRow = (event: RowClickedEvent) => {
     setActiveRow(event.data)
     setCheckModal(true)
   }

@@ -12,11 +12,12 @@ import {
   useAppSelector,
 } from '../../../store/formElements/slices'
 import { Text } from '@consta/uikit/Text'
-import { pagesSlice, usePagesSelector } from '../../../store/pagesOfLayout'
+import { IPageOfLayout, pagesSlice, usePagesSelector } from '../../../store/pagesOfLayout'
 import { IconTrash } from '@consta/uikit/IconTrash'
 import { Card } from '@consta/uikit/Card'
 import { IconDownload } from '@consta/icons/IconDownload'
 import { IconAdd } from '@consta/icons/IconAdd'
+import { RootState } from '../../../store'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
@@ -54,7 +55,7 @@ export const ComponentsStructure = () => {
   const addNewPage = () => {
     dispatch(pagesSlice.actions.addNewPage())
   }
-  const pages = usePagesSelector((state: any) => state.pagesOfLayout.pages)
+  const pages = usePagesSelector((state: RootState) => state.pagesOfLayout.pages)
   return (
     <>
       {componentsStructurePanelState ? (
@@ -79,7 +80,7 @@ export const ComponentsStructure = () => {
             </div>
           </div>
           <div className={`${styles.pages}`}>
-            {pages.map((page: any, index: any) => (
+            {pages.map((page: IPageOfLayout, index: number) => (
               <Card className={`${styles.pageBlock}`} form='round'>
                 <Button
                   className={
