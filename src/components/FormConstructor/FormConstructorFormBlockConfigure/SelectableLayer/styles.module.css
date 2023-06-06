@@ -15,10 +15,10 @@
   border-width: 0.2rem;
   border-style: solid;
   border-color: transparent;
+  border-radius: 0.5rem;
 }
 
 .selectedElement {
-  border-radius: 0.5rem;
   border-color: rgba(39, 50, 245, 0.8);
   overflow: hidden;
 }
