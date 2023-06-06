@@ -55,7 +55,7 @@ export const BaseComponents: FC = () => {
   const items: string[] = ['Блоки', 'Конста', 'Сетка']
   const [value, setValue] = useState<string | null>(items[0])
   return (
-    <div className={`${styles.baseComponentsPanel} borderCard`}>
+    <div className={`${styles.baseComponentsPanel}`}>
       <Tabs
         className={`${styles.tabs}`}
         value={value}

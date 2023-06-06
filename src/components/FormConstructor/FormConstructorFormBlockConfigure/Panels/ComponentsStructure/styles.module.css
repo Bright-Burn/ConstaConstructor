@@ -60,4 +60,5 @@
   flex-direction: column;
   min-height: 10%;
   overflow-y: auto;
+  height: 23%;
 }

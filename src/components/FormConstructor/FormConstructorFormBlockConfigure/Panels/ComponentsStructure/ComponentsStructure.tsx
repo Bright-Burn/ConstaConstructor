@@ -59,7 +59,7 @@ export const ComponentsStructure = () => {
   return (
     <>
       {componentsStructurePanelState ? (
-        <div className={`${styles.componentStructure} borderCard`}>
+        <div className={`${styles.componentStructure}`}>
           <div className={styles.tabs}>
             <Text>Страницы</Text>
             <div>
