@@ -17,6 +17,7 @@ import { DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
 import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
 import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
+import { CustomRectElementProps } from '../../FormConstructorFormBlockConfigure/Elements/CustomRectElement/types';
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -69,6 +70,7 @@ export const FormElementTypes = {
   Select: 'SelectForm',
   DataTime: 'DataTime',
   ExpertiseForm: 'ExpertiseForm',
+  CustomRect: 'CustomRect',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
