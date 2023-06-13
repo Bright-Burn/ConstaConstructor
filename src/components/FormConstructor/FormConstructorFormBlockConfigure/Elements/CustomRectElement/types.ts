@@ -1,4 +1,4 @@
-import { BaseProps, FormElementProps } from '../../../store/formElements/types';
+import { BaseProps, FormElementProps, IFormElement } from '../../../store/formElements/types'
 
 export type CustomRectElementProps = IRectParams & FormElementProps
 
@@ -14,4 +14,10 @@ export interface IRectParams {
 export interface IRectStyles {
   display: string
   background: string
+}
+
+export type CustomRectProps = IRectParams & BaseProps
+
+export interface ICustomRectProps extends IFormElement {
+  props: CustomRectProps
 }

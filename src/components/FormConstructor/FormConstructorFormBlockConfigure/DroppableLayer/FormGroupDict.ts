@@ -1,36 +1,38 @@
-import { FC } from 'react'
-import { FormElementTypes, FormGroupsTypes } from '../../store/formElements/types'
+import { FC } from 'react';
+import { FormElementTypes, FormGroupsTypes } from '../../store/formElements/types';
 import {
   BadgeFormElement,
   ButtonFormElement,
   CardFormElement,
+  CardWithBarChart,
   CheckboxFormElement,
+  ComboBoxFormElement,
+  CustomCards,
+  CustomRectElement,
+  Dashboard,
+  DataTimeFormElement,
+  DatePickerFormElement,
+  ExpertiseForm,
+  FooterWithSwitch,
+  FormWithTwoColumns,
+  HeaderCognitiveGeologist,
   HeaderWithBreadcrumbs,
   HeaderWithStatus,
   InformerFormElement,
+  LayoutFormElement,
+  ListFormElement,
+  PlaceholderFormElement,
   ProjectGrid,
+  RadioButtonFormElement,
+  SelectFormElement,
+  SimpleForm,
+  SwitchFormElement,
+  Table,
   TabsFormElement,
   TextFieldFormElement,
-  PlaceholderFormElement,
-  CardWithBarChart,
-  HeaderCognitiveGeologist,
-  Dashboard,
-  CustomCards,
-  LayoutFormElement,
-  SimpleForm,
   WizardForm,
-  FooterWithSwitch,
-  FormWithTwoColumns,
-  Table,
-  ListFormElement,
-  RadioButtonFormElement,
-  SwitchFormElement,
-  DatePickerFormElement,
-  ComboBoxFormElement,
-  SelectFormElement,
-  DataTimeFormElement,
-  ExpertiseForm, CustomRectElement,
 } from '../Elements';
+import { CustomTextElement } from '../Elements/CustomTextElement/CustomTextElement';
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
   Layout: LayoutFormElement,
@@ -64,4 +66,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   DataTime: DataTimeFormElement,
   ExpertiseForm: ExpertiseForm,
   CustomRect: CustomRectElement,
-}
+  CustomText: CustomTextElement,
+};

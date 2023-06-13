@@ -17,7 +17,13 @@ import { DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
 import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
 import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
-import { CustomRectElementProps } from '../../FormConstructorFormBlockConfigure/Elements/CustomRectElement/types';
+import {
+  CustomRectElementProps,
+  CustomRectProps,
+  ICustomRectProps,
+  IRectParams,
+} from '../../FormConstructorFormBlockConfigure/Elements/CustomRectElement/types'
+import { CustomTextProps } from '../../FormConstructorFormBlockConfigure/Elements/CustomTextElement/types';
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -71,6 +77,7 @@ export const FormElementTypes = {
   DataTime: 'DataTime',
   ExpertiseForm: 'ExpertiseForm',
   CustomRect: 'CustomRect',
+  CustomText: 'CustomText',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -121,6 +128,8 @@ export type FormElementProps =
   | ComboboxProps
   | SelectProps
   | DataTimeProps
+  | CustomRectProps
+  | CustomTextProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -142,7 +151,7 @@ export type FormElementUnion =
   | IFormElementComboBox
   | IFormElementSelect
   | IFormElementDataTime
-
+  | ICustomRectProps
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement
 

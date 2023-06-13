@@ -27,8 +27,10 @@ import {
   TableMock,
   ExpertiseFormMock,
   CustomRectMock,
+  CustomTextMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
+import { CustomTextMock } from '../../../Elements/CustomTextElement/mocks'
 
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
@@ -54,6 +56,7 @@ export const BaseComponents: FC = () => {
     TableMock,
     ExpertiseFormMock,
     CustomRectMock,
+    CustomTextMock,
   ]
 
   const dispatch = useBaseComponentsDispatch()
