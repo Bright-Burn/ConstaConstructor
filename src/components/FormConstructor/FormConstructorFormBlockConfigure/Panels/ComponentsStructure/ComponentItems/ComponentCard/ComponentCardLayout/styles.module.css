@@ -1,3 +1,12 @@
 .cardLayout {
   display: flex;
+  align-items: center;
+}
+
+.cardIconQuest{
+  margin-inline-start: auto
+}
+
+.cardIconDraggable{
+  margin-right: 10px;
 }

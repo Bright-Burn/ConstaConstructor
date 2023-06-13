@@ -8,6 +8,12 @@
   overflow-y: hidden;
 }
 
+@media screen and (max-width: 1523px) {
+  .componentStructure {
+    flex-basis: 4%;
+  }
+}
+
 .toggleButton {
   position: absolute; 
   left: 10px;
@@ -27,6 +33,7 @@
   display: flex;
   justify-content: space-around;
   padding-top: 10px;
+  padding-bottom: 13px;
 }
 
 .pageBlock {

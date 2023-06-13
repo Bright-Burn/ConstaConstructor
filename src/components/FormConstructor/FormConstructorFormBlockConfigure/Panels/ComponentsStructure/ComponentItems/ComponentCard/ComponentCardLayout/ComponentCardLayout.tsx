@@ -10,6 +10,8 @@ import {
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import styles from './styles.module.css'
+import { IconDraggable } from '@consta/icons/IconDraggable'
+import { IconQuestion } from '@consta/icons/IconQuestion'
 
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
   const [isOuter, setIsOuter] = useState<boolean>(false)
@@ -38,6 +40,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
 
   return (
     <div className={styles.cardLayout} draggable={true} onDragStart={onStartDragComponentCard}>
+      <IconDraggable size='xs' className={`${styles.cardIconDraggable}`} />
       <Text>{name}</Text>
       <Switch
         className='m-l-s'
@@ -47,6 +50,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
         size={'s'}
         onChange={onChange}
       />
+      <IconQuestion size='xs' className={`${styles.cardIconQuest}`} />
     </div>
   )
 }

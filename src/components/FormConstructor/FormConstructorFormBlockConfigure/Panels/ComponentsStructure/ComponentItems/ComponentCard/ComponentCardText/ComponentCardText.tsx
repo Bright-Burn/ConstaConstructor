@@ -8,6 +8,9 @@ import {
   IFormElementText,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
+import { IconDraggable } from '@consta/icons/IconDraggable'
+import { IconQuestion } from '@consta/icons/IconQuestion'
+import styles from './styles.module.css'
 
 export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
@@ -27,10 +30,10 @@ export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div className={`${styles.cardText}`} draggable={true} onDragStart={onStartDragComponentCard}>
+      <IconDraggable size='xs' className={`${styles.cardIconDraggable}`} />
+      <Text>{name}</Text>
+      <IconQuestion size='xs' className={`${styles.cardIconQuest}`} />
     </div>
   )
 }
