@@ -13,14 +13,13 @@ export const Pages = ({ pages }: PagesProps) => {
     dispatch(pagesSlice.actions.changeActivePage({ index }))
   }
 
-  const closePage = (index: number) => {
-    dispatch(pagesSlice.actions.closePage({ index }))
+  const deletePage = (index: number) => {
+    dispatch(pagesSlice.actions.deletePage({ index }))
   }
 
   const addNewPage = () => {
     dispatch(pagesSlice.actions.addNewPage())
   }
-
   return (
     <div className={`container-row space-center borderCard ${styles.pagesBlock}`}>
       <>
@@ -39,7 +38,7 @@ export const Pages = ({ pages }: PagesProps) => {
               size='xs'
               form='brick'
               onlyIcon
-              onClick={() => closePage(index)}
+              onClick={() => deletePage(index)}
             />
           </Card>
         ))}

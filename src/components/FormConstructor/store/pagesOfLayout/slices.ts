@@ -9,7 +9,7 @@ import { changePages } from './payload'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../setupStore'
 const InitialState: IPages = {
-  pages: [{ name: 'Page1', isActive: true, parentId: 'root' }],
+  pages: [{ name: 'Страница 1', isActive: true, parentId: 'root' }],
   numberOfPages: 1,
 }
 
@@ -37,7 +37,7 @@ export const pagesSlice = createPagesSlice({
       state.pages = [
         ...state.pages,
         {
-          name: `Page${state.numberOfPages + 1}`,
+          name: `Страница ${state.numberOfPages + 1}`,
           isActive: false,
           parentId: `Page${state.numberOfPages + 1}`,
         },
@@ -53,7 +53,8 @@ export const pagesSlice = createPagesSlice({
         }
       })
     },
-    closePage: (state, action: PayloadAction<changePages>) => {
+    deletePage: (state, action: PayloadAction<changePages>) => {
+      state.numberOfPages--;
       state.pages = state.pages
         .filter((page, i) => i !== action.payload.index)
         .map((page, i) => {
