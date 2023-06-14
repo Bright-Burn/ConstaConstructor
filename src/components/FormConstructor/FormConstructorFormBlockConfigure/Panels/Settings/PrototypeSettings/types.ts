@@ -1,7 +1,7 @@
-import { BaseProps } from '../../../store/formElements/types'
-import { BaseTypes } from '../../Panels/Settings/BaseSettings/types'
+import { BaseProps } from '../../../../store/formElements/types'
+import { BaseTypes } from '../BaseSettings/types'
 
-export type PrototypeTextPropsType = {
+export type PrototypePropsType = {
   top: number
   left: number
   width: number | string
@@ -11,7 +11,7 @@ export type PrototypeTextPropsType = {
   text?: string
 } & BaseProps
 
-export class PrototypeTextProps {
+export class PrototypeProps {
   public baseProps: BaseTypes
   public className: string
   public top: number
@@ -21,7 +21,7 @@ export class PrototypeTextProps {
   public zIndex: number
   public text?: string | undefined
 
-  constructor(options: PrototypeTextPropsType) {
+  constructor(options: PrototypePropsType) {
     this.baseProps = options.baseProps
     this.className = options.className
     this.top = options.top

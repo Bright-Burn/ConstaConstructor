@@ -135,6 +135,8 @@ export const Settings: FC = () => {
           )
         case FormElementTypes.PrototypeTextElement:
           return <PrototypeSettings />
+        case FormElementTypes.PrototypeRectElement:
+          return <PrototypeSettings />
         default:
           return (
             <>

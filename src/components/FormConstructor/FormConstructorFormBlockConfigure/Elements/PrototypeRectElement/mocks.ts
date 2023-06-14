@@ -4,14 +4,14 @@ import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types';
 
 export const CustomTextMockId = uuid();
 
-export const PrototypeTextMock = {
+export const PrototypeRectMock = {
   id: CustomTextMockId,
-  name: 'Текстовый блок',
-  description: 'Текстовый блок',
+  name: 'Прямоугольник',
+  description: 'Прямоугольник',
   childrenElementList: [
     {
       id: 'd333d332-d8c2-4280-a8cd-e90b2faa860e',
-      type: 'PrototypeTextElement',
+      type: 'PrototypeRectElement',
       props: new PrototypeProps({
         baseProps: {},
         className: '',
@@ -20,7 +20,6 @@ export const PrototypeTextMock = {
         top: 0,
         width: 120,
         zIndex: 1,
-        text: 'Пример текста',
       })
     },
   ],

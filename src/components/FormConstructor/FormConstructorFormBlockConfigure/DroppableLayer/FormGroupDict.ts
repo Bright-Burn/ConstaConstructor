@@ -31,6 +31,7 @@ import {
   DataTimeFormElement,
   ExpertiseForm,
   PrototypeTextElement,
+  PrototypeRectElement,
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -65,4 +66,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   DataTime: DataTimeFormElement,
   ExpertiseForm: ExpertiseForm,
   PrototypeTextElement: PrototypeTextElement,
+  PrototypeRectElement: PrototypeRectElement,
 }
