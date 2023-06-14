@@ -41,7 +41,7 @@ export const PrototypeSettings = () => {
         className='m-b-m'
         label='Ширина'
         onChange={onWidthChange}
-        value={`${width || 0}`}
+        value={`${width}`}
         type='number'
         placeholder='Ширина'
       />
@@ -50,7 +50,7 @@ export const PrototypeSettings = () => {
         className='m-b-m'
         label='Высота'
         onChange={onHeightChange}
-        value={`${height || 0}`}
+        value={`${height}`}
         type='number'
         placeholder='Высота'
       />
@@ -59,7 +59,7 @@ export const PrototypeSettings = () => {
         className='m-b-m'
         label='Верх'
         onChange={onTopChange}
-        value={`${top || 0}`}
+        value={`${top}`}
         type='number'
         placeholder='Верх'
       />
@@ -68,7 +68,7 @@ export const PrototypeSettings = () => {
         className='m-b-m'
         label='Лево'
         onChange={onLeftChange}
-        value={`${left || 0}`}
+        value={`${left}`}
         type='number'
         placeholder='Лево'
       />
@@ -77,7 +77,7 @@ export const PrototypeSettings = () => {
         className='m-b-m'
         label='z-index'
         onChange={onZIndexChange}
-        value={`${zIndex || 0}`}
+        value={`${zIndex}`}
         type='number'
         placeholder='z-index'
       />
