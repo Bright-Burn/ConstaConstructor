@@ -8,7 +8,7 @@ export const PrototypeSettings = () => {
   if (!store) return null
 
   const { textProps, onDispatch } = store
-  const { width, height, text, left, top, zIndex } = textProps
+  const { width, height, left, top, zIndex } = textProps
   const onWidthChange = ({ value }: { value: TextFieldPropValue }) => {
     const newProps = { ...textProps, width: Number(value) }
     onDispatch(newProps)
@@ -85,14 +85,16 @@ export const PrototypeSettings = () => {
         placeholder='z-index'
       />
 
-      <TextField
-        className='m-b-m'
-        label='Текст'
-        onChange={onTextChange}
-        value={`${text || 'Пример текста'}`}
-        type='text'
-        placeholder='Высота'
-      />
+      {'text' in textProps && (
+        <TextField
+          className='m-b-m'
+          label='Текст'
+          onChange={onTextChange}
+          value={`${textProps.text || 'Пример текста'}`}
+          type='text'
+          placeholder='Высота'
+        />
+      )}
     </>
   )
 }
