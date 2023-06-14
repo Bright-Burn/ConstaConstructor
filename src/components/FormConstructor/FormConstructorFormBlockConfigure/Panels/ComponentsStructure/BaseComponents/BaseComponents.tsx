@@ -26,6 +26,8 @@ import {
   FormWithTwoColumnsMock,
   TableMock,
   ExpertiseFormMock,
+  PrototypeTextElement,
+  PrototypeTextMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 
@@ -51,7 +53,8 @@ export const BaseComponents: FC = () => {
     footerWithSwitchMock,
     FormWithTwoColumnsMock,
     TableMock,
-    ExpertiseFormMock
+    ExpertiseFormMock,
+    PrototypeTextMock,
   ]
 
   const dispatch = useBaseComponentsDispatch()
@@ -162,4 +165,3 @@ export const BaseComponents: FC = () => {
     </div>
   )
 }
-

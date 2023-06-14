@@ -17,6 +17,7 @@ import { DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
 import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
 import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
+import { PrototypeTextProps } from '../../FormConstructorFormBlockConfigure/Elements/PrototypeTextElement/types';
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -69,6 +70,7 @@ export const FormElementTypes = {
   Select: 'SelectForm',
   DataTime: 'DataTime',
   ExpertiseForm: 'ExpertiseForm',
+  PrototypeTextElement: 'PrototypeTextElement'
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -119,6 +121,7 @@ export type FormElementProps =
   | ComboboxProps
   | SelectProps
   | DataTimeProps
+  | PrototypeTextProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
