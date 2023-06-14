@@ -1,37 +1,40 @@
 import React from 'react'
 import { useTextSettingsStore } from './PrototypeSettingsService'
-import { TextField, TextFieldPropValue } from '@consta/uikit/TextField';
-import { PrototypeTextProps } from '../../../Elements/PrototypeTextElement/types'
+import { TextField, TextFieldPropValue } from '@consta/uikit/TextField'
 
 export const PrototypeSettings = () => {
-  const { textProps, onDispatch } = useTextSettingsStore()
-  const { width, height, text, left, top, zIndex } = textProps as PrototypeTextProps
-  const onWidthChange = ({ value }: {value: TextFieldPropValue}) => {
-    const newProps = { ...textProps, width: Number(value) } as PrototypeTextProps
+  const store = useTextSettingsStore()
+
+  if (!store) return null
+
+  const { textProps, onDispatch } = store
+  const { width, height, text, left, top, zIndex } = textProps
+  const onWidthChange = ({ value }: { value: TextFieldPropValue }) => {
+    const newProps = { ...textProps, width: Number(value) }
     onDispatch(newProps)
   }
 
-  const onHeightChange = ({ value }: {value: TextFieldPropValue}) => {
-    const newProps = { ...textProps, height: Number(value) } as PrototypeTextProps
+  const onHeightChange = ({ value }: { value: TextFieldPropValue }) => {
+    const newProps = { ...textProps, height: Number(value) }
     onDispatch(newProps)
   }
-  const onTopChange = ({ value }: {value: TextFieldPropValue}) => {
-    const newProps = { ...textProps, top: Number(value) } as PrototypeTextProps
-    onDispatch(newProps)
-  }
-
-  const onLeftChange = ({ value }: {value: TextFieldPropValue}) => {
-    const newProps = { ...textProps, left: Number(value) } as PrototypeTextProps
+  const onTopChange = ({ value }: { value: TextFieldPropValue }) => {
+    const newProps = { ...textProps, top: Number(value) }
     onDispatch(newProps)
   }
 
-  const onZIndexChange = ({ value }: {value: TextFieldPropValue}) => {
-    const newProps = { ...textProps, zIndex: Number(value) } as PrototypeTextProps
+  const onLeftChange = ({ value }: { value: TextFieldPropValue }) => {
+    const newProps = { ...textProps, left: Number(value) }
     onDispatch(newProps)
   }
 
-  const onTextChange = ({ value }: {value: TextFieldPropValue}) => {
-    const newProps = { ...textProps, text: value } as PrototypeTextProps
+  const onZIndexChange = ({ value }: { value: TextFieldPropValue }) => {
+    const newProps = { ...textProps, zIndex: Number(value) }
+    onDispatch(newProps)
+  }
+
+  const onTextChange = ({ value }: { value: TextFieldPropValue }) => {
+    const newProps = { ...textProps, text: String(value) }
     onDispatch(newProps)
   }
 
