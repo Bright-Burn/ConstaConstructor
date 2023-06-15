@@ -8,6 +8,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from '../../../../store/formElements/selectTypes'
 import { Button } from '@consta/uikit/Button'
+import styles from './styles.module.css'
 
 export const ComboBoxSettings = () => {
   const {
@@ -39,17 +40,19 @@ export const ComboBoxSettings = () => {
   }
 
   return (
-    <>
+    <div className={`${styles.comboBoxSettings}`}>
       {!isLabelsEditing && (
         <>
           <TextField
             label='Количество вариантов'
             type='number'
+            size='xs'
             value={`${itemsProps.items.length}`}
             onChange={onChangeItemsCount}
           />
           <Button
             view='secondary'
+            size='xs'
             className='m-b-xs m-t-xs'
             label={'Сменить названия в списке'}
             onClick={() => labelsEditingHandler(true)}
@@ -62,6 +65,7 @@ export const ComboBoxSettings = () => {
             return (
               <TextField
                 key={index}
+                size='xs'
                 label={`${index + 1}`}
                 value={`${line.label}`}
                 onChange={event => onLinesLabelEdit(event.value, index)}
@@ -79,12 +83,14 @@ export const ComboBoxSettings = () => {
       )}
 
       <Switch
+        size='xs'
         onChange={onChangeSwitch('disabled')}
         label='disabled'
         checked={itemsProps.disabled}
       />
       <Select
         label='size'
+        size='xs'
         getItemKey={(key: TextFieldPropSize) => key}
         getItemLabel={(label: TextFieldPropSize) => label}
         value={itemsProps.size}
@@ -93,6 +99,7 @@ export const ComboBoxSettings = () => {
       />
       <Select
         label='view'
+        size='xs'
         getItemKey={(key: TextFieldPropView) => key}
         getItemLabel={(label: TextFieldPropView) => label}
         value={itemsProps.view}
@@ -101,6 +108,7 @@ export const ComboBoxSettings = () => {
       />
       <Select
         label='from'
+        size='xs'
         getItemKey={(key: PropForm) => key}
         getItemLabel={(label: PropForm) => label}
         value={itemsProps.form}
@@ -110,12 +118,24 @@ export const ComboBoxSettings = () => {
       <Switch
         onChange={onChangeSwitch('required')}
         label='required'
+        size='xs'
         checked={itemsProps.required}
       />
-      <TextField value={itemsProps.caption} onChange={onChangeField('caption')} label={'caption'} />
-      <TextField value={itemsProps.label} onChange={onChangeField('label')} label={'label'} />
+      <TextField
+        size='xs'
+        value={itemsProps.caption}
+        onChange={onChangeField('caption')}
+        label={'caption'}
+      />
+      <TextField
+        size='xs'
+        value={itemsProps.label}
+        onChange={onChangeField('label')}
+        label={'label'}
+      />
       <Select
         label='status'
+        size='xs'
         getItemKey={(key: TextFieldPropStatus) => key}
         getItemLabel={(label: TextFieldPropStatus) => label}
         value={itemsProps.status}
@@ -124,6 +144,7 @@ export const ComboBoxSettings = () => {
       />
       <Select
         label='labelPosition'
+        size='xs'
         getItemKey={(key: 'top' | 'left') => key}
         getItemLabel={(label: 'top' | 'left') => label}
         value={itemsProps.labelPosition}
@@ -132,19 +153,22 @@ export const ComboBoxSettings = () => {
       />
       <TextField
         value={itemsProps.placeholder}
+        size='xs'
         onChange={onChangeField('placeholder')}
         label={'placeholder'}
       />
       <Switch
         onChange={onChangeSwitch('isLoading')}
+        size='xs'
         label='isLoading'
         checked={itemsProps.isLoading}
       />
       <Switch
         onChange={onChangeSwitch('multiple')}
+        size='xs'
         label='multiple'
         checked={itemsProps.multiple}
       />
-    </>
+    </div>
   )
 }

@@ -128,6 +128,7 @@ export const TextFieldSettings = () => {
           <Select
             getItemKey={key => key}
             getItemLabel={label => label}
+            size='xs'
             label='Type'
             items={types}
             value={`${props.type}`}
@@ -139,11 +140,13 @@ export const TextFieldSettings = () => {
                 onChange={onChangeTextField('step')}
                 value={`${props.step}`}
                 type='number'
+                size='xs'
                 label='Step'
                 min='0'
               />
               <Switch
                 checked={props.incrementButtons ?? true}
+                size='xs'
                 label='incrementButtons'
                 onChange={onChangeSwitch('incrementButtons')}
               />
@@ -151,6 +154,7 @@ export const TextFieldSettings = () => {
                 onChange={onChangeTextField('min')}
                 value={`${props.min}`}
                 type='number'
+                size='xs'
                 label='Min'
                 min='0'
               />
@@ -158,6 +162,7 @@ export const TextFieldSettings = () => {
                 onChange={onChangeTextField('max')}
                 value={`${props.max}`}
                 type='number'
+                size='xs'
                 label='Max'
                 min='0'
               />
@@ -171,6 +176,7 @@ export const TextFieldSettings = () => {
                 onChange={onChangeTextField('minRows')}
                 value={`${props.minRows}`}
                 type='number'
+                size='xs'
                 label='MinRows'
                 min='0'
               />
@@ -178,6 +184,7 @@ export const TextFieldSettings = () => {
                 onChange={onChangeTextField('maxRows')}
                 value={`${props.maxRows}`}
                 type='number'
+                size='xs'
                 label='MaxRows'
                 min='0'
               />
@@ -187,6 +194,7 @@ export const TextFieldSettings = () => {
           )}
           <Select
             getItemKey={key => key}
+            size='xs'
             label='Width'
             getItemLabel={label => label}
             items={width}
@@ -195,6 +203,7 @@ export const TextFieldSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='Form'
             getItemLabel={label => label}
             items={forms}
@@ -203,6 +212,7 @@ export const TextFieldSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='Status'
             getItemLabel={label => label}
             items={status}
@@ -213,12 +223,14 @@ export const TextFieldSettings = () => {
             getItemKey={key => key}
             getItemLabel={label => label}
             items={sizes}
+            size='xs'
             label='Size'
             value={`${props.size || 's'}`}
             onChange={onChangeTextField('size')}
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='View'
             getItemLabel={label => label}
             items={view}
@@ -227,31 +239,37 @@ export const TextFieldSettings = () => {
           />
           <Switch
             checked={props.disabled ?? false}
+            size='xs'
             label='disabled'
             onChange={onChangeSwitch('disabled')}
           />
           <Switch
             checked={props.required ?? false}
+            size='xs'
             label='required'
             onChange={onChangeSwitch('required')}
           />
           <Switch
             checked={props.withClearButton ?? false}
+            size='xs'
             label='withClearButton'
             onChange={onChangeSwitch('withClearButton')}
           />
           <TextField
+            size='xs'
             label='Caption'
             value={`${props.caption || ''}`}
             onChange={onChangeTextField('caption')}
           />
           <TextField
+            size='xs'
             label='Label'
             value={`${props.label || ''}`}
             onChange={onChangeTextField('label')}
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='LabelPosition'
             getItemLabel={label => label}
             items={labelPosition}
@@ -262,16 +280,19 @@ export const TextFieldSettings = () => {
             onChange={onChangeTextField('maxLength')}
             value={`${props.maxLength}`}
             type='number'
+            size='xs'
             label='MaxLength'
             min='0'
           />
           <TextField
+            size='xs'
             label='Placeholder'
             value={`${props.placeholder || ''}`}
             onChange={onChangeTextField('placeholder')}
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='LeftSideType'
             getItemLabel={label => label}
             items={leftSideTypes}
@@ -279,12 +300,14 @@ export const TextFieldSettings = () => {
             onChange={onChangeLeftSideType}
           />
           <TextField
+            size='xs'
             label='LeftSideText'
             value={`${props.leftSide}`}
             onChange={onChangeTextField('leftSide')}
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='RightSideType'
             getItemLabel={label => label}
             items={rightSideTypes}
@@ -292,6 +315,7 @@ export const TextFieldSettings = () => {
             onChange={onChangeRightSideType}
           />
           <TextField
+            size='xs'
             label='RightSideText'
             value={`${props.rightSide}`}
             onChange={onChangeTextField('rightSide')}

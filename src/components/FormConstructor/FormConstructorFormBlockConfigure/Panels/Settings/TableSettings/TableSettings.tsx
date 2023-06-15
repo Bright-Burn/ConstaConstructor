@@ -49,10 +49,11 @@ export const TableSettings = () => {
   }, [selectedElementProps, selectedElement])
 
   return (
-    <div className={styles.badgeSettings}>
+    <div className={styles.tableSettings}>
       {props ? (
         <>
           <TextField
+            size='xs'
             type='number'
             step='1'
             label='Row'
@@ -61,6 +62,7 @@ export const TableSettings = () => {
             onChange={handleOnChangeLabelRow}
           />
           <TextField
+            size='xs'
             type='number'
             step='1'
             min='0'
@@ -75,4 +77,3 @@ export const TableSettings = () => {
     </div>
   )
 }
-

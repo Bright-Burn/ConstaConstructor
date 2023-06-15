@@ -3,14 +3,16 @@ import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { alignArray, sizeArray, viewArray } from './types'
 import { RadioPropView, RadioPropAlign, RadioPropSize } from '@consta/uikit/Radio'
+import styles from './styles.module.css'
 
 export const RadioButtonSettings = () => {
   const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField } =
     useItemsHandlers()
 
   return (
-    <>
+    <div className={`${styles.radioButtonSettings}`}>
       <Select
+        size='xs'
         label='size'
         getItemKey={(key: RadioPropSize) => key}
         getItemLabel={(label: RadioPropSize) => label}
@@ -19,6 +21,7 @@ export const RadioButtonSettings = () => {
         onChange={({ value }) => onChangeSize(value)}
       />
       <Select
+        size='xs'
         label='view'
         getItemKey={(key: RadioPropView) => key}
         getItemLabel={(label: RadioPropView) => label}
@@ -27,6 +30,7 @@ export const RadioButtonSettings = () => {
         onChange={({ value }) => onChangeView(value)}
       />
       <Select
+        size='xs'
         label='align'
         getItemKey={(key: RadioPropAlign) => key}
         getItemLabel={(label: RadioPropAlign) => label}
@@ -34,7 +38,12 @@ export const RadioButtonSettings = () => {
         items={alignArray}
         onChange={({ value }) => onChangeAlign(value)}
       />
-      <TextField label='label' value={itemsProps.label} onChange={onChangeField('label')} />
-    </>
+      <TextField
+        size='xs'
+        label='label'
+        value={itemsProps.label}
+        onChange={onChangeField('label')}
+      />
+    </div>
   )
 }

@@ -17,6 +17,8 @@ import {
   paddingsTop,
 } from './types'
 import { Text } from '@consta/uikit/Text'
+import styles from './styles.module.css'
+
 export const BaseSettings = () => {
   const {
     paddingProps,
@@ -34,13 +36,12 @@ export const BaseSettings = () => {
   } = useMarginHandlers()
   return (
     <>
-      <Text size='xs' style={{ paddingLeft: 12, paddingRight: 12 }}>
-        {' '}
+      <Text size='xs' className={`${styles.text}`}>
         Внешние отступы
       </Text>
-      <div style={{ display: 'flex', flexDirection: 'row', paddingLeft: 12, paddingRight: 12 }}>
+      <div className={`${styles.rowSelect}`}>
         <Select
-          style={{ width: '25%' }}
+          className={`${styles.itemBlock}`}
           size='xs'
           getItemKey={key => key}
           getItemLabel={label => label}
@@ -55,7 +56,7 @@ export const BaseSettings = () => {
           )}
         />
         <Select
-          style={{ width: '25%' }}
+          className={`${styles.itemBlock}`}
           size='xs'
           form='brickDefault'
           getItemKey={key => key}
@@ -71,7 +72,7 @@ export const BaseSettings = () => {
           )}
         />
         <Select
-          style={{ width: '25%' }}
+          className={`${styles.itemBlock}`}
           size='xs'
           form='brickDefault'
           getItemKey={key => key}
@@ -87,7 +88,7 @@ export const BaseSettings = () => {
           )}
         />
         <Select
-          style={{ width: '25%' }}
+          className={`${styles.itemBlock}`}
           size='xs'
           getItemKey={key => key}
           getItemLabel={label => label}
@@ -102,13 +103,12 @@ export const BaseSettings = () => {
           )}
         />
       </div>
-      <Text size='xs' style={{ paddingLeft: 12, paddingRight: 12 }}>
-        {' '}
+      <Text size='xs' className={`${styles.text}`}>
         Внутренние отступы
       </Text>
-      <div style={{ display: 'flex', flexDirection: 'row', paddingLeft: 12, paddingRight: 12 }}>
+      <div className={`${styles.rowSelect}`}>
         <Select
-          style={{ width: '25%' }}
+          className={`${styles.itemBlock}`}
           size='xs'
           getItemKey={key => key}
           getItemLabel={label => label}
@@ -123,7 +123,7 @@ export const BaseSettings = () => {
           )}
         />
         <Select
-          style={{ width: '25%' }}
+          className={`${styles.itemBlock}`}
           size='xs'
           form='brickDefault'
           getItemKey={key => key}
@@ -139,7 +139,7 @@ export const BaseSettings = () => {
           )}
         />
         <Select
-          style={{ width: '25%' }}
+          className={`${styles.itemBlock}`}
           size='xs'
           form='brickDefault'
           getItemKey={key => key}
@@ -155,7 +155,7 @@ export const BaseSettings = () => {
           )}
         />
         <Select
-          style={{ width: '25%' }}
+          className={`${styles.itemBlock}`}
           size='xs'
           getItemKey={key => key}
           getItemLabel={label => label}

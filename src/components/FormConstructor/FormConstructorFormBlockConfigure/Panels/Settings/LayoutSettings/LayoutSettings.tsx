@@ -192,11 +192,13 @@ export const LayoutSettings = () => {
             onChange={onChangeFlex()}
             value={`${propsStyles.constaProps.flex}`}
             type='number'
+            size='xs'
             label='Flex'
             min='1'
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='Direction'
             getItemLabel={label => label}
             items={directions}
@@ -205,6 +207,7 @@ export const LayoutSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='JustifyContent'
             getItemLabel={label => label}
             items={justifyContentProps}
@@ -213,6 +216,7 @@ export const LayoutSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='AlignItems'
             getItemLabel={label => label}
             items={alignItems}
@@ -223,6 +227,7 @@ export const LayoutSettings = () => {
             onChange={({ value }: { value: string | null }) => onChangeWidth(value)}
             value={widthValue}
             type='number'
+            size='xs'
             label='Width'
             min='0'
           />
@@ -230,11 +235,13 @@ export const LayoutSettings = () => {
             onChange={({ value }: { value: string | null }) => onChangeHeight(value)}
             value={heightValue}
             type='number'
+            size='xs'
             label='Height'
             min='0'
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='Vertical Aligned'
             getItemLabel={label => label}
             items={verticalAligns}
@@ -243,6 +250,7 @@ export const LayoutSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='Horizontal Aligned'
             getItemLabel={label => label}
             items={horizontalAligns}

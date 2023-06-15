@@ -1,0 +1,15 @@
+.text {
+  padding-left: 12px;
+  padding-right: 12px
+}
+
+.rowSelect {
+  display: flex;
+  flex-direction: row;
+  padding-left: 12px;
+  padding-right: 12px
+}
+
+.itemBlock{
+  width: 25%;
+}

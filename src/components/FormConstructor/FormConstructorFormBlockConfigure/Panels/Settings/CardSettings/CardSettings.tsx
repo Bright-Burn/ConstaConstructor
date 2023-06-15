@@ -115,6 +115,7 @@ export const CardSettings = () => {
         <>
           <Select
             getItemKey={key => key}
+            size='xs'
             label='VerticalSpace'
             getItemLabel={label => label}
             items={space}
@@ -123,6 +124,7 @@ export const CardSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='HorizontalSpace'
             getItemLabel={label => label}
             items={space}
@@ -131,6 +133,7 @@ export const CardSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='Status'
             getItemLabel={label => label}
             items={status}
@@ -139,6 +142,7 @@ export const CardSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            size='xs'
             label='Form'
             getItemLabel={label => label}
             items={form}
@@ -147,11 +151,13 @@ export const CardSettings = () => {
           />
           <Switch
             checked={props.constaProps.shadow ?? true}
+            size='xs'
             label='shadow'
             onChange={onChangeCardSwitch('shadow')}
           />
           <Switch
             checked={props.constaProps.border ?? false}
+            size='xs'
             label='border'
             onChange={onChangeCardSwitch('border')}
           />
@@ -159,6 +165,7 @@ export const CardSettings = () => {
             onChange={({ value }: { value: string | null }) => onChangeWidth(value)}
             value={widthValue}
             type='number'
+            size='xs'
             label='Width'
             min='0'
           />
@@ -166,6 +173,7 @@ export const CardSettings = () => {
             onChange={({ value }: { value: string | null }) => onChangeHeight(value)}
             value={heightValue}
             type='number'
+            size='xs'
             label='Height'
             min='0'
           />

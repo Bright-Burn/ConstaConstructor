@@ -8,6 +8,7 @@ import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { Switch } from '@consta/uikit/Switch'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from '../../../../store/formElements/selectTypes'
+import styles from './styles.module.css'
 
 export const SelectSettings = () => {
   const {
@@ -38,10 +39,11 @@ export const SelectSettings = () => {
     setTabs([...newTabs])
   }
   return (
-    <>
+    <div className={`${styles.selectSettings}`}>
       {!isLabelsEditing && (
         <>
           <TextField
+            size='xs'
             label='Количество вариантов'
             type='number'
             value={`${itemsProps.items.length}`}
@@ -78,10 +80,12 @@ export const SelectSettings = () => {
       )}
       <Switch
         onChange={onChangeSwitch('disabled')}
+        size='xs'
         label='disabled'
         checked={itemsProps.disabled}
       />
       <Select
+        size='xs'
         label='size'
         getItemKey={(key: TextFieldPropSize) => key}
         getItemLabel={(label: TextFieldPropSize) => label}
@@ -90,6 +94,7 @@ export const SelectSettings = () => {
         onChange={({ value }) => onChangeSize(value)}
       />
       <Select
+        size='xs'
         label='view'
         getItemKey={(key: TextFieldPropView) => key}
         getItemLabel={(label: TextFieldPropView) => label}
@@ -98,6 +103,7 @@ export const SelectSettings = () => {
         onChange={({ value }) => onChangeView(value)}
       />
       <Select
+        size='xs'
         label='form'
         getItemKey={(key: PropForm) => key}
         getItemLabel={(label: PropForm) => label}
@@ -108,10 +114,12 @@ export const SelectSettings = () => {
       <Switch
         style={{ marginTop: '8px' }}
         onChange={onChangeSwitch('required')}
+        size='xs'
         label='required'
         checked={itemsProps.required}
       />
       <Select
+        size='xs'
         label='status'
         getItemKey={(key: TextFieldPropStatus) => key}
         getItemLabel={(label: TextFieldPropStatus) => label}
@@ -120,16 +128,19 @@ export const SelectSettings = () => {
         onChange={({ value }) => onChangeStatus(value)}
       />
       <TextField
+        size='xs'
         label='caption'
         value={`${itemsProps.caption || ''}`}
         onChange={onChangeField('caption')}
       />
       <TextField
+        size='xs'
         label='label'
         value={`${itemsProps.label || ''}`}
         onChange={onChangeField('label')}
       />
       <Select
+        size='xs'
         label='labelPosition'
         getItemKey={(key: 'top' | 'left') => key}
         getItemLabel={(label: 'top' | 'left') => label}
@@ -138,6 +149,7 @@ export const SelectSettings = () => {
         onChange={({ value }) => onChangeLabelPosition(value)}
       />
       <TextField
+        size='xs'
         label='placeholder'
         value={`${itemsProps.placeholder || ''}`}
         onChange={onChangeField('placeholder')}
@@ -145,10 +157,10 @@ export const SelectSettings = () => {
       <Switch
         style={{ marginTop: '8px' }}
         onChange={onChangeSwitch('isLoading')}
+        size='xs'
         label='isLoading'
         checked={itemsProps.isLoading}
       />
-    </>
+    </div>
   )
 }
-

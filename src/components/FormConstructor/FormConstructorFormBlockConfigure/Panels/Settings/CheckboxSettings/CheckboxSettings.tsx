@@ -62,7 +62,7 @@ export const CheckboxSettings = () => {
   }
 
   return (
-    <div className={styles.badgeSettings}>
+    <div className={styles.checkBoxSettings}>
       {props ? (
         <>
           <Select
@@ -70,6 +70,7 @@ export const CheckboxSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={sizes}
             label='Size'
+            size='xs'
             value={props.size || 's'}
             onChange={({ value }) => {
               onChangeField(value as CheckboxPropSize, 'size')
@@ -80,6 +81,7 @@ export const CheckboxSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={views}
             label='View'
+            size='xs'
             value={props.view || 'primary'}
             onChange={({ value }) => {
               onChangeField(value as CheckboxPropView, 'view')
@@ -90,12 +92,13 @@ export const CheckboxSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={statuses}
             label='Align'
+            size='xs'
             value={props.align || 'center'}
             onChange={({ value }) => {
               onChangeField(value as CheckboxPropAlign, 'align')
             }}
           />
-          <TextField value={props.label} onChange={handleOnChangeLabel} />
+          <TextField size='xs' value={props.label} onChange={handleOnChangeLabel} />
         </>
       ) : (
         <></>

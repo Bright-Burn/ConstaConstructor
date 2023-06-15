@@ -114,6 +114,7 @@ export const TextSettings: FC = () => {
       {props ? (
         <>
           <TextField
+            size='xs'
             label='Content'
             value={props.content}
             onChange={({ value }) => {
@@ -124,6 +125,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={sizes}
+            size='xs'
             label='Size'
             value={props.size || 's'}
             onChange={({ value }) => {
@@ -134,6 +136,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={views}
+            size='xs'
             label='View'
             value={props.view}
             onChange={({ value }) => {
@@ -144,6 +147,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={textAlign}
+            size='xs'
             label='Align'
             value={props.align}
             onChange={({ value }) => {
@@ -154,6 +158,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={weight}
+            size='xs'
             label='Weight'
             value={props.weight}
             onChange={({ value }) => {
@@ -164,6 +169,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={lineHeight}
+            size='xs'
             label='LineHeight'
             value={props.lineHeight}
             onChange={({ value }) => {
@@ -174,6 +180,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={spacing}
+            size='xs'
             label='Spacing'
             value={props.spacing}
             onChange={({ value }) => {
@@ -184,6 +191,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={display}
+            size='xs'
             label='Display'
             value={props.display}
             onChange={({ value }) => {
@@ -194,6 +202,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={font}
+            size='xs'
             label='Font'
             value={props.font}
             onChange={({ value }) => {
@@ -204,6 +213,7 @@ export const TextSettings: FC = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={type}
+            size='xs'
             label='Type'
             value={props.type}
             onChange={({ value }) => {
@@ -211,6 +221,7 @@ export const TextSettings: FC = () => {
             }}
           />
           <Checkbox
+            size='xs'
             label='decoration'
             checked={props.decoration !== undefined}
             onChange={value => {
@@ -218,6 +229,7 @@ export const TextSettings: FC = () => {
             }}
           />
           <Checkbox
+            size='xs'
             label='fontStyle'
             checked={props.fontStyle !== undefined}
             onChange={value => {
@@ -225,6 +237,7 @@ export const TextSettings: FC = () => {
             }}
           />
           <Checkbox
+            size='xs'
             label='cursor'
             checked={props.cursor !== undefined}
             onChange={value => {
@@ -232,6 +245,7 @@ export const TextSettings: FC = () => {
             }}
           />
           <Checkbox
+            size='xs'
             label='transform'
             checked={props.transform !== undefined}
             onChange={value => {
@@ -239,7 +253,12 @@ export const TextSettings: FC = () => {
             }}
           />
 
-          <Switch checked={props.truncate ?? false} label='truncate' onChange={onChangeTruncate} />
+          <Switch
+            checked={props.truncate ?? false}
+            size='xs'
+            label='truncate'
+            onChange={onChangeTruncate}
+          />
         </>
       ) : (
         <></>

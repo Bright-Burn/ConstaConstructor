@@ -40,97 +40,113 @@ export const Settings: FC = () => {
         case FormElementTypes.Text:
           return (
             <>
-              <TextSettings /> <BaseSettings />
+              <BaseSettings />
+              <TextSettings />
             </>
           )
         case FormElementTypes.Informer:
           return (
             <>
-              <InformerSettings /> <BaseSettings />
+              <BaseSettings />
+              <InformerSettings />
             </>
           )
         case FormElementTypes.Badge:
           return (
             <>
-              <BadgeSettings /> <BaseSettings />
+              <BaseSettings />
+              <BadgeSettings />
             </>
           )
         case FormElementTypes.Table:
           return (
             <>
-              <TableSettings /> <BaseSettings />
+              <BaseSettings />
+              <TableSettings />
             </>
           )
         case FormGroupsTypes.Layout:
           return (
             <>
-              <LayoutSettings /> <BaseSettings />
+              <BaseSettings />
+              <LayoutSettings />
             </>
           )
         case FormGroupsTypes.Card:
           return (
             <>
-              <CardSettings /> <BaseSettings />
+              <BaseSettings />
+              <CardSettings />
             </>
           )
         case FormElementTypes.Tabs:
           return (
             <>
-              <TabsSettings /> <BaseSettings />
+              <BaseSettings />
+              <TabsSettings />
             </>
           )
         case FormElementTypes.Checkbox:
           return (
             <>
-              <CheckboxSettings /> <BaseSettings />
+              <BaseSettings />
+              <CheckboxSettings />
             </>
           )
         case FormElementTypes.TextField:
           return (
             <>
-              <TextFieldSettings /> <BaseSettings />
+              <BaseSettings />
+              <TextFieldSettings />
             </>
           )
         case FormElementTypes.List:
           return (
             <>
-              <ListSettings /> <BaseSettings />
+              <BaseSettings />
+              <ListSettings />
             </>
           )
         case FormElementTypes.RadioButton:
           return (
             <>
-              <RadioButtonSettings /> <BaseSettings />
+              <BaseSettings />
+              <RadioButtonSettings />
             </>
           )
         case FormElementTypes.Switch:
           return (
             <>
-              <SwitchSettings /> <BaseSettings />
+              <BaseSettings />
+              <SwitchSettings />
             </>
           )
         case FormElementTypes.DatePicker:
           return (
             <>
-              <DatePickerSettings /> <BaseSettings />
+              <BaseSettings />
+              <DatePickerSettings />
             </>
           )
         case FormElementTypes.ComboBox:
           return (
             <>
-              <ComboBoxSettings /> <BaseSettings />
+              <BaseSettings />
+              <ComboBoxSettings />
             </>
           )
         case FormElementTypes.Select:
           return (
             <>
-              <SelectSettings /> <BaseSettings />
+              <BaseSettings />
+              <SelectSettings />
             </>
           )
         case FormElementTypes.DataTime:
           return (
             <>
-              <DataTimeSettings /> <BaseSettings />
+              <BaseSettings />
+              <DataTimeSettings />
             </>
           )
         case FormElementTypes.PrototypeTextElement:

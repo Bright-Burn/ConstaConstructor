@@ -59,6 +59,7 @@ export const InformerSettings = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={sizes}
+            size='xs'
             label='Size'
             value={props.size || 's'}
             onChange={({ value }) => {
@@ -69,6 +70,7 @@ export const InformerSettings = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={views}
+            size='xs'
             label='View'
             value={props.view || 'filled'}
             onChange={({ value }) => {
@@ -79,6 +81,7 @@ export const InformerSettings = () => {
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={statuses}
+            size='xs'
             label='Status'
             value={props.status || 'success'}
             onChange={({ value }) => {
@@ -87,6 +90,7 @@ export const InformerSettings = () => {
           />
           <TextField
             value={props.label as string}
+            size='xs'
             onChange={({ value }) => {
               onChangeField(value as string, 'label')
             }}
@@ -94,6 +98,7 @@ export const InformerSettings = () => {
           />
           <TextField
             value={props.title}
+            size='xs'
             onChange={({ value }) => {
               onChangeField(value as string, 'title')
             }}

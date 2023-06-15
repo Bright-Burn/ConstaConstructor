@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTextSettingsStore } from './PrototypeSettingsService'
 import { TextField, TextFieldPropValue } from '@consta/uikit/TextField'
+import styles from './styles.module.css'
 
 export const PrototypeSettings = () => {
   const store = useTextSettingsStore()
@@ -39,9 +40,10 @@ export const PrototypeSettings = () => {
   }
 
   return (
-    <>
+    <div className={`${styles.prototypeSettings}`}>
       <TextField
         className='m-b-m'
+        size='xs'
         label='Ширина'
         onChange={onWidthChange}
         value={`${width}`}
@@ -51,6 +53,7 @@ export const PrototypeSettings = () => {
 
       <TextField
         className='m-b-m'
+        size='xs'
         label='Высота'
         onChange={onHeightChange}
         value={`${height}`}
@@ -60,6 +63,7 @@ export const PrototypeSettings = () => {
 
       <TextField
         className='m-b-m'
+        size='xs'
         label='Верх'
         onChange={onTopChange}
         value={`${top}`}
@@ -69,6 +73,7 @@ export const PrototypeSettings = () => {
 
       <TextField
         className='m-b-m'
+        size='xs'
         label='Лево'
         onChange={onLeftChange}
         value={`${left}`}
@@ -78,6 +83,7 @@ export const PrototypeSettings = () => {
 
       <TextField
         className='m-b-m'
+        size='xs'
         label='z-index'
         onChange={onZIndexChange}
         value={`${zIndex}`}
@@ -88,6 +94,7 @@ export const PrototypeSettings = () => {
       {'text' in textProps && (
         <TextField
           className='m-b-m'
+          size='xs'
           label='Текст'
           onChange={onTextChange}
           value={`${textProps.text || 'Пример текста'}`}
@@ -95,6 +102,6 @@ export const PrototypeSettings = () => {
           placeholder='Высота'
         />
       )}
-    </>
+    </div>
   )
 }

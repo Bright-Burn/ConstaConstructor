@@ -51,16 +51,18 @@ export const ListSettings = () => {
   }
 
   return (
-    <>
+    <div className={`${styles.listSettings}`}>
       {!isLabelsEditing && (
         <>
           <TextField
+            size='xs'
             label='Количество строк'
             type='number'
             value={`${itemsProps.items.length}`}
             onChange={onChangeItemsCount}
           />
           <Button
+            size='xs'
             view='secondary'
             className='m-b-xs m-t-xs'
             label={'Сменить названия строк'}
@@ -73,6 +75,7 @@ export const ListSettings = () => {
           {lines.map((line, index) => {
             return (
               <TextField
+                size='xs'
                 key={index}
                 label={`${index + 1}`}
                 value={`${line.label}`}
@@ -81,8 +84,8 @@ export const ListSettings = () => {
             )
           })}
           <Button
-            size='xs'
             className='m-b-xs m-t-xs'
+            size='xs'
             label='Применить'
             onClick={() => applyNewTabs()}
           />
@@ -90,6 +93,7 @@ export const ListSettings = () => {
         </>
       )}
       <Select
+        size='xs'
         label='size'
         getItemKey={(key: ListPropSize) => key}
         getItemLabel={(label: ListPropSize) => label}
@@ -101,10 +105,12 @@ export const ListSettings = () => {
         className={styles.Switch}
         style={{ paddingBottom: 10 }}
         checked={props?.withListBox ?? false}
+        size='xs'
         label='withListBox'
         onChange={onChangeSwitch('withListBox')}
       />
       <Select
+        size='xs'
         label='innerOffset'
         getItemKey={(key: ListPropInnerOffset) => key}
         getItemLabel={(label: ListPropInnerOffset) => label}
@@ -113,6 +119,7 @@ export const ListSettings = () => {
         onChange={({ value }) => onChangeInnerOffset(value)}
       />
       <Select
+        size='xs'
         label='Form'
         getItemKey={(key: ListPropForm) => key}
         getItemLabel={(label: ListPropForm) => label}
@@ -120,7 +127,6 @@ export const ListSettings = () => {
         items={FormArray}
         onChange={({ value }) => onChangeForm(value)}
       />
-    </>
+    </div>
   )
 }
-

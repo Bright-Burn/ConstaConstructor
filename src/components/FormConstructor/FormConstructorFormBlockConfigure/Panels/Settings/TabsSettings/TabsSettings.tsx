@@ -6,6 +6,8 @@ import { Button } from '@consta/uikit/Button'
 import { FitMode, fitModeArray, linePositionArray, sizeArray, viewArray } from './types'
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/TabsDeprecated'
 import { ITEM } from '../../../../store/formElements/tabsTypes'
+import styles from './styles.module.css'
+
 export const TabsSettings = () => {
   const {
     itemsProps,
@@ -34,10 +36,11 @@ export const TabsSettings = () => {
   }
 
   return (
-    <>
+    <div className={`${styles.tabsSettings}`}>
       {!isLabelsEditing && (
         <>
           <TextField
+            size='xs'
             label='Количество табов'
             type='number'
             value={`${itemsProps.items.length}`}
@@ -45,6 +48,7 @@ export const TabsSettings = () => {
           />
           <Select
             getItemKey={item => item.id}
+            size='xs'
             label='Активный таб'
             getItemLabel={item => item.label}
             items={itemsProps.items}
@@ -52,6 +56,7 @@ export const TabsSettings = () => {
             onChange={onChangeActiveItem}
           />
           <Button
+            size='xs'
             view='secondary'
             className='m-b-xs m-t-xs'
             label={'Сменить названия табов'}
@@ -65,6 +70,7 @@ export const TabsSettings = () => {
             return (
               <TextField
                 key={index}
+                size='xs'
                 label={`${index + 1}`}
                 value={`${tab.label}`}
                 onChange={event => onTabLabelEdit(event.value, index)}
@@ -81,6 +87,7 @@ export const TabsSettings = () => {
         </>
       )}
       <Select
+        size='xs'
         label='size'
         getItemKey={(key: TabsPropSize) => key}
         getItemLabel={(label: TabsPropSize) => label}
@@ -89,6 +96,7 @@ export const TabsSettings = () => {
         onChange={({ value }) => onChangeSize(value)}
       />
       <Select
+        size='xs'
         label='view'
         getItemKey={(key: TabsPropView) => key}
         getItemLabel={(label: TabsPropView) => label}
@@ -97,6 +105,7 @@ export const TabsSettings = () => {
         onChange={({ value }) => onChangeView(value)}
       />
       <Select
+        size='xs'
         label='Расположение табов'
         getItemKey={(key: TabsPropLinePosition) => key}
         getItemLabel={(label: TabsPropLinePosition) => label}
@@ -106,6 +115,7 @@ export const TabsSettings = () => {
       />
       {(itemsProps.linePosition === 'bottom' || itemsProps.linePosition === 'top') && (
         <Select
+          size='xs'
           label='fitMode'
           getItemKey={(key: FitMode) => key}
           getItemLabel={(label: FitMode) => label}
@@ -114,6 +124,6 @@ export const TabsSettings = () => {
           onChange={({ value }) => onChangeFitMode(value)}
         />
       )}
-    </>
+    </div>
   )
 }

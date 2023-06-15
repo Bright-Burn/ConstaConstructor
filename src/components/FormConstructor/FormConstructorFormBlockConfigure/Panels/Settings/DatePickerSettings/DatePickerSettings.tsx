@@ -21,6 +21,7 @@ import {
 } from './types'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from '../../../../store/formElements/selectTypes'
+import styles from './styles.module.css'
 
 export const DatePickerSettings: FC = () => {
   const {
@@ -40,13 +41,14 @@ export const DatePickerSettings: FC = () => {
   } = useItemsHandlers()
 
   return (
-    <>
+    <div className={`${styles.dataPickerSettings}`}>
       {itemsProps ? (
         <>
           <Select
             getItemKey={(item: DatePickerPropType | undefined) => item || ''}
             getItemLabel={(item: DatePickerPropType | undefined) => item || ''}
             items={typeArray}
+            size='xs'
             label='type'
             value={itemsProps.type}
             onChange={({ value }) => onChangeType(value)}
@@ -55,6 +57,7 @@ export const DatePickerSettings: FC = () => {
             getItemKey={(item: PropForm | undefined) => item || ''}
             getItemLabel={(item: PropForm | undefined) => item || ''}
             items={formArray}
+            size='xs'
             label='form'
             value={itemsProps.form}
             onChange={({ value }) => onChangeForm(value)}
@@ -63,35 +66,46 @@ export const DatePickerSettings: FC = () => {
             getItemKey={(item: TextFieldPropStatus | undefined) => item || ''}
             getItemLabel={(item: TextFieldPropStatus | undefined) => item || ''}
             items={statusArray}
+            size='xs'
             label='status'
             value={itemsProps.status}
             onChange={({ value }) => onChangeStatus(value)}
           />
           <Switch
             checked={itemsProps.withClearButton}
+            size='xs'
             label='withClearButton'
             onChange={onChangeSwitch('withClearButton')}
           />
           <Switch
             checked={itemsProps.withAdditionalControls}
+            size='xs'
             label='with additional controls'
             onChange={onChangeSwitch('withAdditionalControls')}
           />
-          <TextField label='label' value={itemsProps.label} onChange={onChangeField('label')} />
+          <TextField
+            size='xs'
+            label='label'
+            value={itemsProps.label}
+            onChange={onChangeField('label')}
+          />
           <Select
             getItemKey={(item: 'top' | 'left' | undefined) => item || ''}
             getItemLabel={(item: 'top' | 'left' | undefined) => item || ''}
             items={labelPositionArray}
+            size='xs'
             label='labelPosition'
             value={itemsProps.labelPosition}
             onChange={({ value }) => onChangeLabelPosition(value)}
           />
           <Switch
             checked={itemsProps.required}
+            size='xs'
             label='required'
             onChange={onChangeSwitch('required')}
           />
           <TextField
+            size='xs'
             label='caption'
             value={itemsProps.caption}
             onChange={onChangeField('caption')}
@@ -100,6 +114,7 @@ export const DatePickerSettings: FC = () => {
             getItemKey={(item: TextFieldPropSize | undefined) => item || ''}
             getItemLabel={(item: TextFieldPropSize | undefined) => item || ''}
             items={sizeArray}
+            size='xs'
             label='size'
             value={itemsProps.size}
             onChange={({ value }) => onChangeSize(value)}
@@ -108,21 +123,34 @@ export const DatePickerSettings: FC = () => {
             getItemKey={(item: TextFieldPropView) => item || ''}
             getItemLabel={(item: TextFieldPropView) => item || ''}
             items={viewArray}
+            size='xs'
             label='view'
             value={itemsProps.view}
             onChange={({ value }) => onChangeView(value)}
           />
           <Switch
             checked={itemsProps.disabled}
+            size='xs'
             label='disabled'
             onChange={onChangeSwitch('disabled')}
           />
-          <DatePicker label='minDate' value={itemsProps.minDate} onChange={onChangeMinDate} />
-          <DatePicker label='maxDate' value={itemsProps.maxDate} onChange={onChangeMaxDate} />
+          <DatePicker
+            size='xs'
+            label='minDate'
+            value={itemsProps.minDate}
+            onChange={onChangeMinDate}
+          />
+          <DatePicker
+            size='xs'
+            label='maxDate'
+            value={itemsProps.maxDate}
+            onChange={onChangeMaxDate}
+          />
           <Select
             getItemKey={(item: DatePickerPropDateTimeView) => item || ''}
             getItemLabel={(item: DatePickerPropDateTimeView) => item || ''}
             items={dateTimeViewArray}
+            size='xs'
             label='view'
             value={itemsProps.dateTimeView}
             onChange={({ value }) => onChangeDateTimeView(value)}
@@ -131,6 +159,7 @@ export const DatePickerSettings: FC = () => {
             getItemKey={(item: DatePickerPropDropdownForm) => item || ''}
             getItemLabel={(item: DatePickerPropDropdownForm) => item || ''}
             items={dropdownFormArray}
+            size='xs'
             label='view'
             value={itemsProps.dropdownForm}
             onChange={({ value }) => onChangeDropdownForm(value)}
@@ -139,6 +168,6 @@ export const DatePickerSettings: FC = () => {
       ) : (
         <></>
       )}
-    </>
+    </div>
   )
 }

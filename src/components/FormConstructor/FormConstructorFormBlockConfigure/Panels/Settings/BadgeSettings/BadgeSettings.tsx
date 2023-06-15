@@ -86,6 +86,7 @@ export const BadgeSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={sizes}
             label='Size'
+            size='xs'
             value={props.size || 's'}
             onChange={({ value }) => {
               onChangeField(value as BadgePropSize, 'size')
@@ -96,6 +97,7 @@ export const BadgeSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={views}
             label='View'
+            size='xs'
             value={props.view || 'filled'}
             onChange={({ value }) => {
               onChangeField(value as BadgePropView, 'view')
@@ -106,6 +108,7 @@ export const BadgeSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={statuses}
             label='Status'
+            size='xs'
             value={props.status || 'success'}
             onChange={({ value }) => {
               onChangeField(value as BadgePropStatus, 'status')
@@ -116,17 +119,19 @@ export const BadgeSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={forms}
             label='Form'
+            size='xs'
             value={props.form || 'default'}
             onChange={({ value }) => {
               onChangeField(value as BadgePropForm, 'form')
             }}
           />
           <Checkbox
+            size='xs'
             label='Minified'
             checked={props.minified || false}
             onChange={onChangeMinified}
           />
-          <TextField value={props.label} onChange={handleOnChangeLabel} />
+          <TextField size='xs' value={props.label} onChange={handleOnChangeLabel} />
         </>
       ) : (
         <></>

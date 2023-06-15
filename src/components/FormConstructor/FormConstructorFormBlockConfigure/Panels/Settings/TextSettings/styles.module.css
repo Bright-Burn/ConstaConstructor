@@ -1,4 +1,6 @@
 .textSettings {
   display: flex;
   flex-direction: column;
+  padding-left: 12px;
+  padding-right: 12px;
 }
