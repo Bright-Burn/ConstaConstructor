@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IFormElement } from '../../../store/formElements'
-import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types';
+import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types'
 
 interface IPrototypeTextElement {
   element: IFormElement
@@ -40,8 +40,11 @@ export const PrototypeTextElement: FC<IPrototypeTextElement> = ({ element }) => 
       </div>
     )
   }
-  
-  console.error('Слышишь, осел дырявый, ты в очко долбишься?')
-  
+
+  console.error(
+    `Друг! Ты сильно постарался, раз попал сюда =) 
+    Будь добр, проверь пропсы`,
+  )
+
   return null
 }
