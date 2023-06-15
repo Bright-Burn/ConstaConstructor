@@ -2,12 +2,12 @@ import { Props } from '@consta/uikit/Button'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
 import { CardElementPropsStyles } from './cardTypes'
 import { BadgeProps, IFormElementBadge } from './badgeTypes'
-import { TableProps, IFormElementTable } from './tableTypes'
+import { IFormElementTable, TableProps } from './tableTypes'
 import { LayoutElementPropsStyles } from './layoutTypes'
 import { IFormElementTabs, TabsElementProps } from './tabsTypes'
 import { IFormElementInformer, InformerElementProps } from './informerTypes'
 import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
-import { TextElementProps, IFormElementText } from './textTypes'
+import { IFormElementText, TextElementProps } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 import { Values } from '../../utils'
 import { IFormElementList, ListProps } from './ListTypes'
@@ -17,6 +17,7 @@ import { DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
 import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
 import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
+import { PrototypeProps } from '../../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -69,6 +70,8 @@ export const FormElementTypes = {
   Select: 'SelectForm',
   DataTime: 'DataTime',
   ExpertiseForm: 'ExpertiseForm',
+  PrototypeTextElement: 'PrototypeTextElement',
+  PrototypeRectElement: 'PrototypeRectElement',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -90,10 +93,12 @@ export interface IFormElement extends IUnion {
   type: FormElementTypes
   props: FormElementProps
 }
+
 export interface IUnion {
   id: string
   type: FormElementTypes | FormGroupsTypes
 }
+
 export interface IFormElementButton extends IFormElement {
   props: ButtonElementProps
 }
@@ -119,6 +124,7 @@ export type FormElementProps =
   | ComboboxProps
   | SelectProps
   | DataTimeProps
+  | PrototypeProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -151,6 +157,7 @@ export interface BaseProps {
   className: string
   baseProps: BaseTypes
 }
+
 export interface ISelectedElement {
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes

@@ -21,6 +21,8 @@ import {
   FormWithTwoColumnsMock,
   TableMock,
   ExpertiseFormMock,
+  PrototypeTextMock,
+  PrototypeRectMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 import { ComponentItems } from '../ComponentItems'
@@ -42,6 +44,8 @@ export const BaseComponents: FC = () => {
     FormWithTwoColumnsMock,
     TableMock,
     ExpertiseFormMock,
+    PrototypeTextMock,
+    PrototypeRectMock,
   ]
 
   const dispatch = useBaseComponentsDispatch()
