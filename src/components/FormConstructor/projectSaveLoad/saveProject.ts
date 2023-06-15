@@ -1,4 +1,4 @@
-import { IFormConstructor } from '../store/formElements/types'
+import { IFormConstructor, IFormElement, IGroupElement } from '../store/formElements/types'
 import { saveToFile } from '../utils'
 import {
   IFormConstructorSerializable,
@@ -6,6 +6,7 @@ import {
   ProjectSaveWays,
   SaveProjectIntent,
 } from './types'
+import { PrototypeProps } from '../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
 
 export const saveProject = (saveIntent: SaveProjectIntent) => {
   const projData: ProjectDataSerializable = {
@@ -40,12 +41,42 @@ export const projectToSerilizable = (proj: IFormConstructor): IFormConstructorSe
   }
 }
 
+/**
+ * Мутирует allElementsMap для создания инстансов класса props после импорта из json
+ *
+ * Пример:
+ * {
+ *   props: new PrototypeProps(props)
+ * }
+ *
+ * @param {Map<string, IGroupElement | IFormElement>} allElementsMapParsed
+ */
+export const mutateAllElementsMap = (
+  allElementsMapParsed: Map<string, IGroupElement | IFormElement>,
+): void => {
+  Array.from(allElementsMapParsed).forEach(([, value]) => {
+    if (value.type === 'PrototypeTextElement' || value.type === 'PrototypeRectElement') {
+      if ('zIndex' in value.props) {
+        value.props = new PrototypeProps(value.props)
+      }
+    }
+  })
+}
+
 export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFormConstructor => {
+  const allElementsTree: Map<string, string[]> = new Map(JSON.parse(proj.allElementsTree))
+
+  const allElementsMap: Map<string, IGroupElement | IFormElement> = new Map(
+    JSON.parse(proj.allElementsMap),
+  )
+
+  mutateAllElementsMap(allElementsMap)
+
   return {
     ...proj,
+    allElementsMap,
+    allElementsTree,
     draggableElement: null,
-    allElementsMap: new Map(JSON.parse(proj.allElementsMap)),
-    allElementsTree: new Map(JSON.parse(proj.allElementsTree)),
     componentsStructurePanelState: true,
     settingsPanelState: true,
   }
