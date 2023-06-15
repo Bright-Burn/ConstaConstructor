@@ -38,27 +38,23 @@
 
 .pageBlock {
   display: flex;
+  padding-left: 10px;
+  padding-top: 3px;
 }
 
-.buttonLeftIsActive{
-  display: flex;
-  width: 90%;
+.activeBackground {
+  background: rgba(0, 32, 51, 0.08);
 }
 
 .buttonLeft {
   display: flex;
   width: 90%;
-  background: none
-}
-
-.buttonRightIsActive{
-  display: flex;
-  width: 10%;
+  align-items: center;
 }
 
 .buttonRight{
+  display: flex;
   width: 10%;
-  background: none
 }
 
 .pages{
@@ -68,4 +64,6 @@
   min-height: 10%;
   overflow-y: auto;
   height: 23%;
+  padding-left: 10px;
+  padding-top: 3px;
 }

@@ -81,29 +81,19 @@ export const ComponentsStructure = () => {
           </div>
           <div className={`${styles.pages}`}>
             {pages.map((page: IPageOfLayout, index: number) => (
-              <Card className={`${styles.pageBlock}`} form='round'>
-                <Button
-                  className={
-                    page.isActive ? `${styles.buttonLeftIsActive}` : `${styles.buttonLeft}`
-                  }
-                  label={`${page.name}`}
-                  view='ghost'
-                  size='xs'
-                  form='brick'
-                  onClick={() => changeActivePage(index)}
-                />
-                <Button
-                  className={
-                    page.isActive ? `${styles.buttonRightIsActive}` : `${styles.buttonRight}`
-                  }
-                  iconLeft={IconTrash}
-                  view='ghost'
-                  size='xs'
-                  form='brick'
-                  onlyIcon
-                  onClick={() => closePage(index)}
-                />
-              </Card>
+              <div className={page.isActive ? `${styles.activeBackground}` : ''}>
+                <Card className={`${styles.pageBlock}`} form='round'>
+                  <Text
+                    size='xs'
+                    className={`${styles.buttonLeft}`}
+                    onClick={() => changeActivePage(index)}>
+                    {page.name}
+                  </Text>
+                  <Text className={`${styles.buttonRight}`} onClick={() => closePage(index)}>
+                    <IconTrash size='xs' />
+                  </Text>
+                </Card>
+              </div>
             ))}
           </div>
           {getTabContentRenderer()}
