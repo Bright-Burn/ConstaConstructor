@@ -23,9 +23,10 @@ import { RadioButtonSettings } from './RadioButtonSettings'
 import { SwitchSettings } from './SwitchSettings'
 import { DatePickerSettings } from './DatePickerSettings'
 import { ComboBoxSettings } from './ComboBoxSettings/ComboBoxSettings'
-import { SelectSettings } from './SelectSettings/SelectSettings'
+import { SelectSettings } from './SelectSettings'
 import { DataTimeSettings } from './DataTimeSettings'
-import { PrototypeSettings } from './PrototypeSettings/PrototypeSettings'
+import { PrototypeSettings } from './PrototypeSettings'
+import { UserSettings } from './UserSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -137,6 +138,13 @@ export const Settings: FC = () => {
           return <PrototypeSettings />
         case FormElementTypes.PrototypeRectElement:
           return <PrototypeSettings />
+
+        case FormElementTypes.User:
+          return (
+            <>
+              <UserSettings /> <BaseSettings />
+            </>
+          )
         default:
           return (
             <>
