@@ -18,6 +18,7 @@ import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
 import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 import { PrototypeProps } from '../../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
+import { BreadcrumbProps, IFormElementBreadcrumbs } from './BreadcrumbsTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -72,6 +73,7 @@ export const FormElementTypes = {
   ExpertiseForm: 'ExpertiseForm',
   PrototypeTextElement: 'PrototypeTextElement',
   PrototypeRectElement: 'PrototypeRectElement',
+  BreadcrumbsForm: 'BreadcrumbsFormElement'
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -125,6 +127,7 @@ export type FormElementProps =
   | SelectProps
   | DataTimeProps
   | PrototypeProps
+  | BreadcrumbProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -146,6 +149,7 @@ export type FormElementUnion =
   | IFormElementComboBox
   | IFormElementSelect
   | IFormElementDataTime
+  | IFormElementBreadcrumbs
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement

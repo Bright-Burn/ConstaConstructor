@@ -19,6 +19,7 @@ import { ComponentCardDatePicker } from './ComponentCardDatePicker'
 import { ComponentCardComboBox } from './ComponentCardComboBox'
 import { ComponentCardSelect } from './ComponentCardSelect'
 import { ComponentCardDataTime } from './ComponentCardDataTime'
+import { ComponentCardBreadcrumb } from './ComponentCardBreadcrumb'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
@@ -40,6 +41,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
         <ComponentCardComboBox name={name} value={FormElementTypes.ComboBox} />
         <ComponentCardSelect name={name} value={FormElementTypes.Select} />
         <ComponentCardDataTime name={name} value={FormElementTypes.DataTime} />
+        <ComponentCardBreadcrumb name={name} value={FormElementTypes.BreadcrumbsForm} />
       </SwitchComponent>
     </div>
   )

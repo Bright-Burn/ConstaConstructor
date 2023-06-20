@@ -26,6 +26,7 @@ import { ComboBoxSettings } from './ComboBoxSettings/ComboBoxSettings'
 import { SelectSettings } from './SelectSettings/SelectSettings'
 import { DataTimeSettings } from './DataTimeSettings'
 import { PrototypeSettings } from './PrototypeSettings/PrototypeSettings'
+import { BreadcrumbsSettings } from './BreadcrumbsSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -137,6 +138,12 @@ export const Settings: FC = () => {
           return <PrototypeSettings />
         case FormElementTypes.PrototypeRectElement:
           return <PrototypeSettings />
+        case FormElementTypes.BreadcrumbsForm:
+          return (
+            <>
+              <BreadcrumbsSettings /> <BaseSettings />
+            </>
+          )
         default:
           return (
             <>
