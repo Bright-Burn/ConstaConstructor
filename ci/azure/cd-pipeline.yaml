@@ -1,0 +1,15 @@
+trigger: none
+
+pool:
+  name: CR-UFA-UBER-CI
+
+steps:
+
+# Получить версию 
+- template: template-gitversion.yaml
+
+# Залогиниться на Docker-registry
+- template: template-docker-login.yaml
+
+# Собрать и запустить образы микросервисов на одном стенде
+- template: template-build-and-start.yaml

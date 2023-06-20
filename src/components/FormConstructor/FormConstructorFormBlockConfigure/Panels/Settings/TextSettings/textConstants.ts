@@ -34,7 +34,6 @@ export const views: TextPropView[] = [
   'ghost',
   'link',
   'linkMinor',
-  'primary',
   'secondary',
   'success',
   'warning',
