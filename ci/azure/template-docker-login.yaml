@@ -1,0 +1,6 @@
+steps:
+  - task: Bash@3
+    displayName: Docker Login
+    inputs:
+      targetType: 'inline'
+      script: 'docker login $(fc.docker.registry) -u $(fc.docker.registry.user) -p $(fc.docker.registry.password)'
