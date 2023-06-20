@@ -1,0 +1,37 @@
+steps:
+  # Сборка образов из docker-compose
+  - task: DockerCompose@0
+    displayName: 'Build images'
+    inputs:
+      action: Run a Docker Compose command
+      dockerComposeFile: 'ci/azure/fc.deploy-dev.docker-compose.yaml'
+      currentWorkingDirectory: '.'
+      dockerComposeCommand: build
+      dockerComposeFileArgs: | 
+        DOCKER_REGISTRY=$(fc.docker.registry)
+        NPM_REGISTRY=$(fc.npm.registry)
+    
+
+  # Удаление старарых версий контейнеров
+  - task: DockerCompose@0
+    displayName: 'Down previous deploy'
+    inputs:
+      action: Run a Docker Compose command
+      dockerComposeFile: 'ci/azure/fc.deploy-dev.docker-compose.yaml'
+      currentWorkingDirectory: '.'
+      dockerComposeCommand: down --remove-orphans
+      dockerComposeFileArgs: | 
+        DOCKER_REGISTRY=$(fc.docker.registry)
+        NPM_REGISTRY=$(fc.npm.registry)
+
+  # Запуск новых версий контейнеров
+  - task: DockerCompose@0
+    displayName: 'Deploy images'
+    inputs:
+      action: Run a Docker Compose command
+      dockerComposeFile: 'ci/azure/fc.deploy-dev.docker-compose.yaml'
+      currentWorkingDirectory: '.'
+      dockerComposeCommand: up -d --remove-orphans
+      dockerComposeFileArgs: | 
+        DOCKER_REGISTRY=$(fc.docker.registry)
+        NPM_REGISTRY=$(fc.npm.registry)

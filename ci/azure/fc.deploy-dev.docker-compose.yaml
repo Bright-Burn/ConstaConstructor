@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+
+  fc-frontend:
+    container_name: fc-frontend
+    build:
+      context: ../..
+      dockerfile: docker/GpnDs.FC.Frontend.Dockerfile
+      target: final
+      args:
+        DOCKER_REGISTRY: $DOCKER_REGISTRY
+        NPM_REGISTRY: $NPM_REGISTRY
+    ports:
+      - "8082:8080"
