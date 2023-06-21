@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback, useEffect } from 'react'
+import React, { FC, ReactNode, useEffect } from 'react'
 import { formConstructorSlice, useAppDispatch } from '../../store/formElements'
 import css from './styles.module.css'
 
@@ -8,7 +8,7 @@ interface Props {
 
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch()
-  
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
@@ -26,3 +26,4 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
 
   return <div className={css.formConstructorEventListener}>{children}</div>
 }
+
