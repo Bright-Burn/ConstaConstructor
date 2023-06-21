@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { ITreeItem } from './Tree/types'
-import { formToTreeData } from './util'
 import { useAppSelector } from '../../../../store/formElements'
-import { Tree } from './Tree/Tree'
+import { Tree } from './Tree'
+import { formToTreeData } from './Tree'
 
 export const ComponentTree = () => {
   const [treeData, setTreeData] = useState<ITreeItem[]>([])

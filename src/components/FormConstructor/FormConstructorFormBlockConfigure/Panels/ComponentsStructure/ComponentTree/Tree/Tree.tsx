@@ -11,14 +11,14 @@ import RCTree from 'rc-tree'
 import { Key } from 'rc-tree/lib/interface'
 
 export const Tree: FC<ITree> = ({ data }) => {
-  const [selectedTreeItems, setSelectedTreeItems] = useState<string[]>([])
+  const [selectedTreeItemsIds, setSelectedTreeItemsIds] = useState<string[]>([])
 
   const { allElementsMap, selectedElement } = useAppSelector(state => state.formConstructor)
 
   useEffect(() => {
     const selectedElementId = selectedElement?.elementId
     if (selectedElementId) {
-      setSelectedTreeItems([selectedElementId])
+      setSelectedTreeItemsIds([selectedElementId])
     }
   }, [selectedElement])
 
@@ -51,7 +51,7 @@ export const Tree: FC<ITree> = ({ data }) => {
       {...treeProps}
       treeData={data}
       prefixCls={prefix}
-      selectedKeys={selectedTreeItems}
+      selectedKeys={selectedTreeItemsIds}
       onSelect={onSelect}
       defaultExpandAll
     />

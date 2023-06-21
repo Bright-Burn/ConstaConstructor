@@ -1,5 +1,5 @@
-import { IFormElement, IGroupElement } from '../../../../store/formElements'
-import { ITreeItem } from './Tree/types'
+import { IGroupElement, IFormElement } from '../../../../../store/formElements'
+import { ITreeItem } from './types'
 
 export const formToTreeData: (
   allElementsTree: Map<string, string[]>,
