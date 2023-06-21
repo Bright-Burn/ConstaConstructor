@@ -20,6 +20,7 @@ import { ComponentCardComboBox } from './ComponentCardComboBox'
 import { ComponentCardSelect } from './ComponentCardSelect'
 import { ComponentCardDataTime } from './ComponentCardDataTime'
 import { ComponentCardUser } from './ComponentCardUser'
+import { ComponentCardIcon } from './ComponentCardIcon'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
@@ -42,6 +43,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
         <ComponentCardSelect name={name} value={FormElementTypes.Select} />
         <ComponentCardDataTime name={name} value={FormElementTypes.DataTime} />
         <ComponentCardUser name={name} value={FormElementTypes.User} />
+        <ComponentCardIcon name={name} value={FormElementTypes.Icon} />
       </SwitchComponent>
     </div>
   )
