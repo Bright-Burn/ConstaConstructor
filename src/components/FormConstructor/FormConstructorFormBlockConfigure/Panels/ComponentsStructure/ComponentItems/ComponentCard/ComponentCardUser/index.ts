@@ -1,0 +1,1 @@
+export { ComponentCardUser } from './ComponentCardUser'

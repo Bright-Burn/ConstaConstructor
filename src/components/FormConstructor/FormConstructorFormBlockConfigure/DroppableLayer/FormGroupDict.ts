@@ -33,6 +33,8 @@ import {
   PrototypeTextElement,
   PrototypeRectElement,
   BreadcrumbsFormElement,
+  UserFormElement,
+  TextFormElement,
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -46,7 +48,7 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   HeaderCognitiveGeologist: HeaderCognitiveGeologist,
   Informer: InformerFormElement,
   Tabs: TabsFormElement,
-  Text: TextFieldFormElement,
+  Text: TextFormElement,
   TextField: TextFieldFormElement,
   Placeholder: PlaceholderFormElement,
   CardWithBarChart: CardWithBarChart,
@@ -69,4 +71,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   PrototypeTextElement: PrototypeTextElement,
   PrototypeRectElement: PrototypeRectElement,
   BreadcrumbsFormElement: BreadcrumbsFormElement,
+  User: UserFormElement,
 }

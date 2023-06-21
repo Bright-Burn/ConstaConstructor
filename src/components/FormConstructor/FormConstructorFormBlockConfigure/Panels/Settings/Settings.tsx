@@ -5,28 +5,29 @@ import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
-import { BaseSettings } from './BaseSettings/BaseSettings'
+import { BaseSettings } from './BaseSettings'
 import { CardSettings } from './CardSettings'
 import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
 import { TableSettings } from './TableSettings'
-import { TabsSettings } from './TabsSettings/TabsSettings'
+import { TabsSettings } from './TabsSettings'
 import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
 import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
-import { ListSettings } from './ListSettings/ListSettings'
+import { ListSettings } from './ListSettings'
 import { RadioButtonSettings } from './RadioButtonSettings'
 import { SwitchSettings } from './SwitchSettings'
 import { DatePickerSettings } from './DatePickerSettings'
-import { ComboBoxSettings } from './ComboBoxSettings/ComboBoxSettings'
-import { SelectSettings } from './SelectSettings/SelectSettings'
+import { ComboBoxSettings } from './ComboBoxSettings'
+import { SelectSettings } from './SelectSettings'
 import { DataTimeSettings } from './DataTimeSettings'
-import { PrototypeSettings } from './PrototypeSettings/PrototypeSettings'
 import { BreadcrumbsSettings } from './BreadcrumbsSettings'
+import { PrototypeSettings } from './PrototypeSettings'
+import { UserSettings } from './UserSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -142,6 +143,12 @@ export const Settings: FC = () => {
           return (
             <>
               <BreadcrumbsSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.User:
+          return (
+            <>
+              <UserSettings /> <BaseSettings />
             </>
           )
         default:
