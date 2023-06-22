@@ -18,14 +18,14 @@ export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormGroupsTypes.Card}
-    >
+      elementType={FormGroupsTypes.Card}>
       <Card
         {...cardProps?.constaProps}
         className={`${cardProps?.className} ${styles.body}`}
-        style={{ ...cardProps?.styles }}
-      >
-        <DroppableLayer parentElementId={element.id} />
+        style={{ ...cardProps?.styles }}>
+        <div className={styles.cardContent}>
+          <DroppableLayer parentElementId={element.id} />
+        </div>
       </Card>
     </SelectableLayer>
   )

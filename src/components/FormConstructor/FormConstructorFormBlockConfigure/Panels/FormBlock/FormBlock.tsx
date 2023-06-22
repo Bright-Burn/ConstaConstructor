@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../../store/formElements'
 
 import { DroppableLayer } from '../../DroppableLayer'
@@ -8,7 +8,6 @@ import { usePagesSelector } from '../../../store/pagesOfLayout'
 
 export const FormBlock: FC = () => {
   const pages = usePagesSelector(state => state.pagesOfLayout.pages)
-  const [formBlockParentId] = useState<string>('root')
   const { selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
