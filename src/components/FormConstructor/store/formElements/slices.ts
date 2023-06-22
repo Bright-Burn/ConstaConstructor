@@ -31,6 +31,7 @@ import {
   SaveProjectIntent,
 } from '../../projectSaveLoad'
 import { ProjectDataSerializable } from '../../projectSaveLoad/types'
+import { deleteElementFromTree } from './utils'
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
@@ -154,8 +155,7 @@ export const formConstructorSlice = createFormConstructorSlice({
     },
     deleteElement: (state, action: PayloadAction<DeleteElementPayload>) => {
       const elementId = action.payload.elementId
-      /// Добавить удаление из дерева, включая дочерние элементы
-      state.allElementsMap.delete(elementId)
+      deleteElementFromTree(elementId, state.allElementsTree, state.allElementsMap)
     },
     togglePanelsByHotkey: (state: PanelStatePayload) => {
       if (
