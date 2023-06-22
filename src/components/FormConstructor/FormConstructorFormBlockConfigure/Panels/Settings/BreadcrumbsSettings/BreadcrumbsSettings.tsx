@@ -1,32 +1,26 @@
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
-import { useDispatch } from 'react-redux'
-import { FC, useLayoutEffect, useState } from 'react'
-import { BreadcrumbProps } from '../../../../store/formElements/BreadcrumbsTypes'
+import { FC, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { fitMode, sizes } from './BreadcrumbsConstants'
-import { IconPropSize } from '@consta/uikit/Icon'
-import { Switch } from '@consta/uikit/Switch'
-import { TabsPropFitMode } from '@consta/uikit/Tabs'
 import { DefaultItem } from '@consta/uikit/Breadcrumbs'
 import { useItemsHandlers } from './ItemsService'
 import { Button } from '@consta/uikit/Button'
 import { TextField } from '@consta/uikit/TextField'
 
 export const BreadcrumbsSettings: FC = () => {
-  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField } = useItemsHandlers()
+  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeSize, onChangeFitMode } =
+    useItemsHandlers()
   const [pages, setPages] = useState<DefaultItem[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {
     setPages(itemsProps.items)
     setIsLabelsEditing(value)
   }
-  const applyNewTabs = () => {
+  const applyNewPage = () => {
     onChangeItems(pages)
     setIsLabelsEditing(false)
   }
-  const onTabLabelEdit = (value: string | null, index: number) => {
+  const onPageLabelEdit = (value: string | null, index: number) => {
     const newPages = [...pages]
     newPages[index] = { ...newPages[index], label: `${value}` }
     setPages([...newPages])
@@ -57,7 +51,7 @@ export const BreadcrumbsSettings: FC = () => {
                 key={index}
                 label={`${index + 1}`}
                 value={`${page.label}`}
-                onChange={event => onTabLabelEdit(event.value, index)}
+                onChange={event => onPageLabelEdit(event.value, index)}
               />
             )
           })}
@@ -65,7 +59,7 @@ export const BreadcrumbsSettings: FC = () => {
             size='xs'
             className='m-b-xs m-t-xs'
             label='Применить'
-            onClick={() => applyNewTabs()}
+            onClick={() => applyNewPage()}
           />
           <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
         </>
@@ -78,7 +72,7 @@ export const BreadcrumbsSettings: FC = () => {
           label='size'
           value={itemsProps.size}
           onChange={({ value }) => {
-            onChangeField(value as IconPropSize, 'size')
+            onChangeSize(value)
           }}
         />
         <Select
@@ -88,7 +82,7 @@ export const BreadcrumbsSettings: FC = () => {
           label='fitMode'
           value={itemsProps.fitMode}
           onChange={({ value }) => {
-            onChangeField(value as TabsPropFitMode, 'fitMode')
+            onChangeFitMode(value)
           }}
         />
       </>

@@ -1,15 +1,13 @@
 import { useDispatch } from 'react-redux'
 import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { TabsPropFitMode} from '@consta/uikit/Tabs'
-import { ITEM } from '../../../../store/formElements/tabsTypes'
-import { IconPropSize } from '@consta/uikit/Icon'
+import { ISelectedElement, UnionProps } from '../../../../store/formElements/types'
 import { BreadcrumbProps } from '../../../../store/formElements/BreadcrumbsTypes'
-import { DefaultItem } from '@consta/uikit/Breadcrumbs'
+import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useDispatch()
+  const getButtonElementProps = (x: UnionProps): x is BreadcrumbProps => 'label' in x
   const onDispatch = (selectedElement: ISelectedElement, newProps: BreadcrumbProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -21,48 +19,66 @@ export const useItemsHandlers = () => {
   }
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: BreadcrumbProps = {
-        ...(selectedElementProps as BreadcrumbProps),
-      }
-      let itemsProps = [...newProps.items]
-      const currentLength = itemsProps.length
-      if (Number(value) > currentLength) {
-        for (let i = currentLength; i < Number(value); i++) {
-          itemsProps = [...itemsProps, { label: 'Страница ' + (itemsProps.length + 1) }]
+      if (selectedElementProps && getButtonElementProps(selectedElementProps)) {
+        const newProps: BreadcrumbProps = {
+          ...selectedElementProps,
         }
-      } else {
-        for (let i = 0; i < currentLength - Number(value); i++) {
-          itemsProps.pop()
+        let itemsProps = [...newProps.items]
+        const currentLength = itemsProps.length
+        if (Number(value) > currentLength) {
+          for (let i = currentLength; i < Number(value); i++) {
+            itemsProps = [...itemsProps, { label: 'Страница ' + (itemsProps.length + 1) }]
+          }
+        } else {
+          for (let i = 0; i < currentLength - Number(value); i++) {
+            itemsProps.pop()
+          }
         }
+        newProps.items = itemsProps
+        onDispatch(selectedElement, newProps)
       }
-      newProps.items = itemsProps
-      onDispatch(selectedElement, newProps)
     }
   }
   const onChangeItems = (items: DefaultItem[]) => {
     if (selectedElement && items) {
-      const newProps: BreadcrumbProps = {
-        ...(selectedElementProps as BreadcrumbProps),
+      if (selectedElementProps && getButtonElementProps(selectedElementProps)) {
+        const newProps: BreadcrumbProps = {
+          ...selectedElementProps,
+        }
+        newProps.items = [...items]
+        onDispatch(selectedElement, newProps)
       }
-      newProps.items = [...items]
-      onDispatch(selectedElement, newProps)
     }
   }
 
-  const onChangeField = (value: TabsPropFitMode | IconPropSize, field: keyof BreadcrumbProps) => {
-    if (selectedElement) {
-      const newProps: BreadcrumbProps = {
-        ...(selectedElementProps as BreadcrumbProps),
+  const onChangeSize = (value: BreadcrumbPropSize | null) => {
+    if (selectedElement && value) {
+      if (selectedElementProps && getButtonElementProps(selectedElementProps)) {
+        const newProps: BreadcrumbProps = {
+          ...selectedElementProps,
+        }
+        newProps.size = value
+        onDispatch(selectedElement, newProps)
       }
-      // @ts-ignore
-      newProps[field] = value
+    }
+  }
 
+const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
+  if (selectedElement && value) {
+    if (selectedElementProps && getButtonElementProps(selectedElementProps)){
+      const newProps: BreadcrumbProps = {
+        ...selectedElementProps ,
+      }
+      newProps.fitMode = value
       onDispatch(selectedElement, newProps)
     }
   }
+}
+
   return {
     onChangeItemsCount,
-    onChangeField,
+    onChangeSize,
+    onChangeFitMode,
     onChangeItems,
     itemsProps: {
       items: (selectedElementProps as BreadcrumbProps).items,
