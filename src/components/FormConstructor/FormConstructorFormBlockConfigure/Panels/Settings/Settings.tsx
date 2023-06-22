@@ -147,11 +147,7 @@ export const Settings: FC = () => {
             </>
           )
         case FormElementTypes.Icon:
-          return (
-            <>
-              <IconSettings /> <BaseSettings />
-            </>
-          )
+          return <IconSettings />
         default:
           return (
             <>

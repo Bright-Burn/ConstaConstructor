@@ -11,24 +11,32 @@ import React from 'react'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 export const IconSettings: FC = () => {
-  const [props, setProps] = useState<IconProps | undefined>()
-
+  // const [props, setProps] = useState<IconProps | undefined>()
+  let props = null
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useDispatch()
 
-  useLayoutEffect(() => {
-    if (selectedElement) {
-      setProps(selectedElementProps as IconProps)
+  console.log(selectedElementProps)
+
+  if (selectedElementProps) {
+    if ('icons' in selectedElementProps) {
+      props = selectedElementProps
     }
-  }, [selectedElementProps, selectedElement])
+  }
+
+  // useLayoutEffect(() => {
+  //   if (selectedElement) {
+  //     setProps(selectedElementProps as IconProps)
+  //   }
+  // }, [selectedElementProps, selectedElement])
 
   const onChangeField = (
     value: IconPropSize | IconPropView | iconNames,
     field: keyof IconProps,
   ) => {
-    if (selectedElement) {
+    if (selectedElement && selectedElementProps && 'icons' in selectedElementProps) {
       const newProps: IconProps = {
-        ...(selectedElementProps as IconProps),
+        ...selectedElementProps,
       }
       // @ts-ignore
       newProps[field] = value
@@ -80,17 +88,17 @@ export const IconSettings: FC = () => {
             onChange={({ value }) => {
               onChangeField(value as iconNames, 'icons')
             }}
-            renderItem={({ item, active, hovered, onClick, onMouseEnter }) => (
-              <div
-                style={{ display: 'flex', alignItems: 'center' }}
-                role='option'
-                aria-selected={active}
-                onMouseEnter={onMouseEnter}
-                onClick={onClick}>
-                {React.createElement(Icons[item])}
-                <div>{item}</div>
-              </div>
-            )}
+            // renderItem={({ item, active, hovered, onClick, onMouseEnter }) => (
+            //   <div
+            //     style={{ display: 'flex', alignItems: 'center' }}
+            //     role='option'
+            //     aria-selected={active}
+            //     onMouseEnter={onMouseEnter}
+            //     onClick={onClick}>
+            //     {React.createElement(Icons[item])}
+            //     <div>{item}</div>
+            //   </div>
+            // )}
           />
         </>
       ) : (
