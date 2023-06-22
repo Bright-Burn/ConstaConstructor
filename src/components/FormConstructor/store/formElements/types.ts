@@ -19,6 +19,7 @@ import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 import { PrototypeProps } from '../../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
 import { IFormElementUser, UserProps } from './userTypes'
+import { IFormElementIcon, IconProps } from './iconTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -74,6 +75,7 @@ export const FormElementTypes = {
   PrototypeTextElement: 'PrototypeTextElement',
   PrototypeRectElement: 'PrototypeRectElement',
   User: 'User',
+  Icon: 'Icon'
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -128,6 +130,7 @@ export type FormElementProps =
   | DataTimeProps
   | PrototypeProps
   | UserProps
+  | IconProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -150,6 +153,7 @@ export type FormElementUnion =
   | IFormElementSelect
   | IFormElementDataTime
   | IFormElementUser
+  | IFormElementIcon
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement
