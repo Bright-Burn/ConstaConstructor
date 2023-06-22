@@ -17,6 +17,7 @@ export const formToTreeData: (
 
     childrenIds.forEach(childId => {
       const title = allElementsMap.get(childId)?.type
+
       if (title && !visited.get(childId)) {
         const treeItem: ITreeItem = {
           key: childId,

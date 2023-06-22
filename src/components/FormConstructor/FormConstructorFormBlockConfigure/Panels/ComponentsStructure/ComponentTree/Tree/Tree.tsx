@@ -17,6 +17,7 @@ export const Tree: FC<ITree> = ({ data }) => {
 
   useEffect(() => {
     const selectedElementId = selectedElement?.elementId
+
     if (selectedElementId) {
       setSelectedTreeItemsIds([selectedElementId])
     }
@@ -35,6 +36,7 @@ export const Tree: FC<ITree> = ({ data }) => {
   const onSelect = (selectedKeys: Key[]) => {
     selectedKeys.forEach(key => {
       const element = allElementsMap.get(`${key}`)
+
       if (element) {
         dispatch(
           formConstructorSlice.actions.setSelectedElement({
