@@ -1315,6 +1315,11 @@
   resolved "https://registry.npmjs.org/@consta/icons/-/icons-0.1.1.tgz"
   integrity sha512-55NsjyaXFuYyr6CiptXuFMe/AUd7HMs8IgSaOGfV+wbMbSVg88u8dwJ5km3sPaHNFiD0vg8FNqGFc1F37K18zQ==
 
+"@consta/icons@0.5.2":
+  version "0.5.2"
+  resolved "https://registry.npmjs.org/@consta/icons/-/icons-0.5.2.tgz"
+  integrity sha512-Q5j+aCs/uzR8JbiN/UYpQ8FbxC22rUVAvEIzfAum4B8rl7FkiIguYvHjfFesuQCocj1OR0HJHIGkfKycR9e9LQ==
+
 "@consta/rc-tree-adapter@2.0.2":
   version "2.0.2"
   resolved "https://registry.npmjs.org/@consta/rc-tree-adapter/-/rc-tree-adapter-2.0.2.tgz"

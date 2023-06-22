@@ -39,44 +39,6 @@ import { IconShuffle } from '@consta/icons/IconShuffle'
 import { IconSlide } from '@consta/icons/IconSlide'
 import { IconTrash } from '@consta/icons/IconTrash'
 import { IconUpload } from '@consta/icons/IconUpload'
-import { IconAlignBlocksRight } from '@consta/icons/IconAlignBlocksRight'
-import { IconAlignBlocksLeft } from '@consta/icons/IconAlignBlocksLeft'
-import { IconCards } from '@consta/icons/IconCards'
-import { IconCollapse } from '@consta/icons/IconCollapse'
-import { IconExpand } from '@consta/icons/IconExpand'
-import { IconExpandWidthCorner } from '@consta/icons/IconExpandWidthCorner'
-import { IconExpandWidthSide } from '@consta/icons/IconExpandWidthSide'
-import { IconFitToDefault } from '@consta/icons/IconFitToDefault'
-import { IconGrouping } from '@consta/icons/IconGrouping'
-import { IconLogicalElement } from '@consta/icons/IconLogicalElement'
-import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
-import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
-import { IconNodeEnd } from '@consta/icons/IconNodeEnd'
-import { IconNodeStart } from '@consta/icons/IconNodeStart'
-import { IconNodeStep } from '@consta/icons/IconNodeStep'
-import { IconNodes } from '@consta/icons/IconNodes'
-import { IconPanelBottom } from '@consta/icons/IconPanelBottom'
-import { IconPanelLeft } from '@consta/icons/IconPanelLeft'
-import { IconPanelRight } from '@consta/icons/IconPanelRight'
-import { IconPanelTop } from '@consta/icons/IconPanelTop'
-import { IconShape } from '@consta/icons/IconShape'
-import { IconTable2 } from '@consta/icons/IconTable2'
-import { IconAlignCenter } from '@consta/icons/IconAlignCenter'
-import { IconAlignJustify } from '@consta/icons/IconAlignJustify'
-import { IconAlignLeft } from '@consta/icons/IconAlignLeft'
-import { IconAlignRight } from '@consta/icons/IconAlignRight'
-import { IconBold } from '@consta/icons/IconBold'
-import { IconColorFill } from '@consta/icons/IconColorFill'
-import { IconColorText } from '@consta/icons/IconColorText'
-import { IconColumns } from '@consta/icons/IconColumns'
-import { IconItalic } from '@consta/icons/IconItalic'
-import { IconList } from '@consta/icons/IconList'
-import { IconListNumbered } from '@consta/icons/IconListNumbered'
-import { IconQuote } from '@consta/icons/IconQuote'
-import { IconStrikethrough } from '@consta/icons/IconStrikethrough'
-import { IconTable } from '@consta/icons/IconTable'
-import { IconType } from '@consta/icons/IconType'
-import { IconUnderline } from '@consta/icons/IconUnderline'
 
 export const Icons = {
   IconAlert: IconAlert,
@@ -120,42 +82,4 @@ export const Icons = {
   IconSlide: IconSlide,
   IconTrash: IconTrash,
   IconUpload: IconUpload,
-  IconAlignBlocksRight: IconAlignBlocksRight,
-  IconAlignBlocksLeft: IconAlignBlocksLeft,
-  IconCards: IconCards,
-  IconCollapse: IconCollapse,
-  IconExpand: IconExpand,
-  IconExpandWidthCorner: IconExpandWidthCorner,
-  IconExpandWidthSide: IconExpandWidthSide,
-  IconFitToDefault: IconFitToDefault,
-  IconGrouping: IconGrouping,
-  IconLogicalElement: IconLogicalElement,
-  IconMaxHeight: IconMaxHeight,
-  IconMaxWidth: IconMaxWidth,
-  IconNodeEnd: IconNodeEnd,
-  IconNodeStart: IconNodeStart,
-  IconNodeStep: IconNodeStep,
-  IconNodes: IconNodes,
-  IconPanelBottom: IconPanelBottom,
-  IconPanelLeft: IconPanelLeft,
-  IconPanelRight: IconPanelRight,
-  IconPanelTop: IconPanelTop,
-  IconShape: IconShape,
-  IconTable2: IconTable2,
-  IconAlignCenter: IconAlignCenter,
-  IconAlignJustify: IconAlignJustify,
-  IconAlignLeft: IconAlignLeft,
-  IconAlignRight: IconAlignRight,
-  IconBold: IconBold,
-  IconColorFill: IconColorFill,
-  IconColorText: IconColorText,
-  IconColumns: IconColumns,
-  IconItalic: IconItalic,
-  IconList: IconList,
-  IconListNumbered: IconListNumbered,
-  IconQuote: IconQuote,
-  IconStrikethrough: IconStrikethrough,
-  IconTable: IconTable,
-  IconType: IconType,
-  IconUnderline: IconUnderline,
 }

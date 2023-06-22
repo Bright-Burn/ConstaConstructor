@@ -16,16 +16,32 @@ export const IconSettings: FC = () => {
   if (selectedElementProps && 'icons' in selectedElementProps) {
     const props = selectedElementProps
 
-    const onChangeField = (
-      value: IconPropSize | IconPropView | iconNames,
-      field: keyof IconProps,
-    ) => {
-      if (selectedElement) {
+    const onChangeSize = (value: IconPropSize | null) => {
+      if (selectedElement && value) {
         const newProps: IconProps = {
-          [field]: value,
           ...selectedElementProps,
         }
+        newProps.size = value
+        onDispatch(selectedElement, newProps)
+      }
+    }
 
+    const onChangeView = (value: IconPropView | null) => {
+      if (selectedElement && value) {
+        const newProps: IconProps = {
+          ...selectedElementProps,
+        }
+        newProps.view = value
+        onDispatch(selectedElement, newProps)
+      }
+    }
+
+    const onChangeIcon = (value: iconNames | null) => {
+      if (selectedElement && value) {
+        const newProps: IconProps = {
+          ...selectedElementProps,
+        }
+        newProps.icons = value
         onDispatch(selectedElement, newProps)
       }
     }
@@ -51,7 +67,7 @@ export const IconSettings: FC = () => {
               label='view'
               value={props.view}
               onChange={({ value }) => {
-                onChangeField(value as IconPropView, 'view')
+                onChangeView(value)
               }}
             />
             <Select
@@ -61,7 +77,7 @@ export const IconSettings: FC = () => {
               label='size'
               value={props.size}
               onChange={({ value }) => {
-                onChangeField(value as IconPropSize, 'size')
+                onChangeSize(value)
               }}
             />
             <Select
@@ -71,7 +87,7 @@ export const IconSettings: FC = () => {
               label='icons'
               value={props.icons}
               onChange={({ value }) => {
-                onChangeField(value as iconNames, 'icons')
+                onChangeIcon(value)
               }}
             />
           </>
