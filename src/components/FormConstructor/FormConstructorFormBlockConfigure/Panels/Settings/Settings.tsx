@@ -27,6 +27,7 @@ import { SelectSettings } from './SelectSettings'
 import { DataTimeSettings } from './DataTimeSettings'
 import { PrototypeSettings } from './PrototypeSettings'
 import { UserSettings } from './UserSettings'
+import { ButtonSettings } from './ButtonSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -38,6 +39,12 @@ export const Settings: FC = () => {
   const getSettingsPanel = () => {
     if (selectedElement) {
       switch (selectedElement.elementType) {
+        case FormElementTypes.Button:
+          return (
+            <>
+              <ButtonSettings /> <BaseSettings />
+            </>
+          )
         case FormElementTypes.Text:
           return (
             <>

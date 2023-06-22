@@ -1,0 +1,4 @@
+.buttonSettings {
+  display: flex;
+  flex-direction: column;
+}
