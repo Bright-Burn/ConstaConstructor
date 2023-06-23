@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import {
   formConstructorSlice,
   LayoutElementPropsStyles,
@@ -14,9 +14,39 @@ import {
   LayoutPropHorizontalAlign,
   LayoutPropVerticalAlign,
 } from '@consta/uikit/Layout'
-import { AlignItems, JustifyContentProps } from '../../../../store/formElements/layoutTypes'
+import {
+  AlignItems,
+  BorderColor,
+  BorderStyle,
+  BorderWidth,
+  JustifyContentProps,
+} from '../../../../store/formElements/layoutTypes'
+import { debounce } from '@antv/util'
 export const LayoutSettings = () => {
+  const colorsRef = useRef(null)
   const directions: LayoutPropDirection[] = ['row', 'column']
+  const borderWidths: BorderWidth[] = [
+    'inherit',
+    'medium',
+    'thick',
+    'thin',
+    'initial',
+    'revert',
+    'unset',
+  ]
+  const borderStyle: BorderStyle[] = [
+    'dotted',
+    'dashed',
+    'double',
+    'groove',
+    'hidden',
+    'inset',
+    'none',
+    'outset',
+    'ridge',
+    'solid',
+  ]
+  const borderColor: BorderColor[] = ['black', 'blue', 'red', 'yellow']
   const verticalAligns: LayoutPropVerticalAlign[] = ['top', 'bottom']
   const horizontalAligns: LayoutPropHorizontalAlign[] = ['left', 'right']
   const justifyContentProps: JustifyContentProps[] = [
@@ -174,6 +204,48 @@ export const LayoutSettings = () => {
     }
   }
 
+  const onChangeBorderWidth = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
+      }
+
+      newProps.styles = { ...newProps.styles }
+
+      // @ts-ignore
+      newProps.styles.borderWidth = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeBorderStyle = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
+      }
+
+      newProps.styles = { ...newProps.styles }
+
+      // @ts-ignore
+      newProps.styles.borderStyle = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeBorderColor = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
+      }
+
+      newProps.styles = { ...newProps.styles }
+
+      // @ts-ignore
+      newProps.styles.borderColor = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: LayoutElementPropsStyles) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -248,6 +320,34 @@ export const LayoutSettings = () => {
             items={horizontalAligns}
             value={`${propsStyles.constaProps.horizontalAlign || 'left'}`}
             onChange={onChangeHorizontalAligment()}
+          />
+          <Select
+            getItemKey={key => key}
+            label='Border width'
+            getItemLabel={label => label}
+            items={borderWidths}
+            value={`${propsStyles.styles?.borderWidth}`}
+            // @ts-ignore
+            onChange={({ value }: { value: string | null }) => onChangeBorderWidth(value)}
+          />
+          <TextField
+            value={propsStyles.styles?.borderColor}
+            type='text'
+            label='Border color'
+            onChange={({ value }: { value: string | null }) => onChangeBorderColor(value)}
+          />
+          <input
+            ref={colorsRef}
+            type='color'
+            value={propsStyles.styles?.borderColor}
+            onChange={value => onChangeBorderColor(value.currentTarget.value)}></input>
+          <Select
+            getItemKey={key => key}
+            label='Border style'
+            getItemLabel={label => label}
+            items={borderStyle}
+            value={`${propsStyles.styles?.borderStyle}`}
+            onChange={({ value }: { value: string | null }) => onChangeBorderStyle(value)}
           />
         </>
       ) : (

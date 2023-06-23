@@ -15,6 +15,10 @@ export interface LayoutElementProps {
   direction?: LayoutPropDirection
 }
 
+export type BorderStyle = 'none' | 'hidden' | 'dotted' | 'dashed' | 'solid' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset'
+export type BorderWidth = 'inherit' |'initial' |'revert' |'unset' | 'thin' | 'medium' | 'thick' 
+export type BorderColor = 'red' | 'black' | 'blue' | 'yellow' 
+
 export type JustifyContentProps =
   | 'start'
   | 'center'
@@ -33,6 +37,9 @@ export interface LayoutElementStyles {
   minHeight?: string
   justifyContent?: JustifyContentProps
   alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'
+  borderStyle?: BorderStyle
+  borderWidth?: BorderWidth
+  borderColor?: BorderColor
 }
 
 export interface LayoutElementPropsStyles extends BaseProps {
