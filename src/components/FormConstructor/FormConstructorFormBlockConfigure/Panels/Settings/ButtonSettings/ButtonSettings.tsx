@@ -6,7 +6,7 @@ import {
 import { ISelectedElement, UnionProps } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
 import { useDispatch } from 'react-redux'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { views, sizes, width, forms } from './UserConstants'
@@ -23,6 +23,7 @@ export const ButtonSettings: FC = () => {
   const getButtonElementProps = (x: UnionProps): x is ButtonElementProps => 'label' in x
 
   const dispatch = useDispatch()
+
   if (selectedElementProps && getButtonElementProps(selectedElementProps)) {
     const props = selectedElementProps
 
@@ -39,6 +40,7 @@ export const ButtonSettings: FC = () => {
         selectedElement && onDispatch(selectedElement, newProps)
       }
     }
+
     const onChangeSwitch =
       (propsName: keyof ButtonElementProps) =>
       ({ checked }: { checked: boolean }) => {
