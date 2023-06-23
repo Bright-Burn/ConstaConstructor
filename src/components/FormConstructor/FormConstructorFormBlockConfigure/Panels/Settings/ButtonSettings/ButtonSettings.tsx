@@ -16,6 +16,7 @@ import {
   ButtonPropView,
   ButtonPropWidth,
 } from '@consta/uikit/Button'
+import { TextField } from '@consta/uikit/TextField'
 
 export const ButtonSettings: FC = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -27,17 +28,53 @@ export const ButtonSettings: FC = () => {
   if (selectedElementProps && getButtonElementProps(selectedElementProps)) {
     const props = selectedElementProps
 
-    const onChangeField = (
-      value: ButtonPropView | ButtonPropWidth | ButtonPropSize | ButtonPropForm,
-      field: keyof ButtonElementProps,
-    ) => {
+    const onChangeLabel = (value: string | null) => {
       if (selectedElementProps) {
         const newProps: ButtonElementProps = {
           ...selectedElementProps,
-          [field]: value,
         }
-
+        value ? (newProps.label = value) : ''
         selectedElement && onDispatch(selectedElement, newProps)
+      }
+    }
+
+    const onChangeSize = (value: ButtonPropSize | null) => {
+      if (selectedElement && value) {
+        const newProps: ButtonElementProps = {
+          ...selectedElementProps,
+        }
+        newProps.size = value
+        onDispatch(selectedElement, newProps)
+      }
+    }
+
+    const onChangeForm = (value: ButtonPropForm | null) => {
+      if (selectedElement && value) {
+        const newProps: ButtonElementProps = {
+          ...selectedElementProps,
+        }
+        newProps.form = value
+        onDispatch(selectedElement, newProps)
+      }
+    }
+
+    const onChangeView = (value: ButtonPropView | null) => {
+      if (selectedElement && value) {
+        const newProps: ButtonElementProps = {
+          ...selectedElementProps,
+        }
+        newProps.view = value
+        onDispatch(selectedElement, newProps)
+      }
+    }
+
+    const onChangeWidth = (value: ButtonPropWidth | null) => {
+      if (selectedElement && value) {
+        const newProps: ButtonElementProps = {
+          ...selectedElementProps,
+        }
+        newProps.width = value
+        onDispatch(selectedElement, newProps)
       }
     }
 
@@ -74,7 +111,7 @@ export const ButtonSettings: FC = () => {
               label='size'
               value={props.size}
               onChange={({ value }) => {
-                onChangeField(value as ButtonPropSize, 'size')
+                onChangeSize(value)
               }}
             />
             <Select
@@ -84,7 +121,7 @@ export const ButtonSettings: FC = () => {
               label='view'
               value={props.view}
               onChange={({ value }) => {
-                onChangeField(value as ButtonPropView, 'view')
+                onChangeView(value)
               }}
             />
             <Select
@@ -94,7 +131,7 @@ export const ButtonSettings: FC = () => {
               label='form'
               value={props.form}
               onChange={({ value }) => {
-                onChangeField(value as ButtonPropForm, 'form')
+                onChangeForm(value)
               }}
             />
             <Switch
@@ -107,6 +144,12 @@ export const ButtonSettings: FC = () => {
               label='loading'
               onChange={onChangeSwitch('loading')}
             />
+            <TextField
+              label='label'
+              type='text'
+              value={props.label as string}
+              onChange={({ value }) => onChangeLabel(value)}
+            />
             <Select
               getItemKey={(item: string | undefined) => item || ''}
               getItemLabel={(item: string | undefined) => item || ''}
@@ -114,9 +157,26 @@ export const ButtonSettings: FC = () => {
               label='width'
               value={props.width}
               onChange={({ value }) => {
-                onChangeField(value as ButtonPropWidth, 'width')
+                onChangeWidth(value)
               }}
             />
+            <Switch
+              checked={!!props.iconLeft}
+              label='iconLeft'
+              onChange={onChangeSwitch('iconLeft')}
+            />
+            <Switch
+              checked={!!props.iconRight}
+              label='iconRight'
+              onChange={onChangeSwitch('iconRight')}
+            />
+            {(props.iconLeft || props.iconRight) && (
+              <Switch
+                checked={props.onlyIcon ?? false}
+                label='onlyIcon'
+                onChange={onChangeSwitch('onlyIcon')}
+              />
+            )}
           </>
         ) : null}
       </div>
