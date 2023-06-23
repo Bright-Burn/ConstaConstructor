@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import {
   formConstructorSlice,
   LayoutElementPropsStyles,
@@ -16,15 +16,15 @@ import {
 } from '@consta/uikit/Layout'
 import {
   AlignItems,
-  BorderColor,
   BorderStyle,
   BorderWidth,
   JustifyContentProps,
 } from '../../../../store/formElements/layoutTypes'
-import { debounce } from '@antv/util'
+import { useDebouncedCallback } from '../../../../utils/useDebounceCallBack'
+
 export const LayoutSettings = () => {
-  const colorsRef = useRef(null)
   const directions: LayoutPropDirection[] = ['row', 'column']
+
   const borderWidths: BorderWidth[] = [
     'inherit',
     'medium',
@@ -34,6 +34,7 @@ export const LayoutSettings = () => {
     'revert',
     'unset',
   ]
+
   const borderStyle: BorderStyle[] = [
     'dotted',
     'dashed',
@@ -46,9 +47,9 @@ export const LayoutSettings = () => {
     'ridge',
     'solid',
   ]
-  const borderColor: BorderColor[] = ['black', 'blue', 'red', 'yellow']
   const verticalAligns: LayoutPropVerticalAlign[] = ['top', 'bottom']
   const horizontalAligns: LayoutPropHorizontalAlign[] = ['left', 'right']
+
   const justifyContentProps: JustifyContentProps[] = [
     'start',
     'center',
@@ -57,6 +58,7 @@ export const LayoutSettings = () => {
     'space-around',
     'space-evenly',
   ]
+
   const alignItems: AlignItems[] = ['center', 'start', 'end', 'flex-end', 'flex-start']
 
   const [propsStyles, setPropsStyles] = useState<LayoutElementPropsStyles>()
@@ -153,6 +155,7 @@ export const LayoutSettings = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeAlignItems = ({ value }: { value: string | null }) => {
     if (selectedElement) {
       const newProps: LayoutElementPropsStyles = {
@@ -166,6 +169,7 @@ export const LayoutSettings = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeWidth = (value: string | null) => {
     const newProps: LayoutElementPropsStyles = {
       ...(selectedElementProps as LayoutElementPropsStyles),
@@ -256,6 +260,8 @@ export const LayoutSettings = () => {
     )
   }
 
+  const updateColor = useDebouncedCallback(value => onChangeBorderColor(value), 1000)
+
   return (
     <div className={styles.layoutSettings}>
       {propsStyles ? (
@@ -337,10 +343,9 @@ export const LayoutSettings = () => {
             onChange={({ value }: { value: string | null }) => onChangeBorderColor(value)}
           />
           <input
-            ref={colorsRef}
             type='color'
             value={propsStyles.styles?.borderColor}
-            onChange={value => onChangeBorderColor(value.currentTarget.value)}></input>
+            onChange={value => updateColor(value.currentTarget.value)}></input>
           <Select
             getItemKey={key => key}
             label='Border style'
