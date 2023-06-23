@@ -35,6 +35,7 @@ import {
   BreadcrumbsFormElement,
   UserFormElement,
   TextFormElement,
+  IconFormElement
 } from '../Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
@@ -72,4 +73,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   PrototypeRectElement: PrototypeRectElement,
   BreadcrumbsFormElement: BreadcrumbsFormElement,
   User: UserFormElement,
+  Icon: IconFormElement,
 }

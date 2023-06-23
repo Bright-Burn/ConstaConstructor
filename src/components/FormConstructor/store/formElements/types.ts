@@ -20,6 +20,7 @@ import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 import { PrototypeProps } from '../../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
 import { BreadcrumbProps, IFormElementBreadcrumbs } from './BreadcrumbsTypes'
 import { IFormElementUser, UserProps } from './userTypes'
+import { IFormElementIcon, IconProps } from './iconTypes'
 
 export type ButtonElementProps = Props & BaseProps
 
@@ -76,6 +77,7 @@ export const FormElementTypes = {
   PrototypeRectElement: 'PrototypeRectElement',
   BreadcrumbsForm: 'BreadcrumbsFormElement',
   User: 'User',
+  Icon: 'Icon'
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -131,6 +133,7 @@ export type FormElementProps =
   | PrototypeProps
   | BreadcrumbProps
   | UserProps
+  | IconProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
@@ -154,6 +157,7 @@ export type FormElementUnion =
   | IFormElementDataTime
   | IFormElementBreadcrumbs
   | IFormElementUser
+  | IFormElementIcon
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement

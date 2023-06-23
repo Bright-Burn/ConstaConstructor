@@ -17,14 +17,17 @@ export const useItemsHandlers = () => {
       }),
     )
   }
+
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       if (selectedElementProps && getButtonElementProps(selectedElementProps)) {
         const newProps: BreadcrumbProps = {
           ...selectedElementProps,
         }
+
         let itemsProps = [...newProps.items]
         const currentLength = itemsProps.length
+
         if (Number(value) > currentLength) {
           for (let i = currentLength; i < Number(value); i++) {
             itemsProps = [...itemsProps, { label: 'Страница ' + (itemsProps.length + 1) }]
@@ -34,17 +37,20 @@ export const useItemsHandlers = () => {
             itemsProps.pop()
           }
         }
+
         newProps.items = itemsProps
         onDispatch(selectedElement, newProps)
       }
     }
   }
+
   const onChangeItems = (items: DefaultItem[]) => {
     if (selectedElement && items) {
       if (selectedElementProps && getButtonElementProps(selectedElementProps)) {
         const newProps: BreadcrumbProps = {
           ...selectedElementProps,
         }
+
         newProps.items = [...items]
         onDispatch(selectedElement, newProps)
       }
@@ -57,6 +63,7 @@ export const useItemsHandlers = () => {
         const newProps: BreadcrumbProps = {
           ...selectedElementProps,
         }
+
         newProps.size = value
         onDispatch(selectedElement, newProps)
       }
@@ -69,6 +76,7 @@ const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
       const newProps: BreadcrumbProps = {
         ...selectedElementProps ,
       }
+      
       newProps.fitMode = value
       onDispatch(selectedElement, newProps)
     }

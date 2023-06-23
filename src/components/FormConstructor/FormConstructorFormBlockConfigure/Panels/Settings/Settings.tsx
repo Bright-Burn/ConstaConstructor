@@ -28,6 +28,7 @@ import { DataTimeSettings } from './DataTimeSettings'
 import { BreadcrumbsSettings } from './BreadcrumbsSettings'
 import { PrototypeSettings } from './PrototypeSettings'
 import { UserSettings } from './UserSettings'
+import { IconSettings } from './IconSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -151,6 +152,8 @@ export const Settings: FC = () => {
               <UserSettings /> <BaseSettings />
             </>
           )
+        case FormElementTypes.Icon:
+          return <IconSettings />
         default:
           return (
             <>
