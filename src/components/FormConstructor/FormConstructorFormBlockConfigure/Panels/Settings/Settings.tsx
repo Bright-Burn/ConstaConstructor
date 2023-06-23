@@ -28,6 +28,7 @@ import { DataTimeSettings } from './DataTimeSettings'
 import { PrototypeSettings } from './PrototypeSettings'
 import { UserSettings } from './UserSettings'
 import { IconSettings } from './IconSettings'
+import { ButtonSettings } from './ButtonSettings/ButtonSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -103,6 +104,13 @@ export const Settings: FC = () => {
           return (
             <>
               <RadioButtonSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Button:
+          return (
+            <>
+              <ButtonSettings />
+              <BaseSettings />
             </>
           )
         case FormElementTypes.Switch:

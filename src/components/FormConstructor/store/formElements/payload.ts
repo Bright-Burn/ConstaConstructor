@@ -1,7 +1,8 @@
+import { IButtonGroup } from './buttonTypes'
 import { FormElementTypes, FormGroupsTypes, IFormElement, IGroupElement, UnionProps } from './types'
 
 export interface AddNewElementPayload {
-  element: IFormElement | IGroupElement
+  element: IFormElement | IGroupElement | IButtonGroup
   parent: string
 }
 export interface DeleteElementPayload {
@@ -10,7 +11,7 @@ export interface DeleteElementPayload {
 
 export interface PanelStatePayload {
   componentsStructurePanelState?: boolean
-  settingsPanelState? : boolean
+  settingsPanelState?: boolean
 }
 
 export type SetNewSelectedElement = {

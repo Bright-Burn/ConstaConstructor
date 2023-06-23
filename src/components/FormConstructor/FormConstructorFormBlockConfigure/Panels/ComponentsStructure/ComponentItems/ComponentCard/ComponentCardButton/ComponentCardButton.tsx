@@ -17,7 +17,8 @@ export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
       id: uuid(),
       type: FormElementTypes.Button,
       props: {
-        disabled: true,
+        action: 'none',
+        disabled: false,
         label: 'Кнопка',
         view: 'primary',
         className: '',

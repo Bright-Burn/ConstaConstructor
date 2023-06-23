@@ -34,8 +34,12 @@ import {
   PrototypeRectElement,
   UserFormElement,
   TextFormElement,
-  IconFormElement
+  IconFormElement,
 } from '../Elements'
+
+const defaultFC: FC = () => {
+  return <></>
+}
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
   Layout: LayoutFormElement,
@@ -72,4 +76,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   PrototypeRectElement: PrototypeRectElement,
   User: UserFormElement,
   Icon: IconFormElement,
+  ButtonGroup: defaultFC,
 }
