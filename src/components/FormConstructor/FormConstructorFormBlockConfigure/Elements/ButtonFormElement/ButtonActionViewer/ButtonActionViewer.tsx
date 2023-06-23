@@ -1,35 +1,22 @@
 import { FC, useEffect, useState } from 'react'
 import { IButtonActionViewer } from './types'
 import { Modal } from '@consta/uikit/Modal'
-import { ButtonGroupProps, ILayoutElement, useAppSelector } from '../../../../store/formElements'
+import { ButtonGroupProps } from '../../../../store/formElements'
 import { Button } from '@consta/uikit/Button'
 import styles from './styles.module.css'
 import { IconClose } from '@consta/icons/IconClose'
-import { LayoutFormElement } from '../../LayoutFormElement'
+import { DroppableLayer } from '../../../DroppableLayer'
 
 export const ButtonActionViewer: FC<IButtonActionViewer> = ({
   buttonGroup,
   openViewer,
   onCloseViewer,
 }) => {
-  const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
-
-  const [layoutFormElement, setLayoutFromElement] = useState<ILayoutElement>()
   const [buttonGroupProps, setButtonGroupProps] = useState<ButtonGroupProps>()
 
   useEffect(() => {
     setButtonGroupProps(buttonGroup.props)
   }, [buttonGroup])
-
-  useEffect(() => {
-    const childrenElements = allElementsTree.get(buttonGroup.id) || []
-    if (childrenElements.length) {
-      const element = allElementsMap.get(childrenElements[0])
-      if (element && element.type === 'Layout') {
-        setLayoutFromElement(element as ILayoutElement)
-      }
-    }
-  }, [openViewer, allElementsTree, allElementsMap, buttonGroup])
 
   const onModalClick = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -53,7 +40,7 @@ export const ButtonActionViewer: FC<IButtonActionViewer> = ({
       </div>
       <div className={styles.modalContent}>
         <div className={styles.configPane}>
-          {layoutFormElement ? <LayoutFormElement element={layoutFormElement} /> : <></>}
+          {buttonGroup ? <DroppableLayer parentElementId={buttonGroup.id} /> : <></>}
         </div>
       </div>
     </Modal>
