@@ -4,6 +4,7 @@ import {
   ButtonProps,
   IButtonModalElement,
   buttonActions,
+  buttonActionsActive,
   formConstructorSlice,
   useAppSelector,
 } from '../../../../store/formElements'
@@ -20,7 +21,7 @@ import uuid from 'react-uuid'
 export const ButtonSettings = () => {
   const [props, setProps] = useState<ButtonProps>()
 
-  const { selectedElementProps, selectedElement, allElementsMap } = useAppSelector(
+  const { selectedElementProps, selectedElement, allElementsMap, allElementsTree } = useAppSelector(
     state => state.formConstructor,
   )
   const dispatch = useDispatch()
@@ -40,11 +41,15 @@ export const ButtonSettings = () => {
       newProps['action'] = value
 
       onUpdateSelected(selectedElement, newProps)
-      addConnectedLayer(value)
+      if (buttonActionsActive.includes(value)) {
+        addConnectedElement()
+      } else {
+        removeConnectedElement()
+      }
     }
   }
 
-  const addConnectedLayer = (buttonGroupType: ButtonAction) => {
+  const addConnectedElement = () => {
     const currentButtonElement = allElementsMap.get(selectedElement?.elementId || '')
 
     if (currentButtonElement && currentButtonElement.id) {
@@ -87,6 +92,19 @@ export const ButtonSettings = () => {
           element: layoutElement,
         }),
       )
+    }
+  }
+
+  const removeConnectedElement = () => {
+    if (selectedElement) {
+      const connectedElementIds = allElementsTree.get(selectedElement.elementId)
+      connectedElementIds?.forEach(id => {
+        dispatch(
+          formConstructorSlice.actions.deleteElement({
+            elementId: id,
+          }),
+        )
+      })
     }
   }
 

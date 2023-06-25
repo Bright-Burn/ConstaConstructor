@@ -28,9 +28,11 @@ export const deleteButtonActions = (elementId: string, state: IFormConstructor) 
   const elementToDelete = allElementsMap.get(elementId)
   if (elementToDelete && buttonActionsActive.includes(elementToDelete.type)) {
     const connectedButton = (elementToDelete as IButtonActionElement).connectedButtonId
-    const connecetedButtonElement = allElementsMap.get(connectedButton)
-    if (connecetedButtonElement && connecetedButtonElement.type === 'Button') {
-      ;(connecetedButtonElement as IFormElementButton).props.action = 'none'
+    const element = allElementsMap.get(connectedButton)
+    if (element && element.type === 'Button') {
+      const connectedButtonElement = element as IFormElementButton
+      connectedButtonElement.props.action = 'none'
+      allElementsTree.set(connectedButtonElement.id, [])
     }
   }
   state.allElementsMap = allElementsMap
