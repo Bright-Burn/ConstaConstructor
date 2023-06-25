@@ -15,7 +15,7 @@ import {
 } from '../../../store/formElements/slices'
 
 export const ComponentsStructure = () => {
-  const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
+  const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[1])
 
   const getTabContentRenderer = () => {
     switch (tabValue) {

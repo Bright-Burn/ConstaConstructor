@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {
   ButtonAction,
   ButtonProps,
-  IButtonGroup,
+  IButtonModalElement,
   buttonActions,
   formConstructorSlice,
   useAppSelector,
@@ -48,13 +48,12 @@ export const ButtonSettings = () => {
     const currentButtonElement = allElementsMap.get(selectedElement?.elementId || '')
 
     if (currentButtonElement && currentButtonElement.id) {
-      const connectedButtonGroupElement: IButtonGroup = {
+      const connectedButtonGroupElement: IButtonModalElement = {
         id: uuid(),
         connectedButtonId: currentButtonElement.id,
         isOuter: false,
-        type: 'ButtonGroup',
+        type: 'ButtonModal',
         props: {
-          groupType: buttonGroupType,
           height: '400px',
           width: '400px',
           className: '',

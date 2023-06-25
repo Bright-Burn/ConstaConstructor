@@ -19,7 +19,12 @@ import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 import { PrototypeProps } from '../../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
 import { IFormElementUser, UserProps } from './userTypes'
 import { IFormElementIcon, IconProps } from './iconTypes'
-import { ButtonGroupProps, ButtonProps, IButtonGroup, IFormElementButton } from './buttonTypes'
+import {
+  ButtonGroupProps,
+  ButtonProps,
+  IButtonActionElement,
+  IFormElementButton,
+} from './buttonTypes'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -35,7 +40,7 @@ export type ElementTypes = Values<typeof ElementTypes>
 export const FormGroupsTypes = {
   Layout: 'Layout',
   Card: 'Card',
-  ButtonGroups: 'ButtonGroup',
+  ButtonModal: 'ButtonModal',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -151,7 +156,7 @@ export type FormElementUnion =
   | IFormElementIcon
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
-export type GroupElementUnion = ILayoutElement | ICardElement | IButtonGroup
+export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
 
 /// По мере расширения сюда подем дописывать новые объединения
 export type UnionProps = FormElementProps | GroupElementProps
@@ -168,11 +173,11 @@ export interface ISelectedElement {
 
 export interface IFormConstructor {
   allElementsTree: Map<string, string[]>
-  allElementsMap: Map<string, IGroupElement | IFormElement>
+  allElementsMap: Map<string, IFormElement | IGroupElement>
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
-  draggableElement: IGroupElement | IFormElement | null
+  draggableElement: IFormElement | IGroupElement | null
   componentsStructurePanelState: boolean
   settingsPanelState: boolean
 }

@@ -2,28 +2,30 @@ import { BaseProps, IFormElement, IGroupElement } from './types'
 import { Props } from '@consta/uikit/Button'
 
 ///  | 'RightSidebar' | 'LeftSidebar'
-export type ButtonAction = 'none' | 'Modal'
-export type ButtonGroupType = ButtonAction
+export type ButtonAction = 'none' | 'ButtonModal'
 
 export interface ButtonProps extends BaseProps, Props {
   action: ButtonAction
 }
 
-export const buttonActions: ButtonAction[] = ['none', 'Modal']
+export const buttonActions: ButtonAction[] = ['none', 'ButtonModal']
+export const buttonActionsActive = ['ButtonModal']
 
 export interface IFormElementButton extends IFormElement {
   props: ButtonProps
 }
 
-export interface IButtonGroup extends IGroupElement {
-  id: string
-  connectedButtonId: string
-  props: ButtonGroupProps
-}
-
 export interface ButtonGroupProps extends BaseProps {
   height: string
   width: string
-  groupType: ButtonAction
+}
+
+export interface IButtonActionElement extends IGroupElement {
+  connectedButtonId: string
+}
+
+export interface IButtonModalElement extends IButtonActionElement {
+  id: string
+  props: ButtonGroupProps
 }
 

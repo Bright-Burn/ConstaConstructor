@@ -1,22 +1,23 @@
 import { FC } from 'react'
-import { FormElementTypes, FormGroupsTypes } from '../../store/formElements/types'
+import { FormGroupsTypes, FormElementTypes } from '../store/formElements'
 import {
-  BadgeFormElement,
+  LayoutFormElement,
   ButtonFormElement,
+  BadgeFormElement,
   CardFormElement,
   CheckboxFormElement,
   HeaderWithBreadcrumbs,
   HeaderWithStatus,
+  HeaderCognitiveGeologist,
   InformerFormElement,
-  ProjectGrid,
   TabsFormElement,
+  TextFormElement,
   TextFieldFormElement,
   PlaceholderFormElement,
   CardWithBarChart,
-  HeaderCognitiveGeologist,
-  Dashboard,
+  ProjectGrid,
   CustomCards,
-  LayoutFormElement,
+  Dashboard,
   SimpleForm,
   WizardForm,
   FooterWithSwitch,
@@ -26,20 +27,16 @@ import {
   RadioButtonFormElement,
   SwitchFormElement,
   DatePickerFormElement,
-  ComboBoxFormElement,
   SelectFormElement,
+  ComboBoxFormElement,
   DataTimeFormElement,
   ExpertiseForm,
   PrototypeTextElement,
   PrototypeRectElement,
   UserFormElement,
-  TextFormElement,
   IconFormElement,
-} from '../Elements'
-
-const defaultFC: FC = () => {
-  return <></>
-}
+} from './Elements'
+import { ButtonActionModal } from './Elements/ButtonFormElement/ButtonActionModal'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
   Layout: LayoutFormElement,
@@ -76,5 +73,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   PrototypeRectElement: PrototypeRectElement,
   User: UserFormElement,
   Icon: IconFormElement,
-  ButtonGroup: defaultFC,
+  ButtonModal: ButtonActionModal,
 }

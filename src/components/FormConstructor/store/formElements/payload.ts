@@ -1,8 +1,7 @@
-import { IButtonGroup } from './buttonTypes'
 import { FormElementTypes, FormGroupsTypes, IFormElement, IGroupElement, UnionProps } from './types'
 
 export interface AddNewElementPayload {
-  element: IFormElement | IGroupElement | IButtonGroup
+  element: IFormElement | IGroupElement
   parent: string
 }
 export interface DeleteElementPayload {

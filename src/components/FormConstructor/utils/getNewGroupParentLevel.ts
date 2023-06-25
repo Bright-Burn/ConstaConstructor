@@ -2,7 +2,7 @@ import { IFormElement, IGroupElement } from '../store/formElements/types'
 
 export const getNewGroupParentLevel = (
   currentParentId: string,
-  allElementsMap: Map<string, IGroupElement | IFormElement>,
+  allElementsMap: Map<string, IFormElement | IGroupElement>,
   allElementsTree: Map<string, string[]>,
 ): string | undefined => {
   if (currentParentId === 'root') {

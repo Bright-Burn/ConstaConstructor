@@ -7,7 +7,7 @@ import styles from './styles.module.css'
 import { IconClose } from '@consta/icons/IconClose'
 import { DroppableLayer } from '../../../DroppableLayer'
 
-export const ButtonActionViewer: FC<IButtonActionViewer> = ({
+export const ButtonActionModal: FC<IButtonActionViewer> = ({
   buttonGroup,
   openViewer,
   onCloseViewer,

@@ -3,13 +3,14 @@ import { Button } from '@consta/uikit/Button'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IButtonFormElement } from './types'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+
+import { FormGroupsDict } from '../../FormGroupDict'
 import {
   ButtonProps,
-  IButtonGroup,
-  IFormElementButton,
   useAppSelector,
+  IButtonActionElement,
+  IFormElementButton,
 } from '../../../store/formElements'
-import { ButtonActionViewer } from './ButtonActionViewer/ButtonActionViewer'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonProps>()
@@ -17,7 +18,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
 
   const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
 
-  const [buttonGroup, setButtonGroup] = useState<IButtonGroup>()
+  const [buttonGroup, setButtonGroup] = useState<IButtonActionElement>()
 
   useEffect(() => {
     const buttonFormElement = element as IFormElementButton
@@ -25,7 +26,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
     if (buttonGroupIds.length) {
       const connectedButtonGroup = allElementsMap.get(buttonGroupIds[0])
       if (connectedButtonGroup && 'connectedButtonId' in connectedButtonGroup) {
-        setButtonGroup(connectedButtonGroup as IButtonGroup)
+        setButtonGroup(connectedButtonGroup as IButtonActionElement)
       }
     }
     setButtonProps(buttonFormElement.props)
@@ -41,6 +42,16 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
     setOpenViewer(false)
   }
 
+  const getActionViwer = () => {
+    if (buttonGroup && buttonProps && buttonProps?.action !== 'none') {
+      const Viewer = FormGroupsDict[buttonProps.action]
+      return (
+        <Viewer buttonGroup={buttonGroup} openViewer={openViewer} onCloseViewer={onCloseViewer} />
+      )
+    }
+    return <></>
+  }
+
   return (
     <>
       <SelectableLayer
@@ -49,15 +60,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         elementType={FormElementTypes.Button}>
         <Button {...buttonProps} onClick={onButtonClick} />
       </SelectableLayer>
-      {buttonGroup ? (
-        <ButtonActionViewer
-          buttonGroup={buttonGroup}
-          openViewer={openViewer}
-          onCloseViewer={onCloseViewer}
-        />
-      ) : (
-        <></>
-      )}
+      {getActionViwer()}
     </>
   )
 }
