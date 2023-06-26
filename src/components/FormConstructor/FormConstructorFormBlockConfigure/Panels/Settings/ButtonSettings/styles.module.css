@@ -1,0 +1,4 @@
+.buttonPropsSettings {
+    display: flex;
+    flex-direction: column;
+}

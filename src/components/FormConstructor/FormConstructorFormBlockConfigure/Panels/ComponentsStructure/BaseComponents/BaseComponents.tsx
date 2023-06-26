@@ -64,7 +64,7 @@ export const BaseComponents: FC = () => {
       if (!baseComponents.some(component => component.id === mock.id))
         dispatch(baseComponentsSlice.actions.addNewBaseElement({ baseComponent: mock }))
     })
-  }, [])
+  }, [baseComponentMocks, baseComponents])
 
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const targer = e?.target as HTMLInputElement
@@ -166,3 +166,4 @@ export const BaseComponents: FC = () => {
     </div>
   )
 }
+

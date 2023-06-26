@@ -1,12 +1,12 @@
-import { IGroupElement, IFormElement } from '../../../../../store/formElements'
+import { IFormElement, IGroupElement } from '../../../../../store/formElements'
 import { ITreeItem } from './types'
 
 export const formToTreeData: (
   allElementsTree: Map<string, string[]>,
-  allElementsMap: Map<string, IGroupElement | IFormElement>,
+  allElementsMap: Map<string, IFormElement | IGroupElement>,
 ) => ITreeItem[] = (
   allElementsTree: Map<string, string[]>,
-  allElementsMap: Map<string, IGroupElement | IFormElement>,
+  allElementsMap: Map<string, IFormElement | IGroupElement>,
 ) => {
   const visited = new Map<string, boolean>()
   const treeData: ITreeItem[] = []

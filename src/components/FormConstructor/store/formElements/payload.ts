@@ -10,7 +10,7 @@ export interface DeleteElementPayload {
 
 export interface PanelStatePayload {
   componentsStructurePanelState?: boolean
-  settingsPanelState? : boolean
+  settingsPanelState?: boolean
 }
 
 export type SetNewSelectedElement = {
