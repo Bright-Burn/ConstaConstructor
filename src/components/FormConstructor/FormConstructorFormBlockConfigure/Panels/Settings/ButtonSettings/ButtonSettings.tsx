@@ -35,9 +35,9 @@ export const ButtonSettings = () => {
   }, [selectedElementProps, selectedElement])
 
   const onChangeButtonAction = (value: ButtonAction) => {
-    if (selectedElement) {
+    if (selectedElement && props) {
       const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
+        ...props,
       }
 
       newProps['action'] = value
