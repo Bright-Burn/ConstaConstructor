@@ -29,6 +29,7 @@ import { PrototypeSettings } from './PrototypeSettings'
 import { UserSettings } from './UserSettings'
 import { IconSettings } from './IconSettings'
 import { ButtonSettings } from './ButtonSettings/ButtonSettings'
+import { ButtonModuleSettings } from './ButtonModalSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -74,6 +75,12 @@ export const Settings: FC = () => {
           return (
             <>
               <CardSettings /> <BaseSettings />
+            </>
+          )
+        case FormGroupsTypes.ButtonModal:
+          return (
+            <>
+              <ButtonModuleSettings />
             </>
           )
         case FormElementTypes.Tabs:

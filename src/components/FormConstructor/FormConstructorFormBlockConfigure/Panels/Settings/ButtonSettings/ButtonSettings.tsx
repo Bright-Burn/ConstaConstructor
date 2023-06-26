@@ -5,6 +5,8 @@ import {
   IButtonModalElement,
   buttonActions,
   buttonActionsActive,
+  defaultHeight,
+  defaultWidth,
   formConstructorSlice,
   useAppSelector,
 } from '../../../../store/formElements'
@@ -59,8 +61,8 @@ export const ButtonSettings = () => {
         isOuter: false,
         type: 'ButtonModal',
         props: {
-          height: '400px',
-          width: '400px',
+          height: defaultHeight,
+          width: defaultWidth,
           className: '',
           baseProps: {},
         },

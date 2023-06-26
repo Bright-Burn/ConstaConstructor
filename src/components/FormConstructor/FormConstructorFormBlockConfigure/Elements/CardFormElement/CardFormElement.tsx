@@ -22,7 +22,7 @@ export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
       <Card
         {...cardProps?.constaProps}
         className={`${cardProps?.className} ${styles.body}`}
-        style={{ ...cardProps?.styles }}>
+        style={{ ...cardProps?.styles, display: 'flex' }}>
         <div className={styles.cardContent}>
           <DroppableLayer parentElementId={element.id} />
         </div>

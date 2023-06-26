@@ -15,6 +15,9 @@ export interface IFormElementButton extends IFormElement {
   props: ButtonProps
 }
 
+export const defaultHeight = '400px'
+export const defaultWidth = '400px'
+
 export interface ButtonGroupProps extends BaseProps {
   height: string
   width: string
