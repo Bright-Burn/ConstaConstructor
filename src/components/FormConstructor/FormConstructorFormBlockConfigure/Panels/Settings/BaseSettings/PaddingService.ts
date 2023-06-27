@@ -19,8 +19,8 @@ export const usePaddingHandlers = () => {
       }),
     )
   }
-  const onChangePaddingLeft = ({ value }: { value: (typeof paddingsLeft)[number] | null }) => {
-    if (selectedElement && value) {
+  const onChangePaddingLeft = ({ value }: { value: typeof paddingsLeft[number] | null }) => {
+    if (selectedElement && value != null) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
@@ -40,8 +40,8 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingRight = ({ value }: { value: (typeof paddingsRight)[number] | null }) => {
-    if (selectedElement && value) {
+  const onChangePaddingRight = ({ value }: { value: typeof paddingsRight[number] | null }) => {
+    if (selectedElement && value != null) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
@@ -61,8 +61,8 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingTop = ({ value }: { value: (typeof paddingsTop)[number] | null }) => {
-    if (selectedElement && value) {
+  const onChangePaddingTop = ({ value }: { value: typeof paddingsTop[number] | null }) => {
+    if (selectedElement && value != null) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
@@ -82,8 +82,8 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingBottom = ({ value }: { value: (typeof paddingsBottom)[number] | null }) => {
-    if (selectedElement && value) {
+  const onChangePaddingBottom = ({ value }: { value: typeof paddingsBottom[number] | null }) => {
+    if (selectedElement && value != null) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
