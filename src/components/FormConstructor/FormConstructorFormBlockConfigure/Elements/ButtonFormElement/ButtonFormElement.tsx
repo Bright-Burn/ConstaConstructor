@@ -9,7 +9,8 @@ import {
   ButtonProps,
   useAppSelector,
   IButtonActionElement,
-  IFormElementButton,
+  ButtonActionElement,
+  FormElementButton,
 } from '../../../store/formElements'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
@@ -21,15 +22,16 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonGroup, setButtonGroup] = useState<IButtonActionElement>()
 
   useEffect(() => {
-    const buttonFormElement = element as IFormElementButton
-    const buttonGroupIds = allElementsTree.get(buttonFormElement.id) || []
+    const buttonGroupIds = allElementsTree.get(element.id) || []
     if (buttonGroupIds.length) {
       const connectedButtonGroup = allElementsMap.get(buttonGroupIds[0])
-      if (connectedButtonGroup && 'connectedButtonId' in connectedButtonGroup) {
-        setButtonGroup(connectedButtonGroup as IButtonActionElement)
+      if (connectedButtonGroup && connectedButtonGroup instanceof ButtonActionElement) {
+        setButtonGroup(connectedButtonGroup)
       }
     }
-    setButtonProps(buttonFormElement.props)
+    if (element instanceof FormElementButton) {
+      setButtonProps(element.props)
+    }
   }, [element, allElementsMap, allElementsTree])
 
   const onButtonClick = () => {

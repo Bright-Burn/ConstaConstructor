@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import {
   ButtonAction,
+  ButtonModalElement,
   ButtonProps,
-  IButtonModalElement,
   buttonActions,
   buttonActionsActive,
   defaultHeight,
@@ -55,18 +55,13 @@ export const ButtonSettings = () => {
     const currentButtonElement = allElementsMap.get(selectedElement?.elementId || '')
 
     if (currentButtonElement && currentButtonElement.id) {
-      const connectedButtonGroupElement: IButtonModalElement = {
-        id: uuid(),
-        connectedButtonId: currentButtonElement.id,
-        isOuter: false,
-        type: 'ButtonModal',
-        props: {
-          height: defaultHeight,
-          width: defaultWidth,
-          className: '',
-          baseProps: {},
-        },
-      }
+      const connectedGroupElement = new ButtonModalElement(uuid(), currentButtonElement.id, {
+        height: defaultHeight,
+        width: defaultWidth,
+        className: '',
+        baseProps: {},
+      })
+
       const layoutElement: ILayoutElement = {
         id: uuid(),
         type: FormGroupsTypes.Layout,
@@ -84,13 +79,13 @@ export const ButtonSettings = () => {
       dispatch(
         formConstructorSlice.actions.addNewElement({
           parent: currentButtonElement.id,
-          element: connectedButtonGroupElement,
+          element: connectedGroupElement,
         }),
       )
 
       dispatch(
         formConstructorSlice.actions.addNewElement({
-          parent: connectedButtonGroupElement.id,
+          parent: connectedGroupElement.id,
           element: layoutElement,
         }),
       )

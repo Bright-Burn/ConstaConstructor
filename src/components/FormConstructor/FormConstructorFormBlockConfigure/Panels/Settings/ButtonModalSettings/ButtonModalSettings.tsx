@@ -16,9 +16,8 @@ export const ButtonModuleSettings = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (selectedElementProps) {
-      const buttonGroupProps = selectedElementProps as ButtonGroupProps
-      setProps(buttonGroupProps)
+    if (selectedElementProps && selectedElementProps instanceof ButtonGroupProps) {
+      setProps(selectedElementProps)
     }
   }, [selectedElementProps])
 

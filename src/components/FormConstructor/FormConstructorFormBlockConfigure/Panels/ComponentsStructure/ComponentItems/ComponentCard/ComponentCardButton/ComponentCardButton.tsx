@@ -2,29 +2,22 @@ import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import {
-  formConstructorSlice,
-  FormElementTypes,
-  IFormElementButton,
-} from '../../../../../../store/formElements'
+import { formConstructorSlice, FormElementButton } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
-    const newButton: IFormElementButton = {
-      id: uuid(),
-      type: FormElementTypes.Button,
-      props: {
-        action: 'none',
-        disabled: false,
-        label: 'Кнопка',
-        view: 'primary',
-        className: '',
-        baseProps: {},
-      },
-    }
+    const newButton: FormElementButton = new FormElementButton(uuid(), {
+      action: 'none',
+      disabled: false,
+      label: 'Кнопка',
+      view: 'primary',
+      className: '',
+      baseProps: {},
+    })
+
     dispatch(formConstructorSlice.actions.setDraggableElement({ element: newButton }))
   }
 
