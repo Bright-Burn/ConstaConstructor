@@ -1,4 +1,3 @@
-import { Props } from '@consta/uikit/Button'
 import { BaseTypes } from '../../FormConstructorFormBlockConfigure/Panels/Settings/BaseSettings/types'
 import { CardElementPropsStyles } from './cardTypes'
 import { BadgeProps, IFormElementBadge } from './badgeTypes'
@@ -21,8 +20,12 @@ import { PrototypeProps } from '../../FormConstructorFormBlockConfigure/Panels/S
 import { BreadcrumbProps, IFormElementBreadcrumbs } from './BreadcrumbsTypes'
 import { IFormElementUser, UserProps } from './userTypes'
 import { IFormElementIcon, IconProps } from './iconTypes'
-
-export type ButtonElementProps = Props & BaseProps
+import {
+  ButtonGroupProps,
+  ButtonProps,
+  IButtonActionElement,
+  IFormElementButton,
+} from './buttonTypes'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -38,6 +41,7 @@ export type ElementTypes = Values<typeof ElementTypes>
 export const FormGroupsTypes = {
   Layout: 'Layout',
   Card: 'Card',
+  ButtonModal: 'ButtonModal',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -77,7 +81,7 @@ export const FormElementTypes = {
   PrototypeRectElement: 'PrototypeRectElement',
   BreadcrumbsForm: 'BreadcrumbsFormElement',
   User: 'User',
-  Icon: 'Icon'
+  Icon: 'Icon',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -105,17 +109,13 @@ export interface IUnion {
   type: FormElementTypes | FormGroupsTypes
 }
 
-export interface IFormElementButton extends IFormElement {
-  props: ButtonElementProps
-}
-
 export interface ICardElement extends IGroupElement {
   props: CardElementPropsStyles
 }
 
 // Все Union пропсы для FormElement
 export type FormElementProps =
-  | ButtonElementProps
+  | ButtonProps
   | BadgeProps
   | TextElementProps
   | InformerElementProps
@@ -136,7 +136,7 @@ export type FormElementProps =
   | IconProps
 
 // Все Union пропсы для GroupElement
-export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles
+export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles | ButtonGroupProps
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
 export type FormElementUnion =
@@ -160,7 +160,7 @@ export type FormElementUnion =
   | IFormElementIcon
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
-export type GroupElementUnion = ILayoutElement | ICardElement
+export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
 
 /// По мере расширения сюда подем дописывать новые объединения
 export type UnionProps = FormElementProps | GroupElementProps
@@ -177,11 +177,11 @@ export interface ISelectedElement {
 
 export interface IFormConstructor {
   allElementsTree: Map<string, string[]>
-  allElementsMap: Map<string, IGroupElement | IFormElement>
+  allElementsMap: Map<string, IFormElement | IGroupElement>
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
-  draggableElement: IGroupElement | IFormElement | null
+  draggableElement: IFormElement | IGroupElement | null
   componentsStructurePanelState: boolean
   settingsPanelState: boolean
 }

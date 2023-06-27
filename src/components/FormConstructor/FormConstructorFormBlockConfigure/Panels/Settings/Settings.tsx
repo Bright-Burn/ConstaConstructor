@@ -29,6 +29,8 @@ import { BreadcrumbsSettings } from './BreadcrumbsSettings'
 import { PrototypeSettings } from './PrototypeSettings'
 import { UserSettings } from './UserSettings'
 import { IconSettings } from './IconSettings'
+import { ButtonSettings } from './ButtonSettings/ButtonSettings'
+import { ButtonModuleSettings } from './ButtonModalSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -76,6 +78,12 @@ export const Settings: FC = () => {
               <CardSettings /> <BaseSettings />
             </>
           )
+        case FormGroupsTypes.ButtonModal:
+          return (
+            <>
+              <ButtonModuleSettings />
+            </>
+          )
         case FormElementTypes.Tabs:
           return (
             <>
@@ -104,6 +112,13 @@ export const Settings: FC = () => {
           return (
             <>
               <RadioButtonSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Button:
+          return (
+            <>
+              <ButtonSettings />
+              <BaseSettings />
             </>
           )
         case FormElementTypes.Switch:
@@ -155,11 +170,7 @@ export const Settings: FC = () => {
         case FormElementTypes.Icon:
           return <IconSettings />
         default:
-          return (
-            <>
-              <BaseSettings />
-            </>
-          )
+          return <></>
       }
     }
   }

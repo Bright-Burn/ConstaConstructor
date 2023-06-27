@@ -15,7 +15,7 @@ import {
 } from '../../store/baseComponentsItems'
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
-import { FormGroupsDict } from './FormGroupDict'
+import { FormGroupsDict } from '../FormGroupDict'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
@@ -25,14 +25,14 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   )
   const { draggableBaseComponent } = useBaseComponentsSelector(state => state.baseComponents)
 
-  const [elementsOnLayer, setElementsOnLayer] = useState<(IGroupElement | IFormElement)[]>([])
+  const [elementsOnLayer, setElementsOnLayer] = useState<(IFormElement | IGroupElement)[]>([])
   const dispatch = useDispatch()
   const dispathBaseComponents = useBaseComponentsDispatch()
 
   useEffect(() => {
     /// Подгружаем все эелементы на текущем уровне
     const layerIds = allElementsTree.get(parentElementId) || []
-    const elementsOnLayer: (IGroupElement | IFormElement)[] = []
+    const elementsOnLayer: (IFormElement | IGroupElement)[] = []
     layerIds.forEach(ids => {
       const elem = allElementsMap.get(ids)
       elem && elementsOnLayer.push(elem)
@@ -125,8 +125,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     <div
       className={styles.droppableContainer}
       onDrop={handleOnDrop}
-      onDragOver={event => event.preventDefault()}
-    >
+      onDragOver={event => event.preventDefault()}>
       {elementsOnLayer.map(el => {
         let Component = FormGroupsDict[el.type]
         return <Component key={el.id} element={el} />
