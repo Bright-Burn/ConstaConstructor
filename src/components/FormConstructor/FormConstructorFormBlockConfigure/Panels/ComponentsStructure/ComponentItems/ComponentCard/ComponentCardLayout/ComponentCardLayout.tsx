@@ -24,6 +24,12 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
         constaProps: {
           flex: 1,
           direction: 'row',
+          horizontalAlign: 'left',
+          verticalAlign: 'top',
+        },
+        styles: {
+          alignItems: 'normal',
+          justifyContent: 'start',
         },
         className: '',
         baseProps: {},
