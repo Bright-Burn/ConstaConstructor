@@ -25,14 +25,14 @@ export type JustifyContentProps =
   | 'space-around'
   | 'space-evenly'
 
-export type AlignItems = 'start' | 'center' | 'end' | 'flex-start' | 'flex-end'
+export type AlignItems = 'normal' | 'start' | 'center' | 'end' | 'flex-start' | 'flex-end'
 export interface LayoutElementStyles {
   maxWidth?: string
   minWidth?: string
   maxHeight?: string
   minHeight?: string
   justifyContent?: JustifyContentProps
-  alignItems?: 'flex-start' | 'flex-end' | 'center' | 'baseline' | 'stretch'
+  alignItems?: AlignItems
 }
 
 export interface LayoutElementPropsStyles extends BaseProps {

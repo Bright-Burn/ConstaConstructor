@@ -19,8 +19,8 @@ export const useMarginHandlers = () => {
       }),
     )
   }
-  const onChangemarginLeft = ({ value }: { value: (typeof marginLeft)[number] | null }) => {
-    if (selectedElement && value) {
+  const onChangemarginLeft = ({ value }: { value: typeof marginLeft[number] | null }) => {
+    if (selectedElement && value != null) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
@@ -41,8 +41,8 @@ export const useMarginHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangemarginRight = ({ value }: { value: (typeof marginRight)[number] | null }) => {
-    if (selectedElement && value) {
+  const onChangemarginRight = ({ value }: { value: typeof marginRight[number] | null }) => {
+    if (selectedElement && value != null) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
@@ -62,8 +62,8 @@ export const useMarginHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangemarginTop = ({ value }: { value: (typeof marginTop)[number] | null }) => {
-    if (selectedElement && value) {
+  const onChangemarginTop = ({ value }: { value: typeof marginTop[number] | null }) => {
+    if (selectedElement && value != null) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
@@ -83,8 +83,8 @@ export const useMarginHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangemarginBottom = ({ value }: { value: (typeof marginBottom)[number] | null }) => {
-    if (selectedElement && value) {
+  const onChangemarginBottom = ({ value }: { value: typeof marginBottom[number] | null }) => {
+    if (selectedElement && value != null) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
