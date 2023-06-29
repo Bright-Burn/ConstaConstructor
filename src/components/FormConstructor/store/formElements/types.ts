@@ -17,6 +17,7 @@ import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
 import { IFormElementSelect, SelectProps } from './selectTypes'
 import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 import { PrototypeProps } from '../../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
+import { BreadcrumbProps, IFormElementBreadcrumbs } from './BreadcrumbsTypes'
 import { IFormElementUser, UserProps } from './userTypes'
 import { IFormElementIcon, IconProps } from './iconTypes'
 import {
@@ -78,6 +79,7 @@ export const FormElementTypes = {
   ExpertiseForm: 'ExpertiseForm',
   PrototypeTextElement: 'PrototypeTextElement',
   PrototypeRectElement: 'PrototypeRectElement',
+  BreadcrumbsForm: 'BreadcrumbsFormElement',
   User: 'User',
   Icon: 'Icon',
 } as const
@@ -129,6 +131,7 @@ export type FormElementProps =
   | SelectProps
   | DataTimeProps
   | PrototypeProps
+  | BreadcrumbProps
   | UserProps
   | IconProps
 
@@ -152,6 +155,7 @@ export type FormElementUnion =
   | IFormElementComboBox
   | IFormElementSelect
   | IFormElementDataTime
+  | IFormElementBreadcrumbs
   | IFormElementUser
   | IFormElementIcon
 

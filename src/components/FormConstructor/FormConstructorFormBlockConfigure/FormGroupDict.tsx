@@ -33,6 +33,7 @@ import {
   ExpertiseForm,
   PrototypeTextElement,
   PrototypeRectElement,
+  BreadcrumbsFormElement,
   UserFormElement,
   IconFormElement,
 } from './Elements'
@@ -71,6 +72,7 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   ExpertiseForm: ExpertiseForm,
   PrototypeTextElement: PrototypeTextElement,
   PrototypeRectElement: PrototypeRectElement,
+  BreadcrumbsFormElement: BreadcrumbsFormElement,
   User: UserFormElement,
   Icon: IconFormElement,
   ButtonModal: ButtonActionModal,

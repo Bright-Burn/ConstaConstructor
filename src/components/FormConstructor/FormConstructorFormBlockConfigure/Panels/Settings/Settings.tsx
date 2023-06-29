@@ -5,26 +5,27 @@ import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
-import { BaseSettings } from './BaseSettings/BaseSettings'
+import { BaseSettings } from './BaseSettings'
 import { CardSettings } from './CardSettings'
 import { FileField } from '@consta/uikit/FileField'
 import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
 import { TableSettings } from './TableSettings'
-import { TabsSettings } from './TabsSettings/TabsSettings'
+import { TabsSettings } from './TabsSettings'
 import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
 import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
 import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
-import { ListSettings } from './ListSettings/ListSettings'
+import { ListSettings } from './ListSettings'
 import { RadioButtonSettings } from './RadioButtonSettings'
 import { SwitchSettings } from './SwitchSettings'
 import { DatePickerSettings } from './DatePickerSettings'
-import { ComboBoxSettings } from './ComboBoxSettings/ComboBoxSettings'
+import { ComboBoxSettings } from './ComboBoxSettings'
 import { SelectSettings } from './SelectSettings'
 import { DataTimeSettings } from './DataTimeSettings'
+import { BreadcrumbsSettings } from './BreadcrumbsSettings'
 import { PrototypeSettings } from './PrototypeSettings'
 import { UserSettings } from './UserSettings'
 import { IconSettings } from './IconSettings'
@@ -154,7 +155,12 @@ export const Settings: FC = () => {
           return <PrototypeSettings />
         case FormElementTypes.PrototypeRectElement:
           return <PrototypeSettings />
-
+        case FormElementTypes.BreadcrumbsForm:
+          return (
+            <>
+              <BreadcrumbsSettings /> <BaseSettings />
+            </>
+          )
         case FormElementTypes.User:
           return (
             <>
