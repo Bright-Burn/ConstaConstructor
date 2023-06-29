@@ -7,7 +7,7 @@ export interface IBaseComponent {
   /// поле serializeble, можно превратить в Map для дальнейшего использования
   childParentMap: [string, string][]
   /// поле serializeble, можно превратить в Map для дальнейшего использованияы
-  childrenElementList: (IGroupElement | IFormElement)[]
+  childrenElementList: (IFormElement | IGroupElement)[]
 }
 
 export interface IBaseComponentsItems {

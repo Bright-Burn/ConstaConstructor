@@ -84,6 +84,11 @@ export const constaCards = [
   },
   {
     id: uuid(),
+    name: 'Breadcrumbs',
+    formElementType: FormElementTypes.BreadcrumbsForm,
+  },
+  {
+    id: uuid(),
     name: 'User',
     formElementType: FormElementTypes.User,
   },

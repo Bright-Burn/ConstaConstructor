@@ -1,10 +1,4 @@
-import {
-  FormElementUnion,
-  GroupElementUnion,
-  IFormConstructor,
-  IFormElement,
-  IGroupElement,
-} from './types'
+import { IFormConstructor, IFormElement, IGroupElement } from './types'
 import {
   createSlice,
   SliceCaseReducers,
@@ -31,11 +25,11 @@ import {
   SaveProjectIntent,
 } from '../../projectSaveLoad'
 import { ProjectDataSerializable } from '../../projectSaveLoad/types'
-import { deleteElementFromTree } from './utils'
+import { deleteButtonActions, deleteElementFromTree } from './utils'
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
-  allElementsMap: new Map<string, IGroupElement | IFormElement>(),
+  allElementsMap: new Map<string, IFormElement | IGroupElement>(),
   selectedElement: null,
   selectedElementProps: null,
   isGridVisible: true,
@@ -130,7 +124,7 @@ export const formConstructorSlice = createFormConstructorSlice({
           element.props = newProps
         }
 
-        state.selectedElementProps = (element as FormElementUnion | GroupElementUnion).props
+        state.selectedElementProps = (element as IFormElement | IGroupElement).props
         state.selectedElement = {
           ...action.payload,
         }
@@ -149,13 +143,14 @@ export const formConstructorSlice = createFormConstructorSlice({
       ])
       state.allElementsTree = newTreeMap
 
-      const newAllelementMap = new Map<string, IGroupElement | IFormElement>(state.allElementsMap)
+      const newAllelementMap = new Map<string, IFormElement | IGroupElement>(state.allElementsMap)
       newAllelementMap.set(element.id, element)
       state.allElementsMap = newAllelementMap
     },
     deleteElement: (state, action: PayloadAction<DeleteElementPayload>) => {
       const elementId = action.payload.elementId
-      deleteElementFromTree(elementId, state.allElementsTree, state.allElementsMap)
+      deleteButtonActions(elementId, state)
+      deleteElementFromTree(elementId, state)
     },
     togglePanelsByHotkey: (state: PanelStatePayload) => {
       if (

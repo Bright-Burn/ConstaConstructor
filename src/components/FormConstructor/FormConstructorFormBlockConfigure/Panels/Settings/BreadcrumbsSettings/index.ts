@@ -1,0 +1,1 @@
+export { BreadcrumbsSettings } from './BreadcrumbsSettings'

@@ -59,7 +59,7 @@ export const LayoutSettings = () => {
     'space-evenly',
   ]
 
-  const alignItems: AlignItems[] = ['center', 'start', 'end', 'flex-end', 'flex-start']
+  const alignItems: AlignItems[] = ['normal', 'center', 'start', 'end', 'flex-end', 'flex-start']
 
   const [propsStyles, setPropsStyles] = useState<LayoutElementPropsStyles>()
   const [widthValue, setWidthValue] = useState<string>('0')
@@ -178,8 +178,12 @@ export const LayoutSettings = () => {
 
     if (selectedElement) {
       if (value && value !== '0') {
-        newProps.styles.maxWidth = `${value}px`
-        newProps.styles.minWidth = `${value}px`
+        let newValue = value
+        if (value.startsWith('0')) {
+          newValue = newValue.replace('0', '')
+        }
+        newProps.styles.maxWidth = `${newValue}px`
+        newProps.styles.minWidth = `${newValue}px`
         onDispatch(selectedElement, newProps)
       } else {
         newProps.styles.maxWidth = undefined
@@ -197,8 +201,12 @@ export const LayoutSettings = () => {
 
     if (selectedElement) {
       if (value && value !== '0') {
-        newProps.styles.maxHeight = `${value}px`
-        newProps.styles.minHeight = `${value}px`
+        let newValue = value
+        if (value.startsWith('0')) {
+          newValue = newValue.replace('0', '')
+        }
+        newProps.styles.maxHeight = `${newValue}px`
+        newProps.styles.minHeight = `${newValue}px`
         onDispatch(selectedElement, newProps)
       } else {
         newProps.styles.maxHeight = undefined
@@ -278,7 +286,7 @@ export const LayoutSettings = () => {
             label='Direction'
             getItemLabel={label => label}
             items={directions}
-            value={`${propsStyles.constaProps.direction || 'row'}`}
+            value={`${propsStyles.constaProps.direction}`}
             onChange={onChangeDirection()}
           />
           <Select
@@ -286,7 +294,7 @@ export const LayoutSettings = () => {
             label='JustifyContent'
             getItemLabel={label => label}
             items={justifyContentProps}
-            value={`${propsStyles.styles?.justifyContent || 'flex-start'}`}
+            value={`${propsStyles.styles?.justifyContent}`}
             onChange={onChangeJustifyContent}
           />
           <Select
@@ -294,7 +302,7 @@ export const LayoutSettings = () => {
             label='AlignItems'
             getItemLabel={label => label}
             items={alignItems}
-            value={`${propsStyles.styles?.alignItems || 'flex-start'}`}
+            value={`${propsStyles.styles?.alignItems}`}
             onChange={onChangeAlignItems}
           />
           <TextField
@@ -316,7 +324,7 @@ export const LayoutSettings = () => {
             label='Vertical Aligned'
             getItemLabel={label => label}
             items={verticalAligns}
-            value={`${propsStyles.constaProps.verticalAlign || 'top'}`}
+            value={`${propsStyles.constaProps.verticalAlign}`}
             onChange={onChangeVerticalAligment()}
           />
           <Select
@@ -324,7 +332,7 @@ export const LayoutSettings = () => {
             label='Horizontal Aligned'
             getItemLabel={label => label}
             items={horizontalAligns}
-            value={`${propsStyles.constaProps.horizontalAlign || 'left'}`}
+            value={`${propsStyles.constaProps.horizontalAlign}`}
             onChange={onChangeHorizontalAligment()}
           />
           <Select

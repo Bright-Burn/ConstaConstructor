@@ -1,10 +1,10 @@
-import { IFormElement, IGroupElement } from './types'
+import { IButtonActionElement, IFormElementButton, buttonActionsActive } from './buttonTypes'
+import { IFormConstructor } from './types'
 
-export const deleteElementFromTree = (
-  elementId: string,
-  allElementsTree: Map<string, string[]>,
-  allElementsMap: Map<string, IGroupElement | IFormElement>,
-) => {
+export const deleteElementFromTree = (elementId: string, state: IFormConstructor) => {
+  const allElementsTree = new Map(state.allElementsTree)
+  const allElementsMap = new Map(state.allElementsMap)
+
   const deleteChildren = (elementId: string) => {
     const childrenIds = allElementsTree.get(elementId)
     if (childrenIds) {
@@ -17,5 +17,25 @@ export const deleteElementFromTree = (
   }
 
   deleteChildren(elementId)
+
+  state.allElementsMap = allElementsMap
+  state.allElementsTree = allElementsTree
+}
+
+export const deleteButtonActions = (elementId: string, state: IFormConstructor) => {
+  const allElementsTree = new Map(state.allElementsTree)
+  const allElementsMap = new Map(state.allElementsMap)
+  const elementToDelete = allElementsMap.get(elementId)
+  if (elementToDelete && buttonActionsActive.includes(elementToDelete.type)) {
+    const connectedButton = (elementToDelete as IButtonActionElement).connectedButtonId
+    const element = allElementsMap.get(connectedButton)
+    if (element && element.type === 'Button') {
+      const connectedButtonElement = element as IFormElementButton
+      connectedButtonElement.props.action = 'none'
+      allElementsTree.set(connectedButtonElement.id, [])
+    }
+  }
+  state.allElementsMap = allElementsMap
+  state.allElementsTree = allElementsTree
 }
 

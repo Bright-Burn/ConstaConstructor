@@ -5,7 +5,6 @@ import {
   useAppSelector,
 } from './slices'
 import {
-  ButtonElementProps,
   UnionProps,
   FormElementUnion,
   GroupElementUnion,
@@ -14,7 +13,6 @@ import {
   FormElementTypes,
   ICardElement,
   FormGroupsTypes,
-  IFormElementButton,
   ILayoutElement,
   ElementTypes,
 } from './types'
@@ -45,6 +43,8 @@ export type {
   headerWithBreadcrumbsProps,
 } from './headerWithBreadcrumbsTypes'
 export type { IFormElementHeaderWithStatus, headerWithStatusProps } from './headerWithStatusTypes'
+export * from './buttonTypes'
+
 export {
   formConstructorReducer,
   formConstructorSlice,
@@ -56,7 +56,6 @@ export {
   type IFormElementTextField,
   type TextFieldProps,
   type ICardElement,
-  type IFormElementButton,
   type ILayoutElement,
   type IFormElement,
   type IGroupElement,
@@ -65,7 +64,6 @@ export {
   type LayoutElementPropsStyles,
   type LayoutElementStyles,
   type UnionProps,
-  type ButtonElementProps,
   type LayoutElementProps,
   type FormElementUnion,
   type GroupElementUnion,
