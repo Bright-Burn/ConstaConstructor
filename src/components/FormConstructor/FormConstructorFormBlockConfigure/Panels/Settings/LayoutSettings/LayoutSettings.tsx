@@ -1,282 +1,57 @@
 import React, { useLayoutEffect, useState } from 'react'
-import {
-  formConstructorSlice,
-  LayoutElementPropsStyles,
-  useAppSelector,
-} from '../../../../store/formElements'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import styles from './styles.module.css'
-import { useDispatch } from 'react-redux'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import {
-  LayoutPropDirection,
-  LayoutPropHorizontalAlign,
-  LayoutPropVerticalAlign,
-} from '@consta/uikit/Layout'
-import {
-  AlignItems,
-  BorderStyle,
-  BorderWidth,
-  JustifyContentProps,
-} from '../../../../store/formElements/layoutTypes'
+import { LayoutElementPropsStyles } from '../../../../store/formElements/layoutTypes'
 import { useDebouncedCallback } from '../../../../utils/useDebounceCallBack'
+import { useItemsHandlers } from './ItemsService'
+import {
+  directions,
+  justifyContentProps,
+  alignItems,
+  verticalAligns,
+  horizontalAligns,
+  borderWidths,
+  borderStyle,
+} from './LayoutConstants'
 
 export const LayoutSettings = () => {
-  const directions: LayoutPropDirection[] = ['row', 'column']
+  const {
+    itemsProps,
+    onChangeFlex,
+    onChangeWidth,
+    onChangeJustifyContent,
+    onChangeAlignItems,
+    onChangeHeight,
+    onChangeHorizontalAligment,
+    onChangeBorderWidth,
+    onChangeBorderStyle,
+    onChangeBorderColor,
+    onChangeVerticalAligment,
+    onChangeDirection,
+  } = useItemsHandlers()
 
-  const borderWidths: BorderWidth[] = [
-    'inherit',
-    'medium',
-    'thick',
-    'thin',
-    'initial',
-    'revert',
-    'unset',
-  ]
-
-  const borderStyle: BorderStyle[] = [
-    'dotted',
-    'dashed',
-    'double',
-    'groove',
-    'hidden',
-    'inset',
-    'none',
-    'outset',
-    'ridge',
-    'solid',
-  ]
-  const verticalAligns: LayoutPropVerticalAlign[] = ['top', 'bottom']
-  const horizontalAligns: LayoutPropHorizontalAlign[] = ['left', 'right']
-
-  const justifyContentProps: JustifyContentProps[] = [
-    'start',
-    'center',
-    'end',
-    'space-between',
-    'space-around',
-    'space-evenly',
-  ]
-
-  const alignItems: AlignItems[] = ['normal', 'center', 'start', 'end', 'flex-end', 'flex-start']
-
-  const [propsStyles, setPropsStyles] = useState<LayoutElementPropsStyles>()
   const [widthValue, setWidthValue] = useState<string>('0')
   const [heightValue, setHeightValue] = useState<string>('0')
 
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-
-  const dispatch = useDispatch()
+  const updateColor = useDebouncedCallback(value => onChangeBorderColor(value), 300)
 
   useLayoutEffect(() => {
-    if (selectedElementProps) {
-      const layoutProps = selectedElementProps as LayoutElementPropsStyles
+    if (itemsProps.selectedElementProps) {
+      const layoutProps = itemsProps.selectedElementProps as LayoutElementPropsStyles
 
       setHeightValue(layoutProps.styles?.maxHeight?.replaceAll('px', '') || '0')
       setWidthValue(layoutProps.styles?.maxWidth?.replaceAll('px', '') || '0')
-      setPropsStyles(layoutProps)
     }
-  }, [selectedElementProps])
-
-  const onChangeFlex =
-    () =>
-    ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: LayoutElementPropsStyles = {
-          ...(selectedElementProps as LayoutElementPropsStyles),
-        }
-        newProps.constaProps = { ...newProps.constaProps }
-
-        const newValue = Number(value)
-
-        // @ts-ignore
-        newProps.constaProps['flex'] = value != null ? newValue : 1
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeDirection =
-    () =>
-    ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: LayoutElementPropsStyles = {
-          ...(selectedElementProps as LayoutElementPropsStyles),
-        }
-        newProps.constaProps = { ...newProps.constaProps }
-
-        // @ts-ignore
-        newProps.constaProps['direction'] = value
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeVerticalAligment =
-    () =>
-    ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: LayoutElementPropsStyles = {
-          ...(selectedElementProps as LayoutElementPropsStyles),
-        }
-        newProps.constaProps = { ...newProps.constaProps }
-
-        // @ts-ignore
-        newProps.constaProps['verticalAlign'] = value
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeHorizontalAligment =
-    () =>
-    ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: LayoutElementPropsStyles = {
-          ...(selectedElementProps as LayoutElementPropsStyles),
-        }
-
-        newProps.constaProps = { ...newProps.constaProps }
-
-        // @ts-ignore
-        newProps.constaProps['horizontalAlign'] = value
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeJustifyContent = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-
-      newProps.styles = { ...newProps.styles }
-
-      // @ts-ignore
-      newProps.styles.justifyContent = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeAlignItems = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-
-      newProps.styles = { ...newProps.styles }
-
-      // @ts-ignore
-      newProps.styles.alignItems = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeWidth = (value: string | null) => {
-    const newProps: LayoutElementPropsStyles = {
-      ...(selectedElementProps as LayoutElementPropsStyles),
-    }
-    newProps.styles = { ...newProps.styles }
-
-    if (selectedElement) {
-      if (value && value !== '0') {
-        let newValue = value
-        if (value.startsWith('0')) {
-          newValue = newValue.replace('0', '')
-        }
-        newProps.styles.maxWidth = `${newValue}px`
-        newProps.styles.minWidth = `${newValue}px`
-        onDispatch(selectedElement, newProps)
-      } else {
-        newProps.styles.maxWidth = undefined
-        newProps.styles.minWidth = undefined
-        onDispatch(selectedElement, newProps)
-      }
-    }
-  }
-
-  const onChangeHeight = (value: string | null) => {
-    const newProps: LayoutElementPropsStyles = {
-      ...(selectedElementProps as LayoutElementPropsStyles),
-    }
-    newProps.styles = { ...newProps.styles }
-
-    if (selectedElement) {
-      if (value && value !== '0') {
-        let newValue = value
-        if (value.startsWith('0')) {
-          newValue = newValue.replace('0', '')
-        }
-        newProps.styles.maxHeight = `${newValue}px`
-        newProps.styles.minHeight = `${newValue}px`
-        onDispatch(selectedElement, newProps)
-      } else {
-        newProps.styles.maxHeight = undefined
-        newProps.styles.minHeight = undefined
-        onDispatch(selectedElement, newProps)
-      }
-    }
-  }
-
-  const onChangeBorderWidth = (value: string | null) => {
-    if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-
-      newProps.styles = { ...newProps.styles }
-
-      // @ts-ignore
-      newProps.styles.borderWidth = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeBorderStyle = (value: string | null) => {
-    if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-
-      newProps.styles = { ...newProps.styles }
-
-      // @ts-ignore
-      newProps.styles.borderStyle = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeBorderColor = (value: string | null) => {
-    if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-
-      newProps.styles = { ...newProps.styles }
-
-      // @ts-ignore
-      newProps.styles.borderColor = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onDispatch = (selectedElement: ISelectedElement, newProps: LayoutElementPropsStyles) => {
-    dispatch(
-      formConstructorSlice.actions.setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps: newProps,
-      }),
-    )
-  }
-
-  const updateColor = useDebouncedCallback(value => onChangeBorderColor(value), 1000)
+  }, [itemsProps.selectedElementProps])
 
   return (
     <div className={styles.layoutSettings}>
-      {propsStyles ? (
+      {itemsProps ? (
         <>
           <TextField
             onChange={onChangeFlex()}
-            value={`${propsStyles.constaProps.flex}`}
+            value={`${itemsProps.constaProps.flex}`}
             type='number'
             label='Flex'
             min='1'
@@ -286,27 +61,29 @@ export const LayoutSettings = () => {
             label='Direction'
             getItemLabel={label => label}
             items={directions}
-            value={`${propsStyles.constaProps.direction}`}
-            onChange={onChangeDirection()}
+            value={`${itemsProps.constaProps.direction}`}
+            onChange={({ value }) => {
+              onChangeDirection(value)
+            }}
           />
           <Select
             getItemKey={key => key}
             label='JustifyContent'
             getItemLabel={label => label}
             items={justifyContentProps}
-            value={`${propsStyles.styles?.justifyContent}`}
-            onChange={onChangeJustifyContent}
+            value={`${itemsProps.styles?.justifyContent}`}
+            onChange={({ value }) => onChangeJustifyContent(value)}
           />
           <Select
             getItemKey={key => key}
             label='AlignItems'
             getItemLabel={label => label}
             items={alignItems}
-            value={`${propsStyles.styles?.alignItems}`}
-            onChange={onChangeAlignItems}
+            value={`${itemsProps.styles?.alignItems}`}
+            onChange={({ value }) => onChangeAlignItems(value)}
           />
           <TextField
-            onChange={({ value }: { value: string | null }) => onChangeWidth(value)}
+            onChange={({ value }) => onChangeWidth(value)}
             value={widthValue}
             type='number'
             label='Width'
@@ -324,43 +101,42 @@ export const LayoutSettings = () => {
             label='Vertical Aligned'
             getItemLabel={label => label}
             items={verticalAligns}
-            value={`${propsStyles.constaProps.verticalAlign}`}
-            onChange={onChangeVerticalAligment()}
+            value={`${itemsProps.constaProps.verticalAlign}`}
+            onChange={({ value }) => onChangeVerticalAligment(value)}
           />
           <Select
             getItemKey={key => key}
             label='Horizontal Aligned'
             getItemLabel={label => label}
             items={horizontalAligns}
-            value={`${propsStyles.constaProps.horizontalAlign}`}
-            onChange={onChangeHorizontalAligment()}
+            value={`${itemsProps.constaProps.horizontalAlign}`}
+            onChange={({ value }) => onChangeHorizontalAligment(value)}
           />
           <Select
             getItemKey={key => key}
             label='Border width'
             getItemLabel={label => label}
             items={borderWidths}
-            value={`${propsStyles.styles?.borderWidth}`}
-            // @ts-ignore
-            onChange={({ value }: { value: string | null }) => onChangeBorderWidth(value)}
+            value={`${itemsProps.styles?.borderWidth || ''}`}
+            onChange={({ value }) => onChangeBorderWidth(value)}
           />
           <TextField
-            value={propsStyles.styles?.borderColor}
+            value={itemsProps.styles?.borderColor}
             type='text'
             label='Border color'
-            onChange={({ value }: { value: string | null }) => onChangeBorderColor(value)}
+            onChange={({ value }) => onChangeBorderColor(value)}
           />
           <input
             type='color'
-            value={propsStyles.styles?.borderColor}
+            value={itemsProps.styles?.borderColor}
             onChange={value => updateColor(value.currentTarget.value)}></input>
           <Select
             getItemKey={key => key}
             label='Border style'
             getItemLabel={label => label}
             items={borderStyle}
-            value={`${propsStyles.styles?.borderStyle}`}
-            onChange={({ value }: { value: string | null }) => onChangeBorderStyle(value)}
+            value={`${itemsProps.styles?.borderStyle || ''}`}
+            onChange={({ value }) => onChangeBorderStyle(value)}
           />
         </>
       ) : (
