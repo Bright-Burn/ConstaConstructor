@@ -54,3 +54,5 @@ export const alignItems: AlignItems[] = [
   'flex-end',
   'flex-start',
 ]
+
+export const borderSide = ['', 'borderLeft', 'borderRight', 'borderTop', 'borderBottom']

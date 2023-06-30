@@ -13,6 +13,7 @@ import {
   horizontalAligns,
   borderWidths,
   borderStyle,
+  borderSide,
 } from './LayoutConstants'
 
 export const LayoutSettings = () => {
@@ -27,6 +28,7 @@ export const LayoutSettings = () => {
     onChangeBorderWidth,
     onChangeBorderStyle,
     onChangeBorderColor,
+    onChangeBorderSide,
     onChangeVerticalAligment,
     onChangeDirection,
   } = useItemsHandlers()
@@ -119,6 +121,14 @@ export const LayoutSettings = () => {
             items={borderWidths}
             value={`${itemsProps.styles?.borderWidth || ''}`}
             onChange={({ value }) => onChangeBorderWidth(value)}
+          />
+          <Select
+            getItemKey={key => key}
+            label='Border style'
+            getItemLabel={label => label}
+            items={borderSide}
+            value={`${itemsProps.styles?.borderSide || ''}`}
+            onChange={({ value }) => onChangeBorderSide(value)}
           />
           <TextField
             value={itemsProps.styles?.borderColor}

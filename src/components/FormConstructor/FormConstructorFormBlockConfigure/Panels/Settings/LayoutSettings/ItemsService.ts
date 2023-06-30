@@ -1,8 +1,23 @@
 import { useDispatch } from 'react-redux'
-import { LayoutElementPropsStyles, formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import {
+  LayoutElementPropsStyles,
+  formConstructorSlice,
+  useAppSelector,
+} from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
-import { LayoutPropDirection, LayoutPropVerticalAlign, LayoutPropHorizontalAlign } from '@consta/uikit/Layout'
-import { JustifyContentProps, AlignItems, BorderWidth, BorderStyle, BorderColor } from '../../../../store/formElements/layoutTypes'
+import {
+  LayoutPropDirection,
+  LayoutPropVerticalAlign,
+  LayoutPropHorizontalAlign,
+} from '@consta/uikit/Layout'
+import {
+  JustifyContentProps,
+  AlignItems,
+  BorderWidth,
+  BorderStyle,
+  BorderColor,
+  BorderSide,
+} from '../../../../store/formElements/layoutTypes'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -19,7 +34,7 @@ export const useItemsHandlers = () => {
 
   const onChangeFlex =
     () =>
-    ({value} : {value: string | null }) => {
+    ({ value }: { value: string | null }) => {
       if (selectedElement) {
         const newProps: LayoutElementPropsStyles = {
           ...(selectedElementProps as LayoutElementPropsStyles),
@@ -33,48 +48,45 @@ export const useItemsHandlers = () => {
       }
     }
 
-  const onChangeDirection =
-    ( value: string | null ) => {
-      if (selectedElement) {
-        const newProps: LayoutElementPropsStyles = {
-          ...(selectedElementProps as LayoutElementPropsStyles),
-        }
-
-        newProps.constaProps = { ...newProps.constaProps }
-
-        newProps.constaProps['direction'] = value as LayoutPropDirection
-        onDispatch(selectedElement, newProps)
+  const onChangeDirection = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
       }
+
+      newProps.constaProps = { ...newProps.constaProps }
+
+      newProps.constaProps['direction'] = value as LayoutPropDirection
+      onDispatch(selectedElement, newProps)
     }
+  }
 
-  const onChangeVerticalAligment =
-    (value: string | null ) => {
-      if (selectedElement) {
-        const newProps: LayoutElementPropsStyles = {
-          ...(selectedElementProps as LayoutElementPropsStyles),
-        }
-        newProps.constaProps = { ...newProps.constaProps }
-
-        newProps.constaProps['verticalAlign'] = value as LayoutPropVerticalAlign
-        onDispatch(selectedElement, newProps)
+  const onChangeVerticalAligment = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
       }
+      newProps.constaProps = { ...newProps.constaProps }
+
+      newProps.constaProps['verticalAlign'] = value as LayoutPropVerticalAlign
+      onDispatch(selectedElement, newProps)
     }
+  }
 
-  const onChangeHorizontalAligment =
-    (value: string | null ) => {
-      if (selectedElement) {
-        const newProps: LayoutElementPropsStyles = {
-          ...(selectedElementProps as LayoutElementPropsStyles),
-        }
-
-        newProps.constaProps = { ...newProps.constaProps }
-
-        newProps.constaProps['horizontalAlign'] = value as LayoutPropHorizontalAlign
-        onDispatch(selectedElement, newProps)
+  const onChangeHorizontalAligment = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
       }
-    }
 
-  const onChangeJustifyContent = (value: string | null ) => {
+      newProps.constaProps = { ...newProps.constaProps }
+
+      newProps.constaProps['horizontalAlign'] = value as LayoutPropHorizontalAlign
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeJustifyContent = (value: string | null) => {
     if (selectedElement) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
@@ -87,7 +99,7 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onChangeAlignItems = (value: string | null ) => {
+  const onChangeAlignItems = (value: string | null) => {
     if (selectedElement) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
@@ -146,7 +158,7 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onChangeBorderWidth = (value: string | null ) => {
+  const onChangeBorderWidth = (value: string | null) => {
     if (selectedElement) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
@@ -159,7 +171,7 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onChangeBorderStyle = (value: string | null ) => {
+  const onChangeBorderStyle = (value: string | null) => {
     if (selectedElement) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
@@ -170,7 +182,18 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onChangeBorderColor = (value: string | null ) => {
+  const onChangeBorderSide = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
+      }
+      newProps.styles = { ...newProps.styles }
+      newProps.styles.borderSide = value as BorderSide
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeBorderColor = (value: string | null) => {
     if (selectedElement) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
@@ -192,6 +215,7 @@ export const useItemsHandlers = () => {
     onChangeHorizontalAligment,
     onChangeBorderWidth,
     onChangeBorderStyle,
+    onChangeBorderSide,
     onChangeBorderColor,
     onChangeVerticalAligment,
     onChangeDirection,
