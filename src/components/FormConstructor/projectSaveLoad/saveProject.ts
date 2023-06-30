@@ -79,5 +79,7 @@ export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFor
     draggableElement: null,
     componentsStructurePanelState: true,
     settingsPanelState: true,
+    pages: proj.pages,
+    numberOfPages: proj.numberOfPages,
   }
 }

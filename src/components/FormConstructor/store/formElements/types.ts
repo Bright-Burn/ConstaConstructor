@@ -175,6 +175,12 @@ export interface ISelectedElement {
   elementType: FormGroupsTypes | FormElementTypes
 }
 
+export interface IPageOfLayout {
+  name: string
+  isActive: boolean
+  parentId: string
+}
+
 export interface IFormConstructor {
   allElementsTree: Map<string, string[]>
   allElementsMap: Map<string, IFormElement | IGroupElement>
@@ -184,4 +190,7 @@ export interface IFormConstructor {
   draggableElement: IFormElement | IGroupElement | null
   componentsStructurePanelState: boolean
   settingsPanelState: boolean
+
+  pages: IPageOfLayout[]
+  numberOfPages: number
 }

@@ -1,13 +1,12 @@
-import React, { FC, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../../store/formElements'
 
 import { DroppableLayer } from '../../DroppableLayer'
 import styles from './styles.module.css'
 import { Pages } from './Pages/Pages'
-import { usePagesSelector } from '../../../store/pagesOfLayout'
 
 export const FormBlock: FC = () => {
-  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+  const pages = useAppSelector(state => state.formConstructor.pages)
   const { selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
