@@ -1,162 +1,65 @@
-import { useLayoutEffect, useState } from 'react'
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import styles from './styles.module.css'
-import { useDispatch } from 'react-redux'
 import { TextField } from '@consta/uikit/TextField'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { TextFieldProps } from '../../../../store/formElements/textFieldTypes'
-import { IconPhoto } from '@consta/uikit/IconPhoto'
+import {
+  status,
+  types,
+  width,
+  forms,
+  sizes,
+  view,
+  labelPosition,
+  leftSideTypes,
+  rightSideTypes,
+} from './TextFieldConstants'
+import { useItemsHandlers } from './ItemsService'
 
 export const TextFieldSettings = () => {
-  const [props, setProps] = useState<TextFieldProps>()
-
-  const status: string[] = ['alert', 'success', 'warning', 'undefined']
-  const types: string[] = ['text', 'textarea', 'number', 'password']
-  const sizes: string[] = ['l', 'm', 's', 'xs']
-  const width: string[] = ['full', 'default']
-  const view: string[] = ['default', 'clear']
-  const labelPosition: string[] = ['top', 'left']
-  const forms: string[] = [
-    'default',
-    'brick',
-    'round',
-    'clearRound',
-    'roundClear',
-    'clearDefault',
-    'defaultClear',
-    'defaultBrick',
-    'brickDefault',
-    'brickClear',
-    'clearBrick',
-    'clearClear',
-  ]
-  const leftSideTypes: string[] = ['undefined', 'icon', 'text']
-  const rightSideTypes: string[] = ['undefined', 'icon', 'text']
-  const [leftSideType, setLeftSideType] = useState('undefined')
-  const [rightSideType, setRightSideType] = useState('undefined')
-
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-
-  const dispatch = useDispatch()
-
-  useLayoutEffect(() => {
-    if (selectedElement) {
-      const textFieldProps = selectedElementProps as TextFieldProps
-
-      setProps(textFieldProps)
-    }
-  }, [selectedElementProps, selectedElement])
-
-  const onChangeTextField =
-    (propsName: keyof TextFieldProps) =>
-    ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: TextFieldProps = {
-          ...(selectedElementProps as TextFieldProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = value || ''
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeSwitch =
-    (propsName: keyof TextFieldProps) =>
-    ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: TextFieldProps = {
-          ...(selectedElementProps as TextFieldProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = checked
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeLeftSideType = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: TextFieldProps = {
-        ...(selectedElementProps as TextFieldProps),
-      }
-
-      if (value === 'icon') {
-        newProps.leftSide = IconPhoto
-      } else if (value === 'text') {
-        newProps.leftSide = 'form'
-      } else {
-        newProps.leftSide = ''
-      }
-      setLeftSideType(value || '')
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeRightSideType = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: TextFieldProps = {
-        ...(selectedElementProps as TextFieldProps),
-      }
-
-      if (value === 'icon') {
-        newProps.rightSide = IconPhoto
-      } else if (value === 'text') {
-        newProps.rightSide = 'm'
-      } else {
-        newProps.rightSide = ''
-      }
-      setRightSideType(value || '')
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onDispatch = (selectedElement: ISelectedElement, newProps: TextFieldProps) => {
-    dispatch(
-      formConstructorSlice.actions.setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps: newProps,
-      }),
-    )
-  }
+  const {
+    itemsProps,
+    onChangeTextField,
+    onChangeSwitch,
+    onChangeRightSideType,
+    onChangeLeftSideType,
+  } = useItemsHandlers()
 
   return (
     <div className={styles.textFieldSettings}>
-      {props ? (
+      {itemsProps ? (
         <>
           <Select
             getItemKey={key => key}
             getItemLabel={label => label}
             label='Type'
             items={types}
-            value={`${props.type}`}
+            value={`${itemsProps.type}`}
             onChange={onChangeTextField('type')}
           />
-          {props.type === 'number' ? (
+          {itemsProps.type === 'number' ? (
             <>
               <TextField
                 onChange={onChangeTextField('step')}
-                value={`${props.step}`}
+                value={`${itemsProps.step}`}
                 type='number'
                 label='Step'
                 min='0'
               />
               <Switch
-                checked={props.incrementButtons ?? true}
+                checked={itemsProps.incrementButtons ?? true}
                 label='incrementButtons'
                 onChange={onChangeSwitch('incrementButtons')}
               />
               <TextField
                 onChange={onChangeTextField('min')}
-                value={`${props.min}`}
+                value={`${itemsProps.min}`}
                 type='number'
                 label='Min'
                 min='0'
               />
               <TextField
                 onChange={onChangeTextField('max')}
-                value={`${props.max}`}
+                value={`${itemsProps.max}`}
                 type='number'
                 label='Max'
                 min='0'
@@ -165,18 +68,18 @@ export const TextFieldSettings = () => {
           ) : (
             <></>
           )}
-          {props.type === 'textarea' ? (
+          {itemsProps.type === 'textarea' ? (
             <>
               <TextField
                 onChange={onChangeTextField('minRows')}
-                value={`${props.minRows}`}
+                value={`${itemsProps.minRows}`}
                 type='number'
                 label='MinRows'
                 min='0'
               />
               <TextField
                 onChange={onChangeTextField('maxRows')}
-                value={`${props.maxRows}`}
+                value={`${itemsProps.maxRows}`}
                 type='number'
                 label='MaxRows'
                 min='0'
@@ -190,7 +93,7 @@ export const TextFieldSettings = () => {
             label='Width'
             getItemLabel={label => label}
             items={width}
-            value={`${props.width}`}
+            value={`${itemsProps.width}`}
             onChange={onChangeTextField('width')}
           />
           <Select
@@ -198,7 +101,7 @@ export const TextFieldSettings = () => {
             label='Form'
             getItemLabel={label => label}
             items={forms}
-            value={`${props.form}`}
+            value={`${itemsProps.form}`}
             onChange={onChangeTextField('form')}
           />
           <Select
@@ -206,7 +109,7 @@ export const TextFieldSettings = () => {
             label='Status'
             getItemLabel={label => label}
             items={status}
-            value={`${props.status}`}
+            value={`${itemsProps.status}`}
             onChange={onChangeTextField('status')}
           />
           <Select
@@ -214,7 +117,7 @@ export const TextFieldSettings = () => {
             getItemLabel={label => label}
             items={sizes}
             label='Size'
-            value={`${props.size || 's'}`}
+            value={`${itemsProps.size || 's'}`}
             onChange={onChangeTextField('size')}
           />
           <Select
@@ -222,32 +125,32 @@ export const TextFieldSettings = () => {
             label='View'
             getItemLabel={label => label}
             items={view}
-            value={`${props.view}`}
+            value={`${itemsProps.view}`}
             onChange={onChangeTextField('view')}
           />
           <Switch
-            checked={props.disabled ?? false}
+            checked={itemsProps.disabled ?? false}
             label='disabled'
             onChange={onChangeSwitch('disabled')}
           />
           <Switch
-            checked={props.required ?? false}
+            checked={itemsProps.required ?? false}
             label='required'
             onChange={onChangeSwitch('required')}
           />
           <Switch
-            checked={props.withClearButton ?? false}
+            checked={itemsProps.withClearButton ?? false}
             label='withClearButton'
             onChange={onChangeSwitch('withClearButton')}
           />
           <TextField
             label='Caption'
-            value={`${props.caption || ''}`}
+            value={`${itemsProps.caption || ''}`}
             onChange={onChangeTextField('caption')}
           />
           <TextField
             label='Label'
-            value={`${props.label || ''}`}
+            value={`${itemsProps.label || ''}`}
             onChange={onChangeTextField('label')}
           />
           <Select
@@ -255,19 +158,19 @@ export const TextFieldSettings = () => {
             label='LabelPosition'
             getItemLabel={label => label}
             items={labelPosition}
-            value={`${props.labelPosition}`}
+            value={`${itemsProps.labelPosition}`}
             onChange={onChangeTextField('labelPosition')}
           />
           <TextField
             onChange={onChangeTextField('maxLength')}
-            value={`${props.maxLength}`}
+            value={`${itemsProps.maxLength}`}
             type='number'
             label='MaxLength'
             min='0'
           />
           <TextField
             label='Placeholder'
-            value={`${props.placeholder || ''}`}
+            value={`${itemsProps.placeholder || ''}`}
             onChange={onChangeTextField('placeholder')}
           />
           <Select
@@ -275,27 +178,32 @@ export const TextFieldSettings = () => {
             label='LeftSideType'
             getItemLabel={label => label}
             items={leftSideTypes}
-            value={`${leftSideType}`}
+            value={`${itemsProps.leftSideType}`}
             onChange={onChangeLeftSideType}
           />
-          <TextField
-            label='LeftSideText'
-            value={`${props.leftSide}`}
-            onChange={onChangeTextField('leftSide')}
-          />
+          {itemsProps.leftSideType === 'text' && (
+            <TextField
+              label='LeftSideText'
+              value={`${itemsProps.leftSide}`}
+              onChange={onChangeTextField('leftSide')}
+            />
+          )}
+
           <Select
             getItemKey={key => key}
             label='RightSideType'
             getItemLabel={label => label}
             items={rightSideTypes}
-            value={`${rightSideType}`}
+            value={`${itemsProps.rightSideType}`}
             onChange={onChangeRightSideType}
           />
-          <TextField
-            label='RightSideText'
-            value={`${props.rightSide}`}
-            onChange={onChangeTextField('rightSide')}
-          />
+          {itemsProps.rightSideType === 'text' && (
+            <TextField
+              label='RightSideText'
+              value={`${itemsProps.rightSide}`}
+              onChange={onChangeTextField('rightSide')}
+            />
+          )}
         </>
       ) : (
         <></>
