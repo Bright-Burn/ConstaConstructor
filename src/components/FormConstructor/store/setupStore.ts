@@ -2,13 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { formConstructorReducer } from './formElements'
 import { enableMapSet } from 'immer'
 import { baseComponentsReducer } from './baseComponentsItems'
-import { pagesReducer } from './pagesOfLayout/slices'
 
 enableMapSet()
 const rootReducer = combineReducers({
   formConstructor: formConstructorReducer,
   baseComponents: baseComponentsReducer,
-  pagesOfLayout: pagesReducer,
 })
 
 function setupStore() {

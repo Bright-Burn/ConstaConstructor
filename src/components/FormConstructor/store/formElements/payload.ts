@@ -39,3 +39,7 @@ export interface LoadProjectFromFile {
 export interface SetNewElementDraggableElem {
   element: IFormElement | IGroupElement | null
 }
+
+export interface ChangePages {
+  index: number
+}
