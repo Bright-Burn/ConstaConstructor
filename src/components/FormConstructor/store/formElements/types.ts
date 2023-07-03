@@ -92,6 +92,7 @@ export interface IGroupElement extends IUnion {
   type: FormGroupsTypes
   isOuter: boolean
   props: GroupElementProps
+  page?: string
 }
 
 export interface ILayoutElement extends IGroupElement {
@@ -102,6 +103,7 @@ export interface IFormElement extends IUnion {
   id: string
   type: FormElementTypes
   props: FormElementProps
+  page?: string
 }
 
 export interface IUnion {
@@ -171,6 +173,7 @@ export interface BaseProps {
 }
 
 export interface ISelectedElement {
+  page?: string
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes
 }

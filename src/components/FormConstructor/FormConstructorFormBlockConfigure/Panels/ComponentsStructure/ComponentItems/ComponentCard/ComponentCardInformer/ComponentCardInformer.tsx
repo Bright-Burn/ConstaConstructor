@@ -8,14 +8,20 @@ import {
   IFormElementInformer,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
+import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
+
+  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newInformer: IFormElementInformer = {
       id: uuid(),
       type: FormElementTypes.Informer,
+      page: activePage?.name,
       props: {
         label: 'Informer',
         title: 'Title',

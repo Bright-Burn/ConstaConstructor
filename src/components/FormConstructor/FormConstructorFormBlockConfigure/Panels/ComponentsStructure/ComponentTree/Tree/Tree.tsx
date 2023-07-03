@@ -9,17 +9,26 @@ import { rcTreeAdapter } from '@consta/rc-tree-adapter/rcTreeAdapter'
 import { cnRcTree } from '@consta/rc-tree-adapter/RcTree'
 import RCTree from 'rc-tree'
 import { Key } from 'rc-tree/lib/interface'
+import { pagesSlice } from '../../../../../store/pagesOfLayout'
 
 export const Tree: FC<ITree> = ({ data }) => {
   const [selectedTreeItemsIds, setSelectedTreeItemsIds] = useState<string[]>([])
 
   const { allElementsMap, selectedElement } = useAppSelector(state => state.formConstructor)
 
+  const changeActivePage = (index: number) => {
+    dispatch(pagesSlice.actions.changeActivePage({ index }))
+  }
+
   useEffect(() => {
     const selectedElementId = selectedElement?.elementId
 
     if (selectedElementId) {
       setSelectedTreeItemsIds([selectedElementId])
+    }
+
+    if (selectedElement?.page) {
+      changeActivePage(+selectedElement.page.slice(4) - 1)
     }
   }, [selectedElement])
 
@@ -42,6 +51,7 @@ export const Tree: FC<ITree> = ({ data }) => {
           formConstructorSlice.actions.setSelectedElement({
             elementType: element.type,
             elementId: element.id,
+            page: element.page,
           }),
         )
       }
@@ -59,4 +69,3 @@ export const Tree: FC<ITree> = ({ data }) => {
     />
   )
 }
-

@@ -8,14 +8,20 @@ import {
   IFormElementBadge,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
+import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
+
+  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newBadge: IFormElementBadge = {
       id: uuid(),
       type: FormElementTypes.Badge,
+      page: activePage?.name,
       props: {
         label: 'Badge',
         form: 'default',

@@ -16,6 +16,7 @@ export interface PanelStatePayload {
 export type SetNewSelectedElement = {
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes
+  page?: string
   newProps?: UnionProps
 } | null
 

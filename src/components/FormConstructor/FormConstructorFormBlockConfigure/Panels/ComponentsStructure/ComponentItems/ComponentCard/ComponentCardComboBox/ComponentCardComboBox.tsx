@@ -5,9 +5,14 @@ import uuid from 'react-uuid'
 import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementComboBox } from '../../../../../../store/formElements/comboBoxTypes'
+import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
+
+  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const items = [
@@ -27,6 +32,7 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
     const newTabs: IFormElementComboBox = {
       id: uuid(),
       type: FormElementTypes.ComboBox,
+      page: activePage?.name,
       props: {
         size: 'm',
         placeholder: 'placeholder',

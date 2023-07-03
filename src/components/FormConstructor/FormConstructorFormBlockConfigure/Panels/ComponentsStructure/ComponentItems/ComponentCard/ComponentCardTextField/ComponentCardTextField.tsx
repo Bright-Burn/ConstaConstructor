@@ -8,14 +8,20 @@ import {
   IFormElementTextField,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
+import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardTextField: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
+
+  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newTextField: IFormElementTextField = {
       id: uuid(),
       type: FormElementTypes.TextField,
+      page: activePage?.name,
       props: {
         type: 'text',
         width: 'default',

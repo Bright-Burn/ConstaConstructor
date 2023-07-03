@@ -5,9 +5,14 @@ import uuid from 'react-uuid'
 import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementSelect } from '../../../../../../store/formElements/selectTypes'
+import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
+
+  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const items = [
@@ -27,6 +32,7 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
     const newSelect: IFormElementSelect = {
       id: uuid(),
       type: FormElementTypes.Select,
+      page: activePage?.name,
       props: {
         content: 'Text',
         size: 'm',

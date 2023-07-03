@@ -6,14 +6,20 @@ import { formConstructorSlice, FormElementTypes } from '../../../../../../store/
 import { IComponetCardElement } from '../types'
 import { IFormElementBreadcrumbs } from '../../../../../../store/formElements/BreadcrumbsTypes'
 import { pagesSubMenu } from '../../../../../Elements/BreadcrumbsFormElement/mocks'
+import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
+
+  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newBreadcrumb: IFormElementBreadcrumbs = {
       id: uuid(),
       type: FormElementTypes.BreadcrumbsForm,
+      page: activePage?.name,
       props: {
         items: pagesSubMenu,
         size: 'm',

@@ -8,14 +8,20 @@ import {
   ICardElement,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
+import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
+
+  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newCard: ICardElement = {
       id: uuid(),
       type: FormGroupsTypes.Card,
+      page: activePage?.name,
       isOuter: false,
       props: {
         constaProps: {

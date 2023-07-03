@@ -8,14 +8,20 @@ import {
   IFormElementButton,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
+import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
+
+  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newButton: IFormElementButton = {
       id: uuid(),
       type: FormElementTypes.Button,
+      page: activePage?.name,
       props: {
         action: 'none',
         disabled: false,
