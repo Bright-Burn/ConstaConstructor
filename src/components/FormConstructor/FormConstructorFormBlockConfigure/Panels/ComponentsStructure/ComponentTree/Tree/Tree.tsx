@@ -49,8 +49,6 @@ export const Tree: FC<ITree> = ({ data }) => {
     selectedKeys.forEach(key => {
       const element = allElementsMap.get(`${key}`)
 
-      console.log(element)
-
       if (element) {
         dispatch(
           formConstructorSlice.actions.setSelectedElement({
