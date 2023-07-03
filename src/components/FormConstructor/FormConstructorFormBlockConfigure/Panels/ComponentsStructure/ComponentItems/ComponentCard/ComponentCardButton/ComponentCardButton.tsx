@@ -18,9 +18,11 @@ export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
       type: FormElementTypes.Button,
       props: {
         size: 'm',
+        action: 'none',
+        disabled: false,
+        label: 'Кнопка',
         view: 'primary',
         form: 'default',
-        label: 'Кнопка',
         width: 'default',
         className: '',
         baseProps: {},

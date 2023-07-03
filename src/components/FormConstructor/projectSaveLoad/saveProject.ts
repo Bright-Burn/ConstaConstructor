@@ -49,10 +49,10 @@ export const projectToSerilizable = (proj: IFormConstructor): IFormConstructorSe
  *   props: new PrototypeProps(props)
  * }
  *
- * @param {Map<string, IGroupElement | IFormElement>} allElementsMapParsed
+ * @param {Map<string, IFormElement | IGroupElement>} allElementsMapParsed
  */
 export const mutateAllElementsMap = (
-  allElementsMapParsed: Map<string, IGroupElement | IFormElement>,
+  allElementsMapParsed: Map<string, IFormElement | IGroupElement>,
 ): void => {
   Array.from(allElementsMapParsed).forEach(([, value]) => {
     if (value.type === 'PrototypeTextElement' || value.type === 'PrototypeRectElement') {
@@ -66,7 +66,7 @@ export const mutateAllElementsMap = (
 export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFormConstructor => {
   const allElementsTree: Map<string, string[]> = new Map(JSON.parse(proj.allElementsTree))
 
-  const allElementsMap: Map<string, IGroupElement | IFormElement> = new Map(
+  const allElementsMap: Map<string, IFormElement | IGroupElement> = new Map(
     JSON.parse(proj.allElementsMap),
   )
 
@@ -79,5 +79,7 @@ export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFor
     draggableElement: null,
     componentsStructurePanelState: true,
     settingsPanelState: true,
+    pages: proj.pages,
+    numberOfPages: proj.numberOfPages,
   }
 }

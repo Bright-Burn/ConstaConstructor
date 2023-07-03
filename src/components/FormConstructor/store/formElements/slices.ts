@@ -1,10 +1,4 @@
-import {
-  FormElementUnion,
-  GroupElementUnion,
-  IFormConstructor,
-  IFormElement,
-  IGroupElement,
-} from './types'
+import { IFormConstructor, IFormElement, IGroupElement } from './types'
 import {
   createSlice,
   SliceCaseReducers,
@@ -13,6 +7,7 @@ import {
 } from '@reduxjs/toolkit'
 import {
   AddNewElementPayload,
+  ChangePages,
   DeleteElementPayload,
   LoadProjectFromFile,
   LoadProjectFromStorage,
@@ -31,17 +26,19 @@ import {
   SaveProjectIntent,
 } from '../../projectSaveLoad'
 import { ProjectDataSerializable } from '../../projectSaveLoad/types'
-import { deleteElementFromTree } from './utils'
+import { deleteButtonActions, deleteElementFromTree } from './utils'
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
-  allElementsMap: new Map<string, IGroupElement | IFormElement>(),
+  allElementsMap: new Map<string, IFormElement | IGroupElement>(),
   selectedElement: null,
   selectedElementProps: null,
   isGridVisible: true,
   draggableElement: null,
   componentsStructurePanelState: true,
   settingsPanelState: true,
+  pages: [{ name: 'Page1', isActive: true, parentId: 'root' }],
+  numberOfPages: 1,
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
@@ -93,6 +90,8 @@ export const formConstructorSlice = createFormConstructorSlice({
         state.isGridVisible = newSate.isGridVisible
         state.selectedElement = newSate.selectedElement
         state.selectedElementProps = newSate.selectedElementProps
+        state.pages = newSate.pages
+        state.numberOfPages = newSate.numberOfPages
       }
     },
     saveProjectToMemmoryStorage: (state, action: PayloadAction<SaveNewProject>) => {
@@ -130,7 +129,7 @@ export const formConstructorSlice = createFormConstructorSlice({
           element.props = newProps
         }
 
-        state.selectedElementProps = (element as FormElementUnion | GroupElementUnion).props
+        state.selectedElementProps = (element as IFormElement | IGroupElement).props
         state.selectedElement = {
           ...action.payload,
         }
@@ -149,13 +148,14 @@ export const formConstructorSlice = createFormConstructorSlice({
       ])
       state.allElementsTree = newTreeMap
 
-      const newAllelementMap = new Map<string, IGroupElement | IFormElement>(state.allElementsMap)
+      const newAllelementMap = new Map<string, IFormElement | IGroupElement>(state.allElementsMap)
       newAllelementMap.set(element.id, element)
       state.allElementsMap = newAllelementMap
     },
     deleteElement: (state, action: PayloadAction<DeleteElementPayload>) => {
       const elementId = action.payload.elementId
-      deleteElementFromTree(elementId, state.allElementsTree, state.allElementsMap)
+      deleteButtonActions(elementId, state)
+      deleteElementFromTree(elementId, state)
     },
     togglePanelsByHotkey: (state: PanelStatePayload) => {
       if (
@@ -178,6 +178,37 @@ export const formConstructorSlice = createFormConstructorSlice({
     },
     toggleComponentsStructurePanel: (state, action: PayloadAction<PanelStatePayload>) => {
       state.componentsStructurePanelState = !state.componentsStructurePanelState
+    },
+    addNewPage: state => {
+      state.pages = [
+        ...state.pages,
+        {
+          name: `Page${state.numberOfPages + 1}`,
+          isActive: false,
+          parentId: `Page${state.numberOfPages + 1}`,
+        },
+      ]
+      state.numberOfPages = state.numberOfPages + 1
+    },
+    changeActivePage: (state, action: PayloadAction<ChangePages>) => {
+      state.pages = state.pages.map((page, i) => {
+        return {
+          name: page.name,
+          isActive: i === action.payload.index,
+          parentId: page.parentId,
+        }
+      })
+    },
+    closePage: (state, action: PayloadAction<ChangePages>) => {
+      state.pages = state.pages
+        .filter((page, i) => i !== action.payload.index)
+        .map((page, i) => {
+          return {
+            name: page.name,
+            isActive: i === action.payload.index,
+            parentId: page.parentId,
+          }
+        })
     },
   },
 })

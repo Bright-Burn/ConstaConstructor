@@ -1,186 +1,297 @@
+import { useEffect, useState } from 'react'
 import {
-  ButtonElementProps,
+  ButtonAction,
+  ButtonProps,
+  IButtonModalElement,
+  buttonActions,
+  buttonActionsActive,
+  defaultHeight,
+  defaultWidth,
   formConstructorSlice,
   useAppSelector,
 } from '../../../../store/formElements'
-import { ISelectedElement, UnionProps } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
-import { useDispatch } from 'react-redux'
-import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
-import { Switch } from '@consta/uikit/Switch'
-import { views, sizes, width, forms } from './UserConstants'
+import { useDispatch } from 'react-redux'
+import {
+  FormGroupsTypes,
+  ILayoutElement,
+  ISelectedElement,
+} from '../../../../store/formElements/types'
 import {
   ButtonPropForm,
   ButtonPropSize,
   ButtonPropView,
   ButtonPropWidth,
 } from '@consta/uikit/Button'
+import uuid from 'react-uuid'
+import { forms, sizes, views, width } from './UserConstants'
+import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
 
-export const ButtonSettings: FC = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const ButtonSettings = () => {
+  const [props, setProps] = useState<ButtonProps>()
 
-  const getButtonElementProps = (x: UnionProps): x is ButtonElementProps => 'label' in x
-
+  const { selectedElementProps, selectedElement, allElementsMap, allElementsTree } = useAppSelector(
+    state => state.formConstructor,
+  )
   const dispatch = useDispatch()
 
-  if (selectedElementProps && getButtonElementProps(selectedElementProps)) {
-    const props = selectedElementProps
+  useEffect(() => {
+    if (selectedElement) {
+      setProps(selectedElementProps as ButtonProps)
+    }
+  }, [selectedElementProps, selectedElement])
 
-    const onChangeLabel = (value: string | null) => {
+  const onChangeButtonAction = (value: ButtonAction) => {
+    if (selectedElement && props) {
+      const newProps: ButtonProps = {
+        ...props,
+      }
+
+      newProps['action'] = value
+
+      onUpdateSelected(selectedElement, newProps)
+      if (buttonActionsActive.includes(value)) {
+        addConnectedElement()
+      } else {
+        removeConnectedElement()
+      }
+    }
+  }
+
+  const addConnectedElement = () => {
+    const currentButtonElement = allElementsMap.get(selectedElement?.elementId || '')
+
+    if (currentButtonElement && currentButtonElement.id) {
+      const connectedButtonGroupElement: IButtonModalElement = {
+        id: uuid(),
+        connectedButtonId: currentButtonElement.id,
+        isOuter: false,
+        type: 'ButtonModal',
+        props: {
+          height: defaultHeight,
+          width: defaultWidth,
+          className: '',
+          baseProps: {},
+        },
+      }
+      const layoutElement: ILayoutElement = {
+        id: uuid(),
+        type: FormGroupsTypes.Layout,
+        isOuter: false,
+        props: {
+          constaProps: {
+            flex: 1,
+            direction: 'row',
+          },
+          className: '',
+          baseProps: {},
+        },
+      }
+
+      dispatch(
+        formConstructorSlice.actions.addNewElement({
+          parent: currentButtonElement.id,
+          element: connectedButtonGroupElement,
+        }),
+      )
+
+      dispatch(
+        formConstructorSlice.actions.addNewElement({
+          parent: connectedButtonGroupElement.id,
+          element: layoutElement,
+        }),
+      )
+    }
+  }
+
+  const removeConnectedElement = () => {
+    if (selectedElement) {
+      const connectedElementIds = allElementsTree.get(selectedElement.elementId)
+      connectedElementIds?.forEach(id => {
+        dispatch(
+          formConstructorSlice.actions.deleteElement({
+            elementId: id,
+          }),
+        )
+      })
+    }
+  }
+
+  const onUpdateSelected = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
+    dispatch(
+      formConstructorSlice.actions.setSelectedElement({
+        elementType: selectedElement.elementType,
+        elementId: selectedElement.elementId,
+        newProps: newProps,
+      }),
+    )
+  }
+
+  const onChangeLabel = (value: string | null) => {
+    if (selectedElementProps) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      value ? (newProps.label = value) : ''
+      selectedElement && onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeSize = (value: ButtonPropSize | null) => {
+    if (selectedElement && value) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      newProps.size = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeForm = (value: ButtonPropForm | null) => {
+    if (selectedElement && value) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      newProps.form = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeView = (value: ButtonPropView | null) => {
+    if (selectedElement && value) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      newProps.view = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeWidth = (value: ButtonPropWidth | null) => {
+    if (selectedElement && value) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      newProps.width = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeSwitch =
+    (propsName: keyof ButtonProps) =>
+    ({ checked }: { checked: boolean }) => {
       if (selectedElementProps) {
-        const newProps: ButtonElementProps = {
-          ...selectedElementProps,
+        const newProps: ButtonProps = {
+          ...(selectedElementProps as ButtonProps),
+          [propsName]: checked,
         }
-        value ? (newProps.label = value) : ''
         selectedElement && onDispatch(selectedElement, newProps)
       }
     }
 
-    const onChangeSize = (value: ButtonPropSize | null) => {
-      if (selectedElement && value) {
-        const newProps: ButtonElementProps = {
-          ...selectedElementProps,
-        }
-        newProps.size = value
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-    const onChangeForm = (value: ButtonPropForm | null) => {
-      if (selectedElement && value) {
-        const newProps: ButtonElementProps = {
-          ...selectedElementProps,
-        }
-        newProps.form = value
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-    const onChangeView = (value: ButtonPropView | null) => {
-      if (selectedElement && value) {
-        const newProps: ButtonElementProps = {
-          ...selectedElementProps,
-        }
-        newProps.view = value
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-    const onChangeWidth = (value: ButtonPropWidth | null) => {
-      if (selectedElement && value) {
-        const newProps: ButtonElementProps = {
-          ...selectedElementProps,
-        }
-        newProps.width = value
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-    const onChangeSwitch =
-      (propsName: keyof ButtonElementProps) =>
-      ({ checked }: { checked: boolean }) => {
-        if (selectedElementProps) {
-          const newProps: ButtonElementProps = {
-            ...selectedElementProps,
-            [propsName]: checked,
-          }
-          selectedElement && onDispatch(selectedElement, newProps)
-        }
-      }
-
-    const onDispatch = (selectedElement: ISelectedElement, newProps: ButtonElementProps) => {
-      dispatch(
-        formConstructorSlice.actions.setSelectedElement({
-          elementType: selectedElement.elementType,
-          elementId: selectedElement.elementId,
-          newProps: newProps,
-        }),
-      )
-    }
-
-    return (
-      <div className={styles.buttonSettings}>
-        {props ? (
-          <>
-            <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
-              items={sizes}
-              label='size'
-              value={props.size}
-              onChange={({ value }) => {
-                onChangeSize(value)
-              }}
-            />
-            <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
-              items={views}
-              label='view'
-              value={props.view}
-              onChange={({ value }) => {
-                onChangeView(value)
-              }}
-            />
-            <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
-              items={forms}
-              label='form'
-              value={props.form}
-              onChange={({ value }) => {
-                onChangeForm(value)
-              }}
-            />
-            <Switch
-              checked={props.disabled ?? false}
-              label='disabled'
-              onChange={onChangeSwitch('disabled')}
-            />
-            <Switch
-              checked={props.loading ?? false}
-              label='loading'
-              onChange={onChangeSwitch('loading')}
-            />
-            <TextField
-              label='label'
-              type='text'
-              value={props.label as string}
-              onChange={({ value }) => onChangeLabel(value)}
-            />
-            <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
-              items={width}
-              label='width'
-              value={props.width}
-              onChange={({ value }) => {
-                onChangeWidth(value)
-              }}
-            />
-            <Switch
-              checked={!!props.iconLeft}
-              label='iconLeft'
-              onChange={onChangeSwitch('iconLeft')}
-            />
-            <Switch
-              checked={!!props.iconRight}
-              label='iconRight'
-              onChange={onChangeSwitch('iconRight')}
-            />
-            {(props.iconLeft || props.iconRight) && (
-              <Switch
-                checked={props.onlyIcon ?? false}
-                label='onlyIcon'
-                onChange={onChangeSwitch('onlyIcon')}
-              />
-            )}
-          </>
-        ) : null}
-      </div>
+  const onDispatch = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
+    dispatch(
+      formConstructorSlice.actions.setSelectedElement({
+        elementType: selectedElement.elementType,
+        elementId: selectedElement.elementId,
+        newProps: newProps,
+      }),
     )
   }
-  return null
+
+  return (
+    <div className={styles.buttonPropsSettings}>
+      {props ? (
+        <>
+          <Select
+            getItemKey={(item: string | undefined) => item || ''}
+            getItemLabel={(item: string | undefined) => item || ''}
+            items={buttonActions}
+            label='Action'
+            value={props.action || 'none'}
+            onChange={({ value }) => {
+              onChangeButtonAction(value || 'none')
+            }}
+          />
+          <Select
+            getItemKey={(item: string | undefined) => item || ''}
+            getItemLabel={(item: string | undefined) => item || ''}
+            items={sizes}
+            label='size'
+            value={props.size}
+            onChange={({ value }) => {
+              onChangeSize(value)
+            }}
+          />
+          <Select
+            getItemKey={(item: string | undefined) => item || ''}
+            getItemLabel={(item: string | undefined) => item || ''}
+            items={views}
+            label='view'
+            value={props.view}
+            onChange={({ value }) => {
+              onChangeView(value)
+            }}
+          />
+          <Select
+            getItemKey={(item: string | undefined) => item || ''}
+            getItemLabel={(item: string | undefined) => item || ''}
+            items={forms}
+            label='form'
+            value={props.form}
+            onChange={({ value }) => {
+              onChangeForm(value)
+            }}
+          />
+          <Switch
+            checked={props.disabled ?? false}
+            label='disabled'
+            onChange={onChangeSwitch('disabled')}
+          />
+          <Switch
+            checked={props.loading ?? false}
+            label='loading'
+            onChange={onChangeSwitch('loading')}
+          />
+          <TextField
+            label='label'
+            type='text'
+            value={props.label as string}
+            onChange={({ value }) => onChangeLabel(value)}
+          />
+          <Select
+            getItemKey={(item: string | undefined) => item || ''}
+            getItemLabel={(item: string | undefined) => item || ''}
+            items={width}
+            label='width'
+            value={props.width}
+            onChange={({ value }) => {
+              onChangeWidth(value)
+            }}
+          />
+          <Switch
+            checked={!!props.iconLeft}
+            label='iconLeft'
+            onChange={onChangeSwitch('iconLeft')}
+          />
+          <Switch
+            checked={!!props.iconRight}
+            label='iconRight'
+            onChange={onChangeSwitch('iconRight')}
+          />
+          {(props.iconLeft || props.iconRight) && (
+            <Switch
+              checked={props.onlyIcon ?? false}
+              label='onlyIcon'
+              onChange={onChangeSwitch('onlyIcon')}
+            />
+          )}
+        </>
+      ) : (
+        <></>
+      )}
+    </div>
+  )
 }

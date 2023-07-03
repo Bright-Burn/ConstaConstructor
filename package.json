@@ -5,6 +5,7 @@
   "dependencies": {
     "@consta/ag-grid-adapter": "1.0.3",
     "@consta/charts": "0.7.1",
+    "@consta/icons": "0.5.2",
     "@consta/rc-tree-adapter": "2.0.2",
     "@consta/stats": "1.1.0",
     "@consta/uikit": "4.13.0",
