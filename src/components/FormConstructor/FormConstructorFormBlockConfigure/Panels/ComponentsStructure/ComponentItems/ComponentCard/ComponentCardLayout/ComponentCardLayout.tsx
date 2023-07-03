@@ -7,16 +7,16 @@ import {
   formConstructorSlice,
   FormGroupsTypes,
   ILayoutElement,
+  useAppSelector,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import styles from './styles.module.css'
-import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
   const [isOuter, setIsOuter] = useState<boolean>(false)
   const dispatch = useDispatch()
 
-  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+  const pages = useAppSelector(state => state.formConstructor.pages)
 
   const activePage = pages.find(active => active.isActive === true)
 

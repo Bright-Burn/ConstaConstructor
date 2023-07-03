@@ -6,14 +6,14 @@ import {
   formConstructorSlice,
   FormElementTypes,
   IFormElementTextField,
+  useAppSelector,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
-import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardTextField: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
-  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+  const pages = useAppSelector(state => state.formConstructor.pages)
 
   const activePage = pages.find(active => active.isActive === true)
 

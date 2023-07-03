@@ -6,12 +6,12 @@ import {
   formConstructorSlice,
   FormElementTypes,
   IFormElementCheckbox,
+  useAppSelector,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
-import { usePagesSelector } from '../../../../../../store/pagesOfLayout'
 
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
-  const pages = usePagesSelector(state => state.pagesOfLayout.pages)
+  const pages = useAppSelector(state => state.formConstructor.pages)
 
   const activePage = pages.find(active => active.isActive === true)
 
