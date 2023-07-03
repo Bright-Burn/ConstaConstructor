@@ -6,22 +6,16 @@ import {
   formConstructorSlice,
   FormGroupsTypes,
   ICardElement,
-  useAppSelector,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
-  const pages = useAppSelector(state => state.formConstructor.pages)
-
-  const activePage = pages.find(active => active.isActive === true)
-
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newCard: ICardElement = {
       id: uuid(),
       type: FormGroupsTypes.Card,
-      page: activePage?.name,
       isOuter: false,
       props: {
         constaProps: {

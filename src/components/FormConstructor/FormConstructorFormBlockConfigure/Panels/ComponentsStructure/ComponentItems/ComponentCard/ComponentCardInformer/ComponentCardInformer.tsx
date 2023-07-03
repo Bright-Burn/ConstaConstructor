@@ -6,22 +6,16 @@ import {
   formConstructorSlice,
   FormElementTypes,
   IFormElementInformer,
-  useAppSelector,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
-  const pages = useAppSelector(state => state.formConstructor.pages)
-
-  const activePage = pages.find(active => active.isActive === true)
-
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newInformer: IFormElementInformer = {
       id: uuid(),
       type: FormElementTypes.Informer,
-      page: activePage?.name,
       props: {
         label: 'Informer',
         title: 'Title',

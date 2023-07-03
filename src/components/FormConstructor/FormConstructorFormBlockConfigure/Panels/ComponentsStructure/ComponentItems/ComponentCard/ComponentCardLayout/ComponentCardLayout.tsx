@@ -7,7 +7,6 @@ import {
   formConstructorSlice,
   FormGroupsTypes,
   ILayoutElement,
-  useAppSelector,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import styles from './styles.module.css'
@@ -16,15 +15,10 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
   const [isOuter, setIsOuter] = useState<boolean>(false)
   const dispatch = useDispatch()
 
-  const pages = useAppSelector(state => state.formConstructor.pages)
-
-  const activePage = pages.find(active => active.isActive === true)
-
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const layoutElement: ILayoutElement = {
       id: uuid(),
       type: FormGroupsTypes.Layout,
-      page: activePage?.name,
       isOuter: isOuter,
       props: {
         constaProps: {

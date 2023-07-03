@@ -13,6 +13,10 @@ import { Key } from 'rc-tree/lib/interface'
 export const Tree: FC<ITree> = ({ data }) => {
   const [selectedTreeItemsIds, setSelectedTreeItemsIds] = useState<string[]>([])
 
+  const pages = useAppSelector(state => state.formConstructor.pages)
+
+  const activePage = pages.find(active => active.isActive === true)
+
   const { allElementsMap, selectedElement } = useAppSelector(state => state.formConstructor)
 
   const changeActivePage = (index: number) => {
@@ -26,8 +30,8 @@ export const Tree: FC<ITree> = ({ data }) => {
       setSelectedTreeItemsIds([selectedElementId])
     }
 
-    if (selectedElement?.page) {
-      changeActivePage(+selectedElement.page.slice(4) - 1)
+    if (selectedElement?.page && selectedElement.page !== activePage?.name) {
+      changeActivePage(Number(selectedElement.page.slice(4)) - 1)
     }
   }, [selectedElement])
 
@@ -45,12 +49,14 @@ export const Tree: FC<ITree> = ({ data }) => {
     selectedKeys.forEach(key => {
       const element = allElementsMap.get(`${key}`)
 
+      console.log(element)
+
       if (element) {
         dispatch(
           formConstructorSlice.actions.setSelectedElement({
             elementType: element.type,
             elementId: element.id,
-            page: element.page,
+            page: element.idPage,
           }),
         )
       }

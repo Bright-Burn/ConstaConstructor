@@ -2,26 +2,17 @@ import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import {
-  formConstructorSlice,
-  FormElementTypes,
-  useAppSelector,
-} from '../../../../../../store/formElements'
+import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementSwitch } from '../../../../../../store/formElements/SwitchTypes'
 
 export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
-  const pages = useAppSelector(state => state.formConstructor.pages)
-
-  const activePage = pages.find(active => active.isActive === true)
-
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newSwitch: IFormElementSwitch = {
       id: uuid(),
       type: FormElementTypes.Switch,
-      page: activePage?.name,
       props: {
         size: 'm',
         view: 'primary',

@@ -62,6 +62,8 @@ export const formConstructorSlice = createFormConstructorSlice({
   initialState,
   reducers: {
     setDraggableElement: (state, action: PayloadAction<SetNewElementDraggableElem>) => {
+      const activePageName = state.pages.find(page => page.isActive === true)?.name
+      if (action.payload.element) action.payload.element.idPage = activePageName
       state.draggableElement = action.payload.element
     },
     loadProjectFromStorage: (state, action: PayloadAction<LoadProjectFromStorage>) => {

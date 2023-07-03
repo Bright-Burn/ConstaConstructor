@@ -6,22 +6,16 @@ import {
   formConstructorSlice,
   FormElementTypes,
   IFormElementTextField,
-  useAppSelector,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardTextField: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
 
-  const pages = useAppSelector(state => state.formConstructor.pages)
-
-  const activePage = pages.find(active => active.isActive === true)
-
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newTextField: IFormElementTextField = {
       id: uuid(),
       type: FormElementTypes.TextField,
-      page: activePage?.name,
       props: {
         type: 'text',
         width: 'default',
