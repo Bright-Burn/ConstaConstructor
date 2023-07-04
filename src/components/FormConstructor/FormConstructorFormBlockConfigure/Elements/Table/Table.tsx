@@ -72,17 +72,17 @@ export const Table: FC<ITable> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.Table}
       className={`${style.fullScreen}`}
-      >
-      <div className='ag-theme-material' style={{ width: '100%'}}>
+    >
+      <div className='ag-theme-material' style={{ width: '100%' }}>
         <AgGridReact
           // @ts-ignore
           ref={gridRef}
           onFirstDataRendered={() => sizeToFit()}
           rowData={rowData}
           columnDefs={columnDefs}
-          {...tableProps}></AgGridReact>
+          {...tableProps}
+        ></AgGridReact>
       </div>
     </SelectableLayerFullWidth>
   )
 }
-

@@ -9,4 +9,3 @@ export type ITreeItem = {
 export interface ITree {
   data: ITreeItem[]
 }
-

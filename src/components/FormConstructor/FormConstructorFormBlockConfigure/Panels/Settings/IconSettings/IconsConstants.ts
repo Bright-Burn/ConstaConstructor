@@ -1,12 +1,7 @@
 import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
 import { iconNames } from '../../../../store/formElements/iconTypes'
 
-export const sizes: IconPropSize[] = [
-  'm',
-  's',
-  'l',
-  'xs',
-]
+export const sizes: IconPropSize[] = ['m', 's', 'l', 'xs']
 export const views: IconPropView[] = [
   'ghost',
   'brand',

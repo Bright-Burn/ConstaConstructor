@@ -20,59 +20,59 @@ export const useItemsHandlers = () => {
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: BreadcrumbProps = {
-          ...selectedElementProps as BreadcrumbProps,
-        }
-
-        let itemsProps = [...newProps.items]
-        const currentLength = itemsProps.length
-
-        if (Number(value) > currentLength) {
-          for (let i = currentLength; i < Number(value); i++) {
-            itemsProps = [...itemsProps, { label: 'Страница ' + (itemsProps.length + 1) }]
-          }
-        } else {
-          for (let i = 0; i < currentLength - Number(value); i++) {
-            itemsProps.pop()
-          }
-        }
-
-        newProps.items = itemsProps
-        onDispatch(selectedElement, newProps)
+        ...(selectedElementProps as BreadcrumbProps),
       }
+
+      let itemsProps = [...newProps.items]
+      const currentLength = itemsProps.length
+
+      if (Number(value) > currentLength) {
+        for (let i = currentLength; i < Number(value); i++) {
+          itemsProps = [...itemsProps, { label: 'Страница ' + (itemsProps.length + 1) }]
+        }
+      } else {
+        for (let i = 0; i < currentLength - Number(value); i++) {
+          itemsProps.pop()
+        }
+      }
+
+      newProps.items = itemsProps
+      onDispatch(selectedElement, newProps)
+    }
   }
 
   const onChangeItems = (items: DefaultItem[]) => {
     if (selectedElement && items) {
-        const newProps: BreadcrumbProps = {
-          ...selectedElementProps as BreadcrumbProps,
-        }
+      const newProps: BreadcrumbProps = {
+        ...(selectedElementProps as BreadcrumbProps),
+      }
 
-        newProps.items = [...items]
-        onDispatch(selectedElement, newProps)
+      newProps.items = [...items]
+      onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeSize = (value: BreadcrumbPropSize | null) => {
     if (selectedElement && value) {
-        const newProps : BreadcrumbProps = {
-          ...selectedElementProps as BreadcrumbProps,
-        }
+      const newProps: BreadcrumbProps = {
+        ...(selectedElementProps as BreadcrumbProps),
+      }
 
-        newProps.size = value
-        onDispatch(selectedElement, newProps)
+      newProps.size = value
+      onDispatch(selectedElement, newProps)
     }
   }
 
-const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
-  if (selectedElement && value) {
+  const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
+    if (selectedElement && value) {
       const newProps: BreadcrumbProps = {
-        ...selectedElementProps as BreadcrumbProps,
+        ...(selectedElementProps as BreadcrumbProps),
       }
-      
+
       newProps.fitMode = value
       onDispatch(selectedElement, newProps)
+    }
   }
-}
 
   return {
     onChangeItemsCount,

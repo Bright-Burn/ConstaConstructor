@@ -166,4 +166,3 @@ export const BaseComponents: FC = () => {
     </div>
   )
 }
-

@@ -19,11 +19,13 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     <Layout
       className={`${isGridVisible ? 'dottedCard' : ''} ${layoutProps?.className}`}
       {...layoutProps?.constaProps}
-      style={{ ...layoutProps?.styles, overflow: 'hidden' }}>
+      style={{ ...layoutProps?.styles, overflow: 'hidden' }}
+    >
       <SelectableLayer
         parentElementId={element.id}
         elementType={FormGroupsTypes.Layout}
-        elementTypeUsage={ElementTypes.FormGroups}>
+        elementTypeUsage={ElementTypes.FormGroups}
+      >
         <DroppableLayer parentElementId={element.id} />
       </SelectableLayer>
     </Layout>

@@ -18,7 +18,8 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.DataTime}>
+      elementType={FormElementTypes.DataTime}
+    >
       <DateTime
         value={rangeValue}
         onChangeRange={({ value }) => setRangeValue(value)}
@@ -30,4 +31,3 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
     </SelectableLayer>
   )
 }
-

@@ -38,9 +38,9 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.Select}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Select}>
+      elementType={FormElementTypes.Select}
+    >
       <Select {...selectProps} />
     </SelectableLayer>
   )
 }
-
