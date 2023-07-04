@@ -86,17 +86,21 @@ export const ButtonSettings = () => {
       }
 
       dispatch(
-        formConstructorSlice.actions.addNewElement({
-          parent: currentButtonElement.id,
-          element: connectedButtonGroupElement,
-        }),
+        formConstructorSlice.actions.addNewElement([
+          {
+            parent: currentButtonElement.id,
+            element: connectedButtonGroupElement,
+          },
+        ]),
       )
 
       dispatch(
-        formConstructorSlice.actions.addNewElement({
-          parent: connectedButtonGroupElement.id,
-          element: layoutElement,
-        }),
+        formConstructorSlice.actions.addNewElement([
+          {
+            parent: connectedButtonGroupElement.id,
+            element: layoutElement,
+          },
+        ]),
       )
     }
   }
