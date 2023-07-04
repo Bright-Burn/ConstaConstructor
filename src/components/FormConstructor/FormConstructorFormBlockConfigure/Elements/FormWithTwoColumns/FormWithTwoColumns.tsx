@@ -45,7 +45,8 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.CardWithBarChart}
-      className={`${css.fullScreen}`}>
+      className={`${css.fullScreen}`}
+    >
       <div className={`${css.formFullWidth} m-t-2xl`}>
         <div className={`${css.simpleForm}`}>
           <div className={`${css.infoPlaceCrush}`}>

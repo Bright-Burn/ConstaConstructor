@@ -163,8 +163,9 @@ export type FormElementUnion =
 export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
 
 /// По мере расширения сюда подем дописывать новые объединения
-export type UnionProps = FormElementProps | GroupElementProps
+export type UnionProps = (FormElementProps | GroupElementProps) & { filled?: fillType }
 
+export type fillType = 'default' | 'filled'
 export interface BaseProps {
   className: string
   baseProps: BaseTypes

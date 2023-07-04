@@ -43,4 +43,3 @@ export type SelectProps = {
 export interface IFormElementSelect extends IFormElement {
   props: SelectProps
 }
-

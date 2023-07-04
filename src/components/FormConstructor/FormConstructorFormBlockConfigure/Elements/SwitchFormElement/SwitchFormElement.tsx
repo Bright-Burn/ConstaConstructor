@@ -17,7 +17,8 @@ export const SwitchFormElement: FC<ISwitchFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Switch}>
+      elementType={FormElementTypes.Switch}
+    >
       <Switch {...switchProps} checked={switchProps?.checked} />
     </SelectableLayer>
   )

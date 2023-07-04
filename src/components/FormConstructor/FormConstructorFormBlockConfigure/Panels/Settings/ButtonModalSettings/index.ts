@@ -1,2 +1,1 @@
 export { ButtonModuleSettings } from './ButtonModalSettings'
-

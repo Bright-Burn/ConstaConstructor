@@ -13,7 +13,7 @@
 }
 
 .toggleButton {
-  position: absolute; 
+  position: absolute;
   left: 10px;
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0;

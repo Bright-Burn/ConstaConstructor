@@ -29,7 +29,7 @@ export class PrototypeProps {
     this.width = options.width
     this.height = options.height
     this.zIndex = options.zIndex
-    
+
     if ('text' in options) {
       this.text = options.text
     }

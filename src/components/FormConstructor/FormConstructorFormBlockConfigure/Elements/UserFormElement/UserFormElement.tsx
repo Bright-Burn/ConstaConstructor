@@ -17,7 +17,8 @@ export const UserFormElement: FC<IUserFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.User}>
+      elementType={FormElementTypes.User}
+    >
       <User {...userProps} />
     </SelectableLayer>
   )

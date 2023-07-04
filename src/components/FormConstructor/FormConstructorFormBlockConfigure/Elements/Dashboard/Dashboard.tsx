@@ -82,7 +82,8 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
         <div
           style={{
             height: '42px',
-          }}>
+          }}
+        >
           <Text size='xs' align='center'>
             {title}
           </Text>
@@ -111,7 +112,8 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
         flexBasis: '1px',
         overflow: grow === '0' ? 'visible' : 'hidden',
         ...(css || {}),
-      }}>
+      }}
+    >
       {children}
     </div>
   )
@@ -120,13 +122,15 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
     <SelectableLayerFitSpace
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Placeholder}>
+      elementType={FormElementTypes.Placeholder}
+    >
       <div
         style={{
           minWidth: '830px',
           minHeight: '1010px',
           display: 'flex',
-        }}>
+        }}
+      >
         <Layout direction='column' className={style.root}>
           <Cell direction='row'>
             <Cell direction='column'>
@@ -224,7 +228,8 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
                       style={{
                         width: '180px',
                         marginLeft: '20px',
-                      }}>
+                      }}
+                    >
                       <Select
                         size='xs'
                         items={selectIdleStepData}

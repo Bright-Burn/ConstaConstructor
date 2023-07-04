@@ -53,7 +53,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
       }`}
       onClick={onClickElement}
       tabIndex={0}
-      style={{ width: isFilled ? '100%' : 'fit-content' }}>
+    >
       {children}
     </div>
   )

@@ -15,7 +15,8 @@ export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element })
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.BreadcrumbsForm}>
+      elementType={FormElementTypes.BreadcrumbsForm}
+    >
       <Breadcrumbs {...props} />
     </SelectableLayer>
   )

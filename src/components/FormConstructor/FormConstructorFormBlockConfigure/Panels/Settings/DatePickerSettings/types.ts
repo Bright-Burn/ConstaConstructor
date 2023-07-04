@@ -6,7 +6,6 @@ import {
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from '../../../../store/formElements/selectTypes'
 
-
 export const typeArray: DatePickerPropType[] = [
   'date',
   'date-range',

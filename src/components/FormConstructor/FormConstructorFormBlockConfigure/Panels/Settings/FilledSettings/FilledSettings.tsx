@@ -1,21 +1,15 @@
 import { Select } from '@consta/uikit/Select'
 import { useDispatch } from 'react-redux'
-import { buttonActions, formConstructorSlice, useAppSelector } from '../../../../store/formElements'
-import { BaseProps } from '../../../../store/formElements/types'
+import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import { BaseProps, fillType } from '../../../../store/formElements/types'
+
 export const FilledSettings = () => {
-  let filled: string = 'default'
-
+  const fillValues: fillType[] = ['default', 'filled']
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-
-  if (selectedElementProps) {
-    if ('filled' in selectedElementProps) {
-      filled = selectedElementProps?.filled as string
-    }
-  }
 
   const dispatch = useDispatch()
 
-  function onFilledChange(filled: string): void {
+  function onFilledChange(filled: fillType): void {
     const newProps = { ...selectedElementProps, filled }
 
     if (selectedElement) {
@@ -28,17 +22,18 @@ export const FilledSettings = () => {
       )
     }
   }
+  const filled = selectedElementProps?.filled ?? 'default'
 
   return (
     <>
       <Select
-        getItemKey={(item: string | undefined) => item || ''}
-        getItemLabel={(item: string | undefined) => item || ''}
-        items={['default', 'filled']}
+        getItemKey={item => item}
+        getItemLabel={item => item}
+        items={fillValues}
         label='Filled'
-        value={filled || 'default'}
+        value={filled}
         onChange={({ value }) => {
-          onFilledChange(value || 'none')
+          value && onFilledChange(value)
         }}
       />
     </>
