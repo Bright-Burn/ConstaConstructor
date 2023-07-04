@@ -76,7 +76,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           if ('parentId' in elem) {
             elem.parentId = newParentId
           }
-          actions.push({ element: elem, parent: parentElementId })
+
+          actions.push({ element: elem, parent: newParentId })
         }
       })
 
