@@ -208,11 +208,7 @@ export const Settings: FC = () => {
   }
 
   const toggleSettingsPanel = () => {
-    dispatch(
-      formConstructorSlice.actions.toggleSettingsPanelState({
-        settingsPanelState: settingsPanelState,
-      }),
-    )
+    dispatch(formConstructorSlice.actions.toggleSettingsPanelState())
   }
 
   return (

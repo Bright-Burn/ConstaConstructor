@@ -7,6 +7,7 @@ import {
   SaveProjectIntent,
 } from './types'
 import { PrototypeProps } from '../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
+import { emptyHistory } from '../store/formElements/slices'
 
 export const saveProject = (saveIntent: SaveProjectIntent) => {
   const projData: ProjectDataSerializable = {
@@ -79,5 +80,6 @@ export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFor
     draggableElement: null,
     componentsStructurePanelState: true,
     settingsPanelState: true,
+    history: emptyHistory,
   }
 }

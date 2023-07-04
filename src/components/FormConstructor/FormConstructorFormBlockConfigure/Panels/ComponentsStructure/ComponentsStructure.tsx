@@ -32,11 +32,7 @@ export const ComponentsStructure = () => {
   )
 
   const toggleSettingsPanel = () => {
-    dispatch(
-      formConstructorSlice.actions.toggleComponentsStructurePanel({
-        componentsStructurePanelState: componentsStructurePanelState,
-      }),
-    )
+    dispatch(formConstructorSlice.actions.toggleComponentsStructurePanel())
   }
 
   return (

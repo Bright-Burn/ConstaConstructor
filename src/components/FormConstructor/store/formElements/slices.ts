@@ -5,27 +5,29 @@ import {
   PayloadAction,
   ValidateSliceCaseReducers,
 } from '@reduxjs/toolkit'
-import {
-  AddNewElementPayload,
-  DeleteElementPayload,
-  LoadProjectFromFile,
-  LoadProjectFromStorage,
-  PanelStatePayload,
-  SaveNewProject,
-  SetNewElementDraggableElem,
-  SetNewSelectedElement,
-  ShowGrid,
-} from './payload'
+import { HistoryAction, SetNewElementDraggableElem, ShowGrid } from './payload'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
+import { HistoryList } from '../../utils'
 import {
-  projectFromSerilizable,
-  ProjectSaveWays,
-  saveProjectData,
-  SaveProjectIntent,
-} from '../../projectSaveLoad'
-import { ProjectDataSerializable } from '../../projectSaveLoad/types'
-import { deleteButtonActions, deleteElementFromTree } from './utils'
+  addNewElement,
+  deleteElement,
+  saveProjectToFile,
+  saveProjectToMemmoryStorage,
+  setHistoryBackState,
+  setSelectedElement,
+  togglePanelByHotKey,
+} from './reducers'
+import { loadProjectFromStorage } from './reducers/loadProjectFromStorage'
+import { loadProjectFromJson } from './reducers/loadProjectFromJson'
+
+export const maxHistorySize = 40
+export const emptyHistory = new HistoryList<HistoryAction>({
+  maxSize: maxHistorySize,
+  size: 0,
+  tail: null,
+  head: null,
+})
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
@@ -36,6 +38,7 @@ const initialState: IFormConstructor = {
   draggableElement: null,
   componentsStructurePanelState: true,
   settingsPanelState: true,
+  history: emptyHistory,
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
@@ -58,120 +61,26 @@ export const formConstructorSlice = createFormConstructorSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
+    loadProjectFromStorage: loadProjectFromStorage,
+    loadProjectFromJson: loadProjectFromJson,
+    saveProjectToMemmoryStorage: saveProjectToMemmoryStorage,
+    setHistoryBackState: setHistoryBackState,
+    addNewElement: addNewElement,
+    deleteElement: deleteElement,
+    togglePanelsByHotkey: togglePanelByHotKey,
+    saveProjectToFile: saveProjectToFile,
+    setSelectedElement: setSelectedElement,
+
     setDraggableElement: (state, action: PayloadAction<SetNewElementDraggableElem>) => {
       state.draggableElement = action.payload.element
-    },
-    loadProjectFromStorage: (state, action: PayloadAction<LoadProjectFromStorage>) => {
-      const projectJson = localStorage.getItem(action.payload.name)
-      if (projectJson) {
-        const projectSerilizable: ProjectDataSerializable = {
-          ...JSON.parse(projectJson),
-        }
-        const newSate = projectFromSerilizable(projectSerilizable.project)
-        state.allElementsMap = newSate.allElementsMap
-        state.allElementsTree = newSate.allElementsTree
-        state.isGridVisible = newSate.isGridVisible
-        state.selectedElement = newSate.selectedElement
-        state.selectedElementProps = newSate.selectedElementProps
-      }
-    },
-    loadProjectFromJson: (state, action: PayloadAction<LoadProjectFromFile>) => {
-      const projectJson = action.payload.projectJson
-      if (projectJson) {
-        const projectSerilizable: ProjectDataSerializable = {
-          ...JSON.parse(projectJson as string),
-        }
-        const newSate = projectFromSerilizable(projectSerilizable.project)
-        state.allElementsMap = newSate.allElementsMap
-        state.allElementsTree = newSate.allElementsTree
-        state.isGridVisible = newSate.isGridVisible
-        state.selectedElement = newSate.selectedElement
-        state.selectedElementProps = newSate.selectedElementProps
-      }
-    },
-    saveProjectToMemmoryStorage: (state, action: PayloadAction<SaveNewProject>) => {
-      const intent: SaveProjectIntent = {
-        description: action.payload.description,
-        name: action.payload.name,
-        saveWay: ProjectSaveWays.STORAGE,
-        project: state,
-      }
-      saveProjectData(intent)
-    },
-    saveProjectToFile: (state, action: PayloadAction<SaveNewProject>) => {
-      const intent: SaveProjectIntent = {
-        description: action.payload.description,
-        name: action.payload.name,
-        saveWay: ProjectSaveWays.FILE,
-        project: state,
-      }
-      saveProjectData(intent)
     },
     showGrid: (state, action: PayloadAction<ShowGrid>) => {
       state.isGridVisible = action.payload.isGridVisible
     },
-    setSelectedElement: (state, action: PayloadAction<SetNewSelectedElement>) => {
-      if (!action.payload) {
-        state.selectedElementProps = null
-        state.selectedElement = null
-        return
-      }
-      const element = state.allElementsMap.get(action.payload.elementId)
-      if (element) {
-        const newProps = action.payload.newProps
-
-        if (newProps) {
-          element.props = newProps
-        }
-
-        state.selectedElementProps = (element as IFormElement | IGroupElement).props
-        state.selectedElement = {
-          ...action.payload,
-        }
-
-        const newAllelementMap = new Map<string, IFormElement | IGroupElement>(state.allElementsMap)
-        state.allElementsMap = newAllelementMap
-        newAllelementMap.set(element.id, element)
-      }
-    },
-    addNewElement: (state, action: PayloadAction<AddNewElementPayload>) => {
-      const element = action.payload.element
-      const newTreeMap = new Map<string, string[]>(state.allElementsTree)
-      newTreeMap.set(action.payload.parent, [
-        ...(newTreeMap.get(action.payload.parent) || []),
-        element.id,
-      ])
-      state.allElementsTree = newTreeMap
-
-      const newAllelementMap = new Map<string, IFormElement | IGroupElement>(state.allElementsMap)
-      newAllelementMap.set(element.id, element)
-      state.allElementsMap = newAllelementMap
-    },
-    deleteElement: (state, action: PayloadAction<DeleteElementPayload>) => {
-      const elementId = action.payload.elementId
-      deleteButtonActions(elementId, state)
-      deleteElementFromTree(elementId, state)
-    },
-    togglePanelsByHotkey: (state: PanelStatePayload) => {
-      if (
-        (state.componentsStructurePanelState === true && state.settingsPanelState === false) ||
-        (state.componentsStructurePanelState === false && state.settingsPanelState) ||
-        (state.componentsStructurePanelState === true && state.settingsPanelState)
-      ) {
-        state.componentsStructurePanelState = false
-        state.settingsPanelState = false
-      } else if (
-        state.componentsStructurePanelState === false &&
-        state.settingsPanelState === false
-      ) {
-        state.componentsStructurePanelState = true
-        state.settingsPanelState = true
-      }
-    },
-    toggleSettingsPanelState: (state, action: PayloadAction<PanelStatePayload>) => {
+    toggleSettingsPanelState: state => {
       state.settingsPanelState = !state.settingsPanelState
     },
-    toggleComponentsStructurePanel: (state, action: PayloadAction<PanelStatePayload>) => {
+    toggleComponentsStructurePanel: state => {
       state.componentsStructurePanelState = !state.componentsStructurePanelState
     },
   },

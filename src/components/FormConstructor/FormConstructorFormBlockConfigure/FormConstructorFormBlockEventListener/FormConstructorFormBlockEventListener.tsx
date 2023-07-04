@@ -18,10 +18,19 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       }
     }
 
+    const onHistoryBack = (e: KeyboardEvent) => {
+      const { code, ctrlKey } = e
+      if (ctrlKey && code === 'KeyZ') {
+        dispatch(formConstructorSlice.actions.setHistoryBackState())
+      }
+    }
+
     document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('keydown', onHistoryBack)
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('keydown', onHistoryBack)
     }
   }, [])
 

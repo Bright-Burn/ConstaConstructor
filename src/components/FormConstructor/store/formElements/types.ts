@@ -8,7 +8,7 @@ import { IFormElementInformer, InformerElementProps } from './informerTypes'
 import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import { IFormElementText, TextElementProps } from './textTypes'
 import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
-import { Values } from '../../utils'
+import { IHistoryList, Values } from '../../utils'
 import { IFormElementList, ListProps } from './ListTypes'
 import { IFormElementRadioButton, RadioButtonProps } from './radioButtonTypes'
 import { IFormElementSwitch, SwitchProps } from './SwitchTypes'
@@ -26,6 +26,7 @@ import {
   IButtonActionElement,
   IFormElementButton,
 } from './buttonTypes'
+import { HistoryAction } from './payload'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -184,4 +185,5 @@ export interface IFormConstructor {
   draggableElement: IFormElement | IGroupElement | null
   componentsStructurePanelState: boolean
   settingsPanelState: boolean
+  history: IHistoryList<HistoryAction>
 }

@@ -6,6 +6,7 @@ import {
   formConstructorSlice,
   IFormElement,
   IGroupElement,
+  AddNewElementPayload,
 } from '../../store/formElements'
 import { getNewGroupParentLevel } from '../../utils'
 import {
@@ -48,6 +49,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       // Ниже создаем новые id, но необходимо сохранить старые взаимосвязи элемент-родитель
       const mappedIds = new Map<string, string>([])
 
+      const actions: AddNewElementPayload[] = []
       elementsToAdd.forEach(elem => {
         const prevId = elem.id
         const prevParentId = childParentMap.get(prevId)
@@ -58,7 +60,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             mappedIds.set(prevId, newId)
           }
           elem = { ...elem, id: newId }
-          addElement(elem, parentElementId)
+          actions.push({ element: elem, parent: parentElementId })
         } else {
           let newId = mappedIds.get(prevId)
           if (!newId) {
@@ -74,10 +76,11 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           if ('parentId' in elem) {
             elem.parentId = newParentId
           }
-          console.log(elem, newParentId)
-          addElement(elem, newParentId)
+          actions.push({ element: elem, parent: parentElementId })
         }
       })
+
+      addElement(actions)
 
       // После перетаскивания, очищаем соответсвующее поле в сторе
       dispathBaseComponents(
@@ -103,22 +106,18 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           allElementsMap,
           allElementsTree,
         )
-        newParentElementId && addElement(draggableElement, newParentElementId)
+        newParentElementId &&
+          addElement([{ element: draggableElement, parent: newParentElementId }])
       } else {
-        addElement(draggableElement, parentElementId)
+        addElement([{ element: draggableElement, parent: parentElementId }])
       }
     }
 
     dispatch(formConstructorSlice.actions.setDraggableElement({ element: null }))
   }
 
-  const addElement = (element: IFormElement | IGroupElement, parentElementId: string) => {
-    dispatch(
-      formConstructorSlice.actions.addNewElement({
-        parent: parentElementId,
-        element: element,
-      }),
-    )
+  const addElement = (payload: AddNewElementPayload[]) => {
+    dispatch(formConstructorSlice.actions.addNewElement(payload))
   }
 
   return (
