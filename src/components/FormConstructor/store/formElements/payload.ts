@@ -16,7 +16,7 @@ export interface PanelStatePayload {
 export type SetNewSelectedElement = {
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes
-  page?: string
+  pageId?: string
   newProps?: UnionProps
 } | null
 
@@ -42,5 +42,5 @@ export interface SetNewElementDraggableElem {
 }
 
 export interface ChangePages {
-  index: number
+  id: string
 }

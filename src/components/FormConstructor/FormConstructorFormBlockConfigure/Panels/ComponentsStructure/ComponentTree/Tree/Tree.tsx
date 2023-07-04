@@ -19,8 +19,8 @@ export const Tree: FC<ITree> = ({ data }) => {
 
   const { allElementsMap, selectedElement } = useAppSelector(state => state.formConstructor)
 
-  const changeActivePage = (index: number) => {
-    dispatch(formConstructorSlice.actions.changeActivePage({ index }))
+  const changeActivePage = (id: string) => {
+    dispatch(formConstructorSlice.actions.changeActivePage({ id }))
   }
 
   useEffect(() => {
@@ -30,8 +30,8 @@ export const Tree: FC<ITree> = ({ data }) => {
       setSelectedTreeItemsIds([selectedElementId])
     }
 
-    if (selectedElement?.page && selectedElement.page !== activePage?.name) {
-      changeActivePage(Number(selectedElement.page.slice(4)) - 1)
+    if (selectedElement?.pageId && selectedElement.pageId !== activePage?.id) {
+      changeActivePage(selectedElement.pageId)
     }
   }, [selectedElement])
 
@@ -54,7 +54,7 @@ export const Tree: FC<ITree> = ({ data }) => {
           formConstructorSlice.actions.setSelectedElement({
             elementType: element.type,
             elementId: element.id,
-            page: element.idPage,
+            pageId: element.pageId,
           }),
         )
       }

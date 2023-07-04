@@ -27,6 +27,7 @@ import {
 } from '../../projectSaveLoad'
 import { ProjectDataSerializable } from '../../projectSaveLoad/types'
 import { deleteButtonActions, deleteElementFromTree } from './utils'
+import uuid from 'react-uuid'
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
@@ -37,7 +38,7 @@ const initialState: IFormConstructor = {
   draggableElement: null,
   componentsStructurePanelState: true,
   settingsPanelState: true,
-  pages: [{ name: 'Page1', isActive: true, parentId: 'root' }],
+  pages: [{ name: 'Page1', isActive: true, parentId: 'root', id: uuid() }],
   numberOfPages: 1,
 }
 
@@ -62,8 +63,8 @@ export const formConstructorSlice = createFormConstructorSlice({
   initialState,
   reducers: {
     setDraggableElement: (state, action: PayloadAction<SetNewElementDraggableElem>) => {
-      const activePageName = state.pages.find(page => page.isActive === true)?.name
-      if (action.payload.element) action.payload.element.idPage = activePageName
+      const activePageId = state.pages.find(page => page.isActive === true)?.id
+      if (action.payload.element && activePageId) action.payload.element.pageId = activePageId
       state.draggableElement = action.payload.element
     },
     loadProjectFromStorage: (state, action: PayloadAction<LoadProjectFromStorage>) => {
@@ -188,6 +189,7 @@ export const formConstructorSlice = createFormConstructorSlice({
           name: `Page${state.numberOfPages + 1}`,
           isActive: false,
           parentId: `Page${state.numberOfPages + 1}`,
+          id: uuid(),
         },
       ]
       state.numberOfPages = state.numberOfPages + 1
@@ -196,19 +198,21 @@ export const formConstructorSlice = createFormConstructorSlice({
       state.pages = state.pages.map((page, i) => {
         return {
           name: page.name,
-          isActive: i === action.payload.index,
+          isActive: page.id === action.payload.id,
           parentId: page.parentId,
+          id: page.id,
         }
       })
     },
     closePage: (state, action: PayloadAction<ChangePages>) => {
       state.pages = state.pages
-        .filter((page, i) => i !== action.payload.index)
+        .filter((page, i) => page.id !== action.payload.id)
         .map((page, i) => {
           return {
             name: page.name,
-            isActive: i === action.payload.index,
+            isActive: page.id === action.payload.id,
             parentId: page.parentId,
+            id: page.id,
           }
         })
     },

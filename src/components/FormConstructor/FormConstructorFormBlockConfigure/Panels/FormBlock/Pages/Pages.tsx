@@ -9,11 +9,11 @@ export const Pages = ({ pages }: PagesProps) => {
   const dispatch = useAppDispatch()
 
   const changeActivePage = (index: number) => {
-    dispatch(formConstructorSlice.actions.changeActivePage({ index }))
+    dispatch(formConstructorSlice.actions.changeActivePage({ id: pages[index].id }))
   }
 
   const closePage = (index: number) => {
-    dispatch(formConstructorSlice.actions.closePage({ index }))
+    dispatch(formConstructorSlice.actions.closePage({ id: pages[index].id }))
   }
 
   const addNewPage = () => {
