@@ -1,0 +1,14 @@
+import { PayloadAction } from '@reduxjs/toolkit'
+import { ChangePages } from '../payload'
+import { IFormConstructor } from '../types'
+
+export const changeActivePage = (state: IFormConstructor, action: PayloadAction<ChangePages>) => {
+  state.pages = state.pages.map((page, i) => {
+    return {
+      name: page.name,
+      isActive: i === action.payload.index,
+      parentId: page.parentId,
+    }
+  })
+}
+
