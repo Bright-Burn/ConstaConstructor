@@ -3,6 +3,7 @@ import { ISelectableLayer } from './types'
 import styles from './styles.module.css'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../store/formElements'
 import { ElementTypes } from '../../store/formElements/types'
+import { width } from '../Panels/Settings/UserSettings/UserConstants'
 
 /// Уровень содержащий логику по выделению родительского комопнента
 export const SelectableLayer: FC<ISelectableLayer> = ({
@@ -13,7 +14,12 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   className,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElement, allElementsMap } = useAppSelector(state => state.formConstructor)
+  const props = allElementsMap.get(String(selectedElement?.elementId))?.props
+  let isFilled = false
+  if (props && 'filled' in props) {
+    isFilled = props.filled === 'filled'
+  }
 
   const dispatch = useAppDispatch()
 
@@ -46,7 +52,8 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
         styles.selectedLayerOutline
       }`}
       onClick={onClickElement}
-      tabIndex={0}>
+      tabIndex={0}
+      style={{ width: isFilled ? '100%' : 'fit-content' }}>
       {children}
     </div>
   )

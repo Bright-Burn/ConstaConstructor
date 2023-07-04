@@ -17,9 +17,8 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.TextField}
-    >
-      <TextField {...textFieldProps} />
+      elementType={FormElementTypes.TextField}>
+      <TextField style={{ width: '100%' }} {...textFieldProps} />
     </SelectableLayer>
   )
 }

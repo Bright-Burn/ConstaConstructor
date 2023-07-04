@@ -7,9 +7,9 @@ import { ElementTypes, FormElementTypes } from '../../../store/formElements/type
 import { FormGroupsDict } from '../../FormGroupDict'
 import {
   ButtonProps,
-  useAppSelector,
   IButtonActionElement,
   IFormElementButton,
+  useAppSelector,
 } from '../../../store/formElements'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
@@ -58,7 +58,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         parentElementId={element.id}
         elementTypeUsage={ElementTypes.FormElement}
         elementType={FormElementTypes.Button}>
-        <Button {...buttonProps} onClick={onButtonClick} />
+        <Button {...buttonProps} onClick={onButtonClick} style={{ width: '100%' }} />
       </SelectableLayer>
       {getActionViwer()}
     </>
