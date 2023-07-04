@@ -12,6 +12,7 @@ import {
   IButtonActionElement,
   IFormElementButton,
 } from '../../../store/formElements'
+import style from './style.module.css'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonProps>()
@@ -58,7 +59,8 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
       <SelectableLayer
         parentElementId={element.id}
         elementTypeUsage={ElementTypes.FormElement}
-        elementType={FormElementTypes.Button}>
+        elementType={FormElementTypes.Button}
+        className={buttonProps?.width === 'full' ? `${style.fullWidth}` : ''}>
         <Button
           {...buttonProps}
           onClick={onButtonClick}
