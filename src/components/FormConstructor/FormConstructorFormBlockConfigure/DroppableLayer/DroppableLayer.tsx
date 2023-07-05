@@ -80,7 +80,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
         }
       })
 
-      addElement(actions)
+      addElements(actions)
 
       // После перетаскивания, очищаем соответсвующее поле в сторе
       dispathBaseComponents(
@@ -107,16 +107,16 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
           allElementsTree,
         )
         newParentElementId &&
-          addElement([{ element: draggableElement, parent: newParentElementId }])
+          addElements([{ element: draggableElement, parent: newParentElementId }])
       } else {
-        addElement([{ element: draggableElement, parent: parentElementId }])
+        addElements([{ element: draggableElement, parent: parentElementId }])
       }
     }
 
     dispatch(formConstructorSlice.actions.setDraggableElement({ element: null }))
   }
 
-  const addElement = (payload: AddNewElementPayload[]) => {
+  const addElements = (payload: AddNewElementPayload[]) => {
     dispatch(formConstructorSlice.actions.addNewElement(payload))
   }
 
