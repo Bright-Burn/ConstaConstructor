@@ -1,7 +1,7 @@
 export type PageOfLayout = {
+  id: string
   name: string
   isActive: boolean
-  parentId: string
 }
 
 export interface PagesProps {

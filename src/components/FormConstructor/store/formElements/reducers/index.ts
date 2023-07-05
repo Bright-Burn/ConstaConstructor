@@ -12,5 +12,5 @@ export { toggleComponentsStructurePanel } from './toggleComponentsStructurePanel
 export { showGrid } from './showGrid'
 export { toggleSettingsPanelState } from './toggleSettingsPanelState'
 export { changeActivePage } from './changeActivePage'
-export { closePage } from './closePage'
+export { deletePage } from './deletePage'
 

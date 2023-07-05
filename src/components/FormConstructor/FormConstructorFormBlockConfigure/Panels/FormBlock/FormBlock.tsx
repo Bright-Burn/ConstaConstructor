@@ -27,7 +27,7 @@ export const FormBlock: FC = () => {
         {pages.map(page =>
           page.isActive ? (
             <div className={`${styles.formBlockContent}`}>
-              <DroppableLayer parentElementId={page.parentId} />
+              <DroppableLayer parentElementId={page.id} />
             </div>
           ) : (
             <></>
