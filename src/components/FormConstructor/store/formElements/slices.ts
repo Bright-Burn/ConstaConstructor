@@ -1,11 +1,5 @@
 import { IFormConstructor, IFormElement, IGroupElement } from './types'
-import {
-  createSlice,
-  SliceCaseReducers,
-  PayloadAction,
-  ValidateSliceCaseReducers,
-} from '@reduxjs/toolkit'
-import { PanelStatePayload, SetNewElementDraggableElem, ShowGrid } from './payload'
+import { createSlice, SliceCaseReducers, ValidateSliceCaseReducers } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
 
@@ -20,8 +14,12 @@ import {
   saveProjectToMemmoryStorage,
   setSelectedElement,
   togglePanelByHotKey,
+  loadProjectFromJson,
+  showGrid,
+  toggleSettingsPanelState,
+  toggleComponentsStructurePanel,
+  setDraggableElement,
 } from './reducers'
-import { loadProjectFromJson } from './reducers/loadProjectFromJson'
 
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
@@ -56,26 +54,18 @@ export const formConstructorSlice = createFormConstructorSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
-    setDraggableElement: (state, action: PayloadAction<SetNewElementDraggableElem>) => {
-      state.draggableElement = action.payload.element
-    },
+    setDraggableElement: setDraggableElement,
     loadProjectFromStorage: loadProjectFromStorage,
     loadProjectFromJson: loadProjectFromJson,
     saveProjectToMemmoryStorage: saveProjectToMemmoryStorage,
     saveProjectToFile: saveProjectToFile,
-    showGrid: (state, action: PayloadAction<ShowGrid>) => {
-      state.isGridVisible = action.payload.isGridVisible
-    },
+    showGrid: showGrid,
     setSelectedElement: setSelectedElement,
     addNewElement: addNewElement,
     deleteElement: deleteElement,
     togglePanelsByHotkey: togglePanelByHotKey,
-    toggleSettingsPanelState: (state, action: PayloadAction<PanelStatePayload>) => {
-      state.settingsPanelState = !state.settingsPanelState
-    },
-    toggleComponentsStructurePanel: (state, action: PayloadAction<PanelStatePayload>) => {
-      state.componentsStructurePanelState = !state.componentsStructurePanelState
-    },
+    toggleSettingsPanelState: toggleSettingsPanelState,
+    toggleComponentsStructurePanel: toggleComponentsStructurePanel,
     addNewPage: addNewPage,
     changeActivePage: changeActivePage,
     closePage: closePage,
