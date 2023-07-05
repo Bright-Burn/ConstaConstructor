@@ -8,9 +8,9 @@ import { IconSelect } from '@consta/uikit/IconSelect'
 import { FormGroupsDict } from '../../FormGroupDict'
 import {
   ButtonProps,
-  useAppSelector,
   IButtonActionElement,
   IFormElementButton,
+  useAppSelector,
 } from '../../../store/formElements'
 import style from './style.module.css'
 
@@ -43,7 +43,12 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const onCloseViewer = () => {
     setOpenViewer(false)
   }
-
+  //логика для заполнения элемента
+  let isFilled = false
+  if (element.props && 'filled' in element.props) {
+    isFilled = element.props.filled === 'filled'
+  }
+  //
   const getActionViwer = () => {
     if (buttonGroup && buttonProps && buttonProps?.action !== 'none') {
       const Viewer = FormGroupsDict[buttonProps.action]
@@ -60,10 +65,11 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         parentElementId={element.id}
         elementTypeUsage={ElementTypes.FormElement}
         elementType={FormElementTypes.Button}
-        className={buttonProps?.width === 'full' ? `${style.fullWidth}` : ''}>
+        className={isFilled ? 'container-row flex-grow-1' : ''}>
         <Button
           {...buttonProps}
           onClick={onButtonClick}
+          style={{ flexGrow: isFilled ? 1 : 0 }}
           iconLeft={buttonProps?.iconLeft && IconUser}
           iconRight={buttonProps?.iconRight && IconSelect}
         />

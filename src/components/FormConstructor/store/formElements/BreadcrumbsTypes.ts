@@ -8,4 +8,3 @@ export type BreadcrumbProps = BreadcrumbsProps & BaseProps
 export interface IFormElementBreadcrumbs extends IFormElement {
   props: BreadcrumbProps
 }
-

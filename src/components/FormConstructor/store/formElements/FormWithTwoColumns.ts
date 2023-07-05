@@ -7,4 +7,3 @@ export type FormWithTwoColumnsProps = {
 export interface IFormFormWithTwoColumns extends IFormElement {
   props: FormWithTwoColumnsProps
 }
-

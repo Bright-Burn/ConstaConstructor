@@ -28,4 +28,3 @@ export const componentsDict: Record<string, GroupCardsTypes> = {
   [TableMockId]: 'Tables',
   [ExpertiseFormMockId]: 'Tables',
 }
-

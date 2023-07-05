@@ -32,7 +32,8 @@ export const PrototypeTextElement: FC<IPrototypeTextElement> = ({ element }) => 
         <SelectableLayer
           parentElementId={element.id}
           elementType={'PrototypeTextElement'}
-          elementTypeUsage={'FormElement'}>
+          elementTypeUsage={'FormElement'}
+        >
           <span title={text} style={style}>
             {text}
           </span>

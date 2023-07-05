@@ -62,7 +62,7 @@ export const constaCards = [
     name: 'Switch',
     formElementType: FormElementTypes.Switch,
   },
-    {
+  {
     id: uuid(),
     name: 'DatePicker',
     formElementType: FormElementTypes.DatePicker,

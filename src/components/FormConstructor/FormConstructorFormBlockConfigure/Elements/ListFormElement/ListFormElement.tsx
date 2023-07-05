@@ -35,7 +35,8 @@ export const ListFormElement: FC<IListFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.List}>
+      elementType={FormElementTypes.List}
+    >
       {ListProps?.withListBox === true ? (
         <ListBox form={ListProps.form} shadow border>
           <List {...ListProps} />
@@ -46,4 +47,3 @@ export const ListFormElement: FC<IListFormElement> = ({ element }) => {
     </SelectableLayer>
   )
 }
-

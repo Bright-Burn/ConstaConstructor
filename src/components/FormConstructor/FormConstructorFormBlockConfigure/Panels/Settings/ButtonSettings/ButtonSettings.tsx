@@ -18,14 +18,9 @@ import {
   ILayoutElement,
   ISelectedElement,
 } from '../../../../store/formElements/types'
-import {
-  ButtonPropForm,
-  ButtonPropSize,
-  ButtonPropView,
-  ButtonPropWidth,
-} from '@consta/uikit/Button'
+import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
 import uuid from 'react-uuid'
-import { forms, sizes, views, width } from './UserConstants'
+import { forms, sizes, views } from './UserConstants'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
 
@@ -129,52 +124,16 @@ export const ButtonSettings = () => {
     )
   }
 
-  const onChangeLabel = (value: string | null) => {
-    if (selectedElementProps) {
+  const onChangeField = (
+    value: ButtonPropSize | ButtonPropForm | ButtonPropView | string,
+    field: keyof ButtonProps,
+  ) => {
+    if (selectedElement) {
       const newProps: ButtonProps = {
         ...(selectedElementProps as ButtonProps),
       }
-      value ? (newProps.label = value) : ''
-      selectedElement && onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeSize = (value: ButtonPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
-      }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeForm = (value: ButtonPropForm | null) => {
-    if (selectedElement && value) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
-      }
-      newProps.form = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeView = (value: ButtonPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
-      }
-      newProps.view = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeWidth = (value: ButtonPropWidth | null) => {
-    if (selectedElement && value) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
-      }
-      newProps.width = value
+      // @ts-ignore
+      newProps[field] = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -220,9 +179,9 @@ export const ButtonSettings = () => {
             getItemLabel={(item: string | undefined) => item || ''}
             items={sizes}
             label='size'
-            value={props.size}
+            value={props.size || 's'}
             onChange={({ value }) => {
-              onChangeSize(value)
+              onChangeField(value as ButtonPropSize, 'size')
             }}
           />
           <Select
@@ -232,7 +191,7 @@ export const ButtonSettings = () => {
             label='view'
             value={props.view}
             onChange={({ value }) => {
-              onChangeView(value)
+              onChangeField(value as ButtonPropView, 'view')
             }}
           />
           <Select
@@ -242,7 +201,7 @@ export const ButtonSettings = () => {
             label='form'
             value={props.form}
             onChange={({ value }) => {
-              onChangeForm(value)
+              onChangeField(value as ButtonPropForm, 'form')
             }}
           />
           <Switch
@@ -259,17 +218,7 @@ export const ButtonSettings = () => {
             label='label'
             type='text'
             value={props.label as string}
-            onChange={({ value }) => onChangeLabel(value)}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={width}
-            label='width'
-            value={props.width}
-            onChange={({ value }) => {
-              onChangeWidth(value)
-            }}
+            onChange={({ value }) => onChangeField(value as string, 'form')}
           />
           <Switch
             checked={!!props.iconLeft}
