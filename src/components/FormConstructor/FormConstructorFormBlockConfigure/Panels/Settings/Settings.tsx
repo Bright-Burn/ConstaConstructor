@@ -43,12 +43,6 @@ export const Settings: FC = () => {
   const getSettingsPanel = () => {
     if (selectedElement) {
       switch (selectedElement.elementType) {
-        case FormElementTypes.Button:
-          return (
-            <>
-              <ButtonSettings /> <BaseSettings />
-            </>
-          )
         case FormElementTypes.Text:
           return (
             <>
