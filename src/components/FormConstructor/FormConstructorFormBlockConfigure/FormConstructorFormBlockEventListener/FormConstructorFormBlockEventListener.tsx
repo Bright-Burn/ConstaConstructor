@@ -46,4 +46,3 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
 
   return <div className={css.formConstructorEventListener}>{children}</div>
 }
-

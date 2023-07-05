@@ -1,1 +1,1 @@
-export { ListSettings} from './ListSettings'
+export { ListSettings } from './ListSettings'

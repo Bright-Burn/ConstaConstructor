@@ -7,6 +7,7 @@ import {
 } from '@reduxjs/toolkit'
 import {
   AddNewElementPayload,
+  ChangePages,
   DeleteElementPayload,
   LoadProjectFromFile,
   LoadProjectFromStorage,
@@ -36,6 +37,8 @@ const initialState: IFormConstructor = {
   draggableElement: null,
   componentsStructurePanelState: true,
   settingsPanelState: true,
+  pages: [{ name: 'Page1', isActive: true, parentId: 'root' }],
+  numberOfPages: 1,
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
@@ -87,6 +90,8 @@ export const formConstructorSlice = createFormConstructorSlice({
         state.isGridVisible = newSate.isGridVisible
         state.selectedElement = newSate.selectedElement
         state.selectedElementProps = newSate.selectedElementProps
+        state.pages = newSate.pages
+        state.numberOfPages = newSate.numberOfPages
       }
     },
     saveProjectToMemmoryStorage: (state, action: PayloadAction<SaveNewProject>) => {
@@ -173,6 +178,37 @@ export const formConstructorSlice = createFormConstructorSlice({
     },
     toggleComponentsStructurePanel: (state, action: PayloadAction<PanelStatePayload>) => {
       state.componentsStructurePanelState = !state.componentsStructurePanelState
+    },
+    addNewPage: state => {
+      state.pages = [
+        ...state.pages,
+        {
+          name: `Page${state.numberOfPages + 1}`,
+          isActive: false,
+          parentId: `Page${state.numberOfPages + 1}`,
+        },
+      ]
+      state.numberOfPages = state.numberOfPages + 1
+    },
+    changeActivePage: (state, action: PayloadAction<ChangePages>) => {
+      state.pages = state.pages.map((page, i) => {
+        return {
+          name: page.name,
+          isActive: i === action.payload.index,
+          parentId: page.parentId,
+        }
+      })
+    },
+    closePage: (state, action: PayloadAction<ChangePages>) => {
+      state.pages = state.pages
+        .filter((page, i) => i !== action.payload.index)
+        .map((page, i) => {
+          return {
+            name: page.name,
+            isActive: i === action.payload.index,
+            parentId: page.parentId,
+          }
+        })
     },
   },
 })

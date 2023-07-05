@@ -163,8 +163,9 @@ export type FormElementUnion =
 export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
 
 /// По мере расширения сюда подем дописывать новые объединения
-export type UnionProps = FormElementProps | GroupElementProps
+export type UnionProps = (FormElementProps | GroupElementProps) & { filled?: fillType }
 
+export type fillType = 'default' | 'filled'
 export interface BaseProps {
   className: string
   baseProps: BaseTypes
@@ -173,6 +174,12 @@ export interface BaseProps {
 export interface ISelectedElement {
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes
+}
+
+export interface IPageOfLayout {
+  name: string
+  isActive: boolean
+  parentId: string
 }
 
 export interface IFormConstructor {
@@ -184,4 +191,7 @@ export interface IFormConstructor {
   draggableElement: IFormElement | IGroupElement | null
   componentsStructurePanelState: boolean
   settingsPanelState: boolean
+
+  pages: IPageOfLayout[]
+  numberOfPages: number
 }

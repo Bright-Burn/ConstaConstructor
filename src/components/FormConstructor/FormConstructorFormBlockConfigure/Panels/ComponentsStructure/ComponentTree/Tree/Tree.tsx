@@ -59,4 +59,3 @@ export const Tree: FC<ITree> = ({ data }) => {
     />
   )
 }
-

@@ -11,4 +11,3 @@ export type RadioButtonProps = {
 export interface IFormElementRadioButton extends IFormElement {
   props: RadioButtonProps
 }
-

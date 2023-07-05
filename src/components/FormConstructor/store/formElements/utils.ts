@@ -38,4 +38,3 @@ export const deleteButtonActions = (elementId: string, state: IFormConstructor) 
   state.allElementsMap = allElementsMap
   state.allElementsTree = allElementsTree
 }
-

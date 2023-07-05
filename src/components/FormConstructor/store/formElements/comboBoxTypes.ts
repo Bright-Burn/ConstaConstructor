@@ -28,4 +28,3 @@ export type ComboboxProps = {
 export interface IFormElementComboBox extends IFormElement {
   props: ComboboxProps
 }
-

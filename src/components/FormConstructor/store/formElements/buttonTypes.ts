@@ -31,4 +31,3 @@ export interface IButtonModalElement extends IButtonActionElement {
   id: string
   props: ButtonGroupProps
 }
-

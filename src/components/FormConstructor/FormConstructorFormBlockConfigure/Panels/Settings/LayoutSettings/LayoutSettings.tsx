@@ -116,19 +116,19 @@ export const LayoutSettings = () => {
           />
           <Select
             getItemKey={key => key}
+            label='Border style'
+            getItemLabel={label => label}
+            items={borderStyle}
+            value={`${itemsProps.styles?.borderStyle || ''}`}
+            onChange={({ value }) => onChangeBorderStyle(value)}
+          />
+          <Select
+            getItemKey={key => key}
             label='Border width'
             getItemLabel={label => label}
             items={borderWidths}
             value={`${itemsProps.styles?.borderWidth || ''}`}
             onChange={({ value }) => onChangeBorderWidth(value)}
-          />
-          <Select
-            getItemKey={key => key}
-            label='Border style'
-            getItemLabel={label => label}
-            items={borderSide}
-            value={`${itemsProps.styles?.borderSide || ''}`}
-            onChange={({ value }) => onChangeBorderSide(value)}
           />
           <TextField
             value={itemsProps.styles?.borderColor}
@@ -139,14 +139,7 @@ export const LayoutSettings = () => {
           <input
             type='color'
             value={itemsProps.styles?.borderColor}
-            onChange={value => updateColor(value.currentTarget.value)}></input>
-          <Select
-            getItemKey={key => key}
-            label='Border style'
-            getItemLabel={label => label}
-            items={borderStyle}
-            value={`${itemsProps.styles?.borderStyle || ''}`}
-            onChange={({ value }) => onChangeBorderStyle(value)}
+            onChange={value => updateColor(value.currentTarget.value)}
           />
         </>
       ) : (

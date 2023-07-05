@@ -1,24 +1,23 @@
-import React from 'react'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
 import { IconClose } from '@consta/uikit/IconClose'
 import { PagesProps } from './types'
 import { Card } from '@consta/uikit/Card'
-import { pagesSlice, usePagesDispatch } from '../../../../store/pagesOfLayout'
+import { formConstructorSlice, useAppDispatch } from '../../../../store/formElements'
 
 export const Pages = ({ pages }: PagesProps) => {
-  const dispatch = usePagesDispatch()
+  const dispatch = useAppDispatch()
 
   const changeActivePage = (index: number) => {
-    dispatch(pagesSlice.actions.changeActivePage({ index }))
+    dispatch(formConstructorSlice.actions.changeActivePage({ index }))
   }
 
   const closePage = (index: number) => {
-    dispatch(pagesSlice.actions.closePage({ index }))
+    dispatch(formConstructorSlice.actions.closePage({ index }))
   }
 
   const addNewPage = () => {
-    dispatch(pagesSlice.actions.addNewPage())
+    dispatch(formConstructorSlice.actions.addNewPage())
   }
 
   return (

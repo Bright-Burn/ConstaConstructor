@@ -11,4 +11,3 @@ export type TableProps = {
 export interface IFormElementTable extends IFormElement {
   props: TableProps
 }
-

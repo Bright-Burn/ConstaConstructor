@@ -17,7 +17,8 @@ export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Icon}>
+      elementType={FormElementTypes.Icon}
+    >
       {iconProps && React.createElement(Icons[iconProps.icons], iconProps)}
     </SelectableLayer>
   )

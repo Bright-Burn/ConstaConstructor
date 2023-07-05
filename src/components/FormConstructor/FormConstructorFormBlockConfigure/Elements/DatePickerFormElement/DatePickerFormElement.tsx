@@ -20,9 +20,9 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.DatePicker}>
+      elementType={FormElementTypes.DatePicker}
+    >
       <DatePicker {...datePickerProps} />
     </SelectableLayer>
   )
 }
-

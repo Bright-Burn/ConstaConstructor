@@ -12,24 +12,16 @@ import {
 
 export const directions: LayoutPropDirection[] = ['row', 'column']
 
-export const borderWidths: BorderWidth[] = [
-  'inherit',
-  'medium',
-  'thick',
-  'thin',
-  'initial',
-  'revert',
-  'unset',
-]
+export const borderWidths = ['', 'inherit', 'medium', 'thick', 'thin', 'initial', 'revert', 'unset']
 
-export const borderStyle: BorderStyle[] = [
+export const borderStyle = [
+  '',
   'dotted',
   'dashed',
   'double',
   'groove',
   'hidden',
   'inset',
-  'none',
   'outset',
   'ridge',
   'solid',

@@ -34,7 +34,8 @@ export const ButtonActionModal: FC<IButtonActionViewer> = ({
       isOpen={openViewer}
       hasOverlay={false}
       onClick={onModalClick}
-      onDrop={onDrop}>
+      onDrop={onDrop}
+    >
       <div className={styles.modalClose}>
         <Button size='s' onlyIcon={true} iconRight={IconClose} onClick={onCloseViewer} />
       </div>
@@ -46,4 +47,3 @@ export const ButtonActionModal: FC<IButtonActionViewer> = ({
     </Modal>
   )
 }
-

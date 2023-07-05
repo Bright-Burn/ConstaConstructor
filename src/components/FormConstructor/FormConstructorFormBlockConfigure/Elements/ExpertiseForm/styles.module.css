@@ -4,12 +4,12 @@
 }
 
 .list {
-padding: 10px;
+  padding: 10px;
 }
 
 .modalOpen {
   display: flex;
-  width: 30%; 
+  width: 30%;
   flex-direction: column;
 }
 
@@ -19,6 +19,6 @@ padding: 10px;
   margin: 10px;
 }
 
-.icon{
+.icon {
   cursor: pointer;
 }

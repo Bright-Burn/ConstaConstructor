@@ -1,1 +1,1 @@
-export { ComboBoxSettings} from './ComboBoxSettings'
+export { ComboBoxSettings } from './ComboBoxSettings'
