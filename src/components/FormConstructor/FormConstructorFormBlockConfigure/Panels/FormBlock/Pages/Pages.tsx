@@ -8,12 +8,12 @@ import { formConstructorSlice, useAppDispatch } from '../../../../store/formElem
 export const Pages = ({ pages }: PagesProps) => {
   const dispatch = useAppDispatch()
 
-  const changeActivePage = (index: number) => {
-    dispatch(formConstructorSlice.actions.changeActivePage({ index }))
+  const changeActivePage = (pageId: string) => {
+    dispatch(formConstructorSlice.actions.changeActivePage({ id: pageId }))
   }
 
-  const closePage = (index: number) => {
-    dispatch(formConstructorSlice.actions.closePage({ index }))
+  const deletePage = (pageId: string) => {
+    dispatch(formConstructorSlice.actions.deletePage({ id: pageId }))
   }
 
   const addNewPage = () => {
@@ -30,7 +30,7 @@ export const Pages = ({ pages }: PagesProps) => {
               view='ghost'
               size='xs'
               form='brick'
-              onClick={() => changeActivePage(index)}
+              onClick={() => changeActivePage(page.id)}
             />
             <Button
               iconLeft={IconClose}
@@ -38,7 +38,7 @@ export const Pages = ({ pages }: PagesProps) => {
               size='xs'
               form='brick'
               onlyIcon
-              onClick={() => closePage(index)}
+              onClick={() => deletePage(page.id)}
             />
           </Card>
         ))}

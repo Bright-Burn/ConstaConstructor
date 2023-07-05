@@ -7,7 +7,7 @@ import {
   addNewElement,
   addNewPage,
   changeActivePage,
-  closePage,
+  deletePage,
   deleteElement,
   loadProjectFromStorage,
   saveProjectToFile,
@@ -21,6 +21,8 @@ import {
   setDraggableElement,
 } from './reducers'
 
+export const rootId = 'Page1'
+
 const initialState: IFormConstructor = {
   allElementsTree: new Map<string, string[]>(),
   allElementsMap: new Map<string, IFormElement | IGroupElement>(),
@@ -30,7 +32,7 @@ const initialState: IFormConstructor = {
   draggableElement: null,
   componentsStructurePanelState: true,
   settingsPanelState: true,
-  pages: [{ name: 'Page1', isActive: true, parentId: 'root' }],
+  pages: [{ id: rootId, name: 'Page1', isActive: true }],
   numberOfPages: 1,
 }
 
@@ -68,7 +70,7 @@ export const formConstructorSlice = createFormConstructorSlice({
     toggleComponentsStructurePanel: toggleComponentsStructurePanel,
     addNewPage: addNewPage,
     changeActivePage: changeActivePage,
-    closePage: closePage,
+    deletePage: deletePage,
   },
 })
 

@@ -177,9 +177,9 @@ export interface ISelectedElement {
 }
 
 export interface IPageOfLayout {
+  id: string
   name: string
   isActive: boolean
-  parentId: string
 }
 
 export interface IFormConstructor {

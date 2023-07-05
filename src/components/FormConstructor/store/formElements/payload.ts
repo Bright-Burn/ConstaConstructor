@@ -40,6 +40,10 @@ export interface SetNewElementDraggableElem {
   element: IFormElement | IGroupElement | null
 }
 
-export interface ChangePages {
-  index: number
+export interface ChangeActivePage {
+  id: string
+}
+
+export interface DeletePage {
+  id: string
 }

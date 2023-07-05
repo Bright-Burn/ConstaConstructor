@@ -10,19 +10,27 @@ export const deleteElement = (
   const allElementsTree = new Map(state.allElementsTree)
   const allElementsMap = new Map(state.allElementsMap)
 
-  const elementsToDelete = findElementsToDelete(action.payload.elementId, state.allElementsTree)
+  processDelete(action.payload.elementId, allElementsTree, allElementsMap)
+
+  state.allElementsMap = allElementsMap
+  state.allElementsTree = allElementsTree
+}
+
+export const processDelete = (
+  elementId: string,
+  allElementsTree: Map<string, string[]>,
+  allElementsMap: Map<string, IFormElement | IGroupElement>,
+) => {
+  const elementsToDelete = findElementsToDelete(elementId, allElementsTree)
 
   elementsToDelete.forEach(elementId => {
     deleteButtonActions(elementId, allElementsTree, allElementsMap)
     allElementsMap.delete(elementId)
     allElementsTree.delete(elementId)
   })
-
-  state.allElementsMap = allElementsMap
-  state.allElementsTree = allElementsTree
 }
 
-export const findElementsToDelete = (elementId: string, allElementsTree: Map<string, string[]>) => {
+const findElementsToDelete = (elementId: string, allElementsTree: Map<string, string[]>) => {
   const elementsToDelete: string[] = []
 
   const findChildrenToDelete = (elementId: string) => {
@@ -41,7 +49,7 @@ export const findElementsToDelete = (elementId: string, allElementsTree: Map<str
   return elementsToDelete
 }
 
-export const deleteButtonActions = (
+const deleteButtonActions = (
   elementId: string,
   allElementsTree: Map<string, string[]>,
   allElementsMap: Map<string, IFormElement | IGroupElement>,
