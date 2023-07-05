@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux'
 import { TextField } from '@consta/uikit/TextField'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { TextFieldProps } from '../../../../store/formElements/textFieldTypes'
-import { IconPhoto } from '@consta/uikit/IconPhoto'
 
 export const TextFieldSettings = () => {
   const [props, setProps] = useState<TextFieldProps>()
@@ -32,10 +31,6 @@ export const TextFieldSettings = () => {
     'clearBrick',
     'clearClear',
   ]
-  const leftSideTypes: string[] = ['undefined', 'icon', 'text']
-  const rightSideTypes: string[] = ['undefined', 'icon', 'text']
-  const [leftSideType, setLeftSideType] = useState('undefined')
-  const [rightSideType, setRightSideType] = useState('undefined')
 
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
 
@@ -74,42 +69,6 @@ export const TextFieldSettings = () => {
         onDispatch(selectedElement, newProps)
       }
     }
-
-  const onChangeLeftSideType = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: TextFieldProps = {
-        ...(selectedElementProps as TextFieldProps),
-      }
-
-      if (value === 'icon') {
-        newProps.leftSide = IconPhoto
-      } else if (value === 'text') {
-        newProps.leftSide = 'form'
-      } else {
-        newProps.leftSide = ''
-      }
-      setLeftSideType(value || '')
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeRightSideType = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: TextFieldProps = {
-        ...(selectedElementProps as TextFieldProps),
-      }
-
-      if (value === 'icon') {
-        newProps.rightSide = IconPhoto
-      } else if (value === 'text') {
-        newProps.rightSide = 'm'
-      } else {
-        newProps.rightSide = ''
-      }
-      setRightSideType(value || '')
-      onDispatch(selectedElement, newProps)
-    }
-  }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: TextFieldProps) => {
     dispatch(
@@ -269,32 +228,6 @@ export const TextFieldSettings = () => {
             label='Placeholder'
             value={`${props.placeholder || ''}`}
             onChange={onChangeTextField('placeholder')}
-          />
-          <Select
-            getItemKey={key => key}
-            label='LeftSideType'
-            getItemLabel={label => label}
-            items={leftSideTypes}
-            value={`${leftSideType}`}
-            onChange={onChangeLeftSideType}
-          />
-          <TextField
-            label='LeftSideText'
-            value={`${props.leftSide}`}
-            onChange={onChangeTextField('leftSide')}
-          />
-          <Select
-            getItemKey={key => key}
-            label='RightSideType'
-            getItemLabel={label => label}
-            items={rightSideTypes}
-            value={`${rightSideType}`}
-            onChange={onChangeRightSideType}
-          />
-          <TextField
-            label='RightSideText'
-            value={`${props.rightSide}`}
-            onChange={onChangeTextField('rightSide')}
           />
         </>
       ) : (

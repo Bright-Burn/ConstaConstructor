@@ -7,7 +7,6 @@ import {
   TextFieldPropView,
   TextFieldPropWidth,
 } from '@consta/uikit/TextField'
-import { IconComponent } from '@consta/uikit/Icon'
 import { TextFieldPropsTextareaType } from '@consta/uikit/TextField/'
 
 export type TextFieldProps = {
@@ -26,8 +25,6 @@ export type TextFieldProps = {
   labelPosition?: 'top' | 'left'
   maxLength?: number
   placeholder?: string
-  leftSide?: string | IconComponent
-  rightSide?: string | IconComponent
   step?: number | string | number[]
   incrementButtons?: boolean
   max?: number | string
