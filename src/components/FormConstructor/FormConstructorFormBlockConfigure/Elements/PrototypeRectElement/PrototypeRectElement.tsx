@@ -15,15 +15,15 @@ export const PrototypeRectElement: FC<IPrototypeRectElement> = ({ element }) => 
         <SelectableLayer
           parentElementId={element.id}
           elementType={'PrototypeRectElement'}
-          elementTypeUsage={'FormElement'}>
-          <div
-            style={{ width, height, zIndex, background: '#ccc', }}></div>
+          elementTypeUsage={'FormElement'}
+        >
+          <div style={{ width, height, zIndex, background: '#ccc' }}></div>
         </SelectableLayer>
       </div>
     )
   }
 
   console.error('Брат, все не то, все не так. Проверь пропсы, которые пытаешься мне передать!')
-  
+
   return null
 }

@@ -2,10 +2,9 @@
   flex-grow: 0.5;
   flex-shrink: 1;
   flex-basis: 0;
-
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .tabs {
@@ -14,7 +13,7 @@
 }
 
 .toggleButton {
-  position: absolute; 
+  position: absolute;
   left: 10px;
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0;

@@ -5,4 +5,3 @@ export interface IButtonActionViewer {
   buttonGroup: IButtonModalElement
   openViewer: boolean
 }
-

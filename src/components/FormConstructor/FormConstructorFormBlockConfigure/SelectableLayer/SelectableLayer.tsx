@@ -13,7 +13,12 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   className,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElement, allElementsMap } = useAppSelector(state => state.formConstructor)
+  const props = allElementsMap.get(String(selectedElement?.elementId))?.props
+  let isFilled = false
+  if (props && 'filled' in props) {
+    isFilled = props.filled === 'filled'
+  }
 
   const dispatch = useAppDispatch()
 
@@ -42,9 +47,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
         elementTypeUsage === ElementTypes.FormElement
           ? styles.selectableLayerFormElement
           : styles.selectableLayerLayoutElement
-      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''} ${
-        styles.selectedLayerOutline
-      }`}
+      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''}`}
       onClick={onClickElement}
       tabIndex={0}>
       {children}

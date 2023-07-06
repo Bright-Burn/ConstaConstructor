@@ -1,24 +1,23 @@
-import React from 'react'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
 import { IconClose } from '@consta/uikit/IconClose'
 import { PagesProps } from './types'
 import { Card } from '@consta/uikit/Card'
-import { pagesSlice, usePagesDispatch } from '../../../../store/pagesOfLayout'
+import { formConstructorSlice, useAppDispatch } from '../../../../store/formElements'
 
 export const Pages = ({ pages }: PagesProps) => {
-  const dispatch = usePagesDispatch()
+  const dispatch = useAppDispatch()
 
-  const changeActivePage = (index: number) => {
-    dispatch(pagesSlice.actions.changeActivePage({ index }))
+  const changeActivePage = (pageId: string) => {
+    dispatch(formConstructorSlice.actions.changeActivePage({ id: pageId }))
   }
 
-  const closePage = (index: number) => {
-    dispatch(pagesSlice.actions.closePage({ index }))
+  const deletePage = (pageId: string) => {
+    dispatch(formConstructorSlice.actions.deletePage({ id: pageId }))
   }
 
   const addNewPage = () => {
-    dispatch(pagesSlice.actions.addNewPage())
+    dispatch(formConstructorSlice.actions.addNewPage())
   }
 
   return (
@@ -31,7 +30,7 @@ export const Pages = ({ pages }: PagesProps) => {
               view='ghost'
               size='xs'
               form='brick'
-              onClick={() => changeActivePage(index)}
+              onClick={() => changeActivePage(page.id)}
             />
             <Button
               iconLeft={IconClose}
@@ -39,7 +38,7 @@ export const Pages = ({ pages }: PagesProps) => {
               size='xs'
               form='brick'
               onlyIcon
-              onClick={() => closePage(index)}
+              onClick={() => deletePage(page.id)}
             />
           </Card>
         ))}

@@ -1,10 +1,15 @@
 import { Layout } from '@consta/uikit/Layout'
 import { FC, useLayoutEffect, useState } from 'react'
-import { LayoutElementPropsStyles, useAppSelector } from '../../../store/formElements'
+import {
+  LayoutElementPropsStyles,
+  LayoutElementStyles,
+  useAppSelector,
+} from '../../../store/formElements'
 import { ElementTypes, FormGroupsTypes, ILayoutElement } from '../../../store/formElements/types'
 import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ILayoutFormElement } from './types'
+import style from './styles.module.css'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const [layoutProps, setLayoutProps] = useState<LayoutElementPropsStyles>()
@@ -15,11 +20,34 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     setLayoutProps(layoutElementWithProps.props)
   }, [element])
 
+  const ActiveSide = ({
+    borderColor,
+    borderSide,
+    borderStyle,
+    borderWidth,
+  }: LayoutElementStyles) => {
+    const sideCss = {
+      [`${borderSide}Width`]: borderWidth,
+      [`${borderSide}Style`]: borderStyle,
+      [`${borderSide}Color`]: borderColor,
+      borderWidth: '',
+      borderStyle: '',
+      borderColor: '',
+    }
+    return sideCss
+  }
+
+  const activeSide = layoutProps?.styles?.borderSide && ActiveSide(layoutProps.styles)
+
   return (
     <Layout
-      className={`${isGridVisible ? 'dottedCard' : ''} ${layoutProps?.className}`}
+      className={`${isGridVisible ? style.gridLayout : ''} ${layoutProps?.className}`}
       {...layoutProps?.constaProps}
-      style={{ ...layoutProps?.styles, overflow: 'hidden' }}>
+      style={{
+        ...layoutProps?.styles,
+        ...activeSide,
+        overflow: 'hidden',
+      }}>
       <SelectableLayer
         parentElementId={element.id}
         elementType={FormGroupsTypes.Layout}

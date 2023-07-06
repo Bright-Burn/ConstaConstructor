@@ -22,4 +22,3 @@ export const formArray: PropForm[] = [
 export const statusArray: TextFieldPropStatus[] = ['alert', 'success', 'warning']
 
 export const labelPositionArray: ['top', 'left'] = ['top', 'left']
-

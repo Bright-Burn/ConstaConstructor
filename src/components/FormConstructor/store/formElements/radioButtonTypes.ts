@@ -6,9 +6,10 @@ export type RadioButtonProps = {
   view?: RadioPropView
   align?: RadioPropAlign
   label?: string
+  disabled?: boolean
+  checked?: boolean
 } & BaseProps
 
 export interface IFormElementRadioButton extends IFormElement {
   props: RadioButtonProps
 }
-

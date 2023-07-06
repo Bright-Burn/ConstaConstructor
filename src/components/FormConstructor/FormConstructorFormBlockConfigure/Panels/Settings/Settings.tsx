@@ -31,6 +31,7 @@ import { UserSettings } from './UserSettings'
 import { IconSettings } from './IconSettings'
 import { ButtonSettings } from './ButtonSettings/ButtonSettings'
 import { ButtonModuleSettings } from './ButtonModalSettings'
+import { FilledSettings } from './FilledSettings/FilledSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -99,7 +100,9 @@ export const Settings: FC = () => {
         case FormElementTypes.TextField:
           return (
             <>
-              <TextFieldSettings /> <BaseSettings />
+              <FilledSettings />
+              <TextFieldSettings />
+              <BaseSettings />
             </>
           )
         case FormElementTypes.List:
@@ -117,6 +120,7 @@ export const Settings: FC = () => {
         case FormElementTypes.Button:
           return (
             <>
+              <FilledSettings />
               <ButtonSettings />
               <BaseSettings />
             </>
@@ -208,11 +212,7 @@ export const Settings: FC = () => {
   }
 
   const toggleSettingsPanel = () => {
-    dispatch(
-      formConstructorSlice.actions.toggleSettingsPanelState({
-        settingsPanelState: settingsPanelState,
-      }),
-    )
+    dispatch(formConstructorSlice.actions.toggleSettingsPanelState())
   }
 
   return (

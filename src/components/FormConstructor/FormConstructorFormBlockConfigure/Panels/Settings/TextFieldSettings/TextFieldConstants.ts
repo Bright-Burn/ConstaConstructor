@@ -18,5 +18,3 @@ export const forms: string[] = [
   'clearBrick',
   'clearClear',
 ]
-export const leftSideTypes: string[] = ['', 'icon', 'text']
-export const rightSideTypes: string[] = ['', 'icon', 'text']

@@ -1,4 +1,9 @@
-import { IFormConstructor, ISelectedElement, UnionProps } from '../store/formElements/types'
+import {
+  IFormConstructor,
+  IPageOfLayout,
+  ISelectedElement,
+  UnionProps,
+} from '../store/formElements/types'
 import { Values } from '../utils'
 
 /// По мере расширения сопсобов сохранения, будет дополнять объект
@@ -23,6 +28,9 @@ export interface IFormConstructorSerializable {
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
+
+  pages: IPageOfLayout[]
+  numberOfPages: number
 }
 
 export interface ProjectDataSerializable {

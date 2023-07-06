@@ -12,4 +12,3 @@ export type SwitchProps = {
 export interface IFormElementSwitch extends IFormElement {
   props: SwitchProps
 }
-

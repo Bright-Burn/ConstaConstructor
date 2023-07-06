@@ -1,3 +1,4 @@
+import { rootId } from '../store/formElements/slices'
 import { IFormElement, IGroupElement } from '../store/formElements/types'
 
 export const getNewGroupParentLevel = (
@@ -5,7 +6,7 @@ export const getNewGroupParentLevel = (
   allElementsMap: Map<string, IFormElement | IGroupElement>,
   allElementsTree: Map<string, string[]>,
 ): string | undefined => {
-  if (currentParentId === 'root') {
+  if (currentParentId === rootId) {
     return currentParentId
   } else {
     if (allElementsMap.has(currentParentId)) {

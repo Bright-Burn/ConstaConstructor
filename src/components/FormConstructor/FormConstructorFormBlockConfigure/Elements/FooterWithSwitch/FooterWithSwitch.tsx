@@ -23,7 +23,8 @@ export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Badge}>
+      elementType={FormElementTypes.Badge}
+    >
       <div className={`container-row flex-grow-1 space-between m-t-xs m-b-xs`}>
         <div className='left-side'>
           <Button view='ghost' label='Очистить Поля' className='m-l-xs' />
@@ -45,4 +46,3 @@ export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
     </SelectableLayerFullWidth>
   )
 }
-

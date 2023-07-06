@@ -1,1 +1,1 @@
-export {BaseSettings} from './BaseSettings'
+export { BaseSettings } from './BaseSettings'

@@ -41,43 +41,6 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
-
-  const onChangeLeftSideType = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: TextFieldProps = {
-        ...(selectedElementProps as TextFieldProps),
-      }
-
-      if (value === 'icon') {
-        newProps.leftSide = IconPhoto
-      } else if (value === 'text') {
-        newProps.leftSide = 'form'
-      } else {
-        newProps.leftSide = ''
-      }
-      setLeftSideType(value || '')
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeRightSideType = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: TextFieldProps = {
-        ...(selectedElementProps as TextFieldProps),
-      }
-
-      if (value === 'icon') {
-        newProps.rightSide = IconPhoto
-      } else if (value === 'text') {
-        newProps.rightSide = 'm'
-      } else {
-        newProps.rightSide = ''
-      }
-      setRightSideType(value || '')
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
   const onDispatch = (selectedElement: ISelectedElement, newProps: TextFieldProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -90,8 +53,6 @@ export const useItemsHandlers = () => {
   return {
     onChangeTextField,
     onChangeSwitch,
-    onChangeRightSideType,
-    onChangeLeftSideType,
     itemsProps: {
       caption: (selectedElementProps as TextFieldProps).caption,
       disabled: (selectedElementProps as TextFieldProps).disabled,
@@ -99,7 +60,6 @@ export const useItemsHandlers = () => {
       incrementButtons: (selectedElementProps as TextFieldProps).incrementButtons,
       label: (selectedElementProps as TextFieldProps).label,
       labelPosition: (selectedElementProps as TextFieldProps).labelPosition,
-      leftSide: (selectedElementProps as TextFieldProps).leftSide,
       max: (selectedElementProps as TextFieldProps).max,
       maxLength: (selectedElementProps as TextFieldProps).maxLength,
       maxRows: (selectedElementProps as TextFieldProps).maxRows,
@@ -108,7 +68,6 @@ export const useItemsHandlers = () => {
       placeholder: (selectedElementProps as TextFieldProps).placeholder,
       size: (selectedElementProps as TextFieldProps).size,
       required: (selectedElementProps as TextFieldProps).required,
-      rightSide: (selectedElementProps as TextFieldProps).rightSide,
       rows: (selectedElementProps as TextFieldProps).rows,
       status: (selectedElementProps as TextFieldProps).status,
       step: (selectedElementProps as TextFieldProps).step,

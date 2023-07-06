@@ -2,27 +2,11 @@ import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import styles from './styles.module.css'
 import { TextField } from '@consta/uikit/TextField'
-import {
-  status,
-  types,
-  width,
-  forms,
-  sizes,
-  view,
-  labelPosition,
-  leftSideTypes,
-  rightSideTypes,
-} from './TextFieldConstants'
+import { status, types, width, forms, sizes, view, labelPosition } from './TextFieldConstants'
 import { useItemsHandlers } from './ItemsService'
 
 export const TextFieldSettings = () => {
-  const {
-    itemsProps,
-    onChangeTextField,
-    onChangeSwitch,
-    onChangeRightSideType,
-    onChangeLeftSideType,
-  } = useItemsHandlers()
+  const { itemsProps, onChangeTextField, onChangeSwitch } = useItemsHandlers()
 
   return (
     <div className={styles.textFieldSettings}>
@@ -173,37 +157,6 @@ export const TextFieldSettings = () => {
             value={`${itemsProps.placeholder || ''}`}
             onChange={onChangeTextField('placeholder')}
           />
-          <Select
-            getItemKey={key => key}
-            label='LeftSideType'
-            getItemLabel={label => label}
-            items={leftSideTypes}
-            value={`${itemsProps.leftSideType}`}
-            onChange={onChangeLeftSideType}
-          />
-          {itemsProps.leftSideType === 'text' && (
-            <TextField
-              label='LeftSideText'
-              value={`${itemsProps.leftSide}`}
-              onChange={onChangeTextField('leftSide')}
-            />
-          )}
-
-          <Select
-            getItemKey={key => key}
-            label='RightSideType'
-            getItemLabel={label => label}
-            items={rightSideTypes}
-            value={`${itemsProps.rightSideType}`}
-            onChange={onChangeRightSideType}
-          />
-          {itemsProps.rightSideType === 'text' && (
-            <TextField
-              label='RightSideText'
-              value={`${itemsProps.rightSide}`}
-              onChange={onChangeTextField('rightSide')}
-            />
-          )}
         </>
       ) : (
         <></>

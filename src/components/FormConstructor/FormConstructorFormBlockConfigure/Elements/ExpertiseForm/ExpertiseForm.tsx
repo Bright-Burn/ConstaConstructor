@@ -55,7 +55,8 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.CardWithBarChart}
-      className={`${style.fullScreen}`}>
+      className={`${style.fullScreen}`}
+    >
       {checkModal ? (
         <>
           <div style={{ width: '70%' }} className='ag-theme-alpine'>
@@ -67,7 +68,8 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
               columnDefs={columnDefs}
               defaultColDef={defaultColDef}
               sideBar={sideBar}
-              onRowClicked={changeActiveRow}></AgGridReact>
+              onRowClicked={changeActiveRow}
+            ></AgGridReact>
           </div>
           <div className={`${style.modalOpen}`}>
             <div className={`${style.commonInfo}`}>
@@ -89,7 +91,8 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             sideBar={sideBar}
-            onRowClicked={changeActiveRow}></AgGridReact>
+            onRowClicked={changeActiveRow}
+          ></AgGridReact>
         </div>
       )}
     </SelectableLayerFullWidth>
