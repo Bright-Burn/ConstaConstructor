@@ -3,7 +3,6 @@ import { ISelectableLayer } from './types'
 import styles from './styles.module.css'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../store/formElements'
 import { ElementTypes } from '../../store/formElements/types'
-import { width } from '../Panels/Settings/UserSettings/UserConstants'
 
 /// Уровень содержащий логику по выделению родительского комопнента
 export const SelectableLayer: FC<ISelectableLayer> = ({
@@ -48,12 +47,9 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
         elementTypeUsage === ElementTypes.FormElement
           ? styles.selectableLayerFormElement
           : styles.selectableLayerLayoutElement
-      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''} ${
-        styles.selectedLayerOutline
-      }`}
+      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''}`}
       onClick={onClickElement}
-      tabIndex={0}
-    >
+      tabIndex={0}>
       {children}
     </div>
   )

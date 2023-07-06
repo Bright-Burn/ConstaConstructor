@@ -9,6 +9,7 @@ import { ElementTypes, FormGroupsTypes, ILayoutElement } from '../../../store/fo
 import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ILayoutFormElement } from './types'
+import style from './styles.module.css'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const [layoutProps, setLayoutProps] = useState<LayoutElementPropsStyles>()
@@ -40,7 +41,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
 
   return (
     <Layout
-      className={`${isGridVisible ? 'dottedCard' : ''} ${layoutProps?.className}`}
+      className={`${isGridVisible ? style.gridLayout : ''} ${layoutProps?.className}`}
       {...layoutProps?.constaProps}
       style={{
         ...layoutProps?.styles,
