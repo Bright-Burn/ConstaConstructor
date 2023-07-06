@@ -130,6 +130,14 @@ export const LayoutSettings = () => {
             value={`${itemsProps.styles?.borderWidth || ''}`}
             onChange={({ value }) => onChangeBorderWidth(value)}
           />
+          <Select
+            getItemKey={key => key}
+            label='Border side'
+            getItemLabel={label => label}
+            items={borderSide}
+            value={`${itemsProps.styles?.borderSide || ''}`}
+            onChange={({ value }) => onChangeBorderSide(value)}
+          />
           <TextField
             value={itemsProps.styles?.borderColor}
             type='text'
