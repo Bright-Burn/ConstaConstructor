@@ -32,8 +32,9 @@ const initialState: IFormConstructor = {
   draggableElement: null,
   componentsStructurePanelState: true,
   settingsPanelState: true,
-  pages: [{ id: rootId, name: 'Page1', isActive: true }],
+  pages: [{ id: rootId, name: 'Page1' }],
   numberOfPages: 1,
+  selectedPageId: rootId,
 }
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({

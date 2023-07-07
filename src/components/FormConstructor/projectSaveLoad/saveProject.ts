@@ -34,6 +34,7 @@ const saveFile = (projData: ProjectDataSerializable) => {
 }
 
 export const projectToSerilizable = (proj: IFormConstructor): IFormConstructorSerializable => {
+  console.log(proj.selectedPageId)
   return {
     ...proj,
     allElementsMap: JSON.stringify(Array.from(proj.allElementsMap.entries())),
@@ -81,5 +82,6 @@ export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFor
     settingsPanelState: true,
     pages: proj.pages,
     numberOfPages: proj.numberOfPages,
+    selectedPageId: proj.selectedPageId,
   }
 }

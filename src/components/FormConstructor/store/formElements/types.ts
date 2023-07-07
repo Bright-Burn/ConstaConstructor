@@ -179,7 +179,6 @@ export interface ISelectedElement {
 export interface IPageOfLayout {
   id: string
   name: string
-  isActive: boolean
 }
 
 export interface IFormConstructor {
@@ -194,4 +193,5 @@ export interface IFormConstructor {
 
   pages: IPageOfLayout[]
   numberOfPages: number
+  selectedPageId: string
 }

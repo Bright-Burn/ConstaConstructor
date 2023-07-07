@@ -6,9 +6,7 @@ export const addNewPage = (state: IFormConstructor) => {
     {
       id: `Page${state.numberOfPages + 1}`,
       name: `Page${state.numberOfPages + 1}`,
-      isActive: false,
     },
   ]
   state.numberOfPages = state.numberOfPages + 1
 }
-

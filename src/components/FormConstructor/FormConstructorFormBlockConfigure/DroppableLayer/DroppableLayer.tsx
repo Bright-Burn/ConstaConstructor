@@ -8,7 +8,7 @@ import {
   IGroupElement,
   AddNewElementPayload,
 } from '../../store/formElements'
-import { getNewGroupParentLevel } from '../../utils'
+import { getElementsOnLayer, getNewGroupParentLevel } from '../../utils'
 import {
   baseComponentsSlice,
   useBaseComponentsDispatch,
@@ -32,13 +32,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
   useEffect(() => {
     /// Подгружаем все эелементы на текущем уровне
-    const layerIds = allElementsTree.get(parentElementId) || []
-    const elementsOnLayer: (IFormElement | IGroupElement)[] = []
-    layerIds.forEach(ids => {
-      const elem = allElementsMap.get(ids)
-      elem && elementsOnLayer.push(elem)
-    })
-    setElementsOnLayer([...elementsOnLayer])
+    const elementsOnLayer = getElementsOnLayer(parentElementId, allElementsTree, allElementsMap)
+    setElementsOnLayer(elementsOnLayer)
   }, [allElementsTree, parentElementId, allElementsMap])
 
   const handleOnDropBaseComponent = () => {
@@ -73,9 +68,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
             newParentId = uuid()
             mappedIds.set(prevParentId, newParentId)
           }
-          if ('parentId' in elem) {
-            elem.parentId = newParentId
-          }
+
           actions.push({ element: elem, parent: newParentId })
         }
       })
