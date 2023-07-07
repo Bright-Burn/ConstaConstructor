@@ -1,0 +1,1 @@
+export { ComponentCardTag } from './ComponentCardTag'

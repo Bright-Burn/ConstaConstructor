@@ -1,0 +1,1 @@
+export { TagSettings } from './TagSettings'

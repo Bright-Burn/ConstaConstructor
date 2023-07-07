@@ -22,6 +22,8 @@ import { ComponentCardDataTime } from './ComponentCardDataTime'
 import { ComponentCardBreadcrumb } from './ComponentCardBreadcrumb'
 import { ComponentCardUser } from './ComponentCardUser'
 import { ComponentCardIcon } from './ComponentCardIcon'
+import { ComponentCardChoiceGroup } from './ComponentCardChoiceGroup'
+import { ComponentCardTag } from './ComponentCardTag'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
@@ -46,6 +48,8 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
         <ComponentCardBreadcrumb name={name} value={FormElementTypes.BreadcrumbsForm} />
         <ComponentCardUser name={name} value={FormElementTypes.User} />
         <ComponentCardIcon name={name} value={FormElementTypes.Icon} />
+        <ComponentCardChoiceGroup name={name} value={FormElementTypes.ChoiceGroup} />
+        <ComponentCardTag name={name} value={FormElementTypes.Tag} />
       </SwitchComponent>
     </div>
   )
