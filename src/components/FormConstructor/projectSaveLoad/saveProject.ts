@@ -34,7 +34,6 @@ const saveFile = (projData: ProjectDataSerializable) => {
 }
 
 export const projectToSerilizable = (proj: IFormConstructor): IFormConstructorSerializable => {
-  console.log(proj.selectedPageId)
   return {
     ...proj,
     allElementsMap: JSON.stringify(Array.from(proj.allElementsMap.entries())),
