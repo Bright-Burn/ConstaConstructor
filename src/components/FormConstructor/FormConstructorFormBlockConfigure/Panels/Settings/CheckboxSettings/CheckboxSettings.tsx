@@ -2,7 +2,12 @@ import { formConstructorSlice, useAppSelector } from '../../../../store/formElem
 import { ISelectedElement } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
 import { CheckboxProps } from '../../../../store/formElements/checkboxTypes'
-import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/uikit/Checkbox'
+import {
+  CheckboxPropSize,
+  CheckboxPropView,
+  CheckboxPropAlign,
+  Checkbox,
+} from '@consta/uikit/Checkbox'
 import { useDispatch } from 'react-redux'
 import { useLayoutEffect, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
@@ -25,7 +30,7 @@ export const CheckboxSettings = () => {
   }, [selectedElementProps, selectedElement])
 
   const onChangeField = (
-    value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign,
+    value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | boolean,
     field: keyof CheckboxProps,
   ) => {
     if (selectedElement) {
@@ -65,6 +70,13 @@ export const CheckboxSettings = () => {
     <div className={styles.badgeSettings}>
       {props ? (
         <>
+          <Checkbox
+            label='Checked'
+            checked={props.checked}
+            onClick={() => {
+              onChangeField(!props.checked, 'checked')
+            }}
+          />
           <Select
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}

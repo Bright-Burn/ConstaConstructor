@@ -20,8 +20,7 @@ export const RadioButtonFormElement: FC<IRadioButtonFormElement> = ({ element })
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.RadioButton}
-    >
+      elementType={FormElementTypes.RadioButton}>
       <Radio {...radioButtonProps} />
     </SelectableLayer>
   )

@@ -2,6 +2,7 @@ import { BaseProps, IFormElement } from './types'
 import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 
 export type RadioButtonProps = {
+  checked: boolean
   size?: RadioPropSize
   view?: RadioPropView
   align?: RadioPropAlign
@@ -11,3 +12,4 @@ export type RadioButtonProps = {
 export interface IFormElementRadioButton extends IFormElement {
   props: RadioButtonProps
 }
+
