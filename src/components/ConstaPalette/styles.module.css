@@ -1,0 +1,11 @@
+.constaPalette {
+    display: flex;
+}
+
+.itemActive {
+    background-color: var(--color-bg-brand);
+}
+
+.itemHovered{
+    background-color: var(--color-control-bg-ghost-hover);
+}
