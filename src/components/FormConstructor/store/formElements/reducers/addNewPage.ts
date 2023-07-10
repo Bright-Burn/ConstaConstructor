@@ -1,44 +1,23 @@
 import uuid from 'react-uuid'
-import {
-  FormGroupsTypes,
-  IFormConstructor,
-  IFormElement,
-  IGroupElement,
-  ILayoutElement,
-} from '../types'
+import { IFormConstructor, IFormElement, IGroupElement, ILayoutElement } from '../types'
+import { initialLayout } from '../initialState'
 
 export const addNewPage = (state: IFormConstructor) => {
-  const pageLayout: ILayoutElement = {
-    id: uuid(),
-    type: FormGroupsTypes.Layout,
-    isOuter: false,
-    props: {
-      constaProps: {
-        flex: 1,
-        direction: 'row',
-        horizontalAlign: 'left',
-        verticalAlign: 'top',
-      },
-      styles: {
-        alignItems: 'normal',
-        justifyContent: 'start',
-      },
-      className: '',
-      baseProps: {},
-    },
-  }
-  const pageId = `Page${state.numberOfPages + 1}`
+  /// Создаём новый id для дефолтного Layout
+  const pageLayout: ILayoutElement = { ...initialLayout, id: uuid() }
+
+  const newPageId = uuid()
 
   const newTreeMap = new Map<string, string[]>(state.allElementsTree)
   const newAllElementsMap = new Map<string, IGroupElement | IFormElement>(state.allElementsMap)
 
   newAllElementsMap.set(pageLayout.id, pageLayout)
-  newTreeMap.set(pageId, [pageLayout.id])
+  newTreeMap.set(newPageId, [pageLayout.id])
 
   state.pages = [
     ...state.pages,
     {
-      id: pageId,
+      id: newPageId,
       name: `Page${state.numberOfPages + 1}`,
     },
   ]

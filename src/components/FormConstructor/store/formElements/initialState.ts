@@ -1,31 +1,37 @@
 import uuid from 'react-uuid'
-import { IFormElement, IGroupElement, FormGroupsTypes, IFormConstructor } from './types'
+import {
+  IFormElement,
+  IGroupElement,
+  FormGroupsTypes,
+  IFormConstructor,
+  ILayoutElement,
+} from './types'
 
-export const rootId = 'Page1'
+export const rootId = uuid()
 const initialLayoutId = uuid()
-const initialElementsMap = new Map<string, IFormElement | IGroupElement>([
-  [
-    initialLayoutId,
-    {
-      id: initialLayoutId,
-      type: FormGroupsTypes.Layout,
-      isOuter: false,
-      props: {
-        constaProps: {
-          flex: 1,
-          direction: 'row',
-          horizontalAlign: 'left',
-          verticalAlign: 'top',
-        },
-        styles: {
-          alignItems: 'normal',
-          justifyContent: 'start',
-        },
-        className: '',
-        baseProps: {},
-      },
+
+export const initialLayout: ILayoutElement = {
+  id: initialLayoutId,
+  type: FormGroupsTypes.Layout,
+  isOuter: false,
+  props: {
+    constaProps: {
+      flex: 1,
+      direction: 'row',
+      horizontalAlign: 'left',
+      verticalAlign: 'top',
     },
-  ],
+    styles: {
+      alignItems: 'normal',
+      justifyContent: 'start',
+    },
+    className: '',
+    baseProps: {},
+  },
+}
+
+const initialElementsMap = new Map<string, IFormElement | IGroupElement>([
+  [initialLayoutId, initialLayout],
 ])
 
 export const initialAllElementsTree = new Map<string, string[]>([[rootId, [initialLayoutId]]])
