@@ -32,6 +32,7 @@ import { IconSettings } from './IconSettings'
 import { ButtonSettings } from './ButtonSettings/ButtonSettings'
 import { ButtonModuleSettings } from './ButtonModalSettings'
 import { FilledSettings } from './FilledSettings/FilledSettings'
+import { TagSettings } from './TagSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -169,6 +170,12 @@ export const Settings: FC = () => {
           return (
             <>
               <UserSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Tag:
+          return (
+            <>
+              <TagSettings /> <BaseSettings />
             </>
           )
         case FormElementTypes.Icon:
