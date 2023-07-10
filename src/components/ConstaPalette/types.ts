@@ -2,7 +2,7 @@ import { PropSize } from '@consta/uikit/__internal__/src/components/SelectCompon
 
 export interface IConstaPalette {
   onChangeColor: (color: ConstaColor) => void
-  color: ConstaColor
+  color: ConstaColor | undefined
   size: PropSize
 }
 

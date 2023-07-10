@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { ConstaColor, ConstaColors, IConstaPalette } from './types'
 import css from './styles.module.css'
 import { Select } from '@consta/uikit/Select'
@@ -7,7 +7,11 @@ import { cn } from '@bem-react/classname'
 const selectItems: ConstaColor[] = [...ConstaColors]
 
 export const ConstaPalette: FC<IConstaPalette> = ({ color, onChangeColor, size }) => {
-  const [colorPreview, setColorPreview] = useState<ConstaColor>(color)
+  const [colorPreview, setColorPreview] = useState<ConstaColor | undefined>()
+
+  useEffect(() => {
+    setColorPreview(color)
+  }, [color])
 
   const getItemKey = (item: ConstaColor) => {
     return item
