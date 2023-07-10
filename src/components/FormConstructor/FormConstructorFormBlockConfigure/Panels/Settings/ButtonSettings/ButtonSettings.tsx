@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   ButtonAction,
   ButtonProps,
@@ -23,6 +23,9 @@ import uuid from 'react-uuid'
 import { forms, sizes, views } from './UserConstants'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
+import { iconNames } from '../../../../store/formElements/iconTypes'
+import { icons } from '../IconSettings/IconsConstants'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 export const ButtonSettings = () => {
   const [props, setProps] = useState<ButtonProps>()
@@ -154,6 +157,16 @@ export const ButtonSettings = () => {
       }
     }
 
+  const onChangeIcon = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      newProps.icon = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -229,6 +242,29 @@ export const ButtonSettings = () => {
             label='iconLeft'
             onChange={onChangeSwitch('iconLeft')}
           />
+          {props.iconLeft && (
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              label='icons'
+              value={props.icon}
+              onChange={({ value }) => {
+                onChangeIcon(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
+            />
+          )}
           <Switch
             checked={!!props.iconRight}
             label='iconRight'
