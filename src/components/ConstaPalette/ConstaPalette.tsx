@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import { ConstaColor, ConstaColors, IConstaPalette } from './types'
 import css from './styles.module.css'
 import { Select } from '@consta/uikit/Select'
+import { cn } from '@bem-react/classname'
 
 const selectItems: ConstaColor[] = [...ConstaColors]
 
@@ -16,15 +17,7 @@ export const ConstaPalette: FC<IConstaPalette> = ({ color, onChangeColor, size }
     setColorPreview(color)
   }
 
-  const getItemClass = (hovered: boolean, active: boolean) => {
-    if (active) {
-      return css.itemActive
-    } else if (hovered) {
-      return css.itemHovered
-    } else {
-      return ''
-    }
-  }
+  const cnSelectExampleRenderItem = cn('ListItem')
 
   return (
     <div className={css.constaPalette}>
@@ -35,14 +28,14 @@ export const ConstaPalette: FC<IConstaPalette> = ({ color, onChangeColor, size }
         getItemLabel={getItemKey}
         items={selectItems}
         value={color}
-        renderItem={({ item, active, onClick, hovered, onMouseEnter }) => {
+        renderItem={({ item, active, hovered, onClick, onMouseEnter }) => {
           const onCustomMouseEnter = (e: React.SyntheticEvent) => {
             setColorPreview(item)
             return onMouseEnter(e)
           }
           return (
             <div
-              className={getItemClass(hovered, active)}
+              className={cnSelectExampleRenderItem('', { active, hovered })}
               role='option'
               aria-selected={active}
               onMouseEnter={onCustomMouseEnter}
@@ -58,12 +51,14 @@ export const ConstaPalette: FC<IConstaPalette> = ({ color, onChangeColor, size }
       />
       <div
         style={{
+          borderRadius: '0.5rem',
           marginTop: `calc(var(--control-height-${size}) - 8px)`,
           marginLeft: `0.4rem`,
           width: `var(--control-height-${size})`,
           height: `var(--control-height-${size})`,
           background: `var(--${colorPreview})`,
-        }}></div>
+        }}
+      />
     </div>
   )
 }
