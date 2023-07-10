@@ -19,17 +19,21 @@ export const TabsSettings = () => {
   } = useItemsHandlers()
   const [tabs, setTabs] = useState<ITEM[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
+
   const labelsEditingHandler = (value: boolean) => {
     setTabs(itemsProps.items)
     setIsLabelsEditing(value)
   }
+
   const applyNewTabs = () => {
     onChangeItems(tabs)
     setIsLabelsEditing(false)
   }
+
   const onTabLabelEdit = (value: string | null, index: number) => {
     const newTabs = [...tabs]
-    newTabs[index] = { ...newTabs[index], label: `${value}` }
+    if (!value) newTabs[index] = { ...newTabs[index], label: `` }
+    else newTabs[index] = { ...newTabs[index], label: `${value}` }
     setTabs([...newTabs])
   }
 
