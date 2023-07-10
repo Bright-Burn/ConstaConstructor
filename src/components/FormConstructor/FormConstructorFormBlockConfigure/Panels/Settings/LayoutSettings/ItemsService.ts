@@ -206,6 +206,17 @@ export const useItemsHandlers = () => {
     }
   }
 
+  const onChangeBorderRadius = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
+      }
+      newProps.styles = { ...newProps.styles }
+      newProps.styles.borderRadius = value as string
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   return {
     onChangeFlex,
     onChangeWidth,
@@ -219,6 +230,7 @@ export const useItemsHandlers = () => {
     onChangeBorderColor,
     onChangeVerticalAligment,
     onChangeDirection,
+    onChangeBorderRadius,
     itemsProps: {
       constaProps: (selectedElementProps as LayoutElementPropsStyles).constaProps,
       styles: (selectedElementProps as LayoutElementPropsStyles).styles,

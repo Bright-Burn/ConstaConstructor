@@ -31,6 +31,7 @@ export const LayoutSettings = () => {
     onChangeBorderSide,
     onChangeVerticalAligment,
     onChangeDirection,
+    onChangeBorderRadius,
   } = useItemsHandlers()
 
   const [widthValue, setWidthValue] = useState<string>('0')
@@ -129,6 +130,12 @@ export const LayoutSettings = () => {
             items={borderWidths}
             value={`${itemsProps.styles?.borderWidth || ''}`}
             onChange={({ value }) => onChangeBorderWidth(value)}
+          />
+          <TextField
+            value={itemsProps.styles?.borderRadius}
+            type='text'
+            label='Border radius'
+            onChange={({ value }) => onChangeBorderRadius(value)}
           />
           <Select
             getItemKey={key => key}

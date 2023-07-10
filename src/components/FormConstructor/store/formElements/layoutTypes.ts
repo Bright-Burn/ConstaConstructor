@@ -52,6 +52,7 @@ export interface LayoutElementStyles {
   borderColor?: BorderColor
   alignItems?: AlignItems
   borderSide?: BorderSide
+  borderRadius?: string
 }
 
 export interface LayoutElementPropsStyles extends BaseProps {
