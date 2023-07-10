@@ -32,7 +32,6 @@ import { IconSettings } from './IconSettings'
 import { ButtonSettings } from './ButtonSettings/ButtonSettings'
 import { ButtonModuleSettings } from './ButtonModalSettings'
 import { FilledSettings } from './FilledSettings/FilledSettings'
-import { TagSettings } from './TagSettings/TagSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
 
 export const Settings: FC = () => {
@@ -171,12 +170,6 @@ export const Settings: FC = () => {
           return (
             <>
               <UserSettings /> <BaseSettings />
-            </>
-          )
-        case FormElementTypes.Tag:
-          return (
-            <>
-              <TagSettings /> <BaseSettings />
             </>
           )
         case FormElementTypes.ChoiceGroup:

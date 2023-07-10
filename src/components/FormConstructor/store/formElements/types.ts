@@ -26,7 +26,6 @@ import {
   IButtonActionElement,
   IFormElementButton,
 } from './buttonTypes'
-import { IFormElementTagProps, TagProps } from './tagTypes'
 import { OwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
 
 // Существует два типа элементов, элементы формы и группирующие панели
@@ -84,7 +83,6 @@ export const FormElementTypes = {
   BreadcrumbsForm: 'BreadcrumbsFormElement',
   User: 'User',
   Icon: 'Icon',
-  Tag: 'Tag',
   ChoiceGroup: 'ChoiceGroup',
 } as const
 
@@ -138,7 +136,6 @@ export type FormElementProps =
   | BreadcrumbProps
   | UserProps
   | IconProps
-  | TagProps
   | OwnChoiceGroupProps
 
 // Все Union пропсы для GroupElement
@@ -164,7 +161,6 @@ export type FormElementUnion =
   | IFormElementBreadcrumbs
   | IFormElementUser
   | IFormElementIcon
-  | IFormElementTagProps
   | IFormElementChoiceGroup
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
