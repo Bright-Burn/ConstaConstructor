@@ -1,9 +1,4 @@
-import {
-  AlignItems,
-  BorderStyle,
-  BorderWidth,
-  JustifyContentProps,
-} from '../../../../store/formElements/layoutTypes'
+import { AlignItems, JustifyContentProps } from '../../../../store/formElements/layoutTypes'
 import {
   LayoutPropDirection,
   LayoutPropHorizontalAlign,

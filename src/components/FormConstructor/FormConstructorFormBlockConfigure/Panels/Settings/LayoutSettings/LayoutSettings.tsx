@@ -133,7 +133,7 @@ export const LayoutSettings = () => {
           />
           <TextField
             value={itemsProps.styles?.borderRadius}
-            type='text'
+            type='numeric'
             label='Border radius'
             onChange={({ value }) => onChangeBorderRadius(value)}
           />

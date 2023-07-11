@@ -212,7 +212,10 @@ export const useItemsHandlers = () => {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
       newProps.styles = { ...newProps.styles }
-      newProps.styles.borderRadius = value as string
+
+      if (value && value?.slice(-3, -1) !== 'px' && value?.slice(-2) !== 'px')
+        newProps.styles.borderRadius = `${value}px`
+      else newProps.styles.borderRadius = value as string
       onDispatch(selectedElement, newProps)
     }
   }
