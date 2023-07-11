@@ -1,6 +1,7 @@
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 import { BaseProps, IFormElement } from './types'
 import { TagBasePropGroup } from '../../FormConstructorFormBlockConfigure/Panels/Settings/TagSettings/types'
+import { iconNames } from './iconTypes'
 
 export type TagProps = {
   label: string
@@ -11,6 +12,7 @@ export type TagProps = {
   Icon?: boolean
   onCancel?: () => void
   onChange?: () => void
+  icon?: iconNames
 } & BaseProps
 
 export interface IFormElementTagProps extends IFormElement {

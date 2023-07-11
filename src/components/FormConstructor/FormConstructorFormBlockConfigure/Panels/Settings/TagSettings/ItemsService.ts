@@ -4,6 +4,7 @@ import { ISelectedElement } from '../../../../store/formElements/types'
 import { TagProps } from '../../../../store/formElements/tagTypes'
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 import { TagBasePropGroup, TagBasePropMode } from './types'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -74,18 +75,31 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
+  const onChangeIcon = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: TagProps = {
+        ...(selectedElementProps as TagProps),
+      }
+      newProps.icon = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   return {
     onChangeMode,
     onChangeGroup,
     onChangeField,
     onChangeSize,
     onChangeSwitch,
+    onChangeIcon,
     itemsProps: {
       label: (selectedElementProps as TagProps).label,
       size: (selectedElementProps as TagProps).size,
       mode: (selectedElementProps as TagProps).mode,
       group: (selectedElementProps as TagProps).group,
-      icon: (selectedElementProps as TagProps).Icon,
+      iconSwitch: (selectedElementProps as TagProps).Icon,
+      icon: (selectedElementProps as TagProps).icon,
     },
   }
 }

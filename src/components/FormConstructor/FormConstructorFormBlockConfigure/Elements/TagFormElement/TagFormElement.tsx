@@ -5,7 +5,7 @@ import { ITagFormElement } from './types'
 import style from './style.module.css'
 import { IFormElementTagProps, TagProps } from '../../../store/formElements/tagTypes'
 import { Tag } from '@consta/uikit/Tag'
-import { IconAttach } from '@consta/icons/IconAttach'
+import { Icons } from '../IconFormElement/mocks'
 
 export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
   const [checked, setChecked] = useState<boolean>(false)
@@ -34,7 +34,8 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             checked={checked}
             onChange={({ checked }) => setChecked(checked)}
             group={tagProps.group}
-            icon={tagProps.Icon ? IconAttach : undefined}
+            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            className={tagProps.className}
           />
         )
       case 'cancel':
@@ -45,7 +46,8 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             size={tagProps.size}
             onCancel={() => null}
             group={tagProps.group}
-            icon={tagProps.Icon ? IconAttach : undefined}
+            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            className={tagProps.className}
           />
         )
       case 'button':
@@ -56,7 +58,8 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             size={tagProps.size}
             onClick={() => null}
             group={tagProps.group}
-            icon={tagProps.Icon ? IconAttach : undefined}
+            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            className={tagProps.className}
           />
         )
       case 'link':
@@ -67,7 +70,8 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={tagProps.Icon ? IconAttach : undefined}
+            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            className={tagProps.className}
           />
         )
       case 'info':
@@ -77,7 +81,8 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={tagProps.Icon ? IconAttach : undefined}
+            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            className={tagProps.className}
           />
         )
     }
