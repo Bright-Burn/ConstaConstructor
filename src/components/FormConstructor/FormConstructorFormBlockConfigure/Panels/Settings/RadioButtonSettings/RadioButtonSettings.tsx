@@ -3,20 +3,24 @@ import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { alignArray, sizeArray, viewArray } from './types'
 import { RadioPropView, RadioPropAlign, RadioPropSize } from '@consta/uikit/Radio'
+import { Switch } from '@consta/uikit/Switch'
 import { Checkbox } from '@consta/uikit/Checkbox'
 
 export const RadioButtonSettings = () => {
-  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeChacked, onChangeField } =
+  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeSwitch, onChangeField } =
     useItemsHandlers()
 
   return (
     <>
-      <Checkbox
-        label='Checked'
-        checked={itemsProps.checked}
-        onClick={() => {
-          onChangeChacked(!itemsProps.checked)
-        }}
+      <Switch
+        checked={itemsProps.disabled ?? false}
+        label='disabled'
+        onChange={onChangeSwitch('disabled')}
+      />
+      <Switch
+        checked={itemsProps.checked ?? false}
+        label='checked'
+        onChange={onChangeSwitch('checked')}
       />
       <Select
         label='size'
@@ -46,4 +50,3 @@ export const RadioButtonSettings = () => {
     </>
   )
 }
-
