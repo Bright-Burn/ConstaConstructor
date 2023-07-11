@@ -30,6 +30,7 @@ export interface IFormConstructorSerializable {
   isGridVisible: boolean
 
   pages: IPageOfLayout[]
+  selectedPageId: string
   numberOfPages: number
 }
 

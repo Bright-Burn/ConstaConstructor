@@ -1,9 +1,14 @@
 import styles from './styles.module.css'
-import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/uikit/Checkbox'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import { useItemsHandlers } from './ItemsService'
 import { sizes, statuses, views } from './CheckBoxConstants'
+import {
+  Checkbox,
+  CheckboxPropAlign,
+  CheckboxPropSize,
+  CheckboxPropView,
+} from '@consta/uikit/Checkbox'
 
 export const CheckboxSettings = () => {
   const { itemsProps, onChangeField } = useItemsHandlers()
@@ -12,6 +17,13 @@ export const CheckboxSettings = () => {
     <div className={styles.badgeSettings}>
       {itemsProps ? (
         <>
+          <Checkbox
+            label='Checked'
+            checked={itemsProps.checked}
+            onClick={() => {
+              onChangeField(!itemsProps.checked, 'checked')
+            }}
+          />
           <Select
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}

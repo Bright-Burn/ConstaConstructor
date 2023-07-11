@@ -16,6 +16,7 @@ import {
 } from '../../../../store/formElements/types'
 import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
 import uuid from 'react-uuid'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement, allElementsMap, allElementsTree } = useAppSelector(
@@ -139,6 +140,26 @@ export const useItemsHandlers = () => {
     )
   }
 
+  const onChangeIcon = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      newProps.icon = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeIconR = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      newProps.iconR = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -153,6 +174,8 @@ export const useItemsHandlers = () => {
     onChangeField,
     onChangeSwitch,
     onChangeButtonAction,
+    onChangeIcon,
+    onChangeIconR,
     itemsProps: {
       size: (selectedElementProps as ButtonProps).size,
       view: (selectedElementProps as ButtonProps).view,
@@ -164,6 +187,8 @@ export const useItemsHandlers = () => {
       loading: (selectedElementProps as ButtonProps).loading,
       iconRight: (selectedElementProps as ButtonProps).iconRight,
       onlyIcon: (selectedElementProps as ButtonProps).onlyIcon,
+      icon: (selectedElementProps as ButtonProps).icon,
+      iconR: (selectedElementProps as ButtonProps).iconR,
     },
   }
 }

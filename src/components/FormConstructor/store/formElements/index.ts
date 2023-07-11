@@ -43,6 +43,7 @@ export type {
   headerWithBreadcrumbsProps,
 } from './headerWithBreadcrumbsTypes'
 export type { IFormElementHeaderWithStatus, headerWithStatusProps } from './headerWithStatusTypes'
+export { rootId } from './initialState'
 export * from './buttonTypes'
 
 export {

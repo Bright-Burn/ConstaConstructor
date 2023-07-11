@@ -15,6 +15,7 @@ import {
   borderStyle,
   borderSide,
 } from './LayoutConstants'
+import { LayoutPalette } from '../../../../../ConstaPalette'
 
 export const LayoutSettings = () => {
   const {
@@ -31,6 +32,7 @@ export const LayoutSettings = () => {
     onChangeBorderSide,
     onChangeVerticalAligment,
     onChangeDirection,
+    onChangeBackroundColor,
   } = useItemsHandlers()
 
   const [widthValue, setWidthValue] = useState<string>('0')
@@ -98,6 +100,11 @@ export const LayoutSettings = () => {
             label='Height'
             min='0'
           />
+          <LayoutPalette
+            color={itemsProps.styles?.backgroundColor}
+            size={'m'}
+            onChangeColor={onChangeBackroundColor}
+          />
           <Select
             getItemKey={key => key}
             label='Vertical Aligned'
@@ -129,6 +136,14 @@ export const LayoutSettings = () => {
             items={borderWidths}
             value={`${itemsProps.styles?.borderWidth || ''}`}
             onChange={({ value }) => onChangeBorderWidth(value)}
+          />
+          <Select
+            getItemKey={key => key}
+            label='Border side'
+            getItemLabel={label => label}
+            items={borderSide}
+            value={`${itemsProps.styles?.borderSide || ''}`}
+            onChange={({ value }) => onChangeBorderSide(value)}
           />
           <TextField
             value={itemsProps.styles?.borderColor}

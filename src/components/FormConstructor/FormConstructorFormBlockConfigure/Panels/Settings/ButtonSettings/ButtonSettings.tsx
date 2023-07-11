@@ -1,4 +1,5 @@
 import { buttonActions } from '../../../../store/formElements'
+import React from 'react'
 import styles from './styles.module.css'
 import { Select } from '@consta/uikit/Select'
 import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
@@ -6,9 +7,18 @@ import { forms, sizes, views } from './UserConstants'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
 import { useItemsHandlers } from './ItemsService'
+import { icons } from '../IconSettings/IconsConstants'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 export const ButtonSettings = () => {
-  const { itemsProps, onChangeField, onChangeSwitch, onChangeButtonAction } = useItemsHandlers()
+  const {
+    itemsProps,
+    onChangeField,
+    onChangeSwitch,
+    onChangeButtonAction,
+    onChangeIcon,
+    onChangeIconR,
+  } = useItemsHandlers()
 
   return (
     <div className={styles.buttonPropsSettings}>
@@ -75,11 +85,57 @@ export const ButtonSettings = () => {
             label='iconLeft'
             onChange={onChangeSwitch('iconLeft')}
           />
+          {itemsProps.iconLeft && (
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              label='icons'
+              value={itemsProps.icon}
+              onChange={({ value }) => {
+                onChangeIcon(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
+            />
+          )}
           <Switch
             checked={!!itemsProps.iconRight}
             label='iconRight'
             onChange={onChangeSwitch('iconRight')}
           />
+          {itemsProps.iconRight && (
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              label='icons'
+              value={itemsProps.iconR}
+              onChange={({ value }) => {
+                onChangeIconR(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
+            />
+          )}
           {(itemsProps.iconLeft || itemsProps.iconRight) && (
             <Switch
               checked={itemsProps.onlyIcon ?? false}

@@ -4,9 +4,10 @@ import { TextField } from '@consta/uikit/TextField'
 import { alignArray, sizeArray, viewArray } from './types'
 import { RadioPropView, RadioPropAlign, RadioPropSize } from '@consta/uikit/Radio'
 import { Switch } from '@consta/uikit/Switch'
+import { Checkbox } from '@consta/uikit/Checkbox'
 
 export const RadioButtonSettings = () => {
-  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField, onChangeSwitch } =
+  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeSwitch, onChangeField } =
     useItemsHandlers()
 
   return (

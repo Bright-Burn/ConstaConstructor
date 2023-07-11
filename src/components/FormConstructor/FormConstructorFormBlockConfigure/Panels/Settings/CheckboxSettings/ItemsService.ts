@@ -8,7 +8,7 @@ export const useItemsHandlers = () => {
   const dispatch = useDispatch()
 
   const onChangeField = (
-    value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | string,
+    value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | string | boolean,
     field: keyof CheckboxProps,
   ) => {
     if (selectedElement) {

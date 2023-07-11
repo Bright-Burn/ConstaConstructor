@@ -4,6 +4,7 @@ import {
   LayoutPropVerticalAlign,
 } from '@consta/uikit/Layout'
 import { BaseProps } from './types'
+import { ConstaColor } from '../../../ConstaPalette'
 
 // Нет возможности использовать тип импортированный из консты, как это сделано с типом ButtonElementProps, так как нет возможности создать State, содержащий поле типа HTMLElement
 // В будущем решим эту проблему, пока что описал вручную
@@ -47,6 +48,7 @@ export interface LayoutElementStyles {
   maxHeight?: string
   minHeight?: string
   justifyContent?: JustifyContentProps
+  backgroundColor?: ConstaColor
   borderStyle?: BorderStyle
   borderWidth?: BorderWidth
   borderColor?: BorderColor

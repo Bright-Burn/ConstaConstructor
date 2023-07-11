@@ -1,9 +1,8 @@
-import { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Button } from '@consta/uikit/Button'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IButtonFormElement } from './types'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
-import { IconUser } from '@consta/uikit/IconUser'
 import { IconSelect } from '@consta/uikit/IconSelect'
 import { FormGroupsDict } from '../../FormGroupDict'
 import {
@@ -12,7 +11,7 @@ import {
   IFormElementButton,
   useAppSelector,
 } from '../../../store/formElements'
-import style from './style.module.css'
+import { Icons } from '../IconFormElement/mocks'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonProps>()
@@ -70,8 +69,8 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
           {...buttonProps}
           onClick={onButtonClick}
           style={{ flexGrow: isFilled ? 1 : 0 }}
-          iconLeft={buttonProps?.iconLeft && IconUser}
-          iconRight={buttonProps?.iconRight && IconSelect}
+          iconLeft={buttonProps?.iconLeft && buttonProps.icon && Icons[buttonProps.icon]}
+          iconRight={buttonProps?.iconRight && buttonProps.iconR && Icons[buttonProps.iconR]}
         />
       </SelectableLayer>
       {getActionViwer()}
