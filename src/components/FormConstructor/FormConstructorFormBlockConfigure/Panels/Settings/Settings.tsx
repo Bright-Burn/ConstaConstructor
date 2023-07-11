@@ -33,6 +33,7 @@ import { ButtonSettings } from './ButtonSettings/ButtonSettings'
 import { ButtonModuleSettings } from './ButtonModalSettings'
 import { FilledSettings } from './FilledSettings/FilledSettings'
 import { TagSettings } from './TagSettings'
+import { ChoiceGroupSettings } from './ChoiceGroupSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -176,6 +177,12 @@ export const Settings: FC = () => {
           return (
             <>
               <TagSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.ChoiceGroup:
+          return (
+            <>
+              <ChoiceGroupSettings /> <BaseSettings />
             </>
           )
         case FormElementTypes.Icon:

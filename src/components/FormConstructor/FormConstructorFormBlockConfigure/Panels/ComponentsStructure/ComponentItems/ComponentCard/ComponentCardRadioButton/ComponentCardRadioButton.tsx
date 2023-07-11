@@ -14,6 +14,7 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
       id: uuid(),
       type: FormElementTypes.RadioButton,
       props: {
+        checked: false,
         size: 'm',
         view: 'primary',
         align: 'center',
@@ -33,3 +34,4 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
     </div>
   )
 }
+

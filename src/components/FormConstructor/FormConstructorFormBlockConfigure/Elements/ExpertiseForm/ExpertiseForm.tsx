@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { FC, useLayoutEffect,  useRef, useState } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
   IExpertiseFormProps,
@@ -9,8 +9,7 @@ import { IExpertiseForm } from './types'
 import { agGridAdapter } from '@consta/ag-grid-adapter/agGridAdapter'
 import { AgGridReact } from 'ag-grid-react'
 import style from './styles.module.css'
-import { ColDef, SideBarDef } from 'ag-grid-community'
-import 'ag-grid-enterprise'
+import { ColDef } from 'ag-grid-community'
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-alpine.css'
 import { IconClose } from '@consta/uikit/IconClose'
@@ -31,7 +30,7 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
     headerView: 'default',
     verticalAlign: 'center',
   })
-  const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+  const [columnDefs, ] = useState<ColDef[]>([
     { field: 'well', headerName: 'Скважина', filter: 'agTextColumnFilter', minWidth: 100 },
     { field: 'status', headerName: 'Статус', minWidth: 200 },
     { field: 'state', headerName: 'Состояние', minWidth: 50 },

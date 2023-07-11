@@ -1,4 +1,4 @@
-import { IFormConstructor, IFormElement, IGroupElement } from './types'
+import { IFormConstructor } from './types'
 import { createSlice, SliceCaseReducers, ValidateSliceCaseReducers } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
@@ -20,21 +20,7 @@ import {
   toggleComponentsStructurePanel,
   setDraggableElement,
 } from './reducers'
-
-export const rootId = 'Page1'
-
-const initialState: IFormConstructor = {
-  allElementsTree: new Map<string, string[]>(),
-  allElementsMap: new Map<string, IFormElement | IGroupElement>(),
-  selectedElement: null,
-  selectedElementProps: null,
-  isGridVisible: true,
-  draggableElement: null,
-  componentsStructurePanelState: true,
-  settingsPanelState: true,
-  pages: [{ id: rootId, name: 'Page1', isActive: true }],
-  numberOfPages: 1,
-}
+import { initialState } from './initialState'
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
   name = '',

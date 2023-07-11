@@ -3,9 +3,15 @@ import { Button } from '@consta/uikit/Button'
 import { IconClose } from '@consta/uikit/IconClose'
 import { PagesProps } from './types'
 import { Card } from '@consta/uikit/Card'
-import { formConstructorSlice, useAppDispatch } from '../../../../store/formElements'
+import {
+  formConstructorSlice,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../store/formElements'
 
 export const Pages = ({ pages }: PagesProps) => {
+  const { selectedPageId } = useAppSelector(state => state.formConstructor)
+
   const dispatch = useAppDispatch()
 
   const changeActivePage = (pageId: string) => {
@@ -27,7 +33,7 @@ export const Pages = ({ pages }: PagesProps) => {
           <Card className={`${styles.pageBlock}`} form='round'>
             <Button
               label={`${page.name}`}
-              view='ghost'
+              view={selectedPageId === page.id ? 'primary' : 'ghost'}
               size='xs'
               form='brick'
               onClick={() => changeActivePage(page.id)}

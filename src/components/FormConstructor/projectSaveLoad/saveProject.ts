@@ -81,5 +81,6 @@ export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFor
     settingsPanelState: true,
     pages: proj.pages,
     numberOfPages: proj.numberOfPages,
+    selectedPageId: proj.selectedPageId,
   }
 }

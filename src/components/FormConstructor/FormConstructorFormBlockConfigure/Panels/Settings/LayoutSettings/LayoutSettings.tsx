@@ -15,6 +15,7 @@ import {
   borderStyle,
   borderSide,
 } from './LayoutConstants'
+import { LayoutPalette } from '../../../../../ConstaPalette'
 
 export const LayoutSettings = () => {
   const {
@@ -31,6 +32,7 @@ export const LayoutSettings = () => {
     onChangeBorderSide,
     onChangeVerticalAligment,
     onChangeDirection,
+    onChangeBackroundColor,
   } = useItemsHandlers()
 
   const [widthValue, setWidthValue] = useState<string>('0')
@@ -97,6 +99,11 @@ export const LayoutSettings = () => {
             type='number'
             label='Height'
             min='0'
+          />
+          <LayoutPalette
+            color={itemsProps.styles?.backgroundColor}
+            size={'m'}
+            onChangeColor={onChangeBackroundColor}
           />
           <Select
             getItemKey={key => key}

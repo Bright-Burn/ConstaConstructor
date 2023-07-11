@@ -55,12 +55,25 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
+  const onChangeChacked = (checked: boolean) => {
+    if (selectedElement) {
+      const newProps: RadioButtonProps = {
+        ...(selectedElementProps as RadioButtonProps),
+      }
+      newProps.checked = checked
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   return {
     onChangeView,
     onChangeSize,
     onChangeAlign,
     onChangeField,
+    onChangeChacked,
     itemsProps: {
+      checked: (selectedElementProps as RadioButtonProps).checked,
       size: (selectedElementProps as RadioButtonProps).size,
       view: (selectedElementProps as RadioButtonProps).view,
       align: (selectedElementProps as RadioButtonProps).align,
@@ -68,3 +81,4 @@ export const useItemsHandlers = () => {
     },
   }
 }
+
