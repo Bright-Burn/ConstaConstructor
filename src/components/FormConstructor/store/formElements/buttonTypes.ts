@@ -1,3 +1,4 @@
+import { iconNames } from './iconTypes'
 import { BaseProps, IFormElement, IGroupElement } from './types'
 import { Props } from '@consta/uikit/Button'
 
@@ -6,6 +7,8 @@ export type ButtonAction = 'none' | 'ButtonModal'
 
 export interface ButtonProps extends BaseProps, Props {
   action: ButtonAction
+  icon?: iconNames
+  iconR?: iconNames
 }
 
 export const buttonActions: ButtonAction[] = ['none', 'ButtonModal']

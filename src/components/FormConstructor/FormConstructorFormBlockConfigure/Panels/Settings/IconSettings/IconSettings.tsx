@@ -8,6 +8,7 @@ import { views, sizes, icons } from './IconsConstants'
 import { IconProps, iconNames } from '../../../../store/formElements/iconTypes'
 import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
 import React from 'react'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 export const IconSettings: FC = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -89,6 +90,17 @@ export const IconSettings: FC = () => {
               onChange={({ value }) => {
                 onChangeIcon(value)
               }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
             />
           </>
         ) : null}
