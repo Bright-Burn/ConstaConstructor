@@ -18,6 +18,7 @@ import {
   BorderColor,
   BorderSide,
 } from '../../../../store/formElements/layoutTypes'
+import { ConstaColor } from '../../../../../ConstaPalette'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -206,6 +207,19 @@ export const useItemsHandlers = () => {
     }
   }
 
+  const onChangeBackroundColor = (color: ConstaColor) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
+      }
+
+      newProps.styles = { ...newProps.styles }
+
+      newProps.styles.backgroundColor = color
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   return {
     onChangeFlex,
     onChangeWidth,
@@ -219,6 +233,7 @@ export const useItemsHandlers = () => {
     onChangeBorderColor,
     onChangeVerticalAligment,
     onChangeDirection,
+    onChangeBackroundColor,
     itemsProps: {
       constaProps: (selectedElementProps as LayoutElementPropsStyles).constaProps,
       styles: (selectedElementProps as LayoutElementPropsStyles).styles,
@@ -226,3 +241,4 @@ export const useItemsHandlers = () => {
     },
   }
 }
+
