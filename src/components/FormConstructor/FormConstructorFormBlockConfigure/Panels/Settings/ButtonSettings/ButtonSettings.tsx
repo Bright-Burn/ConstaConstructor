@@ -167,6 +167,16 @@ export const ButtonSettings = () => {
     }
   }
 
+  const onChangeIconR = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: ButtonProps = {
+        ...(selectedElementProps as ButtonProps),
+      }
+      newProps.iconR = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -270,6 +280,29 @@ export const ButtonSettings = () => {
             label='iconRight'
             onChange={onChangeSwitch('iconRight')}
           />
+          {props.iconRight && (
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              label='icons'
+              value={props.iconR}
+              onChange={({ value }) => {
+                onChangeIconR(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
+            />
+          )}
           {(props.iconLeft || props.iconRight) && (
             <Switch
               checked={props.onlyIcon ?? false}
