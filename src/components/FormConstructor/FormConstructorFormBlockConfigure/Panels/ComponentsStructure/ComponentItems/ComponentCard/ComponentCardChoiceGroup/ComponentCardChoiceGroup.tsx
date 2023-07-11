@@ -8,6 +8,7 @@ import { IFormElementChoiceGroup } from '../../../../../../store/formElements/Ch
 import { Item } from '../../../../Settings/ChoiceGroupSettings/types'
 import { IconCamera } from '@consta/icons/IconCamera'
 import { IconCopy } from '@consta/icons/IconCopy'
+import { Icons } from '../../../../../Elements/IconFormElement/mocks'
 
 export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useDispatch()
@@ -15,18 +16,15 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const items: Item[] = [
       {
-        label: 'fdsffsdf',
-        icon: IconCamera,
+        label: 'Первый',
         disabled: false,
       },
       {
-        label: '133323',
-        icon: IconCamera,
+        label: 'Второй',
         disabled: true,
       },
       {
-        label: '55555',
-        icon: IconCopy,
+        label: 'Третий',
         disabled: false,
       },
     ]

@@ -9,6 +9,8 @@ import {
 import { Item } from './types'
 import { IconCamera } from '@consta/icons/IconCamera'
 import { OwnChoiceGroupProps } from '../../../../store/formElements/ChoiceGroupTypes'
+import { iconNames } from '../../../../store/formElements/iconTypes'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -33,7 +35,10 @@ export const useItemsHandlers = () => {
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
-          itemsProps = [...itemsProps, { icon: IconCamera, label: `new ${i + 1}` }]
+          itemsProps = [
+            ...itemsProps,
+            { icon: Icons['IconAdd'], labelIcon: 'IconAdd', label: `new ${i + 1}` },
+          ]
         }
       } else {
         for (let i = 0; i < currentLength - Number(value); i++) {
@@ -108,6 +113,7 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
   return {
     onChangeItemsCount,
     onChangeItems,

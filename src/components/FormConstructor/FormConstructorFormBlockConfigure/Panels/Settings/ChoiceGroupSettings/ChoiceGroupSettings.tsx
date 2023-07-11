@@ -11,6 +11,9 @@ import {
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
 import { Combobox } from '@consta/uikit/Combobox'
+import { icons } from '../IconSettings/IconsConstants'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const ChoiceGroupSettings = () => {
   const {
@@ -23,16 +26,20 @@ export const ChoiceGroupSettings = () => {
     onChangeSwitch,
     onChangeActiveItem,
   } = useItemsHandlers()
+
   const [lines, setLines] = useState<Item[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
+
   const labelsEditingHandler = (value: boolean) => {
     setLines(itemsProps.items)
     setIsLabelsEditing(value)
   }
+
   const applyNewLines = () => {
     onChangeItems(lines)
     setIsLabelsEditing(false)
   }
+
   const onLinesLabelEdit = (value: string | null, index: number) => {
     const newLines = [...lines]
     newLines[index] = { ...newLines[index], label: `${value}` }
@@ -43,6 +50,17 @@ export const ChoiceGroupSettings = () => {
     const newLines = [...lines]
     newLines[index] = { ...newLines[index], disabled: value }
     setLines([...newLines])
+  }
+
+  const onLinesIconEdit = (value: string | null, index: number) => {
+    const newLines = [...lines]
+    if (value !== null)
+      (newLines[index] = {
+        ...newLines[index],
+        icon: Icons[value as iconNames],
+        labelIcon: value,
+      }),
+        setLines([...newLines])
   }
 
   return (
@@ -78,6 +96,25 @@ export const ChoiceGroupSettings = () => {
                   label='disabled'
                   checked={line.disabled}
                   onChange={event => onLinesDisabledEdit(event.checked, index)}
+                />
+                <Select
+                  getItemKey={(item: string | undefined) => item || ''}
+                  getItemLabel={(item: string | undefined) => item || ''}
+                  items={icons}
+                  label='icons'
+                  value={line.labelIcon}
+                  onChange={event => onLinesIconEdit(event.value, index)}
+                  renderItem={({ item, active, onClick, onMouseEnter }) => (
+                    <div
+                      style={{ display: 'flex', alignItems: 'center' }}
+                      role='option'
+                      aria-selected={active}
+                      onMouseEnter={onMouseEnter}
+                      onClick={onClick}>
+                      {React.createElement(Icons[item as iconNames])}
+                      <div>{item}</div>
+                    </div>
+                  )}
                 />
               </>
             )
