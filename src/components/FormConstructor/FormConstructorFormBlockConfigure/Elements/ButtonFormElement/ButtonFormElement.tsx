@@ -70,7 +70,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
           onClick={onButtonClick}
           style={{ flexGrow: isFilled ? 1 : 0 }}
           iconLeft={buttonProps?.iconLeft && buttonProps.icon && Icons[buttonProps.icon]}
-          iconRight={buttonProps?.iconRight && IconSelect}
+          iconRight={buttonProps?.iconRight && buttonProps.iconR && Icons[buttonProps.iconR]}
         />
       </SelectableLayer>
       {getActionViwer()}
