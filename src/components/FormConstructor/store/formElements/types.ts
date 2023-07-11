@@ -26,6 +26,7 @@ import {
   IButtonActionElement,
   IFormElementButton,
 } from './buttonTypes'
+import { OwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -82,6 +83,7 @@ export const FormElementTypes = {
   BreadcrumbsForm: 'BreadcrumbsFormElement',
   User: 'User',
   Icon: 'Icon',
+  ChoiceGroup: 'ChoiceGroup',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -134,6 +136,7 @@ export type FormElementProps =
   | BreadcrumbProps
   | UserProps
   | IconProps
+  | OwnChoiceGroupProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles | ButtonGroupProps
@@ -158,6 +161,7 @@ export type FormElementUnion =
   | IFormElementBreadcrumbs
   | IFormElementUser
   | IFormElementIcon
+  | IFormElementChoiceGroup
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
