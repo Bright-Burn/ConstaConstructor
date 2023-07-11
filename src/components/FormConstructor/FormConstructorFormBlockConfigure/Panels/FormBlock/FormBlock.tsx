@@ -7,7 +7,7 @@ import { Pages } from './Pages/Pages'
 
 export const FormBlock: FC = () => {
   const pages = useAppSelector(state => state.formConstructor.pages)
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElement, selectedPageId } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const FormBlock: FC = () => {
       <Pages pages={pages} />
       <div className={`${styles.formBlock} borderCard`}>
         {pages.map(page =>
-          page.isActive ? (
+          page && page.id === selectedPageId ? (
             <div className={`${styles.formBlockContent}`}>
               <DroppableLayer parentElementId={page.id} />
             </div>

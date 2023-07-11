@@ -18,6 +18,7 @@ import {
   BorderColor,
   BorderSide,
 } from '../../../../store/formElements/layoutTypes'
+import { ConstaColor } from '../../../../../ConstaPalette'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -193,15 +194,24 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onChangeBorderColor = (value: string | null) => {
+  const onChangeBorderColor = (value: ConstaColor) => {
     if (selectedElement) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
-
       newProps.styles = { ...newProps.styles }
+      newProps.styles.borderColor = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
 
-      newProps.styles.borderColor = value as BorderColor
+  const onChangeBackroundColor = (color: ConstaColor) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
+      }
+      newProps.styles = { ...newProps.styles }
+      newProps.styles.backgroundColor = color
       onDispatch(selectedElement, newProps)
     }
   }
@@ -211,11 +221,13 @@ export const useItemsHandlers = () => {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
+
       newProps.styles = { ...newProps.styles }
 
       if (value && value?.slice(-3, -1) !== 'px' && value?.slice(-2) !== 'px')
         newProps.styles.borderRadius = `${value}px`
       else newProps.styles.borderRadius = value as string
+
       onDispatch(selectedElement, newProps)
     }
   }
@@ -234,6 +246,7 @@ export const useItemsHandlers = () => {
     onChangeVerticalAligment,
     onChangeDirection,
     onChangeBorderRadius,
+    onChangeBackroundColor,
     itemsProps: {
       constaProps: (selectedElementProps as LayoutElementPropsStyles).constaProps,
       styles: (selectedElementProps as LayoutElementPropsStyles).styles,
