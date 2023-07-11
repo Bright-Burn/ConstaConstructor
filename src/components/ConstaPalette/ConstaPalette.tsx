@@ -1,12 +1,15 @@
 import { FC, useEffect, useState } from 'react'
-import { ConstaColor, ConstaColors, IConstaPalette } from './types'
+import { ConstaColor, IConstaPalette } from './types'
 import css from './styles.module.css'
 import { Select } from '@consta/uikit/Select'
 import { cn } from '@bem-react/classname'
 
-const selectItems: ConstaColor[] = [...ConstaColors]
-
-export const ConstaPalette: FC<IConstaPalette> = ({ color, onChangeColor, size }) => {
+export const ConstaPalette: FC<IConstaPalette> = ({
+  color,
+  onChangeColor,
+  size,
+  colorsToSelect,
+}) => {
   const [colorPreview, setColorPreview] = useState<ConstaColor | undefined>()
 
   useEffect(() => {
@@ -30,7 +33,7 @@ export const ConstaPalette: FC<IConstaPalette> = ({ color, onChangeColor, size }
         label='Color'
         size={size}
         getItemLabel={getItemKey}
-        items={selectItems}
+        items={colorsToSelect}
         value={color}
         renderItem={({ item, active, hovered, onClick, onMouseEnter }) => {
           const onCustomMouseEnter = (e: React.SyntheticEvent) => {

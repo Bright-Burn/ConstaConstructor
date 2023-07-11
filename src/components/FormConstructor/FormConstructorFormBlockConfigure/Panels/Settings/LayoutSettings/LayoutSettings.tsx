@@ -15,7 +15,7 @@ import {
   borderStyle,
   borderSide,
 } from './LayoutConstants'
-import { ConstaPalette } from '../../../../../ConstaPalette'
+import { LayoutPalette } from '../../../../../ConstaPalette'
 
 export const LayoutSettings = () => {
   const {
@@ -100,7 +100,7 @@ export const LayoutSettings = () => {
             label='Height'
             min='0'
           />
-          <ConstaPalette
+          <LayoutPalette
             color={itemsProps.styles?.backgroundColor}
             size={'m'}
             onChangeColor={onChangeBackroundColor}
