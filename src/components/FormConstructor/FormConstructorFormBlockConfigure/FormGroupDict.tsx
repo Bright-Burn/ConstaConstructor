@@ -36,6 +36,7 @@ import {
   BreadcrumbsFormElement,
   UserFormElement,
   IconFormElement,
+  TagFormElement,
   ChoiceGroupFormElement,
 } from './Elements'
 import { ButtonActionModal } from './Elements/ButtonFormElement/ButtonActionModal'
@@ -77,5 +78,6 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   User: UserFormElement,
   Icon: IconFormElement,
   ButtonModal: ButtonActionModal,
+  Tag: TagFormElement,
   ChoiceGroup: ChoiceGroupFormElement,
 }

@@ -99,6 +99,11 @@ export const constaCards = [
   },
   {
     id: uuid(),
+    name: 'Tag',
+    formElementType: FormElementTypes.Tag,
+  },
+  {
+    id: uuid(),
     name: 'ChoiceGroup',
     formElementType: FormElementTypes.ChoiceGroup,
   },
