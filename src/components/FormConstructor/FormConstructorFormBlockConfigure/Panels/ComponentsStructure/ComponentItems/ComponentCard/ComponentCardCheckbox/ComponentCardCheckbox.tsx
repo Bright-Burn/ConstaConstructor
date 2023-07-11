@@ -17,7 +17,7 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
       id: uuid(),
       type: FormElementTypes.Checkbox,
       props: {
-        checked: undefined,
+        checked: false,
         size: 's',
         view: 'primary',
         align: 'center',
