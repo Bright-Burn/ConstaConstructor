@@ -4,3 +4,7 @@ export interface HistoryPush {
   savePoint: ISavePoint
 }
 
+export interface LoadFromSavePoint {
+  savePoint: ISavePoint
+}
+

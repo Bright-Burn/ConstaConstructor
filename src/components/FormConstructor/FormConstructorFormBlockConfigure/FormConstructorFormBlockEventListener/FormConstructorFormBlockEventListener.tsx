@@ -1,7 +1,6 @@
 import { FC, ReactNode, useEffect } from 'react'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../store/formElements'
 import css from './styles.module.css'
-import { historySlice, useHistorySelector } from '../../store/history'
 
 interface Props {
   children?: ReactNode
@@ -10,7 +9,6 @@ interface Props {
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch()
   const { selectedElement } = useAppSelector(state => state.formConstructor)
-  const { savePointToUse } = useHistorySelector(state => state.history)
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -19,36 +17,22 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
         dispatch(formConstructorSlice.actions.togglePanelsByHotkey())
       }
     }
-
-    document.addEventListener('keydown', onKeyDown)
-
-    return () => {
-      document.removeEventListener('keydown', onKeyDown)
-    }
-  }, [])
-
-  useEffect(() => {
-    /// Применяет изменения
+    /// Полуает последнее состояние из истории
     const onKeyGoBack = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
-      if (code === 'KeyZ' && ctrlKey && savePointToUse) {
-        console.log(savePointToUse)
-
-        dispatch(
-          formConstructorSlice.actions.loadFromSavePoint({
-            savePoint: savePointToUse,
-          }),
-        )
-        dispatch(historySlice.actions.pop())
+      if (code === 'KeyZ' && ctrlKey) {
+        dispatch(formConstructorSlice.actions.popHistory())
       }
     }
 
     document.addEventListener('keydown', onKeyGoBack)
+    document.addEventListener('keydown', onKeyDown)
 
     return () => {
+      document.removeEventListener('keydown', onKeyDown)
       document.removeEventListener('keydown', onKeyGoBack)
     }
-  }, [savePointToUse])
+  }, [])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
