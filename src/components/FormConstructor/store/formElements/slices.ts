@@ -21,6 +21,7 @@ import {
   setDraggableElement,
 } from './reducers'
 import { initialState } from './initialState'
+import { loadFromSavePoint } from './reducers/loadFromSavePoint'
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
   name = '',
@@ -42,6 +43,7 @@ export const formConstructorSlice = createFormConstructorSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
+    loadFromSavePoint: loadFromSavePoint,
     setDraggableElement: setDraggableElement,
     loadProjectFromStorage: loadProjectFromStorage,
     loadProjectFromJson: loadProjectFromJson,

@@ -1,3 +1,4 @@
+import { ISavePoint } from '../history'
 import { FormElementTypes, FormGroupsTypes, IFormElement, IGroupElement, UnionProps } from './types'
 
 export interface AddNewElementPayload {
@@ -46,4 +47,8 @@ export interface ChangeActivePage {
 
 export interface DeletePage {
   id: string
+}
+
+export interface LoadFromSavePoint {
+  savePoint: ISavePoint
 }
