@@ -1,6 +1,6 @@
 import { IFormConstructor } from '../types'
 
-export const HISTORY_LIMIT = 64
+export const HISTORY_LIMIT = 256
 
 export const popHistory = (state: IFormConstructor) => {
   const newHistory = [...state.history]

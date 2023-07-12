@@ -17,17 +17,12 @@ import {
 import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
 import uuid from 'react-uuid'
 import { iconNames } from '../../../../store/formElements/iconTypes'
-import { useEffect } from 'react'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement, allElementsMap, allElementsTree } = useAppSelector(
     state => state.formConstructor,
   )
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    console.log(selectedElementProps)
-  }, [selectedElementProps])
 
   const onChangeField = (
     value: ButtonPropSize | ButtonPropForm | ButtonPropView | string,
