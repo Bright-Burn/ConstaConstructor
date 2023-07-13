@@ -32,6 +32,7 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
         size: 'm',
         view: 'default',
         form: 'round',
+        groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
         status: undefined,
         caption: 'Подпись',
         label: 'Заголовок',

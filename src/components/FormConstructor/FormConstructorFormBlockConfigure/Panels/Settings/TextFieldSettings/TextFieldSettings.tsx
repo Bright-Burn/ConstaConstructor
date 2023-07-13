@@ -2,11 +2,24 @@ import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import styles from './styles.module.css'
 import { TextField } from '@consta/uikit/TextField'
-import { status, types, width, forms, sizes, view, labelPosition } from './TextFieldConstants'
+import {
+  status,
+  types,
+  width,
+  forms,
+  sizes,
+  view,
+  labelPosition,
+  sideType,
+} from './TextFieldConstants'
 import { useItemsHandlers } from './ItemsService'
+import { icons } from '../IconSettings/IconsConstants'
+import React from 'react'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 export const TextFieldSettings = () => {
-  const { itemsProps, onChangeTextField, onChangeSwitch } = useItemsHandlers()
+  const { itemsProps, onChangeTextField, onChangeSwitch, onChangeIconLeft, onChangeIconRight } =
+    useItemsHandlers()
 
   return (
     <div className={styles.textFieldSettings}>
@@ -137,6 +150,11 @@ export const TextFieldSettings = () => {
             value={`${itemsProps.label || ''}`}
             onChange={onChangeTextField('label')}
           />
+          <TextField
+            label='value'
+            value={`${itemsProps.value || ''}`}
+            onChange={onChangeTextField('value')}
+          />
           <Select
             getItemKey={key => key}
             label='LabelPosition'
@@ -157,6 +175,80 @@ export const TextFieldSettings = () => {
             value={`${itemsProps.placeholder || ''}`}
             onChange={onChangeTextField('placeholder')}
           />
+          <Select
+            getItemKey={key => key}
+            label='leftSideType'
+            getItemLabel={label => label}
+            items={sideType}
+            value={`${itemsProps.leftSideType || ''}`}
+            onChange={onChangeTextField('leftSideType')}
+          />
+          {itemsProps.leftSideType === 'text' ? (
+            <TextField
+              label='leftSideText'
+              value={`${itemsProps.leftSideText || ''}`}
+              onChange={onChangeTextField('leftSideText')}
+            />
+          ) : itemsProps.leftSideType === 'icon' ? (
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              label='leftIcon'
+              value={itemsProps.leftSideIcon}
+              onChange={({ value }) => {
+                onChangeIconLeft(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
+            />
+          ) : null}
+          <Select
+            getItemKey={key => key}
+            label='rightSideType'
+            getItemLabel={label => label}
+            items={sideType}
+            value={`${itemsProps.rightSideType || ''}`}
+            onChange={onChangeTextField('rightSideType')}
+          />
+          {itemsProps.rightSideType === 'text' ? (
+            <TextField
+              label='rightSideText'
+              value={`${itemsProps.rightSideText || ''}`}
+              onChange={onChangeTextField('rightSideText')}
+            />
+          ) : itemsProps.rightSideType === 'icon' ? (
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              label='rightIcon'
+              value={itemsProps.rightSideIcon}
+              onChange={({ value }) => {
+                onChangeIconRight(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
+            />
+          ) : null}
         </>
       ) : (
         <></>

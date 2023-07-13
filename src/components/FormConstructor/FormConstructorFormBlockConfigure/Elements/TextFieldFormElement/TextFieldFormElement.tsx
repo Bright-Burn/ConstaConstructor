@@ -4,6 +4,7 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { ITextFieldFormElement } from './types'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { IFormElementTextField, TextFieldProps } from '../../../store/formElements'
+import { Icons } from '../IconFormElement/mocks'
 
 export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => {
   const [textFieldProps, setTextFieldProps] = useState<TextFieldProps>()
@@ -23,9 +24,25 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.TextField}
-      className={isFilled ? 'container-row flex-grow-1' : ''}
-    >
-      <TextField style={{ width: '100%' }} {...textFieldProps} />
+      className={isFilled ? 'container-row flex-grow-1' : ''}>
+      <TextField
+        style={{ width: '100%' }}
+        {...textFieldProps}
+        leftSide={
+          textFieldProps?.leftSideType === 'icon'
+            ? textFieldProps.leftSideIcon && Icons[textFieldProps.leftSideIcon]
+            : textFieldProps?.leftSideType === 'text'
+            ? textFieldProps.leftSideText
+            : undefined
+        }
+        rightSide={
+          textFieldProps?.rightSideType === 'icon'
+            ? textFieldProps.rightSideIcon && Icons[textFieldProps.rightSideIcon]
+            : textFieldProps?.rightSideType === 'text'
+            ? textFieldProps.rightSideText
+            : undefined
+        }
+      />
     </SelectableLayer>
   )
 }

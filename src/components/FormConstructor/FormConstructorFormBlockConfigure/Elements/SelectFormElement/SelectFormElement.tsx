@@ -10,6 +10,7 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
   const [selectProps, setSelectProps] = useState<SelectProps>({
     className: '',
     baseProps: {},
+    groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
     items: [
       {
         label: 'Первый',
@@ -38,9 +39,16 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.Select}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Select}
-    >
-      <Select {...selectProps} />
+      elementType={FormElementTypes.Select}>
+      <Select
+        {...selectProps}
+        groups={selectProps.groupsActive ? selectProps.groups : undefined}
+        getItemKey={item => item.label}
+        getItemLabel={item => item.label}
+        getItemGroupKey={item => item.group}
+        getGroupLabel={(group: string) => group}
+        getGroupKey={(group: string) => group}
+      />
     </SelectableLayer>
   )
 }

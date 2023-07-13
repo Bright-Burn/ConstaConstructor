@@ -7,11 +7,9 @@ import {
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { IconPhoto } from '@consta/uikit/IconPhoto'
 import { useState } from 'react'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const useItemsHandlers = () => {
-  const [leftSideType, setLeftSideType] = useState('')
-  const [rightSideType, setRightSideType] = useState('')
-
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
 
   const dispatch = useDispatch()
@@ -41,6 +39,27 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
+  const onChangeIconLeft = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: TextFieldProps = {
+        ...(selectedElementProps as TextFieldProps),
+      }
+      newProps.leftSideIcon = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeIconRight = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: TextFieldProps = {
+        ...(selectedElementProps as TextFieldProps),
+      }
+      newProps.rightSideIcon = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: TextFieldProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -53,6 +72,8 @@ export const useItemsHandlers = () => {
   return {
     onChangeTextField,
     onChangeSwitch,
+    onChangeIconLeft,
+    onChangeIconRight,
     itemsProps: {
       caption: (selectedElementProps as TextFieldProps).caption,
       disabled: (selectedElementProps as TextFieldProps).disabled,
@@ -76,8 +97,12 @@ export const useItemsHandlers = () => {
       view: (selectedElementProps as TextFieldProps).view,
       width: (selectedElementProps as TextFieldProps).width,
       withClearButton: (selectedElementProps as TextFieldProps).withClearButton,
-      leftSideType,
-      rightSideType,
+      leftSideText: (selectedElementProps as TextFieldProps).leftSideText,
+      leftSideType: (selectedElementProps as TextFieldProps).leftSideType,
+      leftSideIcon: (selectedElementProps as TextFieldProps).leftSideIcon,
+      rightSideText: (selectedElementProps as TextFieldProps).rightSideText,
+      rightSideType: (selectedElementProps as TextFieldProps).rightSideType,
+      rightSideIcon: (selectedElementProps as TextFieldProps).rightSideIcon,
     },
   }
 }

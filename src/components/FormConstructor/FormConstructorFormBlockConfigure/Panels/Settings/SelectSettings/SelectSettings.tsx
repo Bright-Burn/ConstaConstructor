@@ -4,10 +4,11 @@ import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
 import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
-import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { Switch } from '@consta/uikit/Switch'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../store/formElements/selectTypes'
+import { ITEM, PropForm } from '../../../../store/formElements/selectTypes'
+import { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
+import { dropDownArray } from '../ComboBoxSettings/types'
 
 export const SelectSettings = () => {
   const {
@@ -21,22 +22,40 @@ export const SelectSettings = () => {
     onChangeSize,
     onChangeField,
     onChangeLabelPosition,
+    onChangeDropDownForm,
   } = useItemsHandlers()
-  const [tabs, setTabs] = useState<ITEM[]>(itemsProps.items)
+
+  const [lines, setLines] = useState<ITEM[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
+
   const labelsEditingHandler = (value: boolean) => {
-    setTabs(itemsProps.items)
+    setLines(itemsProps.items)
     setIsLabelsEditing(value)
   }
-  const applyNewTabs = () => {
-    onChangeItems(tabs)
+
+  const applyNewLines = () => {
+    onChangeItems(lines)
     setIsLabelsEditing(false)
   }
-  const onTabLabelEdit = (value: string | null, index: number) => {
-    const newTabs = [...tabs]
-    newTabs[index] = { ...newTabs[index], label: `${value}` }
-    setTabs([...newTabs])
+
+  const onLinesLabelEdit = (value: string | null, index: number) => {
+    const newLines = [...lines]
+    newLines[index] = { ...newLines[index], label: `${value}` }
+    setLines([...newLines])
   }
+
+  const onLinesDisabledEdit = (value: boolean, index: number) => {
+    const newLines = [...lines]
+    newLines[index] = { ...newLines[index], disabled: value }
+    setLines([...newLines])
+  }
+
+  const onLinesGroupEdit = (value: string | null, index: number) => {
+    const newLines = [...lines]
+    newLines[index] = { ...newLines[index], group: `${value}` }
+    setLines([...newLines])
+  }
+
   return (
     <>
       {!isLabelsEditing && (
@@ -57,21 +76,36 @@ export const SelectSettings = () => {
       )}
       {isLabelsEditing && (
         <>
-          {tabs.map((tab, index) => {
+          {lines.map((line, index) => {
             return (
-              <TextField
-                key={index}
-                label={`${index + 1}`}
-                value={`${tab.label}`}
-                onChange={event => onTabLabelEdit(event.value, index)}
-              />
+              <>
+                <TextField
+                  key={index}
+                  label={`${index + 1}`}
+                  value={`${line.label}`}
+                  onChange={event => onLinesLabelEdit(event.value, index)}
+                />
+                <Switch
+                  label='disabled'
+                  checked={line.disabled}
+                  onChange={event => onLinesDisabledEdit(event.checked, index)}
+                />
+                <Select
+                  label='groups'
+                  getItemKey={(key: string) => key}
+                  getItemLabel={(label: string) => label}
+                  value={line.group}
+                  items={itemsProps.groups}
+                  onChange={event => onLinesGroupEdit(event.value, index)}
+                />
+              </>
             )
           })}
           <Button
             size='xs'
             className='m-b-xs m-t-xs'
             label='Применить'
-            onClick={() => applyNewTabs()}
+            onClick={() => applyNewLines()}
           />
           <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
         </>
@@ -80,6 +114,11 @@ export const SelectSettings = () => {
         onChange={onChangeSwitch('disabled')}
         label='disabled'
         checked={itemsProps.disabled}
+      />
+      <Switch
+        onChange={onChangeSwitch('groupsActive')}
+        label='groupsActive'
+        checked={itemsProps.groupsActive}
       />
       <Select
         label='size'
@@ -118,6 +157,14 @@ export const SelectSettings = () => {
         value={itemsProps.status}
         items={statusArray}
         onChange={({ value }) => onChangeStatus(value)}
+      />
+      <Select
+        label='dropdownForm'
+        getItemKey={(key: DatePickerPropDropdownForm) => key}
+        getItemLabel={(label: DatePickerPropDropdownForm) => label}
+        value={itemsProps.dropdownForm}
+        items={dropDownArray}
+        onChange={({ value }) => onChangeDropDownForm(value)}
       />
       <TextField
         label='caption'

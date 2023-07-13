@@ -4,6 +4,7 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { IInformerFormElement } from './types'
 import { IFormElementInformer, InformerElementProps } from '../../../store/formElements'
 import { Informer } from '@consta/uikit/Informer'
+import { Icons } from '../IconFormElement/mocks'
 
 export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
   const [informerProps, setInformerProps] = useState<InformerElementProps>()
@@ -17,9 +18,11 @@ export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Informer}
-    >
-      <Informer {...informerProps} />
+      elementType={FormElementTypes.Informer}>
+      <Informer
+        {...informerProps}
+        icon={informerProps?.iconActive && informerProps.icon && Icons[informerProps.icon]}
+      />
     </SelectableLayer>
   )
 }

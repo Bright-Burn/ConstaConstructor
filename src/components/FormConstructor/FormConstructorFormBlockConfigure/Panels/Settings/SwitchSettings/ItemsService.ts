@@ -55,16 +55,33 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
+  const onChangeSwitch =
+    (propsName: keyof SwitchProps) =>
+    ({ checked }: { checked: boolean }) => {
+      if (selectedElement) {
+        const newProps: SwitchProps = {
+          ...(selectedElementProps as SwitchProps),
+        }
+        // @ts-ignore
+        newProps[propsName] = checked
+        onDispatch(selectedElement, newProps)
+      }
+    }
+
   return {
     onChangeView,
     onChangeSize,
     onChangeAlign,
     onChangeField,
+    onChangeSwitch,
     itemsProps: {
       size: (selectedElementProps as SwitchProps).size,
       view: (selectedElementProps as SwitchProps).view,
       align: (selectedElementProps as SwitchProps).align,
       label: (selectedElementProps as SwitchProps).label,
+      checked: (selectedElementProps as SwitchProps).checked,
+      disabled: (selectedElementProps as SwitchProps).disabled,
     },
   }
 }

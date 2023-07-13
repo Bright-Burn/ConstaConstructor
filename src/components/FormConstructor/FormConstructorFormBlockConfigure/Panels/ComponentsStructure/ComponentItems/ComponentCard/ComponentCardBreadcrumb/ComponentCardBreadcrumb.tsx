@@ -17,7 +17,7 @@ export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
       props: {
         items: pagesSubMenu,
         size: 'm',
-        fitMode: 'dropdown',
+        fitMode: 'scroll',
         className: '',
         baseProps: {},
       },

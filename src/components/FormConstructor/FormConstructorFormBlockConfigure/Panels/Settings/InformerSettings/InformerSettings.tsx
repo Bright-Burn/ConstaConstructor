@@ -4,9 +4,13 @@ import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import { useItemsHandlers } from './ItemsService'
 import { sizes, views, statuses } from './InformerConstants'
+import { icons } from '../IconSettings/IconsConstants'
+import { Switch } from '@consta/uikit/Switch'
+import React from 'react'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 export const InformerSettings = () => {
-  const { itemsProps, onChangeField } = useItemsHandlers()
+  const { itemsProps, onChangeField, onChangeIcon, onChangeSwitch } = useItemsHandlers()
 
   return (
     <div className={styles.informerSettings}>
@@ -56,6 +60,34 @@ export const InformerSettings = () => {
             }}
             label={'Title'}
           />
+          <Switch
+            checked={!!itemsProps.iconActive}
+            label='iconActive'
+            onChange={onChangeSwitch('iconActive')}
+          />
+          {itemsProps.iconActive && (
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              label='icons'
+              value={itemsProps.icon}
+              onChange={({ value }) => {
+                onChangeIcon(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
+            />
+          )}
         </>
       ) : (
         <></>

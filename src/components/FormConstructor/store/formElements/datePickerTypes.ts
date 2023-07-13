@@ -7,6 +7,8 @@ import {
 } from '@consta/uikit/DatePicker'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from './selectTypes'
+import { IconComponent } from '@consta/uikit/Icon'
+import { iconNames } from './iconTypes'
 
 export type DatePickerProps = {
   type?: DatePickerPropType
@@ -25,6 +27,9 @@ export type DatePickerProps = {
   maxDate?: Date
   dateTimeView?: DatePickerPropDateTimeView
   dropdownForm?: DatePickerPropDropdownForm
+  withIconActive?: IconComponent
+  icon?: iconNames
+  events: Date[]
 } & BaseProps &
   TextFieldPropsTextareaType<string>
 

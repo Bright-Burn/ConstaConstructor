@@ -3,26 +3,30 @@ import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import { useItemsHandlers } from './ItemsService'
 import { sizes, statuses, views } from './CheckBoxConstants'
-import {
-  Checkbox,
-  CheckboxPropAlign,
-  CheckboxPropSize,
-  CheckboxPropView,
-} from '@consta/uikit/Checkbox'
+import { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@consta/uikit/Checkbox'
+import { Switch } from '@consta/uikit/Switch'
 
 export const CheckboxSettings = () => {
-  const { itemsProps, onChangeField } = useItemsHandlers()
+  const { itemsProps, onChangeField, onChangeSwitch } = useItemsHandlers()
 
   return (
     <div className={styles.badgeSettings}>
       {itemsProps ? (
         <>
-          <Checkbox
-            label='Checked'
+          <Switch
             checked={itemsProps.checked}
-            onClick={() => {
-              onChangeField(!itemsProps.checked, 'checked')
-            }}
+            label='checked'
+            onChange={onChangeSwitch('checked')}
+          />
+          <Switch
+            checked={itemsProps.disabled}
+            label='disabled'
+            onChange={onChangeSwitch('disabled')}
+          />
+          <Switch
+            checked={itemsProps.intermediate}
+            label='intermediate'
+            onChange={onChangeSwitch('intermediate')}
           />
           <Select
             getItemKey={(item: string | undefined) => item || ''}

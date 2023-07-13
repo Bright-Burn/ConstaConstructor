@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux'
 import { BadgeProps, formConstructorSlice, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -58,10 +59,34 @@ export const useItemsHandlers = () => {
     )
   }
 
+  const onChangeSwitch =
+    (propsName: keyof BadgeProps) =>
+    ({ checked }: { checked: boolean }) => {
+      if (selectedElementProps) {
+        const newProps: BadgeProps = {
+          ...(selectedElementProps as BadgeProps),
+          [propsName]: checked,
+        }
+        selectedElement && onDispatch(selectedElement, newProps)
+      }
+    }
+
+  const onChangeIconLeft = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: BadgeProps = {
+        ...(selectedElementProps as BadgeProps),
+      }
+      newProps.iconLeft = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   return {
     onChangeMinified,
     handleOnChangeLabel,
     onChangeField,
+    onChangeIconLeft,
+    onChangeSwitch,
     itemsProps: {
       size: (selectedElementProps as BadgeProps).size,
       view: (selectedElementProps as BadgeProps).view,
@@ -69,6 +94,8 @@ export const useItemsHandlers = () => {
       label: (selectedElementProps as BadgeProps).label,
       minified: (selectedElementProps as BadgeProps).minified,
       status: (selectedElementProps as BadgeProps).status,
+      iconLeft: (selectedElementProps as BadgeProps).iconLeft,
+      iconLeftCheck: (selectedElementProps as BadgeProps).iconLeftCheck,
     },
   }
 }

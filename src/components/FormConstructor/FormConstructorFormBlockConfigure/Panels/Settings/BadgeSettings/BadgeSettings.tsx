@@ -5,9 +5,20 @@ import { Checkbox } from '@consta/uikit/Checkbox'
 import { TextField } from '@consta/uikit/TextField'
 import { sizes, views, statuses, forms } from './textConstants'
 import { useItemsHandlers } from './ItemsService'
+import { icons } from '../IconSettings/IconsConstants'
+import React from 'react'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { Switch } from '@consta/uikit/Switch'
 
 export const BadgeSettings = () => {
-  const { itemsProps, onChangeMinified, handleOnChangeLabel, onChangeField } = useItemsHandlers()
+  const {
+    itemsProps,
+    onChangeMinified,
+    handleOnChangeLabel,
+    onChangeField,
+    onChangeIconLeft,
+    onChangeSwitch,
+  } = useItemsHandlers()
 
   return (
     <div className={styles.badgeSettings}>
@@ -59,6 +70,34 @@ export const BadgeSettings = () => {
             onChange={onChangeMinified}
           />
           <TextField label='label' value={itemsProps.label} onChange={handleOnChangeLabel} />
+          <Switch
+            checked={!!itemsProps.iconLeftCheck}
+            label='iconLeft'
+            onChange={onChangeSwitch('iconLeftCheck')}
+          />
+          {itemsProps.iconLeftCheck && (
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              label='icons'
+              value={itemsProps.iconLeft}
+              onChange={({ value }) => {
+                onChangeIconLeft(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  style={{ display: 'flex', alignItems: 'center' }}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item])}
+                  <div>{item}</div>
+                </div>
+              )}
+            />
+          )}
         </>
       ) : (
         <></>

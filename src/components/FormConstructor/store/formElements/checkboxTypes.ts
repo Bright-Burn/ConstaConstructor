@@ -8,6 +8,7 @@ export type CheckboxProps = {
   align?: CheckboxPropAlign
   disabled?: boolean
   label?: string
+  intermediate?: boolean
 } & BaseProps
 
 export interface IFormElementCheckbox extends IFormElement {

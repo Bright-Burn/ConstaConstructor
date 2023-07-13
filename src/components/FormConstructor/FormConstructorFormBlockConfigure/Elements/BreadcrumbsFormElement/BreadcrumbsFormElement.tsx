@@ -1,13 +1,9 @@
-import { FC, useLayoutEffect, useState } from 'react'
+import { FC } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IBreadcrumbsFormElement } from './types'
-import {
-  BreadcrumbProps,
-  IFormElementBreadcrumbs,
-} from '../../../store/formElements/BreadcrumbsTypes'
+import { BreadcrumbProps } from '../../../store/formElements/BreadcrumbsTypes'
 import { Breadcrumbs } from '@consta/uikit/Breadcrumbs'
-import { pagesSubMenu } from './mocks'
 
 export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element }) => {
   const props = element.props as BreadcrumbProps
@@ -15,8 +11,7 @@ export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element })
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.BreadcrumbsForm}
-    >
+      elementType={FormElementTypes.BreadcrumbsForm}>
       <Breadcrumbs {...props} />
     </SelectableLayer>
   )

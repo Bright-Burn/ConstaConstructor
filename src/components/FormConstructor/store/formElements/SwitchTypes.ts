@@ -7,6 +7,7 @@ export type SwitchProps = {
   align?: SwitchPropAlign
   label?: string
   checked?: boolean
+  disabled?: boolean
 } & BaseProps
 
 export interface IFormElementSwitch extends IFormElement {

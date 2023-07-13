@@ -8,6 +8,8 @@ import {
   TextFieldPropWidth,
 } from '@consta/uikit/TextField'
 import { TextFieldPropsTextareaType } from '@consta/uikit/TextField/'
+import { iconNames } from './iconTypes'
+import { IconComponent } from '@consta/uikit/Icon'
 
 export type TextFieldProps = {
   type?: string
@@ -29,6 +31,12 @@ export type TextFieldProps = {
   incrementButtons?: boolean
   max?: number | string
   min?: number | string
+  leftSideType?: 'icon' | 'text'
+  rightSideType?: 'icon' | 'text'
+  leftSideText?: string
+  rightSideText?: string
+  leftSideIcon?: iconNames
+  rightSideIcon?: iconNames
 } & BaseProps &
   TextFieldPropsTextareaType<string>
 

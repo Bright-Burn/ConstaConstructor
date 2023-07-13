@@ -7,6 +7,7 @@ import {
   IFormElementDatePicker,
 } from '../../../store/formElements/datePickerTypes'
 import { DatePicker } from '@consta/uikit/DatePicker'
+import { Icons } from '../IconFormElement/mocks'
 
 export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) => {
   const [datePickerProps, setDatePickerProps] = useState<DatePickerProps>()
@@ -20,9 +21,13 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.DatePicker}
-    >
-      <DatePicker {...datePickerProps} />
+      elementType={FormElementTypes.DatePicker}>
+      <DatePicker
+        {...datePickerProps}
+        leftSide={
+          datePickerProps?.withIconActive && datePickerProps.icon && Icons[datePickerProps.icon]
+        }
+      />
     </SelectableLayer>
   )
 }

@@ -3,7 +3,7 @@ import { Tabs } from '@consta/uikit/Tabs'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITabsFormElement } from './types'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
-import { IFormElementTabs, TabsElementProps } from '../../../store/formElements/tabsTypes'
+import { IFormElementTabs, ITEM, TabsElementProps } from '../../../store/formElements/tabsTypes'
 
 export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
   const [tabsProps, setTabsProps] = useState<TabsElementProps>({
@@ -21,13 +21,15 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
     setTabsProps(tabsFormElementWithProps.props)
   }, [element])
 
+  const getItemLeftIcon = (item: ITEM) => item.iconLeft
+  const getItemRightIcon = (item: ITEM) => item.iconRight
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Tabs}
-    >
-      <Tabs {...tabsProps} />
+      elementType={FormElementTypes.Tabs}>
+      <Tabs {...tabsProps} getItemLeftIcon={getItemLeftIcon} getItemRightIcon={getItemRightIcon} />
     </SelectableLayer>
   )
 }

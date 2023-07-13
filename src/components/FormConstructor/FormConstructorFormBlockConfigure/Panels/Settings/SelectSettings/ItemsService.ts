@@ -4,6 +4,7 @@ import { ISelectedElement } from '../../../../store/formElements/types'
 import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { PropForm, SelectProps } from '../../../../store/formElements/selectTypes'
 import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
+import { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -37,6 +38,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeItems = (items: ITEM[]) => {
     if (selectedElement && items) {
       const newProps: SelectProps = {
@@ -47,6 +49,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeSize = (value: TextFieldPropSize | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
@@ -56,6 +59,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeView = (value: TextFieldPropView | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
@@ -65,6 +69,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeForm = (value: PropForm | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
@@ -74,6 +79,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeStatus = (value: TextFieldPropStatus | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
@@ -83,6 +89,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
     if (selectedElement && value) {
       const newProps: SelectProps = {
@@ -92,6 +99,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeField =
     (propsName: keyof SelectProps) =>
     ({ value }: { value: string | null }) => {
@@ -104,6 +112,7 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
   const onChangeSwitch =
     (propsName: keyof SelectProps) =>
     ({ checked }: { checked: boolean }) => {
@@ -116,6 +125,17 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
+  const onChangeDropDownForm = (value: DatePickerPropDropdownForm | null) => {
+    if (selectedElement && value) {
+      const newProps: SelectProps = {
+        ...(selectedElementProps as SelectProps),
+      }
+      newProps.dropdownForm = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   return {
     onChangeItemsCount,
     onChangeForm,
@@ -126,6 +146,7 @@ export const useItemsHandlers = () => {
     onChangeSize,
     onChangeField,
     onChangeSwitch,
+    onChangeDropDownForm,
     itemsProps: {
       disabled: (selectedElementProps as SelectProps).disabled,
       size: (selectedElementProps as SelectProps).size,
@@ -139,6 +160,9 @@ export const useItemsHandlers = () => {
       labelPosition: (selectedElementProps as SelectProps).labelPosition,
       placeholder: (selectedElementProps as SelectProps).placeholder,
       isLoading: (selectedElementProps as SelectProps).isLoading,
+      groups: (selectedElementProps as SelectProps).groups,
+      dropdownForm: (selectedElementProps as SelectProps).dropdownForm,
+      groupsActive: (selectedElementProps as SelectProps).groupsActive,
     },
   }
 }

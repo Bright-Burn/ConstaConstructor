@@ -13,14 +13,17 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
     const items = [
       {
         label: 'Первый',
+        group: 'Первая группа',
         id: 1,
       },
       {
         label: 'Второй',
+        group: 'Первая группа',
         id: 2,
       },
       {
         label: 'Третий',
+        group: 'Первая группа',
         id: 3,
       },
     ]
@@ -34,6 +37,7 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
         label: 'Здесь можно выбрать цвет',
         view: 'default',
         className: '',
+        groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
         baseProps: {},
         items: items,
         onChange: () => {},

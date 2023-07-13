@@ -1,16 +1,18 @@
 import styles from './styles.module.css'
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
-import { fitMode, sizes } from './BreadcrumbsConstants'
-import { DefaultItem } from '@consta/uikit/Breadcrumbs'
+import { fitMode, newDefaultItem, sizes } from './BreadcrumbsConstants'
 import { useItemsHandlers } from './ItemsService'
 import { Button } from '@consta/uikit/Button'
 import { TextField } from '@consta/uikit/TextField'
+import { icons } from '../IconSettings/IconsConstants'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const BreadcrumbsSettings: FC = () => {
   const { itemsProps, onChangeItemsCount, onChangeItems, onChangeSize, onChangeFitMode } =
     useItemsHandlers()
-  const [pages, setPages] = useState<DefaultItem[]>(itemsProps.items)
+  const [pages, setPages] = useState<newDefaultItem[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {
     setPages(itemsProps.items)
@@ -25,6 +27,18 @@ export const BreadcrumbsSettings: FC = () => {
     newPages[index] = { ...newPages[index], label: `${value}` }
     setPages([...newPages])
   }
+
+  const onLinesIconEdit = (value: string | null, index: number) => {
+    const newPage: newDefaultItem[] = [...pages]
+    if (value !== null)
+      (newPage[index] = {
+        ...newPage[index],
+        icon: Icons[value as iconNames],
+        labelIcon: value,
+      }),
+        setPages([...newPage])
+  }
+
   return (
     <div className={styles.BreadcrumbsSettings}>
       {!isLabelsEditing && (
@@ -47,12 +61,33 @@ export const BreadcrumbsSettings: FC = () => {
         <>
           {pages.map((page, index) => {
             return (
-              <TextField
-                key={index}
-                label={`${index + 1}`}
-                value={`${page.label}`}
-                onChange={event => onPageLabelEdit(event.value, index)}
-              />
+              <>
+                <TextField
+                  key={index}
+                  label={`${index + 1}`}
+                  value={`${page.label}`}
+                  onChange={event => onPageLabelEdit(event.value, index)}
+                />
+                <Select
+                  getItemKey={(item: string | undefined) => item || ''}
+                  getItemLabel={(item: string | undefined) => item || ''}
+                  items={icons}
+                  label='icons'
+                  value={page.labelIcon}
+                  onChange={event => onLinesIconEdit(event.value, index)}
+                  renderItem={({ item, active, onClick, onMouseEnter }) => (
+                    <div
+                      style={{ display: 'flex', alignItems: 'center' }}
+                      role='option'
+                      aria-selected={active}
+                      onMouseEnter={onMouseEnter}
+                      onClick={onClick}>
+                      {React.createElement(Icons[item as iconNames])}
+                      <div>{item}</div>
+                    </div>
+                  )}
+                />
+              </>
             )
           })}
           <Button

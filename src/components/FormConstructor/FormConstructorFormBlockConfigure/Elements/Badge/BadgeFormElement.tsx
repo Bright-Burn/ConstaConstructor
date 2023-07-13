@@ -4,6 +4,7 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { IBadgeFormElement } from './types'
 import { Badge } from '@consta/uikit/Badge'
 import { BadgeProps, IFormElementBadge } from '../../../store/formElements/badgeTypes'
+import { Icons } from '../IconFormElement/mocks'
 
 export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const [badgeProps, setbadgeProps] = useState<BadgeProps>()
@@ -17,9 +18,11 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Badge}
-    >
-      <Badge {...badgeProps} />
+      elementType={FormElementTypes.Badge}>
+      <Badge
+        {...badgeProps}
+        icon={badgeProps?.iconLeftCheck && badgeProps.iconLeft && Icons[badgeProps.iconLeft]}
+      />
     </SelectableLayer>
   )
 }

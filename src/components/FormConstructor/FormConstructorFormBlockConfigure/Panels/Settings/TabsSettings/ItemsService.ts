@@ -8,6 +8,7 @@ import { ITEM, TabsElementProps } from '../../../../store/formElements/tabsTypes
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: TabsElementProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -17,6 +18,7 @@ export const useItemsHandlers = () => {
       }),
     )
   }
+
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
@@ -37,6 +39,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeActiveItem = ({ value }: { value: ITEM | null }) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
@@ -46,6 +49,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeItems = (items: ITEM[]) => {
     if (selectedElement && items) {
       const newProps: TabsElementProps = {
@@ -56,6 +60,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeLinePosition = (value: TabsPropLinePosition | null) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
@@ -65,6 +70,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeView = (value: TabsPropView | null) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
@@ -74,6 +80,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeSize = (value: TabsPropSize | null) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
@@ -83,6 +90,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeFitMode = (value: FitMode | null) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
@@ -92,6 +100,19 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
+  const onChangeSwitch =
+    (propsName: keyof TabsElementProps) =>
+    ({ checked }: { checked: boolean }) => {
+      if (selectedElementProps) {
+        const newProps: TabsElementProps = {
+          ...(selectedElementProps as TabsElementProps),
+          [propsName]: checked,
+        }
+        selectedElement && onDispatch(selectedElement, newProps)
+      }
+    }
+
   return {
     onChangeItemsCount,
     onChangeActiveItem,
@@ -100,6 +121,7 @@ export const useItemsHandlers = () => {
     onChangeView,
     onChangeSize,
     onChangeFitMode,
+    onChangeSwitch,
     itemsProps: {
       items: (selectedElementProps as TabsElementProps).items,
       activeItem: (selectedElementProps as TabsElementProps).value,
@@ -107,6 +129,7 @@ export const useItemsHandlers = () => {
       view: (selectedElementProps as TabsElementProps).view,
       size: (selectedElementProps as TabsElementProps).size,
       fitMode: (selectedElementProps as TabsElementProps).fitMode,
+      disabled: (selectedElementProps as TabsElementProps).disabled,
     },
   }
 }

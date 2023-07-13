@@ -5,10 +5,12 @@ import { ITEM } from '../../../../store/formElements/tabsTypes'
 import { ComboboxProps } from '../../../../store/formElements/comboBoxTypes'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from '../../../../store/formElements/selectTypes'
+import { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: ComboboxProps) => {
     dispatch(
       formConstructorSlice.actions.setSelectedElement({
@@ -18,6 +20,7 @@ export const useItemsHandlers = () => {
       }),
     )
   }
+
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: ComboboxProps = {
@@ -38,6 +41,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeItems = (items: ITEM[]) => {
     if (selectedElement && items) {
       const newProps: ComboboxProps = {
@@ -102,6 +106,16 @@ export const useItemsHandlers = () => {
     }
   }
 
+  const onChangeDropDownForm = (value: DatePickerPropDropdownForm | null) => {
+    if (selectedElement && value) {
+      const newProps: ComboboxProps = {
+        ...(selectedElementProps as ComboboxProps),
+      }
+      newProps.dropdownForm = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
     if (selectedElement && value) {
       const newProps: ComboboxProps = {
@@ -124,6 +138,7 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
   return {
     onChangeItemsCount,
     onChangeLabelPosition,
@@ -134,6 +149,7 @@ export const useItemsHandlers = () => {
     onChangeSize,
     onChangeForm,
     onChangeSwitch,
+    onChangeDropDownForm,
     itemsProps: {
       items: (selectedElementProps as ComboboxProps).items,
       value: (selectedElementProps as ComboboxProps).value,
@@ -149,6 +165,9 @@ export const useItemsHandlers = () => {
       placeholder: (selectedElementProps as ComboboxProps).placeholder,
       isLoading: (selectedElementProps as ComboboxProps).isLoading,
       multiple: (selectedElementProps as ComboboxProps).multiple,
+      dropdownForm: (selectedElementProps as ComboboxProps).dropdownForm,
+      groups: (selectedElementProps as ComboboxProps).groups,
+      groupsActive: (selectedElementProps as ComboboxProps).groupsActive,
     },
   }
 }

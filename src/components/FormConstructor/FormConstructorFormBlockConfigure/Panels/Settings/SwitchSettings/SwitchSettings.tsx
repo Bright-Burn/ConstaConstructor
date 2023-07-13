@@ -2,14 +2,24 @@ import { Select } from '@consta/uikit/Select'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { alignArray, sizeArray, viewArray } from './types'
-import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
+import { Switch, SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
 export const SwitchSettings = () => {
-  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField } =
+  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField, onChangeSwitch } =
     useItemsHandlers()
 
   return (
     <>
+      <Switch
+        checked={itemsProps.disabled ?? false}
+        label='disabled'
+        onChange={onChangeSwitch('disabled')}
+      />
+      <Switch
+        checked={itemsProps.checked ?? false}
+        label='checked'
+        onChange={onChangeSwitch('checked')}
+      />
       <Select
         label='size'
         getItemKey={(key: SwitchPropSize) => key}

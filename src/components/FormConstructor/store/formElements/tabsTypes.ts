@@ -4,16 +4,24 @@ import {
   TabsPropSize,
   TabsPropView,
 } from '@consta/uikit/__internal__/src/components/Tabs/types'
-import { IconPropSize } from '@consta/uikit/Icon'
+import { IconComponent, IconPropSize } from '@consta/uikit/Icon'
 import { FitMode } from '../../FormConstructorFormBlockConfigure/Panels/Settings/TabsSettings/types'
 import { TabsPropLinePosition } from '@consta/uikit/TabsDeprecated'
+import React from 'react'
+import { BadgeProps } from './badgeTypes'
 
 export type ITEM = {
   id: number
   label: string
+  disabled?: boolean
+  labelIconLeft?: string
+  labelIconRight?: string
+  iconLeft?: IconComponent
+  iconRight?: IconComponent
 }
 
 export type TabsProps = {
+  disabled?: boolean
   size?: TabsPropSize
   onlyIcon?: boolean
   view?: TabsPropView

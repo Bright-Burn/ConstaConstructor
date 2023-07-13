@@ -9,6 +9,7 @@ import {
 } from '@consta/uikit/DatePicker'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from '../../../../store/formElements/selectTypes'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -22,6 +23,38 @@ export const useItemsHandlers = () => {
       }),
     )
   }
+
+  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+    if (selectedElement && value) {
+      const newProps: DatePickerProps = {
+        ...(selectedElementProps as DatePickerProps),
+      }
+      let itemsProps: Date[] = newProps.events
+      const currentLength = itemsProps.length
+      if (currentLength && Number(value) > currentLength) {
+        for (let i = currentLength; i < Number(value); i++) {
+          itemsProps = [...itemsProps, new Date(2023, 6, 1)]
+        }
+      } else {
+        for (let i = 0; i < currentLength - Number(value); i++) {
+          itemsProps = [...itemsProps.slice(0, Number(value))]
+        }
+      }
+      newProps.events = itemsProps
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeItems = (items: Date[]) => {
+    if (selectedElement && items) {
+      const newProps: DatePickerProps = {
+        ...(selectedElementProps as DatePickerProps),
+      }
+      newProps.events = items
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   const onChangeType = (value: DatePickerPropType | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -31,6 +64,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeForm = (value: PropForm | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -40,6 +74,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeStatus = (value: TextFieldPropStatus | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -49,6 +84,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -58,6 +94,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeSize = (value: TextFieldPropSize | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -67,6 +104,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeView = (value: TextFieldPropView | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -76,6 +114,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeMinDate = ({ value }: { value: Date | null }) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -85,6 +124,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeMaxDate = ({ value }: { value: Date | null }) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -94,6 +134,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeDateTimeView = (value: DatePickerPropDateTimeView | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -103,6 +144,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeDropdownForm = (value: DatePickerPropDropdownForm | null) => {
     if (selectedElement && value) {
       const newProps: DatePickerProps = {
@@ -112,6 +154,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeField =
     (propsName: keyof DatePickerProps) =>
     ({ value }: { value: string | null }) => {
@@ -124,6 +167,7 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
   const onChangeSwitch =
     (propsName: keyof DatePickerProps) =>
     ({ checked }: { checked: boolean }) => {
@@ -136,6 +180,17 @@ export const useItemsHandlers = () => {
         onDispatch(selectedElement, newProps)
       }
     }
+
+  const onChangeIcon = (value: iconNames | null) => {
+    if (selectedElement && value) {
+      const newProps: DatePickerProps = {
+        ...(selectedElementProps as DatePickerProps),
+      }
+      newProps.icon = value
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
   return {
     onChangeType,
     onChangeForm,
@@ -149,6 +204,9 @@ export const useItemsHandlers = () => {
     onChangeDropdownForm,
     onChangeField,
     onChangeSwitch,
+    onChangeIcon,
+    onChangeItemsCount,
+    onChangeItems,
     itemsProps: {
       type: (selectedElementProps as DatePickerProps).type,
       form: (selectedElementProps as DatePickerProps).form,
@@ -166,6 +224,9 @@ export const useItemsHandlers = () => {
       maxDate: (selectedElementProps as DatePickerProps).maxDate,
       dateTimeView: (selectedElementProps as DatePickerProps).dateTimeView,
       dropdownForm: (selectedElementProps as DatePickerProps).dropdownForm,
+      withIconActive: (selectedElementProps as DatePickerProps).withIconActive,
+      icon: (selectedElementProps as DatePickerProps).icon,
+      events: (selectedElementProps as DatePickerProps).events,
     },
   }
 }
