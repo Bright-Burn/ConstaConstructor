@@ -34,6 +34,9 @@ const initialElementsMap = new Map<string, IFormElement | IGroupElement>([
   [initialLayoutId, initialLayout],
 ])
 
+const initialPages = [{ id: rootId, name: 'Page1' }]
+const initialNumberPage = 1
+
 export const initialAllElementsTree = new Map<string, string[]>([[rootId, [initialLayoutId]]])
 
 export const initialState: IFormConstructor = {
@@ -45,8 +48,19 @@ export const initialState: IFormConstructor = {
   draggableElement: null,
   componentsStructurePanelState: true,
   settingsPanelState: true,
-  pages: [{ id: rootId, name: 'Page1' }],
-  numberOfPages: 1,
+  pages: initialPages,
+  numberOfPages: initialNumberPage,
   selectedPageId: rootId,
+
+  history: [
+    {
+      allElementsTree: initialAllElementsTree,
+      allElementsMap: initialElementsMap,
+      numberOfPages: initialNumberPage,
+      pages: initialPages,
+      selectedElement: null,
+      selectedElementProps: null,
+    },
+  ],
 }
 

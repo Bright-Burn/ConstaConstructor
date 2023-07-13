@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { SetNewSelectedElement } from '../payload'
 import { IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../types'
+import { pushHistory } from '../history'
 
 export const setSelectedElement = (
   state: IFormConstructor,
@@ -15,6 +16,8 @@ export const setSelectedElement = (
   if (element) {
     updateSelectedElement(state, element, action.payload.newProps)
   }
+
+  pushHistory(state)
 }
 
 export const updateSelectedElement = (
@@ -27,7 +30,7 @@ export const updateSelectedElement = (
       element.props = newProps
     }
 
-    state.selectedElementProps = (element as IFormElement | IGroupElement).props
+    state.selectedElementProps = { ...(element as IFormElement | IGroupElement).props }
     state.selectedElement = {
       elementId: element.id,
       elementType: element.type,
