@@ -3,12 +3,10 @@ import { IFormConstructor } from '../types'
 export const HISTORY_LIMIT = 64
 
 export const popHistory = (state: IFormConstructor) => {
-  const newHistory = [...state.history]
-  newHistory.pop()
-  state.history = newHistory
+  state.history.pop()
 
-  if (newHistory.length) {
-    const savePointToUse = newHistory.at(-1)
+  if (state.history.length) {
+    const savePointToUse = state.history.at(-1)
 
     if (savePointToUse) {
       state.allElementsMap = new Map(savePointToUse.allElementsMap)
