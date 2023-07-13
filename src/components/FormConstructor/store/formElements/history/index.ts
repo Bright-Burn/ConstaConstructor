@@ -1,5 +1,4 @@
 export { type IHistory, type ISavePoint } from './types'
-export * from './actions'
-export * from './reducers'
-export * from './utils'
+export { type HistoryPush, type LoadFromSavePoint } from './actions'
+export { pushHistory } from './utils'
 

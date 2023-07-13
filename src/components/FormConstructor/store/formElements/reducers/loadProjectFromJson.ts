@@ -22,5 +22,7 @@ export const loadProjectFromJson = (
     state.pages = newSate.pages
     state.numberOfPages = newSate.numberOfPages
     state.selectedPageId = newSate.selectedPageId
+
+    state.history = []
   }
 }

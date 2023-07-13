@@ -1,12 +1,11 @@
 import { IFormConstructor } from '../types'
 
-export const HISTORY_LIMIT = 256
+export const HISTORY_LIMIT = 64
 
 export const popHistory = (state: IFormConstructor) => {
   const newHistory = [...state.history]
-
   newHistory.pop()
-  state.history = [...newHistory]
+  state.history = newHistory
 
   if (newHistory.length) {
     const savePointToUse = newHistory.at(-1)
@@ -25,8 +24,4 @@ export const popHistory = (state: IFormConstructor) => {
     }
   }
 }
-
-
-
-
 
