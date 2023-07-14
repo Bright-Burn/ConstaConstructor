@@ -13,37 +13,14 @@ export const useItemsHandlers = () => {
   const dispatch = useDispatch()
 
   const onChangeField = (
-    value: InformerPropSize | InformerPropView | InformerPropStatus | string,
+    value: InformerPropSize | InformerPropView | InformerPropStatus | boolean | iconNames | string,
     field: keyof InformerElementProps,
   ) => {
     if (selectedElement) {
       const newProps: InformerElementProps = {
         ...(selectedElementProps as InformerElementProps),
+        [field]: value,
       }
-      // @ts-ignore
-      newProps[field] = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeSwitch =
-    (propsName: keyof InformerElementProps) =>
-    ({ checked }: { checked: boolean }) => {
-      if (selectedElementProps) {
-        const newProps: InformerElementProps = {
-          ...(selectedElementProps as InformerElementProps),
-          [propsName]: checked,
-        }
-        selectedElement && onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeIcon = (value: iconNames | null) => {
-    if (selectedElement && value) {
-      const newProps: InformerElementProps = {
-        ...(selectedElementProps as InformerElementProps),
-      }
-      newProps.icon = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -60,8 +37,6 @@ export const useItemsHandlers = () => {
 
   return {
     onChangeField,
-    onChangeSwitch,
-    onChangeIcon,
     itemsProps: {
       size: (selectedElementProps as InformerElementProps).size,
       view: (selectedElementProps as InformerElementProps).view,

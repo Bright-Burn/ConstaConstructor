@@ -106,7 +106,7 @@ export const TextFieldSettings = () => {
             label='Status'
             getItemLabel={label => label}
             items={status}
-            value={`${itemsProps.status}`}
+            value={itemsProps.status || ''}
             onChange={onChangeTextField('status')}
           />
           <Select

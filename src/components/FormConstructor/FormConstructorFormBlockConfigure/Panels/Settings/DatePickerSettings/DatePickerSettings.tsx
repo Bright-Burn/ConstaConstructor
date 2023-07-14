@@ -24,26 +24,10 @@ import { PropForm } from '../../../../store/formElements/selectTypes'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { Button } from '@consta/uikit/Button'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const DatePickerSettings: FC = () => {
-  const {
-    itemsProps,
-    onChangeType,
-    onChangeForm,
-    onChangeStatus,
-    onChangeLabelPosition,
-    onChangeView,
-    onChangeSize,
-    onChangeMinDate,
-    onChangeMaxDate,
-    onChangeDateTimeView,
-    onChangeDropdownForm,
-    onChangeField,
-    onChangeSwitch,
-    onChangeIcon,
-    onChangeItemsCount,
-    onChangeItems,
-  } = useItemsHandlers()
+  const { itemsProps, onChangeField, onChangeItemsCount } = useItemsHandlers()
 
   const [date, setDate] = useState<Date[]>(itemsProps.events)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
@@ -54,7 +38,7 @@ export const DatePickerSettings: FC = () => {
   }
 
   const applyNewDate = () => {
-    onChangeItems(date)
+    onChangeField(date, 'events')
     setIsLabelsEditing(false)
   }
 
@@ -110,7 +94,7 @@ export const DatePickerSettings: FC = () => {
             items={typeArray}
             label='type'
             value={itemsProps.type}
-            onChange={({ value }) => onChangeType(value)}
+            onChange={({ value }) => onChangeField(value as DatePickerPropType, 'type')}
           />
           <Select
             getItemKey={(item: PropForm | undefined) => item || ''}
@@ -118,44 +102,43 @@ export const DatePickerSettings: FC = () => {
             items={formArray}
             label='form'
             value={itemsProps.form}
-            onChange={({ value }) => onChangeForm(value)}
+            onChange={({ value }) => onChangeField(value as PropForm, 'form')}
           />
           <Select
-            getItemKey={(item: TextFieldPropStatus | undefined) => item || ''}
-            getItemLabel={(item: TextFieldPropStatus | undefined) => item || ''}
+            getItemKey={item => item}
+            getItemLabel={item => item}
             items={statusArray}
             label='status'
-            value={itemsProps.status}
-            onChange={({ value }) => onChangeStatus(value)}
+            value={itemsProps.status || ''}
+            onChange={({ value }) => onChangeField(value as TextFieldPropStatus, 'status')}
           />
           <Switch
             checked={itemsProps.withClearButton}
             label='withClearButton'
-            onChange={onChangeSwitch('withClearButton')}
+            onChange={({ checked }) => onChangeField(checked, 'withClearButton')}
           />
-          <Switch
-            checked={itemsProps.withAdditionalControls}
-            label='with additional controls'
-            onChange={onChangeSwitch('withAdditionalControls')}
+          <TextField
+            label='label'
+            value={itemsProps.label}
+            onChange={({ value }) => onChangeField(value as string, 'label')}
           />
-          <TextField label='label' value={itemsProps.label} onChange={onChangeField('label')} />
           <Select
             getItemKey={(item: 'top' | 'left' | undefined) => item || ''}
             getItemLabel={(item: 'top' | 'left' | undefined) => item || ''}
             items={labelPositionArray}
             label='labelPosition'
             value={itemsProps.labelPosition}
-            onChange={({ value }) => onChangeLabelPosition(value)}
+            onChange={({ value }) => onChangeField(value as 'top' | 'left', 'labelPosition')}
           />
           <Switch
             checked={itemsProps.required}
             label='required'
-            onChange={onChangeSwitch('required')}
+            onChange={({ checked }) => onChangeField(checked, 'required')}
           />
           <TextField
             label='caption'
             value={itemsProps.caption}
-            onChange={onChangeField('caption')}
+            onChange={({ value }) => onChangeField(value as string, 'caption')}
           />
           <Select
             getItemKey={(item: TextFieldPropSize | undefined) => item || ''}
@@ -163,7 +146,7 @@ export const DatePickerSettings: FC = () => {
             items={sizeArray}
             label='size'
             value={itemsProps.size}
-            onChange={({ value }) => onChangeSize(value)}
+            onChange={({ value }) => onChangeField(value as TextFieldPropSize, 'size')}
           />
           <Select
             getItemKey={(item: TextFieldPropView) => item || ''}
@@ -171,22 +154,32 @@ export const DatePickerSettings: FC = () => {
             items={viewArray}
             label='view'
             value={itemsProps.view}
-            onChange={({ value }) => onChangeView(value)}
+            onChange={({ value }) => onChangeField(value as TextFieldPropView, 'size')}
           />
           <Switch
             checked={itemsProps.disabled}
             label='disabled'
-            onChange={onChangeSwitch('disabled')}
+            onChange={({ checked }) => onChangeField(checked, 'disabled')}
           />
-          <DatePicker label='minDate' value={itemsProps.minDate} onChange={onChangeMinDate} />
-          <DatePicker label='maxDate' value={itemsProps.maxDate} onChange={onChangeMaxDate} />
+          <DatePicker
+            label='minDate'
+            value={itemsProps.minDate}
+            onChange={({ value }) => onChangeField(value as Date, 'minDate')}
+          />
+          <DatePicker
+            label='maxDate'
+            value={itemsProps.maxDate}
+            onChange={({ value }) => onChangeField(value as Date, 'maxDate')}
+          />
           <Select
             getItemKey={(item: DatePickerPropDateTimeView) => item || ''}
             getItemLabel={(item: DatePickerPropDateTimeView) => item || ''}
             items={dateTimeViewArray}
             label='dateTimeView'
             value={itemsProps.dateTimeView}
-            onChange={({ value }) => onChangeDateTimeView(value)}
+            onChange={({ value }) =>
+              onChangeField(value as DatePickerPropDateTimeView, 'dateTimeView')
+            }
           />
           <Select
             getItemKey={(item: DatePickerPropDropdownForm) => item || ''}
@@ -194,12 +187,14 @@ export const DatePickerSettings: FC = () => {
             items={dropdownFormArray}
             label='dropdownForm'
             value={itemsProps.dropdownForm}
-            onChange={({ value }) => onChangeDropdownForm(value)}
+            onChange={({ value }) =>
+              onChangeField(value as DatePickerPropDropdownForm, 'dropdownForm')
+            }
           />
           <Switch
             checked={!!itemsProps.withIconActive}
             label='withIconActive'
-            onChange={onChangeSwitch('withIconActive')}
+            onChange={({ checked }) => onChangeField(checked, 'withIconActive')}
           />
           {itemsProps.withIconActive && (
             <Select
@@ -208,9 +203,7 @@ export const DatePickerSettings: FC = () => {
               items={icons}
               label='leftIcon'
               value={itemsProps.icon}
-              onChange={({ value }) => {
-                onChangeIcon(value)
-              }}
+              onChange={({ value }) => onChangeField(value as iconNames, 'icon')}
               renderItem={({ item, active, onClick, onMouseEnter }) => (
                 <div
                   style={{ display: 'flex', alignItems: 'center' }}

@@ -19,6 +19,6 @@ export const formArray: PropForm[] = [
   'round',
   'roundClear',
 ]
-export const statusArray: TextFieldPropStatus[] = ['alert', 'success', 'warning']
+export const statusArray = ['', 'alert', 'success', 'warning']
 
 export const labelPositionArray: ['top', 'left'] = ['top', 'left']

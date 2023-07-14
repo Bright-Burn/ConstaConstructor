@@ -31,7 +31,7 @@ export const formArray: PropForm[] = [
   'clearBrick',
   'clearClear',
 ]
-export const statusArray: TextFieldPropStatus[] = ['alert', 'success', 'warning']
+export const statusArray = ['', 'alert', 'success', 'warning']
 export const labelPositionArray: ['top', 'left'] = ['top', 'left']
 export const sizeArray: TextFieldPropSize[] = ['xs', 's', 'm', 'l']
 export const viewArray: TextFieldPropView[] = ['default', 'clear']

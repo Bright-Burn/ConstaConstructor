@@ -40,88 +40,32 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onChangeActiveItem = ({ value }: { value: ITEM | null }) => {
-    if (selectedElement && value) {
+  const onChangeField = (
+    value:
+      | TabsPropLinePosition
+      | TabsPropView
+      | TabsPropSize
+      | ITEM[]
+      | FitMode
+      | ''
+      | 'top'
+      | 'left'
+      | boolean
+      | string
+      | ITEM,
+    field: keyof TabsElementProps,
+  ) => {
+    if (selectedElement) {
       const newProps: TabsElementProps = {
         ...(selectedElementProps as TabsElementProps),
+        [field]: value,
       }
-      newProps.value = value
       onDispatch(selectedElement, newProps)
     }
   }
-
-  const onChangeItems = (items: ITEM[]) => {
-    if (selectedElement && items) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.items = [...items]
-      newProps.value = items[0]
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeLinePosition = (value: TabsPropLinePosition | null) => {
-    if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.linePosition = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeView = (value: TabsPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.view = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeSize = (value: TabsPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeFitMode = (value: FitMode | null) => {
-    if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.fitMode = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeSwitch =
-    (propsName: keyof TabsElementProps) =>
-    ({ checked }: { checked: boolean }) => {
-      if (selectedElementProps) {
-        const newProps: TabsElementProps = {
-          ...(selectedElementProps as TabsElementProps),
-          [propsName]: checked,
-        }
-        selectedElement && onDispatch(selectedElement, newProps)
-      }
-    }
-
   return {
     onChangeItemsCount,
-    onChangeActiveItem,
-    onChangeItems,
-    onChangeLinePosition,
-    onChangeView,
-    onChangeSize,
-    onChangeFitMode,
-    onChangeSwitch,
+    onChangeField,
     itemsProps: {
       items: (selectedElementProps as TabsElementProps).items,
       activeItem: (selectedElementProps as TabsElementProps).value,

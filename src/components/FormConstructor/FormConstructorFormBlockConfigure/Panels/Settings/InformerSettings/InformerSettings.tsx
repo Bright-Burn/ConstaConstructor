@@ -8,9 +8,10 @@ import { icons } from '../IconSettings/IconsConstants'
 import { Switch } from '@consta/uikit/Switch'
 import React from 'react'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const InformerSettings = () => {
-  const { itemsProps, onChangeField, onChangeIcon, onChangeSwitch } = useItemsHandlers()
+  const { itemsProps, onChangeField } = useItemsHandlers()
 
   return (
     <div className={styles.informerSettings}>
@@ -63,7 +64,7 @@ export const InformerSettings = () => {
           <Switch
             checked={!!itemsProps.iconActive}
             label='iconActive'
-            onChange={onChangeSwitch('iconActive')}
+            onChange={({ checked }) => onChangeField(checked, 'iconActive')}
           />
           {itemsProps.iconActive && (
             <Select
@@ -72,9 +73,7 @@ export const InformerSettings = () => {
               items={icons}
               label='icons'
               value={itemsProps.icon}
-              onChange={({ value }) => {
-                onChangeIcon(value)
-              }}
+              onChange={({ value }) => onChangeField(value as iconNames, 'icon')}
               renderItem={({ item, active, onClick, onMouseEnter }) => (
                 <div
                   style={{ display: 'flex', alignItems: 'center' }}

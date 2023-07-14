@@ -50,103 +50,33 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onChangeSize = (value: TextFieldPropSize | null) => {
-    if (selectedElement && value) {
+  const onChangeField = (
+    value:
+      | DatePickerPropDropdownForm
+      | TextFieldPropView
+      | TextFieldPropSize
+      | PropForm
+      | TextFieldPropStatus
+      | ''
+      | 'top'
+      | 'left'
+      | boolean
+      | string,
+    field: keyof SelectProps,
+  ) => {
+    if (selectedElement) {
       const newProps: SelectProps = {
         ...(selectedElementProps as SelectProps),
+        [field]: value,
       }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeView = (value: TextFieldPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
-      }
-      newProps.view = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeForm = (value: PropForm | null) => {
-    if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
-      }
-      newProps.form = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeStatus = (value: TextFieldPropStatus | null) => {
-    if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
-      }
-      newProps.status = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
-    if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
-      }
-      newProps.labelPosition = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeField =
-    (propsName: keyof SelectProps) =>
-    ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: SelectProps = {
-          ...(selectedElementProps as SelectProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = value || ''
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeSwitch =
-    (propsName: keyof SelectProps) =>
-    ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: SelectProps = {
-          ...(selectedElementProps as SelectProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = checked
-        onDispatch(selectedElement, newProps)
-      }
-    }
-
-  const onChangeDropDownForm = (value: DatePickerPropDropdownForm | null) => {
-    if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
-      }
-      newProps.dropdownForm = value
       onDispatch(selectedElement, newProps)
     }
   }
 
   return {
     onChangeItemsCount,
-    onChangeForm,
-    onChangeLabelPosition,
     onChangeItems,
-    onChangeStatus,
-    onChangeView,
-    onChangeSize,
     onChangeField,
-    onChangeSwitch,
-    onChangeDropDownForm,
     itemsProps: {
       disabled: (selectedElementProps as SelectProps).disabled,
       size: (selectedElementProps as SelectProps).size,

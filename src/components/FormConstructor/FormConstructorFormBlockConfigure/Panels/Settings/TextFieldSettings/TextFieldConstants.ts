@@ -1,4 +1,4 @@
-export const status: string[] = ['alert', 'success', 'warning', 'undefined']
+export const status: string[] = ['', 'alert', 'success', 'warning']
 export const types: string[] = ['text', 'textarea', 'number', 'password']
 export const sizes: string[] = ['l', 'm', 's', 'xs']
 export const width: string[] = ['full', 'default']

@@ -12,17 +12,7 @@ import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { iconNames } from '../../../../store/formElements/iconTypes'
 
 export const TabsSettings = () => {
-  const {
-    itemsProps,
-    onChangeItemsCount,
-    onChangeActiveItem,
-    onChangeItems,
-    onChangeLinePosition,
-    onChangeView,
-    onChangeSize,
-    onChangeFitMode,
-    onChangeSwitch,
-  } = useItemsHandlers()
+  const { itemsProps, onChangeItemsCount, onChangeField } = useItemsHandlers()
   const [tabs, setTabs] = useState<ITEM[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
 
@@ -32,7 +22,7 @@ export const TabsSettings = () => {
   }
 
   const applyNewTabs = () => {
-    onChangeItems(tabs)
+    onChangeField(tabs, 'items')
     setIsLabelsEditing(false)
   }
 
@@ -87,7 +77,7 @@ export const TabsSettings = () => {
             getItemLabel={item => item.label}
             items={itemsProps.items}
             value={itemsProps.activeItem}
-            onChange={onChangeActiveItem}
+            onChange={({ value }) => onChangeField(value as ITEM, 'view')}
           />
           <Button
             view='secondary'
@@ -166,7 +156,7 @@ export const TabsSettings = () => {
       <Switch
         checked={itemsProps.disabled}
         label='disabled'
-        onChange={onChangeSwitch('disabled')}
+        onChange={({ checked }) => onChangeField(checked, 'disabled')}
       />
       <Select
         label='size'
@@ -174,7 +164,7 @@ export const TabsSettings = () => {
         getItemLabel={(label: TabsPropSize) => label}
         value={itemsProps.size}
         items={sizeArray}
-        onChange={({ value }) => onChangeSize(value)}
+        onChange={({ value }) => onChangeField(value as TabsPropSize, 'size')}
       />
       <Select
         label='view'
@@ -182,7 +172,7 @@ export const TabsSettings = () => {
         getItemLabel={(label: TabsPropView) => label}
         value={itemsProps.view}
         items={viewArray}
-        onChange={({ value }) => onChangeView(value)}
+        onChange={({ value }) => onChangeField(value as TabsPropView, 'view')}
       />
       <Select
         label='Расположение табов'
@@ -190,7 +180,7 @@ export const TabsSettings = () => {
         getItemLabel={(label: TabsPropLinePosition) => label}
         value={itemsProps.linePosition}
         items={linePositionArray}
-        onChange={({ value }) => onChangeLinePosition(value)}
+        onChange={({ value }) => onChangeField(value as TabsPropLinePosition, 'linePosition')}
       />
       {(itemsProps.linePosition === 'bottom' || itemsProps.linePosition === 'top') && (
         <Select
@@ -199,7 +189,7 @@ export const TabsSettings = () => {
           getItemLabel={(label: FitMode) => label}
           value={itemsProps.fitMode}
           items={fitModeArray}
-          onChange={({ value }) => onChangeFitMode(value)}
+          onChange={({ value }) => onChangeField(value as FitMode, 'fitMode')}
         />
       )}
     </>

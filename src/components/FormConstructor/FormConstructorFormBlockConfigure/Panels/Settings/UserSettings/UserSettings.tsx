@@ -44,11 +44,11 @@ export const UserSettings: FC = () => {
             }}
           />
           <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
+            getItemKey={item => item || ''}
+            getItemLabel={item => item || ''}
             items={status}
             label='status'
-            value={itemsProps.status}
+            value={itemsProps.status || ''}
             onChange={({ value }) => {
               onChangeField(value as UserPropStatus, 'status')
             }}

@@ -11,19 +11,7 @@ import { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
 import { dropDownArray } from '../ComboBoxSettings/types'
 
 export const SelectSettings = () => {
-  const {
-    itemsProps,
-    onChangeItemsCount,
-    onChangeForm,
-    onChangeItems,
-    onChangeStatus,
-    onChangeView,
-    onChangeSwitch,
-    onChangeSize,
-    onChangeField,
-    onChangeLabelPosition,
-    onChangeDropDownForm,
-  } = useItemsHandlers()
+  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField } = useItemsHandlers()
 
   const [lines, setLines] = useState<ITEM[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
@@ -111,12 +99,12 @@ export const SelectSettings = () => {
         </>
       )}
       <Switch
-        onChange={onChangeSwitch('disabled')}
+        onChange={({ checked }) => onChangeField(checked, 'disabled')}
         label='disabled'
         checked={itemsProps.disabled}
       />
       <Switch
-        onChange={onChangeSwitch('groupsActive')}
+        onChange={({ checked }) => onChangeField(checked, 'groupsActive')}
         label='groupsActive'
         checked={itemsProps.groupsActive}
       />
@@ -126,7 +114,7 @@ export const SelectSettings = () => {
         getItemLabel={(label: TextFieldPropSize) => label}
         value={itemsProps.size}
         items={sizeArray}
-        onChange={({ value }) => onChangeSize(value)}
+        onChange={({ value }) => onChangeField(value as TextFieldPropSize, 'size')}
       />
       <Select
         label='view'
@@ -134,7 +122,7 @@ export const SelectSettings = () => {
         getItemLabel={(label: TextFieldPropView) => label}
         value={itemsProps.view}
         items={viewArray}
-        onChange={({ value }) => onChangeView(value)}
+        onChange={({ value }) => onChangeField(value as TextFieldPropView, 'view')}
       />
       <Select
         label='form'
@@ -142,21 +130,21 @@ export const SelectSettings = () => {
         getItemLabel={(label: PropForm) => label}
         value={itemsProps.form}
         items={formArray}
-        onChange={({ value }) => onChangeForm(value)}
+        onChange={({ value }) => onChangeField(value as PropForm, 'form')}
       />
       <Switch
         style={{ marginTop: '8px' }}
-        onChange={onChangeSwitch('required')}
+        onChange={({ checked }) => onChangeField(checked, 'required')}
         label='required'
         checked={itemsProps.required}
       />
       <Select
         label='status'
-        getItemKey={(key: TextFieldPropStatus) => key}
-        getItemLabel={(label: TextFieldPropStatus) => label}
-        value={itemsProps.status}
+        getItemKey={key => key}
+        getItemLabel={label => label}
+        value={itemsProps.status || ''}
         items={statusArray}
-        onChange={({ value }) => onChangeStatus(value)}
+        onChange={({ value }) => onChangeField(value as TextFieldPropStatus, 'status')}
       />
       <Select
         label='dropdownForm'
@@ -164,17 +152,17 @@ export const SelectSettings = () => {
         getItemLabel={(label: DatePickerPropDropdownForm) => label}
         value={itemsProps.dropdownForm}
         items={dropDownArray}
-        onChange={({ value }) => onChangeDropDownForm(value)}
+        onChange={({ value }) => onChangeField(value as DatePickerPropDropdownForm, 'dropdownForm')}
       />
       <TextField
         label='caption'
         value={`${itemsProps.caption || ''}`}
-        onChange={onChangeField('caption')}
+        onChange={({ value }) => onChangeField(value as string, 'caption')}
       />
       <TextField
         label='label'
         value={`${itemsProps.label || ''}`}
-        onChange={onChangeField('label')}
+        onChange={({ value }) => onChangeField(value as string, 'label')}
       />
       <Select
         label='labelPosition'
@@ -182,16 +170,16 @@ export const SelectSettings = () => {
         getItemLabel={(label: 'top' | 'left') => label}
         value={itemsProps.labelPosition}
         items={labelPositionArray}
-        onChange={({ value }) => onChangeLabelPosition(value)}
+        onChange={({ value }) => onChangeField(value as 'top' | 'left', 'labelPosition')}
       />
       <TextField
         label='placeholder'
         value={`${itemsProps.placeholder || ''}`}
-        onChange={onChangeField('placeholder')}
+        onChange={({ value }) => onChangeField(value as string, 'placeholder')}
       />
       <Switch
         style={{ marginTop: '8px' }}
-        onChange={onChangeSwitch('isLoading')}
+        onChange={({ checked }) => onChangeField(checked, 'isLoading')}
         label='isLoading'
         checked={itemsProps.isLoading}
       />

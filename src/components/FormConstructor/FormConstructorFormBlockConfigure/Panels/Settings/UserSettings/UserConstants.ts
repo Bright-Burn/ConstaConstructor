@@ -3,4 +3,4 @@ import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@cons
 export const sizes: UserPropSize[] = ['m', 's', 'l']
 export const views: UserPropView[] = ['ghost', 'clear']
 export const width: UserPropWidth[] = ['default', 'full']
-export const status: UserPropStatus[] = ['available', 'out', 'remote']
+export const status = ['', 'available', 'out', 'remote']
