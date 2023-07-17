@@ -34,6 +34,7 @@ import { ButtonModuleSettings } from './ButtonModalSettings'
 import { FilledSettings } from './FilledSettings/FilledSettings'
 import { TagSettings } from './TagSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
+import { CollapseSettings } from './CollapseSettings/CollapseSettings'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -183,6 +184,12 @@ export const Settings: FC = () => {
           return (
             <>
               <ChoiceGroupSettings /> <BaseSettings />
+            </>
+          )
+        case FormElementTypes.Collapse:
+          return (
+            <>
+              <CollapseSettings /> <BaseSettings />
             </>
           )
         case FormElementTypes.Icon:

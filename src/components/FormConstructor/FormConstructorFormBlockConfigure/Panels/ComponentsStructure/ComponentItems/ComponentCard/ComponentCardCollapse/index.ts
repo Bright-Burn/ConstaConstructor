@@ -1,0 +1,1 @@
+export { ComponentCardCollapse } from './ComponentCardCollapse'

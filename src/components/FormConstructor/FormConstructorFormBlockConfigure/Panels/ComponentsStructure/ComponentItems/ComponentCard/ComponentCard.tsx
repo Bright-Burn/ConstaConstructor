@@ -24,6 +24,7 @@ import { ComponentCardUser } from './ComponentCardUser'
 import { ComponentCardIcon } from './ComponentCardIcon'
 import { ComponentCardTag } from './ComponentCardTag'
 import { ComponentCardChoiceGroup } from './ComponentCardChoiceGroup'
+import { ComponentCardCollapse } from './ComponentCardCollapse'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
@@ -50,6 +51,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
         <ComponentCardIcon name={name} value={FormElementTypes.Icon} />
         <ComponentCardTag name={name} value={FormElementTypes.Tag} />
         <ComponentCardChoiceGroup name={name} value={FormElementTypes.ChoiceGroup} />
+        <ComponentCardCollapse name={name} value={FormElementTypes.Collapse} />
       </SwitchComponent>
     </div>
   )

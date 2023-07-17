@@ -1,0 +1,4 @@
+.CollapseSettings {
+  display: flex;
+  flex-direction: column;
+}

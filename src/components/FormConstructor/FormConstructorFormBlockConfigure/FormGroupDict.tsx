@@ -38,6 +38,7 @@ import {
   IconFormElement,
   TagFormElement,
   ChoiceGroupFormElement,
+  CollapseFormElement,
 } from './Elements'
 import { ButtonActionModal } from './Elements/ButtonFormElement/ButtonActionModal'
 
@@ -80,4 +81,5 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   ButtonModal: ButtonActionModal,
   Tag: TagFormElement,
   ChoiceGroup: ChoiceGroupFormElement,
+  Collapse: CollapseFormElement,
 }
