@@ -34,6 +34,7 @@ import { ButtonModuleSettings } from './ButtonModalSettings'
 import { FilledSettings } from './FilledSettings/FilledSettings'
 import { TagSettings } from './TagSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
+import { SettingsActions } from './SettingsActions'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
@@ -233,7 +234,7 @@ export const Settings: FC = () => {
     <>
       {settingsPanelState ? (
         <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer} `}>
-          <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
+          <SettingsActions />
           <div className={styles.buttonsSaveLoad}>
             <FileField id={'loader_project'} onChange={onChange}>
               {props => (
