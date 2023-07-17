@@ -21,6 +21,7 @@ import {
   setDraggableElement,
 } from './reducers'
 import { initialState } from './initialState'
+import { popHistory } from './history/reducers'
 
 const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
   name = '',
@@ -57,6 +58,7 @@ export const formConstructorSlice = createFormConstructorSlice({
     addNewPage: addNewPage,
     changeActivePage: changeActivePage,
     deletePage: deletePage,
+    popHistory: popHistory,
   },
 })
 

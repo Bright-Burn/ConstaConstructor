@@ -28,6 +28,7 @@ import {
 } from './buttonTypes'
 import { IFormElementTagProps, TagProps } from './tagTypes'
 import { OwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
+import { IHistory } from './history'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -189,7 +190,7 @@ export interface IPageOfLayout {
   name: string
 }
 
-export interface IFormConstructor {
+export interface IFormConstructor extends IHistory {
   allElementsTree: Map<string, string[]>
   allElementsMap: Map<string, IFormElement | IGroupElement>
   selectedElement: ISelectedElement | null
