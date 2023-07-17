@@ -32,6 +32,7 @@ export const LayoutSettings = () => {
     onChangeBorderSide,
     onChangeVerticalAligment,
     onChangeDirection,
+    onChangeBorderRadius,
     onChangeBackroundColor,
   } = useItemsHandlers()
 
@@ -101,6 +102,7 @@ export const LayoutSettings = () => {
             min='0'
           />
           <LayoutPalette
+            label='Color'
             color={itemsProps.styles?.backgroundColor}
             size={'m'}
             onChangeColor={onChangeBackroundColor}
@@ -137,6 +139,12 @@ export const LayoutSettings = () => {
             value={`${itemsProps.styles?.borderWidth || ''}`}
             onChange={({ value }) => onChangeBorderWidth(value)}
           />
+          <TextField
+            value={itemsProps.styles?.borderRadius}
+            type='numeric'
+            label='Border radius'
+            onChange={({ value }) => onChangeBorderRadius(value)}
+          />
           <Select
             getItemKey={key => key}
             label='Border side'
@@ -145,16 +153,11 @@ export const LayoutSettings = () => {
             value={`${itemsProps.styles?.borderSide || ''}`}
             onChange={({ value }) => onChangeBorderSide(value)}
           />
-          <TextField
-            value={itemsProps.styles?.borderColor}
-            type='text'
+          <LayoutPalette
             label='Border color'
-            onChange={({ value }) => onChangeBorderColor(value)}
-          />
-          <input
-            type='color'
-            value={itemsProps.styles?.borderColor}
-            onChange={value => updateColor(value.currentTarget.value)}
+            color={itemsProps.styles?.borderColor}
+            size={'m'}
+            onChangeColor={onChangeBorderColor}
           />
         </>
       ) : (

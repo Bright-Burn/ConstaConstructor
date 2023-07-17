@@ -46,10 +46,12 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
       style={{
         ...layoutProps?.styles,
         ...activeSide,
+        borderColor: `var(--${layoutProps?.styles?.borderColor})`,
         backgroundColor: `var(--${layoutProps?.styles?.backgroundColor})`,
         overflow: 'hidden',
       }}>
       <SelectableLayer
+        className={layoutProps?.styles?.borderRadius && `${style.borderRadiusEmpty}`}
         parentElementId={element.id}
         elementType={FormGroupsTypes.Layout}
         elementTypeUsage={ElementTypes.FormGroups}>

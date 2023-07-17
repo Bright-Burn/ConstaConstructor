@@ -194,15 +194,13 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onChangeBorderColor = (value: string | null) => {
+  const onChangeBorderColor = (value: ConstaColor) => {
     if (selectedElement) {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
-
       newProps.styles = { ...newProps.styles }
-
-      newProps.styles.borderColor = value as BorderColor
+      newProps.styles.borderColor = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -212,10 +210,24 @@ export const useItemsHandlers = () => {
       const newProps: LayoutElementPropsStyles = {
         ...(selectedElementProps as LayoutElementPropsStyles),
       }
+      newProps.styles = { ...newProps.styles }
+      newProps.styles.backgroundColor = color
+      onDispatch(selectedElement, newProps)
+    }
+  }
+
+  const onChangeBorderRadius = (value: string | null) => {
+    if (selectedElement) {
+      const newProps: LayoutElementPropsStyles = {
+        ...(selectedElementProps as LayoutElementPropsStyles),
+      }
 
       newProps.styles = { ...newProps.styles }
 
-      newProps.styles.backgroundColor = color
+      if (value && value?.slice(-3, -1) !== 'px' && value?.slice(-2) !== 'px')
+        newProps.styles.borderRadius = `${value}px`
+      else newProps.styles.borderRadius = value as string
+
       onDispatch(selectedElement, newProps)
     }
   }
@@ -233,6 +245,7 @@ export const useItemsHandlers = () => {
     onChangeBorderColor,
     onChangeVerticalAligment,
     onChangeDirection,
+    onChangeBorderRadius,
     onChangeBackroundColor,
     itemsProps: {
       constaProps: (selectedElementProps as LayoutElementPropsStyles).constaProps,
@@ -241,4 +254,3 @@ export const useItemsHandlers = () => {
     },
   }
 }
-

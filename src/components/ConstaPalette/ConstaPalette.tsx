@@ -5,6 +5,7 @@ import { Select } from '@consta/uikit/Select'
 import { cn } from '@bem-react/classname'
 
 export const ConstaPalette: FC<IConstaPalette> = ({
+  label,
   color,
   onChangeColor,
   size,
@@ -30,7 +31,7 @@ export const ConstaPalette: FC<IConstaPalette> = ({
     <div className={css.constaPalette}>
       <Select
         getItemKey={getItemKey}
-        label='Color'
+        label={label}
         size={size}
         getItemLabel={getItemKey}
         items={colorsToSelect}
@@ -69,4 +70,3 @@ export const ConstaPalette: FC<IConstaPalette> = ({
     </div>
   )
 }
-
