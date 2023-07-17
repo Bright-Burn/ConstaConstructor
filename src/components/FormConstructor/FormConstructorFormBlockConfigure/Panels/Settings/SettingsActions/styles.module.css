@@ -1,0 +1,21 @@
+.buttonSettings {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hotKeyPane {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-s);
+}
+
+.hotKeyPaneMac {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0.2rem solid var(--color-bg-secondary);
+}
+
+.hotKeyPaneWin {
+    display: flex;
+    flex-direction: column;
+}
