@@ -10,7 +10,7 @@ import {
   HIDE_SHOW_PANELS,
   HIDE_SHOW_PANELS_MAC,
   HIDE_SHOW_PANELS_WIN,
-} from './content'
+} from './constants'
 
 export const HotKeyPaneNote = () => {
   return (
