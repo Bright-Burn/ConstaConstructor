@@ -17,11 +17,20 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
         dispatch(formConstructorSlice.actions.togglePanelsByHotkey())
       }
     }
+    /// Полуает последнее состояние из истории
+    const onKeyGoBack = (e: KeyboardEvent) => {
+      const { code, ctrlKey } = e
+      if (code === 'KeyZ' && ctrlKey) {
+        dispatch(formConstructorSlice.actions.popHistory())
+      }
+    }
 
+    document.addEventListener('keydown', onKeyGoBack)
     document.addEventListener('keydown', onKeyDown)
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('keydown', onKeyGoBack)
     }
   }, [])
 
@@ -46,3 +55,4 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
 
   return <div className={css.formConstructorEventListener}>{children}</div>
 }
+

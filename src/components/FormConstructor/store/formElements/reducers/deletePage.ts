@@ -3,6 +3,7 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { IFormConstructor } from '../types'
 import { DeletePage } from '../payload'
 import { processDelete } from './deleteElement'
+import { pushHistory } from '../history'
 
 export const deletePage = (state: IFormConstructor, action: PayloadAction<DeletePage>) => {
   /// Разрешаем удаление только в случае, если количество страниц больше 1
@@ -31,5 +32,8 @@ export const deletePage = (state: IFormConstructor, action: PayloadAction<Delete
     state.allElementsTree = allElementsTree
 
     state.pages = newPages
+
+    pushHistory(state)
   }
 }
+

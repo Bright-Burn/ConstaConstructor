@@ -2,6 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { IFormConstructor, IFormElement, IGroupElement } from '../types'
 import { DeleteElementPayload } from '../payload'
 import { IButtonActionElement, IFormElementButton, buttonActionsActive } from '../buttonTypes'
+import { pushHistory } from '../history'
 
 export const deleteElement = (
   state: IFormConstructor,
@@ -14,6 +15,8 @@ export const deleteElement = (
 
   state.allElementsMap = allElementsMap
   state.allElementsTree = allElementsTree
+
+  pushHistory(state)
 }
 
 export const processDelete = (

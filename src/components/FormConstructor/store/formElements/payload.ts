@@ -1,3 +1,4 @@
+import { ISavePoint } from './history'
 import { FormElementTypes, FormGroupsTypes, IFormElement, IGroupElement, UnionProps } from './types'
 
 export interface AddNewElementPayload {
