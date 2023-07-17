@@ -28,6 +28,7 @@ import {
 } from './buttonTypes'
 import { IFormElementTagProps, TagProps } from './tagTypes'
 import { OwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
+import { CollapseProps, IFormElementCollapse } from './collapseTypes'
 import { IHistory } from './history'
 
 // Существует два типа элементов, элементы формы и группирующие панели
@@ -87,6 +88,7 @@ export const FormElementTypes = {
   Icon: 'Icon',
   Tag: 'Tag',
   ChoiceGroup: 'ChoiceGroup',
+  Collapse: 'Collapse',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -141,6 +143,7 @@ export type FormElementProps =
   | IconProps
   | TagProps
   | OwnChoiceGroupProps
+  | CollapseProps
 
 // Все Union пропсы для GroupElement
 export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles | ButtonGroupProps
@@ -167,6 +170,7 @@ export type FormElementUnion =
   | IFormElementIcon
   | IFormElementTagProps
   | IFormElementChoiceGroup
+  | IFormElementCollapse
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement

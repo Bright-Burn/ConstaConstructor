@@ -107,4 +107,9 @@ export const constaCards = [
     name: 'ChoiceGroup',
     formElementType: FormElementTypes.ChoiceGroup,
   },
+  {
+    id: uuid(),
+    name: 'Collapse',
+    formElementType: FormElementTypes.Collapse,
+  },
 ]
