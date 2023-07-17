@@ -158,6 +158,11 @@ export const TabsSettings = () => {
         label='disabled'
         onChange={({ checked }) => onChangeField(checked, 'disabled')}
       />
+      <Switch
+        checked={itemsProps.onlyIcon}
+        label='onlyIcon'
+        onChange={({ checked }) => onChangeField(checked, 'onlyIcon')}
+      />
       <Select
         label='size'
         getItemKey={(key: TabsPropSize) => key}

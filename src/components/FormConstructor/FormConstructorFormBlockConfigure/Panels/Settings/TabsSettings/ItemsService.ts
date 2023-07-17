@@ -70,6 +70,7 @@ export const useItemsHandlers = () => {
       items: (selectedElementProps as TabsElementProps).items,
       activeItem: (selectedElementProps as TabsElementProps).value,
       linePosition: (selectedElementProps as TabsElementProps).linePosition,
+      onlyIcon: (selectedElementProps as TabsElementProps).onlyIcon,
       view: (selectedElementProps as TabsElementProps).view,
       size: (selectedElementProps as TabsElementProps).size,
       fitMode: (selectedElementProps as TabsElementProps).fitMode,

@@ -176,7 +176,7 @@ export const ComboBoxSettings = () => {
         getItemLabel={(label: DatePickerPropDropdownForm) => label}
         value={itemsProps.dropdownForm}
         items={dropDownArray}
-        onChange={({ value }) => onChangeField(value as DatePickerPropDropdownForm, 'size')}
+        onChange={({ value }) => onChangeField(value as DatePickerPropDropdownForm, 'dropdownForm')}
       />
       <TextField
         value={itemsProps.placeholder}
