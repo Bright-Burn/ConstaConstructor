@@ -14,5 +14,5 @@ export const saveProjectToFile = (
     project: state,
   }
   saveProjectData(intent)
+  //это просто экшн
 }
-

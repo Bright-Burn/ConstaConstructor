@@ -41,4 +41,3 @@ export const updateSelectedElement = (
     state.allElementsMap = newAllelementMap
   }
 }
-

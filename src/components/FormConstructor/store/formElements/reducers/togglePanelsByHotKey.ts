@@ -13,4 +13,3 @@ export const togglePanelByHotKey = (state: PanelStatePayload) => {
     state.settingsPanelState = true
   }
 }
-

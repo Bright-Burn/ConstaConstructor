@@ -47,7 +47,8 @@ export const ConstaPalette: FC<IConstaPalette> = ({
               aria-selected={active}
               onMouseEnter={onCustomMouseEnter}
               onMouseLeave={onMouseLeave}
-              onClick={onClick}>
+              onClick={onClick}
+            >
               {item}
             </div>
           )
@@ -69,4 +70,3 @@ export const ConstaPalette: FC<IConstaPalette> = ({
     </div>
   )
 }
-

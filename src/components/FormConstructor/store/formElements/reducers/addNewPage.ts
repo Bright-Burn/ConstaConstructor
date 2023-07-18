@@ -28,4 +28,3 @@ export const addNewPage = (state: IFormConstructor) => {
 
   pushHistory(state)
 }
-

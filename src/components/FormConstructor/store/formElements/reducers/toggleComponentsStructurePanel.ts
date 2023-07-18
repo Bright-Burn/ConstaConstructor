@@ -8,4 +8,3 @@ export const toggleComponentsStructurePanel = (
 ) => {
   state.componentsStructurePanelState = !state.componentsStructurePanelState
 }
-

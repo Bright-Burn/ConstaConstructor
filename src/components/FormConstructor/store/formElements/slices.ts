@@ -1,5 +1,5 @@
 import { IFormConstructor } from './types'
-import { createSlice, SliceCaseReducers, ValidateSliceCaseReducers } from '@reduxjs/toolkit'
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
 
@@ -23,23 +23,9 @@ import {
 import { initialState } from './initialState'
 import { popHistory } from './history/reducers'
 
-const createFormConstructorSlice = <Reducers extends SliceCaseReducers<IFormConstructor>>({
-  name = '',
-  initialState,
-  reducers,
-}: {
-  name: string
-  initialState: IFormConstructor
-  reducers: ValidateSliceCaseReducers<IFormConstructor, Reducers>
-}) => {
-  return createSlice({
-    name,
-    initialState,
-    reducers: reducers,
-  })
-}
-
-export const formConstructorSlice = createFormConstructorSlice({
+//slice viewer
+//slice draggable
+export const formConstructorSlice = createSlice({
   name: 'formConstructor',
   initialState,
   reducers: {

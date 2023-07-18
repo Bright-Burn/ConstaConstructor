@@ -13,4 +13,3 @@ export { showGrid } from './showGrid'
 export { toggleSettingsPanelState } from './toggleSettingsPanelState'
 export { changeActivePage } from './changeActivePage'
 export { deletePage } from './deletePage'
-

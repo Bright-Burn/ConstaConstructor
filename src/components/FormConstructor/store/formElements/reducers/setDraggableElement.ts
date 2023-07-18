@@ -8,4 +8,3 @@ export const setDraggableElement = (
 ) => {
   state.draggableElement = action.payload.element
 }
-

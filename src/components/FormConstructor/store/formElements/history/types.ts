@@ -14,4 +14,3 @@ export interface ISavePoint {
 export interface IHistory {
   history: ISavePoint[]
 }
-

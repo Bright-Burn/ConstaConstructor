@@ -20,4 +20,3 @@ export const pushHistory = (state: IFormConstructor) => {
     state.history = [...newHistory]
   }
 }
-

@@ -117,7 +117,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
     <div
       className={styles.droppableContainer}
       onDrop={handleOnDrop}
-      onDragOver={event => event.preventDefault()}>
+      onDragOver={event => event.preventDefault()}
+    >
       {elementsOnLayer.map(el => {
         let Component = FormGroupsDict[el.type]
         return <Component key={el.id} element={el} />
