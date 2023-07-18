@@ -34,4 +34,3 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
     </div>
   )
 }
-

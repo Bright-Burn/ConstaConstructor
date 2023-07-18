@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect,  useRef, useState } from 'react'
+import { FC, useLayoutEffect, useRef, useState } from 'react'
 import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
   IExpertiseFormProps,
@@ -30,7 +30,7 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
     headerView: 'default',
     verticalAlign: 'center',
   })
-  const [columnDefs, ] = useState<ColDef[]>([
+  const [columnDefs] = useState<ColDef[]>([
     { field: 'well', headerName: 'Скважина', filter: 'agTextColumnFilter', minWidth: 100 },
     { field: 'status', headerName: 'Статус', minWidth: 200 },
     { field: 'state', headerName: 'Состояние', minWidth: 50 },

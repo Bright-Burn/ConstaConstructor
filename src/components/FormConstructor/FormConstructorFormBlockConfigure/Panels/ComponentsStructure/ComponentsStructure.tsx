@@ -13,6 +13,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../store/formElements/slices'
+import { getComponentsStructurePanelState, togglePanels } from '../../../store'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[1])
@@ -27,16 +28,10 @@ export const ComponentsStructure = () => {
   }
 
   const dispatch = useAppDispatch()
-  const componentsStructurePanelState = useAppSelector(
-    state => state.formConstructor.componentsStructurePanelState,
-  )
+  const componentsStructurePanelState = useAppSelector(getComponentsStructurePanelState)
 
   const toggleSettingsPanel = () => {
-    dispatch(
-      formConstructorSlice.actions.toggleComponentsStructurePanel({
-        componentsStructurePanelState: componentsStructurePanelState,
-      }),
-    )
+    dispatch(togglePanels())
   }
 
   return (

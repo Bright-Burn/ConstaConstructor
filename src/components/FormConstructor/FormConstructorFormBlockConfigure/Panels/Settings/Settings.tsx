@@ -35,12 +35,14 @@ import { FilledSettings } from './FilledSettings/FilledSettings'
 import { TagSettings } from './TagSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
 import { SettingsActions } from './SettingsActions'
+import { checkIsGridVisible, getSettingsPanelState, toggleGrid } from '../../../store'
 
 export const Settings: FC = () => {
-  const settingsPanelState = useAppSelector(state => state.formConstructor.settingsPanelState)
+  const settingsPanelState = useAppSelector(getSettingsPanelState)
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
 
-  const { selectedElement, isGridVisible } = useAppSelector(state => state.formConstructor)
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const isGridVisible = useAppSelector(checkIsGridVisible)
   const dispatch = useAppDispatch()
 
   const getSettingsPanel = () => {
@@ -195,11 +197,7 @@ export const Settings: FC = () => {
   }
 
   const onClickShowGrid = () => {
-    dispatch(
-      formConstructorSlice.actions.showGrid({
-        isGridVisible: !isGridVisible,
-      }),
-    )
+    dispatch(toggleGrid())
   }
 
   const onSaveProjectClick = () => {

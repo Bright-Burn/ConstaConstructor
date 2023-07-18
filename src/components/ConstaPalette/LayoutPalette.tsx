@@ -24,5 +24,3 @@ const layoutColors: ConstaColor[] = [
 export const LayoutPalette: FC<IConcreteConstaPalette> = props => {
   return <ConstaPalette {...props} colorsToSelect={layoutColors} />
 }
-
-

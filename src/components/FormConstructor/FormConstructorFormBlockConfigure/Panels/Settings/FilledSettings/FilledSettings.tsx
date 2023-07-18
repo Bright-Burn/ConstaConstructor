@@ -9,7 +9,7 @@ export const FilledSettings = () => {
 
   const dispatch = useDispatch()
 
-  function onFilledChange({ value: filled }: { value: fillType | null}): void {
+  function onFilledChange({ value: filled }: { value: fillType | null }): void {
     const newProps = { ...selectedElementProps, filled }
 
     if (selectedElement) {
@@ -24,13 +24,13 @@ export const FilledSettings = () => {
   }
   let filled: fillType = selectedElementProps?.filled ?? 'default'
   return (
-      <Select
-        getItemKey={(item: fillType) => item}
-        getItemLabel={(item : fillType)=> item}
-        items={fillValues}
-        label='Filled'
-        value={filled}
-        onChange={onFilledChange}
-      />
+    <Select
+      getItemKey={(item: fillType) => item}
+      getItemLabel={(item: fillType) => item}
+      items={fillValues}
+      label='Filled'
+      value={filled}
+      onChange={onFilledChange}
+    />
   )
 }

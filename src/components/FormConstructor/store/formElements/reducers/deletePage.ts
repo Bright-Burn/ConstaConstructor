@@ -36,4 +36,3 @@ export const deletePage = (state: IFormConstructor, action: PayloadAction<Delete
     pushHistory(state)
   }
 }
-

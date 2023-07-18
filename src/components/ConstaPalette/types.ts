@@ -84,4 +84,3 @@ export const ConstaColors = [
 ] as const
 
 export type ConstaColor = typeof ConstaColors[number]
-

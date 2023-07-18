@@ -92,7 +92,8 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Tag}>
+      elementType={FormElementTypes.Tag}
+    >
       {getTag()}
     </SelectableLayer>
   )

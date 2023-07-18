@@ -2,7 +2,6 @@ import { IFormElement, IGroupElement } from '../../../../store/formElements'
 import { getElementsOnLayer } from '../../../../utils'
 import { ITreeItem } from './Tree'
 
-
 export const formToTreeData: (
   pageId: string,
   allElementsTree: Map<string, string[]>,
@@ -14,7 +13,9 @@ export const formToTreeData: (
 ) => {
   const visited = new Map<string, boolean>()
   const treeData: ITreeItem[] = []
-  const elementsOnLayerMap = new Map(getElementsOnLayer(pageId, allElementsTree, allElementsMap).map(elem => [elem.id, elem]))
+  const elementsOnLayerMap = new Map(
+    getElementsOnLayer(pageId, allElementsTree, allElementsMap).map(elem => [elem.id, elem]),
+  )
 
   const getChidlrenItemsByKey = (parentKey: string) => {
     const childrenIds = allElementsTree.get(parentKey) || []

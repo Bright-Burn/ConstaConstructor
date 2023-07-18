@@ -23,4 +23,3 @@ export const loadProjectFromStorage = (
     state.numberOfPages = newSate.numberOfPages
   }
 }
-

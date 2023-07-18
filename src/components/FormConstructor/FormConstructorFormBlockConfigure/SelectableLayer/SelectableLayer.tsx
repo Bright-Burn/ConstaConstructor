@@ -49,7 +49,8 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
           : styles.selectableLayerLayoutElement
       } ${isSelected ? styles.selectedElement : ''} ${className ?? ''}`}
       onClick={onClickElement}
-      tabIndex={0}>
+      tabIndex={0}
+    >
       {children}
     </div>
   )

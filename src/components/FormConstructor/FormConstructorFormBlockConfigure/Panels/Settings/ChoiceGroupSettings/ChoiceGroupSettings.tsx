@@ -110,7 +110,8 @@ export const ChoiceGroupSettings = () => {
                       role='option'
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
-                      onClick={onClick}>
+                      onClick={onClick}
+                    >
                       {React.createElement(Icons[item as iconNames])}
                       <div>{item}</div>
                     </div>

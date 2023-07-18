@@ -14,5 +14,5 @@ export const saveProjectToMemmoryStorage = (
     project: state,
   }
   saveProjectData(intent)
+  //это просто экшн
 }
-

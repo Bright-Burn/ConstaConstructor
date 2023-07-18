@@ -1,6 +1,7 @@
 import { FC, ReactNode, useEffect } from 'react'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../store/formElements'
 import css from './styles.module.css'
+import { togglePanels } from '../../store'
 
 interface Props {
   children?: ReactNode
@@ -14,7 +15,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
       if (code === 'Space' && ctrlKey) {
-        dispatch(formConstructorSlice.actions.togglePanelsByHotkey())
+        dispatch(togglePanels())
       }
     }
     /// Полуает последнее состояние из истории
@@ -55,4 +56,3 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
 
   return <div className={css.formConstructorEventListener}>{children}</div>
 }
-

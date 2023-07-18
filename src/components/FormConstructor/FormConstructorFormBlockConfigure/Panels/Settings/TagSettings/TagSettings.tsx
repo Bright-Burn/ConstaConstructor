@@ -63,7 +63,8 @@ export const TagSettings = () => {
               role='option'
               aria-selected={active}
               onMouseEnter={onMouseEnter}
-              onClick={onClick}>
+              onClick={onClick}
+            >
               {React.createElement(Icons[item])}
               <div>{item}</div>
             </div>
