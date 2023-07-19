@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import styles from './styles.module.css'
 import { ComponentsTabItem } from './types'
 import { BaseComponents } from './BaseComponents'
@@ -9,11 +9,13 @@ import { Tabs } from '@consta/uikit/Tabs'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
 import {
-  formConstructorSlice,
   useAppDispatch,
   useAppSelector,
 } from '../../../store/formElements/slices'
-import { getComponentsStructurePanelState, togglePanels } from '../../../store'
+import {
+  getComponentsStructurePanelState,
+  toggleComponentsStructurePanel,
+} from '../../../store'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[1])
@@ -30,8 +32,8 @@ export const ComponentsStructure = () => {
   const dispatch = useAppDispatch()
   const componentsStructurePanelState = useAppSelector(getComponentsStructurePanelState)
 
-  const toggleSettingsPanel = () => {
-    dispatch(togglePanels())
+  const togglePanel = () => {
+    dispatch(toggleComponentsStructurePanel())
   }
 
   return (
@@ -52,7 +54,7 @@ export const ComponentsStructure = () => {
         </div>
       ) : (
         <div className={styles.toggleButton}>
-          <Button onlyIcon iconLeft={IconArrowRight} onClick={toggleSettingsPanel} size='s' />
+          <Button onlyIcon iconLeft={IconArrowRight} onClick={togglePanel} size='s' />
         </div>
       )}
     </>

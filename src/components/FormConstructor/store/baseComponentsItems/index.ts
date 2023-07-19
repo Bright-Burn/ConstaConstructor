@@ -17,3 +17,5 @@ export {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 }
+
+export {addBaseElement, setDraggableBaseComponent} from './actions'

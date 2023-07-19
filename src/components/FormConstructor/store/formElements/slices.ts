@@ -1,5 +1,4 @@
-import { IFormConstructor } from './types'
-import { createSlice, createEntityAdapter } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
 
@@ -9,15 +8,8 @@ import {
   changeActivePage,
   deletePage,
   deleteElement,
-  loadProjectFromStorage,
-  saveProjectToFile,
-  saveProjectToMemmoryStorage,
   setSelectedElement,
-  togglePanelByHotKey,
   loadProjectFromJson,
-  showGrid,
-  toggleSettingsPanelState,
-  toggleComponentsStructurePanel,
   setDraggableElement,
 } from './reducers'
 import { initialState } from './initialState'
@@ -30,17 +22,10 @@ export const formConstructorSlice = createSlice({
   initialState,
   reducers: {
     setDraggableElement: setDraggableElement,
-    loadProjectFromStorage: loadProjectFromStorage,
     loadProjectFromJson: loadProjectFromJson,
-    saveProjectToMemmoryStorage: saveProjectToMemmoryStorage,
-    saveProjectToFile: saveProjectToFile,
-    showGrid: showGrid,
     setSelectedElement: setSelectedElement,
     addNewElement: addNewElement,
     deleteElement: deleteElement,
-    togglePanelsByHotkey: togglePanelByHotKey,
-    toggleSettingsPanelState: toggleSettingsPanelState,
-    toggleComponentsStructurePanel: toggleComponentsStructurePanel,
     addNewPage: addNewPage,
     changeActivePage: changeActivePage,
     deletePage: deletePage,

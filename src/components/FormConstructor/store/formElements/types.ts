@@ -195,10 +195,7 @@ export interface IFormConstructor extends IHistory {
   allElementsMap: Map<string, IFormElement | IGroupElement>
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
-  isGridVisible: boolean
   draggableElement: IFormElement | IGroupElement | null
-  componentsStructurePanelState: boolean
-  settingsPanelState: boolean
 
   pages: IPageOfLayout[]
   numberOfPages: number

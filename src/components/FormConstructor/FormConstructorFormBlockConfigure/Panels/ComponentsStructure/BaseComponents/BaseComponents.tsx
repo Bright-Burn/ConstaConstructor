@@ -30,7 +30,7 @@ import {
   PrototypeRectMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
-
+import {addBaseElement} from '../../../../store'
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
 
@@ -60,26 +60,26 @@ export const BaseComponents: FC = () => {
 
   const dispatch = useBaseComponentsDispatch()
   useEffect(() => {
+    //Инициализация дефолтных компонент
     baseComponentMocks.forEach(mock => {
       if (!baseComponents.some(component => component.id === mock.id))
-        dispatch(baseComponentsSlice.actions.addNewBaseElement({ baseComponent: mock }))
+        dispatch(addBaseElement({ baseComponent: mock }))
     })
   }, [baseComponentMocks, baseComponents])
 
   const onChange = (e: DragEvent | React.ChangeEvent) => {
-    const targer = e?.target as HTMLInputElement
-    const files = targer?.files ? targer?.files : undefined
+    const target = e.target as EventTarget & HTMLInputElement
 
-    if (files) {
-      const filesArray = Array.from(files)
+    if (target.files) {
+      const filesArray = Array.from(target.files)
+
       filesArray.forEach(file => {
         readFile(file).then(json => {
-          if (json) {
-            const baseComponent: IBaseComponent = JSON.parse(json as string)
+          //TODO сделать проверку типов
+            const baseComponent: IBaseComponent = JSON.parse(json)
             dispatch(
-              baseComponentsSlice.actions.addNewBaseElement({ baseComponent: baseComponent }),
+              addBaseElement({ baseComponent: baseComponent }),
             )
-          }
         })
       })
     }

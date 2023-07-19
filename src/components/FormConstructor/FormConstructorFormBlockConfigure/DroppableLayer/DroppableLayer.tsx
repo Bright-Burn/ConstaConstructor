@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
   useAppSelector,
@@ -7,10 +6,11 @@ import {
   IFormElement,
   IGroupElement,
   AddNewElementPayload,
+  useAppDispatch,
 } from '../../store/formElements'
+import {addNewElement, setDraggableBaseComponent} from '../../store'
 import { getElementsOnLayer, getNewGroupParentLevel } from '../../utils'
 import {
-  baseComponentsSlice,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store/baseComponentsItems'
@@ -27,7 +27,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   const { draggableBaseComponent } = useBaseComponentsSelector(state => state.baseComponents)
 
   const [elementsOnLayer, setElementsOnLayer] = useState<(IFormElement | IGroupElement)[]>([])
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const dispathBaseComponents = useBaseComponentsDispatch()
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
 
       // После перетаскивания, очищаем соответсвующее поле в сторе
       dispathBaseComponents(
-        baseComponentsSlice.actions.setDraggableBaseComponent({ baseComponent: null }),
+        setDraggableBaseComponent( null ),
       )
     }
   }
@@ -110,7 +110,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   }
 
   const addElements = (payload: AddNewElementPayload[]) => {
-    dispatch(formConstructorSlice.actions.addNewElement(payload))
+    dispatch(  addNewElement(payload))
   }
 
   return (

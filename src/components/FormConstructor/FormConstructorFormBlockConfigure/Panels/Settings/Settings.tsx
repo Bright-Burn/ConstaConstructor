@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../../store/formElements'
+import { formConstructorSlice, saveProjectToFile, useAppDispatch, useAppSelector } from '../../../store/formElements'
 import { FormElementTypes, FormGroupsTypes } from '../../../store/formElements/types'
 import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
@@ -35,13 +35,22 @@ import { FilledSettings } from './FilledSettings/FilledSettings'
 import { TagSettings } from './TagSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
 import { SettingsActions } from './SettingsActions'
-import { checkIsGridVisible, getSettingsPanelState, toggleGrid } from '../../../store'
+import {
+  checkIsGridVisible,
+  getFormConstructor,
+  getSettingsPanelState,
+  loadProjectFromStorage,
+  toggleGrid,
+  toggleSettingsPanelState,
+} from '../../../store'
+import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(getSettingsPanelState)
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
 
   const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const formConstructor = useAppSelector(getFormConstructor)
   const isGridVisible = useAppSelector(checkIsGridVisible)
   const dispatch = useAppDispatch()
 
@@ -205,7 +214,7 @@ export const Settings: FC = () => {
   }
 
   const onSaveProject = (name: string, description: string) => {
-    dispatch(formConstructorSlice.actions.saveProjectToFile({ name, description }))
+    dispatch(saveProjectToFile({ name, description }, formConstructor))
     onClose()
   }
 
@@ -214,18 +223,22 @@ export const Settings: FC = () => {
   }
 
   const onChange = (e: DragEvent | React.ChangeEvent) => {
-    const targer = e?.target as HTMLInputElement
-    const files = targer?.files ? targer?.files : undefined
-    if (files) {
-      const file = files[0]
+    const target = e.target as EventTarget & HTMLInputElement
+    if (target.files) {
+      const file = target.files[0]
       readFile(file).then(json => {
-        dispatch(formConstructorSlice.actions.loadProjectFromJson({ projectJson: json as string }))
+        //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
+          const parsedFile: any = JSON.parse(json)
+          const project: any = projectFromSerilizable(parsedFile.project)
+         
+          dispatch(loadProjectFromStorage(project))
+      
       })
     }
   }
 
   const toggleSettingsPanel = () => {
-    dispatch(formConstructorSlice.actions.toggleSettingsPanelState())
+    dispatch(toggleSettingsPanelState())
   }
 
   return (
