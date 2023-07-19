@@ -5,4 +5,9 @@ export {
   getComponentsStructurePanelState,
   getSettingsPanelState,
   checkIsGridVisible,
+  toggleComponentsStructurePanel,
+  toggleSettingsPanelState,
 } from './Viewer'
+export { loadProjectFromStorage, getFormConstructor,addNewElement  } from './formElements'
+export type { IFormConstructorSerializable } from './formElements'
+export {addBaseElement, setDraggableBaseComponent} from './baseComponentsItems'

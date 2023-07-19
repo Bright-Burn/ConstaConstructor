@@ -1,22 +1,14 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { LoadProjectFromFile } from '../payload'
-import { projectFromSerilizable } from '../../../projectSaveLoad'
-import { IFormConstructor } from '../types'
-import { ProjectDataSerializable } from '../../../projectSaveLoad/types'
+import { IFormConstructor, IFormElement, IGroupElement, IPageOfLayout, ISelectedElement, UnionProps } from '../types'
 
 export const loadProjectFromJson = (
   state: IFormConstructor,
-  action: PayloadAction<LoadProjectFromFile>,
+  action: PayloadAction<IFormConstructorSerializable>,
 ) => {
-  const projectJson = action.payload.projectJson
-  if (projectJson) {
-    const projectSerilizable: ProjectDataSerializable = {
-      ...JSON.parse(projectJson as string),
-    }
-    const newSate = projectFromSerilizable(projectSerilizable.project)
+  const newSate = action.payload
     state.allElementsMap = newSate.allElementsMap
     state.allElementsTree = newSate.allElementsTree
-    state.isGridVisible = newSate.isGridVisible
+    // state.isGridVisible = newSate.isGridVisible
     state.selectedElement = newSate.selectedElement
     state.selectedElementProps = newSate.selectedElementProps
     state.pages = newSate.pages
@@ -24,5 +16,15 @@ export const loadProjectFromJson = (
     state.selectedPageId = newSate.selectedPageId
 
     state.history = []
-  }
+  
+}
+interface IFormConstructorSerializable {
+  allElementsTree:  Map<string, string[]>
+  allElementsMap: Map<string, IGroupElement | IFormElement>
+  selectedElement: ISelectedElement | null
+  selectedElementProps: UnionProps | null
+
+  pages: IPageOfLayout[]
+  selectedPageId: string
+  numberOfPages: number
 }

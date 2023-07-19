@@ -10,6 +10,7 @@ import { PrototypeProps } from '../FormConstructorFormBlockConfigure/Panels/Sett
 
 export const saveProject = (saveIntent: SaveProjectIntent) => {
   const projData: ProjectDataSerializable = {
+    //TODO isGridVisible Typing
     project: projectToSerilizable(saveIntent.project),
     description: saveIntent.description,
     name: saveIntent.name,
@@ -33,7 +34,7 @@ const saveFile = (projData: ProjectDataSerializable) => {
   saveToFile(fileData, `${projData.name}_ConstaConstructor.json`)
 }
 
-export const projectToSerilizable = (proj: IFormConstructor): IFormConstructorSerializable => {
+export const projectToSerilizable = (proj: IFormConstructor & {isGridVisible : boolean}): IFormConstructorSerializable => {
   return {
     isGridVisible: proj.isGridVisible,
     numberOfPages: proj.numberOfPages,
@@ -68,7 +69,7 @@ export const mutateAllElementsMap = (
   })
 }
 
-export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFormConstructor => {
+export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFormConstructor & {isGridVisible: boolean} => {
   const allElementsTree: Map<string, string[]> = new Map(JSON.parse(proj.allElementsTree))
 
   const allElementsMap: Map<string, IFormElement | IGroupElement> = new Map(
@@ -82,8 +83,9 @@ export const projectFromSerilizable = (proj: IFormConstructorSerializable): IFor
     allElementsMap,
     allElementsTree,
     draggableElement: null,
-    componentsStructurePanelState: true,
-    settingsPanelState: true,
+    // componentsStructurePanelState: true,
+    // settingsPanelState: true,
+    isGridVisible: proj.isGridVisible,
     pages: proj.pages,
     numberOfPages: proj.numberOfPages,
     selectedPageId: proj.selectedPageId,

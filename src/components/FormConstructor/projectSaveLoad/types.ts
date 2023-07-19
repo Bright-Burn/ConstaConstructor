@@ -28,7 +28,6 @@ export interface IFormConstructorSerializable {
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
-
   pages: IPageOfLayout[]
   selectedPageId: string
   numberOfPages: number

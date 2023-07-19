@@ -6,6 +6,13 @@ export const togglePanels = () => (dispatch: AppDispatch) => {
 }
 
 export const toggleGrid = () => (dispatch: AppDispatch) => {
-  console.log(1)
   dispatch(ViewrSlice.actions.showGrid())
+}
+
+export const toggleComponentsStructurePanel = () => (dispatch: AppDispatch) => {
+  dispatch(ViewrSlice.actions.toggleComponentsStructurePanel())
+}
+
+export const toggleSettingsPanelState = () => (dispatch: AppDispatch) => {
+  dispatch(ViewrSlice.actions.toggleSettingsPanelState())
 }

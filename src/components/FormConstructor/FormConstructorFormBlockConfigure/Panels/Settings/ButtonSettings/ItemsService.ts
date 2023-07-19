@@ -7,8 +7,12 @@ import {
   defaultHeight,
   defaultWidth,
   formConstructorSlice,
+  useAppDispatch,
   useAppSelector,
 } from '../../../../store/formElements'
+import {
+  addNewElement,
+} from '../../../../store'
 import {
   FormGroupsTypes,
   ILayoutElement,
@@ -22,7 +26,7 @@ export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement, allElementsMap, allElementsTree } = useAppSelector(
     state => state.formConstructor,
   )
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onChangeField = (
     value: ButtonPropSize | ButtonPropForm | ButtonPropView | string,
@@ -98,16 +102,14 @@ export const useItemsHandlers = () => {
       }
 
       dispatch(
-        formConstructorSlice.actions.addNewElement([
-          {
+        addNewElement([{
             parent: currentButtonElement.id,
-            element: connectedButtonGroupElement,
-          },
-        ]),
+            element: connectedButtonGroupElement
+          }])
       )
 
       dispatch(
-        formConstructorSlice.actions.addNewElement([
+       addNewElement([
           {
             parent: connectedButtonGroupElement.id,
             element: layoutElement,

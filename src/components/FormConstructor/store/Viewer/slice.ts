@@ -1,4 +1,4 @@
-import { createSlice, createEntityAdapter } from '@reduxjs/toolkit'
+import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {
   isGridVisible: true,
@@ -10,11 +10,11 @@ export const ViewrSlice = createSlice({
   name: 'Viewer',
   initialState,
   reducers: {
-    showGrid: state => {
-      state.isGridVisible = !state.isGridVisible
+    showGrid: (state, action: PayloadAction<boolean | undefined>) => {
+      state.isGridVisible = action.payload !== undefined ?
+      action.payload : !state.isGridVisible 
     },
     togglePanelsByHotkey: state => {
-      console.log(state)
       if (state.componentsStructurePanelState || state.settingsPanelState) {
         state.componentsStructurePanelState = false
         state.settingsPanelState = false
