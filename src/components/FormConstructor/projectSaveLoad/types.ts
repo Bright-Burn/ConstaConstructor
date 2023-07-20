@@ -17,7 +17,7 @@ export const ProjectSaveWays = {
 export type ProjectSaveWays = Values<typeof ProjectSaveWays>
 
 export interface ProjectData {
-  project: IFormConstructor
+  project: IFormConstructor  & {isGridVisible : boolean}
   name: string
   description: string
 }

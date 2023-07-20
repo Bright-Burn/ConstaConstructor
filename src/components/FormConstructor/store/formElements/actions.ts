@@ -1,12 +1,15 @@
 import { ProjectSaveWays, SaveProjectIntent, saveProjectData } from "../../projectSaveLoad";
 import { ViewrSlice } from "../Viewer";
 import { AppDispatch, RootState } from "../setupStore";
-import { AddNewElementPayload, SaveNewProject } from "./payload";
+import { AddNewElementPayload, SaveNewProject, SetNewElementDraggableElem } from "./payload";
 import { formConstructorSlice } from "./slices";
-import { IFormConstructor, IFormElement, IGroupElement, IPageOfLayout, ISelectedElement, UnionProps } from "./types";
+import { IFormElement, IGroupElement, IPageOfLayout, ISelectedElement, UnionProps } from "./types";
+
+export const setDraggableElement  = (el: SetNewElementDraggableElem ) => (dispatch: AppDispatch) => {
+  dispatch(formConstructorSlice.actions.setDraggableElement(el))
+}
 
 export const addNewElement = (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch, getState: () => RootState) => { 
-    console.log(getState())
     const state = getState().formConstructor
      const newTreeMap = new Map<string, string[]>(state.allElementsTree)
   
@@ -28,26 +31,28 @@ export const loadProjectFromStorage = (project: IFormConstructorSerializable) =>
 }
 export const saveProjectToFile = (
 project: SaveNewProject,
-state: IFormConstructor
-  ) => (dispatch: AppDispatch) =>{
+  ) => (dispatch: AppDispatch, getState: () => RootState) =>{
+    const viewer = getState().Viewer
+    const state = getState().formConstructor
     const intent: SaveProjectIntent = {
       description: project.description,
       name: project.name,
       saveWay: ProjectSaveWays.FILE,
-      project: state,
+      project: {...state, isGridVisible: viewer.isGridVisible},
     }
     saveProjectData(intent)
     //это просто экшн
   }
   export const saveProjectToMemmoryStorage = (
     project: SaveNewProject,
-    state: IFormConstructor
-      ) => (dispatch: AppDispatch) => {
+      ) => (dispatch: AppDispatch, getState: () => RootState) =>{
+        const viewer = getState().Viewer
+        const state = getState().formConstructor
         const intent: SaveProjectIntent = {
           description: project.description,
           name: project.name,
           saveWay: ProjectSaveWays.FILE,
-          project: state,
+          project: {...state, isGridVisible: viewer.isGridVisible},
         }
         saveProjectData(intent)
         //это просто экшн

@@ -1,17 +1,16 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
+import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementChoiceGroup } from '../../../../../../store/formElements/ChoiceGroupTypes'
 import { Item } from '../../../../Settings/ChoiceGroupSettings/types'
-import { IconCamera } from '@consta/icons/IconCamera'
-import { IconCopy } from '@consta/icons/IconCopy'
-import { Icons } from '../../../../../Elements/IconFormElement/mocks'
 
+import {
+  setDraggableElement
+} from '../../../../../../store'
 export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const items: Item[] = [
@@ -41,7 +40,7 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
         getItemLabel: item => item.label,
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newChoiceGroup }))
+    dispatch(setDraggableElement({ element: newChoiceGroup }))
   }
 
   return (

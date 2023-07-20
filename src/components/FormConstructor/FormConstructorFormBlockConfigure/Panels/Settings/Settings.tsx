@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { formConstructorSlice, saveProjectToFile, useAppDispatch, useAppSelector } from '../../../store/formElements'
+import { saveProjectToFile, useAppDispatch, useAppSelector } from '../../../store/formElements'
 import { FormElementTypes, FormGroupsTypes } from '../../../store/formElements/types'
 import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
@@ -37,7 +37,6 @@ import { ChoiceGroupSettings } from './ChoiceGroupSettings'
 import { SettingsActions } from './SettingsActions'
 import {
   checkIsGridVisible,
-  getFormConstructor,
   getSettingsPanelState,
   loadProjectFromStorage,
   toggleGrid,
@@ -50,7 +49,6 @@ export const Settings: FC = () => {
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
 
   const { selectedElement } = useAppSelector(state => state.formConstructor)
-  const formConstructor = useAppSelector(getFormConstructor)
   const isGridVisible = useAppSelector(checkIsGridVisible)
   const dispatch = useAppDispatch()
 
@@ -214,7 +212,7 @@ export const Settings: FC = () => {
   }
 
   const onSaveProject = (name: string, description: string) => {
-    dispatch(saveProjectToFile({ name, description }, formConstructor))
+    dispatch(saveProjectToFile({ name, description }))
     onClose()
   }
 

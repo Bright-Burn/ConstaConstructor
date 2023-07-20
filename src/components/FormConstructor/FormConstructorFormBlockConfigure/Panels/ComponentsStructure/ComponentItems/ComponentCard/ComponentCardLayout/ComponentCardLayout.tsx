@@ -1,19 +1,21 @@
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { FC, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
-  formConstructorSlice,
   FormGroupsTypes,
   ILayoutElement,
+  useAppDispatch,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import styles from './styles.module.css'
+import {
+  setDraggableElement
+} from '../../../../../../store'
 
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
   const [isOuter, setIsOuter] = useState<boolean>(false)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const layoutElement: ILayoutElement = {
@@ -35,7 +37,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: layoutElement }))
+    dispatch(setDraggableElement({ element: layoutElement }))
   }
 
   const onChange = () => {

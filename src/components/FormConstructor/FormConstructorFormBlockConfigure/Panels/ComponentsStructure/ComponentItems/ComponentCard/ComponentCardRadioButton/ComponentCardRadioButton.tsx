@@ -1,13 +1,14 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
+import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementRadioButton } from '../../../../../../store/formElements/radioButtonTypes'
-
+import {
+  setDraggableElement
+} from '../../../../../../store'
 export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newRadioButton: IFormElementRadioButton = {
@@ -23,7 +24,7 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newRadioButton }))
+    dispatch(setDraggableElement({ element: newRadioButton }))
   }
 
   return (

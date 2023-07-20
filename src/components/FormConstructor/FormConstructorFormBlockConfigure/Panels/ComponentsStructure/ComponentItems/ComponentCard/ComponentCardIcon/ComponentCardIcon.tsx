@@ -1,13 +1,14 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
+import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementIcon } from '../../../../../../store/formElements/iconTypes'
-
+import {
+  setDraggableElement
+} from '../../../../../../store'
 export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newIcon: IFormElementIcon = {
@@ -21,7 +22,7 @@ export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newIcon }))
+    dispatch(setDraggableElement({ element: newIcon }))
   }
 
   return (

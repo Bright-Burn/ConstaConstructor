@@ -1,16 +1,18 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
-  formConstructorSlice,
   FormElementTypes,
   IFormElementBadge,
+  useAppDispatch,
 } from '../../../../../../store/formElements'
+import {
+  setDraggableElement
+} from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newBadge: IFormElementBadge = {
@@ -26,7 +28,8 @@ export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newBadge }))
+
+    dispatch(setDraggableElement({ element: newBadge }))
   }
 
   return (

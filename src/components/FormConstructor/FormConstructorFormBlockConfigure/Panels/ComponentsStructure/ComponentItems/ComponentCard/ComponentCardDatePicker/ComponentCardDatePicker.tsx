@@ -1,13 +1,14 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
+import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementDatePicker } from '../../../../../../store/formElements/datePickerTypes'
-
+import {
+  setDraggableElement
+} from '../../../../../../store'
 export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newDatePicker: IFormElementDatePicker = {
@@ -28,7 +29,7 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newDatePicker }))
+    dispatch(setDraggableElement({ element: newDatePicker }))
   }
 
   return (

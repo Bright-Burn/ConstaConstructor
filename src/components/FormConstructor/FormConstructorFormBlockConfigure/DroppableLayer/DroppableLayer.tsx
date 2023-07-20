@@ -8,7 +8,7 @@ import {
   AddNewElementPayload,
   useAppDispatch,
 } from '../../store/formElements'
-import {addNewElement, setDraggableBaseComponent} from '../../store'
+import {addNewElement, setDraggableBaseComponent, getDraggedBaseComponent, setDraggableElement} from '../../store'
 import { getElementsOnLayer, getNewGroupParentLevel } from '../../utils'
 import {
   useBaseComponentsDispatch,
@@ -24,7 +24,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   const { allElementsTree, allElementsMap, draggableElement } = useAppSelector(
     state => state.formConstructor,
   )
-  const { draggableBaseComponent } = useBaseComponentsSelector(state => state.baseComponents)
+  const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
 
   const [elementsOnLayer, setElementsOnLayer] = useState<(IFormElement | IGroupElement)[]>([])
   const dispatch = useAppDispatch()
@@ -106,7 +106,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       }
     }
 
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: null }))
+    dispatch(setDraggableElement({ element: null }))
   }
 
   const addElements = (payload: AddNewElementPayload[]) => {

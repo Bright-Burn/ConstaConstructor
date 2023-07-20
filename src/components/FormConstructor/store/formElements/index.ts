@@ -82,6 +82,6 @@ export {
   type CheckboxProps,
   type IFormElementCheckbox,
 }
-export { addNewElement, loadProjectFromStorage, saveProjectToFile, saveProjectToMemmoryStorage } from './actions'
+export { addNewElement, setDraggableElement,loadProjectFromStorage, saveProjectToFile, saveProjectToMemmoryStorage } from './actions'
 export type { IFormConstructorSerializable } from './actions'
 export {getFormConstructor} from './selectors'
