@@ -1,16 +1,18 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
-  formConstructorSlice,
   FormElementTypes,
   IFormElementInformer,
+  useAppDispatch,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
+import {
+  setDraggableElement
+} from '../../../../../../store'
 
 export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newInformer: IFormElementInformer = {
@@ -26,7 +28,7 @@ export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newInformer }))
+    dispatch(setDraggableElement({ element: newInformer }))
   }
 
   return (

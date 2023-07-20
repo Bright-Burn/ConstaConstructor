@@ -19,3 +19,4 @@ export {
 }
 
 export {addBaseElement, setDraggableBaseComponent} from './actions'
+export {getDraggedBaseComponent} from './selectors'

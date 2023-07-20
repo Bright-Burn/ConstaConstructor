@@ -8,6 +8,6 @@ export {
   toggleComponentsStructurePanel,
   toggleSettingsPanelState,
 } from './Viewer'
-export { loadProjectFromStorage, getFormConstructor,addNewElement  } from './formElements'
+export { loadProjectFromStorage, getFormConstructor,addNewElement,setDraggableElement  } from './formElements'
 export type { IFormConstructorSerializable } from './formElements'
-export {addBaseElement, setDraggableBaseComponent} from './baseComponentsItems'
+export {addBaseElement, setDraggableBaseComponent, getDraggedBaseComponent} from './baseComponentsItems'

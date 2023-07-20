@@ -3,14 +3,16 @@ import { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
 import {
-  formConstructorSlice,
   FormElementTypes,
   IFormElementCheckbox,
+  useAppDispatch,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
-
+import {
+  setDraggableElement
+} from '../../../../../../store'
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newCheckbox: IFormElementCheckbox = {
@@ -27,7 +29,7 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newCheckbox }))
+    dispatch(setDraggableElement({ element: newCheckbox }))
   }
 
   return (

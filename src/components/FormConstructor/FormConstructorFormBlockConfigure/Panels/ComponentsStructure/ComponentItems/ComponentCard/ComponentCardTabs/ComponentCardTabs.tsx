@@ -1,13 +1,14 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
+import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IFormElementTabs } from '../../../../../../store/formElements/tabsTypes'
 import { IComponetCardElement } from '../types'
-
+import {
+  setDraggableElement
+} from '../../../../../../store'
 export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const items = [
@@ -29,7 +30,7 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
         size: 'm',
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newTabs }))
+    dispatch(setDraggableElement({ element: newTabs }))
   }
 
   return (

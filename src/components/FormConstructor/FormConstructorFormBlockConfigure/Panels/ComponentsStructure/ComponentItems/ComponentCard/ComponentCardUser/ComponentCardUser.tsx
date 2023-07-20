@@ -1,13 +1,15 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import { formConstructorSlice, FormElementTypes } from '../../../../../../store/formElements'
+import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementUser } from '../../../../../../store/formElements/userTypes'
+import {
+  setDraggableElement
+} from '../../../../../../store'
 
 export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newUser: IFormElementUser = {
@@ -24,7 +26,7 @@ export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
         baseProps: {},
       },
     }
-    dispatch(formConstructorSlice.actions.setDraggableElement({ element: newUser }))
+    dispatch(setDraggableElement({ element: newUser }))
   }
 
   return (
