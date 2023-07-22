@@ -12,5 +12,4 @@ export const simpleFormMock = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent

@@ -13,8 +13,10 @@ export const loadProjectFromJson = (
   state: IFormConstructor,
   action: PayloadAction<IFormConstructorSerializable>,
 ) => {
+  console.log(action)
   const newSate = action.payload
-  layuoutAdapter.addOne(state.allElements, newSate.allElements)
+
+  layuoutAdapter.addMany(state.allElements, newSate.allElements)
   // state.isGridVisible = newSate.isGridVisible
   state.selectedElement = newSate.selectedElement
   state.selectedElementProps = newSate.selectedElementProps
@@ -25,7 +27,7 @@ export const loadProjectFromJson = (
   state.history = []
 }
 interface IFormConstructorSerializable {
-  allElements: IFormElement | IGroupElement
+  allElements: (IFormElement | IGroupElement)[]
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
 

@@ -12,5 +12,4 @@ export const footerWithSwitchMock = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent

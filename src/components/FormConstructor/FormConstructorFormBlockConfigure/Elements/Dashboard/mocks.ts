@@ -191,5 +191,4 @@ export const dashboardMock: IBaseComponent = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 }

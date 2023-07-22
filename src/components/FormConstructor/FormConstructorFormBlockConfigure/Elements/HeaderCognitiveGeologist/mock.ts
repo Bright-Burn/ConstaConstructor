@@ -12,5 +12,4 @@ export const headerCognitiveGeologistMock = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent

@@ -1,5 +1,6 @@
 import {
-  IFormConstructor,
+  IFormElement,
+  IGroupElement,
   IPageOfLayout,
   ISelectedElement,
   UnionProps,
@@ -21,12 +22,20 @@ export interface ProjectData {
   name: string
   description: string
 }
-
-export interface IFormConstructorSerializable {
-  allElementsTree: string
-  allElementsMap: string
+interface IFormConstructor {
+  allElements: (IFormElement | IGroupElement)[]
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
+
+  pages: IPageOfLayout[]
+  selectedPageId: string
+  numberOfPages: number
+}
+export interface IFormConstructorSerializable {
+  allElements: (IFormElement | IGroupElement)[]
+  selectedElement: ISelectedElement | null
+  selectedElementProps: UnionProps | null
+
   isGridVisible: boolean
   pages: IPageOfLayout[]
   selectedPageId: string

@@ -12,6 +12,5 @@ export const TableMock = {
       props: { className: '', baseProps: {}, column: 3, row: 3 },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent
 

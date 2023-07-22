@@ -12,5 +12,4 @@ export const customCardsTemplateMock: IBaseComponent = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 }

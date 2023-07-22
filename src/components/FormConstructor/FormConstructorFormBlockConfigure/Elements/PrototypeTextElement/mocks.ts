@@ -24,5 +24,4 @@ export const PrototypeTextMock = {
       })
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent;

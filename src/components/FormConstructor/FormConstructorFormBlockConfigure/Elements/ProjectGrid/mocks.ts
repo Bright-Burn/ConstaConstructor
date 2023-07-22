@@ -46,5 +46,4 @@ export const gridMock = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent
