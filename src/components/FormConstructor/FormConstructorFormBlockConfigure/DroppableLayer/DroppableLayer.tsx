@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import uuid from 'react-uuid'
 import {
   useAppSelector,
-  formConstructorSlice,
   IFormElement,
   IGroupElement,
   AddNewElementPayload,
@@ -14,8 +13,8 @@ import {
   getDraggedBaseComponent,
   setDraggableElement,
 } from '../../store'
-import { getNewGroupParentLevel } from '../../utils'
 import {
+  IBaseComponent,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store/baseComponentsItems'
@@ -23,67 +22,19 @@ import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
 import { FormGroupsDict } from '../FormGroupDict'
 import { getElementsOnLayer } from '../../store/formElements/selectors'
+import { useDropBaseComponent } from './useDropBaseComponent'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerParentId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
   const { draggableElement } = useAppSelector(state => state.formConstructor)
-  const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
 
   const elementsOnLayer = useAppSelector(getElementsOnLayer(parentElementId))
   console.log('elementsOnLayer', elementsOnLayer)
   const dispatch = useAppDispatch()
   const dispathBaseComponents = useBaseComponentsDispatch()
+  const {handleOnDropBaseComponent} = useDropBaseComponent()
 
-  // useEffect(() => {
-  //   /// Подгружаем все эелементы на текущем уровне
-  //   const elementsOnLayer = getElementsOnLayer(parentElementId, allElementsTree, allElementsMap)
-  //   setElementsOnLayer(elementsOnLayer)
-  // }, [allElementsTree, parentElementId, allElementsMap])
-
-  const handleOnDropBaseComponent = () => {
-    if (draggableBaseComponent) {
-      const childParentMap = new Map<string, string>(draggableBaseComponent.childParentMap)
-      const elementsToAdd = draggableBaseComponent.childrenElementList
-
-      // Ниже создаем новые id, но необходимо сохранить старые взаимосвязи элемент-родитель
-      const mappedIds = new Map<string, string>([])
-
-      const actions: AddNewElementPayload[] = []
-      elementsToAdd.forEach(elem => {
-        const prevId = elem.id
-        const prevParentId = childParentMap.get(prevId)
-        if (!prevParentId) {
-          let newId = mappedIds.get(prevId)
-          if (!newId) {
-            newId = uuid()
-            mappedIds.set(prevId, newId)
-          }
-          elem = { ...elem, id: newId }
-          actions.push({ element: elem, parent: parentElementId })
-        } else {
-          let newId = mappedIds.get(prevId)
-          if (!newId) {
-            newId = uuid()
-            mappedIds.set(prevId, newId)
-          }
-          elem = { ...elem, id: newId }
-          let newParentId = mappedIds.get(prevParentId)
-          if (!newParentId) {
-            newParentId = uuid()
-            mappedIds.set(prevParentId, newParentId)
-          }
-
-          actions.push({ element: elem, parent: newParentId })
-        }
-      })
-
-      addElements(actions)
-
-      // После перетаскивания, очищаем соответсвующее поле в сторе
-      dispathBaseComponents(setDraggableBaseComponent(null))
-    }
-  }
 
   const handleOnDrop = (event: React.DragEvent) => {
     event.stopPropagation()
@@ -91,11 +42,11 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
 
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
     if (isBaseComponent === 'true') {
-      handleOnDropBaseComponent()
+      const elementsToAdd = handleOnDropBaseComponent(parentElementId)
+      elementsToAdd && addElements(elementsToAdd)
       return
     }
     if (draggableElement) {
-      debugger
       if ('isOuter' in draggableElement && draggableElement.isOuter && outerParentId) {
         addElements([{ element: draggableElement, parent: outerParentId }])
       } else {

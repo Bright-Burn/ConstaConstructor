@@ -32,6 +32,7 @@ import {
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 import { addBaseElement } from '../../../../store'
 import { getAllElements } from '../../../../store/formElements/selectors'
+import { saveModuleToFile } from '../../../../store/formElements/actions'
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
 
@@ -93,40 +94,41 @@ export const BaseComponents: FC = () => {
 
   const onSaveComponent = (name: string, description: string) => {
     if (selectedElement) {
-      const elementsList: (IFormElement | IGroupElement)[] = []
-      const childParentMap: Map<string, string> = new Map<string, string>([])
+      dispatch(saveModuleToFile(selectedElement.elementId, name))
+      // const elementsList: (IFormElement | IGroupElement)[] = []
+      // const childParentMap: Map<string, string> = new Map<string, string>([])
 
-      const prepareDataLayer = (currentId: string) => {
-        // const elem = allElementsMap.get(currentId)
-        // let childrenElemsIds: string[] = []
-        // if (elem) {
-        //   elementsList.push(elem)
-        //   childrenElemsIds = allElementsTree.get(elem.id) || []
-        //   // childrenComponentsTree.set(elem.id, childrenElemsIds)
-        //   childrenElemsIds.forEach(childId => {
-        //     childParentMap.set(childId, elem.id)
-        //   })
-        // }
-        // if (childrenElemsIds.length) {
-        //   childrenElemsIds.forEach(elemId => {
-        //     prepareDataLayer(elemId)
-        //   })
-        // }
-      }
+      // const prepareDataLayer = (currentId: string) => {
+      //   // const elem = allElementsMap.get(currentId)
+      //   // let childrenElemsIds: string[] = []
+      //   // if (elem) {
+      //   //   elementsList.push(elem)
+      //   //   childrenElemsIds = allElementsTree.get(elem.id) || []
+      //   //   // childrenComponentsTree.set(elem.id, childrenElemsIds)
+      //   //   childrenElemsIds.forEach(childId => {
+      //   //     childParentMap.set(childId, elem.id)
+      //   //   })
+      //   // }
+      //   // if (childrenElemsIds.length) {
+      //   //   childrenElemsIds.forEach(elemId => {
+      //   //     prepareDataLayer(elemId)
+      //   //   })
+      //   // }
+      // }
 
-      const id = selectedElement.elementId
-      prepareDataLayer(id)
+      // const id = selectedElement.elementId
+      // prepareDataLayer(id)
 
-      const baseComponent: IBaseComponent = {
-        id: uuid(),
-        name: name,
-        description: description,
-        childrenElementList: elementsList,
-        childParentMap: Array.from(childParentMap.entries()),
-      }
+      // const baseComponent: IBaseComponent = {
+      //   id: uuid(),
+      //   name: name,
+      //   description: description,
+      //   childrenElementList: elementsList,
+      //   childParentMap: Array.from(childParentMap.entries()),
+      // }
 
-      const fileData = JSON.stringify(baseComponent)
-      saveToFile(fileData, `${name}_BaseComponent.json`)
+      // const fileData = JSON.stringify(baseComponent)
+      // saveToFile(fileData, `${name}_BaseComponent.json`)
     }
   }
 

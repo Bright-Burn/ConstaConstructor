@@ -46,9 +46,10 @@ import {
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(getSettingsPanelState)
+
   const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
 
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElement, pages } = useAppSelector(state => state.formConstructor)
   const isGridVisible = useAppSelector(checkIsGridVisible)
   const dispatch = useAppDispatch()
 
@@ -229,7 +230,7 @@ export const Settings: FC = () => {
         const parsedFile: any = JSON.parse(json)
         // const project: any = projectFromSerilizable(parsedFile.project)
 
-        // dispatch(loadProjectFromStorage(project))
+        dispatch(loadProjectFromStorage(parsedFile.project))
       })
     }
   }

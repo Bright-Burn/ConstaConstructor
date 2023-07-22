@@ -48,5 +48,4 @@ export const ExpertiseFormMock = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent

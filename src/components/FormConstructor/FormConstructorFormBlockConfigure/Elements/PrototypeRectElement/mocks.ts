@@ -23,5 +23,4 @@ export const PrototypeRectMock = {
       })
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent;

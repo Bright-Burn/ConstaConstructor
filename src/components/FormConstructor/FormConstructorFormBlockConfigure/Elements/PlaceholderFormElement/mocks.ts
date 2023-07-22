@@ -11,5 +11,4 @@ export const placeholderMock: IBaseComponent = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent

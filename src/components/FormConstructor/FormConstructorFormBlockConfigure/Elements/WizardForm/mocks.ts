@@ -13,7 +13,6 @@ export const wizardFormMock = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent
 
 export const steps: progressStepBarItem[] = [

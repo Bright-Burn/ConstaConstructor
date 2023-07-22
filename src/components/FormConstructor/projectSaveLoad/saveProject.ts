@@ -1,28 +1,15 @@
-import { IFormConstructor, IFormElement, IGroupElement } from '../store/formElements/types'
 import { saveToFile } from '../utils'
-import {
-  IFormConstructorSerializable,
-  ProjectDataSerializable,
-  ProjectSaveWays,
-  SaveProjectIntent,
-} from './types'
-import { PrototypeProps } from '../FormConstructorFormBlockConfigure/Panels/Settings/PrototypeSettings/types'
+import { ProjectDataSerializable, ProjectSaveWays, SaveProjectIntent } from './types'
 
-export const saveProject = (saveIntent: SaveProjectIntent) => {
-  // const projData: ProjectDataSerializable = {
-  //   //TODO isGridVisible Typing
-  //   project: projectToSerilizable(saveIntent.project),
-  //   description: saveIntent.description,
-  //   name: saveIntent.name,
-  // }
-  // switch (saveIntent.saveWay) {
-  //   case ProjectSaveWays.STORAGE:
-  //     saveToStorage(projData)
-  //     break
-  //   case ProjectSaveWays.FILE:
-  //     saveFile(projData)
-  //     break
-  // }
+export const saveProject = (saveIntent: ProjectDataSerializable & SaveProjectIntent) => {
+  switch (saveIntent.saveWay) {
+    case ProjectSaveWays.STORAGE:
+      saveToStorage(saveIntent)
+      break
+    case ProjectSaveWays.FILE:
+      saveFile(saveIntent)
+      break
+  }
 }
 
 const saveToStorage = (data: ProjectDataSerializable) => {

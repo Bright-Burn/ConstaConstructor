@@ -12,5 +12,4 @@ export const headerWithStatusMock = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent

@@ -12,6 +12,5 @@ export const FormWithTwoColumnsMock = {
       props: { className: '', baseProps: {} },
     },
   ],
-  childParentMap: [],
 } satisfies IBaseComponent
 
