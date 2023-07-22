@@ -2,12 +2,10 @@ import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import {  FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
+import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementSelect } from '../../../../../../store/formElements/selectTypes'
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 

@@ -6,9 +6,7 @@ import { IComponetCardElement } from '../types'
 import { IFormElementChoiceGroup } from '../../../../../../store/formElements/ChoiceGroupTypes'
 import { Item } from '../../../../Settings/ChoiceGroupSettings/types'
 
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 

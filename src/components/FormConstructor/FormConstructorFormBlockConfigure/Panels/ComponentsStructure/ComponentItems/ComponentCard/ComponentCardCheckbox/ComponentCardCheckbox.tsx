@@ -8,9 +8,7 @@ import {
   useAppDispatch,
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 

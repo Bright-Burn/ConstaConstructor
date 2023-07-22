@@ -1,19 +1,13 @@
 import uuid from 'react-uuid'
-import { IFormConstructor, IFormElement, IGroupElement, ILayoutElement } from '../types'
-import { initialLayout } from '../initialState'
+import { IFormConstructor, ILayoutElement } from '../types'
+import { initialLayout, layuoutAdapter } from '../initialState'
 import { pushHistory } from '../history'
 
 export const addNewPage = (state: IFormConstructor) => {
   /// Создаём новый id для дефолтного Layout
-  const pageLayout: ILayoutElement = { ...initialLayout, id: uuid() }
 
   const newPageId = uuid()
-
-  const newTreeMap = new Map<string, string[]>(state.allElementsTree)
-  const newAllElementsMap = new Map<string, IGroupElement | IFormElement>(state.allElementsMap)
-
-  newAllElementsMap.set(pageLayout.id, pageLayout)
-  newTreeMap.set(newPageId, [pageLayout.id])
+  const pageLayout: ILayoutElement = { ...initialLayout, id: uuid(), parentId: newPageId }
 
   state.pages = [
     ...state.pages,
@@ -23,8 +17,7 @@ export const addNewPage = (state: IFormConstructor) => {
     },
   ]
   state.numberOfPages = state.numberOfPages + 1
-  state.allElementsMap = newAllElementsMap
-  state.allElementsTree = newTreeMap
+  layuoutAdapter.addOne(state.allElements, pageLayout)
 
   pushHistory(state)
 }

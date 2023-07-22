@@ -30,13 +30,13 @@ import {
   PrototypeRectMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
-import {addBaseElement} from '../../../../store'
+import { addBaseElement } from '../../../../store'
+import { getAllElements } from '../../../../store/formElements/selectors'
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
 
-  const { selectedElement, allElementsTree, allElementsMap } = useAppSelector(
-    state => state.formConstructor,
-  )
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const allElements = useAppSelector(getAllElements)
 
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
   const baseComponentMocks = [
@@ -76,10 +76,8 @@ export const BaseComponents: FC = () => {
       filesArray.forEach(file => {
         readFile(file).then(json => {
           //TODO сделать проверку типов
-            const baseComponent: IBaseComponent = JSON.parse(json)
-            dispatch(
-              addBaseElement({ baseComponent: baseComponent }),
-            )
+          const baseComponent: IBaseComponent = JSON.parse(json)
+          dispatch(addBaseElement({ baseComponent: baseComponent }))
         })
       })
     }
@@ -99,21 +97,21 @@ export const BaseComponents: FC = () => {
       const childParentMap: Map<string, string> = new Map<string, string>([])
 
       const prepareDataLayer = (currentId: string) => {
-        const elem = allElementsMap.get(currentId)
-        let childrenElemsIds: string[] = []
-        if (elem) {
-          elementsList.push(elem)
-          childrenElemsIds = allElementsTree.get(elem.id) || []
-          // childrenComponentsTree.set(elem.id, childrenElemsIds)
-          childrenElemsIds.forEach(childId => {
-            childParentMap.set(childId, elem.id)
-          })
-        }
-        if (childrenElemsIds.length) {
-          childrenElemsIds.forEach(elemId => {
-            prepareDataLayer(elemId)
-          })
-        }
+        // const elem = allElementsMap.get(currentId)
+        // let childrenElemsIds: string[] = []
+        // if (elem) {
+        //   elementsList.push(elem)
+        //   childrenElemsIds = allElementsTree.get(elem.id) || []
+        //   // childrenComponentsTree.set(elem.id, childrenElemsIds)
+        //   childrenElemsIds.forEach(childId => {
+        //     childParentMap.set(childId, elem.id)
+        //   })
+        // }
+        // if (childrenElemsIds.length) {
+        //   childrenElemsIds.forEach(elemId => {
+        //     prepareDataLayer(elemId)
+        //   })
+        // }
       }
 
       const id = selectedElement.elementId

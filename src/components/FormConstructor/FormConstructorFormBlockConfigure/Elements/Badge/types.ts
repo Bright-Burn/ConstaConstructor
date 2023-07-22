@@ -1,5 +1,5 @@
 import { IFormElement } from '../../../store/formElements/types'
 
 export interface IBadgeFormElement {
-  element: IFormElement
+  element: IFormElement<'Badge'>
 }

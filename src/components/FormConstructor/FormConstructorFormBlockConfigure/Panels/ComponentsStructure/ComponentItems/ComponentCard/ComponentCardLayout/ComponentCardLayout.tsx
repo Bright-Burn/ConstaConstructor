@@ -9,9 +9,7 @@ import {
 } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import styles from './styles.module.css'
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
   const [isOuter, setIsOuter] = useState<boolean>(false)

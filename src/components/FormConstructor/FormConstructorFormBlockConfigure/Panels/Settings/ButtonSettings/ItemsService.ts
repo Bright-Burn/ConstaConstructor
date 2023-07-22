@@ -10,9 +10,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../store/formElements'
-import {
-  addNewElement,
-} from '../../../../store'
+import { addNewElement } from '../../../../store'
 import {
   FormGroupsTypes,
   ILayoutElement,
@@ -21,11 +19,11 @@ import {
 import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
 import uuid from 'react-uuid'
 import { iconNames } from '../../../../store/formElements/iconTypes'
+import { getAllElements } from '../../../../store/formElements/selectors'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement, allElementsMap, allElementsTree } = useAppSelector(
-    state => state.formConstructor,
-  )
+  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const allElements = useAppSelector(getAllElements)
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -72,63 +70,60 @@ export const useItemsHandlers = () => {
   }
 
   const addConnectedElement = () => {
-    const currentButtonElement = allElementsMap.get(selectedElement?.elementId || '')
-
-    if (currentButtonElement && currentButtonElement.id) {
-      const connectedButtonGroupElement: IButtonModalElement = {
-        id: uuid(),
-        connectedButtonId: currentButtonElement.id,
-        isOuter: false,
-        type: 'ButtonModal',
-        props: {
-          height: defaultHeight,
-          width: defaultWidth,
-          className: '',
-          baseProps: {},
-        },
-      }
-      const layoutElement: ILayoutElement = {
-        id: uuid(),
-        type: FormGroupsTypes.Layout,
-        isOuter: false,
-        props: {
-          constaProps: {
-            flex: 1,
-            direction: 'row',
-          },
-          className: '',
-          baseProps: {},
-        },
-      }
-
-      dispatch(
-        addNewElement([{
-            parent: currentButtonElement.id,
-            element: connectedButtonGroupElement
-          }])
-      )
-
-      dispatch(
-       addNewElement([
-          {
-            parent: connectedButtonGroupElement.id,
-            element: layoutElement,
-          },
-        ]),
-      )
-    }
+    // const currentButtonElement = allElementsMap.get(selectedElement?.elementId || '')
+    // if (currentButtonElement && currentButtonElement.id) {
+    //   const connectedButtonGroupElement: IButtonModalElement = {
+    //     id: uuid(),
+    //     connectedButtonId: currentButtonElement.id,
+    //     isOuter: false,
+    //     type: 'ButtonModal',
+    //     props: {
+    //       height: defaultHeight,
+    //       width: defaultWidth,
+    //       className: '',
+    //       baseProps: {},
+    //     },
+    //   }
+    //   const layoutElement: ILayoutElement = {
+    //     id: uuid(),
+    //     type: FormGroupsTypes.Layout,
+    //     isOuter: false,
+    //     props: {
+    //       constaProps: {
+    //         flex: 1,
+    //         direction: 'row',
+    //       },
+    //       className: '',
+    //       baseProps: {},
+    //     },
+    //   }
+    //   dispatch(
+    //     addNewElement([{
+    //         parent: currentButtonElement.id,
+    //         element: connectedButtonGroupElement
+    //       }])
+    //   )
+    //   dispatch(
+    //    addNewElement([
+    //       {
+    //         parent: connectedButtonGroupElement.id,
+    //         element: layoutElement,
+    //       },
+    //     ]),
+    //   )
+    // }
   }
 
   const removeConnectedElement = () => {
     if (selectedElement) {
-      const connectedElementIds = allElementsTree.get(selectedElement.elementId)
-      connectedElementIds?.forEach(id => {
-        dispatch(
-          formConstructorSlice.actions.deleteElement({
-            elementId: id,
-          }),
-        )
-      })
+      // const connectedElementIds = allElementsTree.get(selectedElement.elementId)
+      // connectedElementIds?.forEach((id: any) => {
+      //   dispatch(
+      //     formConstructorSlice.actions.deleteElement({
+      //       elementId: id,
+      //     }),
+      //   )
+      // })
     }
   }
 

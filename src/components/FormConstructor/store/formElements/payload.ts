@@ -4,9 +4,6 @@ export interface AddNewElementPayload {
   element: IFormElement | IGroupElement
   parent: string
 }
-export interface DeleteElementPayload {
-  elementId: string
-}
 
 export interface PanelStatePayload {
   componentsStructurePanelState?: boolean

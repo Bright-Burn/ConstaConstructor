@@ -4,9 +4,7 @@ import uuid from 'react-uuid'
 import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementUser } from '../../../../../../store/formElements/userTypes'
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 
 export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

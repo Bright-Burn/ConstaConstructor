@@ -1,7 +1,4 @@
-import {
-  createSlice,
-  PayloadAction,
-} from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../setupStore'
 import { AddBaseComponent, SetDraggableBaseComponent } from './payload'
@@ -13,7 +10,7 @@ const InitialState: IBaseComponentsItems = {
 }
 
 export const baseComponentsSlice = createSlice({
-    name: 'baseComponentsSlice',
+  name: 'baseComponentsSlice',
   initialState: InitialState,
   reducers: {
     setDraggableBaseComponent: (state, action: PayloadAction<SetDraggableBaseComponent>) => {
@@ -23,8 +20,7 @@ export const baseComponentsSlice = createSlice({
       state.baseComponents = [...state.baseComponents, action.payload.baseComponent]
     },
   },
-  })
-
+})
 
 export const baseComponentsReducer = baseComponentsSlice.reducer
 

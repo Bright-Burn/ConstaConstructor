@@ -11,8 +11,7 @@ export const ViewrSlice = createSlice({
   initialState,
   reducers: {
     showGrid: (state, action: PayloadAction<boolean | undefined>) => {
-      state.isGridVisible = action.payload !== undefined ?
-      action.payload : !state.isGridVisible 
+      state.isGridVisible = action.payload !== undefined ? action.payload : !state.isGridVisible
     },
     togglePanelsByHotkey: state => {
       if (state.componentsStructurePanelState || state.settingsPanelState) {

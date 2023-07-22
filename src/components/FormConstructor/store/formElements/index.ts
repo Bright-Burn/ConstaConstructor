@@ -26,7 +26,6 @@ import { LayoutElementProps, LayoutElementPropsStyles, LayoutElementStyles } fro
 import {
   AddNewElementPayload,
   SetNewSelectedElement,
-  DeleteElementPayload,
   LoadProjectFromStorage,
   SaveNewProject,
   ShowGrid,
@@ -70,7 +69,6 @@ export {
   type GroupElementUnion,
   type SetNewSelectedElement,
   type AddNewElementPayload,
-  type DeleteElementPayload,
   type LoadProjectFromStorage,
   type SaveNewProject,
   type ShowGrid,
@@ -82,6 +80,12 @@ export {
   type CheckboxProps,
   type IFormElementCheckbox,
 }
-export { addNewElement, setDraggableElement,loadProjectFromStorage, saveProjectToFile, saveProjectToMemmoryStorage } from './actions'
+export {
+  addNewElement,
+  setDraggableElement,
+  loadProjectFromStorage,
+  saveProjectToFile,
+  saveProjectToMemmoryStorage,
+} from './actions'
 export type { IFormConstructorSerializable } from './actions'
-export {getFormConstructor} from './selectors'
+export { getFormConstructor } from './selectors'

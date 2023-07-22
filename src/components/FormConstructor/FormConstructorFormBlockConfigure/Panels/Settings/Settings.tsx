@@ -42,7 +42,7 @@ import {
   toggleGrid,
   toggleSettingsPanelState,
 } from '../../../store'
-import { projectFromSerilizable } from '../../../projectSaveLoad'
+// import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(getSettingsPanelState)
@@ -226,11 +226,10 @@ export const Settings: FC = () => {
       const file = target.files[0]
       readFile(file).then(json => {
         //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-          const parsedFile: any = JSON.parse(json)
-          const project: any = projectFromSerilizable(parsedFile.project)
-         
-          dispatch(loadProjectFromStorage(project))
-      
+        const parsedFile: any = JSON.parse(json)
+        // const project: any = projectFromSerilizable(parsedFile.project)
+
+        // dispatch(loadProjectFromStorage(project))
       })
     }
   }
