@@ -6,16 +6,14 @@ import {
   IFormElementBadge,
   useAppDispatch,
 } from '../../../../../../store/formElements'
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
-    const newBadge: IFormElementBadge = {
+    const newBadge = {
       id: uuid(),
       type: FormElementTypes.Badge,
       props: {

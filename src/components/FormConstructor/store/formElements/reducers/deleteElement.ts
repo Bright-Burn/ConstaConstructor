@@ -1,20 +1,19 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { IFormConstructor, IFormElement, IGroupElement } from '../types'
-import { DeleteElementPayload } from '../payload'
 import { IButtonActionElement, IFormElementButton, buttonActionsActive } from '../buttonTypes'
 import { pushHistory } from '../history'
+import { layuoutAdapter } from '../initialState'
 
-export const deleteElement = (
-  state: IFormConstructor,
-  action: PayloadAction<DeleteElementPayload>,
-) => {
-  const allElementsTree = new Map(state.allElementsTree)
-  const allElementsMap = new Map(state.allElementsMap)
+export const deleteElement = (state: IFormConstructor, action: PayloadAction<string[]>) => {
+  layuoutAdapter.removeMany(state.allElements, action.payload)
 
-  processDelete(action.payload.elementId, allElementsTree, allElementsMap)
+  // const allElementsTree = new Map(state.allElementsTree)
+  // const allElementsMap = new Map(state.allElementsMap)
 
-  state.allElementsMap = allElementsMap
-  state.allElementsTree = allElementsTree
+  // processDelete(action.payload.elementId, allElementsTree, allElementsMap)
+
+  // state.allElementsMap = allElementsMap
+  // state.allElementsTree = allElementsTree
 
   pushHistory(state)
 }
@@ -24,13 +23,12 @@ export const processDelete = (
   allElementsTree: Map<string, string[]>,
   allElementsMap: Map<string, IFormElement | IGroupElement>,
 ) => {
-  const elementsToDelete = findElementsToDelete(elementId, allElementsTree)
-
-  elementsToDelete.forEach(elementId => {
-    deleteButtonActions(elementId, allElementsTree, allElementsMap)
-    allElementsMap.delete(elementId)
-    allElementsTree.delete(elementId)
-  })
+  // const elementsToDelete = findElementsToDelete(elementId, allElementsTree)
+  // elementsToDelete.forEach(elementId => {
+  //   deleteButtonActions(elementId, allElementsTree, allElementsMap)
+  //   allElementsMap.delete(elementId)
+  //   allElementsTree.delete(elementId)
+  // })
 }
 
 const findElementsToDelete = (elementId: string, allElementsTree: Map<string, string[]>) => {

@@ -23,13 +23,13 @@ export const deletePage = (state: IFormConstructor, action: PayloadAction<Delete
       state.selectedPageId = pageToOpenIndex
     }
 
-    const allElementsTree = new Map(state.allElementsTree)
-    const allElementsMap = new Map(state.allElementsMap)
+    // const allElementsTree = new Map(state.allElementsTree)
+    // const allElementsMap = new Map(state.allElementsMap)
 
-    processDelete(pageIdToDelete, allElementsTree, allElementsMap)
+    // processDelete(pageIdToDelete, allElementsTree, allElementsMap)
 
-    state.allElementsMap = allElementsMap
-    state.allElementsTree = allElementsTree
+    // state.allElementsMap = allElementsMap
+    // state.allElementsTree = allElementsTree
 
     state.pages = newPages
 

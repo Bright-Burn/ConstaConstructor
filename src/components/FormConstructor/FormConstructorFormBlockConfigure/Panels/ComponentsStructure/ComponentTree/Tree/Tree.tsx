@@ -9,20 +9,11 @@ import { rcTreeAdapter } from '@consta/rc-tree-adapter/rcTreeAdapter'
 import { cnRcTree } from '@consta/rc-tree-adapter/RcTree'
 import RCTree from 'rc-tree'
 import { Key } from 'rc-tree/lib/interface'
+import { getTreeData } from '../../../../../store/formElements/selectors'
 
 export const Tree: FC<ITree> = ({ data }) => {
-  const [selectedTreeItemsIds, setSelectedTreeItemsIds] = useState<string[]>([])
-
-  const { allElementsMap, selectedElement } = useAppSelector(state => state.formConstructor)
-
-  useEffect(() => {
-    const selectedElementId = selectedElement?.elementId
-
-    if (selectedElementId) {
-      setSelectedTreeItemsIds([selectedElementId])
-    }
-  }, [selectedElement])
-
+  const allElementsMap = useAppSelector(getTreeData)
+  const selectedEl = useAppSelector(state => state.formConstructor.selectedElement)
   const dispatch = useAppDispatch()
 
   const treeProps = rcTreeAdapter()
@@ -36,7 +27,6 @@ export const Tree: FC<ITree> = ({ data }) => {
   const onSelect = (selectedKeys: Key[]) => {
     selectedKeys.forEach(key => {
       const element = allElementsMap.get(`${key}`)
-
       if (element) {
         dispatch(
           formConstructorSlice.actions.setSelectedElement({
@@ -53,7 +43,7 @@ export const Tree: FC<ITree> = ({ data }) => {
       {...treeProps}
       treeData={data}
       prefixCls={prefix}
-      selectedKeys={selectedTreeItemsIds}
+      selectedKeys={[selectedEl?.elementId ?? '']}
       onSelect={onSelect}
       defaultExpandAll
     />

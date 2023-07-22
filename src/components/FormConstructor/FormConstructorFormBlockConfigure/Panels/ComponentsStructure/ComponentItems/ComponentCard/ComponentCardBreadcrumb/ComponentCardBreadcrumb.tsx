@@ -5,9 +5,7 @@ import { FormElementTypes, useAppDispatch } from '../../../../../../store/formEl
 import { IComponetCardElement } from '../types'
 import { IFormElementBreadcrumbs } from '../../../../../../store/formElements/BreadcrumbsTypes'
 import { pagesSubMenu } from '../../../../../Elements/BreadcrumbsFormElement/mocks'
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 

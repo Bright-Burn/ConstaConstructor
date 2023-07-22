@@ -12,26 +12,27 @@ import {
   useAppSelector,
 } from '../../../store/formElements'
 import { Icons } from '../IconFormElement/mocks'
+import { getAllElements } from '../../../store/formElements/selectors'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonProps>()
   const [openViewer, setOpenViewer] = useState<boolean>(false)
-
-  const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
-
+  console.log('newProps', element)
+  // const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
+  const allElements = useAppSelector(getAllElements)
   const [buttonGroup, setButtonGroup] = useState<IButtonActionElement>()
 
-  useEffect(() => {
-    const buttonFormElement = element as IFormElementButton
-    const buttonGroupIds = allElementsTree.get(buttonFormElement.id) || []
-    if (buttonGroupIds.length) {
-      const connectedButtonGroup = allElementsMap.get(buttonGroupIds[0])
-      if (connectedButtonGroup && 'connectedButtonId' in connectedButtonGroup) {
-        setButtonGroup(connectedButtonGroup as IButtonActionElement)
-      }
-    }
-    setButtonProps(buttonFormElement.props)
-  }, [element, allElementsMap, allElementsTree])
+  // useEffect(() => {
+  //   const buttonFormElement = element as IFormElementButton
+  //   const buttonGroupIds = allElementsTree.get(buttonFormElement.id) || []
+  //   if (buttonGroupIds.length) {
+  //     const connectedButtonGroup = allElementsMap.get(buttonGroupIds[0])
+  //     if (connectedButtonGroup && 'connectedButtonId' in connectedButtonGroup) {
+  //       setButtonGroup(connectedButtonGroup as IButtonActionElement)
+  //     }
+  //   }
+  //   setButtonProps(buttonFormElement.props)
+  // }, [element, allElementsMap, allElementsTree])
 
   const onButtonClick = () => {
     if (buttonProps && buttonProps.action !== 'none') {
@@ -67,11 +68,11 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         className={isFilled ? 'container-row flex-grow-1' : ''}
       >
         <Button
-          {...buttonProps}
+          {...element.props}
           onClick={onButtonClick}
           style={{ flexGrow: isFilled ? 1 : 0 }}
-          iconLeft={buttonProps?.iconLeft && buttonProps.icon && Icons[buttonProps.icon]}
-          iconRight={buttonProps?.iconRight && buttonProps.iconR && Icons[buttonProps.iconR]}
+          iconLeft={buttonProps?.iconLeft && element.props.icon && Icons[element.props.icon]}
+          iconRight={buttonProps?.iconRight && element.props.iconR && Icons[element.props.iconR]}
         />
       </SelectableLayer>
       {getActionViwer()}

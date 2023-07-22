@@ -4,9 +4,7 @@ import uuid from 'react-uuid'
 import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
 import { IComponetCardElement } from '../types'
 import { IFormElementComboBox } from '../../../../../../store/formElements/comboBoxTypes'
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 

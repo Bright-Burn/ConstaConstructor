@@ -6,6 +6,8 @@ import {
   IFormConstructor,
   ILayoutElement,
 } from './types'
+import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
+import { RootState } from '../setupStore'
 
 export const rootId = uuid()
 const initialLayoutId = uuid()
@@ -13,6 +15,7 @@ const initialLayoutId = uuid()
 export const initialLayout: ILayoutElement = {
   id: initialLayoutId,
   type: FormGroupsTypes.Layout,
+  parentId: 'null',
   isOuter: false,
   props: {
     constaProps: {
@@ -39,9 +42,13 @@ const initialNumberPage = 1
 
 export const initialAllElementsTree = new Map<string, string[]>([[rootId, [initialLayoutId]]])
 
+export const layuoutAdapter = createEntityAdapter<IFormElement | IGroupElement>({
+  // Assume IDs are stored in a field other than `book.id`
+  selectId: layuout => layuout.id,
+})
+
 export const initialState: IFormConstructor = {
-  allElementsTree: initialAllElementsTree,
-  allElementsMap: initialElementsMap,
+  allElements: layuoutAdapter.getInitialState(),
   selectedElement: null,
   selectedElementProps: null,
   draggableElement: null,
@@ -60,3 +67,9 @@ export const initialState: IFormConstructor = {
     },
   ],
 }
+const { selectById } = layuoutAdapter.getSelectors<RootState>(
+  state => state.formConstructor.allElements,
+)
+
+export const getElementById = (id?: string) => (state: RootState) =>
+  id ? selectById(state, id) : null

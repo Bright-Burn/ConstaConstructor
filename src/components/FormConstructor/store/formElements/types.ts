@@ -29,6 +29,7 @@ import {
 import { IFormElementTagProps, TagProps } from './tagTypes'
 import { OwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
 import { IHistory } from './history'
+import { EntityState } from '@reduxjs/toolkit'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -94,6 +95,7 @@ export type FormElementTypes = Values<typeof FormElementTypes>
 
 export interface IGroupElement extends IUnion {
   id: string
+  parentId?: string
   type: FormGroupsTypes
   isOuter: boolean
   props: GroupElementProps
@@ -103,10 +105,81 @@ export interface ILayoutElement extends IGroupElement {
   props: LayoutElementPropsStyles
 }
 
-export interface IFormElement extends IUnion {
+export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion & {
   id: string
-  type: FormElementTypes
-  props: FormElementProps
+  parentId?: string
+  type: T
+  props: T extends 'Button'
+    ? ButtonProps
+    : {} & T extends 'Badge'
+    ? BadgeProps
+    : {} & T extends 'Tabs'
+    ? TabsElementProps
+    : {} & T extends 'Informer'
+    ? InformerElementProps
+    : {} & T extends 'Checkbox'
+    ? CheckboxProps
+    : {} & T extends 'Text'
+    ? TextElementProps
+    : {} & T extends 'TextField'
+    ? TextFieldProps
+    : {} & T extends 'Table'
+    ? TableProps
+    : {} & T extends 'List'
+    ? ListProps
+    : {} & T extends 'RadioButton'
+    ? RadioButtonProps
+    : {} & T extends 'Switch'
+    ? SwitchProps
+    : {} & T extends 'DatePicker'
+    ? DatePickerProps
+    : {} & T extends 'ComboBox'
+    ? ComboboxProps
+    : {} & T extends 'Select'
+    ? SelectProps
+    : {} & T extends 'DataTime'
+    ? DataTimeProps
+    : {} & T extends 'User'
+    ? UserProps
+    : {} & T extends 'Icon'
+    ? IconProps
+    : {} & T extends 'Tag'
+    ? TagProps
+    : {} & T extends 'BreadcrumbsFormElement'
+    ? BreadcrumbProps
+    : {} & T extends 'ChoiceGroup'
+    ? OwnChoiceGroupProps
+    : {} & T extends 'ProjectGrid'
+    ? {}
+    : {} & T extends 'HeaderWithBreadcrumbs'
+    ? {}
+    : {} & T extends 'HeaderCognitiveGeologist'
+    ? {}
+    : {} & T extends 'Placeholder'
+    ? {}
+    : {} & T extends 'HeaderWithStatus'
+    ? {}
+    : {} & T extends 'CardWithBarChart'
+    ? {}
+    : {} & T extends 'CustomCards'
+    ? {}
+    : {} & T extends 'Dashboard'
+    ? {}
+    : {} & T extends 'SimpleForm'
+    ? {}
+    : {} & T extends 'WizardForm'
+    ? {}
+    : {} & T extends 'FooterWithSwitch'
+    ? {}
+    : {} & T extends 'FormWithTwoColumns'
+    ? {}
+    : {} & T extends 'ExpertiseForm'
+    ? {}
+    : {} & T extends 'PrototypeTextElement'
+    ? {}
+    : {} & T extends 'PrototypeRectElement'
+    ? {}
+    : {}
 }
 
 export interface IUnion {
@@ -191,8 +264,7 @@ export interface IPageOfLayout {
 }
 
 export interface IFormConstructor extends IHistory {
-  allElementsTree: Map<string, string[]>
-  allElementsMap: Map<string, IFormElement | IGroupElement>
+  allElements: EntityState<IFormElement | IGroupElement>
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
   draggableElement: IFormElement | IGroupElement | null

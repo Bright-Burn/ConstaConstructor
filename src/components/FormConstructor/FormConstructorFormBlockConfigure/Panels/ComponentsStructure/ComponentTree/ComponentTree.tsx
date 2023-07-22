@@ -1,27 +1,52 @@
 import { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { ITreeItem } from './Tree'
-import { useAppSelector } from '../../../../store/formElements'
+import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/formElements'
 import { Tree } from './Tree'
 import { formToTreeData } from './Tree'
+import {
+  getAllElements,
+  getSelectedPageId,
+  getTreeData,
+} from '../../../../store/formElements/selectors'
 
 export const ComponentTree = () => {
-  const [treeData, setTreeData] = useState<ITreeItem[]>([])
+  //TODO вынестив  сервис
+  const allElements = useAppSelector(getAllElements)
+  const allElementsMap = useAppSelector(getTreeData)
+  const selectedPageId = useAppSelector(getSelectedPageId)
 
-  const { allElementsTree, allElementsMap, selectedPageId } = useAppSelector(
-    state => state.formConstructor,
-  )
-
-  useEffect(() => {
-    if (selectedPageId) {
-      const data = formToTreeData(selectedPageId, allElementsTree, allElementsMap)
-      setTreeData(data)
-    }
-  }, [allElementsTree, allElementsMap, selectedPageId])
+  console.log('allElements', allElements)
 
   return (
     <div className={`${styles.commentTree} borderCard`}>
-      <Tree data={treeData} />
+      <Tree data={getTree(allElementsMap, allElements, selectedPageId)} />
     </div>
   )
+}
+
+const getTree = (
+  allElementsMap: Map<string, IFormElement | IGroupElement>,
+  allElements: (IFormElement | IGroupElement)[],
+  parentId: string,
+) => {
+  const childrenIds = allElements.filter(el => el.parentId === parentId)
+  const childrenItems: ITreeItem[] = []
+
+  childrenIds.forEach(childId => {
+    const title = allElementsMap.get(childId.id)?.type
+
+    if (title) {
+      const treeItem: ITreeItem = {
+        key: childId.id,
+        children: getTree(allElementsMap, allElements, childId.id),
+        visible: true,
+        disableCheckbox: true,
+        title: title,
+      }
+
+      childrenItems.push(treeItem)
+    }
+  })
+  return childrenItems
 }

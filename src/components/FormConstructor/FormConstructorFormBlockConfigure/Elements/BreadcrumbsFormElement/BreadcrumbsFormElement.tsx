@@ -10,7 +10,7 @@ import { Breadcrumbs } from '@consta/uikit/Breadcrumbs'
 import { pagesSubMenu } from './mocks'
 
 export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element }) => {
-  const props = element.props as BreadcrumbProps
+  const props = element.props
   return (
     <SelectableLayer
       parentElementId={element.id}

@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 import styles from './styles.module.css'
 import { ComponentsTabItem } from './types'
 import { BaseComponents } from './BaseComponents'
@@ -8,14 +8,8 @@ import { componentsTabItems } from './content'
 import { Tabs } from '@consta/uikit/Tabs'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
-import {
-  useAppDispatch,
-  useAppSelector,
-} from '../../../store/formElements/slices'
-import {
-  getComponentsStructurePanelState,
-  toggleComponentsStructurePanel,
-} from '../../../store'
+import { useAppDispatch, useAppSelector } from '../../../store/formElements/slices'
+import { getComponentsStructurePanelState, toggleComponentsStructurePanel } from '../../../store'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[1])

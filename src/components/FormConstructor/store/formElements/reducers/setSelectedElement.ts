@@ -2,6 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { SetNewSelectedElement } from '../payload'
 import { IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../types'
 import { pushHistory } from '../history'
+import { layuoutAdapter } from '../initialState'
 
 export const setSelectedElement = (
   state: IFormConstructor,
@@ -12,7 +13,10 @@ export const setSelectedElement = (
     state.selectedElement = null
     return
   }
-  const element = state.allElementsMap.get(action.payload.elementId)
+  // перенести в экшн
+  const { selectById } = layuoutAdapter.getSelectors<IFormConstructor>(state => state.allElements)
+  const element = selectById(state, action.payload.elementId)
+
   if (element) {
     updateSelectedElement(state, element, action.payload.newProps)
   }
@@ -25,19 +29,22 @@ export const updateSelectedElement = (
   element: IFormElement | IGroupElement,
   newProps?: UnionProps | undefined,
 ) => {
-  if (element) {
-    if (newProps) {
-      element.props = newProps
-    }
+  //TODO избавиться от as
+  let porps = { ...(element.props as UnionProps) }
 
-    state.selectedElementProps = { ...(element as IFormElement | IGroupElement).props }
-    state.selectedElement = {
-      elementId: element.id,
-      elementType: element.type,
-    }
-
-    const newAllelementMap = state.allElementsMap
-    newAllelementMap.set(element.id, element)
-    state.allElementsMap = newAllelementMap
+  if (newProps) {
+    porps = newProps
   }
+  state.selectedElementProps = { ...porps }
+  state.selectedElement = {
+    elementId: element.id,
+    elementType: element.type,
+  }
+  layuoutAdapter.updateOne(state.allElements, { id: element.id, changes: { props: porps } })
+  // const newAllelementMap = state.allElementsMap
+  // newAllelementMap.set(element.id, element)
+  // state.allElementsMap = newAllelementMap
+}
+function isEmpty(obj: any) {
+  return !obj || !Object.keys(obj).some(x => obj[x] !== void 0)
 }

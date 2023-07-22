@@ -1,14 +1,13 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { IFormConstructor, IFormElement, IGroupElement } from '../types'
 import { pushHistory } from '../history'
+import { layuoutAdapter } from '../initialState'
 
 export const addNewElement = (
   state: IFormConstructor,
-  action: PayloadAction<{newTreeMap: any,allElementsMap: Map<string, IFormElement | IGroupElement>}>,
+  action: PayloadAction<IFormElement | IGroupElement>,
 ) => {
- 
-  state.allElementsMap = action.payload.allElementsMap
-  state.allElementsTree = action.payload.newTreeMap
+  layuoutAdapter.addOne(state.allElements, action.payload)
 
   pushHistory(state)
 }

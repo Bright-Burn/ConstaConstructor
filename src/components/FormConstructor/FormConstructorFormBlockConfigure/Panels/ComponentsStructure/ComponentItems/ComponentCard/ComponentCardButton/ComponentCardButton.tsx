@@ -6,9 +6,7 @@ import {
   IFormElementButton,
   useAppDispatch,
 } from '../../../../../../store/formElements'
-import {
-  setDraggableElement
-} from '../../../../../../store'
+import { setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 
 export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {

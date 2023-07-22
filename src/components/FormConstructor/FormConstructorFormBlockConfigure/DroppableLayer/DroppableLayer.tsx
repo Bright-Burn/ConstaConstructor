@@ -8,8 +8,13 @@ import {
   AddNewElementPayload,
   useAppDispatch,
 } from '../../store/formElements'
-import {addNewElement, setDraggableBaseComponent, getDraggedBaseComponent, setDraggableElement} from '../../store'
-import { getElementsOnLayer, getNewGroupParentLevel } from '../../utils'
+import {
+  addNewElement,
+  setDraggableBaseComponent,
+  getDraggedBaseComponent,
+  setDraggableElement,
+} from '../../store'
+import { getNewGroupParentLevel } from '../../utils'
 import {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
@@ -17,24 +22,24 @@ import {
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
 import { FormGroupsDict } from '../FormGroupDict'
+import { getElementsOnLayer } from '../../store/formElements/selectors'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
-export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
+export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerParentId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
-  const { allElementsTree, allElementsMap, draggableElement } = useAppSelector(
-    state => state.formConstructor,
-  )
+  const { draggableElement } = useAppSelector(state => state.formConstructor)
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
 
-  const [elementsOnLayer, setElementsOnLayer] = useState<(IFormElement | IGroupElement)[]>([])
+  const elementsOnLayer = useAppSelector(getElementsOnLayer(parentElementId))
+  console.log('elementsOnLayer', elementsOnLayer)
   const dispatch = useAppDispatch()
   const dispathBaseComponents = useBaseComponentsDispatch()
 
-  useEffect(() => {
-    /// Подгружаем все эелементы на текущем уровне
-    const elementsOnLayer = getElementsOnLayer(parentElementId, allElementsTree, allElementsMap)
-    setElementsOnLayer(elementsOnLayer)
-  }, [allElementsTree, parentElementId, allElementsMap])
+  // useEffect(() => {
+  //   /// Подгружаем все эелементы на текущем уровне
+  //   const elementsOnLayer = getElementsOnLayer(parentElementId, allElementsTree, allElementsMap)
+  //   setElementsOnLayer(elementsOnLayer)
+  // }, [allElementsTree, parentElementId, allElementsMap])
 
   const handleOnDropBaseComponent = () => {
     if (draggableBaseComponent) {
@@ -76,9 +81,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       addElements(actions)
 
       // После перетаскивания, очищаем соответсвующее поле в сторе
-      dispathBaseComponents(
-        setDraggableBaseComponent( null ),
-      )
+      dispathBaseComponents(setDraggableBaseComponent(null))
     }
   }
 
@@ -91,16 +94,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
       handleOnDropBaseComponent()
       return
     }
-
     if (draggableElement) {
-      if ('isOuter' in draggableElement && draggableElement.isOuter) {
-        const newParentElementId = getNewGroupParentLevel(
-          parentElementId,
-          allElementsMap,
-          allElementsTree,
-        )
-        newParentElementId &&
-          addElements([{ element: draggableElement, parent: newParentElementId }])
+      debugger
+      if ('isOuter' in draggableElement && draggableElement.isOuter && outerParentId) {
+        addElements([{ element: draggableElement, parent: outerParentId }])
       } else {
         addElements([{ element: draggableElement, parent: parentElementId }])
       }
@@ -110,9 +107,9 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId }) => {
   }
 
   const addElements = (payload: AddNewElementPayload[]) => {
-    dispatch(  addNewElement(payload))
+    dispatch(addNewElement(payload))
   }
-
+  console.log(elementsOnLayer)
   return (
     <div
       className={styles.droppableContainer}

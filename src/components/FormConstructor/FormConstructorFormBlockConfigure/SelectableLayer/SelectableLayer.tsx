@@ -3,6 +3,7 @@ import { ISelectableLayer } from './types'
 import styles from './styles.module.css'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../store/formElements'
 import { ElementTypes } from '../../store/formElements/types'
+import { getElementById } from '../../store/formElements/initialState'
 
 /// Уровень содержащий логику по выделению родительского комопнента
 export const SelectableLayer: FC<ISelectableLayer> = ({
@@ -13,8 +14,11 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   className,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
-  const { selectedElement, allElementsMap } = useAppSelector(state => state.formConstructor)
-  const props = allElementsMap.get(String(selectedElement?.elementId))?.props
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+
+  const element = useAppSelector(getElementById(selectedElement?.elementId))
+
+  const props = element?.props
   let isFilled = false
   if (props && 'filled' in props) {
     isFilled = props.filled === 'filled'
