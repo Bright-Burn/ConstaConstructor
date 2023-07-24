@@ -1,9 +1,10 @@
 import { FC, useLayoutEffect, useRef, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
   IExpertiseFormProps,
   ExpertiseFormProps,
-} from '../../../store/formElements/ExpertiseFormTypes'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IExpertiseForm } from './types'
 import { agGridAdapter } from '@consta/ag-grid-adapter/agGridAdapter'

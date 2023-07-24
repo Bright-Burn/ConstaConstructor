@@ -1,9 +1,9 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IBadgeFormElement } from './types'
 import { Badge } from '@consta/uikit/Badge'
-import { BadgeProps } from '../../../store/formElements/badgeTypes'
+import { BadgeProps } from '../../../coreTypes/badgeTypes'
 
 export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const [badgeProps, setbadgeProps] = useState<BadgeProps>()

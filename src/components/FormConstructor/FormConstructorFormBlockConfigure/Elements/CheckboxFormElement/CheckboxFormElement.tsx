@@ -2,8 +2,8 @@ import { FC, useLayoutEffect, useState } from 'react'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ICheckboxFormElement } from './types'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
-import { CheckboxProps, IFormElementCheckbox } from '../../../store/formElements/checkboxTypes'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { CheckboxProps, IFormElementCheckbox } from '../../../coreTypes'
 
 export const CheckboxFormElement: FC<ICheckboxFormElement> = ({ element }) => {
   const [checkboxProps, setCheckboxProps] = useState<CheckboxProps>()

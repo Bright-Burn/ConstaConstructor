@@ -1,5 +1,4 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
 import { IHeaderWithBreadcrumbs } from './types'
 import { Text } from '@consta/uikit/Text'
 import { IconRing } from '@consta/uikit/IconRing'
@@ -7,7 +6,9 @@ import { Breadcrumbs } from '@consta/uikit/Breadcrumbs'
 import {
   headerWithBreadcrumbsProps,
   IFormElementHeaderWithBreadcrumbs,
-} from '../../../store/formElements'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 import { Header } from '@consta/uikit/Header'
 import { User } from '@consta/uikit/User'
 import style from './styles.module.css'

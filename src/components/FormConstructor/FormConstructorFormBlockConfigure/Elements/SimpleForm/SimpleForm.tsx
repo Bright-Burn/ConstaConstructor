@@ -3,11 +3,12 @@ import { DatePicker } from '@consta/uikit/DatePicker'
 import { Text } from '@consta/uikit/Text'
 import { DragNDropField } from '@consta/uikit/DragNDropField'
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
   IFormElementSimpleForm,
   simpleFormProps,
-} from '../../../store/formElements/simpleFormTypes'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { ISimpleForm } from './types'
 import { IconLock } from '@consta/icons/IconLock'

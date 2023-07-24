@@ -1,4 +1,4 @@
-import { BaseProps } from '../../../../store/formElements/types'
+import { BaseProps } from '../../../../coreTypes'
 import { BaseTypes } from '../BaseSettings/types'
 
 export type PrototypePropsType = {

@@ -1,18 +1,17 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { Button } from '@consta/uikit/Button'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IButtonFormElement } from './types'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
-import { IconSelect } from '@consta/uikit/IconSelect'
+import {} from '../../../coreTypes'
 import { FormGroupsDict } from '../../FormGroupDict'
 import {
   ButtonProps,
   IButtonActionElement,
-  IFormElementButton,
-  useAppSelector,
-} from '../../../store/formElements'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 import { Icons } from '../IconFormElement/mocks'
-import { getAllFormElements } from '../../../store/formElements/formElementsSelectors'
+import { getAllFormElements, useAppSelector } from '../../../store'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonProps>()

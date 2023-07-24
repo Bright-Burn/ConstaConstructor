@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { IButtonActionViewer } from './types'
 import { Modal } from '@consta/uikit/Modal'
-import { ButtonGroupProps } from '../../../../store/formElements'
+import { ButtonGroupProps } from '../../../../coreTypes'
 import { Button } from '@consta/uikit/Button'
 import styles from './styles.module.css'
 import { IconClose } from '@consta/icons/IconClose'

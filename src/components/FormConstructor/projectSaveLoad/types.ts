@@ -4,7 +4,7 @@ import {
   IPageOfLayout,
   ISelectedElement,
   UnionProps,
-} from '../store/formElements/types'
+} from '../coreTypes'
 import { Values } from '../utils'
 
 /// По мере расширения сопсобов сохранения, будет дополнять объект

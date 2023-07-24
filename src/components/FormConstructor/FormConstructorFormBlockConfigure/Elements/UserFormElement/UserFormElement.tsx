@@ -1,8 +1,8 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IUserFormElement } from './types'
-import { IFormElementUser, UserProps } from '../../../store/formElements/userTypes'
+import { IFormElementUser, UserProps } from '../../../coreTypes'
 import { User } from '@consta/uikit/User'
 
 export const UserFormElement: FC<IUserFormElement> = ({ element }) => {

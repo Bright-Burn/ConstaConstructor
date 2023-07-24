@@ -1,6 +1,6 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { ItemList, ListProps } from '../../../../store/formElements/ListTypes'
+import { useAppSelector } from '../../../../store'
+import { ISelectedElement } from '../../../../coreTypes'
+import { ItemList, ListProps } from '../../../../coreTypes'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 

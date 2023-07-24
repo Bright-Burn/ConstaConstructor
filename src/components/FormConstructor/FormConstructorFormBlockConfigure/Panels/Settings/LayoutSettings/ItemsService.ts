@@ -1,5 +1,3 @@
-import { LayoutElementPropsStyles, useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
 import {
   LayoutPropDirection,
   LayoutPropVerticalAlign,
@@ -12,9 +10,11 @@ import {
   BorderStyle,
   BorderColor,
   BorderSide,
-} from '../../../../store/formElements/layoutTypes'
+  LayoutElementPropsStyles,
+  ISelectedElement,
+} from '../../../../coreTypes'
 import { ConstaColor } from '../../../../../ConstaPalette'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

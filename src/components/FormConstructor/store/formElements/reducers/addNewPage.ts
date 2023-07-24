@@ -1,23 +1,26 @@
-import uuid from 'react-uuid'
-import { IFormConstructor, ILayoutElement } from '../types'
-import { initialLayout, layuoutAdapter } from '../initialState'
+import { IFormConstructor, ILayoutElement } from '../../../coreTypes'
+import { layuoutAdapter } from '../initialState'
 import { pushHistory } from '../history'
+import { PayloadAction } from '@reduxjs/toolkit'
 
-export const addNewPage = (state: IFormConstructor) => {
-  /// Создаём новый id для дефолтного Layout
-
-  const newPageId = uuid()
-  const pageLayout: ILayoutElement = { ...initialLayout, id: uuid(), parentId: newPageId }
+export const addNewPage = (state: IFormConstructor, action: PayloadAction<newPagePayload>) => {
+  const { newPageId, pageLayout } = action.payload
+  const pagesCount = state.pages.length
 
   state.pages = [
     ...state.pages,
     {
       id: newPageId,
-      name: `Page${state.numberOfPages + 1}`,
+      name: `Page ${pagesCount + 1}`,
     },
   ]
-  state.numberOfPages = state.numberOfPages + 1
+  state.numberOfPages = pagesCount + 1
   layuoutAdapter.addOne(state.allElements, pageLayout)
 
   pushHistory(state)
+}
+
+interface newPagePayload {
+  newPageId: string
+  pageLayout: ILayoutElement
 }

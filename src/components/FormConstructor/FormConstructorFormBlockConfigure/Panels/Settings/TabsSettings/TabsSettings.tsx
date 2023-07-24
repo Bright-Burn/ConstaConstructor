@@ -5,7 +5,7 @@ import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
 import { FitMode, fitModeArray, linePositionArray, sizeArray, viewArray } from './types'
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/TabsDeprecated'
-import { ITEM } from '../../../../store/formElements/tabsTypes'
+import { tabItemType } from '../../../../coreTypes'
 export const TabsSettings = () => {
   const {
     itemsProps,
@@ -17,7 +17,7 @@ export const TabsSettings = () => {
     onChangeSize,
     onChangeFitMode,
   } = useItemsHandlers()
-  const [tabs, setTabs] = useState<ITEM[]>(itemsProps.items)
+  const [tabs, setTabs] = useState<tabItemType[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
 
   const labelsEditingHandler = (value: boolean) => {

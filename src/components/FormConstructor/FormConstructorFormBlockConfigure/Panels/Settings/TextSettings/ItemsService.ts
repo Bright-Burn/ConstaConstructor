@@ -1,6 +1,5 @@
-import { TextElementProps, useAppSelector } from '../../../../store/formElements'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ISelectedElement } from '../../../../store/formElements/types'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { ISelectedElement, TextElementProps } from '../../../../coreTypes'
 import {
   TextPropSize,
   TextPropView,

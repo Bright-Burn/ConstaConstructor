@@ -1,4 +1,4 @@
-import { IFormConstructor } from '../types'
+import { IFormConstructor } from '../../../coreTypes'
 import { HISTORY_LIMIT } from './reducers'
 import { ISavePoint } from './types'
 

@@ -1,7 +1,7 @@
 import { BaseProps, IFormElement } from './types'
 import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
 
-export type ITEM = {
+export type selectitemType = {
   id: number
   label: string
 }
@@ -27,8 +27,8 @@ export type SelectProps = {
   size?: TextFieldPropSize
   view?: TextFieldPropView
   form?: PropForm
-  items: ITEM[]
-  value?: ITEM | null
+  items: selectitemType[]
+  value?: selectitemType | null
   required?: boolean
   status?: TextFieldPropStatus
   caption?: string

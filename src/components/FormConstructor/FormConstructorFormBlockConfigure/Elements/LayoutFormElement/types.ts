@@ -1,4 +1,4 @@
-import { ILayoutElement } from '../../../store/formElements/types'
+import { ILayoutElement } from '../../../coreTypes'
 
 export interface ILayoutFormElement {
   element: ILayoutElement

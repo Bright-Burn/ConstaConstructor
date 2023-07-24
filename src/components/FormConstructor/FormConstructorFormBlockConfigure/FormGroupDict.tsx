@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { FormGroupsTypes, FormElementTypes } from '../store/formElements'
+import { FormGroupsTypes, FormElementTypes } from '../coreTypes'
 import {
   LayoutFormElement,
   ButtonFormElement,

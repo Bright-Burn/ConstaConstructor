@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import styles from './styles.module.css'
-import { LayoutElementPropsStyles } from '../../../../store/formElements/layoutTypes'
+import { LayoutElementPropsStyles } from '../../../../coreTypes'
 import { useDebouncedCallback } from '../../../../utils/useDebounceCallBack'
 import { useItemsHandlers } from './ItemsService'
 import {

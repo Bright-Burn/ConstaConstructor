@@ -3,7 +3,7 @@ import {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store/baseComponentsItems'
-import { IFormElement, IGroupElement } from '../../store/formElements'
+import { IFormElement, IGroupElement } from '../../coreTypes'
 import { setDraggableBaseComponent, getDraggedBaseComponent } from '../../store'
 
 export const useDropBaseComponent = () => {

@@ -1,12 +1,11 @@
 import { useLayoutEffect, useState } from 'react'
-import { CardElementPropsStyles, useAppSelector } from '../../../../store/formElements'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import styles from './styles.module.css'
-import { CardElementProps } from '../../../../store/formElements/cardTypes'
+import { CardElementProps, CardElementPropsStyles } from '../../../../coreTypes'
 import { TextField } from '@consta/uikit/TextField'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { ISelectedElement } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const CardSettings = () => {
   const [props, setProps] = useState<CardElementPropsStyles>()

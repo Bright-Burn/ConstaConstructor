@@ -4,7 +4,6 @@ import {
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
 import { UserPropWidth } from '@consta/uikit/User'
-import { iconNames } from '../../../../store/formElements/iconTypes'
 import { IconComponent } from '@consta/uikit/Icon'
 
 export type Item = {

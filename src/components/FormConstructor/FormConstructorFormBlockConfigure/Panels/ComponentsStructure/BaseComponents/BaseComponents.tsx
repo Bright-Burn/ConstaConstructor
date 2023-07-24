@@ -2,14 +2,10 @@ import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
 import React, { FC, useEffect, useState } from 'react'
 import { IBaseComponent, useBaseComponentsSelector } from '../../../../store/baseComponentsItems'
-import { readFile, saveToFile } from '../../../../utils'
+import { readFile } from '../../../../utils'
 import styles from './styles.module.css'
-import {
-  baseComponentsSlice,
-  useBaseComponentsDispatch,
-} from '../../../../store/baseComponentsItems'
-import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/formElements'
-import uuid from 'react-uuid'
+import { useBaseComponentsDispatch } from '../../../../store/baseComponentsItems'
+import { useAppSelector } from '../../../../store'
 import { SaveModalCard } from '../../../../SaveModalCard'
 import { customCardsTemplateMock } from '../../../Elements/CustomCardsTemplate/mock'
 import {
@@ -30,9 +26,7 @@ import {
   PrototypeRectMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
-import { addBaseElement } from '../../../../store'
-import { getAllFormElements } from '../../../../store/formElements/formElementsSelectors'
-import { saveModuleToFile } from '../../../../store/formElements/formElementsActions'
+import { saveModuleToFile, addBaseElement, getAllFormElements } from '../../../../store'
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
 

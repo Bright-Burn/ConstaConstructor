@@ -1,7 +1,6 @@
 import { Select } from '@consta/uikit/Select'
-import { useAppSelector } from '../../../../store/formElements'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BaseProps, fillType } from '../../../../store/formElements/types'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { BaseProps, fillType } from '../../../../coreTypes'
 
 export const FilledSettings = () => {
   const fillValues: fillType[] = ['default', 'filled']

@@ -1,6 +1,12 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { IFormConstructor, IFormElement, IGroupElement } from '../types'
-import { IButtonActionElement, IFormElementButton, buttonActionsActive } from '../buttonTypes'
+import {
+  IFormConstructor,
+  IFormElement,
+  IGroupElement,
+  IButtonActionElement,
+  IFormElementButton,
+  buttonActionsActive,
+} from '../../../coreTypes'
 import { pushHistory } from '../history'
 import { layuoutAdapter } from '../initialState'
 

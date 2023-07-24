@@ -1,13 +1,9 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
-import {
-  FormElementTypes,
-  IFormElementInformer,
-  useAppDispatch,
-} from '../../../../../../store/formElements'
+import { FormElementTypes, IFormElementInformer } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
-import { setDraggableElement } from '../../../../../../store'
+import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 
 export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

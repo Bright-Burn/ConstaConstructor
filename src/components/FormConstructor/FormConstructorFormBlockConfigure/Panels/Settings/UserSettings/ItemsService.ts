@@ -1,8 +1,6 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
 import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@consta/uikit/User'
-import { UserProps } from '../../../../store/formElements/userTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { UserProps, ISelectedElement } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

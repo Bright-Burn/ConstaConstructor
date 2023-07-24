@@ -1,6 +1,5 @@
 import { BaseProps, IFormElement } from './types'
 import { ChoiceGroupProps } from '@consta/uikit/ChoiceGroup'
-import { Item } from '../../FormConstructorFormBlockConfigure/Panels/Settings/ChoiceGroupSettings/types'
 
 export type SingleChoiceGroupProps = ChoiceGroupProps<Item, false> & BaseProps
 
@@ -10,4 +9,12 @@ export type OwnChoiceGroupProps = SingleChoiceGroupProps | MultipleChoiceGroupPr
 
 export interface IFormElementChoiceGroup extends IFormElement {
   props: OwnChoiceGroupProps
+}
+import { IconComponent } from '@consta/uikit/Icon'
+
+export type Item = {
+  label: string
+  icon?: IconComponent
+  labelIcon?: string
+  disabled?: boolean
 }

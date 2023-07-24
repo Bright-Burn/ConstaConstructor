@@ -1,7 +1,7 @@
 import { ProjectSaveWays, SaveProjectIntent, saveProjectData } from '../../projectSaveLoad'
 import { ViewrSlice } from '../Viewer'
 import { AppDispatch, RootState } from '../setupStore'
-import { layuoutAdapter } from './initialState'
+import { initialLayout, layuoutAdapter } from './initialState'
 import {
   AddNewElementPayload,
   SaveNewProject,
@@ -13,10 +13,11 @@ import {
   FormElementTypes,
   IFormElement,
   IGroupElement,
+  ILayoutElement,
   IPageOfLayout,
   ISelectedElement,
   UnionProps,
-} from './types'
+} from '../../coreTypes'
 import { saveToFile } from '../../utils'
 import { IBaseComponent } from '../baseComponentsItems'
 import uuid from 'react-uuid'
@@ -24,6 +25,22 @@ import uuid from 'react-uuid'
 const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
 )
+export const deletePage =
+  (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+    dispatch(formConstructorSlice.actions.deletePage({ id: pageId }))
+  }
+
+export const addNewPage = () => (dispatch: AppDispatch, getState: () => RootState) => {
+  const newPageId = uuid()
+  const pageLayout: ILayoutElement = { ...initialLayout, id: uuid(), parentId: newPageId }
+
+  dispatch(formConstructorSlice.actions.addNewPage({ newPageId, pageLayout }))
+}
+
+export const changeActivePage =
+  (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+    dispatch(formConstructorSlice.actions.changeActivePage({ id: pageId }))
+  }
 
 export const setSelectedElement =
   (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {

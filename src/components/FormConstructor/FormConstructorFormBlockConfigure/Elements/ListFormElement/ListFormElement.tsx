@@ -1,9 +1,9 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IListFormElement } from './types'
 import { List } from '@consta/uikit/ListCanary'
-import { IFormElementList, ItemList, ListProps } from '../../../store/formElements/ListTypes'
+import { IFormElementList, ItemList, ListProps } from '../../../coreTypes'
 import { ListBox } from '@consta/uikit/ListCanary'
 
 const items: ItemList[] = [

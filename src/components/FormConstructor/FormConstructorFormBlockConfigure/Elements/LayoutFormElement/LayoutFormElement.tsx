@@ -1,16 +1,18 @@
 import { Layout } from '@consta/uikit/Layout'
 import { FC, useLayoutEffect, useState } from 'react'
+
 import {
+  ElementTypes,
+  FormGroupsTypes,
+  ILayoutElement,
   LayoutElementPropsStyles,
   LayoutElementStyles,
-  useAppSelector,
-} from '../../../store/formElements'
-import { ElementTypes, FormGroupsTypes, ILayoutElement } from '../../../store/formElements/types'
+} from '../../../coreTypes'
 import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ILayoutFormElement } from './types'
 import style from './styles.module.css'
-import { checkIsGridVisible } from '../../../store'
+import { checkIsGridVisible, useAppSelector } from '../../../store'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const [layoutProps, setLayoutProps] = useState<LayoutElementPropsStyles>()

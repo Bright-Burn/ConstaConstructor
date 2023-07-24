@@ -13,7 +13,7 @@ import { IconAdd } from '@consta/uikit/IconAdd'
 import { IconHamburger } from '@consta/uikit/IconHamburger'
 import { IconComponent } from '@consta/icons/Icon'
 import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { Button } from '@consta/uikit/Button'
 
 type Item = {

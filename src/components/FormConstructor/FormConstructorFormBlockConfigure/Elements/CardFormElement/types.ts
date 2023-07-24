@@ -1,4 +1,4 @@
-import { ICardElement } from '../../../store/formElements/types'
+import { ICardElement } from '../../../coreTypes'
 
 export interface ICardFormElement {
   element: ICardElement

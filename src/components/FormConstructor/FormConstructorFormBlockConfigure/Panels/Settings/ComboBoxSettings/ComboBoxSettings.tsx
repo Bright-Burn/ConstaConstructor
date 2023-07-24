@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
-import { Item } from '../../../../store/formElements/comboBoxTypes'
 import { Switch } from '@consta/uikit/Switch'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../store/formElements/selectTypes'
+import { PropForm, comboboxItemType } from '../../../../coreTypes'
 import { Button } from '@consta/uikit/Button'
 
 export const ComboBoxSettings = () => {
@@ -22,7 +21,7 @@ export const ComboBoxSettings = () => {
     onChangeForm,
     onChangeSwitch,
   } = useItemsHandlers()
-  const [lines, setLines] = useState<Item[]>(itemsProps.items)
+  const [lines, setLines] = useState<comboboxItemType[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {
     setLines(itemsProps.items)

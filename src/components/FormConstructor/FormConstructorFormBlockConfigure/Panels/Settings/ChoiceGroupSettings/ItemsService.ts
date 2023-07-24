@@ -1,12 +1,11 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
+import { useAppSelector } from '../../../../store'
+import { ISelectedElement, OwnChoiceGroupProps } from '../../../../coreTypes'
 import {
   ChoiceGroupPropForm,
   ChoiceGroupPropSize,
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
 import { Item } from './types'
-import { OwnChoiceGroupProps } from '../../../../store/formElements/ChoiceGroupTypes'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 

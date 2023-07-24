@@ -1,9 +1,7 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 import { FitMode } from './types'
-import { ITEM, TabsElementProps } from '../../../../store/formElements/tabsTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { tabItemType, TabsElementProps, ISelectedElement } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -37,7 +35,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeActiveItem = ({ value }: { value: ITEM | null }) => {
+  const onChangeActiveItem = ({ value }: { value: tabItemType | null }) => {
     if (selectedElement && value) {
       const newProps: TabsElementProps = {
         ...(selectedElementProps as TabsElementProps),
@@ -46,7 +44,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeItems = (items: ITEM[]) => {
+  const onChangeItems = (items: tabItemType[]) => {
     if (selectedElement && items) {
       const newProps: TabsElementProps = {
         ...(selectedElementProps as TabsElementProps),

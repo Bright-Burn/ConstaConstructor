@@ -1,7 +1,6 @@
-import { LayoutElementPropsStyles, useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
+import { ISelectedElement, LayoutElementPropsStyles } from '../../../../coreTypes'
 import { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const usePaddingHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { IFormElement } from '../../../store/formElements'
+import { FC } from 'react'
+import { IFormElement } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types'
 

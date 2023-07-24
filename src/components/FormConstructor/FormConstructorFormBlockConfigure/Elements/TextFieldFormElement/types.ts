@@ -1,4 +1,4 @@
-import { IFormElement } from '../../../store/formElements/types'
+import { IFormElement } from '../../../coreTypes'
 
 export interface ITextFieldFormElement {
   element: IFormElement

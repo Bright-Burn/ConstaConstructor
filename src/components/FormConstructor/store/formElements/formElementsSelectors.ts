@@ -1,9 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { RootState } from '../setupStore'
 import { layuoutAdapter } from './initialState'
-import { IFormConstructor, IFormElement, IGroupElement } from './types'
+import { IFormConstructor, IFormElement, IGroupElement } from '../../coreTypes'
 
-const { selectAll } = layuoutAdapter.getSelectors<RootState>(
+const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
 )
 
@@ -25,3 +25,5 @@ export const getFormElAsMap = (state: RootState): Map<string, IFormElement | IGr
   selectAll(state).forEach(el => map.set(el.id, el))
   return map
 }
+export const getElementById = (id?: string) => (state: RootState) =>
+  id ? selectById(state, id) : null

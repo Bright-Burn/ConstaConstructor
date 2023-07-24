@@ -5,10 +5,10 @@ import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
 import { FormArray, sizeArray, innerOffsetArray } from './types'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
-import { ItemList, ListProps } from '../../../../store/formElements/ListTypes'
+import { ItemList, ListProps } from '../../../../coreTypes'
 import styles from './styles.module.css'
 import { Switch } from '@consta/uikit/Switch'
-import { useAppSelector } from '../../../../store/formElements'
+import { useAppSelector } from '../../../../store'
 
 export const ListSettings = () => {
   const [props, setProps] = useState<ListProps>()

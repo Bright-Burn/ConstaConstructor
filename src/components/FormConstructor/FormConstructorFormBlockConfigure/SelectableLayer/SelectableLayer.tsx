@@ -1,10 +1,8 @@
 import React, { FC, useLayoutEffect, useState } from 'react'
 import { ISelectableLayer } from './types'
 import styles from './styles.module.css'
-import { useAppSelector } from '../../store/formElements'
-import { ElementTypes } from '../../store/formElements/types'
-import { getElementById } from '../../store/formElements/initialState'
-import { setSelectedElement, useAppDispatch } from '../../store'
+import { getElementById, useAppSelector, setSelectedElement, useAppDispatch } from '../../store'
+import { ElementTypes } from '../../coreTypes'
 
 /// Уровень содержащий логику по выделению родительского комопнента
 export const SelectableLayer: FC<ISelectableLayer> = ({

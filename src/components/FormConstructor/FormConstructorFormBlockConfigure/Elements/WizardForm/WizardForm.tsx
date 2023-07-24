@@ -1,9 +1,10 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
   IFormElementWizardForm,
   wizardFormProps,
-} from '../../../store/formElements/wizardFormTypes'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IWizardForm } from './types'
 import css from './styles.module.css'

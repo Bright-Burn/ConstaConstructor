@@ -1,7 +1,6 @@
 import { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { AgGridReact } from 'ag-grid-react'
-import { IFormElementTable, TableProps } from '../../../store/formElements/tableTypes'
+import { IFormElementTable, TableProps, ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { ITable } from './types'
 import style from './styles.module.css'

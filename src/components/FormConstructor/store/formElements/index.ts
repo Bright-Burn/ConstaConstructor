@@ -1,81 +1,4 @@
-import {
-  formConstructorSlice,
-  formConstructorReducer,
-} from './formElementsSlice'
-import {
-  UnionProps,
-  FormElementUnion,
-  GroupElementUnion,
-  IFormElement,
-  IGroupElement,
-  FormElementTypes,
-  ICardElement,
-  FormGroupsTypes,
-  ILayoutElement,
-  ElementTypes,
-} from './types'
-
-import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
-
-import { IFormElementBadge, BadgeProps } from './badgeTypes'
-
-import { LayoutElementProps, LayoutElementPropsStyles, LayoutElementStyles } from './layoutTypes'
-
-import {
-  AddNewElementPayload,
-  SetNewSelectedElement,
-  LoadProjectFromStorage,
-  SaveNewProject,
-  ShowGrid,
-} from './payload'
-
-import { CardElementPropsStyles } from './cardTypes'
-
-import { IFormElementText, TextElementProps } from './textTypes'
-import { IFormElementInformer, InformerElementProps } from './informerTypes'
-import { IFormElementCheckbox, CheckboxProps } from './checkboxTypes'
-
-export type {
-  IFormElementHeaderWithBreadcrumbs,
-  headerWithBreadcrumbsProps,
-} from './headerWithBreadcrumbsTypes'
-export type { IFormElementHeaderWithStatus, headerWithStatusProps } from './headerWithStatusTypes'
-export { rootId } from './initialState'
-export * from './buttonTypes'
-export type { BaseProps } from './types'
-export {
-  formConstructorReducer,
-  formConstructorSlice,
-  FormElementTypes,
-  FormGroupsTypes,
-  ElementTypes,
-  type IFormElementTextField,
-  type TextFieldProps,
-  type ICardElement,
-  type ILayoutElement,
-  type IFormElement,
-  type IGroupElement,
-  type BadgeProps,
-  type IFormElementBadge,
-  type LayoutElementPropsStyles,
-  type LayoutElementStyles,
-  type UnionProps,
-  type LayoutElementProps,
-  type FormElementUnion,
-  type GroupElementUnion,
-  type SetNewSelectedElement,
-  type AddNewElementPayload,
-  type LoadProjectFromStorage,
-  type SaveNewProject,
-  type ShowGrid,
-  type CardElementPropsStyles,
-  type IFormElementText,
-  type TextElementProps,
-  type IFormElementInformer,
-  type InformerElementProps,
-  type CheckboxProps,
-  type IFormElementCheckbox,
-}
+export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
 export {
   addNewFormElement,
   setDraggableElement,
@@ -83,6 +6,18 @@ export {
   saveProjectToFile,
   saveProjectToMemmoryStorage,
   setSelectedElement,
+  changeActivePage,
+  addNewPage,
+  deletePage,
+  deleteFormElement,
+  saveModuleToFile,
 } from './formElementsActions'
 export type { IFormConstructorSerializable } from './formElementsActions'
-export { getFormConstructor } from './formElementsSelectors'
+export {
+  getFormConstructor,
+  getElementById,
+  getFormElAsMap,
+  getAllFormElements,
+  getSelectedPageId,
+  getElementsOnLayer,
+} from './formElementsSelectors'

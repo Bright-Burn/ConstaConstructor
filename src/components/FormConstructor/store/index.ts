@@ -15,10 +15,19 @@ export {
   addNewFormElement,
   setDraggableElement,
   setSelectedElement,
-  FormElementTypes,
+  changeActivePage,
+  addNewPage,
+  deletePage,
+  getElementById,
+  deleteFormElement,
+  getFormElAsMap,
+  getAllFormElements,
+  getSelectedPageId,
+  saveModuleToFile,
+  getElementsOnLayer,
+  saveProjectToFile,
 } from './formElements'
 export type { IFormConstructorSerializable } from './formElements'
-export type { BaseProps } from './formElements'
 export {
   addBaseElement,
   setDraggableBaseComponent,

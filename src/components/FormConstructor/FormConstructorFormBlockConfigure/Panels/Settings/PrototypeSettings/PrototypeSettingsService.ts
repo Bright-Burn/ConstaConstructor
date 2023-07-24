@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../../../store/formElements'
+import { useAppSelector } from '../../../../store'
 import { PrototypeProps } from './types'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
