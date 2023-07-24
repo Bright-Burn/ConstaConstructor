@@ -1,15 +1,12 @@
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
-import { useDispatch } from 'react-redux'
 import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { views, sizes, icons } from './IconsConstants'
-import { IconProps, iconNames } from '../../../../store/formElements/iconTypes'
+import { IconProps, iconNames, ISelectedElement } from '../../../../coreTypes'
 import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
 import React from 'react'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const IconSettings: FC = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

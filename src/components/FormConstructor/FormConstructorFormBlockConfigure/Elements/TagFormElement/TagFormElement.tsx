@@ -1,9 +1,9 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITagFormElement } from './types'
 import style from './style.module.css'
-import { IFormElementTagProps, TagProps } from '../../../store/formElements/tagTypes'
+import { IFormElementTagProps, TagProps } from '../../../coreTypes'
 import { Tag } from '@consta/uikit/Tag'
 import { Icons } from '../IconFormElement/mocks'
 

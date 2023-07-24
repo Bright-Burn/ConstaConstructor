@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IBreadcrumbsFormElement } from './types'
 

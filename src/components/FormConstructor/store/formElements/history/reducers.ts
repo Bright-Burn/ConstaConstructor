@@ -1,5 +1,4 @@
-import { layuoutAdapter } from '../initialState'
-import { IFormConstructor } from '../types'
+import { IFormConstructor } from '../../../coreTypes'
 
 export const HISTORY_LIMIT = 64
 

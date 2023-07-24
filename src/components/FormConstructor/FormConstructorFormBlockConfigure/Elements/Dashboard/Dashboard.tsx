@@ -2,12 +2,13 @@ import { FC, useLayoutEffect, useState } from 'react'
 
 import { Text } from '@consta/uikit/Text'
 
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { IPlaceholderFormElement } from './types'
 import {
   IFormElementPlaceholder,
   PlaceholderProps,
-} from '../../../store/formElements/placeholderTypes'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 
 import style from './styles.module.css'
 import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'

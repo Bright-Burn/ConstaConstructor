@@ -2,12 +2,9 @@ import { FC, useLayoutEffect, useState } from 'react'
 
 import { Text } from '@consta/uikit/Text'
 
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { IPlaceholderFormElement } from './types'
-import {
-  IFormElementPlaceholder,
-  PlaceholderProps,
-} from '../../../store/formElements/placeholderTypes'
+import { IFormElementPlaceholder, PlaceholderProps } from '../../../coreTypes'
 
 import style from './styles.module.css'
 import ImageSvg from './image.svg'

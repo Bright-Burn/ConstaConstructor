@@ -1,10 +1,9 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
-import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
+import { useAppDispatch, setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementIcon } from '../../../../../../store/formElements/iconTypes'
-import { setDraggableElement } from '../../../../../../store'
+import { IFormElementIcon, FormElementTypes } from '../../../../../../coreTypes'
 export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 

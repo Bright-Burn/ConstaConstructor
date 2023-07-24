@@ -20,7 +20,7 @@ import {
   viewArray,
 } from './types'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../store/formElements/selectTypes'
+import { PropForm } from '../../../../coreTypes'
 
 export const DatePickerSettings: FC = () => {
   const {

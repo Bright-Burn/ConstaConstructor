@@ -1,5 +1,10 @@
-import { IFormElement, IGroupElement } from '..'
-import { IPageOfLayout, ISelectedElement, UnionProps } from '../types'
+import {
+  IPageOfLayout,
+  ISelectedElement,
+  UnionProps,
+  IFormElement,
+  IGroupElement,
+} from '../../../coreTypes'
 
 export interface ISavePoint {
   allElementsTree: Map<string, string[]>

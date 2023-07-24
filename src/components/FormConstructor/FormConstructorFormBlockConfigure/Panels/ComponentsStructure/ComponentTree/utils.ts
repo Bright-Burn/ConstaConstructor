@@ -1,4 +1,4 @@
-import { IFormElement, IGroupElement } from '../../../../store/formElements'
+import { IFormElement, IGroupElement } from '../../../../coreTypes'
 import { getElementsOnLayer } from '../../../../utils'
 import { ITreeItem } from './Tree'
 

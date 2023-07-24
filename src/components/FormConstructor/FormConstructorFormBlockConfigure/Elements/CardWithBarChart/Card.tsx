@@ -3,8 +3,9 @@ import { FC, useLayoutEffect, useState } from 'react'
 import {
   cardWithChartProps,
   IFormElementCardWithChart,
-} from '../../../store/formElements/cardWithBarChartTypes'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 import { Card } from '@consta/uikit/Card'
 import { Bar } from '@consta/charts/Bar'
 import { barDataMocks, choiceGroupMocks } from './mocks'

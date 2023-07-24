@@ -1,10 +1,8 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
 import { useLayoutEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
-import { TableProps } from '../../../../store/formElements/tableTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { TableProps, ISelectedElement } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const TableSettings = () => {
   const [props, setProps] = useState<TableProps>()

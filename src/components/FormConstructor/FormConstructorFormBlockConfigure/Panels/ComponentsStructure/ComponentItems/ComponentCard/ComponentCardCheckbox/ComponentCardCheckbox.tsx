@@ -1,14 +1,9 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
-import { useDispatch } from 'react-redux'
 import uuid from 'react-uuid'
-import {
-  FormElementTypes,
-  IFormElementCheckbox,
-  useAppDispatch,
-} from '../../../../../../store/formElements'
+import { FormElementTypes, IFormElementCheckbox } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
-import { setDraggableElement } from '../../../../../../store'
+import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 

@@ -1,11 +1,15 @@
 import React, { FC } from 'react'
-import { useAppSelector, AddNewElementPayload, useAppDispatch } from '../../store/formElements'
-import { addNewFormElement, setDraggableElement } from '../../store'
+import {
+  useAppSelector,
+  useAppDispatch,
+  getElementsOnLayer,
+  addNewFormElement,
+  setDraggableElement,
+} from '../../store'
 
-import { IDroppableLayer } from './types'
+import { IDroppableLayer, AddNewElementPayload } from './types'
 import styles from './styles.module.css'
 import { FormGroupsDict } from '../FormGroupDict'
-import { getElementsOnLayer } from '../../store/formElements/formElementsSelectors'
 import { useDropBaseComponent } from './useDropBaseComponent'
 
 /// DroppableLayer - компонент в кторый можно что то перенести

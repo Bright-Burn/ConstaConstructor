@@ -2,8 +2,8 @@ import React, { FC, useLayoutEffect, useState } from 'react'
 import { Tabs } from '@consta/uikit/Tabs'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITabsFormElement } from './types'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
-import { IFormElementTabs, TabsElementProps } from '../../../store/formElements/tabsTypes'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { IFormElementTabs, TabsElementProps } from '../../../coreTypes'
 
 export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
   const [tabsProps, setTabsProps] = useState<TabsElementProps>({

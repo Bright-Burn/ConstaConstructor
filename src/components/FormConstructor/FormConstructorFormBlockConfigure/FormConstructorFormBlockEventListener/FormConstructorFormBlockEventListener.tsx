@@ -1,8 +1,7 @@
 import { FC, ReactNode, useEffect } from 'react'
-import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../store/formElements'
+import { useAppDispatch, useAppSelector, deleteFormElement } from '../../store'
 import css from './styles.module.css'
 import { togglePanels } from '../../store'
-import { deleteFormElement } from '../../store/formElements/formElementsActions'
 
 interface Props {
   children?: ReactNode
@@ -23,7 +22,8 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const onKeyGoBack = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
       if (code === 'KeyZ' && ctrlKey) {
-        dispatch(formConstructorSlice.actions.popHistory())
+        console.log('TODO написать реализацию истории')
+        // dispatch(formConstructorSlice.actions.popHistory())
       }
     }
 

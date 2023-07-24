@@ -1,8 +1,6 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { DataTimeProps } from '../../../../store/formElements/dataTimeTypes'
+import { DataTimeProps, ISelectedElement } from '../../../../coreTypes'
 import { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

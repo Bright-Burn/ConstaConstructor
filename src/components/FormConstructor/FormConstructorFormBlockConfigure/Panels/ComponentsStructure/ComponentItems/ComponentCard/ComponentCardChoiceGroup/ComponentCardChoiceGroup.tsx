@@ -1,9 +1,9 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
-import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
+import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementChoiceGroup } from '../../../../../../store/formElements/ChoiceGroupTypes'
+import { IFormElementChoiceGroup, FormElementTypes } from '../../../../../../coreTypes'
 import { Item } from '../../../../Settings/ChoiceGroupSettings/types'
 
 import { setDraggableElement } from '../../../../../../store'

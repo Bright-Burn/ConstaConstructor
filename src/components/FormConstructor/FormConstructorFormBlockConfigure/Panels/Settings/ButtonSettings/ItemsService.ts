@@ -2,12 +2,11 @@ import {
   ButtonAction,
   ButtonProps,
   buttonActionsActive,
-  useAppSelector,
-} from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
+  ISelectedElement,
+  iconNames,
+} from '../../../../coreTypes'
 import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
-import { iconNames } from '../../../../store/formElements/iconTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

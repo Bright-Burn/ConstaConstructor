@@ -13,7 +13,7 @@ import {
 import { Combobox } from '@consta/uikit/Combobox'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
-import { iconNames } from '../../../../store/formElements/iconTypes'
+import { iconNames } from '../../../../coreTypes'
 
 export const ChoiceGroupSettings = () => {
   const {

@@ -1,5 +1,4 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
 import { IHeaderWithStatus } from './types'
 import { Text } from '@consta/uikit/Text'
 import { IconHamburger } from '@consta/uikit/IconHamburger'
@@ -7,7 +6,12 @@ import { IconKebab } from '@consta/uikit/IconKebab'
 import { IconInfo } from '@consta/uikit/IconInfo'
 import { IconRing } from '@consta/uikit/IconRing'
 import { Badge } from '@consta/uikit/Badge'
-import { headerWithStatusProps, IFormElementHeaderWithStatus } from '../../../store/formElements'
+import {
+  headerWithStatusProps,
+  IFormElementHeaderWithStatus,
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 import { Header } from '@consta/uikit/Header'
 import { User } from '@consta/uikit/User'
 import { Button } from '@consta/uikit/Button'

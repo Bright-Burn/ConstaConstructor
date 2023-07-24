@@ -1,13 +1,14 @@
 import { FC } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+import {
+  ElementTypes,
+  FormElementTypes,
+  MultipleChoiceGroupProps,
+  SingleChoiceGroupProps,
+} from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IChoiceGroupFormElement } from './types'
 import style from './style.module.css'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import {
-  MultipleChoiceGroupProps,
-  SingleChoiceGroupProps,
-} from '../../../store/formElements/ChoiceGroupTypes'
 
 export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element }) => {
   const checkMultiple = (

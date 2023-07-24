@@ -1,11 +1,8 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
+import { ElementTypes, FormElementTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IRadioButtonFormElement } from './types'
-import {
-  IFormElementRadioButton,
-  RadioButtonProps,
-} from '../../../store/formElements/radioButtonTypes'
+import { IFormElementRadioButton, RadioButtonProps } from '../../../coreTypes'
 import { Radio } from '@consta/uikit/Radio'
 
 export const RadioButtonFormElement: FC<IRadioButtonFormElement> = ({ element }) => {

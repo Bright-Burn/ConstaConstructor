@@ -4,26 +4,28 @@ import { IconClose } from '@consta/uikit/IconClose'
 import { PagesProps } from './types'
 import { Card } from '@consta/uikit/Card'
 import {
-  formConstructorSlice,
+  changeActivePage,
   useAppDispatch,
   useAppSelector,
-} from '../../../../store/formElements'
+  addNewPage,
+  deletePage as deletePageAction,
+} from '../../../../store'
 
 export const Pages = ({ pages }: PagesProps) => {
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
 
   const dispatch = useAppDispatch()
 
-  const changeActivePage = (pageId: string) => {
-    dispatch(formConstructorSlice.actions.changeActivePage({ id: pageId }))
+  const changePage = (pageId: string) => {
+    dispatch(changeActivePage(pageId))
   }
 
   const deletePage = (pageId: string) => {
-    dispatch(formConstructorSlice.actions.deletePage({ id: pageId }))
+    dispatch(deletePageAction(pageId))
   }
 
-  const addNewPage = () => {
-    dispatch(formConstructorSlice.actions.addNewPage())
+  const addPage = () => {
+    dispatch(addNewPage())
   }
 
   return (
@@ -36,7 +38,7 @@ export const Pages = ({ pages }: PagesProps) => {
               view={selectedPageId === page.id ? 'primary' : 'ghost'}
               size='xs'
               form='brick'
-              onClick={() => changeActivePage(page.id)}
+              onClick={() => changePage(page.id)}
             />
             <Button
               iconLeft={IconClose}

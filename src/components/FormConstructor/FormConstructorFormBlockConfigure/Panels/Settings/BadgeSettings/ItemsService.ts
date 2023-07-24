@@ -1,7 +1,6 @@
-import { BadgeProps, useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
+import { ISelectedElement, BadgeProps } from '../../../../coreTypes'
 import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

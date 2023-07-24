@@ -8,8 +8,12 @@ import { componentsTabItems } from './content'
 import { Tabs } from '@consta/uikit/Tabs'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
-import { useAppDispatch, useAppSelector } from '../../../store/formElements/formElementsSlice'
-import { getComponentsStructurePanelState, toggleComponentsStructurePanel } from '../../../store'
+import {
+  getComponentsStructurePanelState,
+  toggleComponentsStructurePanel,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../store'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[1])

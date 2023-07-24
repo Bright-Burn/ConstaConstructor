@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { ChangeActivePage } from '../payload'
-import { IFormConstructor } from '../types'
+import { IFormConstructor } from '../../../coreTypes'
 
 export const changeActivePage = (
   state: IFormConstructor,

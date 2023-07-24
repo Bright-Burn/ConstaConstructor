@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
-import { ButtonGroupProps, useAppSelector } from '../../../../store/formElements'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 import styles from './styles.module.css'
 import { TextField } from '@consta/uikit/TextField'
-import { useDispatch } from 'react-redux'
-import { ISelectedElement } from '../../../../store/formElements/types'
+import { ISelectedElement, ButtonGroupProps } from '../../../../coreTypes'
 
 export const ButtonModuleSettings = () => {
   const [props, setProps] = useState<ButtonGroupProps>()

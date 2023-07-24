@@ -1,14 +1,15 @@
 import { Button } from '@consta/uikit/Button'
 import { Switch } from '@consta/uikit/Switch'
 import { useLayoutEffect, useState, FC } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IFooterWithSwitch } from './types'
 import { Text } from '@consta/uikit/Text'
 import {
   IFormElementFooterWithSwitch,
   footerWithSwitchProps,
-} from '../../../store/formElements/footerWithSwitchTypes'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 
 export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
   const [checked, setChecked] = useState<boolean>(false)

@@ -1,9 +1,13 @@
-import React, { FC, useLayoutEffect, useState } from 'react'
+import { FC, useLayoutEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITextFieldFormElement } from './types'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
-import { IFormElementTextField, TextFieldProps } from '../../../store/formElements'
+import {
+  IFormElementTextField,
+  TextFieldProps,
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 
 export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => {
   const [textFieldProps, setTextFieldProps] = useState<TextFieldProps>()

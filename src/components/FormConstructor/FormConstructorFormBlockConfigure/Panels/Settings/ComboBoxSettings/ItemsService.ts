@@ -1,10 +1,6 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { ITEM } from '../../../../store/formElements/tabsTypes'
-import { ComboboxProps } from '../../../../store/formElements/comboBoxTypes'
+import { comboboxItemType, ISelectedElement, ComboboxProps, PropForm } from '../../../../coreTypes'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../store/formElements/selectTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -38,7 +34,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeItems = (items: ITEM[]) => {
+  const onChangeItems = (items: comboboxItemType[]) => {
     if (selectedElement && items) {
       const newProps: ComboboxProps = {
         ...(selectedElementProps as ComboboxProps),

@@ -1,11 +1,12 @@
 import { FC, useLayoutEffect, useState } from 'react'
 
-import { ElementTypes, FormElementTypes } from '../../../store/formElements/types'
 import { ICustomCardFormElement } from './types'
 import {
   IFormElementCustomCards,
   CustomCardsProps,
-} from '../../../store/formElements/customCardsTypes'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 
 import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
 import CustomCardsTemplate from './CustomCardsTemplate'

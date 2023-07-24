@@ -1,9 +1,9 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
-import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
+import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementRadioButton } from '../../../../../../store/formElements/radioButtonTypes'
+import { IFormElementRadioButton, FormElementTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

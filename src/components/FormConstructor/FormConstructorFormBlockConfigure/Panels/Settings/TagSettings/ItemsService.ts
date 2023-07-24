@@ -1,9 +1,8 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { TagProps } from '../../../../store/formElements/tagTypes'
+import { useAppSelector } from '../../../../store'
+import { ISelectedElement, TagProps } from '../../../../coreTypes'
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 import { TagBasePropGroup, TagBasePropMode } from './types'
-import { iconNames } from '../../../../store/formElements/iconTypes'
+import { iconNames } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {

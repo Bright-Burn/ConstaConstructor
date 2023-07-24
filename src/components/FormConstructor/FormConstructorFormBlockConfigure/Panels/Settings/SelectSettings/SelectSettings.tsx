@@ -1,13 +1,13 @@
 import { Select } from '@consta/uikit/Select'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
 import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
-import { ITEM } from '../../../../store/formElements/tabsTypes'
+
 import { Switch } from '@consta/uikit/Switch'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../store/formElements/selectTypes'
+import { PropForm, tabItemType } from '../../../../coreTypes'
 
 export const SelectSettings = () => {
   const {
@@ -22,7 +22,7 @@ export const SelectSettings = () => {
     onChangeField,
     onChangeLabelPosition,
   } = useItemsHandlers()
-  const [tabs, setTabs] = useState<ITEM[]>(itemsProps.items)
+  const [tabs, setTabs] = useState<tabItemType[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {
     setTabs(itemsProps.items)

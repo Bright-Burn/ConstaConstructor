@@ -1,5 +1,5 @@
 import { IconComponent } from '@consta/uikit/Icon'
-import { IFormElement } from '../../../store/formElements'
+import { IFormElement } from '../../../coreTypes'
 
 export interface IWizardForm {
   element: IFormElement

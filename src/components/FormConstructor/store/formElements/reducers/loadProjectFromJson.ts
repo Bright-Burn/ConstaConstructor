@@ -1,4 +1,4 @@
-import { EntityState, PayloadAction } from '@reduxjs/toolkit'
+import { PayloadAction } from '@reduxjs/toolkit'
 import {
   IFormConstructor,
   IFormElement,
@@ -6,7 +6,7 @@ import {
   IPageOfLayout,
   ISelectedElement,
   UnionProps,
-} from '../types'
+} from '../../../coreTypes'
 import { layuoutAdapter } from '../initialState'
 
 export const loadProjectFromJson = (

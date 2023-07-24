@@ -1,15 +1,12 @@
-import { useDispatch } from 'react-redux'
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { DatePickerProps } from '../../../../store/formElements/datePickerTypes'
+import { DatePickerProps, ISelectedElement } from '../../../../coreTypes'
 import {
   DatePickerPropDateTimeView,
   DatePickerPropDropdownForm,
   DatePickerPropType,
 } from '@consta/uikit/DatePicker'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../store/formElements/selectTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { PropForm } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

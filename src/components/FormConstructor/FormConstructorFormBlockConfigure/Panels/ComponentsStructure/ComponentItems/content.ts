@@ -1,4 +1,4 @@
-import { FormElementTypes, FormGroupsTypes } from '../../../../store/formElements'
+import { FormElementTypes, FormGroupsTypes } from '../../../../coreTypes'
 import uuid from 'react-uuid'
 
 export const constaCards = [

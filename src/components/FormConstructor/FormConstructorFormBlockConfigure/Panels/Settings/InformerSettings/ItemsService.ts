@@ -1,7 +1,6 @@
-import { InformerElementProps, useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
+import { ISelectedElement, InformerElementProps } from '../../../../coreTypes'
 import { InformerPropSize, InformerPropView, InformerPropStatus } from '@consta/uikit/Informer'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { useAppSelector, setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

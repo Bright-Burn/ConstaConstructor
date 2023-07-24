@@ -1,8 +1,6 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { SwitchProps } from '../../../../store/formElements/SwitchTypes'
+import { ISelectedElement, SwitchProps } from '../../../../coreTypes'
 import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)

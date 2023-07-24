@@ -1,5 +1,10 @@
-import { FormElementTypes, FormGroupsTypes, IFormElement, IGroupElement, UnionProps } from './types'
-
+import {
+  FormElementTypes,
+  FormGroupsTypes,
+  IFormElement,
+  IGroupElement,
+  UnionProps,
+} from '../../coreTypes'
 export interface AddNewElementPayload {
   element: IFormElement | IGroupElement
   parent: string

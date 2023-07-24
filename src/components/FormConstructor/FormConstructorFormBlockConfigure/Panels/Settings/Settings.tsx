@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
-import { saveProjectToFile, useAppDispatch, useAppSelector } from '../../../store/formElements'
-import { FormElementTypes, FormGroupsTypes } from '../../../store/formElements/types'
+import { saveProjectToFile, useAppDispatch, useAppSelector } from '../../../store'
+import { FormElementTypes, FormGroupsTypes } from '../../../coreTypes'
 import { LayoutSettings } from './LayoutSettings'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'

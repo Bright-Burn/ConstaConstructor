@@ -1,6 +1,5 @@
-import { TextFieldProps, useAppSelector } from '../../../../store/formElements'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ISelectedElement } from '../../../../store/formElements/types'
+import { TextFieldProps, ISelectedElement } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 import { useState } from 'react'
 

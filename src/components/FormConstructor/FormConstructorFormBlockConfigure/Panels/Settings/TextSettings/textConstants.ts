@@ -13,7 +13,7 @@ import {
   TextPropType,
   TextPropTransform,
 } from '@consta/uikit/Text'
-import { TextElementProps } from '../../../../store/formElements'
+import { TextElementProps } from '../../../../coreTypes'
 export const sizes: TextPropSize[] = [
   'm',
   '2xs',

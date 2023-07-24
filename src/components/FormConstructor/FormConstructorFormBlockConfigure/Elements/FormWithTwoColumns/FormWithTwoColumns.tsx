@@ -1,10 +1,11 @@
 import { Text } from '@consta/uikit/Text'
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../store/formElements'
 import {
   IFormFormWithTwoColumns,
   FormWithTwoColumnsProps,
-} from '../../../store/formElements/FormWithTwoColumns'
+  ElementTypes,
+  FormElementTypes,
+} from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IFormWithTwoColumns } from './types'
 import css from './styles.module.css'

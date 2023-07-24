@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { SelectableLayer } from '../../SelectableLayer'
-import { IFormElement } from '../../../store/formElements'
-import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types'
+import { IFormElement, PrototypeProps } from '../../../coreTypes'
 
 interface IPrototypeTextElement {
   element: IFormElement

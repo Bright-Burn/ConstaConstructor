@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { useAppSelector } from '../../../store/formElements'
+import { useAppSelector } from '../../../store'
 import { setSelectedElement, useAppDispatch } from '../../../store'
 import { DroppableLayer } from '../../DroppableLayer'
 import styles from './styles.module.css'

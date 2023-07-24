@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { ITreeItem } from './Tree'
-import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/formElements'
+import { IFormElement, IGroupElement } from '../../../../coreTypes'
 import { Tree } from './Tree'
-import { formToTreeData } from './Tree'
 import {
   getAllFormElements,
   getSelectedPageId,
   getFormElAsMap,
-} from '../../../../store/formElements/formElementsSelectors'
+  useAppSelector,
+} from '../../../../store'
 
 export const ComponentTree = () => {
   //TODO вынестив  сервис

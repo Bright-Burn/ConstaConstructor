@@ -5,7 +5,7 @@ import {
   FormGroupsTypes,
   IFormConstructor,
   ILayoutElement,
-} from './types'
+} from '../../coreTypes'
 import { createEntityAdapter } from '@reduxjs/toolkit'
 import { RootState } from '../setupStore'
 
@@ -67,9 +67,3 @@ export const initialState: IFormConstructor = {
     },
   ],
 }
-const { selectById } = layuoutAdapter.getSelectors<RootState>(
-  state => state.formConstructor.allElements,
-)
-
-export const getElementById = (id?: string) => (state: RootState) =>
-  id ? selectById(state, id) : null

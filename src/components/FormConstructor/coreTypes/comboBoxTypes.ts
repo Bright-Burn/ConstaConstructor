@@ -2,14 +2,14 @@ import { PropForm } from './selectTypes'
 import { BaseProps, IFormElement } from './types'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 
-export type Item = {
+export type comboboxItemType = {
   label: string
   id: number
 }
 
 export type ComboboxProps = {
-  items: Item[]
-  value?: Item | null
+  items: comboboxItemType[]
+  value?: comboboxItemType | null
   disabled?: boolean
   size?: TextFieldPropSize
   view?: TextFieldPropView

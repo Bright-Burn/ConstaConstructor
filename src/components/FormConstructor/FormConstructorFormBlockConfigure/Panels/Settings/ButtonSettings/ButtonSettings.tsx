@@ -1,4 +1,4 @@
-import { buttonActions } from '../../../../store/formElements'
+import { buttonActions } from '../../../../coreTypes'
 import React from 'react'
 import styles from './styles.module.css'
 import { Select } from '@consta/uikit/Select'

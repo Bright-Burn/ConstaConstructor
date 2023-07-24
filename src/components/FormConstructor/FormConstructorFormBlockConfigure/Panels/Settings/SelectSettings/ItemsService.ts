@@ -1,9 +1,6 @@
-import { useAppSelector } from '../../../../store/formElements'
-import { ISelectedElement } from '../../../../store/formElements/types'
-import { ITEM } from '../../../../store/formElements/tabsTypes'
-import { PropForm, SelectProps } from '../../../../store/formElements/selectTypes'
+import { PropForm, SelectProps, ISelectedElement, selectitemType } from '../../../../coreTypes'
 import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -37,7 +34,7 @@ export const useItemsHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeItems = (items: ITEM[]) => {
+  const onChangeItems = (items: selectitemType[]) => {
     if (selectedElement && items) {
       const newProps: SelectProps = {
         ...(selectedElementProps as SelectProps),

@@ -1,4 +1,4 @@
-import { IFormElement, IGroupElement } from '../store/formElements/types'
+import { IFormElement, IGroupElement } from '../coreTypes'
 
 export const getNewGroupParentLevel = (
   currentParentId: string,
