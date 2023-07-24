@@ -1,4 +1,5 @@
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'
+export { useAppDispatch, useAppSelector } from './setupStore'
 export {
   togglePanels,
   toggleGrid,
@@ -11,14 +12,13 @@ export {
 export {
   loadProjectFromStorage,
   getFormConstructor,
-  addNewElement,
-  setDraggableElement,setSelectedElement,
+  addNewFormElement,
+  setDraggableElement,
+  setSelectedElement,
   FormElementTypes,
-  useAppDispatch
-  
 } from './formElements'
 export type { IFormConstructorSerializable } from './formElements'
-export type {BaseProps} from './formElements'
+export type { BaseProps } from './formElements'
 export {
   addBaseElement,
   setDraggableBaseComponent,

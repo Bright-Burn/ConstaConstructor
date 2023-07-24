@@ -4,7 +4,7 @@ import { IButtonActionElement, IFormElementButton, buttonActionsActive } from '.
 import { pushHistory } from '../history'
 import { layuoutAdapter } from '../initialState'
 
-export const deleteElement = (state: IFormConstructor, action: PayloadAction<string[]>) => {
+export const deleteFormElement = (state: IFormConstructor, action: PayloadAction<string[]>) => {
   layuoutAdapter.removeMany(state.allElements, action.payload)
 
   // const allElementsTree = new Map(state.allElementsTree)

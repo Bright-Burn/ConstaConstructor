@@ -1,7 +1,4 @@
-import {
-  InformerElementProps,
-  useAppSelector,
-} from '../../../../store/formElements'
+import { InformerElementProps, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { InformerPropSize, InformerPropView, InformerPropStatus } from '@consta/uikit/Informer'
 import { setSelectedElement, useAppDispatch } from '../../../../store'

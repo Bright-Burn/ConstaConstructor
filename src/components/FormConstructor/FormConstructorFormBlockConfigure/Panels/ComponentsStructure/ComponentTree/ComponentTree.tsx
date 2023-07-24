@@ -5,15 +5,15 @@ import { IFormElement, IGroupElement, useAppSelector } from '../../../../store/f
 import { Tree } from './Tree'
 import { formToTreeData } from './Tree'
 import {
-  getAllElements,
+  getAllFormElements,
   getSelectedPageId,
-  getTreeData,
-} from '../../../../store/formElements/selectors'
+  getFormElAsMap,
+} from '../../../../store/formElements/formElementsSelectors'
 
 export const ComponentTree = () => {
   //TODO вынестив  сервис
-  const allElements = useAppSelector(getAllElements)
-  const allElementsMap = useAppSelector(getTreeData)
+  const allElements = useAppSelector(getAllFormElements)
+  const allElementsMap = useAppSelector(getFormElAsMap)
   const selectedPageId = useAppSelector(getSelectedPageId)
 
   console.log('allElements', allElements)

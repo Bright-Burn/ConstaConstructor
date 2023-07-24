@@ -3,7 +3,7 @@ import { IFormConstructor, IFormElement, IGroupElement } from '../types'
 import { pushHistory } from '../history'
 import { layuoutAdapter } from '../initialState'
 
-export const addNewElement = (
+export const addNewFormElement = (
   state: IFormConstructor,
   action: PayloadAction<IFormElement | IGroupElement>,
 ) => {

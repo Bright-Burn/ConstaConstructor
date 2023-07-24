@@ -1,7 +1,4 @@
-import {
-  LayoutElementPropsStyles,
-  useAppSelector,
-} from '../../../../store/formElements'
+import { LayoutElementPropsStyles, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { marginBottom, marginLeft, marginRight, marginTop } from './types'
 import { setSelectedElement, useAppDispatch } from '../../../../store'

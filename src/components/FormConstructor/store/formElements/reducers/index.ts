@@ -1,5 +1,5 @@
-export { addNewElement } from './addNewElement'
-export { deleteElement } from './deleteElement'
+export { addNewFormElement } from './addNewFormElement'
+export { deleteFormElement } from './deleteFormElement'
 export { loadProjectFromJson } from './loadProjectFromJson'
 export { setSelectedElement } from './setSelectedElement'
 export { addNewPage } from './addNewPage'

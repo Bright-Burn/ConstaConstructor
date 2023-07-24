@@ -31,13 +31,13 @@ import {
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 import { addBaseElement } from '../../../../store'
-import { getAllElements } from '../../../../store/formElements/selectors'
-import { saveModuleToFile } from '../../../../store/formElements/actions'
+import { getAllFormElements } from '../../../../store/formElements/formElementsSelectors'
+import { saveModuleToFile } from '../../../../store/formElements/formElementsActions'
 export const BaseComponents: FC = () => {
   const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
 
   const { selectedElement } = useAppSelector(state => state.formConstructor)
-  const allElements = useAppSelector(getAllElements)
+  const allElements = useAppSelector(getAllFormElements)
 
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
   const baseComponentMocks = [
