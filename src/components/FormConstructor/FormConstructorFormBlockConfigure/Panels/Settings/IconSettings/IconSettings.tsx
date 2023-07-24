@@ -9,10 +9,11 @@ import { IconProps, iconNames } from '../../../../store/formElements/iconTypes'
 import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
 import React from 'react'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const IconSettings: FC = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   if (selectedElementProps && 'icons' in selectedElementProps) {
     const props = selectedElementProps
@@ -49,7 +50,7 @@ export const IconSettings: FC = () => {
 
     const onDispatch = (selectedElement: ISelectedElement, newProps: IconProps) => {
       dispatch(
-        formConstructorSlice.actions.setSelectedElement({
+        setSelectedElement({
           elementType: selectedElement.elementType,
           elementId: selectedElement.elementId,
           newProps: newProps,

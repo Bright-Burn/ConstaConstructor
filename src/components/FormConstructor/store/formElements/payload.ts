@@ -33,8 +33,8 @@ export interface LoadProjectFromFile {
   projectJson: string
 }
 
-export interface SetNewElementDraggableElem {
-  element: IFormElement | IGroupElement | null
+export interface SetNewElementDraggableElem<T extends FormElementTypes = FormElementTypes> {
+  element: IFormElement<T> | IGroupElement | null
 }
 
 export interface ChangeActivePage {

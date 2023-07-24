@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react'
-import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../../store/formElements'
-
+import { useAppSelector } from '../../../store/formElements'
+import { setSelectedElement, useAppDispatch } from '../../../store'
 import { DroppableLayer } from '../../DroppableLayer'
 import styles from './styles.module.css'
 import { Pages } from './Pages/Pages'
@@ -13,7 +13,7 @@ export const FormBlock: FC = () => {
   useEffect(() => {
     const escHandler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        dispatch(formConstructorSlice.actions.setSelectedElement(null))
+        dispatch(setSelectedElement(null))
       }
     }
     document.body.addEventListener('keydown', escHandler)

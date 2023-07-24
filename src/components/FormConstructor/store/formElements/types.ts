@@ -105,7 +105,7 @@ export interface ILayoutElement extends IGroupElement {
   props: LayoutElementPropsStyles
 }
 
-export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion & {
+export type IFormElement<T extends FormElementTypes = FormElementTypes> =  IUnion & {
   id: string
   parentId?: string
   type: T
@@ -179,7 +179,7 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
     ? {}
     : {} & T extends 'PrototypeRectElement'
     ? {}
-    : {}
+    : {} 
 }
 
 export interface IUnion {

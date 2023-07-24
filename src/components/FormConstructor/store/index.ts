@@ -12,9 +12,13 @@ export {
   loadProjectFromStorage,
   getFormConstructor,
   addNewElement,
-  setDraggableElement,
+  setDraggableElement,setSelectedElement,
+  FormElementTypes,
+  useAppDispatch
+  
 } from './formElements'
 export type { IFormConstructorSerializable } from './formElements'
+export type {BaseProps} from './formElements'
 export {
   addBaseElement,
   setDraggableBaseComponent,

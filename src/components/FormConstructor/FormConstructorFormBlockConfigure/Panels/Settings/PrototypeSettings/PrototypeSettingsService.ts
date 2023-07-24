@@ -1,9 +1,9 @@
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
-import { useDispatch } from 'react-redux'
+import { useAppSelector } from '../../../../store/formElements'
 import { PrototypeProps } from './types'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useTextSettingsStore = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const store = useAppSelector(state => state.formConstructor)
 
@@ -13,7 +13,7 @@ export const useTextSettingsStore = () => {
   const onDispatch = (newProps: PrototypeProps) => {
     if (selectedElement?.elementType) {
       dispatch(
-        formConstructorSlice.actions?.setSelectedElement({
+        setSelectedElement({
           elementType: selectedElement?.elementType,
           elementId: selectedElement?.elementId,
           newProps: new PrototypeProps(newProps),

@@ -1,39 +1,24 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { SetNewSelectedElement } from '../payload'
-import { IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../types'
+import {  IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../types'
 import { pushHistory } from '../history'
 import { layuoutAdapter } from '../initialState'
 
+export const deselectElement = (state: IFormConstructor) => {
+  state.selectedElementProps = null
+  state.selectedElement = null
+}
 export const setSelectedElement = (
   state: IFormConstructor,
   action: PayloadAction<SetNewSelectedElement>,
 ) => {
-  if (!action.payload) {
-    state.selectedElementProps = null
-    state.selectedElement = null
-    return
-  }
-  // перенести в экшн
-  const { selectById } = layuoutAdapter.getSelectors<IFormConstructor>(state => state.allElements)
-  const element = selectById(state, action.payload.elementId)
+  const element = action.payload.element
+ 
+ 
+    let porps = { ...(element.props as UnionProps) 
+    }
 
-  if (element) {
-    updateSelectedElement(state, element, action.payload.newProps)
-  }
-
-  pushHistory(state)
-}
-
-export const updateSelectedElement = (
-  state: IFormConstructor,
-  element: IFormElement | IGroupElement,
-  newProps?: UnionProps | undefined,
-) => {
-  //TODO избавиться от as
-  let porps = { ...(element.props as UnionProps) }
-
-  if (newProps) {
-    porps = newProps
+  if (action.payload.newProps) {
+    porps = action.payload.newProps
   }
   state.selectedElementProps = { ...porps }
   state.selectedElement = {
@@ -41,10 +26,10 @@ export const updateSelectedElement = (
     elementType: element.type,
   }
   layuoutAdapter.updateOne(state.allElements, { id: element.id, changes: { props: porps } })
-  // const newAllelementMap = state.allElementsMap
-  // newAllelementMap.set(element.id, element)
-  // state.allElementsMap = newAllelementMap
+
+  pushHistory(state)
 }
-function isEmpty(obj: any) {
-  return !obj || !Object.keys(obj).some(x => obj[x] !== void 0)
+type SetNewSelectedElement = {
+  element:  IFormElement | IGroupElement
+  newProps?: UnionProps
 }

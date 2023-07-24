@@ -1,16 +1,15 @@
 import { useLayoutEffect, useState } from 'react'
 import {
   CardElementPropsStyles,
-  formConstructorSlice,
   useAppSelector,
 } from '../../../../store/formElements'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import styles from './styles.module.css'
-import { useDispatch } from 'react-redux'
 import { CardElementProps } from '../../../../store/formElements/cardTypes'
 import { TextField } from '@consta/uikit/TextField'
 import { ISelectedElement } from '../../../../store/formElements/types'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const CardSettings = () => {
   const [props, setProps] = useState<CardElementPropsStyles>()
@@ -31,7 +30,7 @@ export const CardSettings = () => {
     }
   }, [selectedElementProps])
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
     if (selectedElementProps) {
@@ -101,7 +100,7 @@ export const CardSettings = () => {
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: CardElementPropsStyles) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

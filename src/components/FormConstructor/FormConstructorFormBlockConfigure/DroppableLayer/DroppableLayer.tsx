@@ -1,23 +1,14 @@
 import React, { FC } from 'react'
-import uuid from 'react-uuid'
 import {
   useAppSelector,
-  IFormElement,
-  IGroupElement,
   AddNewElementPayload,
   useAppDispatch,
 } from '../../store/formElements'
 import {
   addNewElement,
-  setDraggableBaseComponent,
-  getDraggedBaseComponent,
   setDraggableElement,
 } from '../../store'
-import {
-  IBaseComponent,
-  useBaseComponentsDispatch,
-  useBaseComponentsSelector,
-} from '../../store/baseComponentsItems'
+
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
 import { FormGroupsDict } from '../FormGroupDict'
@@ -30,9 +21,8 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   const { draggableElement } = useAppSelector(state => state.formConstructor)
 
   const elementsOnLayer = useAppSelector(getElementsOnLayer(parentElementId))
-  console.log('elementsOnLayer', elementsOnLayer)
+
   const dispatch = useAppDispatch()
-  const dispathBaseComponents = useBaseComponentsDispatch()
   const {handleOnDropBaseComponent} = useDropBaseComponent()
 
 
@@ -60,7 +50,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   const addElements = (payload: AddNewElementPayload[]) => {
     dispatch(addNewElement(payload))
   }
-  console.log(elementsOnLayer)
+  
   return (
     <div
       className={styles.droppableContainer}

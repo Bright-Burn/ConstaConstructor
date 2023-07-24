@@ -6,7 +6,7 @@ import {
   IFormConstructor,
   ILayoutElement,
 } from './types'
-import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
+import { createEntityAdapter } from '@reduxjs/toolkit'
 import { RootState } from '../setupStore'
 
 export const rootId = uuid()

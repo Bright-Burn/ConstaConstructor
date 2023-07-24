@@ -3,9 +3,9 @@ import { ProjectSaveWays, SaveProjectIntent, saveProjectData } from '../../proje
 import { ViewrSlice } from '../Viewer'
 import { AppDispatch, RootState } from '../setupStore'
 import { layuoutAdapter } from './initialState'
-import { AddNewElementPayload, SaveNewProject, SetNewElementDraggableElem } from './payload'
+import { AddNewElementPayload, SaveNewProject, SetNewElementDraggableElem, SetNewSelectedElement } from './payload'
 import { formConstructorSlice } from './slices'
-import { IFormElement, IGroupElement, IPageOfLayout, ISelectedElement, UnionProps } from './types'
+import { FormElementTypes, IFormElement, IGroupElement, IPageOfLayout, ISelectedElement, UnionProps } from './types'
 import { EntityState } from '@reduxjs/toolkit'
 import { saveToFile } from '../../utils'
 import { IBaseComponent } from '../baseComponentsItems'
@@ -14,6 +14,20 @@ import uuid from 'react-uuid'
 const { selectAll, selectById, selectIds, selectEntities } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
 )
+
+export const setSelectedElement = (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
+  const state = getState()
+  if (!payload) {
+    dispatch(formConstructorSlice.actions.deselectElement())
+    return
+  }
+  // перенести в экшн
+  const element = selectById(state, payload.elementId)
+  if (element) {
+    dispatch(formConstructorSlice.actions.setSelectedElement({element, newProps: payload.newProps}))
+  }
+
+}
 
 export const deleteElement = (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
   const state = getState()
@@ -45,7 +59,7 @@ export const deleteElement = (id: string) => (dispatch: AppDispatch, getState: (
   let idsForDelete = [id, ...getIdsForDelete(id)]
   dispatch(formConstructorSlice.actions.deleteElement(idsForDelete))
 }
-export const setDraggableElement = (el: SetNewElementDraggableElem) => (dispatch: AppDispatch) => {
+export const setDraggableElement = <T extends FormElementTypes = FormElementTypes>(el: SetNewElementDraggableElem<T>) => (dispatch: AppDispatch) => {
   dispatch(formConstructorSlice.actions.setDraggableElement(el))
 }
 

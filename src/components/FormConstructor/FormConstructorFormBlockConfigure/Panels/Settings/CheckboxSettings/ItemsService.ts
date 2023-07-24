@@ -1,11 +1,11 @@
-import { useDispatch } from 'react-redux'
-import { CheckboxProps, formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import { CheckboxProps, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/uikit/Checkbox'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onChangeField = (
     value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | string | boolean,
@@ -25,7 +25,7 @@ export const useItemsHandlers = () => {
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: CheckboxProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

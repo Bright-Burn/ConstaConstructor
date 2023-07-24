@@ -1,16 +1,16 @@
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import { useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import styles from './styles.module.css'
-import { useDispatch } from 'react-redux'
 import { useLayoutEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
 import { TableProps } from '../../../../store/formElements/tableTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const TableSettings = () => {
   const [props, setProps] = useState<TableProps>()
 
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleOnChangeLabelRow = ({ value }: { value: string | null }) => {
     if (selectedElement) {
@@ -34,7 +34,7 @@ export const TableSettings = () => {
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: TableProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

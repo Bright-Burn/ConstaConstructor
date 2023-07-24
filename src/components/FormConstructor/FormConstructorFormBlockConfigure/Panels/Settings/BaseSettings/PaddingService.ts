@@ -1,18 +1,17 @@
-import { useDispatch } from 'react-redux'
 import {
-  formConstructorSlice,
   LayoutElementPropsStyles,
   useAppSelector,
 } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const usePaddingHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: LayoutElementPropsStyles) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

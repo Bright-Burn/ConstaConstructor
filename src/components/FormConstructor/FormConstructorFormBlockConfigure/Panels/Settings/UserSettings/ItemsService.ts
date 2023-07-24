@@ -1,12 +1,12 @@
-import { useDispatch } from 'react-redux'
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import { useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@consta/uikit/User'
 import { UserProps } from '../../../../store/formElements/userTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onChangeField = (
     value: UserPropView | UserPropWidth | UserPropSize | UserPropStatus | string,
@@ -37,7 +37,7 @@ export const useItemsHandlers = () => {
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: UserProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,
