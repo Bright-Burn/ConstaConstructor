@@ -4,7 +4,7 @@ import {
   baseComponentsReducer,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
-} from './slices'
+} from './baseComponentsSlices'
 import { IBaseComponent, IBaseComponentsItems } from './types'
 
 export {
@@ -18,5 +18,5 @@ export {
   useBaseComponentsSelector,
 }
 
-export { addBaseElement, setDraggableBaseComponent } from './actions'
-export { getDraggedBaseComponent } from './selectors'
+export { addBaseElement, setDraggableBaseComponent } from './baseComponentsActions'
+export { getDraggedBaseComponent } from './baseComponentsSelectors'
