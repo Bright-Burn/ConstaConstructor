@@ -1,12 +1,10 @@
 import {
   ButtonAction,
   ButtonProps,
-   buttonActionsActive,
+  buttonActionsActive,
   useAppSelector,
 } from '../../../../store/formElements'
-import {
-  ISelectedElement,
-} from '../../../../store/formElements/types'
+import { ISelectedElement } from '../../../../store/formElements/types'
 import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
 import { iconNames } from '../../../../store/formElements/iconTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
@@ -87,13 +85,13 @@ export const useItemsHandlers = () => {
     //     },
     //   }
     //   dispatch(
-    //     addNewElement([{
+    //     addNewFormElement([{
     //         parent: currentButtonElement.id,
     //         element: connectedButtonGroupElement
     //       }])
     //   )
     //   dispatch(
-    //    addNewElement([
+    //    addNewFormElement([
     //       {
     //         parent: connectedButtonGroupElement.id,
     //         element: layoutElement,
@@ -108,7 +106,7 @@ export const useItemsHandlers = () => {
       // const connectedElementIds = allElementsTree.get(selectedElement.elementId)
       // connectedElementIds?.forEach((id: any) => {
       //   dispatch(
-      //     formConstructorSlice.actions.deleteElement({
+      //     formConstructorSlice.actions.deleteFormElement({
       //       elementId: id,
       //     }),
       //   )

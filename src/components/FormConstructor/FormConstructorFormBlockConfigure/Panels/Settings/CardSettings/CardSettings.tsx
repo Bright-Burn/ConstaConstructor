@@ -1,8 +1,5 @@
 import { useLayoutEffect, useState } from 'react'
-import {
-  CardElementPropsStyles,
-  useAppSelector,
-} from '../../../../store/formElements'
+import { CardElementPropsStyles, useAppSelector } from '../../../../store/formElements'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import styles from './styles.module.css'

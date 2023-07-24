@@ -1,74 +1,91 @@
-import { statuses } from '@consta/stats/__internal__/src/components/Stats/helpers'
 import { ProjectSaveWays, SaveProjectIntent, saveProjectData } from '../../projectSaveLoad'
 import { ViewrSlice } from '../Viewer'
 import { AppDispatch, RootState } from '../setupStore'
 import { layuoutAdapter } from './initialState'
-import { AddNewElementPayload, SaveNewProject, SetNewElementDraggableElem, SetNewSelectedElement } from './payload'
-import { formConstructorSlice } from './slices'
-import { FormElementTypes, IFormElement, IGroupElement, IPageOfLayout, ISelectedElement, UnionProps } from './types'
-import { EntityState } from '@reduxjs/toolkit'
+import {
+  AddNewElementPayload,
+  SaveNewProject,
+  SetNewElementDraggableElem,
+  SetNewSelectedElement,
+} from './payload'
+import { formConstructorSlice } from './formElementsSlice'
+import {
+  FormElementTypes,
+  IFormElement,
+  IGroupElement,
+  IPageOfLayout,
+  ISelectedElement,
+  UnionProps,
+} from './types'
 import { saveToFile } from '../../utils'
 import { IBaseComponent } from '../baseComponentsItems'
 import uuid from 'react-uuid'
 
-const { selectAll, selectById, selectIds, selectEntities } = layuoutAdapter.getSelectors<RootState>(
+const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
 )
 
-export const setSelectedElement = (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
-  const state = getState()
-  if (!payload) {
-    dispatch(formConstructorSlice.actions.deselectElement())
-    return
-  }
-  // перенести в экшн
-  const element = selectById(state, payload.elementId)
-  if (element) {
-    dispatch(formConstructorSlice.actions.setSelectedElement({element, newProps: payload.newProps}))
-  }
-
-}
-
-export const deleteElement = (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
-  const state = getState()
-  const map = new Map<string, (IGroupElement | IFormElement)[]>()
-  const allElements = selectAll(state)
-
-  allElements.forEach(el => {
-    if (el.parentId && map.get(el.parentId)) {
-      map.set(el.parentId, [...(map.get(el.parentId) ?? []), el])
-    } else if (el.parentId) {
-      map.set(el.parentId, [el])
+export const setSelectedElement =
+  (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const state = getState()
+    if (!payload) {
+      dispatch(formConstructorSlice.actions.deselectElement())
+      return
     }
-  })
 
-  const getIdsForDelete = (parentId: string) => {
-    let idsForDelete: string[] = []
-    const arrForDelete = map.get(parentId)
+    const element = selectById(state, payload.elementId)
+    if (element) {
+      dispatch(
+        formConstructorSlice.actions.setSelectedElement({ element, newProps: payload.newProps }),
+      )
+    }
+  }
 
-    arrForDelete?.forEach(el => {
-      if (map.get(el.id)) {
-        idsForDelete = [...idsForDelete, ...getIdsForDelete(el.id)]
+export const deleteFormElement =
+  (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const state = getState()
+    const map = new Map<string, (IGroupElement | IFormElement)[]>()
+    const allElements = selectAll(state)
+
+    allElements.forEach(el => {
+      if (el.parentId && map.get(el.parentId)) {
+        map.set(el.parentId, [...(map.get(el.parentId) ?? []), el])
+      } else if (el.parentId) {
+        map.set(el.parentId, [el])
       }
-
-      idsForDelete.push(el.id)
     })
 
-    return idsForDelete
-  }
-  let idsForDelete = [id, ...getIdsForDelete(id)]
-  dispatch(formConstructorSlice.actions.deleteElement(idsForDelete))
-}
-export const setDraggableElement = <T extends FormElementTypes = FormElementTypes>(el: SetNewElementDraggableElem<T>) => (dispatch: AppDispatch) => {
-  dispatch(formConstructorSlice.actions.setDraggableElement(el))
-}
+    const getIdsForDelete = (parentId: string) => {
+      let idsForDelete: string[] = []
+      const arrForDelete = map.get(parentId)
 
-export const addNewElement = (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch) => {
-  addPayloads.forEach(payload => {
-    const element = { ...payload.element, parentId: payload.parent }
-    dispatch(formConstructorSlice.actions.addNewElement(element))
-  })
-}
+      arrForDelete?.forEach(el => {
+        if (map.get(el.id)) {
+          idsForDelete = [...idsForDelete, ...getIdsForDelete(el.id)]
+        }
+
+        idsForDelete.push(el.id)
+      })
+
+      return idsForDelete
+    }
+    let idsForDelete = [id, ...getIdsForDelete(id)]
+    dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
+  }
+
+export const setDraggableElement =
+  <T extends FormElementTypes = FormElementTypes>(el: SetNewElementDraggableElem<T>) =>
+  (dispatch: AppDispatch) => {
+    dispatch(formConstructorSlice.actions.setDraggableElement(el))
+  }
+
+export const addNewFormElement =
+  (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch) => {
+    addPayloads.forEach(payload => {
+      const element = { ...payload.element, parentId: payload.parent }
+      dispatch(formConstructorSlice.actions.addNewFormElement(element))
+    })
+  }
 export const loadProjectFromStorage =
   (project: IFormConstructorSerializable) => (dispatch: AppDispatch) => {
     dispatch(formConstructorSlice.actions.loadProjectFromJson(project))

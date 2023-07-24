@@ -1,7 +1,7 @@
 import { IButtonActionElement, IFormElementButton, buttonActionsActive } from './buttonTypes'
 import { IFormConstructor } from './types'
 
-export const deleteElementFromTree = (elementId: string, state: IFormConstructor) => {
+export const deleteFormElementFromTree = (elementId: string, state: IFormConstructor) => {
   // const allElementsTree = new Map(state.allElementsTree)
   // const allElementsMap = new Map(state.allElementsMap)
   // const deleteChildren = (elementId: string) => {

@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit'
 
 import { IFormConstructor } from '../types'
 import { DeletePage } from '../payload'
-import { processDelete } from './deleteElement'
+import { processDelete } from './deleteFormElement'
 import { pushHistory } from '../history'
 
 export const deletePage = (state: IFormConstructor, action: PayloadAction<DeletePage>) => {

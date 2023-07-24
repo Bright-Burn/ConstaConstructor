@@ -12,14 +12,14 @@ import {
   useAppSelector,
 } from '../../../store/formElements'
 import { Icons } from '../IconFormElement/mocks'
-import { getAllElements } from '../../../store/formElements/selectors'
+import { getAllFormElements } from '../../../store/formElements/formElementsSelectors'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonProps>()
   const [openViewer, setOpenViewer] = useState<boolean>(false)
   console.log('newProps', element)
   // const { allElementsTree, allElementsMap } = useAppSelector(state => state.formConstructor)
-  const allElements = useAppSelector(getAllElements)
+  const allElements = useAppSelector(getAllFormElements)
   const [buttonGroup, setButtonGroup] = useState<IButtonActionElement>()
 
   // useEffect(() => {

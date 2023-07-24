@@ -1,18 +1,11 @@
 import React, { FC } from 'react'
-import {
-  useAppSelector,
-  AddNewElementPayload,
-  useAppDispatch,
-} from '../../store/formElements'
-import {
-  addNewElement,
-  setDraggableElement,
-} from '../../store'
+import { useAppSelector, AddNewElementPayload, useAppDispatch } from '../../store/formElements'
+import { addNewFormElement, setDraggableElement } from '../../store'
 
 import { IDroppableLayer } from './types'
 import styles from './styles.module.css'
 import { FormGroupsDict } from '../FormGroupDict'
-import { getElementsOnLayer } from '../../store/formElements/selectors'
+import { getElementsOnLayer } from '../../store/formElements/formElementsSelectors'
 import { useDropBaseComponent } from './useDropBaseComponent'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
@@ -23,8 +16,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   const elementsOnLayer = useAppSelector(getElementsOnLayer(parentElementId))
 
   const dispatch = useAppDispatch()
-  const {handleOnDropBaseComponent} = useDropBaseComponent()
-
+  const { handleOnDropBaseComponent } = useDropBaseComponent()
 
   const handleOnDrop = (event: React.DragEvent) => {
     event.stopPropagation()
@@ -48,9 +40,9 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   }
 
   const addElements = (payload: AddNewElementPayload[]) => {
-    dispatch(addNewElement(payload))
+    dispatch(addNewFormElement(payload))
   }
-  
+
   return (
     <div
       className={styles.droppableContainer}

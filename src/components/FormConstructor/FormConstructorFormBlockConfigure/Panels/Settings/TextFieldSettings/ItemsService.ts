@@ -1,9 +1,4 @@
-
-import {
-  TextFieldProps,
-
-  useAppSelector,
-} from '../../../../store/formElements'
+import { TextFieldProps, useAppSelector } from '../../../../store/formElements'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { ISelectedElement } from '../../../../store/formElements/types'
 

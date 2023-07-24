@@ -2,7 +2,7 @@ import { FC, ReactNode, useEffect } from 'react'
 import { formConstructorSlice, useAppDispatch, useAppSelector } from '../../store/formElements'
 import css from './styles.module.css'
 import { togglePanels } from '../../store'
-import { deleteElement } from '../../store/formElements/actions'
+import { deleteFormElement } from '../../store/formElements/formElementsActions'
 
 interface Props {
   children?: ReactNode
@@ -40,7 +40,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const onKeyDown = (e: KeyboardEvent) => {
       const { code } = e
       if (selectedElement && code === 'Delete') {
-        dispatch(deleteElement(selectedElement.elementId))
+        dispatch(deleteFormElement(selectedElement.elementId))
       }
     }
 

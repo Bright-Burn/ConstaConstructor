@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  ButtonGroupProps,
-   useAppSelector,
-} from '../../../../store/formElements'
+import { ButtonGroupProps, useAppSelector } from '../../../../store/formElements'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 import styles from './styles.module.css'
 import { TextField } from '@consta/uikit/TextField'

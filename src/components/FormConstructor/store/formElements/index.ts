@@ -1,9 +1,7 @@
 import {
   formConstructorSlice,
   formConstructorReducer,
-  useAppDispatch,
-  useAppSelector,
-} from './slices'
+} from './formElementsSlice'
 import {
   UnionProps,
   FormElementUnion,
@@ -44,12 +42,10 @@ export type {
 export type { IFormElementHeaderWithStatus, headerWithStatusProps } from './headerWithStatusTypes'
 export { rootId } from './initialState'
 export * from './buttonTypes'
-export type {BaseProps} from './types'
+export type { BaseProps } from './types'
 export {
   formConstructorReducer,
   formConstructorSlice,
-  useAppSelector,
-  useAppDispatch,
   FormElementTypes,
   FormGroupsTypes,
   ElementTypes,
@@ -81,11 +77,12 @@ export {
   type IFormElementCheckbox,
 }
 export {
-  addNewElement,
+  addNewFormElement,
   setDraggableElement,
   loadProjectFromStorage,
   saveProjectToFile,
-  saveProjectToMemmoryStorage, setSelectedElement
-} from './actions'
-export type { IFormConstructorSerializable } from './actions'
-export { getFormConstructor } from './selectors'
+  saveProjectToMemmoryStorage,
+  setSelectedElement,
+} from './formElementsActions'
+export type { IFormConstructorSerializable } from './formElementsActions'
+export { getFormConstructor } from './formElementsSelectors'

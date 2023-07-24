@@ -1,7 +1,4 @@
-import {
-  TextElementProps,
-  useAppSelector,
-} from '../../../../store/formElements'
+import { TextElementProps, useAppSelector } from '../../../../store/formElements'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import {

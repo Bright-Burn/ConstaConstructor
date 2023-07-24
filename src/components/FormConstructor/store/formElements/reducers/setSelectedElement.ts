@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import {  IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../types'
+import { IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../types'
 import { pushHistory } from '../history'
 import { layuoutAdapter } from '../initialState'
 
@@ -12,10 +12,8 @@ export const setSelectedElement = (
   action: PayloadAction<SetNewSelectedElement>,
 ) => {
   const element = action.payload.element
- 
- 
-    let porps = { ...(element.props as UnionProps) 
-    }
+
+  let porps = { ...(element.props as UnionProps) }
 
   if (action.payload.newProps) {
     porps = action.payload.newProps
@@ -30,6 +28,6 @@ export const setSelectedElement = (
   pushHistory(state)
 }
 type SetNewSelectedElement = {
-  element:  IFormElement | IGroupElement
+  element: IFormElement | IGroupElement
   newProps?: UnionProps
 }
