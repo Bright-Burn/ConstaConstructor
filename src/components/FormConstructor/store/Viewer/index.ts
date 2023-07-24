@@ -3,10 +3,10 @@ export {
   toggleGrid,
   toggleComponentsStructurePanel,
   toggleSettingsPanelState,
-} from './actions'
-export { ViewrSlice } from './slice'
+} from './viewerActions'
+export { ViewrSlice } from './viewerSlice'
 export {
   getComponentsStructurePanelState,
   getSettingsPanelState,
   checkIsGridVisible,
-} from './selectors'
+} from './viewerSelectors'

@@ -1,5 +1,5 @@
 import { AppDispatch } from '../setupStore'
-import { ViewrSlice } from './slice'
+import { ViewrSlice } from './viewerSlice'
 
 export const togglePanels = () => (dispatch: AppDispatch) => {
   dispatch(ViewrSlice.actions.togglePanelsByHotkey())
