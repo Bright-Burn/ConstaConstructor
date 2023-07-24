@@ -1,29 +1,18 @@
-import { useDispatch } from 'react-redux'
 import {
   ButtonAction,
   ButtonProps,
-  IButtonModalElement,
-  buttonActionsActive,
-  defaultHeight,
-  defaultWidth,
-  formConstructorSlice,
-  useAppDispatch,
+   buttonActionsActive,
   useAppSelector,
 } from '../../../../store/formElements'
-import { addNewElement } from '../../../../store'
 import {
-  FormGroupsTypes,
-  ILayoutElement,
   ISelectedElement,
 } from '../../../../store/formElements/types'
 import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
-import uuid from 'react-uuid'
 import { iconNames } from '../../../../store/formElements/iconTypes'
-import { getAllElements } from '../../../../store/formElements/selectors'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const allElements = useAppSelector(getAllElements)
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -129,7 +118,7 @@ export const useItemsHandlers = () => {
 
   const onUpdateSelected = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,
@@ -159,7 +148,7 @@ export const useItemsHandlers = () => {
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

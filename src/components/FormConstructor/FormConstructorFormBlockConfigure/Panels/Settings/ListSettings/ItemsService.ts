@@ -1,12 +1,12 @@
-import { useDispatch } from 'react-redux'
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import {  useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { ItemList, ListProps } from '../../../../store/formElements/ListTypes'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
@@ -85,7 +85,7 @@ export const useItemsHandlers = () => {
     }
   const onDispatch = (selectedElement: ISelectedElement, newProps: ListProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

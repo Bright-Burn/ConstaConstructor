@@ -1,11 +1,11 @@
-import { useDispatch } from 'react-redux'
-import { BadgeProps, formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import { BadgeProps, useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onChangeField = (
     value: BadgePropSize | BadgePropView | BadgePropStatus | BadgePropForm,
@@ -50,7 +50,7 @@ export const useItemsHandlers = () => {
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BadgeProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

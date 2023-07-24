@@ -1,5 +1,5 @@
 import uuid from "react-uuid"
-import { IBaseComponent, useBaseComponentsDispatch, useBaseComponentsSelector } from "../../store/baseComponentsItems"
+import { useBaseComponentsDispatch, useBaseComponentsSelector } from "../../store/baseComponentsItems"
 import { IFormElement, IGroupElement } from "../../store/formElements"
 import {
     setDraggableBaseComponent,

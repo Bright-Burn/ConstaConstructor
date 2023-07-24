@@ -1,4 +1,4 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '..'
 
@@ -14,6 +14,7 @@ import {
 } from './reducers'
 import { initialState } from './initialState'
 import { popHistory } from './history/reducers'
+import { deselectElement } from './reducers/setSelectedElement'
 
 //slice viewer
 //slice draggable
@@ -24,6 +25,7 @@ export const formConstructorSlice = createSlice({
     setDraggableElement: setDraggableElement,
     loadProjectFromJson: loadProjectFromJson,
     setSelectedElement: setSelectedElement,
+    deselectElement: deselectElement,
     addNewElement: addNewElement,
     deleteElement: deleteElement,
     addNewPage: addNewPage,

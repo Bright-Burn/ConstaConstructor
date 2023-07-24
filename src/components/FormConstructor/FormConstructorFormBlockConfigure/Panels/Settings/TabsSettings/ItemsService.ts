@@ -1,16 +1,16 @@
-import { useDispatch } from 'react-redux'
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import { useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 import { FitMode } from './types'
 import { ITEM, TabsElementProps } from '../../../../store/formElements/tabsTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: TabsElementProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

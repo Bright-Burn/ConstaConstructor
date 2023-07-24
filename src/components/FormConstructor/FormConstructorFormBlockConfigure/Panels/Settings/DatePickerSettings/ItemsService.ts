@@ -9,13 +9,14 @@ import {
 } from '@consta/uikit/DatePicker'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from '../../../../store/formElements/selectTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: DatePickerProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

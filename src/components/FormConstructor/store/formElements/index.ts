@@ -44,7 +44,7 @@ export type {
 export type { IFormElementHeaderWithStatus, headerWithStatusProps } from './headerWithStatusTypes'
 export { rootId } from './initialState'
 export * from './buttonTypes'
-
+export type {BaseProps} from './types'
 export {
   formConstructorReducer,
   formConstructorSlice,
@@ -85,7 +85,7 @@ export {
   setDraggableElement,
   loadProjectFromStorage,
   saveProjectToFile,
-  saveProjectToMemmoryStorage,
+  saveProjectToMemmoryStorage, setSelectedElement
 } from './actions'
 export type { IFormConstructorSerializable } from './actions'
 export { getFormConstructor } from './selectors'

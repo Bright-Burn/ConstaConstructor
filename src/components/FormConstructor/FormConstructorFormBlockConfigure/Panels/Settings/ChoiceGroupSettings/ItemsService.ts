@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux'
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+
+import { useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import {
   ChoiceGroupPropForm,
@@ -7,18 +7,17 @@ import {
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
 import { Item } from './types'
-import { IconCamera } from '@consta/icons/IconCamera'
 import { OwnChoiceGroupProps } from '../../../../store/formElements/ChoiceGroupTypes'
-import { iconNames } from '../../../../store/formElements/iconTypes'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: OwnChoiceGroupProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

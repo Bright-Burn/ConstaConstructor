@@ -1,9 +1,9 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
-import { FormElementTypes, useAppDispatch } from '../../../../../../store/formElements'
+import { FormElementTypes, useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementBreadcrumbs } from '../../../../../../store/formElements/BreadcrumbsTypes'
+import { IFormElementBreadcrumbs } from './types'
 import { pagesSubMenu } from '../../../../../Elements/BreadcrumbsFormElement/mocks'
 import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {

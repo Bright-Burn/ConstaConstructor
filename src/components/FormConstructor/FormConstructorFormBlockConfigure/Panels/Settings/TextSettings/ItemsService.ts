@@ -1,9 +1,8 @@
-import { useDispatch } from 'react-redux'
 import {
   TextElementProps,
-  formConstructorSlice,
   useAppSelector,
 } from '../../../../store/formElements'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import {
   TextPropSize,
@@ -18,7 +17,7 @@ import { getPropsValue } from './textConstants'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const onChangeField = (
     value:
       | TextPropSize
@@ -87,7 +86,7 @@ export const useItemsHandlers = () => {
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: TextElementProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

@@ -13,7 +13,7 @@ export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
-    const newBadge = {
+    const newBadge: IFormElementBadge = {
       id: uuid(),
       type: FormElementTypes.Badge,
       props: {

@@ -1,16 +1,16 @@
-import { useDispatch } from 'react-redux'
-import { formConstructorSlice, useAppSelector } from '../../../../store/formElements'
+import { useAppSelector } from '../../../../store/formElements'
 import { ISelectedElement } from '../../../../store/formElements/types'
 import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 import { RadioButtonProps } from '../../../../store/formElements/radioButtonTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: RadioButtonProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,

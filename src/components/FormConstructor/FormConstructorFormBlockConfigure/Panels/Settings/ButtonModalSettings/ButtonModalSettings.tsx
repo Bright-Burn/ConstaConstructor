@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import {
   ButtonGroupProps,
-  formConstructorSlice,
-  useAppSelector,
+   useAppSelector,
 } from '../../../../store/formElements'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 import styles from './styles.module.css'
 import { TextField } from '@consta/uikit/TextField'
 import { useDispatch } from 'react-redux'
@@ -13,7 +13,7 @@ export const ButtonModuleSettings = () => {
   const [props, setProps] = useState<ButtonGroupProps>()
   const { selectedElement, selectedElementProps } = useAppSelector(state => state.formConstructor)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (selectedElementProps) {
@@ -40,7 +40,7 @@ export const ButtonModuleSettings = () => {
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: ButtonGroupProps) => {
     dispatch(
-      formConstructorSlice.actions.setSelectedElement({
+      setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
         newProps: newProps,
