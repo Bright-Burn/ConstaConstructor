@@ -1,5 +1,5 @@
-import { ProjectSaveWays, SaveProjectIntent, saveProjectData } from '../../projectSaveLoad'
-import { ViewrSlice } from '../Viewer'
+import { ProjectSaveWays, saveProjectData, SaveProjectIntent } from '../../projectSaveLoad'
+import { ViewerSlice } from '../Viewer'
 import { AppDispatch, RootState } from '../setupStore'
 import { initialLayout, layuoutAdapter } from './initialState'
 import {
@@ -27,30 +27,30 @@ const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
 )
 export const deletePage =
   (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
-    dispatch(formConstructorSlice.actions.deletePage({ id: pageId }))
+    if (getState().formConstructor.pages.length > 1) {
+      dispatch(formConstructorSlice.actions.deletePage({ id: pageId }))
+    }
   }
 
-export const addNewPage = () => (dispatch: AppDispatch, getState: () => RootState) => {
+export const addNewPage = () => (dispatch: AppDispatch) => {
   const newPageId = uuid()
   const pageLayout: ILayoutElement = { ...initialLayout, id: uuid(), parentId: newPageId }
 
   dispatch(formConstructorSlice.actions.addNewPage({ newPageId, pageLayout }))
 }
 
-export const changeActivePage =
-  (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
-    dispatch(formConstructorSlice.actions.changeActivePage({ id: pageId }))
-  }
+export const changeActivePage = (pageId: string) => (dispatch: AppDispatch) => {
+  dispatch(formConstructorSlice.actions.changeActivePage({ id: pageId }))
+}
 
 export const setSelectedElement =
   (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const state = getState()
     if (!payload) {
       dispatch(formConstructorSlice.actions.deselectElement())
       return
     }
 
-    const element = selectById(state, payload.elementId)
+    const element = selectById(getState(), payload.elementId)
     if (element) {
       dispatch(
         formConstructorSlice.actions.setSelectedElement({ element, newProps: payload.newProps }),
@@ -106,7 +106,7 @@ export const addNewFormElement =
 export const loadProjectFromStorage =
   (project: IFormConstructorSerializable) => (dispatch: AppDispatch) => {
     dispatch(formConstructorSlice.actions.loadProjectFromJson(project))
-    dispatch(ViewrSlice.actions.showGrid(project.isGridVisible))
+    dispatch(ViewerSlice.actions.showGrid(project.isGridVisible))
   }
 export const saveProjectToFile =
   (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
@@ -166,12 +166,10 @@ export const saveModuleToFile =
       description: fileName,
     }
 
-    debugger
-
     saveToFile(JSON.stringify(saveObj), `${fileName}_BaseComponent.json`)
     //это просто экшн
   }
-export const saveProjectToMemmoryStorage =
+export const saveProjectToMemoryStorage =
   (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const viewer = state.Viewer

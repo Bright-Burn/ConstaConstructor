@@ -4,7 +4,7 @@ export {
   setDraggableElement,
   loadProjectFromStorage,
   saveProjectToFile,
-  saveProjectToMemmoryStorage,
+  saveProjectToMemoryStorage,
   setSelectedElement,
   changeActivePage,
   addNewPage,

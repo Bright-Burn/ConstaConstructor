@@ -3,8 +3,8 @@ import { layuoutAdapter } from '../initialState'
 import { pushHistory } from '../history'
 import { PayloadAction } from '@reduxjs/toolkit'
 
-export const addNewPage = (state: IFormConstructor, action: PayloadAction<newPagePayload>) => {
-  const { newPageId, pageLayout } = action.payload
+export const addNewPage = (state: IFormConstructor, { payload }: PayloadAction<newPagePayload>) => {
+  const { newPageId, pageLayout } = payload
   const pagesCount = state.pages.length
 
   state.pages = [
