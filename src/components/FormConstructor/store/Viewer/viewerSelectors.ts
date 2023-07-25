@@ -1,6 +1,8 @@
 import { RootState } from '../setupStore'
 
+const getViewer = (state: RootState) => state.Viewer
+
 export const getComponentsStructurePanelState = (state: RootState) =>
-  state.Viewer.componentsStructurePanelState
-export const getSettingsPanelState = (state: RootState) => state.Viewer.settingsPanelState
-export const checkIsGridVisible = (state: RootState) => state.Viewer.isGridVisible
+  getViewer(state).componentsStructurePanelState
+export const getSettingsPanelState = (state: RootState) => getViewer(state).settingsPanelState
+export const checkIsGridVisible = (state: RootState) => getViewer(state).isGridVisible

@@ -13,17 +13,17 @@ export const setSelectedElement = (
 ) => {
   const element = action.payload.element
 
-  let porps = { ...(element.props as UnionProps) }
+  let props = { ...(element.props as UnionProps) }
 
   if (action.payload.newProps) {
-    porps = action.payload.newProps
+    props = action.payload.newProps
   }
-  state.selectedElementProps = { ...porps }
+  state.selectedElementProps = { ...props }
   state.selectedElement = {
     elementId: element.id,
     elementType: element.type,
   }
-  layuoutAdapter.updateOne(state.allElements, { id: element.id, changes: { props: porps } })
+  layuoutAdapter.updateOne(state.allElements, { id: element.id, changes: { props } })
 
   pushHistory(state)
 }

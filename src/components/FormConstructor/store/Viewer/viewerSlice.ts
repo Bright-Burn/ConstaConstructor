@@ -1,4 +1,4 @@
-import { createSlice, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {
   isGridVisible: true,
@@ -6,7 +6,7 @@ const initialState = {
   settingsPanelState: true,
 }
 
-export const ViewrSlice = createSlice({
+export const ViewerSlice = createSlice({
   name: 'Viewer',
   initialState,
   reducers: {

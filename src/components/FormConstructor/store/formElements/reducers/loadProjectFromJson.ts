@@ -13,7 +13,6 @@ export const loadProjectFromJson = (
   state: IFormConstructor,
   action: PayloadAction<IFormConstructorSerializable>,
 ) => {
-  console.log(action)
   const newSate = action.payload
 
   layuoutAdapter.addMany(state.allElements, newSate.allElements)

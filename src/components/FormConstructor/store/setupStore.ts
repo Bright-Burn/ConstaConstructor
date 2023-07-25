@@ -1,27 +1,18 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { formConstructorReducer } from './formElements'
-import { enableMapSet } from 'immer'
 import { baseComponentsReducer } from './baseComponentsItems'
-import { ViewrSlice } from './Viewer'
+import { ViewerSlice } from './Viewer'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
-enableMapSet()
 const rootReducer = combineReducers({
   formConstructor: formConstructorReducer,
   baseComponents: baseComponentsReducer,
-  Viewer: ViewrSlice.reducer,
+  Viewer: ViewerSlice.reducer,
 })
 
 function setupStore() {
   return configureStore({
     reducer: rootReducer,
-    middleware: getDefaultMiddleware => {
-      const customizedMiddleware = getDefaultMiddleware({
-        /// По хорошему надо от этого избавиться, но тогда не сможем использовать Map в store
-        serializableCheck: false,
-      })
-      return customizedMiddleware
-    },
   })
 }
 

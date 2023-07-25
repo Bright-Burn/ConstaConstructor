@@ -4,7 +4,7 @@ export {
   toggleComponentsStructurePanel,
   toggleSettingsPanelState,
 } from './viewerActions'
-export { ViewrSlice } from './viewerSlice'
+export { ViewerSlice } from './viewerSlice'
 export {
   getComponentsStructurePanelState,
   getSettingsPanelState,

@@ -4,14 +4,14 @@ import { IFormConstructor } from '../../../coreTypes'
 
 export const changeActivePage = (
   state: IFormConstructor,
-  action: PayloadAction<ChangeActivePage>,
+  { payload: { id: selectedPageId } }: PayloadAction<ChangeActivePage>,
 ) => {
-  const selectedPageId: string = action.payload.id
   state.selectedPageId = selectedPageId
   state.pages = state.pages.map((page, i) => {
     return {
       id: page.id,
       name: page.name,
+      //Переделать на хранение активного id
       isActive: page.id === selectedPageId,
     }
   })
