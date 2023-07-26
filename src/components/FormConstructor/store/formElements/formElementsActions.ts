@@ -21,6 +21,7 @@ import {
 import { saveToFile } from '../../utils'
 import { IBaseComponent } from '../baseComponentsItems'
 import uuid from 'react-uuid'
+import { pushHistoryElement } from '../history'
 
 const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
@@ -29,6 +30,7 @@ export const deletePage =
   (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     if (getState().formConstructor.pages.length > 1) {
       dispatch(formConstructorSlice.actions.deletePage({ id: pageId }))
+      dispatch(deleteFormElement(pageId))
     }
   }
 
@@ -55,6 +57,17 @@ export const setSelectedElement =
       dispatch(
         formConstructorSlice.actions.setSelectedElement({ element, newProps: payload.newProps }),
       )
+      if (payload.newProps) {
+        const prevProps = { ...element.props }
+        dispatch(
+          pushHistoryElement(() =>
+            dispatch(
+               //@ts-ignore
+              formConstructorSlice.actions.setSelectedElement({ element, newProps: prevProps }),
+            ),
+          ),
+        )
+      }
     }
   }
 
@@ -62,6 +75,8 @@ export const deleteFormElement =
   (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const map = new Map<string, (IGroupElement | IFormElement)[]>()
+    const elementForDelete = selectById(state, id)
+    if (!elementForDelete) return
     const allElements = selectAll(state)
 
     allElements.forEach(el => {
@@ -72,22 +87,31 @@ export const deleteFormElement =
       }
     })
 
-    const getIdsForDelete = (parentId: string) => {
-      let idsForDelete: string[] = []
-      const arrForDelete = map.get(parentId)
+    const getElementsForDelete = (parent: IFormElement | IGroupElement) => {
+      let elemsForDelete: (IFormElement | IGroupElement)[] = []
+      const arrForDelete = map.get(parent.id)
 
       arrForDelete?.forEach(el => {
         if (map.get(el.id)) {
-          idsForDelete = [...idsForDelete, ...getIdsForDelete(el.id)]
+          elemsForDelete = [...elemsForDelete, ...getElementsForDelete(el)]
         }
 
-        idsForDelete.push(el.id)
+        elemsForDelete.push(el)
       })
 
-      return idsForDelete
+      return elemsForDelete
     }
-    let idsForDelete = [id, ...getIdsForDelete(id)]
+    const elementsForDelete = [elementForDelete, ...getElementsForDelete(elementForDelete)]
+    let idsForDelete = elementsForDelete.map(el => el.id)
     dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
+
+    dispatch(
+      pushHistoryElement(() => {
+        elementsForDelete.forEach(el =>
+          dispatch(formConstructorSlice.actions.addNewFormElement(el)),
+        )
+      }),
+    )
   }
 
 export const setDraggableElement =
@@ -101,6 +125,12 @@ export const addNewFormElement =
     addPayloads.forEach(payload => {
       const element = { ...payload.element, parentId: payload.parent }
       dispatch(formConstructorSlice.actions.addNewFormElement(element))
+
+      dispatch(
+        pushHistoryElement(() =>
+          dispatch(formConstructorSlice.actions.deleteFormElement([element.id])),
+        ),
+      )
     })
   }
 export const loadProjectFromStorage =

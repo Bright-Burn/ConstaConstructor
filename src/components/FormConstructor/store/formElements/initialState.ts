@@ -7,7 +7,6 @@ import {
   ILayoutElement,
 } from '../../coreTypes'
 import { createEntityAdapter } from '@reduxjs/toolkit'
-import { RootState } from '../setupStore'
 
 export const rootId = uuid()
 const initialLayoutId = uuid()
@@ -33,14 +32,8 @@ export const initialLayout: ILayoutElement = {
   },
 }
 
-const initialElementsMap = new Map<string, IFormElement | IGroupElement>([
-  [initialLayoutId, initialLayout],
-])
-
 const initialPages = [{ id: rootId, name: 'Page1' }]
 const initialNumberPage = 1
-
-export const initialAllElementsTree = new Map<string, string[]>([[rootId, [initialLayoutId]]])
 
 export const layuoutAdapter = createEntityAdapter<IFormElement | IGroupElement>({
   // Assume IDs are stored in a field other than `book.id`
@@ -58,8 +51,6 @@ export const initialState: IFormConstructor = {
 
   history: [
     {
-      allElementsTree: initialAllElementsTree,
-      allElementsMap: initialElementsMap,
       numberOfPages: initialNumberPage,
       pages: initialPages,
       selectedElement: null,

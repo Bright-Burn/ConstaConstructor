@@ -10,12 +10,9 @@ import {
 } from '../../../../store'
 
 export const ComponentTree = () => {
-  //TODO вынестив  сервис
   const allElements = useAppSelector(getAllFormElements)
   const allElementsMap = useAppSelector(getFormElAsMap)
   const selectedPageId = useAppSelector(getSelectedPageId)
-
-  console.log('allElements', allElements)
 
   return (
     <div className={`${styles.commentTree} borderCard`}>
