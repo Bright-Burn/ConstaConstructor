@@ -51,7 +51,7 @@ export const Pages = ({ pages }: PagesProps) => {
           </Card>
         ))}
       </>
-      <Button label='+' view='ghost' size='xs' onClick={addNewPage} />
+      <Button label='+' view='ghost' size='xs' onClick={addPage} />
     </div>
   )
 }
