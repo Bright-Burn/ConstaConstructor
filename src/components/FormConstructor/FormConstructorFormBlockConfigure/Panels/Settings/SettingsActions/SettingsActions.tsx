@@ -1,26 +1,24 @@
 import { Button } from '@consta/uikit/Button'
 import { Checkbox } from '@consta/uikit/Checkbox'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
-  formConstructorSlice,
   useAppDispatch,
   useAppSelector,
-} from '../../../../store/formElements'
+  checkIsGridVisible,
+  toggleGrid
+} from '../../../../store'
 import styles from './styles.module.css'
 import { Modal } from '@consta/uikit/Modal'
 import { HotKeyPaneNote } from './HotKeyPaneNote'
 
 export const SettingsActions = () => {
-  const { isGridVisible } = useAppSelector(state => state.formConstructor)
+  const isGridVisible = useAppSelector(checkIsGridVisible)
   const [showNotes, setShowNotes] = useState<boolean>(false)
   const dispatch = useAppDispatch()
 
   const onClickShowGrid = () => {
-    dispatch(
-      formConstructorSlice.actions.showGrid({
-        isGridVisible: !isGridVisible,
-      }),
-    )
+    dispatch(toggleGrid)
+    
   }
 
   const onNotesOpen = () => {
