@@ -38,8 +38,7 @@ import { IconUpload } from '@consta/icons/IconUpload'
 // import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
-  const [value, setValue] = useState<string | null>(null)
-  const handleChange = ({ value }: { value: string | null }) => setValue(value)
+  const [exportComponentValue, setExportComponentValue] = useState<string | null>(null)
 
   const settingsPanelState = useAppSelector(getSettingsPanelState)
 
@@ -199,9 +198,12 @@ export const Settings: FC = () => {
     }
   }
 
-  const onSaveProject = () => {
-    if (selectedElement && value) {
-      dispatch(saveModuleToFile(selectedElement.elementId, value))
+  const changeTextFieldValue = ({ value }: { value: string | null }) =>
+    setExportComponentValue(value)
+
+  const onSaveModule = () => {
+    if (selectedElement && exportComponentValue) {
+      dispatch(saveModuleToFile(selectedElement.elementId, exportComponentValue))
     }
   }
 
@@ -216,8 +218,9 @@ export const Settings: FC = () => {
           <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
           <div className={styles.exportText}>
             <TextField
-              value={value}
-              onChange={handleChange}
+              width='full'
+              value={exportComponentValue}
+              onChange={changeTextFieldValue}
               type='text'
               label='Экспортировать компонент'
               placeholder='Введите название компонента'
@@ -226,7 +229,7 @@ export const Settings: FC = () => {
               className={styles.exportButton}
               view='clear'
               iconLeft={IconUpload}
-              onClick={onSaveProject}
+              onClick={onSaveModule}
             />
           </div>
         </div>
