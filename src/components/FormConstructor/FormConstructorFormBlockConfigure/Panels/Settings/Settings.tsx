@@ -42,6 +42,7 @@ import {
   toggleGrid,
   toggleSettingsPanelState,
 } from '../../../store'
+import { NotFound } from './NotFound'
 // import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
@@ -201,6 +202,8 @@ export const Settings: FC = () => {
         default:
           return <></>
       }
+    } else {
+      return <NotFound></NotFound>
     }
   }
 
