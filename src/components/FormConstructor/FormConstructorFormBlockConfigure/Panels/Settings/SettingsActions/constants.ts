@@ -10,4 +10,3 @@ export const DELETE_ELEMENT_WIN = 'Delete'
 export const DECLINE_TEXT = 'Отмена действия'
 export const HIDE_SHOW_PANELS = 'Скрыть/показать панели'
 export const DELETE = 'Удалить элемент'
-

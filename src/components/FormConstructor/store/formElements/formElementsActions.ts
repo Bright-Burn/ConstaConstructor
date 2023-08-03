@@ -62,7 +62,7 @@ export const setSelectedElement =
         dispatch(
           pushHistoryElement(() =>
             dispatch(
-               //@ts-ignore
+              //@ts-ignore
               formConstructorSlice.actions.setSelectedElement({ element, newProps: prevProps }),
             ),
           ),
