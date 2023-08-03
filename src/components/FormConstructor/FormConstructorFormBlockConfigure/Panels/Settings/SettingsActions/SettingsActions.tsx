@@ -1,12 +1,7 @@
 import { Button } from '@consta/uikit/Button'
 import { Checkbox } from '@consta/uikit/Checkbox'
 import { useState } from 'react'
-import {
-  useAppDispatch,
-  useAppSelector,
-  checkIsGridVisible,
-  toggleGrid
-} from '../../../../store'
+import { useAppDispatch, useAppSelector, checkIsGridVisible, toggleGrid } from '../../../../store'
 import styles from './styles.module.css'
 import { Modal } from '@consta/uikit/Modal'
 import { HotKeyPaneNote } from './HotKeyPaneNote'
@@ -18,7 +13,6 @@ export const SettingsActions = () => {
 
   const onClickShowGrid = () => {
     dispatch(toggleGrid)
-    
   }
 
   const onNotesOpen = () => {
@@ -39,4 +33,3 @@ export const SettingsActions = () => {
     </div>
   )
 }
-

@@ -234,34 +234,45 @@ export const Settings: FC = () => {
       })
     }
   }
-      //TODO Необходимо для конвертации старых макетов, удалить при след релизе
+  //TODO Необходимо для конвертации старых макетов, удалить при след релизе
   const onChangeOld = (e: DragEvent | React.ChangeEvent) => {
     debugger
     const target = e.target as EventTarget & HTMLInputElement
     if (target.files) {
       const file = target.files[0]
       readFile(file).then(json => {
-    
         const parsedFile: any = JSON.parse(json)
         const result: any[] = []
         const parsedAllElementsTree = JSON.parse(parsedFile.project.allElementsTree)
 
         const parsedAllElemetsMap = JSON.parse(parsedFile.project.allElementsMap)
-        const elementsMap = new Map();
+        const elementsMap = new Map()
         parsedAllElemetsMap.forEach(([id, element]: any) => elementsMap.set(id, element))
         parsedAllElementsTree.forEach((element: any) => {
-          element[1].forEach((el: any) => elementsMap.get(el) && result.push({...elementsMap.get(el), parentId: element[0]}))
-        });
+          element[1].forEach(
+            (el: any) =>
+              elementsMap.get(el) && result.push({ ...elementsMap.get(el), parentId: element[0] }),
+          )
+        })
 
         // const project: any = projectFromSerilizable(parsedFile.project)
         console.log(parsedFile)
         console.log(result)
-        dispatch(loadProjectFromStorage({allElements: result, selectedElement: parsedFile.project.selectedElement, isGridVisible:  parsedFile.project.isGridVisible, numberOfPages:  parsedFile.project.numberOfPages, pages:  parsedFile.project.pages, selectedElementProps:  parsedFile.project.selectedElementProps, selectedPageId:  parsedFile.project.selectedPageId}))
+        dispatch(
+          loadProjectFromStorage({
+            allElements: result,
+            selectedElement: parsedFile.project.selectedElement,
+            isGridVisible: parsedFile.project.isGridVisible,
+            numberOfPages: parsedFile.project.numberOfPages,
+            pages: parsedFile.project.pages,
+            selectedElementProps: parsedFile.project.selectedElementProps,
+            selectedPageId: parsedFile.project.selectedPageId,
+          }),
+        )
       })
     }
   }
   //
-
 
   const toggleSettingsPanel = () => {
     dispatch(toggleSettingsPanelState())
