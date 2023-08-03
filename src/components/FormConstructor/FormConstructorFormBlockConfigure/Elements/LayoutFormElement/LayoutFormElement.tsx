@@ -51,6 +51,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
         ...activeSide,
         backgroundColor: `var(--${layoutProps?.styles?.backgroundColor})`,
         overflow: 'hidden',
+        transition: 'none'
       }}
     >
       <SelectableLayer
