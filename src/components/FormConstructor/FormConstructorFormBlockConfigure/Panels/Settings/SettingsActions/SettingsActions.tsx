@@ -12,7 +12,7 @@ export const SettingsActions = () => {
   const dispatch = useAppDispatch()
 
   const onClickShowGrid = () => {
-    dispatch(toggleGrid)
+    dispatch(toggleGrid())
   }
 
   const onNotesOpen = () => {
