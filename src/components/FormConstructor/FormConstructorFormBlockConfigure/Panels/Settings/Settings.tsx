@@ -1,14 +1,11 @@
 import React, { FC, useState } from 'react'
-import { saveProjectToFile, useAppDispatch, useAppSelector } from '../../../store'
+import { saveModuleToFile, useAppDispatch, useAppSelector } from '../../../store'
 import { FormElementTypes, FormGroupsTypes } from '../../../coreTypes'
 import { LayoutSettings } from './LayoutSettings'
-import { Checkbox } from '@consta/uikit/Checkbox'
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
 import { BaseSettings } from './BaseSettings'
 import { CardSettings } from './CardSettings'
-import { FileField } from '@consta/uikit/FileField'
-import { readFile } from '../../../utils'
 import { BadgeSettings } from './BadgeSettings'
 import { TableSettings } from './TableSettings'
 import { TabsSettings } from './TabsSettings'
@@ -16,7 +13,6 @@ import { InformerSettings } from './InformerSettings'
 import { CheckboxSettings } from './CheckboxSettings'
 import { TextSettings } from './TextSettings'
 import { TextFieldSettings } from './TextFieldSettings'
-import { SaveModalCard } from '../../../SaveModalCard'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
 import { ListSettings } from './ListSettings'
 import { RadioButtonSettings } from './RadioButtonSettings'
@@ -34,24 +30,20 @@ import { ButtonModuleSettings } from './ButtonModalSettings'
 import { FilledSettings } from './FilledSettings/FilledSettings'
 import { TagSettings } from './TagSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
-import { SettingsActions } from './SettingsActions'
-import {
-  checkIsGridVisible,
-  getSettingsPanelState,
-  loadProjectFromStorage,
-  toggleGrid,
-  toggleSettingsPanelState,
-} from '../../../store'
 import { NotFound } from './NotFound'
+import { getSettingsPanelState, toggleSettingsPanelState } from '../../../store'
+import { TextField } from '@consta/uikit/TextField'
+import { IconUpload } from '@consta/icons/IconUpload'
+
 // import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
+  const [value, setValue] = useState<string | null>(null)
+  const handleChange = ({ value }: { value: string | null }) => setValue(value)
+
   const settingsPanelState = useAppSelector(getSettingsPanelState)
 
-  const [showSaveModal, setShowSaveModal] = useState<boolean>(false)
-
   const { selectedElement, pages } = useAppSelector(state => state.formConstructor)
-  const isGridVisible = useAppSelector(checkIsGridVisible)
   const dispatch = useAppDispatch()
 
   const getSettingsPanel = () => {
@@ -207,75 +199,11 @@ export const Settings: FC = () => {
     }
   }
 
-  const onClickShowGrid = () => {
-    dispatch(toggleGrid())
-  }
-
-  const onSaveProjectClick = () => {
-    setShowSaveModal(true)
-  }
-
-  const onSaveProject = (name: string, description: string) => {
-    dispatch(saveProjectToFile({ name, description }))
-    onClose()
-  }
-
-  const onClose = () => {
-    setShowSaveModal(false)
-  }
-
-  const onChange = (e: DragEvent | React.ChangeEvent) => {
-    const target = e.target as EventTarget & HTMLInputElement
-    if (target.files) {
-      const file = target.files[0]
-      readFile(file).then(json => {
-        //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-        const parsedFile: any = JSON.parse(json)
-        // const project: any = projectFromSerilizable(parsedFile.project)
-
-        dispatch(loadProjectFromStorage(parsedFile.project))
-      })
+  const onSaveProject = () => {
+    if (selectedElement && value) {
+      dispatch(saveModuleToFile(selectedElement.elementId, value))
     }
   }
-  //TODO Необходимо для конвертации старых макетов, удалить при след релизе
-  const onChangeOld = (e: DragEvent | React.ChangeEvent) => {
-    debugger
-    const target = e.target as EventTarget & HTMLInputElement
-    if (target.files) {
-      const file = target.files[0]
-      readFile(file).then(json => {
-        const parsedFile: any = JSON.parse(json)
-        const result: any[] = []
-        const parsedAllElementsTree = JSON.parse(parsedFile.project.allElementsTree)
-
-        const parsedAllElemetsMap = JSON.parse(parsedFile.project.allElementsMap)
-        const elementsMap = new Map()
-        parsedAllElemetsMap.forEach(([id, element]: any) => elementsMap.set(id, element))
-        parsedAllElementsTree.forEach((element: any) => {
-          element[1].forEach(
-            (el: any) =>
-              elementsMap.get(el) && result.push({ ...elementsMap.get(el), parentId: element[0] }),
-          )
-        })
-
-        // const project: any = projectFromSerilizable(parsedFile.project)
-        console.log(parsedFile)
-        console.log(result)
-        dispatch(
-          loadProjectFromStorage({
-            allElements: result,
-            selectedElement: parsedFile.project.selectedElement,
-            isGridVisible: parsedFile.project.isGridVisible,
-            numberOfPages: parsedFile.project.numberOfPages,
-            pages: parsedFile.project.pages,
-            selectedElementProps: parsedFile.project.selectedElementProps,
-            selectedPageId: parsedFile.project.selectedPageId,
-          }),
-        )
-      })
-    }
-  }
-  //
 
   const toggleSettingsPanel = () => {
     dispatch(toggleSettingsPanelState())
@@ -285,46 +213,22 @@ export const Settings: FC = () => {
     <>
       {settingsPanelState ? (
         <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer} `}>
-          <SettingsActions />
-          <div className={styles.buttonsSaveLoad}>
-            <FileField id={'loader_project'} onChange={onChange}>
-              {props => (
-                <Button
-                  id={'btn'}
-                  {...props}
-                  className='m-t-s'
-                  label={'Загрузить проект'}
-                  size={'s'}
-                  view={'secondary'}
-                />
-              )}
-            </FileField>
-            <FileField id={'loader_project2'} onChange={onChangeOld}>
-              {props => (
-                <Button
-                  id={'btn2'}
-                  {...props}
-                  className='m-t-s'
-                  label={'Cтарый загрузщик'}
-                  size={'s'}
-                  view={'secondary'}
-                />
-              )}
-            </FileField>
+          <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
+          <div className={styles.exportText}>
+            <TextField
+              value={value}
+              onChange={handleChange}
+              type='text'
+              label='Экспортировать компонент'
+              placeholder='Введите название компонента'
+            />
             <Button
-              className='m-t-s'
-              label={'Сохранить проект'}
-              onClick={onSaveProjectClick}
-              size={'s'}
-              view={'secondary'}
+              className={styles.exportButton}
+              view='clear'
+              iconLeft={IconUpload}
+              onClick={onSaveProject}
             />
           </div>
-          <SaveModalCard
-            onCloseModalCard={onClose}
-            onSave={onSaveProject}
-            showSaveModal={showSaveModal}
-          />
-          <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
         </div>
       ) : (
         <div className={styles.toggleButton}>

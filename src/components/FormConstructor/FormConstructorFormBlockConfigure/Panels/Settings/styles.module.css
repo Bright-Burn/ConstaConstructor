@@ -37,3 +37,12 @@
 .toggleButton:hover {
   opacity: 1;
 }
+
+.exportText {
+  display: flex;
+}
+
+.exportButton {
+  margin-top: 33px;
+  margin-left: 12px;
+}
