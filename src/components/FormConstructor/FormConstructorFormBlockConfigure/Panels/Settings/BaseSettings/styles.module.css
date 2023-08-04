@@ -1,12 +1,18 @@
 .marginAndPadding {
   display: flex;
   flex-direction: row;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-left: var(--space-s);
+  padding-right: var(--space-s);
+}
+
+.arrowAndText {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
 }
 
 .textDecoration {
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 12px;
+  padding-left: var(--space-s);
+  padding-right: var(--space-s);
+  padding-top: var(--space-s);
 }

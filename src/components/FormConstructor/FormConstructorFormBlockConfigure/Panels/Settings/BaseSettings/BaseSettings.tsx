@@ -19,7 +19,7 @@ import {
   paddingsTop,
 } from './types'
 
-export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
+export const BaseSettings = () => {
   const {
     paddingProps,
     onChangePaddingBottom,
@@ -41,7 +41,6 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
       </Text>
       <div className={style.marginAndPadding}>
         <Select
-          disabled={paddingActive}
           size='xs'
           form='defaultClear'
           getItemKey={key => key}
@@ -50,14 +49,13 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
           value={`${paddingProps?.paddingLeft || ''}`}
           onChange={onChangePaddingLeft}
           renderValue={({ item }) => (
-            <>
+            <div className={style.arrowAndText}>
               <IconBackward size='xs' />
               {item}
-            </>
+            </div>
           )}
         />
         <Select
-          disabled={paddingActive}
           size='xs'
           form='brick'
           getItemKey={key => key}
@@ -66,14 +64,13 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
           value={`${paddingProps?.paddingRight || ''}`}
           onChange={onChangePaddingRight}
           renderValue={({ item }) => (
-            <>
+            <div className={style.arrowAndText}>
               <IconForward size='xs' />
               {item}
-            </>
+            </div>
           )}
         />
         <Select
-          disabled={paddingActive}
           size='xs'
           form='clearBrick'
           getItemKey={key => key}
@@ -82,14 +79,13 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
           value={`${paddingProps?.paddingTop || ''}`}
           onChange={onChangePaddingTop}
           renderValue={({ item }) => (
-            <>
+            <div className={style.arrowAndText}>
               <IconTop size='xs' />
               {item}
-            </>
+            </div>
           )}
         />
         <Select
-          disabled={paddingActive}
           size='xs'
           form='clearDefault'
           getItemKey={key => key}
@@ -98,10 +94,10 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
           value={`${paddingProps?.paddingBottom || ''}`}
           onChange={onChangePaddingBottom}
           renderValue={({ item }) => (
-            <>
+            <div className={style.arrowAndText}>
               <IconDown size='xs' />
               {item}
-            </>
+            </div>
           )}
         />
       </div>
@@ -118,10 +114,10 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
           value={`${marginProps?.marginLeft || ''}`}
           onChange={onChangemarginLeft}
           renderValue={({ item }) => (
-            <>
+            <div className={style.arrowAndText}>
               <IconBackward size='xs' />
               {item}
-            </>
+            </div>
           )}
         />
         <Select
@@ -133,10 +129,10 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
           value={`${marginProps?.marginRight || ''}`}
           onChange={onChangemarginRight}
           renderValue={({ item }) => (
-            <>
+            <div className={style.arrowAndText}>
               <IconForward size='xs' />
               {item}
-            </>
+            </div>
           )}
         />
         <Select
@@ -148,10 +144,10 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
           value={`${marginProps?.marginTop || ''}`}
           onChange={onChangemarginTop}
           renderValue={({ item }) => (
-            <>
+            <div className={style.arrowAndText}>
               <IconTop size='xs' />
               {item}
-            </>
+            </div>
           )}
         />
         <Select
@@ -163,10 +159,10 @@ export const BaseSettings = ({ paddingActive }: { paddingActive: boolean }) => {
           value={`${marginProps?.marginBottom || ''}`}
           onChange={onChangemarginBottom}
           renderValue={({ item }) => (
-            <>
+            <div className={style.arrowAndText}>
               <IconDown size='xs' />
               {item}
-            </>
+            </div>
           )}
         />
       </div>
