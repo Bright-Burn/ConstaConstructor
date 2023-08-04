@@ -6,6 +6,7 @@ export const NotFound = () => {
   return (
     <>
       <ResponsesEmptyPockets
+        className={style.notFound}
         title=' '
         description='Нет выбранного элемента для настройки'
         actions={<></>}
