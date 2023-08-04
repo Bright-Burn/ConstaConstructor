@@ -1,0 +1,12 @@
+.marginAndPadding {
+  display: flex;
+  flex-direction: row;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.textDecoration {
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+}
