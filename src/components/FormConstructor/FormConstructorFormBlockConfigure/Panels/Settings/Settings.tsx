@@ -59,37 +59,37 @@ export const Settings: FC = () => {
         case FormElementTypes.Text:
           return (
             <>
-              <TextSettings /> <BaseSettings />
+              <TextSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.Informer:
           return (
             <>
-              <InformerSettings /> <BaseSettings />
+              <InformerSettings /> <BaseSettings paddingActive={true} />
             </>
           )
         case FormElementTypes.Badge:
           return (
             <>
-              <BadgeSettings /> <BaseSettings />
+              <BadgeSettings /> <BaseSettings paddingActive={true} />
             </>
           )
         case FormElementTypes.Table:
           return (
             <>
-              <TableSettings /> <BaseSettings />
+              <TableSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormGroupsTypes.Layout:
           return (
             <>
-              <LayoutSettings /> <BaseSettings />
+              <LayoutSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormGroupsTypes.Card:
           return (
             <>
-              <CardSettings /> <BaseSettings />
+              <CardSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormGroupsTypes.ButtonModal:
@@ -101,13 +101,13 @@ export const Settings: FC = () => {
         case FormElementTypes.Tabs:
           return (
             <>
-              <TabsSettings /> <BaseSettings />
+              <TabsSettings /> <BaseSettings paddingActive={true} />
             </>
           )
         case FormElementTypes.Checkbox:
           return (
             <>
-              <CheckboxSettings /> <BaseSettings />
+              <CheckboxSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.TextField:
@@ -115,19 +115,19 @@ export const Settings: FC = () => {
             <>
               <FilledSettings />
               <TextFieldSettings />
-              <BaseSettings />
+              <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.List:
           return (
             <>
-              <ListSettings /> <BaseSettings />
+              <ListSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.RadioButton:
           return (
             <>
-              <RadioButtonSettings /> <BaseSettings />
+              <RadioButtonSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.Button:
@@ -135,37 +135,37 @@ export const Settings: FC = () => {
             <>
               <FilledSettings />
               <ButtonSettings />
-              <BaseSettings />
+              <BaseSettings paddingActive={true} />
             </>
           )
         case FormElementTypes.Switch:
           return (
             <>
-              <SwitchSettings /> <BaseSettings />
+              <SwitchSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.DatePicker:
           return (
             <>
-              <DatePickerSettings /> <BaseSettings />
+              <DatePickerSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.ComboBox:
           return (
             <>
-              <ComboBoxSettings /> <BaseSettings />
+              <ComboBoxSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.Select:
           return (
             <>
-              <SelectSettings /> <BaseSettings />
+              <SelectSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.DataTime:
           return (
             <>
-              <DataTimeSettings /> <BaseSettings />
+              <DataTimeSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.PrototypeTextElement:
@@ -175,25 +175,25 @@ export const Settings: FC = () => {
         case FormElementTypes.BreadcrumbsForm:
           return (
             <>
-              <BreadcrumbsSettings /> <BaseSettings />
+              <BreadcrumbsSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.User:
           return (
             <>
-              <UserSettings /> <BaseSettings />
+              <UserSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.Tag:
           return (
             <>
-              <TagSettings /> <BaseSettings />
+              <TagSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.ChoiceGroup:
           return (
             <>
-              <ChoiceGroupSettings /> <BaseSettings />
+              <ChoiceGroupSettings /> <BaseSettings paddingActive={false} />
             </>
           )
         case FormElementTypes.Icon:
