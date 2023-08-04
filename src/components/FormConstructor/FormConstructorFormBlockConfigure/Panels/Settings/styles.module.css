@@ -17,6 +17,12 @@
   flex-direction: column;
 }
 
+.elementSettingsNotFound {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
 .buttonsSaveLoad {
   display: flex;
   flex-direction: row;

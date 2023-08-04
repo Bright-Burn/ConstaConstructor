@@ -324,7 +324,14 @@ export const Settings: FC = () => {
             onSave={onSaveProject}
             showSaveModal={showSaveModal}
           />
-          <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
+          <div
+            className={
+              selectedElement?.elementType
+                ? `${styles.elementSettings} m-t-s`
+                : `${styles.elementSettingsNotFound} m-t-s`
+            }>
+            {getSettingsPanel()}
+          </div>
         </div>
       ) : (
         <div className={styles.toggleButton}>
