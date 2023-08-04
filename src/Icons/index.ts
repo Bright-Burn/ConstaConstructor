@@ -1,0 +1,1 @@
+export { MainIcon } from './MainIcon'

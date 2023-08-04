@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { IFormConstructorFormBlockConfigure } from './types'
-import { ComponentsStructure, FormBlock, Settings } from './Panels'
+import { ComponentsStructure, FormBlock, Settings, Header } from './Panels'
 import { Provider } from 'react-redux'
 import { store } from '../store'
 import { FormConstructorFormBlockEventListener } from './FormConstructorFormBlockEventListener/FormConstructorFormBlockEventListener'
@@ -22,3 +22,4 @@ export const FormConstructorFormBlockConfigure: FC<Props> & IFormConstructorForm
 FormConstructorFormBlockConfigure.Settings = Settings
 FormConstructorFormBlockConfigure.WhiteFormBlock = FormBlock
 FormConstructorFormBlockConfigure.ComponentsStructure = ComponentsStructure
+FormConstructorFormBlockConfigure.Header = Header
