@@ -15,12 +15,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-}
-
-.elementSettingsNotFound {
-  display: flex;
-  height: 100%;
-  justify-content: center;
+  flex-grow: 1;
 }
 
 .buttonsSaveLoad {
