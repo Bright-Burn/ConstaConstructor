@@ -1,3 +1,4 @@
 .formConstructorEventListener {
   all: inherit;
+  flex-grow: 1;
 }

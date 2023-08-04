@@ -1,0 +1,12 @@
+.headerContainer {
+  height: var(--graphics-size-l);
+  background-color: var(--color-bg-stripe);
+  justify-content: space-between;
+  align-items: center;
+  padding-left: var(--graphics-size-s);
+  padding-right: var(--graphics-size-s);
+}
+.projectName {
+  justify-content: space-between;
+  align-items: center;
+}

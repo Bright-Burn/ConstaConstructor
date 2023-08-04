@@ -1,0 +1,19 @@
+.hotKeyPane {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-s);
+}
+
+.hotKeyPaneMac {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 0.2rem solid var(--color-bg-secondary);
+}
+
+.hotKeyPaneWin {
+  display: flex;
+  flex-direction: column;
+}
+.hotkeyContainer {
+  padding: var(--space-s);
+}
