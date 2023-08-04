@@ -38,7 +38,7 @@ import { IconUpload } from '@consta/icons/IconUpload'
 // import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
-  const [exportComponentValue, setExportComponentValue] = useState<string | null>(null)
+  const [moduleName, setModuleName] = useState<string | null>(null)
 
   const settingsPanelState = useAppSelector(getSettingsPanelState)
 
@@ -198,12 +198,11 @@ export const Settings: FC = () => {
     }
   }
 
-  const changeTextFieldValue = ({ value }: { value: string | null }) =>
-    setExportComponentValue(value)
+  const changeTextFieldValue = ({ value }: { value: string | null }) => setModuleName(value)
 
   const onSaveModule = () => {
-    if (selectedElement && exportComponentValue) {
-      dispatch(saveModuleToFile(selectedElement.elementId, exportComponentValue))
+    if (selectedElement && moduleName) {
+      dispatch(saveModuleToFile(selectedElement.elementId, moduleName))
     }
   }
 
@@ -219,7 +218,7 @@ export const Settings: FC = () => {
           <div className={styles.exportText}>
             <TextField
               width='full'
-              value={exportComponentValue}
+              value={moduleName}
               onChange={changeTextFieldValue}
               type='text'
               label='Экспортировать компонент'
