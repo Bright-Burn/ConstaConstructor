@@ -29,6 +29,7 @@ import {
 import { IFormElementTagProps, TagProps } from './tagTypes'
 import { OwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
 import { EntityState } from '@reduxjs/toolkit'
+import { FillType } from '../FormConstructorFormBlockConfigure/Panels/Settings/FilledSettings/FilledSettings'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -244,7 +245,7 @@ export type FormElementUnion =
 export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
 
 /// По мере расширения сюда подем дописывать новые объединения
-export type UnionProps = (FormElementProps | GroupElementProps) & { filled?: fillType }
+export type UnionProps = (FormElementProps | GroupElementProps) & { filled?: FillType }
 
 export type fillType = 'default' | 'filled'
 export interface BaseProps {
