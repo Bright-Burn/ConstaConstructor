@@ -1,0 +1,7 @@
+.choiceGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-xs);
+  align-self: flex-end;
+}

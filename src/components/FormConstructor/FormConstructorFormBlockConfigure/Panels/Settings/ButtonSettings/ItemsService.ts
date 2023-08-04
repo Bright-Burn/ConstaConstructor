@@ -35,6 +35,12 @@ export const useItemsHandlers = () => {
           [propsName]: checked,
         }
         selectedElement && onDispatch(selectedElement, newProps)
+        if (propsName === 'action' && checked === true) {
+          onChangeButtonAction('ButtonModal')
+        }
+        if (propsName === 'action' && checked === false) {
+          onChangeButtonAction('none')
+        }
       }
     }
 
@@ -172,6 +178,7 @@ export const useItemsHandlers = () => {
       onlyIcon: (selectedElementProps as ButtonProps).onlyIcon,
       icon: (selectedElementProps as ButtonProps).icon,
       iconR: (selectedElementProps as ButtonProps).iconR,
+      activeAction: (selectedElementProps as ButtonProps).activeAction,
     },
   }
 }

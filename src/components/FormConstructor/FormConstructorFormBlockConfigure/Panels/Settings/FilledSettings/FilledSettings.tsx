@@ -1,15 +1,29 @@
-import { Select } from '@consta/uikit/Select'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { BaseProps, fillType } from '../../../../coreTypes'
+import { BaseProps } from '../../../../coreTypes'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
+import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
+import { IconComponent } from '@consta/uikit/Icon'
+import style from './styles.module.css'
+import { Text } from '@consta/uikit/Text'
+
+export type FillType = {
+  name: string
+  icon: IconComponent
+}
+
+const fillValues = [
+  { name: 'default', icon: IconMaxHeight },
+  { name: 'filled', icon: IconMaxWidth },
+]
 
 export const FilledSettings = () => {
-  const fillValues: fillType[] = ['default', 'filled']
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
 
   const dispatch = useAppDispatch()
 
-  function onFilledChange({ value: filled }: { value: fillType | null }): void {
-    const newProps = { ...selectedElementProps, filled }
+  function onFilledChange({ value }: { value: FillType | null }): void {
+    const newProps = { ...selectedElementProps, filled: value }
 
     if (selectedElement) {
       dispatch(
@@ -21,15 +35,27 @@ export const FilledSettings = () => {
       )
     }
   }
-  let filled: fillType = selectedElementProps?.filled ?? 'default'
+  let filled: FillType = selectedElementProps?.filled ?? fillValues[0]
+
   return (
-    <Select
-      getItemKey={(item: fillType) => item}
-      getItemLabel={(item: fillType) => item}
-      items={fillValues}
-      label='Filled'
-      value={filled}
-      onChange={onFilledChange}
-    />
+    <div className={style.choiceGroup}>
+      <Text view='secondary' size='xs'>
+        Ширина
+      </Text>
+      <ChoiceGroup
+        size='xs'
+        onlyIcon
+        view='ghost'
+        aria-label='Ширина'
+        width='full'
+        value={filled}
+        onChange={value => onFilledChange(value)}
+        items={fillValues}
+        getItemLabel={item => item.name}
+        getItemIcon={item => item.icon}
+        multiple={false}
+        name='ChoiceGroupExample'
+      />
+    </div>
   )
 }

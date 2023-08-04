@@ -28,7 +28,8 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   //логика для заполнения элемента
   let isFilled = false
   if (element.props && 'filled' in element.props) {
-    isFilled = element.props.filled === 'filled'
+    // @ts-ignore
+    isFilled = element.props.filled.name === 'filled'
   }
   //
   const getActionViwer = () => {
@@ -48,13 +49,17 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         elementTypeUsage={ElementTypes.FormElement}
         elementType={FormElementTypes.Button}
         className={isFilled ? 'container-row flex-grow-1' : ''}
-      >
+        >
         <Button
           {...element.props}
           onClick={onButtonClick}
           style={{ flexGrow: isFilled ? 1 : 0 }}
-          iconLeft={element.props.icon && Icons[element.props.icon]}
-          iconRight={element.props.iconR && Icons[element.props.iconR]}
+          iconLeft={
+            (element.props.onlyIcon || element.props.iconLeft) &&
+            element.props.icon &&
+            Icons[element.props.icon]
+          }
+          iconRight={element.props.iconRight && element.props.iconR && Icons[element.props.iconR]}
         />
       </SelectableLayer>
       {getActionViwer()}

@@ -2,3 +2,32 @@
   display: flex;
   flex-direction: column;
 }
+
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+}
+
+.columnSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  width: 50%;
+}
+
+.blockIcon {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  padding-top: var(--space-s);
+}
+
+.renderIcon {
+  display: flex;
+  align-items: center;
+}
+
+.modalPadding {
+  padding-top: var(--space-s);
+}

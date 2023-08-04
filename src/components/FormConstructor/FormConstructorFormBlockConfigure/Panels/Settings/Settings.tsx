@@ -125,7 +125,6 @@ export const Settings: FC = () => {
         case FormElementTypes.Button:
           return (
             <>
-              <FilledSettings />
               <ButtonSettings />
               <BaseSettings />
             </>
