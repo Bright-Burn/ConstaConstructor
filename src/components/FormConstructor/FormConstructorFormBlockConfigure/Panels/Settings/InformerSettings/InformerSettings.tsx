@@ -7,6 +7,8 @@ import { sizes, views, statuses } from './InformerConstants'
 import { InformerElementProps } from '../../../../coreTypes'
 import { InformerElement } from '../../../../coreTypes/informerTypes'
 import { FC } from 'react'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Text } from '@consta/uikit/Text'
 
 type InformerSettingsType = {
   selectedElementProps: InformerElementProps
@@ -23,49 +25,66 @@ export const InformerSettings: FC<InformerSettingsType> = ({
     <div className={styles.informerSettings}>
       {itemsProps ? (
         <>
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={sizes}
-            label='Size'
-            value={itemsProps.size || 's'}
-            onChange={({ value }) => {
-              onChangeField(value as InformerPropSize, 'size')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={views}
-            label='View'
-            value={itemsProps.view || 'filled'}
-            onChange={({ value }) => {
-              onChangeField(value as InformerPropView, 'view')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={statuses}
-            label='Status'
-            value={itemsProps.status || 'success'}
-            onChange={({ value }) => {
-              onChangeField(value as InformerPropStatus, 'status')
+          <div className={styles.rowSettings}>
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={sizes}
+              size='xs'
+              label='Размер'
+              value={itemsProps.size || 's'}
+              onChange={({ value }: { value: InformerPropSize | null }) => {
+                onChangeField(value, 'size')
+              }}
+            />
+            <ChoiceGroup
+              className={styles.selfFlex}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={views}
+              name='ChoiceGroupExample'
+              size='xs'
+              width='full'
+              view='primary'
+              value={itemsProps.view}
+              onChange={({ value }: { value: InformerPropView | null }) => {
+                onChangeField(value, 'view')
+              }}
+            />
+          </div>
+          <div>
+            <Text view='secondary' size='xs'>
+              Статус
+            </Text>
+            <ChoiceGroup
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={statuses}
+              name='ChoiceGroupExample'
+              size='xs'
+              width='full'
+              view='primary'
+              value={itemsProps.status}
+              onChange={({ value }: { value: InformerPropStatus | null }) => {
+                onChangeField(value, 'status')
+              }}
+            />
+          </div>
+          <TextField
+            value={itemsProps.label}
+            label='Текст заголовка'
+            size='xs'
+            onChange={({ value }: { value: string | null }) => {
+              onChangeField(value, 'label')
             }}
           />
           <TextField
-            value={itemsProps.label as string}
-            onChange={({ value }) => {
-              onChangeField(value as string, 'label')
-            }}
-            label={'Label'}
-          />
-          <TextField
+            type='textarea'
             value={itemsProps.title}
-            onChange={({ value }) => {
-              onChangeField(value as string, 'title')
+            label='Текст контента'
+            size='xs'
+            minRows={4}
+            onChange={({ value }: { value: string | null }) => {
+              onChangeField(value, 'title')
             }}
-            label={'Title'}
           />
         </>
       ) : (
