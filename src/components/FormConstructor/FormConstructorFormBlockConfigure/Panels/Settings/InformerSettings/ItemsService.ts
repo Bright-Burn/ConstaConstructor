@@ -10,7 +10,7 @@ export const useItemsHandlers = (
   const dispatch = useAppDispatch()
 
   const onChangeField = (
-    value: InformerPropSize | InformerPropView | InformerPropStatus | string,
+    value: InformerPropSize | InformerPropView | InformerPropStatus | string | null,
     field: keyof InformerElementProps,
   ) => {
     if (selectedElement) {
