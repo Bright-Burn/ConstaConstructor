@@ -1,3 +1,4 @@
+import { IconComponent } from '@consta/uikit/Icon'
 import { iconNames } from './iconTypes'
 import { BaseProps, IFormElement, IGroupElement } from './types'
 import { Props } from '@consta/uikit/Button'
@@ -5,11 +6,17 @@ import { Props } from '@consta/uikit/Button'
 ///  | 'RightSidebar' | 'LeftSidebar'
 export type ButtonAction = 'none' | 'ButtonModal'
 
+export type fillType = {
+  name: string
+  icon: IconComponent
+}
+
 export interface ButtonProps extends BaseProps, Props {
   action: ButtonAction
   activeAction?: boolean
   icon?: iconNames
   iconR?: iconNames
+  filled?: fillType
 }
 
 export const buttonActions: ButtonAction[] = ['none', 'ButtonModal']

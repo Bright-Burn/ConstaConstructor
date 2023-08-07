@@ -26,11 +26,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
     setOpenViewer(false)
   }
   //логика для заполнения элемента
-  let isFilled = false
-  if (element.props && 'filled' in element.props) {
-    // @ts-ignore
-    isFilled = element.props.filled.name === 'filled'
-  }
+  const isFilled = element.props.filled?.name === 'filled'
   //
   const getActionViwer = () => {
     if (buttonGroup && buttonProps && buttonProps?.action !== 'none') {
@@ -48,18 +44,13 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         parentElementId={element.id}
         elementTypeUsage={ElementTypes.FormElement}
         elementType={FormElementTypes.Button}
-        className={isFilled ? 'container-row flex-grow-1' : ''}
-        >
+        className={isFilled ? 'container-row flex-grow-1' : ''}>
         <Button
           {...element.props}
           onClick={onButtonClick}
           style={{ flexGrow: isFilled ? 1 : 0 }}
-          iconLeft={
-            (element.props.onlyIcon || element.props.iconLeft) &&
-            element.props.icon &&
-            Icons[element.props.icon]
-          }
-          iconRight={element.props.iconRight && element.props.iconR && Icons[element.props.iconR]}
+          iconLeft={element.props.icon && Icons[element.props.icon]}
+          iconRight={element.props.iconR && Icons[element.props.iconR]}
         />
       </SelectableLayer>
       {getActionViwer()}
