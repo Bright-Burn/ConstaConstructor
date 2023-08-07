@@ -100,6 +100,25 @@ export const useItemsHandlers = (
       onDispatch(selectedElement, newProps)
     }
   }
+
+  const onChangeSwitch =
+    (propsName: keyof TabsElementProps) =>
+    ({ checked }: { checked: boolean }) => {
+      if (selectedElement) {
+        const newProps: BrandTabsElementProps = {
+          props: { ...selectedElementProps, [propsName]: checked },
+          type: 'Tabs',
+        }
+        if (propsName === 'view' && checked === true) {
+          onChangeView('bordered')
+        }
+        if (propsName === 'view' && checked === false) {
+          onChangeView(null)
+        }
+        onDispatch(selectedElement, newProps)
+      }
+    }
+
   return {
     onChangeItemsCount,
     onChangeActiveItem,
@@ -108,6 +127,7 @@ export const useItemsHandlers = (
     onChangeView,
     onChangeSize,
     onChangeFitMode,
+    onChangeSwitch,
     itemsProps: {
       items: selectedElementProps.items,
       activeItem: selectedElementProps.value,

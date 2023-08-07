@@ -2,7 +2,7 @@ import React, { FC, useLayoutEffect, useState } from 'react'
 import { Tabs } from '@consta/uikit/Tabs'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITabsFormElement } from './types'
-import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes, tabItemType } from '../../../coreTypes'
 import { TabsElementProps } from '../../../coreTypes'
 
 export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
@@ -21,13 +21,14 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
     setTabsProps(tabsFormElementWithProps.props.props)
   }, [element])
 
+  const getItemLeftIcon = (item: tabItemType) => item.iconLeft
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Tabs}
-    >
-      <Tabs {...tabsProps} />
+      elementType={FormElementDictTypes.Tabs}>
+      <Tabs {...tabsProps} getItemLeftIcon={getItemLeftIcon} />
     </SelectableLayer>
   )
 }

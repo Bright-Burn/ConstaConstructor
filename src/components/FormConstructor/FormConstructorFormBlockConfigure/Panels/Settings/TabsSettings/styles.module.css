@@ -1,0 +1,23 @@
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+}
+
+.columnSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  flex: 1;
+  align-self: flex-end;
+}
+
+.flexWidth {
+  flex: 1;
+}
+
+.gapSetting {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}

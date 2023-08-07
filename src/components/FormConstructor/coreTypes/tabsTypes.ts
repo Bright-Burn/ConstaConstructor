@@ -10,7 +10,7 @@ import {
   TabsPropSize,
   TabsPropView,
 } from '@consta/uikit/__internal__/src/components/Tabs/types'
-import { IconPropSize } from '@consta/uikit/Icon'
+import { IconComponent, IconPropSize } from '@consta/uikit/Icon'
 import { TabsPropLinePosition } from '@consta/uikit/TabsDeprecated'
 
 export type FitMode = 'dropdown' | 'scroll'
@@ -18,6 +18,9 @@ export type FitMode = 'dropdown' | 'scroll'
 export type tabItemType = {
   id: number
   label: string
+  disabledIcon?: boolean
+  labelIconLeft?: string
+  iconLeft?: IconComponent
 }
 
 export type TabsProps = {
