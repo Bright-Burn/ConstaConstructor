@@ -17,18 +17,14 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
     setTextFieldProps(textFieldFormElement.props)
   }, [element])
   //логика для заполнения элемента
-  let isFilled = false
-  if (element.props && 'filled' in element.props) {
-    isFilled = element.props.filled === 'filled'
-  }
+  const isFilled = element.props.filled?.name === 'filled'
   //
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementTypes.TextField}
-      className={isFilled ? 'container-row flex-grow-1' : ''}
-    >
+      className={isFilled ? 'container-row flex-grow-1' : ''}>
       <TextField style={{ width: '100%' }} {...textFieldProps} />
     </SelectableLayer>
   )

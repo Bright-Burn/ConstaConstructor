@@ -18,10 +18,6 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   const element = useAppSelector(getElementById(selectedElement?.elementId))
 
   const props = element?.props
-  let isFilled = false
-  if (props && 'filled' in props) {
-    isFilled = props.filled === 'filled'
-  }
 
   const dispatch = useAppDispatch()
 
@@ -52,8 +48,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
           : styles.selectableLayerLayoutElement
       } ${isSelected ? styles.selectedElement : ''} ${className ?? ''}`}
       onClick={onClickElement}
-      tabIndex={0}
-    >
+      tabIndex={0}>
       {children}
     </div>
   )

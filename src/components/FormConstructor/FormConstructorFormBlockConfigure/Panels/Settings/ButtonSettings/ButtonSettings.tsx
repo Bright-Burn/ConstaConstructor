@@ -28,6 +28,7 @@ export const ButtonSettings = () => {
             />
             <div className={styles.rowSettings}>
               <Select
+                className={styles.sizeFlex}
                 getItemKey={(item: string | undefined) => item || ''}
                 getItemLabel={(item: string | undefined) => item || ''}
                 items={sizes}
@@ -81,17 +82,17 @@ export const ButtonSettings = () => {
             <div className={styles.rowSettings}>
               <div className={styles.columnSettings}>
                 <Switch
-                  checked={!!itemsProps.iconLeft}
+                  checked={!!itemsProps.icon}
                   label='Иконка слева'
                   size='xs'
-                  onChange={onChangeSwitch('iconLeft')}
+                  onChange={onChangeSwitch('icon')}
                 />
                 <Select
                   getItemKey={(item: string | undefined) => item || ''}
                   getItemLabel={(item: string | undefined) => item || ''}
                   items={icons}
                   size='xs'
-                  disabled={!!itemsProps.iconLeft ? false : true}
+                  disabled={!!itemsProps.icon ? false : true}
                   value={itemsProps.icon}
                   onChange={({ value }) => {
                     onChangeIcon(value)
@@ -111,17 +112,17 @@ export const ButtonSettings = () => {
               </div>
               <div className={styles.columnSettings}>
                 <Switch
-                  checked={!!itemsProps.iconRight}
+                  checked={!!itemsProps.iconR}
                   label='Иконка справа'
                   size='xs'
-                  onChange={onChangeSwitch('iconRight')}
+                  onChange={onChangeSwitch('iconR')}
                 />
                 <Select
                   getItemKey={(item: string | undefined) => item || ''}
                   getItemLabel={(item: string | undefined) => item || ''}
                   items={icons}
                   size='xs'
-                  disabled={!!itemsProps.iconRight ? false : true}
+                  disabled={!!itemsProps.iconR ? false : true}
                   value={itemsProps.iconR}
                   onChange={({ value }) => {
                     onChangeIconR(value)
