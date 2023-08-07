@@ -7,6 +7,11 @@ import { FitMode, fitModeArray, linePositionArray, sizeArray, viewArray } from '
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/TabsDeprecated'
 import { tabItemType, TabsElementProps } from '../../../../coreTypes'
 import { TabsElement } from '../../../../coreTypes/tabsTypes'
+import style from './styles.module.css'
+import { Icons, iconNames } from '../../../../coreTypes/iconTypes'
+import { Switch } from '@consta/uikit/Switch'
+import { Collapse } from '@consta/uikit/Collapse'
+import { icons } from '../IconSettings/IconsConstants'
 
 type TabsSettingsType = {
   selectedElementProps: TabsElementProps
@@ -20,22 +25,11 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
     onChangeActiveItem,
     onChangeItems,
     onChangeLinePosition,
-    onChangeView,
     onChangeSize,
-    onChangeFitMode,
+    onChangeSwitch,
   } = useItemsHandlers(selectedElementProps, selectedElement)
+  const [isOpen, setOpen] = useState<boolean>(false)
   const [tabs, setTabs] = useState<tabItemType[]>(itemsProps.items)
-  const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
-
-  const labelsEditingHandler = (value: boolean) => {
-    setTabs(itemsProps.items)
-    setIsLabelsEditing(value)
-  }
-
-  const applyNewTabs = () => {
-    onChangeItems(tabs)
-    setIsLabelsEditing(false)
-  }
 
   const onTabLabelEdit = (value: string | null, index: number) => {
     const newTabs = [...tabs]
@@ -44,17 +38,68 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
     setTabs([...newTabs])
   }
 
+  const onTabDisabledEdit = (value: boolean, index: number) => {
+    const newTabs = [...tabs]
+    newTabs[index] = { ...newTabs[index], disabledIcon: value, iconLeft: undefined }
+    setTabs([...newTabs])
+  }
+
+  const onTabIconEditLeft = (value: string | null, index: number) => {
+    const newTabs = [...tabs]
+    if (value !== null)
+      (newTabs[index] = {
+        ...newTabs[index],
+        iconLeft: Icons[value as iconNames],
+        labelIconLeft: value,
+      }),
+        setTabs([...newTabs])
+  }
+
+  React.useEffect(() => {
+    onChangeItems(tabs)
+  }, [tabs])
+
   return (
     <>
-      {!isLabelsEditing && (
-        <>
+      <div className={style.gapSetting}>
+        <div className={style.rowSettings}>
+          <Select
+            label='Размер'
+            size='xs'
+            getItemKey={(key: TabsPropSize) => key}
+            getItemLabel={(label: TabsPropSize) => label}
+            value={itemsProps.size}
+            items={sizeArray}
+            onChange={({ value }) => onChangeSize(value)}
+          />
+          <Select
+            label='Расположение'
+            size='xs'
+            getItemKey={(key: TabsPropLinePosition) => key}
+            getItemLabel={(label: TabsPropLinePosition) => label}
+            value={itemsProps.linePosition}
+            items={linePositionArray}
+            onChange={({ value }) => onChangeLinePosition(value)}
+          />
+        </div>
+        <Switch
+          size='xs'
+          checked={!!itemsProps.view}
+          label='С бордером'
+          onChange={onChangeSwitch('view')}
+        />
+        <div className={style.rowSettings}>
           <TextField
+            className={style.flexWidth}
+            size='xs'
             label='Количество табов'
             type='number'
             value={`${itemsProps.items.length}`}
             onChange={onChangeItemsCount}
           />
           <Select
+            className={style.flexWidth}
+            size='xs'
             getItemKey={item => item.id}
             label='Активный таб'
             getItemLabel={item => item.label}
@@ -62,69 +107,52 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
             value={itemsProps.activeItem}
             onChange={onChangeActiveItem}
           />
-          <Button
-            view='secondary'
-            className='m-b-xs m-t-xs'
-            label={'Сменить названия табов'}
-            onClick={() => labelsEditingHandler(true)}
-          />
-        </>
-      )}
-      {isLabelsEditing && (
-        <>
-          {tabs.map((tab, index) => {
+        </div>
+        <Collapse label='Название табов' isOpen={isOpen} onClick={() => setOpen(!isOpen)}>
+          {itemsProps.items.map((tab, index) => {
             return (
-              <TextField
-                key={index}
-                label={`${index + 1}`}
-                value={`${tab.label}`}
-                onChange={event => onTabLabelEdit(event.value, index)}
-              />
+              <div className={style.rowSettings}>
+                <TextField
+                  className={style.flexWidth}
+                  size='xs'
+                  key={index}
+                  label={`Таб ${index + 1}`}
+                  value={`${tab.label}`}
+                  onChange={event => onTabLabelEdit(event.value, index)}
+                />
+                <div className={style.columnSettings}>
+                  <Switch
+                    size='xs'
+                    label='Иконка'
+                    checked={tab.disabledIcon}
+                    onChange={event => onTabDisabledEdit(event.checked, index)}
+                  />
+                  <Select
+                    size='xs'
+                    getItemKey={(item: string | undefined) => item || ''}
+                    getItemLabel={(item: string | undefined) => item || ''}
+                    items={icons}
+                    disabled={!tab.disabledIcon}
+                    value={tab.labelIconLeft}
+                    onChange={event => onTabIconEditLeft(event.value, index)}
+                    renderItem={({ item, active, onClick, onMouseEnter }) => (
+                      <div
+                        style={{ display: 'flex', alignItems: 'center' }}
+                        role='option'
+                        aria-selected={active}
+                        onMouseEnter={onMouseEnter}
+                        onClick={onClick}>
+                        {React.createElement(Icons[item as iconNames])}
+                        <div>{item}</div>
+                      </div>
+                    )}
+                  />
+                </div>
+              </div>
             )
           })}
-          <Button
-            size='xs'
-            className='m-b-xs m-t-xs'
-            label='Применить'
-            onClick={() => applyNewTabs()}
-          />
-          <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
-        </>
-      )}
-      <Select
-        label='size'
-        getItemKey={(key: TabsPropSize) => key}
-        getItemLabel={(label: TabsPropSize) => label}
-        value={itemsProps.size}
-        items={sizeArray}
-        onChange={({ value }) => onChangeSize(value)}
-      />
-      <Select
-        label='view'
-        getItemKey={(key: TabsPropView) => key}
-        getItemLabel={(label: TabsPropView) => label}
-        value={itemsProps.view}
-        items={viewArray}
-        onChange={({ value }) => onChangeView(value)}
-      />
-      <Select
-        label='Расположение табов'
-        getItemKey={(key: TabsPropLinePosition) => key}
-        getItemLabel={(label: TabsPropLinePosition) => label}
-        value={itemsProps.linePosition}
-        items={linePositionArray}
-        onChange={({ value }) => onChangeLinePosition(value)}
-      />
-      {(itemsProps.linePosition === 'bottom' || itemsProps.linePosition === 'top') && (
-        <Select
-          label='fitMode'
-          getItemKey={(key: FitMode) => key}
-          getItemLabel={(label: FitMode) => label}
-          value={itemsProps.fitMode}
-          items={fitModeArray}
-          onChange={({ value }) => onChangeFitMode(value)}
-        />
-      )}
+        </Collapse>
+      </div>
     </>
   )
 }
