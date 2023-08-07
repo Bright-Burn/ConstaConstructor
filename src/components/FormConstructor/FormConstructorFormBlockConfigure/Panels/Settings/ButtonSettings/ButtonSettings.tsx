@@ -23,8 +23,8 @@ export const ButtonSettings = () => {
               label='Текст'
               type='text'
               size='xs'
-              value={itemsProps.label as string}
-              onChange={({ value }) => onChangeField(value as string, 'label')}
+              value={`${itemsProps.label}`}
+              onChange={({ value }: { value: string | null }) => onChangeField(value, 'label')}
             />
             <div className={styles.rowSettings}>
               <Select
@@ -35,8 +35,8 @@ export const ButtonSettings = () => {
                 label='Размер'
                 size='xs'
                 value={itemsProps.size || 's'}
-                onChange={({ value }) => {
-                  onChangeField(value as ButtonPropSize, 'size')
+                onChange={({ value }: { value: ButtonPropSize | null }) => {
+                  onChangeField(value, 'size')
                 }}
               />
               <FilledSettings />
@@ -49,8 +49,8 @@ export const ButtonSettings = () => {
                 label='Вид'
                 size='xs'
                 value={itemsProps.view}
-                onChange={({ value }) => {
-                  onChangeField(value as ButtonPropView, 'view')
+                onChange={({ value }: { value: ButtonPropView | null }) => {
+                  onChangeField(value, 'view')
                 }}
               />
               <Select
@@ -60,8 +60,8 @@ export const ButtonSettings = () => {
                 label='Форма'
                 size='xs'
                 value={itemsProps.form}
-                onChange={({ value }) => {
-                  onChangeField(value as ButtonPropForm, 'form')
+                onChange={({ value }: { value: ButtonPropForm | null }) => {
+                  onChangeField(value, 'form')
                 }}
               />
             </div>
@@ -143,7 +143,7 @@ export const ButtonSettings = () => {
             </div>
             <div>
               <Switch
-                checked={itemsProps.onlyIcon ?? false}
+                checked={itemsProps.onlyIcon}
                 label='Только иконка'
                 size='xs'
                 onChange={onChangeSwitch('onlyIcon')}

@@ -13,7 +13,7 @@ export const useItemsHandlers = () => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
-    value: ButtonPropSize | ButtonPropForm | ButtonPropView | string,
+    value: ButtonPropSize | ButtonPropForm | ButtonPropView | string | null,
     field: keyof ButtonProps,
   ) => {
     if (selectedElement) {
