@@ -11,6 +11,7 @@ import {
 } from '@consta/uikit/Text'
 import { getPropsValue } from './textConstants'
 import { TextElement } from '../../../../coreTypes/textTypes'
+import { AlignTextType, textDecorationType } from '../../../../coreTypes/textTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: TextElementProps,
@@ -27,17 +28,16 @@ export const useItemsHandlers = (
       | TextPropFont
       | TextPropType
       | string
-      | TextPropType,
+      | TextPropType
+      | null
+      | AlignTextType,
     field: keyof TextElementProps,
   ) => {
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'Text',
       }
-      // @ts-ignore
-      newProps.props[field] = value
-
       onDispatch(selectedElement, newProps)
     }
   }
@@ -47,42 +47,54 @@ export const useItemsHandlers = (
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
         const newProps: BrandTextElementProps = {
-          props: { ...selectedElementProps },
+          props: { ...selectedElementProps, [propsName]: value },
           type: 'Text',
         }
-        // @ts-ignore
-        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
       }
     }
 
-  const onChangeCheckboxValues = (
-    value: {
-      e: React.ChangeEvent<HTMLInputElement>
-      checked: boolean
-    },
-    field: keyof TextElementProps,
-  ) => {
-    if (selectedElement) {
-      const newProps: BrandTextElementProps = {
-        type: 'Text',
-        props: { ...selectedElementProps },
-      }
-      const newValue = getPropsValue(field)
-      // @ts-ignore
-      newProps[field] = value.checked ? newValue : undefined
+  const onChangeSwitch =
+    (propsName: keyof TextElementProps) =>
+    ({ checked }: { checked: boolean }) => {
+      if (selectedElement) {
+        const newProps: BrandTextElementProps = {
+          props: { ...selectedElementProps, [propsName]: checked },
+          type: 'Text',
+        }
+        if (propsName === 'font') {
+          newProps.props.font = checked ? 'mono' : 'primary'
+        }
+        if (propsName === 'cursor') {
+          newProps.props.cursor = checked ? 'pointer' : undefined
+        }
 
-      onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, newProps)
+      }
     }
-  }
-  const onChangeTruncate = ({ checked }: { checked: boolean }) => {
+
+  const onChangeItems = (items: textDecorationType[] | undefined) => {
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
+        props: {
+          ...selectedElementProps,
+          fontStyle: undefined,
+          transform: undefined,
+          decoration: undefined,
+        },
         type: 'Text',
-        props: { ...selectedElementProps },
       }
-      newProps.props.truncate = checked
-
+      items?.map(arr => {
+        if (arr.name === 'underline') {
+          newProps.props.decoration = 'underline'
+        }
+        if (arr.name === 'uppercase') {
+          newProps.props.transform = 'uppercase'
+        }
+        if (arr.name === 'italic') {
+          newProps.props.fontStyle = 'italic'
+        }
+      })
       onDispatch(selectedElement, newProps)
     }
   }
@@ -98,9 +110,9 @@ export const useItemsHandlers = (
   }
   return {
     onChangeText,
-    onChangeCheckboxValues,
-    onChangeTruncate,
+    onChangeSwitch,
     onChangeField,
+    onChangeItems,
     itemsProps: {
       size: selectedElementProps.size,
       view: selectedElementProps.view,
@@ -117,6 +129,7 @@ export const useItemsHandlers = (
       cursor: selectedElementProps.cursor,
       transform: selectedElementProps.transform,
       truncate: selectedElementProps.truncate,
+      transformText: selectedElementProps.transformText,
     },
   }
 }
