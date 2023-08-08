@@ -21,9 +21,10 @@ export const TextFormElement: FC<ITextFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Text}
-    >
-      <Text {...textProps}>{textProps?.content} </Text>
+      elementType={FormElementDictTypes.Text}>
+      <Text {...textProps} align={textProps?.align?.name}>
+        {textProps?.content}
+      </Text>
     </SelectableLayer>
   )
 }
