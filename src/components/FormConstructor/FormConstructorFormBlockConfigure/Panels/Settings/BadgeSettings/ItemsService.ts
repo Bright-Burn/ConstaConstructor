@@ -1,4 +1,4 @@
-import { ISelectedElement, BadgeProps } from '../../../../coreTypes'
+import { ISelectedElement, BadgeProps, iconNames } from '../../../../coreTypes'
 import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BadgeElement, BrandBadgeProps } from '../../../../coreTypes/badgeTypes'
@@ -10,12 +10,12 @@ export const useItemsHandlers = (
   const dispatch = useAppDispatch()
 
   const onChangeField = (
-    value: BadgePropSize | BadgePropView | BadgePropStatus | BadgePropForm,
+    value: BadgePropSize | BadgePropView | BadgePropStatus | BadgePropForm | null,
     field: keyof BadgeProps,
   ) => {
     if (selectedElement) {
       const newProps: BrandBadgeProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'Badge',
       }
 
@@ -26,17 +26,25 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeMinified = (event: {
-    e: React.ChangeEvent<HTMLInputElement>
-    checked: boolean
-  }) => {
-    if (selectedElement) {
+  const onChangeSwitch =
+    (propsName: keyof BadgeProps) =>
+    ({ checked }: { checked: boolean }) => {
+      if (selectedElementProps) {
+        const newProps: BrandBadgeProps = {
+          props: { ...selectedElementProps, [propsName]: checked },
+          type: 'Badge',
+        }
+        selectedElement && onDispatch(selectedElement, newProps)
+      }
+    }
+
+  const onChangeIconLeft = (value: iconNames | null) => {
+    if (selectedElement && value) {
       const newProps: BrandBadgeProps = {
         props: { ...selectedElementProps },
         type: 'Badge',
       }
-      newProps.props.minified = event.checked
-
+      newProps.props.iconLeft = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -64,7 +72,8 @@ export const useItemsHandlers = (
   }
 
   return {
-    onChangeMinified,
+    onChangeSwitch,
+    onChangeIconLeft,
     handleOnChangeLabel,
     onChangeField,
     itemsProps: {
@@ -74,6 +83,7 @@ export const useItemsHandlers = (
       label: selectedElementProps.label,
       minified: selectedElementProps.minified,
       status: selectedElementProps.status,
+      iconLeft: selectedElementProps.iconLeft,
     },
   }
 }
