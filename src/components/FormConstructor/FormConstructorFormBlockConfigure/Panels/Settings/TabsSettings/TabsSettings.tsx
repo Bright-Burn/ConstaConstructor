@@ -2,16 +2,15 @@ import { Select } from '@consta/uikit/Select'
 import React, { FC, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
-import { Button } from '@consta/uikit/Button'
-import { FitMode, fitModeArray, linePositionArray, sizeArray, viewArray } from './types'
-import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/TabsDeprecated'
-import { tabItemType, TabsElementProps } from '../../../../coreTypes'
-import { TabsElement } from '../../../../coreTypes/tabsTypes'
+import { linePositionArray, sizeArray } from './types'
+import { TabsPropLinePosition, TabsPropSize } from '@consta/uikit/TabsDeprecated'
 import style from './styles.module.css'
 import { Icons, iconNames } from '../../../../coreTypes/iconTypes'
 import { Switch } from '@consta/uikit/Switch'
 import { Collapse } from '@consta/uikit/Collapse'
 import { icons } from '../IconSettings/IconsConstants'
+import { TabsElementProps } from '../../../../coreTypes'
+import { TabsElement } from '../../../../coreTypes/tabsTypes'
 
 type TabsSettingsType = {
   selectedElementProps: TabsElementProps
@@ -29,35 +28,30 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
     onChangeSwitch,
   } = useItemsHandlers(selectedElementProps, selectedElement)
   const [isOpen, setOpen] = useState<boolean>(false)
-  const [tabs, setTabs] = useState<tabItemType[]>(itemsProps.items)
 
   const onTabLabelEdit = (value: string | null, index: number) => {
-    const newTabs = [...tabs]
+    const newTabs = [...itemsProps.items]
     if (!value) newTabs[index] = { ...newTabs[index], label: `` }
     else newTabs[index] = { ...newTabs[index], label: `${value}` }
-    setTabs([...newTabs])
+    onChangeItems(newTabs)
   }
 
   const onTabDisabledEdit = (value: boolean, index: number) => {
-    const newTabs = [...tabs]
+    const newTabs = [...itemsProps.items]
     newTabs[index] = { ...newTabs[index], disabledIcon: value, iconLeft: undefined }
-    setTabs([...newTabs])
+    onChangeItems(newTabs)
   }
 
   const onTabIconEditLeft = (value: string | null, index: number) => {
-    const newTabs = [...tabs]
+    const newTabs = [...itemsProps.items]
     if (value !== null)
       (newTabs[index] = {
         ...newTabs[index],
         iconLeft: Icons[value as iconNames],
         labelIconLeft: value,
       }),
-        setTabs([...newTabs])
+        onChangeItems(newTabs)
   }
-
-  React.useEffect(() => {
-    onChangeItems(tabs)
-  }, [tabs])
 
   return (
     <>
@@ -84,7 +78,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
         </div>
         <Switch
           size='xs'
-          checked={!!itemsProps.view}
+          checked={itemsProps.view === 'clear' ? false : !!itemsProps.view}
           label='С бордером'
           onChange={onChangeSwitch('view')}
         />
@@ -137,7 +131,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                     onChange={event => onTabIconEditLeft(event.value, index)}
                     renderItem={({ item, active, onClick, onMouseEnter }) => (
                       <div
-                        style={{ display: 'flex', alignItems: 'center' }}
+                        className={style.tabIcon}
                         role='option'
                         aria-selected={active}
                         onMouseEnter={onMouseEnter}
