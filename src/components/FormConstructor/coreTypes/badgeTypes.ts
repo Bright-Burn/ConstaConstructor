@@ -6,6 +6,7 @@ import {
   FormElementDictTypes,
   IFormElement,
 } from './types'
+import { iconNames } from './iconTypes'
 
 export type BadgeProps = {
   size?: BadgePropSize
@@ -15,6 +16,7 @@ export type BadgeProps = {
   minified?: boolean
   label?: string
   children?: never
+  iconLeft?: iconNames
 } & BaseProps
 
 export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>
