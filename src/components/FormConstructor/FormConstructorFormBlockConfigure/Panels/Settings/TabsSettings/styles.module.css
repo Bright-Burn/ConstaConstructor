@@ -21,3 +21,8 @@
   flex-direction: column;
   gap: var(--space-2xs);
 }
+
+.tabIcon {
+  display: flex;
+  align-items: center;
+}

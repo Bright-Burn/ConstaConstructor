@@ -110,7 +110,7 @@ export const useItemsHandlers = (
           type: 'Tabs',
         }
         if (propsName === 'view' && checked === true) {
-          onChangeView('bordered')
+          newProps.view = 'bordered'
         }
         if (propsName === 'view' && checked === false) {
           onChangeView(null)
