@@ -27,6 +27,7 @@ export const InformerSettings: FC<InformerSettingsType> = ({
         <>
           <div className={styles.rowSettings}>
             <Select
+              className={styles.widthFlex}
               getItemKey={(item: string | undefined) => item || ''}
               getItemLabel={(item: string | undefined) => item || ''}
               items={sizes}
@@ -37,19 +38,23 @@ export const InformerSettings: FC<InformerSettingsType> = ({
                 onChangeField(value, 'size')
               }}
             />
-            <ChoiceGroup
-              className={styles.selfFlex}
-              getItemLabel={(item: string | undefined) => item || ''}
-              items={views}
-              name='ChoiceGroupExample'
-              size='xs'
-              width='full'
-              view='primary'
-              value={itemsProps.view}
-              onChange={({ value }: { value: InformerPropView | null }) => {
-                onChangeField(value, 'view')
-              }}
-            />
+            <div className={styles.columnSettings}>
+              <Text view='secondary' size='xs'>
+                Вид
+              </Text>
+              <ChoiceGroup
+                getItemLabel={(item: string | undefined) => item || ''}
+                items={views}
+                name='ChoiceGroupExample'
+                size='xs'
+                width='full'
+                view='ghost'
+                value={itemsProps.view}
+                onChange={({ value }: { value: InformerPropView | null }) => {
+                  onChangeField(value, 'view')
+                }}
+              />
+            </div>
           </div>
           <div>
             <Text view='secondary' size='xs'>
@@ -61,7 +66,7 @@ export const InformerSettings: FC<InformerSettingsType> = ({
               name='ChoiceGroupExample'
               size='xs'
               width='full'
-              view='primary'
+              view='ghost'
               value={itemsProps.status}
               onChange={({ value }: { value: InformerPropStatus | null }) => {
                 onChangeField(value, 'status')
