@@ -1,34 +1,17 @@
 import styles from './styles.module.css'
 import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
-import { Checkbox } from '@consta/uikit/Checkbox'
 import { TextField } from '@consta/uikit/TextField'
-import {
-  TextPropView,
-  TextPropSize,
-  TextPropAlign,
-  TextPropWeight,
-  TextPropLineHeight,
-  TextPropSpacing,
-  TextPropDisplay,
-  TextPropFont,
-  TextPropType,
-} from '@consta/uikit/Text'
+import { TextPropSize, TextPropLineHeight, Text } from '@consta/uikit/Text'
 import { Switch } from '@consta/uikit/Switch'
-import {
-  font,
-  textAlign,
-  weight,
-  lineHeight,
-  views,
-  sizes,
-  type,
-  spacing,
-  display,
-} from './textConstants'
+import { textAlign, weight, lineHeight, sizes, spacing, transformText } from './textConstants'
 import { useItemsHandlers } from './ItemsService'
 import { TextElementProps } from '../../../../coreTypes'
 import { TextElement } from '../../../../coreTypes/textTypes'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { useState } from 'react'
+import { Collapse } from '@consta/uikit/Collapse'
+import { textDecorationType } from '../../../../coreTypes/textTypes'
 
 type TextSettingsType = {
   selectedProps: TextElementProps
@@ -36,142 +19,148 @@ type TextSettingsType = {
 }
 
 export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElement }) => {
-  const { itemsProps, onChangeText, onChangeCheckboxValues, onChangeTruncate, onChangeField } =
+  const [refactorValue, setRefactorValue] = useState<textDecorationType[] | null>([])
+  const [isOpen, setOpen] = useState<boolean>(false)
+
+  const { itemsProps, onChangeText, onChangeSwitch, onChangeField, onChangeItems } =
     useItemsHandlers(selectedProps, selectedElement)
+
+  const onRefactorValueLabelEdit = (value: textDecorationType[] | null) => {
+    setRefactorValue(value)
+    if (value) {
+      onChangeItems(value)
+    } else {
+      onChangeItems(undefined)
+    }
+  }
 
   return (
     <div className={styles.textSettings}>
       {itemsProps ? (
         <>
           <TextField
-            label='Content'
+            type='textarea'
+            label='Текст'
+            size='xs'
             value={itemsProps.content}
             onChange={onChangeText('content')}
           />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={sizes}
-            label='Size'
-            value={itemsProps.size || 's'}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropSize, 'size')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={views}
-            label='View'
-            value={itemsProps.view}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropView, 'view')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={textAlign}
-            label='Align'
-            value={itemsProps.align}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropAlign, 'align')
-            }}
-          />
+          <div className={styles.rowSettings}>
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={sizes}
+              className={styles.widthFlex}
+              label='Размер'
+              size='xs'
+              value={itemsProps.size || 's'}
+              onChange={({ value }: { value: TextPropSize | null }) => {
+                onChangeField(value, 'size')
+              }}
+            />
+            <div className={styles.columnSettings}>
+              <Text color='color-primary' size='xs' view='secondary'>
+                Выравнивание
+              </Text>
+              <ChoiceGroup
+                value={itemsProps.align}
+                items={textAlign}
+                getItemLabel={item => item.name}
+                size='xs'
+                view='ghost'
+                onlyIcon
+                name='ChoiceGroupExample'
+                onChange={({ value }) => {
+                  onChangeField(value, 'align')
+                }}
+              />
+            </div>
+          </div>
           <Select
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={weight}
-            label='Weight'
+            label='Толщина'
+            size='xs'
             value={itemsProps.weight}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropWeight, 'weight')
+            onChange={({ value }: { value: string | null }) => {
+              onChangeField(value, 'weight')
             }}
           />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={lineHeight}
-            label='LineHeight'
-            value={itemsProps.lineHeight}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropLineHeight, 'lineHeight')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={spacing}
-            label='Spacing'
-            value={itemsProps.spacing}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropSpacing, 'spacing')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={display}
-            label='Display'
-            value={itemsProps.display}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropDisplay, 'display')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={font}
-            label='Font'
-            value={itemsProps.font}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropFont, 'font')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={type}
-            label='Type'
-            value={itemsProps.type}
-            onChange={({ value }) => {
-              onChangeField(value as TextPropType, 'type')
-            }}
-          />
-          <Checkbox
-            label='decoration'
-            checked={itemsProps.decoration !== undefined}
-            onChange={value => {
-              onChangeCheckboxValues(value, 'decoration')
-            }}
-          />
-          <Checkbox
-            label='fontStyle'
-            checked={itemsProps.fontStyle !== undefined}
-            onChange={value => {
-              onChangeCheckboxValues(value, 'fontStyle')
-            }}
-          />
-          <Checkbox
-            label='cursor'
-            checked={itemsProps.cursor !== undefined}
-            onChange={value => {
-              onChangeCheckboxValues(value, 'cursor')
-            }}
-          />
-          <Checkbox
-            label='transform'
-            checked={itemsProps.transform !== undefined}
-            onChange={value => {
-              onChangeCheckboxValues(value, 'transform')
-            }}
-          />
-
-          <Switch
-            checked={itemsProps.truncate ?? false}
-            label='truncate'
-            onChange={onChangeTruncate}
-          />
+          <Collapse
+            size='xs'
+            label='Кастомные настройки'
+            isOpen={isOpen}
+            onClick={() => setOpen(!isOpen)}>
+            <div className={styles.textSettings}>
+              <Select
+                getItemKey={(item: string | undefined) => item || ''}
+                getItemLabel={(item: string | undefined) => item || ''}
+                items={lineHeight}
+                label='Высота строки'
+                size='xs'
+                value={itemsProps.lineHeight}
+                onChange={({ value }: { value: TextPropLineHeight | null }) => {
+                  onChangeField(value, 'lineHeight')
+                }}
+              />
+              <Select
+                getItemKey={(item: string | undefined) => item || ''}
+                getItemLabel={(item: string | undefined) => item || ''}
+                items={spacing}
+                label='Отступ между буквами'
+                size='xs'
+                value={itemsProps.spacing}
+                onChange={({ value }: { value: string | null }) => {
+                  onChangeField(value, 'spacing')
+                }}
+              />
+            </div>
+            <div className={`${styles.columnSettings} paddingCollapse`}>
+              <Text
+                className={styles.paddingCollapse}
+                color='color-primary'
+                size='xs'
+                view='secondary'>
+                Преобразование текста
+              </Text>
+              <ChoiceGroup
+                value={refactorValue}
+                items={transformText}
+                getItemLabel={item => item.name || ''}
+                getItemIcon={item => item.icon}
+                multiple
+                onlyIcon
+                name='ChoiceGroupExampleIcon'
+                size='xs'
+                view='ghost'
+                onChange={({ value }) => onRefactorValueLabelEdit(value)}
+              />
+            </div>
+            <div className={styles.columnSettings}>
+              <Switch
+                checked={itemsProps.font === 'mono'}
+                className={styles.paddingCollapse}
+                label='Моно шрифт'
+                size='xs'
+                onChange={onChangeSwitch('font')}
+              />
+              <Switch
+                checked={!!itemsProps.cursor}
+                className={styles.paddingCollapse}
+                label='Курсор при наведении'
+                size='xs'
+                onChange={onChangeSwitch('cursor')}
+              />
+              <Switch
+                checked={itemsProps.truncate ?? false}
+                className={styles.paddingCollapse}
+                label='В одну строчку (многоточие)'
+                size='xs'
+                onChange={onChangeSwitch('truncate')}
+              />
+            </div>
+          </Collapse>
         </>
       ) : (
         <></>

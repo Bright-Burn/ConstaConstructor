@@ -1,10 +1,7 @@
 import {
   TextPropView,
   TextPropSize,
-  TextPropAlign,
-  TextPropWeight,
   TextPropLineHeight,
-  TextPropSpacing,
   TextPropDecoration,
   TextPropDisplay,
   TextPropFontStyle,
@@ -14,6 +11,14 @@ import {
   TextPropTransform,
 } from '@consta/uikit/Text'
 import { TextElementProps } from '../../../../coreTypes'
+import { IconAlignLeft } from '@consta/icons/IconAlignLeft'
+import { IconAlignCenter } from '@consta/icons/IconAlignCenter'
+import { IconAlignRight } from '@consta/icons/IconAlignRight'
+import { IconColorText } from '@consta/icons/IconColorText'
+import { IconItalic } from '@consta/icons/IconItalic'
+import { IconType } from '@consta/icons/IconType'
+import { AlignTextType, textDecorationType } from '../../../../coreTypes/textTypes'
+
 export const sizes: TextPropSize[] = [
   'm',
   '2xs',
@@ -38,18 +43,20 @@ export const views: TextPropView[] = [
   'success',
   'warning',
 ]
-export const textAlign: TextPropAlign[] = ['left', 'center', 'right']
-export const weight: TextPropWeight[] = [
-  'thin',
-  'light',
-  'regular',
-  'medium',
-  'semibold',
-  'bold',
-  'black',
+export const textAlign: AlignTextType[] = [
+  { name: 'left', icon: IconAlignLeft },
+  { name: 'center', icon: IconAlignCenter },
+  { name: 'right', icon: IconAlignRight },
 ]
+
+export const transformText: textDecorationType[] = [
+  { name: 'underline', icon: IconColorText },
+  { name: 'uppercase', icon: IconType },
+  { name: 'italic', icon: IconItalic },
+]
+export const weight = ['', 'thin', 'light', 'regular', 'medium', 'semibold', 'bold', 'black']
 export const lineHeight: TextPropLineHeight[] = ['2xs', 'xs', 's', 'm', 'l']
-export const spacing: TextPropSpacing[] = ['xs', 's', 'm', 'l']
+export const spacing = ['', 'xs', 's', 'm', 'l']
 export const display: TextPropDisplay[] = ['block', 'inlineBlock', 'inline']
 export const font: TextPropFont[] = ['primary', 'mono']
 export const type: TextPropType[] = ['blockquote', 'p', 'h3', 'h2', 'h1']
