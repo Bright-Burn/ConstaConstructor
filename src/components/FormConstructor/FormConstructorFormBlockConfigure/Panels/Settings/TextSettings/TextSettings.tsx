@@ -59,7 +59,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
               }}
             />
             <div className={styles.columnSettings}>
-              <Text color='color-primary' size='xs' view='secondary'>
+              <Text size='xs' view='secondary'>
                 Выравнивание
               </Text>
               <ChoiceGroup
@@ -92,7 +92,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
             label='Кастомные настройки'
             isOpen={isOpen}
             onClick={() => setOpen(!isOpen)}>
-            <div className={styles.textSettings}>
+            <div className={styles.rowSettings}>
               <Select
                 getItemKey={(item: string | undefined) => item || ''}
                 getItemLabel={(item: string | undefined) => item || ''}
