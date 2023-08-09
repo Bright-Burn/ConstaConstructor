@@ -13,6 +13,7 @@ export type SwitchProps = {
   align?: SwitchPropAlign
   label?: string
   checked?: boolean
+  disabled?: boolean
 } & BaseProps
 
 export type BrandSwitchProps = BrandProps<SwitchProps, 'Switch'>
