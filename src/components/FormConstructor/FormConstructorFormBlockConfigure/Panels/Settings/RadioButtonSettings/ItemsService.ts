@@ -58,7 +58,7 @@ export const useItemsHandlers = (
       const newProps: BrandRadioButtonProps = {
         props: {
           ...selectedElementProps,
-          [propsName]: value || '',
+          [propsName]: value,
         },
         type: 'RadioButton',
       }
