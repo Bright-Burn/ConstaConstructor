@@ -1,4 +1,19 @@
 .iconSettings {
   display: flex;
   flex-direction: column;
+  gap: var(--space-s);
+}
+
+.iconItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-top: var(--space-3xs);
+}
+
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+  align-items: end;
 }
