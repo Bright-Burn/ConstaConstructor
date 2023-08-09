@@ -14,6 +14,7 @@ export type CheckboxProps = {
   align?: CheckboxPropAlign
   disabled?: boolean
   label?: string
+  intermediate?: boolean
 } & BaseProps
 
 export type BrandCheckboxProps = BrandProps<CheckboxProps, 'Checkbox'>
