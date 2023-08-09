@@ -10,21 +10,30 @@ export const useItemsHandlers = (
   const dispatch = useAppDispatch()
 
   const onChangeField = (
-    value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | string | boolean,
+    value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | string | boolean | null,
     field: keyof CheckboxProps,
   ) => {
     if (selectedElement) {
       const newProps: BrandCheckboxProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'Checkbox',
       }
-
-      // @ts-ignore
-      newProps.props[field] = value
 
       onDispatch(selectedElement, newProps)
     }
   }
+
+  const onChangeSwitch =
+    (propsName: keyof CheckboxProps) =>
+    ({ checked }: { checked: boolean }) => {
+      if (selectedElementProps) {
+        const newProps: BrandCheckboxProps = {
+          props: { ...selectedElementProps, [propsName]: checked },
+          type: 'Checkbox',
+        }
+        onDispatch(selectedElement, newProps)
+      }
+    }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandCheckboxProps) => {
     dispatch(
@@ -38,6 +47,7 @@ export const useItemsHandlers = (
 
   return {
     onChangeField,
+    onChangeSwitch,
     itemsProps: {
       align: selectedElementProps.align,
       view: selectedElementProps.view,
@@ -45,6 +55,7 @@ export const useItemsHandlers = (
       disabled: selectedElementProps.disabled,
       label: selectedElementProps.label,
       size: selectedElementProps.size,
+      intermediate: selectedElementProps.intermediate,
     },
   }
 }
