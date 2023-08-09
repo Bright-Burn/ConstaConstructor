@@ -1,7 +1,6 @@
 import styles from './styles.module.css'
 import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
-import { views, sizes, icons } from './IconsConstants'
 import {
   IconProps,
   iconNames,
@@ -13,6 +12,8 @@ import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
 import React from 'react'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { sizes, icons, views } from './IconsConstants'
+import { Text } from '@consta/uikit/Text'
 
 type IconSettingsType = {
   selectedElementProps: IconProps
@@ -68,50 +69,59 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
   }
 
   return (
-    <div className={styles.userSettings}>
+    <div className={styles.iconSettings}>
       {props ? (
         <>
+          <div className={styles.rowSettings}>
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={sizes}
+              label='Размер'
+              size='xs'
+              value={props.size}
+              onChange={({ value }) => {
+                onChangeSize(value)
+              }}
+            />
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={icons}
+              size='xs'
+              value={props.icons}
+              onChange={({ value }) => {
+                onChangeIcon(value)
+              }}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  className={styles.iconItem}
+                  role='option'
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item], { size: 'xs' })}
+                  <Text size='xs'>{item}</Text>
+                </div>
+              )}
+              renderValue={({ item }) => (
+                <div className={styles.iconItem}>
+                  {React.createElement(Icons[item], { size: 'xs' })}
+                  <Text size='xs'>{item}</Text>
+                </div>
+              )}
+            />
+          </div>
           <Select
             getItemKey={(item: string | undefined) => item || ''}
             getItemLabel={(item: string | undefined) => item || ''}
             items={views}
-            label='view'
+            label='Вид'
+            size='xs'
             value={props.view}
             onChange={({ value }) => {
               onChangeView(value)
             }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={sizes}
-            label='size'
-            value={props.size}
-            onChange={({ value }) => {
-              onChangeSize(value)
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={icons}
-            label='icons'
-            value={props.icons}
-            onChange={({ value }) => {
-              onChangeIcon(value)
-            }}
-            renderItem={({ item, active, onClick, onMouseEnter }) => (
-              <div
-                style={{ display: 'flex', alignItems: 'center' }}
-                role='option'
-                aria-selected={active}
-                onMouseEnter={onMouseEnter}
-                onClick={onClick}
-              >
-                {React.createElement(Icons[item])}
-                <div>{item}</div>
-              </div>
-            )}
           />
         </>
       ) : null}
