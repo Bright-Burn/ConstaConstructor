@@ -10,6 +10,7 @@ import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBa
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import styles from './styles.module.css'
+import { Text } from '@consta/uikit/Text'
 
 type TagSettingsType = {
   selectedElementProps: TagProps
@@ -75,13 +76,15 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
             }}
             renderItem={({ item, active, onClick, onMouseEnter }) => (
               <div
-                style={{ display: 'flex', alignItems: 'center' }}
+                className={styles.icon}
                 role='option'
                 aria-selected={active}
                 onMouseEnter={onMouseEnter}
                 onClick={onClick}>
-                {React.createElement(Icons[item])}
-                <div>{item}</div>
+                {React.createElement(Icons[item], { size: 'xs' })}
+                <Text size='xs' view='secondary'>
+                  {item}
+                </Text>
               </div>
             )}
           />
