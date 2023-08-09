@@ -26,7 +26,7 @@ export const SwitchSettings: FC<SwitchSettingsType> = ({
     <div className={styles.switchSettings}>
       <TextField
         size='xs'
-        label='label'
+        label='Текст'
         value={itemsProps.label}
         onChange={onChangeField('label')}
       />
@@ -71,16 +71,16 @@ export const SwitchSettings: FC<SwitchSettingsType> = ({
         />
       </div>
       <Switch
-        checked={itemsProps.disabled}
-        label='disabled'
-        size='xs'
-        onChange={onChangeSwitch('disabled')}
-      />
-      <Switch
         checked={itemsProps.checked}
-        label='checked'
+        label='Активен'
         size='xs'
         onChange={onChangeSwitch('checked')}
+      />
+      <Switch
+        checked={itemsProps.disabled}
+        label='Состояние блокировки'
+        size='xs'
+        onChange={onChangeSwitch('disabled')}
       />
     </div>
   )
