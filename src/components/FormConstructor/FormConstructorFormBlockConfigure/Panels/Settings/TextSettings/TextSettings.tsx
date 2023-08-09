@@ -2,9 +2,17 @@ import styles from './styles.module.css'
 import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
-import { TextPropSize, TextPropLineHeight, Text } from '@consta/uikit/Text'
+import { TextPropSize, TextPropLineHeight, Text, TextPropView } from '@consta/uikit/Text'
 import { Switch } from '@consta/uikit/Switch'
-import { textAlign, weight, lineHeight, sizes, spacing, transformText } from './textConstants'
+import {
+  textAlign,
+  weight,
+  lineHeight,
+  sizes,
+  spacing,
+  transformText,
+  views,
+} from './textConstants'
 import { useItemsHandlers } from './ItemsService'
 import { TextElementProps } from '../../../../coreTypes'
 import { TextElement } from '../../../../coreTypes/textTypes'
@@ -76,17 +84,30 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
               />
             </div>
           </div>
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={weight}
-            label='Толщина'
-            size='xs'
-            value={itemsProps.weight}
-            onChange={({ value }: { value: string | null }) => {
-              onChangeField(value, 'weight')
-            }}
-          />
+          <div className={styles.rowSettings}>
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={weight}
+              label='Толщина'
+              size='xs'
+              value={itemsProps.weight}
+              onChange={({ value }: { value: string | null }) => {
+                onChangeField(value, 'weight')
+              }}
+            />
+            <Select
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={views}
+              label='Вид'
+              size='xs'
+              value={itemsProps.view}
+              onChange={({ value }: { value: TextPropView | null }) => {
+                onChangeField(value, 'view')
+              }}
+            />
+          </div>
           <Collapse
             size='xs'
             label='Кастомные настройки'
