@@ -17,6 +17,7 @@ export const useItemsHandlers = (
       }),
     )
   }
+
   const onChangeView = (value: SwitchPropView | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
@@ -27,6 +28,7 @@ export const useItemsHandlers = (
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeSize = (value: SwitchPropSize | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
@@ -37,6 +39,7 @@ export const useItemsHandlers = (
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeAlign = (value: SwitchPropAlign | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
@@ -47,27 +50,42 @@ export const useItemsHandlers = (
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeField =
     (propsName: keyof SwitchProps) =>
     ({ value }: { value: string | null }) => {
       const newProps: BrandSwitchProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [propsName]: value },
         type: 'Switch',
       }
-      // @ts-ignore
-      newProps.props[propsName] = value || ''
       onDispatch(selectedElement, newProps)
     }
+
+  const onChangeSwitch =
+    (propsName: keyof SwitchProps) =>
+    ({ checked }: { checked: boolean }) => {
+      if (selectedElement) {
+        const newProps: BrandSwitchProps = {
+          props: { ...selectedElementProps, [propsName]: checked },
+          type: 'Switch',
+        }
+        onDispatch(selectedElement, newProps)
+      }
+    }
+
   return {
     onChangeView,
     onChangeSize,
     onChangeAlign,
     onChangeField,
+    onChangeSwitch,
     itemsProps: {
       size: selectedElementProps.size,
       view: selectedElementProps.view,
       align: selectedElementProps.align,
       label: selectedElementProps.label,
+      disabled: selectedElementProps.disabled,
+      checked: selectedElementProps.checked,
     },
   }
 }
