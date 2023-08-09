@@ -11,6 +11,9 @@ import {
 } from '@consta/uikit/Checkbox'
 import { FC } from 'react'
 import { CheckboxElement, CheckboxProps } from '../../../../coreTypes/checkboxTypes'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Text } from '@consta/uikit/Text'
+import { Switch } from '@consta/uikit/Switch'
 
 type CheckboxSettingsType = {
   selectedElementProps: CheckboxProps
@@ -21,55 +24,86 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const { itemsProps, onChangeField } = useItemsHandlers(selectedElementProps, selectedElement)
+  const { itemsProps, onChangeField, onChangeSwitch } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
 
   return (
-    <div className={styles.badgeSettings}>
+    <div className={styles.checkboxSettings}>
       {itemsProps ? (
         <>
-          <Checkbox
-            label='Checked'
-            checked={itemsProps.checked}
-            onClick={() => {
-              onChangeField(!itemsProps.checked, 'checked')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={sizes}
-            label='Size'
-            value={itemsProps.size || 's'}
-            onChange={({ value }) => {
-              onChangeField(value as CheckboxPropSize, 'size')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={views}
-            label='View'
-            value={itemsProps.view || 'primary'}
-            onChange={({ value }) => {
-              onChangeField(value as CheckboxPropView, 'view')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={statuses}
-            label='Align'
-            value={itemsProps.align || 'center'}
-            onChange={({ value }) => {
-              onChangeField(value as CheckboxPropAlign, 'align')
-            }}
-          />
           <TextField
-            label='label'
+            label='Текст'
+            size='xs'
             value={itemsProps.label}
             onChange={({ value }) => {
-              onChangeField(value as string, 'label')
+              onChangeField(value, 'label')
             }}
+          />
+          <div className={styles.rowSettings}>
+            <Select
+              className={styles.widthFlex}
+              getItemKey={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string | undefined) => item || ''}
+              items={sizes}
+              label='Размер'
+              size='xs'
+              value={itemsProps.size || 's'}
+              onChange={({ value }) => {
+                onChangeField(value, 'size')
+              }}
+            />
+            <div className={styles.columnInRowSettings}>
+              <Text size='xs' view='secondary'>
+                Вид
+              </Text>
+              <ChoiceGroup
+                items={views}
+                value={itemsProps.view}
+                getItemLabel={(item: string | undefined) => item || ''}
+                name='ChoiceGroupExample'
+                size='xs'
+                view='ghost'
+                onChange={({ value }) => {
+                  onChangeField(value, 'view')
+                }}
+              />
+            </div>
+          </div>
+          <div className={styles.columnSettings}>
+            <Text size='xs' view='secondary'>
+              Выравнивание
+            </Text>
+            <ChoiceGroup
+              items={statuses}
+              value={itemsProps.align}
+              getItemLabel={(item: string | undefined) => item || ''}
+              name='ChoiceGroupExample'
+              size='xs'
+              view='ghost'
+              onChange={({ value }) => {
+                onChangeField(value, 'align')
+              }}
+            />
+          </div>
+          <Switch
+            checked={itemsProps.checked}
+            label='Активен'
+            size='xs'
+            onChange={onChangeSwitch('checked')}
+          />
+          <Switch
+            checked={itemsProps.intermediate}
+            label='intermediate'
+            size='xs'
+            onChange={onChangeSwitch('intermediate')}
+          />
+          <Switch
+            checked={itemsProps.disabled}
+            label='Состояние блокировки'
+            size='xs'
+            onChange={onChangeSwitch('disabled')}
           />
         </>
       ) : (
