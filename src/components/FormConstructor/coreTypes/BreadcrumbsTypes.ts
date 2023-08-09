@@ -6,9 +6,15 @@ import {
   ConcreteSelectedElement,
   DeepWriteable,
 } from './types'
-import { BreadcrumbsProps } from '@consta/uikit/Breadcrumbs'
+import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
 
-export type BreadcrumbProps = BreadcrumbsProps & BaseProps
+export type DefaultItemBreadcrumbsType = DefaultItem & { labelIcon?: string }
+
+export type BreadcrumbProps = {
+  items: DefaultItemBreadcrumbsType[]
+  fitMode: BreadcrumbPropFitMode
+  size: BreadcrumbPropSize
+} & BaseProps
 
 export type BrandBreadcrumbsProps = BrandProps<
   DeepWriteable<BreadcrumbProps>,

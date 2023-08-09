@@ -1,12 +1,18 @@
 import styles from './styles.module.css'
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { fitMode, sizes } from './BreadcrumbsConstants'
-import { DefaultItem } from '@consta/uikit/Breadcrumbs'
 import { useItemsHandlers } from './ItemsService'
-import { Button } from '@consta/uikit/Button'
 import { TextField } from '@consta/uikit/TextField'
 import { BreadcrumbProps, BreadcrumbsFormElement, DeepWriteable } from '../../../../coreTypes'
+import { Collapse } from '@consta/uikit/Collapse'
+import { Switch } from '@consta/uikit/Switch'
+import { Icons, iconNames } from '../../../../coreTypes/iconTypes'
+import { icons } from '../IconSettings/IconsConstants'
+import { Text } from '@consta/uikit/Text'
+import { DefaultItem } from '@consta/uikit/Breadcrumbs'
+import { DefaultItemBreadcrumbsType } from '../../../../coreTypes/BreadcrumbsTypes'
+import { IconComponent } from '@consta/uikit/Icon'
 
 type BreadcrumbSettingsType = {
   selectedElementProps: DeepWriteable<BreadcrumbProps>
@@ -20,66 +26,53 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
   const { itemsProps, onChangeItemsCount, onChangeItems, onChangeSize, onChangeFitMode } =
     useItemsHandlers(selectedElementProps, selectedElement)
 
-  const [pages, setPages] = useState<DeepWriteable<DefaultItem[]>>(itemsProps.items)
-  const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
-  const labelsEditingHandler = (value: boolean) => {
-    setPages(itemsProps.items)
-    setIsLabelsEditing(value)
-  }
-  const applyNewPage = () => {
-    onChangeItems(pages)
-    setIsLabelsEditing(false)
-  }
+  const [isOpen, setOpen] = useState<boolean>(false)
+  const [disabledPage, setDisabledPage] = useState<boolean>(false)
+
   const onPageLabelEdit = (value: string | null, index: number) => {
-    const newPages = [...pages]
-    newPages[index] = { ...newPages[index], label: `${value}` }
-    setPages([...newPages])
+    const newPage = [...itemsProps.items]
+    if (!value) newPage[index] = { ...newPage[index], label: `` }
+    else newPage[index] = { ...newPage[index], label: `${value}` }
+    onChangeItems(newPage)
   }
+
+  const onDisabledPage = (value: boolean) => {
+    const newPage = [...itemsProps.items].map(page => {
+      const { icon, labelIcon, ...other } = page
+      return other
+    })
+
+    onChangeItems(newPage)
+    setDisabledPage(value)
+  }
+  // TODO убрать когда избавимся от DeepWriteable
+  const iconComponentToDeepWriteable = (x: IconComponent) => x as DeepWriteable<IconComponent>
+
+  const checkValueIsIconNames = (value: string): value is iconNames => {
+    return value in Icons
+  }
+
+  const onPageIconEditLeft = (value: string | null, index: number) => {
+    const newPage = [...itemsProps.items]
+    if (value !== null && checkValueIsIconNames(value)) {
+      newPage[index] = {
+        ...newPage[index],
+        labelIcon: value,
+        icon: iconComponentToDeepWriteable(Icons[value]),
+      }
+    }
+    onChangeItems(newPage)
+  }
+
   return (
     <div className={styles.BreadcrumbsSettings}>
-      {!isLabelsEditing && (
-        <>
-          <TextField
-            label='Количество страниц'
-            type='number'
-            value={`${itemsProps.items.length}`}
-            onChange={onChangeItemsCount}
-          />
-          <Button
-            view='secondary'
-            className='m-b-xs m-t-xs'
-            label={'Сменить названия страниц'}
-            onClick={() => labelsEditingHandler(true)}
-          />
-        </>
-      )}
-      {isLabelsEditing && (
-        <>
-          {pages.map((page, index) => {
-            return (
-              <TextField
-                key={index}
-                label={`${index + 1}`}
-                value={`${page.label}`}
-                onChange={event => onPageLabelEdit(event.value, index)}
-              />
-            )
-          })}
-          <Button
-            size='xs'
-            className='m-b-xs m-t-xs'
-            label='Применить'
-            onClick={() => applyNewPage()}
-          />
-          <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
-        </>
-      )}
-      <>
+      <div className={styles.rowSettings}>
         <Select
           getItemKey={(item: string | undefined) => item || ''}
           getItemLabel={(item: string | undefined) => item || ''}
           items={sizes}
           label='size'
+          size='xs'
           value={itemsProps.size}
           onChange={({ value }) => {
             onChangeSize(value)
@@ -90,12 +83,68 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
           getItemLabel={(item: string | undefined) => item || ''}
           items={fitMode}
           label='fitMode'
+          size='xs'
           value={itemsProps.fitMode}
           onChange={({ value }) => {
             onChangeFitMode(value)
           }}
         />
+      </div>
+      <>
+        <TextField
+          label='Количество страниц'
+          type='number'
+          size='xs'
+          value={`${itemsProps.items.length}`}
+          onChange={onChangeItemsCount}
+        />
+        <Switch
+          label='Иконки страниц'
+          size='xs'
+          checked={disabledPage}
+          onChange={e => onDisabledPage(e.checked)}
+        />
       </>
+      <Collapse size='xs' label='Название страниц' isOpen={isOpen} onClick={() => setOpen(!isOpen)}>
+        {itemsProps.items.map((page, index) => {
+          return (
+            <div className={styles.pagePadding}>
+              <div className={styles.rowSettings}>
+                <TextField
+                  className={styles.flexWidth}
+                  size='xs'
+                  key={index}
+                  label={`Страница ${index + 1}`}
+                  value={`${page.label}`}
+                  onChange={event => onPageLabelEdit(event.value, index)}
+                />
+                <Select
+                  className={styles.iconAlign}
+                  getItemKey={(item: string | undefined) => item || ''}
+                  getItemLabel={(item: string | undefined) => item || ''}
+                  items={icons}
+                  disabled={!disabledPage}
+                  size='xs'
+                  value={page.labelIcon}
+                  onChange={event => onPageIconEditLeft(event.value, index)}
+                  renderItem={({ item, active, onClick, onMouseEnter }) => (
+                    <div
+                      style={{ display: 'flex', alignItems: 'center' }}
+                      role='option'
+                      aria-selected={active}
+                      onMouseEnter={onMouseEnter}
+                      onClick={onClick}>
+                      {checkValueIsIconNames(item) &&
+                        React.createElement(Icons[item], { size: 'xs' })}
+                      <Text size='xs'>{item}</Text>
+                    </div>
+                  )}
+                />
+              </div>
+            </div>
+          )
+        })}
+      </Collapse>
     </div>
   )
 }
