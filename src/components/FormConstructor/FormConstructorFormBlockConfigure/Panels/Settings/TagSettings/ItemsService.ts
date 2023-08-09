@@ -52,7 +52,7 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
         const newProps: BrandTagProps = {
           props: {
             ...selectedElementProps,
-            [propsName]: value || '',
+            [propsName]: value,
           },
           type: 'Tag',
         }

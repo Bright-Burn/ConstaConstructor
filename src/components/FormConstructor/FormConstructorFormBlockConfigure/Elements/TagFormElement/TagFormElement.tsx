@@ -33,7 +33,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             checked={checked}
             onChange={({ checked }) => setChecked(checked)}
             group={tagProps.group}
-            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            icon={tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
           />
         )
@@ -45,7 +45,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             size={tagProps.size}
             onCancel={() => null}
             group={tagProps.group}
-            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            icon={tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
           />
         )
@@ -57,7 +57,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             size={tagProps.size}
             onClick={() => null}
             group={tagProps.group}
-            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            icon={tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
           />
         )
@@ -69,7 +69,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            icon={tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
           />
         )
@@ -80,7 +80,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={tagProps.Icon ? tagProps.icon && Icons[tagProps.icon] : undefined}
+            icon={tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
           />
         )
@@ -91,8 +91,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Tag}
-    >
+      elementType={FormElementDictTypes.Tag}>
       {getTag()}
     </SelectableLayer>
   )
