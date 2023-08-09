@@ -3,10 +3,10 @@ import {
   ISelectedElement,
   BrandBreadcrumbsProps,
   BreadcrumbsFormElement,
+  DeepWriteable,
 } from '../../../../coreTypes'
 import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> }
 
 export const useItemsHandlers = (
   selectedElementProps: DeepWriteable<BreadcrumbProps>,

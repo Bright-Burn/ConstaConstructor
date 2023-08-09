@@ -1,4 +1,38 @@
 .BreadcrumbsSettings {
   display: flex;
   flex-direction: column;
+  gap: var(--space-s);
+}
+
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+}
+
+.columnInRowSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+  align-self: flex-end;
+}
+
+.columnSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+}
+
+.widthFlex {
+  flex: 1;
+}
+
+.iconAlign {
+  align-self: flex-end;
+}
+
+.pagePadding {
+  padding-top: var(--space-s);
 }
