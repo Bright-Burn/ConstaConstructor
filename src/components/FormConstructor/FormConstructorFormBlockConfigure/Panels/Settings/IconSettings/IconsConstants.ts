@@ -3,15 +3,15 @@ import { iconNames } from '../../../../coreTypes'
 
 export const sizes: IconPropSize[] = ['m', 's', 'l', 'xs']
 export const views: IconPropView[] = [
-  'ghost',
+  'primary',
+  'alert',
   'brand',
-  'disabled',
   'ghost',
   'link',
-  'primary',
   'secondary',
   'success',
   'warning',
+  'disabled',
 ]
 
 export const icons: iconNames[] = [

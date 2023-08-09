@@ -519,10 +519,13 @@ const getSettingsPanel = (
         }
 
         return (
-          <IconSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <>
+            <IconSettings
+              selectedElementProps={selectedElementProps.props}
+              selectedElement={element}
+            />
+            <BaseSettings />
+          </>
         )
       }
       default:
