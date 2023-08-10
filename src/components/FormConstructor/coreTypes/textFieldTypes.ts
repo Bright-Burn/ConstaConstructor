@@ -8,7 +8,6 @@ import {
   TextFieldPropWidth,
 } from '@consta/uikit/TextField'
 import { TextFieldPropsTextareaType } from '@consta/uikit/TextField/'
-import { fillType } from './buttonTypes'
 
 export type TextFieldProps = {
   type?: string
@@ -30,7 +29,7 @@ export type TextFieldProps = {
   incrementButtons?: boolean
   max?: number | string
   min?: number | string
-  filled?: fillType
+  filled?: boolean
 } & BaseProps &
   TextFieldPropsTextareaType<string>
 

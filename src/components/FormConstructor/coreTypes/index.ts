@@ -18,7 +18,6 @@ export type {
   ButtonAction,
   ButtonProps,
   IButtonModalElement,
-  fillType,
 } from './buttonTypes'
 export type { PropForm, IFormElementSelect, selectitemType, SelectProps } from './selectTypes'
 export type { BaseTypes } from './basePropsTypes'
