@@ -17,7 +17,7 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
     setTextFieldProps(textFieldFormElement.props)
   }, [element])
   //логика для заполнения элемента
-  const isFilled = element.props.filled?.name === 'filled'
+  const isFilled = element.props.filled
   //
   return (
     <SelectableLayer
