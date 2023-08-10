@@ -7,8 +7,8 @@ import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 
 export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
-
   const onStartDragComponentCard = (event: React.DragEvent) => {
+    const events = [new Date()]
     const newDataTime: IFormElementDataTime = {
       id: uuid(),
       type: FormElementDictTypes.DataTime,
@@ -18,6 +18,7 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
           view: 'classic',
           className: '',
           baseProps: {},
+          events: events,
           multiplicityHours: 1,
           multiplicityMinutes: 1,
           multiplicitySeconds: 1,
