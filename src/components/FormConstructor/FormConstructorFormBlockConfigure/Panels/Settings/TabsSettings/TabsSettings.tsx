@@ -11,6 +11,7 @@ import { Collapse } from '@consta/uikit/Collapse'
 import { icons } from '../IconSettings/IconsConstants'
 import { TabsElementProps } from '../../../../coreTypes'
 import { TabsElement } from '../../../../coreTypes/tabsTypes'
+import { Text } from '@consta/uikit/Text'
 
 type TabsSettingsType = {
   selectedElementProps: TabsElementProps
@@ -60,8 +61,8 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
           <Select
             label='Размер'
             size='xs'
-            getItemKey={(key: TabsPropSize) => key}
-            getItemLabel={(label: TabsPropSize) => label}
+            getItemKey={(key: string) => key}
+            getItemLabel={(label: string) => label}
             value={itemsProps.size}
             items={sizeArray}
             onChange={({ value }) => onChangeSize(value)}
@@ -69,8 +70,8 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
           <Select
             label='Расположение'
             size='xs'
-            getItemKey={(key: TabsPropLinePosition) => key}
-            getItemLabel={(label: TabsPropLinePosition) => label}
+            getItemKey={(key: string) => key}
+            getItemLabel={(label: string) => label}
             value={itemsProps.linePosition}
             items={linePositionArray}
             onChange={({ value }) => onChangeLinePosition(value)}
@@ -123,8 +124,8 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                   />
                   <Select
                     size='xs'
-                    getItemKey={(item: string | undefined) => item || ''}
-                    getItemLabel={(item: string | undefined) => item || ''}
+                    getItemKey={(item: string) => item}
+                    getItemLabel={(item: string) => item}
                     items={icons}
                     disabled={!tab.disabledIcon}
                     value={tab.labelIconLeft}
@@ -136,8 +137,8 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                         aria-selected={active}
                         onMouseEnter={onMouseEnter}
                         onClick={onClick}>
-                        {React.createElement(Icons[item as iconNames])}
-                        <div>{item}</div>
+                        {React.createElement(Icons[item as iconNames], { size: 'xs' })}
+                        <Text size='xs'>{item}</Text>
                       </div>
                     )}
                   />
