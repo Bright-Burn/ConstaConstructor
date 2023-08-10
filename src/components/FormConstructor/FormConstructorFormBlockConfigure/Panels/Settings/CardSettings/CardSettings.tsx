@@ -111,7 +111,7 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
         <>
           <div className={styles.rowSettings}>
             <TextField
-              onChange={({ value }: { value: string | null }) => onChangeHeight(value)}
+              onChange={({ value }) => onChangeHeight(value)}
               value={heightValue}
               type='number'
               size='xs'
@@ -120,7 +120,7 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
               min='0'
             />
             <TextField
-              onChange={({ value }: { value: string | null }) => onChangeWidth(value)}
+              onChange={({ value }) => onChangeWidth(value)}
               value={widthValue}
               type='number'
               size='xs'
