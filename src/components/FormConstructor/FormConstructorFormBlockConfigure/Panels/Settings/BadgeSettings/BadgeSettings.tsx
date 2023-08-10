@@ -34,8 +34,8 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
           <div className={styles.rowSettings}>
             <Select
               className={styles.widthFlex}
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={sizes}
               label='Размер'
               size='xs'
@@ -51,7 +51,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
                 items={views}
                 size='xs'
                 view='ghost'
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemLabel={(item: string) => item}
                 name='ChoiceGroupExample'
                 onChange={({ value }) => onChangeField(value, 'view')}
               />
@@ -68,14 +68,14 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
                 items={forms}
                 size='xs'
                 view='ghost'
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemLabel={(item: string) => item}
                 name='ChoiceGroupExample'
               />
             </div>
             <Select
               className={styles.widthFlex}
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={statuses}
               label='Статус'
               size='xs'
@@ -90,8 +90,8 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
             onChange={onChangeSwitch('iconLeft')}
           />
           <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
+            getItemKey={(item: string) => item}
+            getItemLabel={(item: string) => item}
             items={icons}
             disabled={!itemsProps.iconLeft}
             size='xs'
@@ -106,8 +106,8 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
                 aria-selected={active}
                 onMouseEnter={onMouseEnter}
                 onClick={onClick}>
-                {React.createElement(Icons[item])}
-                <div>{item}</div>
+                {React.createElement(Icons[item], { size: 'xs' })}
+                <Text size='xs'>{item}</Text>
               </div>
             )}
           />
