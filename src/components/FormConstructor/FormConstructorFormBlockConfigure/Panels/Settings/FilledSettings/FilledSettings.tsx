@@ -1,10 +1,16 @@
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { BaseProps, fillType } from '../../../../coreTypes'
+import { BaseProps } from '../../../../coreTypes'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
 import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
 import style from './styles.module.css'
 import { Text } from '@consta/uikit/Text'
+import { IconComponent } from '@consta/uikit/Icon'
+
+type fillType = {
+  name: string
+  icon: IconComponent
+}
 
 const fillValues = [
   { name: 'default', icon: IconMaxHeight },
@@ -17,7 +23,7 @@ export const FilledSettings = () => {
   const dispatch = useAppDispatch()
 
   function onFilledChange({ value }: { value: fillType | null }): void {
-    const newProps = { ...selectedElementProps, filled: value }
+    const newProps = { ...selectedElementProps, filled: value?.name === 'filled' ? true : false }
 
     if (selectedElement) {
       dispatch(
@@ -29,7 +35,9 @@ export const FilledSettings = () => {
       )
     }
   }
-  let filled: fillType = selectedElementProps?.filled ?? { name: 'default', icon: IconMaxHeight }
+  let filled = selectedElementProps?.filled
+    ? { name: 'filled', icon: IconMaxHeight }
+    : { name: 'default', icon: IconMaxWidth }
 
   return (
     <div className={style.choiceGroup}>

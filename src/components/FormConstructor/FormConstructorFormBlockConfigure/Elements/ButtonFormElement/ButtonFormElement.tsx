@@ -26,7 +26,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
     setOpenViewer(false)
   }
   //логика для заполнения элемента
-  const isFilled = element.props.filled?.name === 'filled'
+  const isFilled = element.props.filled
   //
   const getActionViwer = () => {
     if (buttonGroup && buttonProps && buttonProps?.action !== 'none') {
