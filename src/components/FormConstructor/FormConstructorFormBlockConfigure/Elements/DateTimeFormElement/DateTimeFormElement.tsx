@@ -7,7 +7,7 @@ import { DataTimeProps } from '../../../coreTypes'
 
 export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
   const [dataTimeProps, setDataTimeProps] = useState<DataTimeProps>()
-  const [rangeValue, setRangeValue] = useState<[Date?, Date?]>([])
+  const [timeValue, setTimeValue] = useState<Date>()
 
   useLayoutEffect(() => {
     const dataTimeFormElement = element
@@ -18,15 +18,14 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.DataTime}
-    >
+      elementType={FormElementDictTypes.DataTime}>
       <DateTime
-        value={rangeValue}
-        onChangeRange={({ value }) => setRangeValue(value)}
         {...dataTimeProps}
-        multiplicityHours={dataTimeProps && +dataTimeProps?.multiplicityHours}
-        multiplicityMinutes={dataTimeProps && +dataTimeProps?.multiplicityMinutes}
-        multiplicitySeconds={dataTimeProps && +dataTimeProps?.multiplicitySeconds}
+        value={timeValue}
+        onChange={({ value }) => setTimeValue(value)}
+        multiplicityHours={dataTimeProps && Number(dataTimeProps?.multiplicityHours)}
+        multiplicityMinutes={dataTimeProps && Number(dataTimeProps?.multiplicityMinutes)}
+        multiplicitySeconds={dataTimeProps && Number(dataTimeProps?.multiplicitySeconds)}
       />
     </SelectableLayer>
   )
