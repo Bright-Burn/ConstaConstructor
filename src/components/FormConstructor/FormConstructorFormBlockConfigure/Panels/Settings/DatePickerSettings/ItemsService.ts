@@ -27,141 +27,67 @@ export const useItemsHandlers = (
       }),
     )
   }
-  const onChangeType = (value: DatePickerPropType | null) => {
-    if (value) {
+
+  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+    if (selectedElement) {
       const newProps: BrandDatePickerProps = {
         props: { ...selectedElementProps },
         type: 'DatePicker',
       }
-      newProps.props.type = value
+      let itemsProps: Date[] = newProps.props.events
+      const currentLength = itemsProps.length
+      if (currentLength && Number(value) > currentLength) {
+        for (let i = currentLength; i < Number(value); i++) {
+          itemsProps = [...itemsProps, new Date()]
+        }
+      } else {
+        for (let i = 0; i < currentLength - Number(value); i++) {
+          itemsProps = [...itemsProps.slice(0, Number(value))]
+        }
+      }
+      if (Number(value) === 1 && itemsProps.length === 0) {
+        itemsProps = [...itemsProps, new Date()]
+      }
+      newProps.props.events = itemsProps
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeForm = (value: PropForm | null) => {
-    if (value) {
+
+  const onChangeField = (
+    value:
+      | DatePickerPropDropdownForm
+      | DatePickerPropDateTimeView
+      | Date
+      | TextFieldPropView
+      | TextFieldPropSize
+      | PropForm
+      | DatePickerPropType
+      | TextFieldPropStatus
+      | null
+      | 'top'
+      | 'left'
+      | boolean
+      | string
+      | Date[],
+    field: keyof DatePickerProps,
+  ) => {
+    if (selectedElement) {
       const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'DatePicker',
       }
-      newProps.props.form = value
+      if (field === 'label' && value === true) {
+        newProps.props.label = 'Заголовок'
+      }
+      if (field === 'caption' && value === true) {
+        newProps.props.caption = 'Подпись'
+      }
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeStatus = (value: TextFieldPropStatus | null) => {
-    if (value) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      newProps.props.status = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
-    if (value) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      newProps.props.labelPosition = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeSize = (value: TextFieldPropSize | null) => {
-    if (value) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      newProps.props.size = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeView = (value: TextFieldPropView | null) => {
-    if (value) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      newProps.props.view = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeMinDate = ({ value }: { value: Date | null }) => {
-    if (value) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      newProps.props.minDate = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeMaxDate = ({ value }: { value: Date | null }) => {
-    if (value) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      newProps.props.maxDate = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeDateTimeView = (value: DatePickerPropDateTimeView | null) => {
-    if (value) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      newProps.props.dateTimeView = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeDropdownForm = (value: DatePickerPropDropdownForm | null) => {
-    if (value) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      newProps.props.dropdownForm = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeField =
-    (propsName: keyof DatePickerProps) =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      // @ts-ignore
-      newProps.props[propsName] = value || ''
-      onDispatch(selectedElement, newProps)
-    }
-  const onChangeSwitch =
-    (propsName: keyof DatePickerProps) =>
-    ({ checked }: { checked: boolean }) => {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      // @ts-ignore
-      newProps.props[propsName] = checked
-      onDispatch(selectedElement, newProps)
-    }
   return {
-    onChangeType,
-    onChangeForm,
-    onChangeStatus,
-    onChangeLabelPosition,
-    onChangeSize,
-    onChangeView,
-    onChangeMinDate,
-    onChangeMaxDate,
-    onChangeDateTimeView,
-    onChangeDropdownForm,
     onChangeField,
-    onChangeSwitch,
+    onChangeItemsCount,
     itemsProps: {
       type: selectedElementProps.type,
       form: selectedElementProps.form,
@@ -179,6 +105,8 @@ export const useItemsHandlers = (
       maxDate: selectedElementProps.maxDate,
       dateTimeView: selectedElementProps.dateTimeView,
       dropdownForm: selectedElementProps.dropdownForm,
+      events: selectedElementProps.events,
+      value: selectedElementProps.value,
     },
   }
 }

@@ -31,6 +31,8 @@ export type DatePickerProps = {
   maxDate?: Date
   dateTimeView?: DatePickerPropDateTimeView
   dropdownForm?: DatePickerPropDropdownForm
+  events: Date[]
+  value?: Date
 } & BaseProps &
   TextFieldPropsTextareaType<string>
 
