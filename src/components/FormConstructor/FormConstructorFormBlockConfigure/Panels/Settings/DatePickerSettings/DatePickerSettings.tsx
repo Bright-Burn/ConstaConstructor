@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import { Switch } from '@consta/uikit/Switch'
@@ -19,8 +19,13 @@ import {
   typeArray,
   viewArray,
 } from './types'
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { DatePickerElement, DatePickerProps, PropForm } from '../../../../coreTypes'
+import { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
+import styles from './styles.module.css'
+import { Text } from '@consta/uikit/Text'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { FieldGroup } from '@consta/uikit/FieldGroup'
+import { Collapse } from '@consta/uikit/Collapse'
 
 type DatePickerSettingsType = {
   selectedElementProps: DatePickerProps
@@ -31,122 +36,236 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const {
-    itemsProps,
-    onChangeType,
-    onChangeForm,
-    onChangeStatus,
-    onChangeLabelPosition,
-    onChangeView,
-    onChangeSize,
-    onChangeMinDate,
-    onChangeMaxDate,
-    onChangeDateTimeView,
-    onChangeDropdownForm,
-    onChangeField,
-    onChangeSwitch,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  const { itemsProps, onChangeField, onChangeItemsCount } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
+
+  const [isOpenDate, setOpenDate] = useState<boolean>(false)
+  const [isOpenEvents, setOpenEvents] = useState<boolean>(false)
+  const [withEvents, setWithEvents] = useState<boolean>(false)
+
+  const onDateLabelEdit = (value: Date, index: number) => {
+    const newDate = itemsProps.events
+    newDate[index].setFullYear(value.getFullYear(), value.getMonth(), value.getDate())
+    onChangeField(newDate, 'events')
+  }
+
+  const clearEvents = (checked: boolean) => {
+    setWithEvents(checked)
+    onChangeItemsCount({ value: '0' })
+  }
 
   return (
-    <>
+    <div className={styles.datePickerSetting}>
       {itemsProps ? (
         <>
-          <Select
-            getItemKey={(item: DatePickerPropType | undefined) => item || ''}
-            getItemLabel={(item: DatePickerPropType | undefined) => item || ''}
-            items={typeArray}
-            label='type'
-            value={itemsProps.type}
-            onChange={({ value }) => onChangeType(value)}
-          />
-          <Select
-            getItemKey={(item: PropForm | undefined) => item || ''}
-            getItemLabel={(item: PropForm | undefined) => item || ''}
-            items={formArray}
-            label='form'
-            value={itemsProps.form}
-            onChange={({ value }) => onChangeForm(value)}
-          />
-          <Select
-            getItemKey={(item: TextFieldPropStatus | undefined) => item || ''}
-            getItemLabel={(item: TextFieldPropStatus | undefined) => item || ''}
-            items={statusArray}
-            label='status'
-            value={itemsProps.status}
-            onChange={({ value }) => onChangeStatus(value)}
-          />
-          <Switch
-            checked={itemsProps.withClearButton}
-            label='withClearButton'
-            onChange={onChangeSwitch('withClearButton')}
-          />
-          <Switch
-            checked={itemsProps.withAdditionalControls}
-            label='with additional controls'
-            onChange={onChangeSwitch('withAdditionalControls')}
-          />
-          <TextField label='label' value={itemsProps.label} onChange={onChangeField('label')} />
-          <Select
-            getItemKey={(item: 'top' | 'left' | undefined) => item || ''}
-            getItemLabel={(item: 'top' | 'left' | undefined) => item || ''}
-            items={labelPositionArray}
-            label='labelPosition'
-            value={itemsProps.labelPosition}
-            onChange={({ value }) => onChangeLabelPosition(value)}
-          />
-          <Switch
-            checked={itemsProps.required}
-            label='required'
-            onChange={onChangeSwitch('required')}
-          />
-          <TextField
-            label='caption'
-            value={itemsProps.caption}
-            onChange={onChangeField('caption')}
-          />
-          <Select
-            getItemKey={(item: TextFieldPropSize | undefined) => item || ''}
-            getItemLabel={(item: TextFieldPropSize | undefined) => item || ''}
-            items={sizeArray}
-            label='size'
-            value={itemsProps.size}
-            onChange={({ value }) => onChangeSize(value)}
-          />
-          <Select
-            getItemKey={(item: TextFieldPropView) => item || ''}
-            getItemLabel={(item: TextFieldPropView) => item || ''}
-            items={viewArray}
-            label='view'
-            value={itemsProps.view}
-            onChange={({ value }) => onChangeView(value)}
-          />
+          <div className={styles.rowSettings}>
+            <Select
+              getItemKey={(item: DatePickerPropType | undefined) => item || ''}
+              getItemLabel={(item: DatePickerPropType | undefined) => item || ''}
+              items={typeArray}
+              label='Тип'
+              size='xs'
+              value={itemsProps.type}
+              onChange={({ value }) => onChangeField(value, 'type')}
+            />
+            <Select
+              getItemKey={(item: TextFieldPropSize | undefined) => item || ''}
+              getItemLabel={(item: TextFieldPropSize | undefined) => item || ''}
+              items={sizeArray}
+              label='Размер'
+              size='xs'
+              value={itemsProps.size}
+              onChange={({ value }) => onChangeField(value, 'size')}
+            />
+          </div>
+          <div className={styles.rowSettings}>
+            <Select
+              className={styles.widthFlex}
+              getItemKey={(item: PropForm | undefined) => item || ''}
+              getItemLabel={(item: PropForm | undefined) => item || ''}
+              items={formArray}
+              label='Форма'
+              size='xs'
+              value={itemsProps.form}
+              onChange={({ value }) => onChangeField(value, 'form')}
+            />
+            <div className={styles.columnSettings}>
+              <Text size='xs' view='secondary'></Text>
+              <ChoiceGroup
+                value={itemsProps.view}
+                items={viewArray}
+                getItemLabel={(label: TextFieldPropView) => label}
+                view='ghost'
+                size='xs'
+                name='ChoiceGroupExample'
+                onChange={({ value }) => onChangeField(value, 'view')}
+              />
+            </div>
+          </div>
+          <div className={styles.rowSettings}>
+            <Select
+              className={styles.widthFlex}
+              getItemKey={(item: string) => item || ''}
+              getItemLabel={(item: string) => item || ''}
+              items={statusArray}
+              label='Статус'
+              size='xs'
+              value={itemsProps.status}
+              onChange={({ value }) => onChangeField(value, 'status')}
+            />
+            <DatePicker
+              className={styles.widthFlex}
+              size='xs'
+              label='Активный выбор'
+              value={itemsProps.value}
+              onChange={({ value }) => onChangeField(value, 'value')}
+            />
+          </div>
           <Switch
             checked={itemsProps.disabled}
-            label='disabled'
-            onChange={onChangeSwitch('disabled')}
+            label='Состояние блокировки'
+            size='xs'
+            onChange={({ checked }) => onChangeField(checked, 'disabled')}
           />
-          <DatePicker label='minDate' value={itemsProps.minDate} onChange={onChangeMinDate} />
-          <DatePicker label='maxDate' value={itemsProps.maxDate} onChange={onChangeMaxDate} />
-          <Select
-            getItemKey={(item: DatePickerPropDateTimeView) => item || ''}
-            getItemLabel={(item: DatePickerPropDateTimeView) => item || ''}
-            items={dateTimeViewArray}
-            label='view'
-            value={itemsProps.dateTimeView}
-            onChange={({ value }) => onChangeDateTimeView(value)}
+          <Switch
+            onChange={({ checked }) => onChangeField(checked, 'label')}
+            label='Текст заголовка'
+            size='xs'
+            checked={!!itemsProps.label}
           />
-          <Select
-            getItemKey={(item: DatePickerPropDropdownForm) => item || ''}
-            getItemLabel={(item: DatePickerPropDropdownForm) => item || ''}
-            items={dropdownFormArray}
-            label='view'
-            value={itemsProps.dropdownForm}
-            onChange={({ value }) => onChangeDropdownForm(value)}
+          <div className={styles.rowSettingsWithoutGap}>
+            <Select
+              className={styles.widthTopLeftFlex}
+              size='xs'
+              disabled={!!itemsProps.label ? false : true}
+              getItemKey={(key: string) => key}
+              getItemLabel={(label: string) => label}
+              value={itemsProps.labelPosition || 'top'}
+              items={labelPositionArray}
+              onChange={({ value }) => onChangeField(value, 'labelPosition')}
+            />
+            <TextField
+              className={styles.widthFlex}
+              width='full'
+              disabled={!!itemsProps.label ? false : true}
+              value={itemsProps.label}
+              onChange={({ value }: { value: string | null }) => onChangeField(value, 'label')}
+              size='xs'
+            />
+          </div>
+          <Switch
+            checked={itemsProps.required}
+            label='Обязательно для заполнения'
+            size='xs'
+            onChange={({ checked }) => onChangeField(checked, 'required')}
           />
+          <div className={styles.columnSettingsWithoutRow}>
+            <Switch
+              onChange={({ checked }) => onChangeField(checked, 'caption')}
+              label='Текст подписи'
+              size='xs'
+              checked={!!itemsProps.caption}
+            />
+            <TextField
+              size='xs'
+              disabled={!!itemsProps.caption ? false : true}
+              value={itemsProps.caption}
+              onChange={({ value }: { value: string | null }) => onChangeField(value, 'caption')}
+            />
+          </div>
+          <Switch
+            checked={itemsProps.withClearButton}
+            label='Кнопка очистки поля ввода'
+            size='xs'
+            onChange={({ checked }) => onChangeField(checked, 'withClearButton')}
+          />
+          <FieldGroup size='xs'>
+            <DatePicker
+              leftSide='min'
+              size='xs'
+              value={itemsProps.minDate}
+              onChange={({ value }) => onChangeField(value, 'minDate')}
+            />
+            <DatePicker
+              size='xs'
+              leftSide='max'
+              value={itemsProps.maxDate}
+              onChange={({ value }) => onChangeField(value, 'maxDate')}
+            />
+          </FieldGroup>
+          <Collapse
+            label='Настройка выпадающего календаря'
+            size='xs'
+            isOpen={isOpenDate}
+            onClick={() => setOpenDate(!isOpenDate)}>
+            <Select
+              getItemKey={(item: DatePickerPropDropdownForm) => item || ''}
+              getItemLabel={(item: DatePickerPropDropdownForm) => item || ''}
+              items={dropdownFormArray}
+              label='Форма'
+              size='xs'
+              value={itemsProps.dropdownForm}
+              onChange={({ value }) => onChangeField(value, 'dropdownForm')}
+            />
+            <Select
+              getItemKey={(item: DatePickerPropDateTimeView) => item || ''}
+              getItemLabel={(item: DatePickerPropDateTimeView) => item || ''}
+              items={dateTimeViewArray}
+              label='Вид'
+              size='xs'
+              value={itemsProps.dateTimeView}
+              onChange={({ value }) => onChangeField(value, 'dateTimeView')}
+            />
+            <Switch
+              checked={itemsProps.withAdditionalControls}
+              label='Кнопки действия'
+              size='xs'
+              onChange={({ checked }) => onChangeField(checked, 'withAdditionalControls')}
+            />
+          </Collapse>
+          <Switch
+            checked={withEvents}
+            label='Мероприятия'
+            size='xs'
+            onChange={({ checked }) => clearEvents(checked)}
+          />
+          {withEvents && (
+            <Collapse
+              label='Настройка мероприятий'
+              size='xs'
+              isOpen={isOpenEvents}
+              onClick={() => setOpenEvents(!isOpenEvents)}>
+              <div className={styles.collapseSettings}>
+                <TextField
+                  label='Количество мероприятий'
+                  type='number'
+                  size='xs'
+                  width='full'
+                  value={`${itemsProps.events.length}`}
+                  onChange={onChangeItemsCount}
+                />
+                {itemsProps.events.map((dat, index) => {
+                  return (
+                    <DatePicker
+                      size='xs'
+                      labelPosition='top'
+                      label={`Мероприятия ${index + 1}`}
+                      className={styles.rowSettingsCollapse}
+                      key={index}
+                      value={dat}
+                      onChange={event => onDateLabelEdit(event.value as Date, index)}
+                    />
+                  )
+                })}
+              </div>
+            </Collapse>
+          )}
         </>
       ) : (
         <></>
       )}
-    </>
+    </div>
   )
 }

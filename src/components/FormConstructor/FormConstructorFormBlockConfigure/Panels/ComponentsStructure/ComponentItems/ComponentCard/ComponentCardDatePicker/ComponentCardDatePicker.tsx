@@ -9,6 +9,7 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
+    const events = [new Date()]
     const newDatePicker: IFormElementDatePicker = {
       id: uuid(),
       type: FormElementDictTypes.DatePicker,
@@ -24,6 +25,7 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
           view: 'default',
           dateTimeView: 'classic',
           dropdownForm: 'default',
+          events: events,
           className: '',
           baseProps: {},
         },

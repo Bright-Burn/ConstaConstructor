@@ -4,6 +4,7 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { IDatePickerFormElement } from './types'
 import { DatePickerProps } from '../../../coreTypes'
 import { DatePicker } from '@consta/uikit/DatePicker'
+import { Button } from '@consta/uikit/Button'
 
 export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) => {
   const [datePickerProps, setDatePickerProps] = useState<DatePickerProps>()
@@ -17,9 +18,18 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.DatePicker}
-    >
-      <DatePicker {...datePickerProps} />
+      elementType={FormElementDictTypes.DatePicker}>
+      <DatePicker
+        {...datePickerProps}
+        renderAdditionalControls={() =>
+          datePickerProps?.withAdditionalControls && (
+            <>
+              <Button label='Кнопка' />
+              <Button label='Кнопка' />
+            </>
+          )
+        }
+      />
     </SelectableLayer>
   )
 }
