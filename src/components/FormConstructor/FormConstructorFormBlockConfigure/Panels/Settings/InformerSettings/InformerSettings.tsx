@@ -1,5 +1,4 @@
 import styles from './styles.module.css'
-import { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import { useItemsHandlers } from './ItemsService'
@@ -28,31 +27,27 @@ export const InformerSettings: FC<InformerSettingsType> = ({
           <div className={styles.rowSettings}>
             <Select
               className={styles.widthFlex}
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={sizes}
               size='xs'
               label='Размер'
               value={itemsProps.size || 's'}
-              onChange={({ value }: { value: InformerPropSize | null }) => {
-                onChangeField(value, 'size')
-              }}
+              onChange={({ value }) => onChangeField(value, 'size')}
             />
             <div className={styles.columnSettings}>
               <Text view='secondary' size='xs'>
                 Вид
               </Text>
               <ChoiceGroup
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemLabel={(item: string) => item}
                 items={views}
                 name='ChoiceGroupExample'
                 size='xs'
                 width='full'
                 view='ghost'
                 value={itemsProps.view}
-                onChange={({ value }: { value: InformerPropView | null }) => {
-                  onChangeField(value, 'view')
-                }}
+                onChange={({ value }) => onChangeField(value, 'view')}
               />
             </div>
           </div>
@@ -61,25 +56,21 @@ export const InformerSettings: FC<InformerSettingsType> = ({
               Статус
             </Text>
             <ChoiceGroup
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string) => item}
               items={statuses}
               name='ChoiceGroupExample'
               size='xs'
               width='full'
               view='ghost'
               value={itemsProps.status}
-              onChange={({ value }: { value: InformerPropStatus | null }) => {
-                onChangeField(value, 'status')
-              }}
+              onChange={({ value }) => onChangeField(value, 'status')}
             />
           </div>
           <TextField
             value={itemsProps.label}
             label='Текст заголовка'
             size='xs'
-            onChange={({ value }: { value: string | null }) => {
-              onChangeField(value, 'label')
-            }}
+            onChange={({ value }) => onChangeField(value, 'label')}
           />
           <TextField
             type='textarea'
@@ -87,9 +78,7 @@ export const InformerSettings: FC<InformerSettingsType> = ({
             label='Текст контента'
             size='xs'
             minRows={4}
-            onChange={({ value }: { value: string | null }) => {
-              onChangeField(value, 'title')
-            }}
+            onChange={({ value }) => onChangeField(value, 'title')}
           />
         </>
       ) : (
