@@ -45,102 +45,43 @@ export const useItemsHandlers = (
         type: 'ComboBox',
       }
       newProps.props.items = [...items]
-      newProps.props.value = items[0]
       onDispatch(selectedElement, newProps)
     }
   }
 
-  const onChangeSize = (value: TextFieldPropSize | null) => {
-    if (value) {
+  const onChangeField = (
+    value:
+      | TextFieldPropStatus
+      | PropForm
+      | TextFieldPropView
+      | TextFieldPropSize
+      | 'top'
+      | 'left'
+      | boolean
+      | null
+      | comboboxItemType
+      | comboboxItemType[]
+      | string,
+    field: keyof ComboboxProps,
+  ) => {
+    if (selectedElement) {
       const newProps: BrandComboboxProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'ComboBox',
       }
-      newProps.props.size = value
+      if (field === 'label' && value === true) {
+        newProps.props.label = 'Заголовок'
+      }
+      if (field === 'caption' && value === true) {
+        newProps.props.caption = 'Подпись'
+      }
       onDispatch(selectedElement, newProps)
     }
   }
-
-  const onChangeView = (value: TextFieldPropView | null) => {
-    if (value) {
-      const newProps: BrandComboboxProps = {
-        props: { ...selectedElementProps },
-        type: 'ComboBox',
-      }
-      newProps.props.view = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeForm = (value: PropForm | null) => {
-    if (value) {
-      const newProps: BrandComboboxProps = {
-        props: { ...selectedElementProps },
-        type: 'ComboBox',
-      }
-      newProps.props.form = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeField =
-    (propsName: keyof ComboboxProps) =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandComboboxProps = {
-        props: {
-          ...selectedElementProps,
-          [propsName]: value || '',
-        },
-        type: 'ComboBox',
-      }
-      onDispatch(selectedElement, newProps)
-    }
-
-  const onChangeStatus = (value: TextFieldPropStatus | null) => {
-    if (value) {
-      const newProps: BrandComboboxProps = {
-        props: { ...selectedElementProps },
-        type: 'ComboBox',
-      }
-      newProps.props.status = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
-    if (value) {
-      const newProps: BrandComboboxProps = {
-        props: { ...selectedElementProps },
-        type: 'ComboBox',
-      }
-      newProps.props.labelPosition = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeSwitch =
-    (propsName: keyof ComboboxProps) =>
-    ({ checked }: { checked: boolean }) => {
-      const newProps: BrandComboboxProps = {
-        props: {
-          ...selectedElementProps,
-          [propsName]: checked,
-        },
-        type: 'ComboBox',
-      }
-      // @tsignore[propsName] = checked
-      onDispatch(selectedElement, newProps)
-    }
   return {
     onChangeItemsCount,
-    onChangeLabelPosition,
-    onChangeStatus,
     onChangeItems,
     onChangeField,
-    onChangeView,
-    onChangeSize,
-    onChangeForm,
-    onChangeSwitch,
     itemsProps: {
       items: selectedElementProps.items,
       value: selectedElementProps.value,
@@ -156,6 +97,9 @@ export const useItemsHandlers = (
       placeholder: selectedElementProps.placeholder,
       isLoading: selectedElementProps.isLoading,
       multiple: selectedElementProps.multiple,
+      groups: selectedElementProps.groups,
+      groupsActive: selectedElementProps.groupsActive,
+      dropdownForm: selectedElementProps.dropdownForm,
     },
   }
 }
