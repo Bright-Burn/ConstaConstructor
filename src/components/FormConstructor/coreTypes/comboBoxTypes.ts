@@ -1,3 +1,4 @@
+import { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
 import { PropForm } from './selectTypes'
 import {
   BaseProps,
@@ -11,11 +12,12 @@ import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@cons
 export type comboboxItemType = {
   label: string
   id: number
+  group?: string
 }
 
 export type ComboboxProps = {
   items: comboboxItemType[]
-  value?: comboboxItemType | null
+  value?: comboboxItemType[] | comboboxItemType | null
   disabled?: boolean
   size?: TextFieldPropSize
   view?: TextFieldPropView
@@ -28,6 +30,9 @@ export type ComboboxProps = {
   placeholder?: string
   isLoading?: boolean
   multiple?: boolean
+  groups: string[]
+  groupsActive?: boolean
+  dropdownForm?: DatePickerPropDropdownForm
   onChange: () => void
 } & BaseProps
 
