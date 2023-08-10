@@ -1,0 +1,46 @@
+.comoboboxSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+}
+
+.columnSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+  align-self: flex-end;
+}
+
+.rowSettingsWithoutGap {
+  display: flex;
+  flex-direction: row;
+}
+
+.columnSettingsWithoutRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  flex: 1;
+}
+
+.widthFlex {
+  flex: 1;
+}
+
+.widthTopLeftFlex {
+  flex: 0.5;
+}
+
+.rowSettingsCollapse {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+  padding-top: var(--space-s);
+}

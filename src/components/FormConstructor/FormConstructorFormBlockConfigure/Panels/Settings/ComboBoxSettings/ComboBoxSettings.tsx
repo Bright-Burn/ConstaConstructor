@@ -2,12 +2,23 @@ import { Select } from '@consta/uikit/Select'
 import React, { FC, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
-import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
+import {
+  dropDownArray,
+  formArray,
+  labelPositionArray,
+  sizeArray,
+  statusArray,
+  viewArray,
+} from './types'
 import { Switch } from '@consta/uikit/Switch'
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm, comboboxItemType, ComboboxProps } from '../../../../coreTypes'
-import { Button } from '@consta/uikit/Button'
 import { ComboBoxElement } from '../../../../coreTypes/comboBoxTypes'
+import { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
+import { Text } from '@consta/uikit/Text'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import styles from './styles.module.css'
+import { Combobox } from '@consta/uikit/Combobox'
+import { Collapse } from '@consta/uikit/Collapse'
 
 type ComboBoxSettingsType = {
   selectedElementProps: ComboboxProps
@@ -18,141 +29,225 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const {
-    itemsProps,
-    onChangeItemsCount,
-    onChangeLabelPosition,
-    onChangeStatus,
-    onChangeItems,
-    onChangeField,
-    onChangeView,
-    onChangeSize,
-    onChangeForm,
-    onChangeSwitch,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
+  const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
+  const [isOpenList, setOpenList] = useState<boolean>(false)
   const [lines, setLines] = useState<comboboxItemType[]>(itemsProps.items)
-  const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
-  const labelsEditingHandler = (value: boolean) => {
-    setLines(itemsProps.items)
-    setIsLabelsEditing(value)
-  }
-  const applyNewLines = () => {
-    onChangeItems(lines)
-    setIsLabelsEditing(false)
-  }
+
   const onLinesLabelEdit = (value: string | null, index: number) => {
-    const newLines = [...lines]
+    const newLines = [...itemsProps.items]
     newLines[index] = { ...newLines[index], label: `${value}` }
-    setLines([...newLines])
+    onChangeItems(newLines)
+  }
+
+  const onLinesGroupEdit = (value: string | null, index: number) => {
+    const newLines = [...itemsProps.items]
+    newLines[index] = { ...newLines[index], group: `${value}` }
+    onChangeItems(newLines)
   }
 
   return (
-    <>
-      {!isLabelsEditing && (
-        <>
-          <TextField
-            label='Количество вариантов'
-            type='number'
-            value={`${itemsProps.items.length}`}
-            onChange={onChangeItemsCount}
-          />
-          <Button
-            view='secondary'
-            className='m-b-xs m-t-xs'
-            label={'Сменить названия в списке'}
-            onClick={() => labelsEditingHandler(true)}
-          />
-        </>
-      )}
-      {isLabelsEditing && (
-        <>
-          {lines.map((line, index) => {
-            return (
-              <TextField
-                key={index}
-                label={`${index + 1}`}
-                value={`${line.label}`}
-                onChange={event => onLinesLabelEdit(event.value, index)}
-              />
-            )
-          })}
-          <Button
+    <div className={styles.comoboboxSettings}>
+      <div className={styles.rowSettings}>
+        <Select
+          className={styles.widthFlex}
+          label='Размер'
+          size='xs'
+          getItemKey={(key: TextFieldPropSize) => key}
+          getItemLabel={(label: TextFieldPropSize) => label}
+          value={itemsProps.size}
+          items={sizeArray}
+          onChange={({ value }) => onChangeField(value, 'size')}
+        />
+        <div className={styles.columnSettings}>
+          <Text view='secondary' size='xs'>
+            Вид
+          </Text>
+          <ChoiceGroup
+            value={itemsProps.view}
+            items={viewArray}
+            getItemLabel={(label: TextFieldPropView) => label}
+            view='ghost'
             size='xs'
-            className='m-b-xs m-t-xs'
-            label='Применить'
-            onClick={() => applyNewLines()}
+            name='ChoiceGroupExample'
+            onChange={({ value }) => onChangeField(value, 'view')}
           />
-          <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
-        </>
-      )}
-
+        </div>
+      </div>
+      <div className={styles.rowSettings}>
+        <Select
+          label='Форма'
+          size='xs'
+          getItemKey={(key: PropForm) => key}
+          getItemLabel={(label: PropForm) => label}
+          value={itemsProps.form || 'default'}
+          items={formArray}
+          onChange={({ value }) => onChangeField(value, 'form')}
+        />
+        <Select
+          label='Статус'
+          size='xs'
+          getItemKey={(key: string) => key}
+          getItemLabel={(label: string) => label}
+          value={itemsProps.status}
+          items={statusArray}
+          onChange={({ value }) => onChangeField(value, 'status')}
+        />
+      </div>
       <Switch
-        onChange={onChangeSwitch('disabled')}
-        label='disabled'
+        onChange={({ checked }) => onChangeField(checked, 'disabled')}
+        label='Состояние блокировки'
+        size='xs'
         checked={itemsProps.disabled}
       />
-      <Select
-        label='size'
-        getItemKey={(key: TextFieldPropSize) => key}
-        getItemLabel={(label: TextFieldPropSize) => label}
-        value={itemsProps.size}
-        items={sizeArray}
-        onChange={({ value }) => onChangeSize(value)}
-      />
-      <Select
-        label='view'
-        getItemKey={(key: TextFieldPropView) => key}
-        getItemLabel={(label: TextFieldPropView) => label}
-        value={itemsProps.view}
-        items={viewArray}
-        onChange={({ value }) => onChangeView(value)}
-      />
-      <Select
-        label='from'
-        getItemKey={(key: PropForm) => key}
-        getItemLabel={(label: PropForm) => label}
-        value={itemsProps.form}
-        items={formArray}
-        onChange={({ value }) => onChangeForm(value)}
-      />
       <Switch
-        onChange={onChangeSwitch('required')}
-        label='required'
+        onChange={({ checked }) => onChangeField(checked, 'label')}
+        label='Текст заголовка'
+        size='xs'
+        checked={!!itemsProps.label}
+      />
+      <div className={styles.rowSettingsWithoutGap}>
+        <Select
+          className={styles.widthTopLeftFlex}
+          size='xs'
+          disabled={!!itemsProps.label ? false : true}
+          getItemKey={(key: 'top' | 'left') => key}
+          getItemLabel={(label: 'top' | 'left') => label}
+          value={itemsProps.labelPosition || 'top'}
+          items={labelPositionArray}
+          onChange={({ value }) => onChangeField(value, 'labelPosition')}
+        />
+        <TextField
+          className={styles.widthFlex}
+          width='full'
+          disabled={!!itemsProps.label ? false : true}
+          value={itemsProps.label}
+          onChange={({ value }: { value: string | null }) => onChangeField(value, 'label')}
+          size='xs'
+        />
+      </div>
+      <Switch
+        onChange={({ checked }) => onChangeField(checked, 'required')}
+        label='Обязательное заполнение'
+        size='xs'
         checked={itemsProps.required}
       />
-      <TextField value={itemsProps.caption} onChange={onChangeField('caption')} label={'caption'} />
-      <TextField value={itemsProps.label} onChange={onChangeField('label')} label={'label'} />
-      <Select
-        label='status'
-        getItemKey={(key: TextFieldPropStatus) => key}
-        getItemLabel={(label: TextFieldPropStatus) => label}
-        value={itemsProps.status}
-        items={statusArray}
-        onChange={({ value }) => onChangeStatus(value)}
-      />
-      <Select
-        label='labelPosition'
-        getItemKey={(key: 'top' | 'left') => key}
-        getItemLabel={(label: 'top' | 'left') => label}
-        value={itemsProps.labelPosition}
-        items={labelPositionArray}
-        onChange={({ value }) => onChangeLabelPosition(value)}
-      />
+      <div className={styles.columnSettingsWithoutRow}>
+        <Switch
+          onChange={({ checked }) => onChangeField(checked, 'caption')}
+          label='Текст подписи'
+          size='xs'
+          checked={!!itemsProps.caption}
+        />
+        <TextField
+          size='xs'
+          value={itemsProps.caption}
+          onChange={({ value }: { value: string | null }) => onChangeField(value, 'caption')}
+        />
+      </div>
       <TextField
         value={itemsProps.placeholder}
-        onChange={onChangeField('placeholder')}
-        label={'placeholder'}
+        onChange={({ value }: { value: string | null }) => onChangeField(value, 'placeholder')}
+        size='xs'
+        label={'Текст placeholder'}
+      />
+      <TextField
+        label='Количество вариантов'
+        type='number'
+        size='xs'
+        value={`${itemsProps.items.length}`}
+        onChange={onChangeItemsCount}
       />
       <Switch
-        onChange={onChangeSwitch('isLoading')}
-        label='isLoading'
-        checked={itemsProps.isLoading}
-      />
-      <Switch
-        onChange={onChangeSwitch('multiple')}
-        label='multiple'
+        onChange={({ checked }) => onChangeField(checked, 'multiple')}
+        label='Мультивыбор'
+        size='xs'
         checked={itemsProps.multiple}
       />
-    </>
+      {itemsProps.multiple ? (
+        <Combobox
+          multiple
+          label='Активный элемент'
+          size='xs'
+          getItemKey={(key: comboboxItemType) => key.id}
+          value={Array.isArray(itemsProps.value) ? itemsProps.value : undefined}
+          items={itemsProps.items}
+          onChange={({ value }) => onChangeField(value, 'value')}
+        />
+      ) : (
+        <Select
+          label='Активный элемент'
+          size='xs'
+          getItemKey={(key: comboboxItemType) => key.id}
+          value={Array.isArray(itemsProps.value) ? undefined : itemsProps.value}
+          items={itemsProps.items}
+          onChange={({ value }) => onChangeField(value, 'value')}
+        />
+      )}
+      <Collapse
+        label='Название вариантов'
+        size='xs'
+        isOpen={isOpenVariable}
+        onClick={() => setOpenVariable(!isOpenVariable)}>
+        {itemsProps.items.map((line, index) => {
+          return (
+            <>
+              <div className={styles.rowSettingsCollapse}>
+                <TextField
+                  className={styles.widthFlex}
+                  size='xs'
+                  key={index}
+                  label={`Вариант ${index + 1}`}
+                  value={`${line.label}`}
+                  onChange={event => onLinesLabelEdit(event.value, index)}
+                />
+                <Select
+                  className={styles.widthFlex}
+                  label='Группа'
+                  size='xs'
+                  getItemKey={(key: string) => key}
+                  getItemLabel={(label: string) => label}
+                  value={line.group}
+                  items={itemsProps.groups}
+                  onChange={event => onLinesGroupEdit(event.value, index)}
+                />
+              </div>
+            </>
+          )
+        })}
+      </Collapse>
+      <Collapse
+        label='Настройка выпадающего списка'
+        size='xs'
+        isOpen={isOpenList}
+        onClick={() => setOpenList(!isOpenList)}>
+        <div className={styles.columnSettingsWithoutRow}>
+          <Select
+            label='Форма'
+            size='xs'
+            getItemKey={(key: string) => key}
+            getItemLabel={(label: string) => label}
+            value={itemsProps.dropdownForm || 'default'}
+            items={dropDownArray}
+            onChange={({ value }) => onChangeField(value, 'dropdownForm')}
+          />
+          <Switch
+            onChange={({ checked }) => onChangeField(checked, 'isLoading')}
+            label='Состояние загрузки'
+            size='xs'
+            checked={itemsProps.isLoading}
+          />
+          <Switch
+            onChange={({ checked }) => onChangeField(checked, 'groupsActive')}
+            label='Группировка пунктов'
+            size='xs'
+            checked={itemsProps.groupsActive}
+          />
+        </div>
+      </Collapse>
+    </div>
   )
 }
