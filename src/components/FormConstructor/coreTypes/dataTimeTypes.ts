@@ -16,6 +16,7 @@ export type DataTimeProps = {
   multiplicityHours: number
   multiplicityMinutes: number
   multiplicitySeconds: number
+  events: Date[]
 } & BaseProps
 
 export type BrandDataTimeProps = BrandProps<DataTimeProps, 'DataTime'>

@@ -16,84 +16,48 @@ export const useItemsHandlers = (
       }),
     )
   }
-  const onChangeType = ({ value }: { value: DateTimePropType | null }) => {
-    if (selectedElement && value) {
+
+  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+    if (selectedElement) {
       const newProps: BrandDataTimeProps = {
         props: { ...selectedElementProps },
         type: 'DataTime',
       }
-      newProps.props.type = value
+      let itemsProps: Date[] = newProps.props.events
+      const currentLength = itemsProps.length
+      if (currentLength && Number(value) > currentLength) {
+        for (let i = currentLength; i < Number(value); i++) {
+          itemsProps = [...itemsProps, new Date()]
+        }
+      } else {
+        for (let i = 0; i < currentLength - Number(value); i++) {
+          itemsProps = [...itemsProps.slice(0, Number(value))]
+        }
+      }
+      if (Number(value) === 1 && itemsProps.length === 0) {
+        itemsProps = [...itemsProps, new Date()]
+      }
+      newProps.props.events = itemsProps
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeView = ({ value }: { value: DateTimePropView | null }) => {
-    if (selectedElement && value) {
+
+  const onChangeField = (
+    value: DateTimePropView | DateTimePropType | Date | null | number | Date[],
+    field: keyof DataTimeProps,
+  ) => {
+    if (selectedElement) {
       const newProps: BrandDataTimeProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'DataTime',
       }
-      newProps.props.view = value
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeMinDate = ({ value }: { value: Date | null }) => {
-    if (selectedElement && value) {
-      const newProps: BrandDataTimeProps = {
-        props: { ...selectedElementProps },
-        type: 'DataTime',
-      }
-      newProps.props.minDate = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeMaxDate = ({ value }: { value: Date | null }) => {
-    if (selectedElement && value) {
-      const newProps: BrandDataTimeProps = {
-        props: { ...selectedElementProps },
-        type: 'DataTime',
-      }
-      newProps.props.maxDate = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeMultiplicityHours = ({ value }: { value: string | null }) => {
-    if (selectedElement && value) {
-      const newProps: BrandDataTimeProps = {
-        props: { ...selectedElementProps },
-        type: 'DataTime',
-      }
-      newProps.props.multiplicityHours = +value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeMultiplicityMinutes = ({ value }: { value: string | null }) => {
-    if (selectedElement && value) {
-      const newProps: BrandDataTimeProps = {
-        props: { ...selectedElementProps },
-        type: 'DataTime',
-      }
-      newProps.props.multiplicityMinutes = +value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeMultiplicitySeconds = ({ value }: { value: string | null }) => {
-    if (selectedElement && value) {
-      const newProps: BrandDataTimeProps = {
-        props: { ...selectedElementProps },
-        type: 'DataTime',
-      }
-      newProps.props.multiplicitySeconds = +value
-      onDispatch(selectedElement, newProps)
-    }
-  }
+
   return {
-    onChangeMultiplicityHours,
-    onChangeMultiplicityMinutes,
-    onChangeMultiplicitySeconds,
-    onChangeType,
-    onChangeView,
-    onChangeMinDate,
-    onChangeMaxDate,
+    onChangeItemsCount,
+    onChangeField,
     itemsProps: {
       type: selectedElementProps.type,
       view: selectedElementProps.view,
@@ -102,6 +66,7 @@ export const useItemsHandlers = (
       multiplicityHours: selectedElementProps.multiplicityHours,
       multiplicityMinutes: selectedElementProps.multiplicityMinutes,
       multiplicitySeconds: selectedElementProps.multiplicitySeconds,
+      events: selectedElementProps.events,
     },
   }
 }
