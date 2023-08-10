@@ -9,6 +9,7 @@ import { useItemsHandlers } from './ItemsService'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { FilledSettings } from '../FilledSettings'
+import { Text } from '@consta/uikit/Text'
 
 export const ButtonSettings = () => {
   const { itemsProps, onChangeField, onChangeSwitch, onChangeIcon, onChangeIconR } =
@@ -24,18 +25,18 @@ export const ButtonSettings = () => {
               type='text'
               size='xs'
               value={`${itemsProps.label}`}
-              onChange={({ value }: { value: string | null }) => onChangeField(value, 'label')}
+              onChange={({ value }) => onChangeField(value, 'label')}
             />
             <div className={styles.rowSettings}>
               <Select
                 className={styles.sizeFlex}
-                getItemKey={(item: string | undefined) => item || ''}
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemKey={(item: string) => item}
+                getItemLabel={(item: string) => item}
                 items={sizes}
                 label='Размер'
                 size='xs'
                 value={itemsProps.size || 's'}
-                onChange={({ value }: { value: ButtonPropSize | null }) => {
+                onChange={({ value }) => {
                   onChangeField(value, 'size')
                 }}
               />
@@ -43,24 +44,24 @@ export const ButtonSettings = () => {
             </div>
             <div className={styles.rowSettings}>
               <Select
-                getItemKey={(item: string | undefined) => item || ''}
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemKey={(item: string) => item}
+                getItemLabel={(item: string) => item}
                 items={views}
                 label='Вид'
                 size='xs'
                 value={itemsProps.view}
-                onChange={({ value }: { value: ButtonPropView | null }) => {
+                onChange={({ value }) => {
                   onChangeField(value, 'view')
                 }}
               />
               <Select
-                getItemKey={(item: string | undefined) => item || ''}
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemKey={(item: string) => item}
+                getItemLabel={(item: string) => item}
                 items={forms}
                 label='Форма'
                 size='xs'
                 value={itemsProps.form}
-                onChange={({ value }: { value: ButtonPropForm | null }) => {
+                onChange={({ value }) => {
                   onChangeField(value, 'form')
                 }}
               />
@@ -88,8 +89,8 @@ export const ButtonSettings = () => {
                   onChange={onChangeSwitch('icon')}
                 />
                 <Select
-                  getItemKey={(item: string | undefined) => item || ''}
-                  getItemLabel={(item: string | undefined) => item || ''}
+                  getItemKey={(item: string) => item}
+                  getItemLabel={(item: string) => item}
                   items={icons}
                   size='xs'
                   disabled={!!itemsProps.icon ? false : true}
@@ -104,8 +105,8 @@ export const ButtonSettings = () => {
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
                       onClick={onClick}>
-                      {React.createElement(Icons[item])}
-                      <div>{item}</div>
+                      {React.createElement(Icons[item], { size: 'xs' })}
+                      <Text size='xs'>{item}</Text>
                     </div>
                   )}
                 />
@@ -118,8 +119,8 @@ export const ButtonSettings = () => {
                   onChange={onChangeSwitch('iconR')}
                 />
                 <Select
-                  getItemKey={(item: string | undefined) => item || ''}
-                  getItemLabel={(item: string | undefined) => item || ''}
+                  getItemKey={(item: string) => item}
+                  getItemLabel={(item: string) => item}
                   items={icons}
                   size='xs'
                   disabled={!!itemsProps.iconR ? false : true}
@@ -134,8 +135,8 @@ export const ButtonSettings = () => {
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
                       onClick={onClick}>
-                      {React.createElement(Icons[item])}
-                      <div>{item}</div>
+                      {React.createElement(Icons[item], { size: 'xs' })}
+                      <Text size='xs'>{item}</Text>
                     </div>
                   )}
                 />
@@ -149,8 +150,8 @@ export const ButtonSettings = () => {
                 onChange={onChangeSwitch('onlyIcon')}
               />
               <Select
-                getItemKey={(item: string | undefined) => item || ''}
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemKey={(item: string) => item}
+                getItemLabel={(item: string) => item}
                 items={icons}
                 size='xs'
                 disabled={!itemsProps.onlyIcon}
@@ -165,8 +166,8 @@ export const ButtonSettings = () => {
                     aria-selected={active}
                     onMouseEnter={onMouseEnter}
                     onClick={onClick}>
-                    {React.createElement(Icons[item])}
-                    <div>{item}</div>
+                    {React.createElement(Icons[item], { size: 'xs' })}
+                    <Text size='xs'>{item}</Text>
                   </div>
                 )}
               />
@@ -174,7 +175,7 @@ export const ButtonSettings = () => {
           </div>
           <Switch
             className={styles.modalPadding}
-            checked={itemsProps.activeAction ?? false}
+            checked={itemsProps.activeAction}
             label='Модальное окно при нажатии'
             size='xs'
             onChange={onChangeSwitch('activeAction')}
