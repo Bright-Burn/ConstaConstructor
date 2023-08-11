@@ -10,6 +10,7 @@ import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@cons
 export type selectitemType = {
   id: number
   label: string
+  group?: string
 }
 
 export type PropForm =
@@ -42,6 +43,9 @@ export type SelectProps = {
   labelPosition?: 'top' | 'left'
   placeholder?: string
   isLoading?: boolean
+  dropdownForm?: 'brick' | 'default' | 'round'
+  groups: string[]
+  groupsActive?: boolean
   onChange: () => void
 } & BaseProps &
   TextContent
