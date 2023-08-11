@@ -7,6 +7,7 @@ import {
   SaveNewProject,
   SetNewElementDraggableElem,
   SetNewSelectedElement,
+  UpdateParentIdElement,
 } from './payload'
 import { formConstructorSlice } from './formElementsSlice'
 import {
@@ -72,6 +73,18 @@ export const setSelectedElement =
           ),
         )
       }
+    }
+  }
+
+export const updateParentIdElement =
+  (payload: UpdateParentIdElement) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const element = selectById(getState(), payload.elementId)
+    const parentElement = selectById(getState(), payload.parentId)
+    if (!element) return
+    const newElement = { ...element, parentId: payload.parentId }
+    if (parentElement?.type === 'Layout') {
+      dispatch(deleteFormElement(payload.elementId))
+      dispatch(addNewFormElement([{ element: newElement, parent: payload.parentId }]))
     }
   }
 
