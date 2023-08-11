@@ -74,25 +74,21 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
         <>
           <div className={styles.rowSettings}>
             <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={sizes}
               label='Размер'
               size='xs'
               value={props.size}
-              onChange={({ value }) => {
-                onChangeSize(value)
-              }}
+              onChange={({ value }) => onChangeSize(value)}
             />
             <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={icons}
               size='xs'
               value={props.icons}
-              onChange={({ value }) => {
-                onChangeIcon(value)
-              }}
+              onChange={({ value }) => onChangeIcon(value)}
               renderItem={({ item, active, onClick, onMouseEnter }) => (
                 <div
                   className={styles.iconItem}
@@ -113,15 +109,13 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
             />
           </div>
           <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
+            getItemKey={(item: string) => item}
+            getItemLabel={(item: string) => item}
             items={views}
             label='Вид'
             size='xs'
             value={props.view}
-            onChange={({ value }) => {
-              onChangeView(value)
-            }}
+            onChange={({ value }) => onChangeView(value)}
           />
         </>
       ) : null}
