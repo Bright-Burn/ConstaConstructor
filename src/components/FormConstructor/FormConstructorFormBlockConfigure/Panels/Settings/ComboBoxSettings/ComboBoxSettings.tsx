@@ -11,9 +11,8 @@ import {
   viewArray,
 } from './types'
 import { Switch } from '@consta/uikit/Switch'
-import { PropForm, comboboxItemType, ComboboxProps } from '../../../../coreTypes'
+import { comboboxItemType, ComboboxProps } from '../../../../coreTypes'
 import { ComboBoxElement } from '../../../../coreTypes/comboBoxTypes'
-import { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
 import { Text } from '@consta/uikit/Text'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import styles from './styles.module.css'
@@ -35,7 +34,6 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
   )
   const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
   const [isOpenList, setOpenList] = useState<boolean>(false)
-  const [lines, setLines] = useState<comboboxItemType[]>(itemsProps.items)
 
   const onLinesLabelEdit = (value: string | null, index: number) => {
     const newLines = [...itemsProps.items]
@@ -56,8 +54,8 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           className={styles.widthFlex}
           label='Размер'
           size='xs'
-          getItemKey={(key: TextFieldPropSize) => key}
-          getItemLabel={(label: TextFieldPropSize) => label}
+          getItemKey={(key: string) => key}
+          getItemLabel={(label: string) => label}
           value={itemsProps.size}
           items={sizeArray}
           onChange={({ value }) => onChangeField(value, 'size')}
@@ -69,7 +67,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           <ChoiceGroup
             value={itemsProps.view}
             items={viewArray}
-            getItemLabel={(label: TextFieldPropView) => label}
+            getItemLabel={(label: string) => label}
             view='ghost'
             size='xs'
             name='ChoiceGroupExample'
@@ -81,8 +79,8 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         <Select
           label='Форма'
           size='xs'
-          getItemKey={(key: PropForm) => key}
-          getItemLabel={(label: PropForm) => label}
+          getItemKey={(key: string) => key}
+          getItemLabel={(label: string) => label}
           value={itemsProps.form || 'default'}
           items={formArray}
           onChange={({ value }) => onChangeField(value, 'form')}
@@ -114,8 +112,8 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           className={styles.widthTopLeftFlex}
           size='xs'
           disabled={!!itemsProps.label ? false : true}
-          getItemKey={(key: 'top' | 'left') => key}
-          getItemLabel={(label: 'top' | 'left') => label}
+          getItemKey={(key: string) => key}
+          getItemLabel={(label: string) => label}
           value={itemsProps.labelPosition || 'top'}
           items={labelPositionArray}
           onChange={({ value }) => onChangeField(value, 'labelPosition')}
@@ -125,7 +123,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           width='full'
           disabled={!!itemsProps.label ? false : true}
           value={itemsProps.label}
-          onChange={({ value }: { value: string | null }) => onChangeField(value, 'label')}
+          onChange={({ value }) => onChangeField(value, 'label')}
           size='xs'
         />
       </div>
@@ -144,13 +142,14 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         />
         <TextField
           size='xs'
+          disabled={!!itemsProps.caption ? false : true}
           value={itemsProps.caption}
-          onChange={({ value }: { value: string | null }) => onChangeField(value, 'caption')}
+          onChange={({ value }) => onChangeField(value, 'caption')}
         />
       </div>
       <TextField
         value={itemsProps.placeholder}
-        onChange={({ value }: { value: string | null }) => onChangeField(value, 'placeholder')}
+        onChange={({ value }) => onChangeField(value, 'placeholder')}
         size='xs'
         label={'Текст placeholder'}
       />
@@ -235,16 +234,16 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
             onChange={({ value }) => onChangeField(value, 'dropdownForm')}
           />
           <Switch
-            onChange={({ checked }) => onChangeField(checked, 'isLoading')}
             label='Состояние загрузки'
             size='xs'
             checked={itemsProps.isLoading}
+            onChange={({ checked }) => onChangeField(checked, 'isLoading')}
           />
           <Switch
-            onChange={({ checked }) => onChangeField(checked, 'groupsActive')}
             label='Группировка пунктов'
             size='xs'
             checked={itemsProps.groupsActive}
+            onChange={({ checked }) => onChangeField(checked, 'groupsActive')}
           />
         </div>
       </Collapse>
