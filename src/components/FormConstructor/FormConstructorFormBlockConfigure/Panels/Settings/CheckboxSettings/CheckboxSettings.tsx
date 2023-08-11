@@ -37,22 +37,18 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
             label='Текст'
             size='xs'
             value={itemsProps.label}
-            onChange={({ value }) => {
-              onChangeField(value, 'label')
-            }}
+            onChange={({ value }) => onChangeField(value, 'label')}
           />
           <div className={styles.rowSettings}>
             <Select
               className={styles.widthFlex}
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={sizes}
               label='Размер'
               size='xs'
               value={itemsProps.size || 's'}
-              onChange={({ value }) => {
-                onChangeField(value, 'size')
-              }}
+              onChange={({ value }) => onChangeField(value, 'size')}
             />
             <div className={styles.columnInRowSettings}>
               <Text size='xs' view='secondary'>
@@ -61,13 +57,11 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
               <ChoiceGroup
                 items={views}
                 value={itemsProps.view}
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemLabel={(item: string) => item}
                 name='ChoiceGroupExample'
                 size='xs'
                 view='ghost'
-                onChange={({ value }) => {
-                  onChangeField(value, 'view')
-                }}
+                onChange={({ value }) => onChangeField(value, 'view')}
               />
             </div>
           </div>
@@ -78,13 +72,11 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
             <ChoiceGroup
               items={statuses}
               value={itemsProps.align}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemLabel={(item: string) => item}
               name='ChoiceGroupExample'
               size='xs'
               view='ghost'
-              onChange={({ value }) => {
-                onChangeField(value, 'align')
-              }}
+              onChange={({ value }) => onChangeField(value, 'align')}
             />
           </div>
           <Switch
