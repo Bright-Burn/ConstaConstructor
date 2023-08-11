@@ -3,12 +3,7 @@ import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import { Switch } from '@consta/uikit/Switch'
 import { useItemsHandlers } from './ItemsService'
-import {
-  DatePicker,
-  DatePickerPropDateTimeView,
-  DatePickerPropDropdownForm,
-  DatePickerPropType,
-} from '@consta/uikit/DatePicker'
+import { DatePicker } from '@consta/uikit/DatePicker'
 import {
   dateTimeViewArray,
   dropdownFormArray,
@@ -62,8 +57,8 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
         <>
           <div className={styles.rowSettings}>
             <Select
-              getItemKey={(item: DatePickerPropType | undefined) => item || ''}
-              getItemLabel={(item: DatePickerPropType | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={typeArray}
               label='Тип'
               size='xs'
@@ -71,8 +66,8 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               onChange={({ value }) => onChangeField(value, 'type')}
             />
             <Select
-              getItemKey={(item: TextFieldPropSize | undefined) => item || ''}
-              getItemLabel={(item: TextFieldPropSize | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={sizeArray}
               label='Размер'
               size='xs'
@@ -83,8 +78,8 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           <div className={styles.rowSettings}>
             <Select
               className={styles.widthFlex}
-              getItemKey={(item: PropForm | undefined) => item || ''}
-              getItemLabel={(item: PropForm | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={formArray}
               label='Форма'
               size='xs'
@@ -96,7 +91,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               <ChoiceGroup
                 value={itemsProps.view}
                 items={viewArray}
-                getItemLabel={(label: TextFieldPropView) => label}
+                getItemLabel={(label: string) => label}
                 view='ghost'
                 size='xs'
                 name='ChoiceGroupExample'
@@ -107,8 +102,8 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           <div className={styles.rowSettings}>
             <Select
               className={styles.widthFlex}
-              getItemKey={(item: string) => item || ''}
-              getItemLabel={(item: string) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={statusArray}
               label='Статус'
               size='xs'
@@ -151,7 +146,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               width='full'
               disabled={!!itemsProps.label ? false : true}
               value={itemsProps.label}
-              onChange={({ value }: { value: string | null }) => onChangeField(value, 'label')}
+              onChange={({ value }) => onChangeField(value, 'label')}
               size='xs'
             />
           </div>
@@ -172,7 +167,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               size='xs'
               disabled={!!itemsProps.caption ? false : true}
               value={itemsProps.caption}
-              onChange={({ value }: { value: string | null }) => onChangeField(value, 'caption')}
+              onChange={({ value }) => onChangeField(value, 'caption')}
             />
           </div>
           <Switch
@@ -201,8 +196,8 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             isOpen={isOpenDate}
             onClick={() => setOpenDate(!isOpenDate)}>
             <Select
-              getItemKey={(item: DatePickerPropDropdownForm) => item || ''}
-              getItemLabel={(item: DatePickerPropDropdownForm) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={dropdownFormArray}
               label='Форма'
               size='xs'
@@ -210,8 +205,8 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               onChange={({ value }) => onChangeField(value, 'dropdownForm')}
             />
             <Select
-              getItemKey={(item: DatePickerPropDateTimeView) => item || ''}
-              getItemLabel={(item: DatePickerPropDateTimeView) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={dateTimeViewArray}
               label='Вид'
               size='xs'
