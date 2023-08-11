@@ -11,14 +11,17 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
     const items = [
       {
         label: 'Первый',
+        group: 'Первая группа',
         id: 1,
       },
       {
         label: 'Второй',
+        group: 'Первая группа',
         id: 2,
       },
       {
         label: 'Третий',
+        group: 'Первая группа',
         id: 3,
       },
     ]
@@ -36,9 +39,9 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
           label: 'Заголовок',
           labelPosition: 'top',
           placeholder: 'Выберите цвет',
+          groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
           className: '',
           baseProps: {},
-          value: items[0],
           items: items,
           onChange: () => {},
         },

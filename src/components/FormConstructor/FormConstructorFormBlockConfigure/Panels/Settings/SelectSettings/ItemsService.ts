@@ -1,13 +1,12 @@
 import {
   PropForm,
   SelectProps,
-  ISelectedElement,
   selectitemType,
   BrandSelectProps,
   SelectElement,
 } from '../../../../coreTypes'
 import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
   selectedElementProps: SelectProps,
@@ -23,6 +22,7 @@ export const useItemsHandlers = (
       }),
     )
   }
+
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: BrandSelectProps = {
@@ -34,7 +34,7 @@ export const useItemsHandlers = (
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
-          itemsProps = [...itemsProps, { id: i, label: '' + (itemsProps.length + 1) }]
+          itemsProps = [...itemsProps, { id: i + 1, label: '' + (itemsProps.length + 1) }]
         }
       } else {
         for (let i = 0; i < currentLength - Number(value); i++) {
@@ -45,111 +45,51 @@ export const useItemsHandlers = (
       onDispatch(selectedElement, newProps)
     }
   }
+
   const onChangeItems = (items: selectitemType[]) => {
     if (selectedElement && items) {
       const newProps: BrandSelectProps = {
         props: { ...selectedElementProps },
         type: 'SelectForm',
       }
-
       newProps.props.items = [...items]
-      newProps.props.value = items[0]
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeSize = (value: TextFieldPropSize | null) => {
-    if (selectedElement && value) {
+
+  const onChangeField = (
+    value:
+      | TextFieldPropStatus
+      | PropForm
+      | TextFieldPropView
+      | TextFieldPropSize
+      | 'top'
+      | 'left'
+      | boolean
+      | null
+      | selectitemType
+      | string,
+    field: keyof SelectProps,
+  ) => {
+    if (selectedElement) {
       const newProps: BrandSelectProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'SelectForm',
       }
-
-      newProps.props.size = value
+      if (field === 'label' && value === true) {
+        newProps.props.label = 'Заголовок'
+      }
+      if (field === 'caption' && value === true) {
+        newProps.props.caption = 'Подпись'
+      }
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeView = (value: TextFieldPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: BrandSelectProps = {
-        props: { ...selectedElementProps },
-        type: 'SelectForm',
-      }
 
-      newProps.props.view = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeForm = (value: PropForm | null) => {
-    if (selectedElement && value) {
-      const newProps: BrandSelectProps = {
-        props: { ...selectedElementProps },
-        type: 'SelectForm',
-      }
-
-      newProps.props.form = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeStatus = (value: TextFieldPropStatus | null) => {
-    if (selectedElement && value) {
-      const newProps: BrandSelectProps = {
-        props: { ...selectedElementProps },
-        type: 'SelectForm',
-      }
-
-      newProps.props.status = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
-    if (selectedElement && value) {
-      const newProps: BrandSelectProps = {
-        props: { ...selectedElementProps },
-        type: 'SelectForm',
-      }
-
-      newProps.props.labelPosition = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeField =
-    (propsName: keyof SelectProps) =>
-    ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: BrandSelectProps = {
-          props: {
-            ...selectedElementProps,
-            [propsName]: value || '',
-          },
-          type: 'SelectForm',
-        }
-        onDispatch(selectedElement, newProps)
-      }
-    }
-  const onChangeSwitch =
-    (propsName: keyof SelectProps) =>
-    ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: BrandSelectProps = {
-          props: {
-            ...selectedElementProps,
-            [propsName]: checked,
-          },
-          type: 'SelectForm',
-        }
-        onDispatch(selectedElement, newProps)
-      }
-    }
   return {
     onChangeItemsCount,
-    onChangeForm,
-    onChangeLabelPosition,
     onChangeItems,
-    onChangeStatus,
-    onChangeView,
-    onChangeSize,
     onChangeField,
-    onChangeSwitch,
     itemsProps: {
       disabled: selectedElementProps.disabled,
       size: selectedElementProps.size,
@@ -163,6 +103,10 @@ export const useItemsHandlers = (
       labelPosition: selectedElementProps.labelPosition,
       placeholder: selectedElementProps.placeholder,
       isLoading: selectedElementProps.isLoading,
+      groups: selectedElementProps.groups,
+      groupsActive: selectedElementProps.groupsActive,
+      dropdownForm: selectedElementProps.dropdownForm,
+      value: selectedElementProps.value,
     },
   }
 }
