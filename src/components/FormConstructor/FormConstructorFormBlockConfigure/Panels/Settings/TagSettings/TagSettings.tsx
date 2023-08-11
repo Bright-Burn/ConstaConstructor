@@ -65,15 +65,13 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
             checked={!!itemsProps.icon}
           />
           <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
+            getItemKey={(item: string) => item}
+            getItemLabel={(item: string) => item}
             items={icons}
             disabled={!!itemsProps.icon ? false : true}
             size='xs'
             value={itemsProps.icon}
-            onChange={({ value }) => {
-              onChangeIcon(value)
-            }}
+            onChange={({ value }) => onChangeIcon(value)}
             renderItem={({ item, active, onClick, onMouseEnter }) => (
               <div
                 className={styles.icon}
@@ -82,9 +80,7 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
                 onMouseEnter={onMouseEnter}
                 onClick={onClick}>
                 {React.createElement(Icons[item], { size: 'xs' })}
-                <Text size='xs' view='secondary'>
-                  {item}
-                </Text>
+                <Text size='xs'>{item}</Text>
               </div>
             )}
           />
