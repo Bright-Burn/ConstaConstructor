@@ -36,3 +36,9 @@
 .pagePadding {
   padding-top: var(--space-s);
 }
+
+.icon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}

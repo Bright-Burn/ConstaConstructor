@@ -68,26 +68,22 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
     <div className={styles.BreadcrumbsSettings}>
       <div className={styles.rowSettings}>
         <Select
-          getItemKey={(item: string | undefined) => item || ''}
-          getItemLabel={(item: string | undefined) => item || ''}
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
           items={sizes}
           label='size'
           size='xs'
           value={itemsProps.size}
-          onChange={({ value }) => {
-            onChangeSize(value)
-          }}
+          onChange={({ value }) => onChangeSize(value)}
         />
         <Select
-          getItemKey={(item: string | undefined) => item || ''}
-          getItemLabel={(item: string | undefined) => item || ''}
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
           items={fitMode}
           label='fitMode'
           size='xs'
           value={itemsProps.fitMode}
-          onChange={({ value }) => {
-            onChangeFitMode(value)
-          }}
+          onChange={({ value }) => onChangeFitMode(value)}
         />
       </div>
       <>
@@ -120,8 +116,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
                 />
                 <Select
                   className={styles.iconAlign}
-                  getItemKey={(item: string | undefined) => item || ''}
-                  getItemLabel={(item: string | undefined) => item || ''}
+                  getItemKey={(item: string) => item}
+                  getItemLabel={(item: string) => item}
                   items={icons}
                   disabled={!disabledPage}
                   size='xs'
@@ -129,7 +125,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
                   onChange={event => onPageIconEditLeft(event.value, index)}
                   renderItem={({ item, active, onClick, onMouseEnter }) => (
                     <div
-                      style={{ display: 'flex', alignItems: 'center' }}
+                      className={styles.icon}
                       role='option'
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
