@@ -55,16 +55,14 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
           />
           <div className={styles.rowSettings}>
             <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={sizes}
               className={styles.widthFlex}
               label='Размер'
               size='xs'
               value={itemsProps.size || 's'}
-              onChange={({ value }: { value: TextPropSize | null }) => {
-                onChangeField(value, 'size')
-              }}
+              onChange={({ value }) => onChangeField(value, 'size')}
             />
             <div className={styles.columnSettings}>
               <Text size='xs' view='secondary'>
@@ -78,34 +76,28 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
                 view='ghost'
                 onlyIcon
                 name='ChoiceGroupExample'
-                onChange={({ value }) => {
-                  onChangeField(value, 'align')
-                }}
+                onChange={({ value }) => onChangeField(value, 'align')}
               />
             </div>
           </div>
           <div className={styles.rowSettings}>
             <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={item => item}
+              getItemLabel={item => item}
               items={weight}
               label='Толщина'
               size='xs'
               value={itemsProps.weight}
-              onChange={({ value }: { value: string | null }) => {
-                onChangeField(value, 'weight')
-              }}
+              onChange={({ value }) => onChangeField(value, 'weight')}
             />
             <Select
-              getItemKey={(item: string | undefined) => item || ''}
-              getItemLabel={(item: string | undefined) => item || ''}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={views}
               label='Вид'
               size='xs'
               value={itemsProps.view}
-              onChange={({ value }: { value: TextPropView | null }) => {
-                onChangeField(value, 'view')
-              }}
+              onChange={({ value }) => onChangeField(value, 'view')}
             />
           </div>
           <Collapse
@@ -115,26 +107,22 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
             onClick={() => setOpen(!isOpen)}>
             <div className={styles.rowSettings}>
               <Select
-                getItemKey={(item: string | undefined) => item || ''}
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemKey={(item: string) => item}
+                getItemLabel={(item: string) => item}
                 items={lineHeight}
                 label='Высота строки'
                 size='xs'
                 value={itemsProps.lineHeight}
-                onChange={({ value }: { value: TextPropLineHeight | null }) => {
-                  onChangeField(value, 'lineHeight')
-                }}
+                onChange={({ value }) => onChangeField(value, 'lineHeight')}
               />
               <Select
-                getItemKey={(item: string | undefined) => item || ''}
-                getItemLabel={(item: string | undefined) => item || ''}
+                getItemKey={item => item}
+                getItemLabel={item => item}
                 items={spacing}
                 label='Отступ между буквами'
                 size='xs'
                 value={itemsProps.spacing}
-                onChange={({ value }: { value: string | null }) => {
-                  onChangeField(value, 'spacing')
-                }}
+                onChange={({ value }) => onChangeField(value, 'spacing')}
               />
             </div>
             <div className={`${styles.columnSettings} paddingCollapse`}>
