@@ -2,13 +2,23 @@ import { Select } from '@consta/uikit/Select'
 import { useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
-import { Button } from '@consta/uikit/Button'
-import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
-
+import {
+  dropdownFormArray,
+  formArray,
+  labelPositionArray,
+  sizeArray,
+  statusArray,
+  viewArray,
+} from './types'
 import { Switch } from '@consta/uikit/Switch'
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm, tabItemType, SelectProps, SelectElement } from '../../../../coreTypes'
+import { tabItemType, SelectProps, SelectElement } from '../../../../coreTypes'
 import { FC } from 'react'
+import { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
+import { PropForm, selectitemType } from '../../../../coreTypes'
+import styles from './styles.module.css'
+import { Text } from '@consta/uikit/Text'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Collapse } from '@consta/uikit/Collapse'
 
 type SelectSettingsType = {
   selectedElementProps: SelectProps
@@ -19,145 +29,208 @@ export const SelectSettings: FC<SelectSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const {
-    itemsProps,
-    onChangeItemsCount,
-    onChangeForm,
-    onChangeItems,
-    onChangeStatus,
-    onChangeView,
-    onChangeSwitch,
-    onChangeSize,
-    onChangeField,
-    onChangeLabelPosition,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
 
-  const [tabs, setTabs] = useState<tabItemType[]>(itemsProps.items)
-  const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
-  const labelsEditingHandler = (value: boolean) => {
-    setTabs(itemsProps.items)
-    setIsLabelsEditing(value)
+  const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
+  const [isOpenList, setOpenList] = useState<boolean>(false)
+
+  const onLinesLabelEdit = (value: string | null, index: number) => {
+    const newLines = [...itemsProps.items]
+    newLines[index] = { ...newLines[index], label: `${value}` }
+    onChangeItems(newLines)
   }
-  const applyNewTabs = () => {
-    onChangeItems(tabs)
-    setIsLabelsEditing(false)
+
+  const onLinesGroupEdit = (value: string | null, index: number) => {
+    const newLines = [...itemsProps.items]
+    newLines[index] = { ...newLines[index], group: `${value}` }
+    onChangeItems(newLines)
   }
-  const onTabLabelEdit = (value: string | null, index: number) => {
-    const newTabs = [...tabs]
-    newTabs[index] = { ...newTabs[index], label: `${value}` }
-    setTabs([...newTabs])
-  }
+
   return (
-    <>
-      {!isLabelsEditing && (
-        <>
-          <TextField
-            label='Количество вариантов'
-            type='number'
-            value={`${itemsProps.items.length}`}
-            onChange={onChangeItemsCount}
-          />
-          <Button
-            view='secondary'
-            className='m-b-xs m-t-xs'
-            label={'Сменить названия вариантов'}
-            onClick={() => labelsEditingHandler(true)}
-          />
-        </>
-      )}
-      {isLabelsEditing && (
-        <>
-          {tabs.map((tab, index) => {
-            return (
-              <TextField
-                key={index}
-                label={`${index + 1}`}
-                value={`${tab.label}`}
-                onChange={event => onTabLabelEdit(event.value, index)}
-              />
-            )
-          })}
-          <Button
+    <div className={styles.SelectSettings}>
+      <div className={styles.rowSettings}>
+        <Select
+          className={styles.widthFlex}
+          label='Размер'
+          size='xs'
+          getItemKey={(key: string) => key}
+          getItemLabel={(label: string) => label}
+          value={itemsProps.size}
+          items={sizeArray}
+          onChange={({ value }) => onChangeField(value, 'size')}
+        />
+        <div className={styles.columnSettings}>
+          <Text view='secondary' size='xs'>
+            Вид
+          </Text>
+          <ChoiceGroup
+            value={itemsProps.view}
+            items={viewArray}
+            getItemLabel={(label: string) => label}
+            view='ghost'
             size='xs'
-            className='m-b-xs m-t-xs'
-            label='Применить'
-            onClick={() => applyNewTabs()}
+            name='ChoiceGroupExample'
+            onChange={({ value }) => onChangeField(value, 'view')}
           />
-          <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
-        </>
-      )}
+        </div>
+      </div>
+      <div className={styles.rowSettings}>
+        <Select
+          label='Форма'
+          size='xs'
+          getItemKey={(key: string) => key}
+          getItemLabel={(label: string) => label}
+          value={itemsProps.form || 'default'}
+          items={formArray}
+          onChange={({ value }) => onChangeField(value, 'form')}
+        />
+        <Select
+          label='Статус'
+          size='xs'
+          getItemKey={(key: string) => key}
+          getItemLabel={(label: string) => label}
+          value={itemsProps.status}
+          items={statusArray}
+          onChange={({ value }) => onChangeField(value, 'status')}
+        />
+      </div>
       <Switch
-        onChange={onChangeSwitch('disabled')}
-        label='disabled'
+        onChange={({ checked }) => onChangeField(checked, 'disabled')}
+        label='Состояние блокировки'
+        size='xs'
         checked={itemsProps.disabled}
       />
-      <Select
-        label='size'
-        getItemKey={(key: TextFieldPropSize) => key}
-        getItemLabel={(label: TextFieldPropSize) => label}
-        value={itemsProps.size}
-        items={sizeArray}
-        onChange={({ value }) => onChangeSize(value)}
-      />
-      <Select
-        label='view'
-        getItemKey={(key: TextFieldPropView) => key}
-        getItemLabel={(label: TextFieldPropView) => label}
-        value={itemsProps.view}
-        items={viewArray}
-        onChange={({ value }) => onChangeView(value)}
-      />
-      <Select
-        label='form'
-        getItemKey={(key: PropForm) => key}
-        getItemLabel={(label: PropForm) => label}
-        value={itemsProps.form}
-        items={formArray}
-        onChange={({ value }) => onChangeForm(value)}
-      />
       <Switch
-        style={{ marginTop: '8px' }}
-        onChange={onChangeSwitch('required')}
-        label='required'
+        onChange={({ checked }) => onChangeField(checked, 'label')}
+        label='Текст заголовка'
+        size='xs'
+        checked={!!itemsProps.label}
+      />
+      <div className={styles.rowSettingsWithoutGap}>
+        <Select
+          className={styles.widthTopLeftFlex}
+          size='xs'
+          disabled={!!itemsProps.label ? false : true}
+          getItemKey={(key: string) => key}
+          getItemLabel={(label: string) => label}
+          value={itemsProps.labelPosition || 'top'}
+          items={labelPositionArray}
+          onChange={({ value }) => onChangeField(value, 'labelPosition')}
+        />
+        <TextField
+          className={styles.widthFlex}
+          width='full'
+          disabled={!!itemsProps.label ? false : true}
+          value={itemsProps.label}
+          onChange={({ value }) => onChangeField(value, 'label')}
+          size='xs'
+        />
+      </div>
+      <Switch
+        onChange={({ checked }) => onChangeField(checked, 'required')}
+        label='Обязательное заполнение'
+        size='xs'
         checked={itemsProps.required}
       />
+      <div className={styles.columnSettingsWithoutRow}>
+        <Switch
+          onChange={({ checked }) => onChangeField(checked, 'caption')}
+          label='Текст подписи'
+          size='xs'
+          checked={!!itemsProps.caption}
+        />
+        <TextField
+          size='xs'
+          disabled={!!itemsProps.caption ? false : true}
+          value={itemsProps.caption}
+          onChange={({ value }) => onChangeField(value, 'caption')}
+        />
+      </div>
+      <TextField
+        value={itemsProps.placeholder}
+        onChange={({ value }) => onChangeField(value, 'placeholder')}
+        size='xs'
+        label={'Текст placeholder'}
+      />
+      <TextField
+        label='Количество вариантов'
+        type='number'
+        size='xs'
+        value={`${itemsProps.items.length}`}
+        onChange={onChangeItemsCount}
+      />
       <Select
-        label='status'
-        getItemKey={(key: TextFieldPropStatus) => key}
-        getItemLabel={(label: TextFieldPropStatus) => label}
-        value={itemsProps.status}
-        items={statusArray}
-        onChange={({ value }) => onChangeStatus(value)}
+        label='Активный элемент'
+        size='xs'
+        getItemKey={(key: selectitemType) => key.id}
+        value={itemsProps.value}
+        items={itemsProps.items}
+        onChange={({ value }) => onChangeField(value, 'value')}
       />
-      <TextField
-        label='caption'
-        value={`${itemsProps.caption || ''}`}
-        onChange={onChangeField('caption')}
-      />
-      <TextField
-        label='label'
-        value={`${itemsProps.label || ''}`}
-        onChange={onChangeField('label')}
-      />
-      <Select
-        label='labelPosition'
-        getItemKey={(key: 'top' | 'left') => key}
-        getItemLabel={(label: 'top' | 'left') => label}
-        value={itemsProps.labelPosition}
-        items={labelPositionArray}
-        onChange={({ value }) => onChangeLabelPosition(value)}
-      />
-      <TextField
-        label='placeholder'
-        value={`${itemsProps.placeholder || ''}`}
-        onChange={onChangeField('placeholder')}
-      />
-      <Switch
-        style={{ marginTop: '8px' }}
-        onChange={onChangeSwitch('isLoading')}
-        label='isLoading'
-        checked={itemsProps.isLoading}
-      />
-    </>
+      <Collapse
+        label='Название пунктов в меню'
+        size='xs'
+        isOpen={isOpenVariable}
+        onClick={() => setOpenVariable(!isOpenVariable)}>
+        {itemsProps.items.map((line, index) => {
+          return (
+            <div className={styles.rowSettingsCollapse}>
+              <TextField
+                className={styles.widthFlex}
+                size='xs'
+                key={index}
+                label={`Вариант ${index + 1}`}
+                value={`${line.label}`}
+                onChange={event => onLinesLabelEdit(event.value, index)}
+              />
+              <Select
+                className={styles.widthFlex}
+                label='Группа'
+                size='xs'
+                disabled={!itemsProps.groupsActive}
+                getItemKey={(key: string) => key}
+                getItemLabel={(label: string) => label}
+                value={line.group}
+                items={itemsProps.groups}
+                onChange={event => onLinesGroupEdit(event.value, index)}
+              />
+            </div>
+          )
+        })}
+      </Collapse>
+      <Collapse
+        label='Настройка выпадающего списка'
+        size='xs'
+        isOpen={isOpenList}
+        onClick={() => setOpenList(!isOpenList)}>
+        <div className={styles.columnSettingsWithoutRow}>
+          <Select
+            className={styles.widthTopLeftFlex}
+            size='xs'
+            label='Форма'
+            getItemKey={(key: string) => key}
+            getItemLabel={(label: string) => label}
+            value={itemsProps.dropdownForm || 'default'}
+            items={dropdownFormArray}
+            onChange={({ value }) => onChangeField(value, 'dropdownForm')}
+          />
+          <Switch
+            onChange={({ checked }) => onChangeField(checked, 'isLoading')}
+            label='Состояние загрузки'
+            size='xs'
+            checked={itemsProps.isLoading}
+          />
+          <Switch
+            onChange={({ checked }) => onChangeField(checked, 'groupsActive')}
+            label='Группировка пунктов'
+            size='xs'
+            checked={itemsProps.groupsActive}
+          />
+        </div>
+      </Collapse>
+    </div>
   )
 }
