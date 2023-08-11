@@ -22,17 +22,19 @@ const fillValues = [
 interface IFilledSettings {
   selectedElementProps: ButtonProps | TextFieldProps
   selectedElement: ButtonElement | TextFieldElement
+  element: 'Button' | 'TextField'
 }
 export const FilledSettings: React.FC<IFilledSettings> = ({
   selectedElementProps,
   selectedElement,
+  element,
 }) => {
   const dispatch = useAppDispatch()
 
   function onFilledChange({ value }: { value: fillType | null }): void {
     const newProps = {
       props: { ...selectedElementProps, filled: value?.name === 'filled' ? true : false },
-      type: 'Button',
+      type: element,
     }
 
     if (selectedElement) {

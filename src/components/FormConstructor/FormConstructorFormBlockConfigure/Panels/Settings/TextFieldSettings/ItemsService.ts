@@ -18,11 +18,10 @@ export const useItemsHandlers = (
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
         const newProps: BrandTextFieldProps = {
-          props: { ...selectedElementProps },
+          props: { ...selectedElementProps, [propsName]: value },
           type: 'TextField',
         }
-        // @ts-ignore
-        newProps.props[propsName] = value || ''
+
         onDispatch(selectedElement, newProps)
       }
     }
@@ -32,11 +31,19 @@ export const useItemsHandlers = (
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
         const newProps: BrandTextFieldProps = {
-          props: { ...selectedElementProps },
+          props: { ...selectedElementProps, [propsName]: checked },
           type: 'TextField',
         }
-        // @ts-ignore
-        newProps.props[propsName] = checked
+        if (propsName === 'label' && checked === true) {
+          newProps.props.label = 'Заголовок'
+        }
+        if (propsName === 'caption' && checked === true) {
+          newProps.props.caption = 'Подпись'
+        }
+        if (propsName === 'maxLength' && checked === true) {
+          newProps.props.maxLength = 1
+        }
+
         onDispatch(selectedElement, newProps)
       }
     }

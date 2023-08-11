@@ -1,4 +1,49 @@
 .textFieldSettings {
   display: flex;
   flex-direction: column;
+  gap: var(--space-s);
+}
+
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+}
+
+.columnSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  flex: 1;
+  align-self: flex-end;
+}
+
+.widthFlex {
+  flex: 1;
+}
+
+.widthTopLeftFlex {
+  flex: 0.5;
+}
+
+.collapseSetting {
+  display: flex;
+  gap: var(--space-s);
+}
+
+.columnSettingsWithoutRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  flex: 1;
+}
+
+.rowSettingsCollapse {
+  display: flex;
+  padding-top: var(--space-s);
+}
+
+.rowSettingsWithoutGap {
+  display: flex;
+  flex-direction: row;
 }
