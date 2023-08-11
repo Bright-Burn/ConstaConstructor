@@ -17,3 +17,8 @@
   flex: 1;
   align-self: flex-end;
 }
+
+.rowSettingsCollapse {
+  display: flex;
+  padding-top: var(--space-s);
+}
