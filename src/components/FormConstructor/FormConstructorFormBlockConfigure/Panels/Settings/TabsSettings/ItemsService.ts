@@ -18,6 +18,7 @@ export const useItemsHandlers = (
       }),
     )
   }
+
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
@@ -110,7 +111,7 @@ export const useItemsHandlers = (
           type: 'Tabs',
         }
         if (propsName === 'view' && checked === true) {
-          newProps.view = 'bordered'
+          onChangeView('bordered')
         }
         if (propsName === 'view' && checked === false) {
           onChangeView(null)
