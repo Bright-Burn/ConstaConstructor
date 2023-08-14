@@ -9,6 +9,7 @@ import {
   setSelectedElement,
   loadProjectFromJson,
   setDraggableElement,
+  changeNamePage,
 } from './reducers'
 import { initialState } from './initialState'
 import { popHistory } from './history/reducers'
@@ -26,6 +27,7 @@ export const formConstructorSlice = createSlice({
     deleteFormElement: deleteFormElement,
     addNewPage: addNewPage,
     changeActivePage: changeActivePage,
+    changeNamePage: changeNamePage,
     deletePage: deletePage,
     popHistory: popHistory,
   },

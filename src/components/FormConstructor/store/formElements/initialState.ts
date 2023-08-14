@@ -35,7 +35,7 @@ export const initialLayout: ILayoutElement = {
   },
 }
 
-const initialPages = [{ id: rootId, name: 'Page1' }]
+const initialPages = [{ id: rootId, name: 'Страница 1' }]
 const initialNumberPage = 1
 
 export const layuoutAdapter = createEntityAdapter<IFormElement | IGroupElement>({
