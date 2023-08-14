@@ -46,6 +46,11 @@ export interface ChangeActivePage {
   id: string
 }
 
+export interface ChangeNamePage {
+  pageName: string
+  id: string
+}
+
 export interface DeletePage {
   id: string
 }

@@ -11,7 +11,7 @@ export const addNewPage = (state: IFormConstructor, { payload }: PayloadAction<n
     ...state.pages,
     {
       id: newPageId,
-      name: `Page ${pagesCount + 1}`,
+      name: `Страница ${pagesCount + 1}`,
     },
   ]
   state.numberOfPages = pagesCount + 1

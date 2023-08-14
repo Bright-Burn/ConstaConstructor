@@ -2,11 +2,28 @@
   overflow: auto;
   height: 3.2rem;
 
-  border-bottom: 1px solid var(--color-typo-system)
+  border-bottom: 1px solid var(--color-typo-system);
 }
 
 .pageBlock {
   display: flex;
   align-items: center;
   margin: 0.2rem;
+}
+
+.popoverPageBlock {
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-s);
+}
+
+.pages {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.iconGrid {
+  margin-right: var(--space-s);
 }
