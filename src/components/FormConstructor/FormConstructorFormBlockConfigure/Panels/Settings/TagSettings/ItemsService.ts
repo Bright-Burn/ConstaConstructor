@@ -1,12 +1,14 @@
-import { useAppSelector } from '../../../../store'
-import { ISelectedElement, TagProps } from '../../../../coreTypes'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
+import { iconNames, ISelectedElement, TagProps } from '../../../../coreTypes'
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 import { TagBasePropGroup, TagBasePropMode } from './types'
-import { iconNames } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<TagProps>()
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: TagProps) => {
@@ -19,23 +21,15 @@ export const useItemsHandlers = () => {
     )
   }
 
-  const onChangeSize = (value: TagBasePropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: TagProps = {
-        ...(selectedElementProps as TagProps),
-      }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
+  const onChangeSize = (size: TagBasePropSize | null) => {
+    if (selectedElement && size) {
+      onDispatch(selectedElement, { ...selectedElementProps, size })
     }
   }
 
-  const onChangeMode = (value: TagBasePropMode | null) => {
-    if (selectedElement && value) {
-      const newProps: TagProps = {
-        ...(selectedElementProps as TagProps),
-      }
-      newProps.mode = value
-      onDispatch(selectedElement, newProps)
+  const onChangeMode = (mode: TagBasePropMode | null) => {
+    if (selectedElement && mode) {
+      onDispatch(selectedElement, { ...selectedElementProps, mode })
     }
   }
 
@@ -43,22 +37,13 @@ export const useItemsHandlers = () => {
     (propsName: keyof TagProps) =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: TagProps = {
-          ...(selectedElementProps as TagProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = value || ''
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: value || '' })
       }
     }
 
-  const onChangeGroup = (value: TagBasePropGroup | null) => {
-    if (selectedElement && value) {
-      const newProps: TagProps = {
-        ...(selectedElementProps as TagProps),
-      }
-      newProps.group = value
-      onDispatch(selectedElement, newProps)
+  const onChangeGroup = (group: TagBasePropGroup | null) => {
+    if (selectedElement && group) {
+      onDispatch(selectedElement, { ...selectedElementProps, group })
     }
   }
 
@@ -66,22 +51,13 @@ export const useItemsHandlers = () => {
     (propsName: keyof TagProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: TagProps = {
-          ...(selectedElementProps as TagProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = checked
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: checked })
       }
     }
 
-  const onChangeIcon = (value: iconNames | null) => {
-    if (selectedElement && value) {
-      const newProps: TagProps = {
-        ...(selectedElementProps as TagProps),
-      }
-      newProps.icon = value
-      onDispatch(selectedElement, newProps)
+  const onChangeIcon = (icon: iconNames | null) => {
+    if (selectedElement && icon) {
+      onDispatch(selectedElement, { ...selectedElementProps, icon })
     }
   }
 
@@ -93,12 +69,12 @@ export const useItemsHandlers = () => {
     onChangeSwitch,
     onChangeIcon,
     itemsProps: {
-      label: (selectedElementProps as TagProps).label,
-      size: (selectedElementProps as TagProps).size,
-      mode: (selectedElementProps as TagProps).mode,
-      group: (selectedElementProps as TagProps).group,
-      iconSwitch: (selectedElementProps as TagProps).Icon,
-      icon: (selectedElementProps as TagProps).icon,
+      label: selectedElementProps.label,
+      size: selectedElementProps.size,
+      mode: selectedElementProps.mode,
+      group: selectedElementProps.group,
+      iconSwitch: selectedElementProps.Icon,
+      icon: selectedElementProps.icon,
     },
   }
 }

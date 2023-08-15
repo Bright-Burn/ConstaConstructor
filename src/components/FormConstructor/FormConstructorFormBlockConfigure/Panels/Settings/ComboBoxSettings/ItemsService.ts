@@ -1,10 +1,15 @@
-import { comboboxItemType, ISelectedElement, ComboboxProps, PropForm } from '../../../../coreTypes'
+import { comboboxItemType, ComboboxProps, ISelectedElement, PropForm } from '../../../../coreTypes'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<ComboboxProps>()
   const dispatch = useAppDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: ComboboxProps) => {
     dispatch(
       setSelectedElement({
@@ -16,9 +21,7 @@ export const useItemsHandlers = () => {
   }
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: ComboboxProps = {
-        ...(selectedElementProps as ComboboxProps),
-      }
+      const newProps: ComboboxProps = { ...selectedElementProps }
       let itemsProps = [...newProps.items]
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
@@ -36,42 +39,25 @@ export const useItemsHandlers = () => {
   }
   const onChangeItems = (items: comboboxItemType[]) => {
     if (selectedElement && items) {
-      const newProps: ComboboxProps = {
-        ...(selectedElementProps as ComboboxProps),
-      }
-      newProps.items = [...items]
-      newProps.value = items[0]
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, items: [...items], value: items[0] })
     }
   }
 
-  const onChangeSize = (value: TextFieldPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: ComboboxProps = {
-        ...(selectedElementProps as ComboboxProps),
-      }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
+  const onChangeSize = (size: TextFieldPropSize | null) => {
+    if (selectedElement && size) {
+      onDispatch(selectedElement, { ...selectedElementProps, size })
     }
   }
 
-  const onChangeView = (value: TextFieldPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: ComboboxProps = {
-        ...(selectedElementProps as ComboboxProps),
-      }
-      newProps.view = value
-      onDispatch(selectedElement, newProps)
+  const onChangeView = (view: TextFieldPropView | null) => {
+    if (selectedElement && view) {
+      onDispatch(selectedElement, { ...selectedElementProps, view })
     }
   }
 
-  const onChangeForm = (value: PropForm | null) => {
-    if (selectedElement && value) {
-      const newProps: ComboboxProps = {
-        ...(selectedElementProps as ComboboxProps),
-      }
-      newProps.form = value
-      onDispatch(selectedElement, newProps)
+  const onChangeForm = (form: PropForm | null) => {
+    if (selectedElement && form) {
+      onDispatch(selectedElement, { ...selectedElementProps, form })
     }
   }
 
@@ -79,32 +65,19 @@ export const useItemsHandlers = () => {
     (propsName: keyof ComboboxProps) =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: ComboboxProps = {
-          ...(selectedElementProps as ComboboxProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = value || ''
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: value || '' })
       }
     }
 
-  const onChangeStatus = (value: TextFieldPropStatus | null) => {
-    if (selectedElement && value) {
-      const newProps: ComboboxProps = {
-        ...(selectedElementProps as ComboboxProps),
-      }
-      newProps.status = value
-      onDispatch(selectedElement, newProps)
+  const onChangeStatus = (status: TextFieldPropStatus | null) => {
+    if (selectedElement && status) {
+      onDispatch(selectedElement, { ...selectedElementProps, status })
     }
   }
 
-  const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
-    if (selectedElement && value) {
-      const newProps: ComboboxProps = {
-        ...(selectedElementProps as ComboboxProps),
-      }
-      newProps.labelPosition = value
-      onDispatch(selectedElement, newProps)
+  const onChangeLabelPosition = (labelPosition: 'top' | 'left' | null) => {
+    if (selectedElement && labelPosition) {
+      onDispatch(selectedElement, { ...selectedElementProps, labelPosition })
     }
   }
 
@@ -112,12 +85,7 @@ export const useItemsHandlers = () => {
     (propsName: keyof ComboboxProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: ComboboxProps = {
-          ...(selectedElementProps as ComboboxProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = checked
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: checked })
       }
     }
   return {
@@ -131,20 +99,20 @@ export const useItemsHandlers = () => {
     onChangeForm,
     onChangeSwitch,
     itemsProps: {
-      items: (selectedElementProps as ComboboxProps).items,
-      value: (selectedElementProps as ComboboxProps).value,
-      disabled: (selectedElementProps as ComboboxProps).disabled,
-      size: (selectedElementProps as ComboboxProps).size,
-      view: (selectedElementProps as ComboboxProps).view,
-      form: (selectedElementProps as ComboboxProps).form,
-      required: (selectedElementProps as ComboboxProps).required,
-      caption: (selectedElementProps as ComboboxProps).caption,
-      label: (selectedElementProps as ComboboxProps).label,
-      status: (selectedElementProps as ComboboxProps).status,
-      labelPosition: (selectedElementProps as ComboboxProps).labelPosition,
-      placeholder: (selectedElementProps as ComboboxProps).placeholder,
-      isLoading: (selectedElementProps as ComboboxProps).isLoading,
-      multiple: (selectedElementProps as ComboboxProps).multiple,
+      items: selectedElementProps.items,
+      value: selectedElementProps.value,
+      disabled: selectedElementProps.disabled,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      form: selectedElementProps.form,
+      required: selectedElementProps.required,
+      caption: selectedElementProps.caption,
+      label: selectedElementProps.label,
+      status: selectedElementProps.status,
+      labelPosition: selectedElementProps.labelPosition,
+      placeholder: selectedElementProps.placeholder,
+      isLoading: selectedElementProps.isLoading,
+      multiple: selectedElementProps.multiple,
     },
   }
 }

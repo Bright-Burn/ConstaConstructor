@@ -1,10 +1,40 @@
 import { ISelectedElement, LayoutElementPropsStyles } from '../../../../coreTypes'
 import { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+  useAppSelector,
+} from '../../../../store'
+
+const getUpdatedProps = (
+  selectedElementProps: LayoutElementPropsStyles,
+  value: string | undefined,
+  direction: 'paddingLeft' | 'paddingRight' | 'paddingTop' | 'paddingBottom',
+): LayoutElementPropsStyles => {
+  const props = {
+    ...selectedElementProps,
+  }
+  props.constaProps = { ...props.constaProps }
+  props.baseProps = {
+    ...props.baseProps,
+    padding: { ...(props.baseProps?.padding ?? {}), [direction]: value },
+  }
+  const prevMargin = props.baseProps?.margin ? Object.values(props.baseProps.margin).join(' ') : ''
+  const prevPadding = props.baseProps?.padding
+    ? Object.values({ ...props.baseProps.padding, [direction]: '' }).join(' ')
+    : ''
+  props.className = `${prevPadding} ${prevMargin} ${value}`
+
+  return props
+}
 
 export const usePaddingHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } =
+    useAppFormConstructorSelector<LayoutElementPropsStyles>()
+
   const dispatch = useAppDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: LayoutElementPropsStyles) => {
     dispatch(
       setSelectedElement({
@@ -16,85 +46,22 @@ export const usePaddingHandlers = () => {
   }
   const onChangePaddingLeft = ({ value }: { value: typeof paddingsLeft[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-      newProps.constaProps = { ...newProps.constaProps }
-      newProps.baseProps = {
-        ...newProps.baseProps,
-        padding: { ...(newProps.baseProps?.padding ?? {}), paddingLeft: value },
-      }
-      const prevMargin = newProps.baseProps?.margin
-        ? Object.values(newProps.baseProps.margin).join(' ')
-        : ''
-      const prevPadding = newProps.baseProps?.padding
-        ? Object.values({ ...newProps.baseProps.padding, paddingLeft: '' }).join(' ')
-        : ''
-      newProps.className = `${prevPadding} ${prevMargin} ${value}`
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, getUpdatedProps(selectedElementProps, value, 'paddingLeft'))
     }
   }
   const onChangePaddingRight = ({ value }: { value: typeof paddingsRight[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-      newProps.constaProps = { ...newProps.constaProps }
-      newProps.baseProps = {
-        ...newProps.baseProps,
-        padding: { ...(newProps.baseProps?.padding ?? {}), paddingRight: value },
-      }
-      const prevMargin = newProps.baseProps?.margin
-        ? Object.values(newProps.baseProps.margin).join(' ')
-        : ''
-      const prevPadding = newProps.baseProps?.padding
-        ? Object.values({ ...newProps.baseProps.padding, paddingRight: '' }).join(' ')
-        : ''
-      newProps.className = `${prevPadding} ${prevMargin} ${value}`
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, getUpdatedProps(selectedElementProps, value, 'paddingRight'))
     }
   }
   const onChangePaddingTop = ({ value }: { value: typeof paddingsTop[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-      newProps.constaProps = { ...newProps.constaProps }
-      newProps.baseProps = {
-        ...newProps.baseProps,
-        padding: { ...(newProps.baseProps?.padding ?? {}), paddingTop: value },
-      }
-      const prevMargin = newProps.baseProps?.margin
-        ? Object.values(newProps.baseProps.margin).join(' ')
-        : ''
-      const prevPadding = newProps.baseProps?.padding
-        ? Object.values({ ...newProps.baseProps.padding, paddingTop: '' }).join(' ')
-        : ''
-      newProps.className = `${prevPadding} ${prevMargin} ${value}`
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, getUpdatedProps(selectedElementProps, value, 'paddingTop'))
     }
   }
   const onChangePaddingBottom = ({ value }: { value: typeof paddingsBottom[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-      newProps.constaProps = { ...newProps.constaProps }
-      newProps.baseProps = {
-        ...newProps.baseProps,
-        padding: { ...(newProps.baseProps?.padding ?? {}), paddingBottom: value },
-      }
-      const prevMargin = newProps.baseProps?.margin
-        ? Object.values(newProps.baseProps.margin).join(' ')
-        : ''
-      const prevPadding = newProps.baseProps?.padding
-        ? Object.values({ ...newProps.baseProps.padding, paddingBottom: '' }).join(' ')
-        : ''
-      newProps.className = `${prevPadding} ${prevMargin} ${value}`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, getUpdatedProps(selectedElementProps, value, 'paddingTop'))
     }
   }
   return {

@@ -1,15 +1,20 @@
 import {
   ButtonAction,
-  ButtonProps,
   buttonActionsActive,
-  ISelectedElement,
+  ButtonProps,
   iconNames,
+  ISelectedElement,
 } from '../../../../coreTypes'
-import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<ButtonProps>()
+
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -17,12 +22,7 @@ export const useItemsHandlers = () => {
     field: keyof ButtonProps,
   ) => {
     if (selectedElement) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
-      }
-      // @ts-ignore
-      newProps[field] = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, [field]: value })
     }
   }
 
@@ -30,11 +30,9 @@ export const useItemsHandlers = () => {
     (propsName: keyof ButtonProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElementProps) {
-        const newProps: ButtonProps = {
-          ...(selectedElementProps as ButtonProps),
-          [propsName]: checked,
-        }
-        selectedElement && onDispatch(selectedElement, newProps)
+        selectedElement &&
+          onDispatch(selectedElement, { ...selectedElementProps, [propsName]: checked })
+
         if (propsName === 'action' && checked === true) {
           onChangeButtonAction('ButtonModal')
         }
@@ -46,13 +44,8 @@ export const useItemsHandlers = () => {
 
   const onChangeButtonAction = (value: ButtonAction) => {
     if (selectedElement) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
-      }
+      onUpdateSelected(selectedElement, { ...selectedElementProps, action: value })
 
-      newProps['action'] = value
-
-      onUpdateSelected(selectedElement, newProps)
       if (buttonActionsActive.includes(value)) {
         addConnectedElement()
       } else {
@@ -131,21 +124,13 @@ export const useItemsHandlers = () => {
 
   const onChangeIcon = (value: iconNames | null) => {
     if (selectedElement && value) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
-      }
-      newProps.icon = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, icon: value })
     }
   }
 
   const onChangeIconR = (value: iconNames | null) => {
     if (selectedElement && value) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
-      }
-      newProps.iconR = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, iconR: value })
     }
   }
 
@@ -166,19 +151,19 @@ export const useItemsHandlers = () => {
     onChangeIcon,
     onChangeIconR,
     itemsProps: {
-      size: (selectedElementProps as ButtonProps).size,
-      view: (selectedElementProps as ButtonProps).view,
-      action: (selectedElementProps as ButtonProps).action,
-      label: (selectedElementProps as ButtonProps).label,
-      disabled: (selectedElementProps as ButtonProps).disabled,
-      iconLeft: (selectedElementProps as ButtonProps).iconLeft,
-      form: (selectedElementProps as ButtonProps).form,
-      loading: (selectedElementProps as ButtonProps).loading,
-      iconRight: (selectedElementProps as ButtonProps).iconRight,
-      onlyIcon: (selectedElementProps as ButtonProps).onlyIcon,
-      icon: (selectedElementProps as ButtonProps).icon,
-      iconR: (selectedElementProps as ButtonProps).iconR,
-      activeAction: (selectedElementProps as ButtonProps).activeAction,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      action: selectedElementProps.action,
+      label: selectedElementProps.label,
+      disabled: selectedElementProps.disabled,
+      iconLeft: selectedElementProps.iconLeft,
+      form: selectedElementProps.form,
+      loading: selectedElementProps.loading,
+      iconRight: selectedElementProps.iconRight,
+      onlyIcon: selectedElementProps.onlyIcon,
+      icon: selectedElementProps.icon,
+      iconR: selectedElementProps.iconR,
+      activeAction: selectedElementProps.activeAction,
     },
   }
 }

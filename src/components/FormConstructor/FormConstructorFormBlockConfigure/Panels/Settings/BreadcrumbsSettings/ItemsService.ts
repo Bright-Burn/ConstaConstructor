@@ -1,10 +1,15 @@
 import { BreadcrumbProps, ISelectedElement } from '../../../../coreTypes'
 import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<BreadcrumbProps>()
   const dispatch = useAppDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: BreadcrumbProps) => {
     dispatch(
       setSelectedElement({
@@ -17,9 +22,7 @@ export const useItemsHandlers = () => {
 
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: BreadcrumbProps = {
-        ...(selectedElementProps as BreadcrumbProps),
-      }
+      const newProps = { ...selectedElementProps }
 
       let itemsProps = [...newProps.items]
       const currentLength = itemsProps.length
@@ -41,34 +44,19 @@ export const useItemsHandlers = () => {
 
   const onChangeItems = (items: DefaultItem[]) => {
     if (selectedElement && items) {
-      const newProps: BreadcrumbProps = {
-        ...(selectedElementProps as BreadcrumbProps),
-      }
-
-      newProps.items = [...items]
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, items: [...items] })
     }
   }
 
   const onChangeSize = (value: BreadcrumbPropSize | null) => {
     if (selectedElement && value) {
-      const newProps: BreadcrumbProps = {
-        ...(selectedElementProps as BreadcrumbProps),
-      }
-
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, size: value })
     }
   }
 
   const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
     if (selectedElement && value) {
-      const newProps: BreadcrumbProps = {
-        ...(selectedElementProps as BreadcrumbProps),
-      }
-
-      newProps.fitMode = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, fitMode: value })
     }
   }
 
@@ -78,9 +66,9 @@ export const useItemsHandlers = () => {
     onChangeFitMode,
     onChangeItems,
     itemsProps: {
-      items: (selectedElementProps as BreadcrumbProps).items,
-      size: (selectedElementProps as BreadcrumbProps).size,
-      fitMode: (selectedElementProps as BreadcrumbProps).fitMode,
+      items: selectedElementProps.items,
+      size: selectedElementProps.size,
+      fitMode: selectedElementProps.fitMode,
     },
   }
 }

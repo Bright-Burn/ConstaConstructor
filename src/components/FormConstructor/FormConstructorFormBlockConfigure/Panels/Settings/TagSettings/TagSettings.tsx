@@ -7,6 +7,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { iconNames } from '../../../../coreTypes'
 
 export const TagSettings = () => {
   const {
@@ -63,9 +64,8 @@ export const TagSettings = () => {
               role='option'
               aria-selected={active}
               onMouseEnter={onMouseEnter}
-              onClick={onClick}
-            >
-              {React.createElement(Icons[item])}
+              onClick={onClick}>
+              {React.createElement(Icons[item as iconNames])}
               <div>{item}</div>
             </div>
           )}

@@ -1,24 +1,30 @@
 import {
   LayoutPropDirection,
-  LayoutPropVerticalAlign,
   LayoutPropHorizontalAlign,
+  LayoutPropVerticalAlign,
 } from '@consta/uikit/Layout'
 import {
-  JustifyContentProps,
   AlignItems,
-  BorderWidth,
-  BorderStyle,
   BorderColor,
   BorderSide,
-  LayoutElementPropsStyles,
+  BorderStyle,
+  BorderWidth,
   ISelectedElement,
+  JustifyContentProps,
+  LayoutElementPropsStyles,
 } from '../../../../coreTypes'
 import { ConstaColor } from '../../../../../ConstaPalette'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } =
+    useAppFormConstructorSelector<LayoutElementPropsStyles>()
   const dispatch = useAppDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: LayoutElementPropsStyles) => {
     dispatch(
       setSelectedElement({
@@ -33,9 +39,7 @@ export const useItemsHandlers = () => {
     () =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: LayoutElementPropsStyles = {
-          ...(selectedElementProps as LayoutElementPropsStyles),
-        }
+        const newProps = { ...selectedElementProps }
         newProps.constaProps = { ...newProps.constaProps }
 
         const newValue = Number(value)
@@ -47,9 +51,7 @@ export const useItemsHandlers = () => {
 
   const onChangeDirection = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
 
       newProps.constaProps = { ...newProps.constaProps }
 
@@ -60,9 +62,8 @@ export const useItemsHandlers = () => {
 
   const onChangeVerticalAligment = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
+
       newProps.constaProps = { ...newProps.constaProps }
 
       newProps.constaProps['verticalAlign'] = value as LayoutPropVerticalAlign
@@ -72,9 +73,7 @@ export const useItemsHandlers = () => {
 
   const onChangeHorizontalAligment = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
 
       newProps.constaProps = { ...newProps.constaProps }
 
@@ -85,9 +84,7 @@ export const useItemsHandlers = () => {
 
   const onChangeJustifyContent = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
 
       newProps.styles = { ...newProps.styles }
 
@@ -98,9 +95,7 @@ export const useItemsHandlers = () => {
 
   const onChangeAlignItems = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
 
       newProps.styles = { ...newProps.styles }
 
@@ -110,9 +105,8 @@ export const useItemsHandlers = () => {
   }
 
   const onChangeWidth = (value: string | null) => {
-    const newProps: LayoutElementPropsStyles = {
-      ...(selectedElementProps as LayoutElementPropsStyles),
-    }
+    const newProps = { ...selectedElementProps }
+
     newProps.styles = { ...newProps.styles }
 
     if (selectedElement) {
@@ -133,9 +127,8 @@ export const useItemsHandlers = () => {
   }
 
   const onChangeHeight = (value: string | null) => {
-    const newProps: LayoutElementPropsStyles = {
-      ...(selectedElementProps as LayoutElementPropsStyles),
-    }
+    const newProps = { ...selectedElementProps }
+
     newProps.styles = { ...newProps.styles }
 
     if (selectedElement) {
@@ -157,9 +150,7 @@ export const useItemsHandlers = () => {
 
   const onChangeBorderWidth = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
 
       newProps.styles = { ...newProps.styles }
 
@@ -170,9 +161,8 @@ export const useItemsHandlers = () => {
 
   const onChangeBorderStyle = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
+
       newProps.styles = { ...newProps.styles }
       newProps.styles.borderStyle = value as BorderStyle
       onDispatch(selectedElement, newProps)
@@ -181,9 +171,8 @@ export const useItemsHandlers = () => {
 
   const onChangeBorderSide = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
+
       newProps.styles = { ...newProps.styles }
       newProps.styles.borderSide = value as BorderSide
       onDispatch(selectedElement, newProps)
@@ -192,9 +181,7 @@ export const useItemsHandlers = () => {
 
   const onChangeBorderColor = (value: string | null) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
 
       newProps.styles = { ...newProps.styles }
 
@@ -205,9 +192,7 @@ export const useItemsHandlers = () => {
 
   const onChangeBackroundColor = (color: ConstaColor) => {
     if (selectedElement) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
+      const newProps = { ...selectedElementProps }
 
       newProps.styles = { ...newProps.styles }
 
@@ -231,8 +216,8 @@ export const useItemsHandlers = () => {
     onChangeDirection,
     onChangeBackroundColor,
     itemsProps: {
-      constaProps: (selectedElementProps as LayoutElementPropsStyles).constaProps,
-      styles: (selectedElementProps as LayoutElementPropsStyles).styles,
+      constaProps: selectedElementProps.constaProps,
+      styles: selectedElementProps.styles,
       selectedElementProps,
     },
   }

@@ -1,9 +1,13 @@
-import { ISelectedElement, BadgeProps } from '../../../../coreTypes'
-import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { BadgeProps, ISelectedElement } from '../../../../coreTypes'
+import { BadgePropForm, BadgePropSize, BadgePropStatus, BadgePropView } from '@consta/uikit/Badge'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<BadgeProps>()
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -11,14 +15,7 @@ export const useItemsHandlers = () => {
     field: keyof BadgeProps,
   ) => {
     if (selectedElement) {
-      const newProps: BadgeProps = {
-        ...(selectedElementProps as BadgeProps),
-      }
-
-      // @ts-ignore
-      newProps[field] = value
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, [field]: value })
     }
   }
 
@@ -27,23 +24,13 @@ export const useItemsHandlers = () => {
     checked: boolean
   }) => {
     if (selectedElement) {
-      const newProps: BadgeProps = {
-        ...(selectedElementProps as BadgeProps),
-      }
-      newProps.minified = event.checked
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, minified: event.checked })
     }
   }
 
   const handleOnChangeLabel = ({ value }: { value: string | null }) => {
     if (selectedElement) {
-      const newProps: BadgeProps = {
-        ...(selectedElementProps as BadgeProps),
-      }
-      newProps.label = value || undefined
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, label: value || undefined })
     }
   }
 
@@ -62,12 +49,12 @@ export const useItemsHandlers = () => {
     handleOnChangeLabel,
     onChangeField,
     itemsProps: {
-      size: (selectedElementProps as BadgeProps).size,
-      view: (selectedElementProps as BadgeProps).view,
-      form: (selectedElementProps as BadgeProps).form,
-      label: (selectedElementProps as BadgeProps).label,
-      minified: (selectedElementProps as BadgeProps).minified,
-      status: (selectedElementProps as BadgeProps).status,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      form: selectedElementProps.form,
+      label: selectedElementProps.label,
+      minified: selectedElementProps.minified,
+      status: selectedElementProps.status,
     },
   }
 }

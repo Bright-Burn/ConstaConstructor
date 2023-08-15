@@ -10,6 +10,7 @@ import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { FilledSettings } from '../FilledSettings'
 import { Text } from '@consta/uikit/Text'
+import { iconNames } from '../../../../coreTypes'
 
 export const ButtonSettings = () => {
   const { itemsProps, onChangeField, onChangeSwitch, onChangeIcon, onChangeIconR } =
@@ -105,7 +106,7 @@ export const ButtonSettings = () => {
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
                       onClick={onClick}>
-                      {React.createElement(Icons[item], { size: 'xs' })}
+                      {React.createElement(Icons[item as iconNames], { size: 'xs' })}
                       <Text size='xs'>{item}</Text>
                     </div>
                   )}
@@ -166,7 +167,7 @@ export const ButtonSettings = () => {
                     aria-selected={active}
                     onMouseEnter={onMouseEnter}
                     onClick={onClick}>
-                    {React.createElement(Icons[item], { size: 'xs' })}
+                    {React.createElement(Icons[item as iconNames], { size: 'xs' })}
                     <Text size='xs'>{item}</Text>
                   </div>
                 )}

@@ -1,4 +1,8 @@
-import { useAppSelector } from '../../../../store'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 import { ISelectedElement, OwnChoiceGroupProps } from '../../../../coreTypes'
 import {
   ChoiceGroupPropForm,
@@ -7,10 +11,11 @@ import {
 } from '@consta/uikit/ChoiceGroup'
 import { Item } from './types'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } =
+    useAppFormConstructorSelector<OwnChoiceGroupProps>()
+
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: OwnChoiceGroupProps) => {
@@ -25,9 +30,7 @@ export const useItemsHandlers = () => {
 
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: OwnChoiceGroupProps = {
-        ...(selectedElementProps as OwnChoiceGroupProps),
-      }
+      const newProps: OwnChoiceGroupProps = { ...selectedElementProps }
       let itemsProps = [...newProps.items]
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
@@ -50,7 +53,7 @@ export const useItemsHandlers = () => {
   const onChangeActiveItem = ({ value }: { value: Item[] | Item | null }) => {
     if (selectedElement && value) {
       const newProps: OwnChoiceGroupProps = {
-        ...(selectedElementProps as OwnChoiceGroupProps),
+        ...selectedElementProps,
       }
       newProps.value = value
       onDispatch(selectedElement, newProps)
@@ -60,7 +63,7 @@ export const useItemsHandlers = () => {
   const onChangeItems = (items: Item[]) => {
     if (selectedElement && items) {
       const newProps: OwnChoiceGroupProps = {
-        ...(selectedElementProps as OwnChoiceGroupProps),
+        ...selectedElementProps,
       }
       newProps.items = [...items]
       newProps.value = items[0]
@@ -70,31 +73,19 @@ export const useItemsHandlers = () => {
 
   const onChangeSize = (value: ChoiceGroupPropSize | null) => {
     if (selectedElement && value) {
-      const newProps: OwnChoiceGroupProps = {
-        ...(selectedElementProps as OwnChoiceGroupProps),
-      }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, size: value })
     }
   }
 
   const onChangeView = (value: ChoiceGroupPropView | null) => {
     if (selectedElement && value) {
-      const newProps: OwnChoiceGroupProps = {
-        ...(selectedElementProps as OwnChoiceGroupProps),
-      }
-      newProps.view = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, view: value })
     }
   }
 
   const onChangeForm = (value: ChoiceGroupPropForm | null) => {
     if (selectedElement && value) {
-      const newProps: OwnChoiceGroupProps = {
-        ...(selectedElementProps as OwnChoiceGroupProps),
-      }
-      newProps.form = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, form: value })
     }
   }
 
@@ -102,12 +93,7 @@ export const useItemsHandlers = () => {
     (propsName: keyof OwnChoiceGroupProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: OwnChoiceGroupProps = {
-          ...(selectedElementProps as OwnChoiceGroupProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = checked
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: checked })
       }
     }
 
@@ -120,14 +106,14 @@ export const useItemsHandlers = () => {
     onChangeActiveItem,
     onChangeSwitch,
     itemsProps: {
-      items: (selectedElementProps as OwnChoiceGroupProps).items,
-      value: (selectedElementProps as OwnChoiceGroupProps).value,
-      size: (selectedElementProps as OwnChoiceGroupProps).size,
-      view: (selectedElementProps as OwnChoiceGroupProps).view,
-      form: (selectedElementProps as OwnChoiceGroupProps).form,
-      multiple: (selectedElementProps as OwnChoiceGroupProps).multiple,
-      onlyIcon: (selectedElementProps as OwnChoiceGroupProps).onlyIcon,
-      disabled: (selectedElementProps as OwnChoiceGroupProps).disabled,
+      items: selectedElementProps.items,
+      value: selectedElementProps.value,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      form: selectedElementProps.form,
+      multiple: selectedElementProps.multiple,
+      onlyIcon: selectedElementProps.onlyIcon,
+      disabled: selectedElementProps.disabled,
     },
   }
 }

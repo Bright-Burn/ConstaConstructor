@@ -1,10 +1,41 @@
 import { ISelectedElement, LayoutElementPropsStyles } from '../../../../coreTypes'
 import { marginBottom, marginLeft, marginRight, marginTop } from './types'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
+
+const getUpdatedProps = (
+  selectedElementProps: LayoutElementPropsStyles,
+  value: string | undefined,
+  direction: 'marginLeft' | 'marginRight' | 'marginTop' | 'marginBottom',
+): LayoutElementPropsStyles => {
+  const props = {
+    ...selectedElementProps,
+  }
+  props.constaProps = { ...props.constaProps }
+
+  props.baseProps = {
+    ...props.baseProps,
+    margin: { ...(props.baseProps?.margin ?? {}), [direction]: value },
+  }
+  const prevPadding = props.baseProps?.padding
+    ? Object.values(props.baseProps.padding).join(' ')
+    : ''
+  const prevMargin = props.baseProps?.margin
+    ? Object.values({ ...props.baseProps.margin, [direction]: '' }).join(' ')
+    : ''
+  props.className = `${prevPadding} ${prevMargin} ${value}`
+
+  return props
+}
 
 export const useMarginHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } =
+    useAppFormConstructorSelector<LayoutElementPropsStyles>()
   const dispatch = useAppDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: LayoutElementPropsStyles) => {
     dispatch(
       setSelectedElement({
@@ -16,87 +47,22 @@ export const useMarginHandlers = () => {
   }
   const onChangemarginLeft = ({ value }: { value: typeof marginLeft[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-      newProps.constaProps = { ...newProps.constaProps }
-
-      newProps.baseProps = {
-        ...newProps.baseProps,
-        margin: { ...(newProps.baseProps?.margin ?? {}), marginLeft: value },
-      }
-      const prevPadding = newProps.baseProps?.padding
-        ? Object.values(newProps.baseProps.padding).join(' ')
-        : ''
-      const prevMargin = newProps.baseProps?.margin
-        ? Object.values({ ...newProps.baseProps.margin, marginLeft: '' }).join(' ')
-        : ''
-      newProps.className = `${prevPadding} ${prevMargin} ${value}`
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, getUpdatedProps(selectedElementProps, value, 'marginLeft'))
     }
   }
   const onChangemarginRight = ({ value }: { value: typeof marginRight[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-      newProps.constaProps = { ...newProps.constaProps }
-
-      newProps.baseProps = {
-        ...newProps.baseProps,
-        margin: { ...(newProps.baseProps?.margin ?? {}), marginRight: value },
-      }
-      const prevPadding = newProps.baseProps?.padding
-        ? Object.values(newProps.baseProps.padding).join(' ')
-        : ''
-      const prevMargin = newProps.baseProps?.margin
-        ? Object.values({ ...newProps.baseProps.margin, marginRight: '' }).join(' ')
-        : ''
-      newProps.className = `${prevPadding} ${prevMargin}  ${value}`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, getUpdatedProps(selectedElementProps, value, 'marginRight'))
     }
   }
   const onChangemarginTop = ({ value }: { value: typeof marginTop[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-      newProps.constaProps = { ...newProps.constaProps }
-
-      newProps.baseProps = {
-        ...newProps.baseProps,
-        margin: { ...(newProps.baseProps?.margin ?? {}), marginTop: value },
-      }
-      const prevPadding = newProps.baseProps?.padding
-        ? Object.values(newProps.baseProps.padding).join(' ')
-        : ''
-      const prevMargin = newProps.baseProps?.margin
-        ? Object.values({ ...newProps.baseProps.margin, marginTop: '' }).join(' ')
-        : ''
-      newProps.className = `${prevPadding} ${prevMargin}  ${value}`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, getUpdatedProps(selectedElementProps, value, 'marginTop'))
     }
   }
   const onChangemarginBottom = ({ value }: { value: typeof marginBottom[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: LayoutElementPropsStyles = {
-        ...(selectedElementProps as LayoutElementPropsStyles),
-      }
-      newProps.constaProps = { ...newProps.constaProps }
-
-      newProps.baseProps = {
-        ...newProps.baseProps,
-        margin: { ...(newProps.baseProps?.margin ?? {}), marginBottom: value },
-      }
-      const prevPadding = newProps.baseProps?.padding
-        ? Object.values(newProps.baseProps.padding).join(' ')
-        : ''
-      const prevMargin = newProps.baseProps?.margin
-        ? Object.values({ ...newProps.baseProps.margin, marginBottom: '' }).join(' ')
-        : ''
-      newProps.className = `${prevPadding} ${prevMargin}  ${value}`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, getUpdatedProps(selectedElementProps, value, 'marginBottom'))
     }
   }
   return {

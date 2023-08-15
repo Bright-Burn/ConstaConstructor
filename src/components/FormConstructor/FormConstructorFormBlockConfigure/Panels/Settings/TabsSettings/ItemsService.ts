@@ -1,11 +1,18 @@
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 import { FitMode } from './types'
-import { tabItemType, TabsElementProps, ISelectedElement } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { ISelectedElement, tabItemType, TabsElementProps } from '../../../../coreTypes'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } =
+    useAppFormConstructorSelector<TabsElementProps>()
+
   const dispatch = useAppDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: TabsElementProps) => {
     dispatch(
       setSelectedElement({
@@ -17,9 +24,7 @@ export const useItemsHandlers = () => {
   }
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
+      const newProps = { ...selectedElementProps }
       let itemsProps = [...newProps.items]
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
@@ -37,55 +42,34 @@ export const useItemsHandlers = () => {
   }
   const onChangeActiveItem = ({ value }: { value: tabItemType | null }) => {
     if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.value = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, value })
     }
   }
   const onChangeItems = (items: tabItemType[]) => {
     if (selectedElement && items) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.items = [...items]
-      newProps.value = items[0]
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, items: [...items], value: items[0] })
     }
   }
   const onChangeLinePosition = (value: TabsPropLinePosition | null) => {
     if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
+      const newProps = { ...selectedElementProps }
       newProps.linePosition = value
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeView = (value: TabsPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.view = value
-      onDispatch(selectedElement, newProps)
+  const onChangeView = (view: TabsPropView | null) => {
+    if (selectedElement && view) {
+      onDispatch(selectedElement, { ...selectedElementProps, view })
     }
   }
-  const onChangeSize = (value: TabsPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
+  const onChangeSize = (size: TabsPropSize | null) => {
+    if (selectedElement && size) {
+      onDispatch(selectedElement, { ...selectedElementProps, size })
     }
   }
   const onChangeFitMode = (value: FitMode | null) => {
     if (selectedElement && value) {
-      const newProps: TabsElementProps = {
-        ...(selectedElementProps as TabsElementProps),
-      }
+      const newProps = { ...selectedElementProps }
       newProps.fitMode = value
       onDispatch(selectedElement, newProps)
     }
@@ -99,12 +83,12 @@ export const useItemsHandlers = () => {
     onChangeSize,
     onChangeFitMode,
     itemsProps: {
-      items: (selectedElementProps as TabsElementProps).items,
-      activeItem: (selectedElementProps as TabsElementProps).value,
-      linePosition: (selectedElementProps as TabsElementProps).linePosition,
-      view: (selectedElementProps as TabsElementProps).view,
-      size: (selectedElementProps as TabsElementProps).size,
-      fitMode: (selectedElementProps as TabsElementProps).fitMode,
+      items: selectedElementProps.items,
+      activeItem: selectedElementProps.value,
+      linePosition: selectedElementProps.linePosition,
+      view: selectedElementProps.view,
+      size: selectedElementProps.size,
+      fitMode: selectedElementProps.fitMode,
     },
   }
 }

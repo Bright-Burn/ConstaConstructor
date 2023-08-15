@@ -1,9 +1,13 @@
-import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@consta/uikit/User'
-import { UserProps, ISelectedElement } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { UserPropSize, UserPropStatus, UserPropView, UserPropWidth } from '@consta/uikit/User'
+import { ISelectedElement, UserProps } from '../../../../coreTypes'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<UserProps>()
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -11,25 +15,14 @@ export const useItemsHandlers = () => {
     field: keyof UserProps,
   ) => {
     if (selectedElement) {
-      const newProps: UserProps = {
-        ...(selectedElementProps as UserProps),
-      }
-      // @ts-ignore
-      newProps[field] = value
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, [field]: value })
     }
   }
   const onChangeSwitch =
     (propsName: keyof UserProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: UserProps = {
-          ...(selectedElementProps as UserProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = checked
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: checked })
       }
     }
 
@@ -46,16 +39,16 @@ export const useItemsHandlers = () => {
     onChangeField,
     onChangeSwitch,
     itemsProps: {
-      avatarUrl: (selectedElementProps as UserProps).avatarUrl,
-      checked: (selectedElementProps as UserProps).checked,
-      info: (selectedElementProps as UserProps).info,
-      name: (selectedElementProps as UserProps).name,
-      onlyAvatar: (selectedElementProps as UserProps).onlyAvatar,
-      size: (selectedElementProps as UserProps).size,
-      status: (selectedElementProps as UserProps).status,
-      view: (selectedElementProps as UserProps).view,
-      width: (selectedElementProps as UserProps).width,
-      withArrow: (selectedElementProps as UserProps).withArrow,
+      avatarUrl: selectedElementProps.avatarUrl,
+      checked: selectedElementProps.checked,
+      info: selectedElementProps.info,
+      name: selectedElementProps.name,
+      onlyAvatar: selectedElementProps.onlyAvatar,
+      size: selectedElementProps.size,
+      status: selectedElementProps.status,
+      view: selectedElementProps.view,
+      width: selectedElementProps.width,
+      withArrow: selectedElementProps.withArrow,
     },
   }
 }

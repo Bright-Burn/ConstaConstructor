@@ -1,9 +1,15 @@
 import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
-import { RadioButtonProps, ISelectedElement } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { ISelectedElement, RadioButtonProps } from '../../../../coreTypes'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } =
+    useAppFormConstructorSelector<RadioButtonProps>()
+
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: RadioButtonProps) => {
@@ -16,33 +22,21 @@ export const useItemsHandlers = () => {
     )
   }
 
-  const onChangeView = (value: RadioPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: RadioButtonProps = {
-        ...(selectedElementProps as RadioButtonProps),
-      }
-      newProps.view = value
-      onDispatch(selectedElement, newProps)
+  const onChangeView = (view: RadioPropView | null) => {
+    if (selectedElement && view) {
+      onDispatch(selectedElement, { ...selectedElementProps, view })
     }
   }
 
-  const onChangeSize = (value: RadioPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: RadioButtonProps = {
-        ...(selectedElementProps as RadioButtonProps),
-      }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
+  const onChangeSize = (size: RadioPropSize | null) => {
+    if (selectedElement && size) {
+      onDispatch(selectedElement, { ...selectedElementProps, size })
     }
   }
 
-  const onChangeAlign = (value: RadioPropAlign | null) => {
-    if (selectedElement && value) {
-      const newProps: RadioButtonProps = {
-        ...(selectedElementProps as RadioButtonProps),
-      }
-      newProps.align = value
-      onDispatch(selectedElement, newProps)
+  const onChangeAlign = (align: RadioPropAlign | null) => {
+    if (selectedElement && align) {
+      onDispatch(selectedElement, { ...selectedElementProps, align })
     }
   }
 
@@ -50,33 +44,20 @@ export const useItemsHandlers = () => {
     (propsName: keyof RadioButtonProps) =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: RadioButtonProps = {
-          ...(selectedElementProps as RadioButtonProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = value || ''
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: value || '' })
       }
     }
 
   const onChangeSwitch =
     (propsName: keyof RadioButtonProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElementProps) {
-        const newProps: RadioButtonProps = {
-          ...(selectedElementProps as RadioButtonProps),
-          [propsName]: checked,
-        }
-        selectedElement && onDispatch(selectedElement, newProps)
+      if (selectedElementProps && selectedElement) {
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: checked })
       }
     }
   const onChangeChacked = (checked: boolean) => {
     if (selectedElement) {
-      const newProps: RadioButtonProps = {
-        ...(selectedElementProps as RadioButtonProps),
-      }
-      newProps.checked = checked
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, checked })
     }
   }
 
@@ -88,12 +69,12 @@ export const useItemsHandlers = () => {
     onChangeSwitch,
     onChangeChacked,
     itemsProps: {
-      checked: (selectedElementProps as RadioButtonProps).checked,
-      size: (selectedElementProps as RadioButtonProps).size,
-      view: (selectedElementProps as RadioButtonProps).view,
-      align: (selectedElementProps as RadioButtonProps).align,
-      label: (selectedElementProps as RadioButtonProps).label,
-      disabled: (selectedElementProps as RadioButtonProps).disabled,
+      checked: selectedElementProps.checked,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      align: selectedElementProps.align,
+      label: selectedElementProps.label,
+      disabled: selectedElementProps.disabled,
     },
   }
 }

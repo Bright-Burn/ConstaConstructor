@@ -1,9 +1,15 @@
-import { ISelectedElement, InformerElementProps } from '../../../../coreTypes'
-import { InformerPropSize, InformerPropView, InformerPropStatus } from '@consta/uikit/Informer'
-import { useAppSelector, setSelectedElement, useAppDispatch } from '../../../../store'
+import { InformerElementProps, ISelectedElement } from '../../../../coreTypes'
+import { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } =
+    useAppFormConstructorSelector<InformerElementProps>()
+
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -11,12 +17,7 @@ export const useItemsHandlers = () => {
     field: keyof InformerElementProps,
   ) => {
     if (selectedElement) {
-      const newProps: InformerElementProps = {
-        ...(selectedElementProps as InformerElementProps),
-      }
-      // @ts-ignore
-      newProps[field] = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, [field]: value })
     }
   }
 
@@ -33,12 +34,12 @@ export const useItemsHandlers = () => {
   return {
     onChangeField,
     itemsProps: {
-      size: (selectedElementProps as InformerElementProps).size,
-      view: (selectedElementProps as InformerElementProps).view,
-      icon: (selectedElementProps as InformerElementProps).icon,
-      label: (selectedElementProps as InformerElementProps).label,
-      title: (selectedElementProps as InformerElementProps).title,
-      status: (selectedElementProps as InformerElementProps).status,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      icon: selectedElementProps.icon,
+      label: selectedElementProps.label,
+      title: selectedElementProps.title,
+      status: selectedElementProps.status,
     },
   }
 }

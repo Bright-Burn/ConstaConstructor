@@ -1,10 +1,16 @@
 import { ISelectedElement, SwitchProps } from '../../../../coreTypes'
 import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<SwitchProps>()
+
   const dispatch = useAppDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: SwitchProps) => {
     dispatch(
       setSelectedElement({
@@ -14,43 +20,26 @@ export const useItemsHandlers = () => {
       }),
     )
   }
-  const onChangeView = (value: SwitchPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: SwitchProps = {
-        ...(selectedElementProps as SwitchProps),
-      }
-      newProps.view = value
-      onDispatch(selectedElement, newProps)
+  const onChangeView = (view: SwitchPropView | null) => {
+    if (selectedElement && view) {
+      onDispatch(selectedElement, { ...selectedElementProps, view })
     }
   }
-  const onChangeSize = (value: SwitchPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: SwitchProps = {
-        ...(selectedElementProps as SwitchProps),
-      }
-      newProps.size = value
-      onDispatch(selectedElement, newProps)
+  const onChangeSize = (size: SwitchPropSize | null) => {
+    if (selectedElement && size) {
+      onDispatch(selectedElement, { ...selectedElementProps, size })
     }
   }
-  const onChangeAlign = (value: SwitchPropAlign | null) => {
-    if (selectedElement && value) {
-      const newProps: SwitchProps = {
-        ...(selectedElementProps as SwitchProps),
-      }
-      newProps.align = value
-      onDispatch(selectedElement, newProps)
+  const onChangeAlign = (align: SwitchPropAlign | null) => {
+    if (selectedElement && align) {
+      onDispatch(selectedElement, { ...selectedElementProps, align })
     }
   }
   const onChangeField =
     (propsName: keyof SwitchProps) =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: SwitchProps = {
-          ...(selectedElementProps as SwitchProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = value || ''
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElement, { ...selectedElementProps, [propsName]: value || '' })
       }
     }
   return {
@@ -59,10 +48,10 @@ export const useItemsHandlers = () => {
     onChangeAlign,
     onChangeField,
     itemsProps: {
-      size: (selectedElementProps as SwitchProps).size,
-      view: (selectedElementProps as SwitchProps).view,
-      align: (selectedElementProps as SwitchProps).align,
-      label: (selectedElementProps as SwitchProps).label,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      align: selectedElementProps.align,
+      label: selectedElementProps.label,
     },
   }
 }

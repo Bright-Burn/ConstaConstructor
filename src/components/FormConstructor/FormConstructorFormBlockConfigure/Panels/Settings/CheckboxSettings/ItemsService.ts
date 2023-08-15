@@ -1,9 +1,14 @@
-import { ISelectedElement, CheckboxProps } from '../../../../coreTypes'
-import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/uikit/Checkbox'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { CheckboxProps, ISelectedElement } from '../../../../coreTypes'
+import { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@consta/uikit/Checkbox'
+import {
+  setSelectedElement,
+  useAppDispatch,
+  useAppFormConstructorSelector,
+} from '../../../../store'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<CheckboxProps>()
+
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -11,14 +16,7 @@ export const useItemsHandlers = () => {
     field: keyof CheckboxProps,
   ) => {
     if (selectedElement) {
-      const newProps: CheckboxProps = {
-        ...(selectedElementProps as CheckboxProps),
-      }
-
-      // @ts-ignore
-      newProps[field] = value
-
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, { ...selectedElementProps, [field]: value })
     }
   }
 
@@ -35,12 +33,12 @@ export const useItemsHandlers = () => {
   return {
     onChangeField,
     itemsProps: {
-      align: (selectedElementProps as CheckboxProps).align,
-      view: (selectedElementProps as CheckboxProps).view,
-      checked: (selectedElementProps as CheckboxProps).checked,
-      disabled: (selectedElementProps as CheckboxProps).disabled,
-      label: (selectedElementProps as CheckboxProps).label,
-      size: (selectedElementProps as CheckboxProps).size,
+      align: selectedElementProps.align,
+      view: selectedElementProps.view,
+      checked: selectedElementProps.checked,
+      disabled: selectedElementProps.disabled,
+      label: selectedElementProps.label,
+      size: selectedElementProps.size,
     },
   }
 }
