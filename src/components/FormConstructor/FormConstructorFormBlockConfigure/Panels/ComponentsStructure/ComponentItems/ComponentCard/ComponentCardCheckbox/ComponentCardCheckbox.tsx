@@ -4,6 +4,9 @@ import uuid from 'react-uuid'
 import { FormElementDictTypes, IFormElementCheckbox } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import CheckboxImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/CheckboxImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -29,10 +32,9 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <CheckboxImage />
     </div>
   )
 }

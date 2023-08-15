@@ -4,6 +4,9 @@ import uuid from 'react-uuid'
 import { useAppDispatch, setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementIcon, FormElementDictTypes } from '../../../../../../coreTypes'
+import { IconImage } from './IconImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -26,10 +29,9 @@ export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <IconImage />
     </div>
   )
 }
