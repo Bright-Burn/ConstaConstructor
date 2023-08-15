@@ -33,3 +33,4 @@ export {
   setDraggableBaseComponent,
   getDraggedBaseComponent,
 } from './baseComponentsItems'
+export { useAppFormConstructorSelector } from './utils'
