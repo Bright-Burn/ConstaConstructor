@@ -4,6 +4,8 @@ import uuid from 'react-uuid'
 import { FormElementDictTypes, IFormElementButton } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
+import ButtonImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/ButtonImage'
+import styles from '../styles.module.css'
 
 export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -31,10 +33,9 @@ export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <ButtonImage />
     </div>
   )
 }

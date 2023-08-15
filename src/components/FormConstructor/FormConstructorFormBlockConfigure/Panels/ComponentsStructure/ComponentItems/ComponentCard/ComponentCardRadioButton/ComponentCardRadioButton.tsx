@@ -5,6 +5,9 @@ import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementRadioButton, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
+import RadioImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/RadioImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -29,10 +32,9 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <RadioImage />
     </div>
   )
 }

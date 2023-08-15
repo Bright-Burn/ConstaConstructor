@@ -4,6 +4,9 @@ import uuid from 'react-uuid'
 import { IComponetCardElement } from '../types'
 import { IFormElementSelect, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import SelectImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/SelectImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -49,10 +52,9 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <SelectImage />
     </div>
   )
 }

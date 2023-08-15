@@ -5,6 +5,9 @@ import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementTagProps, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
+import TagImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/TagImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -28,10 +31,9 @@ export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <TagImage />
     </div>
   )
 }

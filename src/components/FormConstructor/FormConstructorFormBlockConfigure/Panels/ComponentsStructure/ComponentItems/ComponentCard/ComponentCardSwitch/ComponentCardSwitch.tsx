@@ -4,6 +4,9 @@ import uuid from 'react-uuid'
 import { useAppDispatch, setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementSwitch, FormElementDictTypes } from '../../../../../../coreTypes'
+import SwitchImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/SwitchImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -27,10 +30,9 @@ export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <SwitchImage />
     </div>
   )
 }

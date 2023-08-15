@@ -4,6 +4,9 @@ import uuid from 'react-uuid'
 import { IComponetCardElement } from '../types'
 import { IFormElementComboBox, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import ComboboxImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/ComboboxImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -44,10 +47,9 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <ComboboxImage />
     </div>
   )
 }

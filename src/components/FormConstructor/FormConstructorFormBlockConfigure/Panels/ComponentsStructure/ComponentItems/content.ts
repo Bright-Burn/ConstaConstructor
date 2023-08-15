@@ -4,38 +4,23 @@ import uuid from 'react-uuid'
 export const constaCards = [
   {
     id: uuid(),
-    name: 'Панель',
-    groupElementType: FormGroupsDictTypes.Layout,
-  },
-  {
-    id: uuid(),
-    name: 'Кнопка',
-    formElementType: FormElementDictTypes.Button,
-  },
-  {
-    id: uuid(),
-    name: 'Карточка',
-    groupElementType: FormGroupsDictTypes.Card,
-  },
-  {
-    id: uuid(),
     name: 'Badge',
     formElementType: FormElementDictTypes.Badge,
   },
   {
     id: uuid(),
-    name: 'Табы',
-    formElementType: FormElementDictTypes.Tabs,
+    name: 'Breadcrumbs',
+    formElementType: FormElementDictTypes.BreadcrumbsForm,
   },
   {
     id: uuid(),
-    name: 'Informer',
-    formElementType: FormElementDictTypes.Informer,
+    name: 'Button',
+    formElementType: FormElementDictTypes.Button,
   },
   {
     id: uuid(),
-    name: 'Text',
-    formElementType: FormElementDictTypes.Text,
+    name: 'Card',
+    groupElementType: FormGroupsDictTypes.Card,
   },
   {
     id: uuid(),
@@ -44,28 +29,8 @@ export const constaCards = [
   },
   {
     id: uuid(),
-    name: 'TextField',
-    formElementType: FormElementDictTypes.TextField,
-  },
-  {
-    id: uuid(),
-    name: 'RadioButton',
-    formElementType: FormElementDictTypes.RadioButton,
-  },
-  {
-    id: uuid(),
-    name: 'List',
-    formElementType: FormElementDictTypes.List,
-  },
-  {
-    id: uuid(),
-    name: 'Switch',
-    formElementType: FormElementDictTypes.Switch,
-  },
-  {
-    id: uuid(),
-    name: 'DatePicker',
-    formElementType: FormElementDictTypes.DatePicker,
+    name: 'ChoiceGroup',
+    formElementType: FormElementDictTypes.ChoiceGroup,
   },
   {
     id: uuid(),
@@ -74,8 +39,8 @@ export const constaCards = [
   },
   {
     id: uuid(),
-    name: 'Select',
-    formElementType: FormElementDictTypes.Select,
+    name: 'DatePicker',
+    formElementType: FormElementDictTypes.DatePicker,
   },
   {
     id: uuid(),
@@ -84,8 +49,48 @@ export const constaCards = [
   },
   {
     id: uuid(),
-    name: 'Breadcrumbs',
-    formElementType: FormElementDictTypes.BreadcrumbsForm,
+    name: 'Informer',
+    formElementType: FormElementDictTypes.Informer,
+  },
+  {
+    id: uuid(),
+    name: 'List',
+    formElementType: FormElementDictTypes.List,
+  },
+  {
+    id: uuid(),
+    name: 'RadioButton',
+    formElementType: FormElementDictTypes.RadioButton,
+  },
+  {
+    id: uuid(),
+    name: 'Select',
+    formElementType: FormElementDictTypes.Select,
+  },
+  {
+    id: uuid(),
+    name: 'Switch',
+    formElementType: FormElementDictTypes.Switch,
+  },
+  {
+    id: uuid(),
+    name: 'Tabs',
+    formElementType: FormElementDictTypes.Tabs,
+  },
+  {
+    id: uuid(),
+    name: 'Tag',
+    formElementType: FormElementDictTypes.Tag,
+  },
+  {
+    id: uuid(),
+    name: 'Text',
+    formElementType: FormElementDictTypes.Text,
+  },
+  {
+    id: uuid(),
+    name: 'TextField',
+    formElementType: FormElementDictTypes.TextField,
   },
   {
     id: uuid(),
@@ -96,15 +101,5 @@ export const constaCards = [
     id: uuid(),
     name: 'Icon',
     formElementType: FormElementDictTypes.Icon,
-  },
-  {
-    id: uuid(),
-    name: 'Tag',
-    formElementType: FormElementDictTypes.Tag,
-  },
-  {
-    id: uuid(),
-    name: 'ChoiceGroup',
-    formElementType: FormElementDictTypes.ChoiceGroup,
   },
 ]

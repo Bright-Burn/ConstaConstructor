@@ -9,8 +9,10 @@ import {
   DeepWriteable,
 } from '../../../../../../coreTypes'
 import { Item } from '../../../../Settings/ChoiceGroupSettings/types'
-
+import ChoiceGroupImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/ChoiceGroupImage'
 import { setDraggableElement } from '../../../../../../store'
+import styles from '../styles.module.css'
+
 export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -49,10 +51,9 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <ChoiceGroupImage />
     </div>
   )
 }

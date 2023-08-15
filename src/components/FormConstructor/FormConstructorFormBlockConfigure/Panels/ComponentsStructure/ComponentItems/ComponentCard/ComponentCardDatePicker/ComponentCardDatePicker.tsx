@@ -5,6 +5,9 @@ import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementDatePicker, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
+import DatePickerImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/DatePickerImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -34,10 +37,9 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <DatePickerImage />
     </div>
   )
 }
