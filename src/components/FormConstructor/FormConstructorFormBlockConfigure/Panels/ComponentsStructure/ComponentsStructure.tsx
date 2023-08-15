@@ -14,16 +14,19 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../store'
+import { ComponentsGrid } from './ComponentGrid/ComponentsGrid'
 
 export const ComponentsStructure = () => {
-  const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[1])
+  const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
 
   const getTabContentRenderer = () => {
     switch (tabValue) {
       case componentsTabItems[0]:
-        return <BaseComponents />
+        return <ComponentsGrid />
       case componentsTabItems[1]:
         return <ComponentItems />
+      case componentsTabItems[2]:
+        return <BaseComponents />
     }
   }
 
@@ -43,8 +46,7 @@ export const ComponentsStructure = () => {
               value={tabValue}
               onChange={({ value }) => setTabValue(value)}
               items={componentsTabItems}
-              getItemIcon={(item: ComponentsTabItem) => item.icon}
-              size='xs'
+              size='s'
             />
           </div>
           {getTabContentRenderer()}
