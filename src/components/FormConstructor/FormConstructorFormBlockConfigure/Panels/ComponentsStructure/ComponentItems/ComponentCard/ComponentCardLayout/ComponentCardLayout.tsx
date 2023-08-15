@@ -7,15 +7,14 @@ import { IComponetCardElement } from '../types'
 import styles from './styles.module.css'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 
-export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
-  const [isOuter, setIsOuter] = useState<boolean>(false)
+export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter }) => {
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const layoutElement: ILayoutElement = {
       id: uuid(),
       type: FormGroupsDictTypes.Layout,
-      isOuter: isOuter,
+      isOuter: isOuter || false,
       props: {
         props: {
           constaProps: {
@@ -37,21 +36,17 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
     dispatch(setDraggableElement({ element: layoutElement }))
   }
 
-  const onChange = () => {
-    setIsOuter(!isOuter)
-  }
-
   return (
     <div className={styles.cardLayout} draggable={true} onDragStart={onStartDragComponentCard}>
-      <Text className={styles.paddingText}>{name}</Text>
-      <Switch
-        className='m-l-s'
-        label={isOuter ? 'Out' : 'In'}
-        checked={isOuter}
-        view={'ghost'}
-        size={'s'}
-        onChange={onChange}
-      />
+      <div className={styles.layerOut}>
+        <Text className={styles.marginText}>Layer {isOuter ? 'out' : 'in'}</Text>
+        <div className={styles.borderFlex}>
+          <div className={isOuter ? styles.borderOut : styles.borderIn}>
+            {!isOuter && <div className={styles.borderInIn}></div>}
+          </div>
+          {isOuter && <div className={styles.borderOut}></div>}
+        </div>
+      </div>
     </div>
   )
 }

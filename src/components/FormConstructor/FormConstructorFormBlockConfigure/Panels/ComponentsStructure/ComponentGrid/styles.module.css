@@ -1,0 +1,14 @@
+.componentItems {
+  flex-grow: 0.5;
+  flex-shrink: 1;
+  flex-basis: 0;
+  padding: var(--space-s);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.componentGrid {
+  display: flex;
+  gap: var(--space-s);
+}
