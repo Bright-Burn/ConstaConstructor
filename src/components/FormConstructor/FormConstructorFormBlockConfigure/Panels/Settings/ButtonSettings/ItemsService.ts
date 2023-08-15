@@ -6,15 +6,12 @@ import {
   ISelectedElement,
 } from '../../../../coreTypes'
 import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<ButtonProps>()
-
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<ButtonProps>)
   const dispatch = useAppDispatch()
 
   const onChangeField = (

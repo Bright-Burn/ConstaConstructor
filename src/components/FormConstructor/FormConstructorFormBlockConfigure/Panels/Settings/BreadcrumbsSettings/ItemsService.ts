@@ -1,13 +1,11 @@
 import { BreadcrumbProps, ISelectedElement } from '../../../../coreTypes'
 import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<BreadcrumbProps>()
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<BreadcrumbProps>)
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BreadcrumbProps) => {

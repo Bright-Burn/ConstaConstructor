@@ -1,13 +1,11 @@
 import { ISelectedElement, PropForm, selectitemType, SelectProps } from '../../../../coreTypes'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<SelectProps>()
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<SelectProps>)
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: SelectProps) => {

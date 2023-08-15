@@ -1,16 +1,12 @@
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 import { FitMode } from './types'
 import { ISelectedElement, tabItemType, TabsElementProps } from '../../../../coreTypes'
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } =
-    useAppFormConstructorSelector<TabsElementProps>()
-
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<TabsElementProps>)
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: TabsElementProps) => {

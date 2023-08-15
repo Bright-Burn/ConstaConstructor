@@ -1,14 +1,11 @@
 import { CheckboxProps, ISelectedElement } from '../../../../coreTypes'
 import { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@consta/uikit/Checkbox'
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<CheckboxProps>()
-
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<CheckboxProps>)
   const dispatch = useAppDispatch()
 
   const onChangeField = (

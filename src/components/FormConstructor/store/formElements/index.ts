@@ -20,4 +20,5 @@ export {
   getAllFormElements,
   getSelectedPageId,
   getElementsOnLayer,
+  getSelectedElementProps,
 } from './formElementsSelectors'

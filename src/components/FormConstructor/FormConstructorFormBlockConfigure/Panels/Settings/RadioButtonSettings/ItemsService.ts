@@ -1,15 +1,11 @@
 import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 import { ISelectedElement, RadioButtonProps } from '../../../../coreTypes'
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } =
-    useAppFormConstructorSelector<RadioButtonProps>()
-
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<RadioButtonProps>)
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: RadioButtonProps) => {

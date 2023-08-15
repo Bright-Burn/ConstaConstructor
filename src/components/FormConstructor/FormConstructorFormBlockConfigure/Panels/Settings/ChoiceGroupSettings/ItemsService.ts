@@ -1,8 +1,4 @@
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 import { ISelectedElement, OwnChoiceGroupProps } from '../../../../coreTypes'
 import {
   ChoiceGroupPropForm,
@@ -11,11 +7,11 @@ import {
 } from '@consta/uikit/ChoiceGroup'
 import { Item } from './types'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } =
-    useAppFormConstructorSelector<OwnChoiceGroupProps>()
-
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<OwnChoiceGroupProps>)
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: OwnChoiceGroupProps) => {

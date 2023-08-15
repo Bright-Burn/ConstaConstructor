@@ -1,13 +1,23 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { RootState } from '../setupStore'
 import { layuoutAdapter } from './initialState'
-import { IFormConstructor, IFormElement, IGroupElement } from '../../coreTypes'
+import { IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../../coreTypes'
 
 const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
 )
 
 export const getFormConstructor = (state: RootState): IFormConstructor => state.formConstructor
+
+export function getSelectedElementProps<T extends UnionProps>(
+  state: RootState,
+): {
+  selectedElementProps: T
+} {
+  return {
+    selectedElementProps: state.formConstructor.selectedElementProps as T,
+  }
+}
 
 export const getAllFormElements = (state: RootState): (IFormElement | IGroupElement)[] =>
   selectAll(state)

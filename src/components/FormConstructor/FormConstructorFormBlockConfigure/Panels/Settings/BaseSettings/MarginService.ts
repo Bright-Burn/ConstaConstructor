@@ -1,10 +1,7 @@
 import { ISelectedElement, LayoutElementPropsStyles } from '../../../../coreTypes'
 import { marginBottom, marginLeft, marginRight, marginTop } from './types'
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 const getUpdatedProps = (
   selectedElementProps: LayoutElementPropsStyles,
@@ -32,8 +29,8 @@ const getUpdatedProps = (
 }
 
 export const useMarginHandlers = () => {
-  const { selectedElementProps, selectedElement } =
-    useAppFormConstructorSelector<LayoutElementPropsStyles>()
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<LayoutElementPropsStyles>)
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: LayoutElementPropsStyles) => {

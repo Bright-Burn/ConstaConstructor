@@ -1,18 +1,15 @@
 import { ISelectedElement, TextFieldProps } from '../../../../coreTypes'
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 import { useState } from 'react'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
   const [leftSideType, setLeftSideType] = useState('')
   const [rightSideType, setRightSideType] = useState('')
 
-  const { selectedElementProps, selectedElement } = useAppFormConstructorSelector<TextFieldProps>()
-
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<TextFieldProps>)
   const dispatch = useAppDispatch()
 
   const onChangeTextField =

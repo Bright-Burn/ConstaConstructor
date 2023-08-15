@@ -1,8 +1,4 @@
-import {
-  setSelectedElement,
-  useAppDispatch,
-  useAppFormConstructorSelector,
-} from '../../../../store'
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 import { ISelectedElement, TextElementProps } from '../../../../coreTypes'
 import {
   TextPropAlign,
@@ -14,11 +10,11 @@ import {
   TextPropWeight,
 } from '@consta/uikit/Text'
 import { getPropsValue } from './textConstants'
+import { getSelectedElementProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } =
-    useAppFormConstructorSelector<TextElementProps>()
-
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElementProps } = useAppSelector(getSelectedElementProps<TextElementProps>)
   const dispatch = useAppDispatch()
 
   const onChangeField = (
