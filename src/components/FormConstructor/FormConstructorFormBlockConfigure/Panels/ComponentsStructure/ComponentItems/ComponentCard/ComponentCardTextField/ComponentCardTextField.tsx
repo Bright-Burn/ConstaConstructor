@@ -4,6 +4,8 @@ import uuid from 'react-uuid'
 import { FormElementDictTypes, IFormElementTextField } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import TextFieldImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/TextFieldImage'
+import styles from '../styles.module.css'
 
 export const ComponentCardTextField: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -37,10 +39,9 @@ export const ComponentCardTextField: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <TextFieldImage />
     </div>
   )
 }

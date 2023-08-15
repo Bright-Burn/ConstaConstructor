@@ -43,7 +43,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
 
   return (
     <div className={styles.cardLayout} draggable={true} onDragStart={onStartDragComponentCard}>
-      <Text>{name}</Text>
+      <Text className={styles.paddingText}>{name}</Text>
       <Switch
         className='m-l-s'
         label={isOuter ? 'Out' : 'In'}

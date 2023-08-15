@@ -4,6 +4,8 @@ import uuid from 'react-uuid'
 import { IComponetCardElement } from '../types'
 import { IFormElementDataTime, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import DateTimeImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/DateTimeImage'
+import styles from '../styles.module.css'
 
 export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -30,10 +32,9 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <DateTimeImage />
     </div>
   )
 }

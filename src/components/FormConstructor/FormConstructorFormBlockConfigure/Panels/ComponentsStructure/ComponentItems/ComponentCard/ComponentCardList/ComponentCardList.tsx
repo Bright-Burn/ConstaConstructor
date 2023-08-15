@@ -4,6 +4,9 @@ import uuid from 'react-uuid'
 import { useAppDispatch, setDraggableElement } from '../../../../../../store'
 import { IFormElementList, FormElementDictTypes } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
+import { ListImage } from './ListImage'
+import styles from '../styles.module.css'
+
 export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -43,10 +46,9 @@ export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div>
-      <Text draggable={true} onDragStart={onStartDragComponentCard}>
-        {name}
-      </Text>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <Text className={styles.paddingText}>{name}</Text>
+      <ListImage />
     </div>
   )
 }

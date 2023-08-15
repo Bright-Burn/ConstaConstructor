@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 
 export const ComponentItems = () => {
   return (
-    <div className={`${styles.componentItems} borderCard`}>
+    <div className={`${styles.componentItems}`}>
       {constaCards.map(cc => {
         return (
           <ComponentCard
