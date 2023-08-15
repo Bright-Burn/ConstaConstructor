@@ -4,11 +4,12 @@ import { ComponentsTabItem } from './types'
 
 export const componentsTabItems: ComponentsTabItem[] = [
   {
-    label: 'Реестр базовых компонентов',
-    icon: IconColumns,
+    label: 'Сетки',
   },
   {
-    label: 'Компоненты консты',
-    icon: IconCards,
+    label: 'Компоненты',
+  },
+  {
+    label: 'Загрузки',
   },
 ]

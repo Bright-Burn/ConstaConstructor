@@ -10,4 +10,5 @@ export interface IComponentCard {
 export interface IComponetCardElement {
   name: string
   value: FormGroupsTypes | FormElementTypes
+  isOuter?: boolean
 }
