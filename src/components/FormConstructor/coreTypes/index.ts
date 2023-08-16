@@ -49,7 +49,13 @@ export type {
 } from './dataTimeTypes'
 export type { IFormElementRadioButton, RadioButtonProps } from './radioButtonTypes'
 export type { IFormElementList } from './ListTypes'
-export type { AlignItems, JustifyContentProps } from './layoutTypes'
+export type {
+  AlignItems,
+  JustifyContentProps,
+  BrandLayoutElementPropsStyles,
+  LayoutElement,
+  LayoutPropDirection,
+} from './layoutTypes'
 export type {
   IconNames,
   IFormElementIcon,
