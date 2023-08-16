@@ -1,0 +1,8 @@
+export { BorderDott } from './BorderDott'
+export { BorderDashed } from './BorderDashed'
+export { BorderDouble } from './BorderDouble'
+export { BorderGroove } from './BorderGroove'
+export { BorderInset } from './BorderInset'
+export { BorderOutset } from './BorderOutset'
+export { BorderRidge } from './BorderRidge'
+export { BorderSolid } from './BorderSolid'

@@ -29,17 +29,22 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     borderWidth,
   }: LayoutElementStyles) => {
     const sideCss = {
-      [`${borderSide}Width`]: borderWidth,
-      [`${borderSide}Style`]: borderStyle,
-      [`${borderSide}Color`]: borderColor,
+      [`${borderSide?.name}Width`]: borderWidth,
+      [`${borderSide?.name}Style`]: borderStyle?.name,
+      [`${borderSide?.name}Color`]: borderColor,
       borderWidth: '',
       borderStyle: '',
       borderColor: '',
     }
+    if (borderSide?.name === ' ') {
+      return undefined
+    }
     return sideCss
   }
 
-  const activeSide = layoutProps?.styles?.borderSide && ActiveSide(layoutProps.styles)
+  let activeSide = layoutProps?.styles?.borderSide && ActiveSide(layoutProps.styles)
+
+  !isGridVisible && (activeSide = undefined)
 
   return (
     <Layout
@@ -47,17 +52,20 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
       {...layoutProps?.constaProps}
       style={{
         ...layoutProps?.styles,
-        ...activeSide,
         backgroundColor: `var(--${layoutProps?.styles?.backgroundColor})`,
+        borderColor: `var(--${layoutProps?.styles?.borderColor})`,
         overflow: 'hidden',
         transition: 'none',
+        borderStyle: layoutProps?.styles?.borderStyle?.name,
+        justifyContent: layoutProps?.styles?.justifyContent?.name,
+        alignItems: layoutProps?.styles?.alignItems?.name,
+        ...activeSide,
       }}
-    >
+      direction={layoutProps?.constaProps.direction?.name}>
       <SelectableLayer
         parentElementId={element.id}
         elementType={FormGroupsDictTypes.Layout}
-        elementTypeUsage={ElementTypes.FormGroups}
-      >
+        elementTypeUsage={ElementTypes.FormGroups}>
         <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />
       </SelectableLayer>
     </Layout>

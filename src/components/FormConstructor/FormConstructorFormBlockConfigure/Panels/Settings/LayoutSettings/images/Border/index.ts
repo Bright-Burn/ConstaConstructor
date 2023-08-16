@@ -1,0 +1,6 @@
+export { BorderNone } from './BorderNone'
+export { BorderLeft } from './BorderLeft'
+export { BorderRight } from './BorderRight'
+export { BorderTop } from './BorderTop'
+export { BorderBottom } from './BorderBottom'
+export { BorderAll } from './BorderAll'
