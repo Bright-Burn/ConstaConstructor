@@ -6,6 +6,8 @@ import { FormGroupsDictTypes, ILayoutElement } from '../../../../../../coreTypes
 import { IComponetCardElement } from '../types'
 import styles from './styles.module.css'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import { borderStyle } from '../../../../Settings/LayoutSettings/LayoutConstants'
+import { BorderDott } from '../../../../Settings/LayoutSettings/images/BorderStyle'
 
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter }) => {
   const dispatch = useAppDispatch()
@@ -19,13 +21,16 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
         props: {
           constaProps: {
             flex: 1,
-            direction: 'row',
+            direction: { name: 'row' },
             horizontalAlign: 'left',
             verticalAlign: 'top',
           },
           styles: {
-            alignItems: 'normal',
-            justifyContent: 'start',
+            alignItems: { name: 'normal' },
+            justifyContent: { name: 'start' },
+            borderSide: { name: ' ' },
+            borderStyle: { name: 'dotted', icon: BorderDott },
+            borderWidth: 'thin',
           },
           className: '',
           baseProps: {},

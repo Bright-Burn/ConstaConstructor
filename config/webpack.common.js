@@ -39,7 +39,14 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        exclude: [resolve(__dirname, '../node_modules'), resolve(__dirname, '../src/index.css')],
+        exclude: [
+          resolve(__dirname, '../node_modules'),
+          resolve(__dirname, '../src/index.css'),
+          resolve(
+            __dirname,
+            '../src/components/FormConstructor/FormConstructorFormBlockConfigure/Panels/Settings/LayoutSettings/Select.variants.css',
+          ),
+        ],
         use: [
           'style-loader',
           {
@@ -62,7 +69,14 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        include: [resolve(__dirname, '../node_modules'), resolve(__dirname, '../src/index.css')],
+        include: [
+          resolve(__dirname, '../node_modules'),
+          resolve(__dirname, '../src/index.css'),
+          resolve(
+            __dirname,
+            '../src/components/FormConstructor/FormConstructorFormBlockConfigure/Panels/Settings/LayoutSettings/Select.variants.css',
+          ),
+        ],
         use: [
           'style-loader',
           {
