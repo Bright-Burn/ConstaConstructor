@@ -27,12 +27,11 @@ import {
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 import { saveModuleToFile, addBaseElement, getAllFormElements } from '../../../../store'
+import { Text } from '@consta/uikit/Text'
+import { IconDownload } from '@consta/icons/IconDownload'
+
 export const BaseComponents: FC = () => {
-  const [saveModalOpen, setSaveModalOpen] = useState<boolean>(false)
-
   const { selectedElement } = useAppSelector(state => state.formConstructor)
-  const allElements = useAppSelector(getAllFormElements)
-
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
   const baseComponentMocks = [
     customCardsTemplateMock,
@@ -78,14 +77,6 @@ export const BaseComponents: FC = () => {
     }
   }
 
-  const onSaveInFileBtnClick = () => {
-    setSaveModalOpen(true)
-  }
-
-  const onCloseSaveModal = () => {
-    setSaveModalOpen(false)
-  }
-
   const onSaveComponent = (name: string, description: string) => {
     if (selectedElement) {
       dispatch(saveModuleToFile(selectedElement.elementId, name))
@@ -127,36 +118,25 @@ export const BaseComponents: FC = () => {
   }
 
   return (
-    <div className={`${styles.baseComponentsPanel} borderCard`}>
+    <div className={`${styles.baseComponentsPanel}`}>
       <div className={styles.buttonsSaveLoad}>
+        <Text size='xs'>Импортировать компонент</Text>
         <FileField id={'loader'} onChange={onChange} multiple={true}>
           {props => (
             <Button
               id={'btn'}
               {...props}
-              className='m-t-s'
-              label={'Загрузить в реестр'}
               size={'xs'}
+              onlyIcon
               view={'secondary'}
+              iconLeft={IconDownload}
             />
           )}
         </FileField>
-        <Button
-          className='m-t-s'
-          label={'Сохранить в файл'}
-          onClick={onSaveInFileBtnClick}
-          size={'xs'}
-          view={'secondary'}
-        />
       </div>
       <div className={styles.baseComponents}>
         <BaseComponentCardsList baseComponents={baseComponents} />
       </div>
-      <SaveModalCard
-        onCloseModalCard={onCloseSaveModal}
-        onSave={onSaveComponent}
-        showSaveModal={saveModalOpen}
-      />
     </div>
   )
 }
