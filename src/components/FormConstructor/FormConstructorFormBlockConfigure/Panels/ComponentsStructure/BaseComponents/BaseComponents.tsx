@@ -120,7 +120,9 @@ export const BaseComponents: FC = () => {
   return (
     <div className={`${styles.baseComponentsPanel}`}>
       <div className={styles.buttonsSaveLoad}>
-        <Text size='xs'>Импортировать компонент</Text>
+        <Text view='secondary' size='xs'>
+          Импортировать компонент
+        </Text>
         <FileField id={'loader'} onChange={onChange} multiple={true}>
           {props => (
             <Button
@@ -128,7 +130,7 @@ export const BaseComponents: FC = () => {
               {...props}
               size={'xs'}
               onlyIcon
-              view={'secondary'}
+              view='ghost'
               iconLeft={IconDownload}
             />
           )}
