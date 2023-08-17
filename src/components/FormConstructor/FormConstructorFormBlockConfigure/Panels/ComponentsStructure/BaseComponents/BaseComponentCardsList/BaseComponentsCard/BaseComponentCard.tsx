@@ -1,12 +1,12 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { IBaseComponentCard } from './types'
 import styles from './styles.module.css'
 import { Text } from '@consta/uikit/Text'
-import { Collapse } from '@consta/uikit/Collapse'
 import { useBaseComponentsDispatch } from '../../../../../../store/baseComponentsItems'
 import { setDraggableBaseComponent } from '../../../../../../store'
+import { IconPicture } from '@consta/icons/IconPicture'
+
 export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
-  const [isOpen, setOpen] = useState<boolean>(false)
   const dispatch = useBaseComponentsDispatch()
 
   const onDragFormElementStart = (event: React.DragEvent) => {
@@ -18,18 +18,15 @@ export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
 
   return (
     <div
-      className={`${styles.componentCard} borderCard`}
+      className={`${styles.componentCard}`}
       draggable={true}
-      onDragStart={onDragFormElementStart}
-    >
-      <Collapse
-        size={'xs'}
-        label={<Text size='s'>{baseComponent.name}</Text>}
-        isOpen={isOpen}
-        onClick={() => setOpen(!isOpen)}
-      >
-        {<Text size={'xs'}>{baseComponent.description}</Text>}
-      </Collapse>
+      onDragStart={onDragFormElementStart}>
+      <Text className={styles.text} size='xs'>
+        {baseComponent.description}
+      </Text>
+      <div className={styles.imgBox}>
+        <IconPicture view='ghost' className={styles.img} />
+      </div>
     </div>
   )
 }

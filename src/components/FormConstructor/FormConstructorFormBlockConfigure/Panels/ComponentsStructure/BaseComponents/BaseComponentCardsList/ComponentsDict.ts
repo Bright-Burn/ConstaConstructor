@@ -12,6 +12,9 @@ import { footerWithSwitchMockId } from '../../../../Elements/FooterWithSwitch/mo
 import { FormWithTwoColumnsMockId } from '../../../../Elements/FormWithTwoColumns'
 import { TableMockId } from '../../../../Elements/Table'
 import { ExpertiseFormMockId } from '../../../../Elements/ExpertiseForm'
+import { placeholderMock } from '../../../../Elements'
+import { CustomTextMockId } from '../../../../Elements/PrototypeTextElement/mocks'
+import { CustomTextMockId2 } from '../../../../Elements/PrototypeRectElement/mocks'
 
 export const componentsDict: Record<string, GroupCardsTypes> = {
   [headerMockId]: 'Headers',
@@ -27,4 +30,7 @@ export const componentsDict: Record<string, GroupCardsTypes> = {
   [FormWithTwoColumnsMockId]: 'Forms',
   [TableMockId]: 'Tables',
   [ExpertiseFormMockId]: 'Tables',
+  [placeholderMock.id]: 'Tables',
+  [CustomTextMockId]: 'Tables',
+  [CustomTextMockId2]: 'Tables',
 }
