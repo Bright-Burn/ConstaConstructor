@@ -10,9 +10,9 @@
 .buttonsSaveLoad {
   display: flex;
   justify-content: space-between;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 15%;
+  padding: var(--space-xs) var(--space-s) var(--space-xs) var(--space-s);
+  align-items: center;
+  border-bottom: 1px solid #00416633;
 }
 
 .baseComponents {
