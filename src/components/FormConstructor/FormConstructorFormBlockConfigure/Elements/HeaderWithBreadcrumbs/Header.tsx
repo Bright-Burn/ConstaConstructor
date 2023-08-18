@@ -7,7 +7,7 @@ import {
   headerWithBreadcrumbsProps,
   IFormElementHeaderWithBreadcrumbs,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 import { Header } from '@consta/uikit/Header'
 import { User } from '@consta/uikit/User'
@@ -27,7 +27,7 @@ export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) =
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Badge}
+      elementType={FormElementDictTypes.Badge}
     >
       <Header
         className={`container-row flex-grow-1 ${style.container}`}

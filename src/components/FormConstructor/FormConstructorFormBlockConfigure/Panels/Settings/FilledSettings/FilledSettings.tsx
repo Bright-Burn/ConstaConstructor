@@ -1,5 +1,5 @@
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { BaseProps } from '../../../../coreTypes'
+import { BaseProps, fillType, UnionProps } from '../../../../coreTypes'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
 import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
@@ -30,7 +30,7 @@ export const FilledSettings = () => {
         setSelectedElement({
           elementType: selectedElement?.elementType,
           elementId: selectedElement?.elementId,
-          newProps: newProps as BaseProps,
+          newProps: newProps as UnionProps,
         }),
       )
     }

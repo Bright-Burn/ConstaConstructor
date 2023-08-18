@@ -20,9 +20,14 @@ import {
   viewArray,
 } from './types'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../coreTypes'
+import { DatePickerElement, DatePickerProps, PropForm } from '../../../../coreTypes'
 
-export const DatePickerSettings: FC = () => {
+type DatePickerSettingsType = {
+  selectedElementProps: DatePickerProps, 
+  selectedElement: DatePickerElement,
+}
+
+export const DatePickerSettings: FC<DatePickerSettingsType> = ({selectedElementProps, selectedElement}) => {
   const {
     itemsProps,
     onChangeType,
@@ -37,7 +42,7 @@ export const DatePickerSettings: FC = () => {
     onChangeDropdownForm,
     onChangeField,
     onChangeSwitch,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <>

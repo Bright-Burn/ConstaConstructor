@@ -1,4 +1,4 @@
-import { BaseProps, IFormElement } from './types'
+import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, IFormElement } from './types'
 import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
 export type SwitchProps = {
@@ -9,6 +9,10 @@ export type SwitchProps = {
   checked?: boolean
 } & BaseProps
 
+export type BrandSwitchProps = BrandProps<SwitchProps, 'Switch'>
+
+export type SwitchElement = ConcreteSelectedElement<typeof FormElementDictTypes.Switch>
+
 export interface IFormElementSwitch extends IFormElement {
-  props: SwitchProps
+  props: BrandSwitchProps
 }

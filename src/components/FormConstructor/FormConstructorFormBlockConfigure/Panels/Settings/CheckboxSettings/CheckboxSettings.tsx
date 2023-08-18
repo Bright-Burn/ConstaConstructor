@@ -9,9 +9,16 @@ import {
   CheckboxPropSize,
   CheckboxPropView,
 } from '@consta/uikit/Checkbox'
+import { FC } from 'react'
+import { CheckboxElement, CheckboxProps } from '../../../../coreTypes/checkboxTypes'
 
-export const CheckboxSettings = () => {
-  const { itemsProps, onChangeField } = useItemsHandlers()
+type CheckboxSettingsType = {
+  selectedElementProps: CheckboxProps, 
+  selectedElement: CheckboxElement,
+}
+
+export const CheckboxSettings: FC<CheckboxSettingsType> = ({selectedElementProps, selectedElement}) => {
+  const { itemsProps, onChangeField } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <div className={styles.badgeSettings}>

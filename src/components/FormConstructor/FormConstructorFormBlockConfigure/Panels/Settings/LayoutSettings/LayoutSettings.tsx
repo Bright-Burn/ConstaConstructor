@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import React, { FC, useLayoutEffect, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import styles from './styles.module.css'
@@ -16,8 +16,14 @@ import {
   borderSide,
 } from './LayoutConstants'
 import { LayoutPalette } from '../../../../../ConstaPalette'
+import { LayoutElement } from '../../../../coreTypes/layoutTypes'
 
-export const LayoutSettings = () => {
+type LayoutSettingsType = {
+  selectedElementProps: LayoutElementPropsStyles, 
+  selectedElement: LayoutElement,
+}
+
+export const LayoutSettings: FC<LayoutSettingsType> = ({selectedElementProps, selectedElement}) => {
   const {
     itemsProps,
     onChangeFlex,
@@ -33,7 +39,7 @@ export const LayoutSettings = () => {
     onChangeVerticalAligment,
     onChangeDirection,
     onChangeBackroundColor,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [widthValue, setWidthValue] = useState<string>('0')
   const [heightValue, setHeightValue] = useState<string>('0')

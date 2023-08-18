@@ -4,11 +4,18 @@ import { TextField } from '@consta/uikit/TextField'
 import { alignArray, sizeArray, viewArray } from './types'
 import { RadioPropView, RadioPropAlign, RadioPropSize } from '@consta/uikit/Radio'
 import { Switch } from '@consta/uikit/Switch'
-import { Checkbox } from '@consta/uikit/Checkbox'
+import { FC } from 'react'
+import { RadioButtonProps } from '../../../../coreTypes'
+import { RadioButtonElement } from '../../../../coreTypes/radioButtonTypes'
 
-export const RadioButtonSettings = () => {
+type RadioButtonSettingsType = {
+  selectedElementProps: RadioButtonProps, 
+  selectedElement: RadioButtonElement,
+}
+
+export const RadioButtonSettings: FC<RadioButtonSettingsType> = ({selectedElementProps, selectedElement}) => {
   const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeSwitch, onChangeField } =
-    useItemsHandlers()
+    useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <>

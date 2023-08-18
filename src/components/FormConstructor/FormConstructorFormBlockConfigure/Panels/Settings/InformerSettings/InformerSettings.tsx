@@ -4,9 +4,17 @@ import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import { useItemsHandlers } from './ItemsService'
 import { sizes, views, statuses } from './InformerConstants'
+import { InformerElementProps } from '../../../../coreTypes'
+import { InformerElement } from '../../../../coreTypes/informerTypes'
+import { FC } from 'react'
 
-export const InformerSettings = () => {
-  const { itemsProps, onChangeField } = useItemsHandlers()
+type InformerSettingsType = {
+  selectedElementProps: InformerElementProps, 
+  selectedElement: InformerElement,
+}
+
+export const InformerSettings: FC<InformerSettingsType> = ({selectedElementProps, selectedElement}) => {
+  const { itemsProps, onChangeField } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <div className={styles.informerSettings}>

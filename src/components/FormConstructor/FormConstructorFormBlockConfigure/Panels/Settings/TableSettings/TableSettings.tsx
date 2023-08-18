@@ -1,36 +1,42 @@
 import styles from './styles.module.css'
-import { useLayoutEffect, useState } from 'react'
+import { FC, useLayoutEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
 import { TableProps, ISelectedElement } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { BrandTableProps, TableElement } from '../../../../coreTypes/tableTypes'
 
-export const TableSettings = () => {
+type TableSettingsType = {
+  selectedElementProps: TableProps, 
+  selectedElement: TableElement,
+}
+
+export const TableSettings: FC<TableSettingsType> = ({selectedElementProps, selectedElement}) => {
   const [props, setProps] = useState<TableProps>()
-
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
   const handleOnChangeLabelRow = ({ value }: { value: string | null }) => {
     if (selectedElement) {
-      const newProps: TableProps = {
-        ...(selectedElementProps as TableProps),
+      const newProps: BrandTableProps = {
+        props: selectedElementProps,
+        type: 'Table'
       }
-      newProps.row = value === null ? undefined : +value
+      newProps.props.row = value === null ? undefined : +value
       onDispatch(selectedElement, newProps)
     }
   }
 
   const handleOnChangeLabelColumn = ({ value }: { value: string | null }) => {
     if (selectedElement) {
-      const newProps: TableProps = {
-        ...(selectedElementProps as TableProps),
+      const newProps: BrandTableProps = {
+        props: selectedElementProps,
+        type: 'Table'
       }
-      newProps.column = value === null ? undefined : +value
+      newProps.props.column = value === null ? undefined : +value
       onDispatch(selectedElement, newProps)
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: TableProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTableProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,

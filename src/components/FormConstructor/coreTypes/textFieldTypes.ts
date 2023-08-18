@@ -1,4 +1,4 @@
-import { BaseProps, IFormElement } from './types'
+import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, IFormElement } from './types'
 import {
   TextFieldPropForm,
   TextFieldPropSize,
@@ -33,6 +33,10 @@ export type TextFieldProps = {
 } & BaseProps &
   TextFieldPropsTextareaType<string>
 
+export type BrandTextFieldProps = BrandProps<TextFieldProps, 'TextField'>
+
+export type TextFieldElement = ConcreteSelectedElement<typeof FormElementDictTypes.TextField>
+
 export interface IFormElementTextField extends IFormElement {
-  props: TextFieldProps
+  props: BrandTextFieldProps
 }

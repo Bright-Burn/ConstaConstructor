@@ -7,7 +7,7 @@ import {
   IFormElementPlaceholder,
   PlaceholderProps,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 
 import style from './styles.module.css'
@@ -123,7 +123,7 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
     <SelectableLayerFitSpace
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Placeholder}
+      elementType={FormElementDictTypes.Placeholder}
     >
       <div
         style={{

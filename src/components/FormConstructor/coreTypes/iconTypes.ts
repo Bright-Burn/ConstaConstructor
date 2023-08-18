@@ -1,5 +1,5 @@
 import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
-import { BaseProps, IFormElement } from './types'
+import { BaseProps, IFormElement, BrandProps, ConcreteSelectedElement, FormElementDictTypes } from './types'
 import { IconAlert } from '@consta/icons/IconAlert'
 import { IconHealth } from '@consta/icons/IconHealth'
 import { IconInfo } from '@consta/icons/IconInfo'
@@ -51,8 +51,12 @@ export type IconProps = {
 } & BaseProps
 
 export interface IFormElementIcon extends IFormElement {
-  props: IconProps
+  props: BrandIconProps
 }
+
+export type BrandIconProps = BrandProps<IconProps, 'Icon'>
+
+export type IconElement = ConcreteSelectedElement<typeof FormElementDictTypes.Icon>
 
 export const Icons = {
   IconAlert: IconAlert,

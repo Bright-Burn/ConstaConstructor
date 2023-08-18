@@ -2,14 +2,18 @@ import styles from './styles.module.css'
 import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { views, sizes, icons } from './IconsConstants'
-import { IconProps, iconNames, ISelectedElement } from '../../../../coreTypes'
+import { IconProps, iconNames, ISelectedElement, IconElement, BrandIconProps} from '../../../../coreTypes'
 import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
 import React from 'react'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
-export const IconSettings: FC = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+type IconSettingsType = {
+  selectedElementProps: IconProps, 
+  selectedElement: IconElement,
+}
+
+export const IconSettings: FC<IconSettingsType> = ({selectedElementProps, selectedElement}) => {
   const dispatch = useAppDispatch()
 
   if (selectedElementProps && 'icons' in selectedElementProps) {
@@ -17,35 +21,38 @@ export const IconSettings: FC = () => {
 
     const onChangeSize = (value: IconPropSize | null) => {
       if (selectedElement && value) {
-        const newProps: IconProps = {
-          ...selectedElementProps,
+        const newProps: BrandIconProps = {
+          props: selectedElementProps,
+          type: 'Icon'
         }
-        newProps.size = value
+        newProps.props.size = value
         onDispatch(selectedElement, newProps)
       }
     }
 
     const onChangeView = (value: IconPropView | null) => {
       if (selectedElement && value) {
-        const newProps: IconProps = {
-          ...selectedElementProps,
+        const newProps:  BrandIconProps = {
+          props: selectedElementProps,
+          type: 'Icon'
         }
-        newProps.view = value
+        newProps.props.view = value
         onDispatch(selectedElement, newProps)
       }
     }
 
     const onChangeIcon = (value: iconNames | null) => {
       if (selectedElement && value) {
-        const newProps: IconProps = {
-          ...selectedElementProps,
+        const newProps:  BrandIconProps = {
+          props: selectedElementProps,
+          type: 'Icon'
         }
-        newProps.icons = value
+        newProps.props.icons = value
         onDispatch(selectedElement, newProps)
       }
     }
 
-    const onDispatch = (selectedElement: ISelectedElement, newProps: IconProps) => {
+    const onDispatch = (selectedElement: ISelectedElement, newProps: BrandIconProps) => {
       dispatch(
         setSelectedElement({
           elementType: selectedElement.elementType,

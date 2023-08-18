@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITagFormElement } from './types'
 import style from './style.module.css'
@@ -20,7 +20,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const tagFormElement = element as IFormElementTagProps
-    setTagPropsProps(tagFormElement.props)
+    setTagPropsProps(tagFormElement.props.props)
   }, [element])
 
   function getTag() {
@@ -92,7 +92,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Tag}
+      elementType={FormElementDictTypes.Tag}
     >
       {getTag()}
     </SelectableLayer>

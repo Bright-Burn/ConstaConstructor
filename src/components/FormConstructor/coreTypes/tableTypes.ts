@@ -1,5 +1,5 @@
 import { BadgePropSize } from '@consta/uikit/Badge'
-import { BaseProps, IFormElement } from './types'
+import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, IFormElement } from './types'
 
 export type TableProps = {
   size?: BadgePropSize
@@ -8,6 +8,10 @@ export type TableProps = {
   children?: never
 } & BaseProps
 
+export type BrandTableProps = BrandProps<TableProps, 'Table'>
+
+export type TableElement = ConcreteSelectedElement<typeof FormElementDictTypes.Table>
+
 export interface IFormElementTable extends IFormElement {
-  props: TableProps
+  props: BrandTableProps
 }

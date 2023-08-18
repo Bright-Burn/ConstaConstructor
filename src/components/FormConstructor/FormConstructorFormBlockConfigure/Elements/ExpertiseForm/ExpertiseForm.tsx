@@ -3,7 +3,7 @@ import {
   IExpertiseFormProps,
   ExpertiseFormProps,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IExpertiseForm } from './types'
@@ -54,7 +54,7 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.CardWithBarChart}
+      elementType={FormElementDictTypes.CardWithBarChart}
       className={`${style.fullScreen}`}
     >
       {checkModal ? (

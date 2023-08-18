@@ -2,7 +2,7 @@ import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
 import { IComponetCardElement } from '../types'
-import { IFormElementComboBox, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementComboBox, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -24,17 +24,20 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
     ]
     const newTabs: IFormElementComboBox = {
       id: uuid(),
-      type: FormElementTypes.ComboBox,
+      type: FormElementDictTypes.ComboBox,
       props: {
-        size: 'm',
-        placeholder: 'placeholder',
-        caption: 'Хорошо подумайте, это важно',
-        label: 'Здесь можно выбрать цвет',
-        view: 'default',
-        className: '',
-        baseProps: {},
-        items: items,
-        onChange: () => {},
+          props: {
+            size: 'm',
+            placeholder: 'placeholder',
+            caption: 'Хорошо подумайте, это важно',
+            label: 'Здесь можно выбрать цвет',
+            view: 'default',
+            className: '',
+            baseProps: {},
+            items: items,
+            onChange: () => {},
+          },
+          type: 'ComboBox'
       },
     }
     dispatch(setDraggableElement({ element: newTabs }))

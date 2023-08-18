@@ -1,33 +1,35 @@
 import { BaseTypes } from './basePropsTypes'
-import { CardElementPropsStyles } from './cardTypes'
-import { BadgeProps, IFormElementBadge } from './badgeTypes'
-import { IFormElementTable, TableProps } from './tableTypes'
-import { LayoutElementPropsStyles } from './layoutTypes'
-import { IFormElementTabs, TabsElementProps } from './tabsTypes'
-import { IFormElementInformer, InformerElementProps } from './informerTypes'
-import { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
-import { IFormElementText, TextElementProps } from './textTypes'
-import { IFormElementTextField, TextFieldProps } from './textFieldTypes'
+import { BrandCardElementPropsStyles, CardElementPropsStyles } from './cardTypes'
+import { BadgeProps, BrandBadgeProps, IFormElementBadge } from './badgeTypes'
+import { BrandTableProps, IFormElementTable, TableProps } from './tableTypes'
+import { BrandLayoutElementPropsStyles, LayoutElementPropsStyles } from './layoutTypes'
+import { BrandTabsElementProps, IFormElementTabs, TabsElementProps } from './tabsTypes'
+import { BrandInformerElementProps, IFormElementInformer, InformerElementProps } from './informerTypes'
+import { BrandCheckboxProps, CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
+import { BrandTextElementProps, IFormElementText, TextElementProps } from './textTypes'
+import { BrandTextFieldProps, IFormElementTextField, TextFieldProps } from './textFieldTypes'
 import { Values } from '../utils'
-import { IFormElementList, ListProps } from './ListTypes'
-import { IFormElementRadioButton, RadioButtonProps } from './radioButtonTypes'
-import { IFormElementSwitch, SwitchProps } from './SwitchTypes'
-import { DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
-import { ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
-import { IFormElementSelect, SelectProps } from './selectTypes'
-import { DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
-import { PrototypeProps } from './prototypeTypes'
-import { BreadcrumbProps, IFormElementBreadcrumbs } from './BreadcrumbsTypes'
-import { IFormElementUser, UserProps } from './userTypes'
-import { IFormElementIcon, IconProps } from './iconTypes'
+import { BrandListProps, IFormElementList, ListProps } from './ListTypes'
+import { BrandRadioButtonProps, IFormElementRadioButton, RadioButtonProps } from './radioButtonTypes'
+import { BrandSwitchProps, IFormElementSwitch, SwitchProps } from './SwitchTypes'
+import { BrandDatePickerProps, DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
+import { BrandComboboxProps, ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
+import { BrandSelectProps, IFormElementSelect, SelectProps } from './selectTypes'
+import { BrandDataTimeProps, DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
+import { BrandPrototypeRectProps, BrandPrototypeTextProps, PrototypeProps } from './prototypeTypes'
+import { BreadcrumbProps, IFormElementBreadcrumbs, BrandBreadcrumbsProps } from './BreadcrumbsTypes'
+import { IFormElementUser, UserProps, BrandUserProps } from './userTypes'
+import { IFormElementIcon, BrandIconProps, IconProps } from './iconTypes'
 import {
+  BrandButtonGroupProps,
+  BrandButtonProps,
   ButtonGroupProps,
   ButtonProps,
   IButtonActionElement,
   IFormElementButton,
 } from './buttonTypes'
-import { IFormElementTagProps, TagProps } from './tagTypes'
-import { OwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
+import { BrandTagProps, IFormElementTagProps, TagProps } from './tagTypes'
+import { OwnChoiceGroupProps, IFormElementChoiceGroup, BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
 import { EntityState } from '@reduxjs/toolkit'
 
 // Существует два типа элементов, элементы формы и группирующие панели
@@ -41,17 +43,17 @@ export const ElementTypes = {
 export type ElementTypes = Values<typeof ElementTypes>
 
 // Виды группирующих панелей
-export const FormGroupsTypes = {
+export const FormGroupsDictTypes = {
   Layout: 'Layout',
   Card: 'Card',
   ButtonModal: 'ButtonModal',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export type FormGroupsTypes = Values<typeof FormGroupsTypes>
+export type FormGroupsTypes = Values<typeof FormGroupsDictTypes>
 
 // Виды обычных элементов формы ввода
-export const FormElementTypes = {
+export const FormElementDictTypes = {
   Button: 'Button',
   Badge: 'Badge',
   Tabs: 'Tabs',
@@ -90,7 +92,7 @@ export const FormElementTypes = {
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export type FormElementTypes = Values<typeof FormElementTypes>
+export type FormElementTypes = Values<typeof FormElementDictTypes>
 
 export interface IGroupElement extends IUnion {
   id: string
@@ -101,7 +103,7 @@ export interface IGroupElement extends IUnion {
 }
 
 export interface ILayoutElement extends IGroupElement {
-  props: LayoutElementPropsStyles
+  props: BrandLayoutElementPropsStyles
 }
 
 export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion & {
@@ -187,35 +189,50 @@ export interface IUnion {
 }
 
 export interface ICardElement extends IGroupElement {
-  props: CardElementPropsStyles
+  props: BrandCardElementPropsStyles
+}
+
+export type AllElementTypes = FormElementTypes | FormGroupsTypes
+
+export type AllElementProps = FormElementProps | GroupElementProps
+
+export type BrandProps<T, ElementTypes extends AllElementTypes> = {
+  type: ElementTypes
+  props: T
+}
+
+export type ConcreteSelectedElement<ElementTypes extends AllElementTypes> = {
+  elementId: string
+  elementType: ElementTypes
 }
 
 // Все Union пропсы для FormElement
 export type FormElementProps =
-  | ButtonProps
-  | BadgeProps
-  | TextElementProps
-  | InformerElementProps
-  | CheckboxProps
-  | TabsElementProps
-  | TextFieldProps
-  | TableProps
-  | ListProps
-  | RadioButtonProps
-  | SwitchProps
-  | DatePickerProps
-  | ComboboxProps
-  | SelectProps
-  | DataTimeProps
-  | PrototypeProps
-  | BreadcrumbProps
-  | UserProps
-  | IconProps
-  | TagProps
-  | OwnChoiceGroupProps
+  | BrandButtonProps
+  | BrandBadgeProps
+  | BrandTextElementProps
+  | BrandInformerElementProps
+  | BrandCheckboxProps
+  | BrandTabsElementProps
+  | BrandTextFieldProps
+  | BrandTableProps
+  | BrandListProps
+  | BrandRadioButtonProps
+  | BrandSwitchProps
+  | BrandDatePickerProps
+  | BrandComboboxProps
+  | BrandSelectProps
+  | BrandDataTimeProps
+  | BrandPrototypeTextProps
+  | BrandPrototypeRectProps
+  | BrandBreadcrumbsProps
+  | BrandUserProps
+  | BrandIconProps
+  | BrandTagProps
+  | BrandOwnChoiceGroupProps
 
 // Все Union пропсы для GroupElement
-export type GroupElementProps = LayoutElementPropsStyles | CardElementPropsStyles | ButtonGroupProps
+export type GroupElementProps = BrandLayoutElementPropsStyles | BrandCardElementPropsStyles | BrandButtonGroupProps
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
 export type FormElementUnion =

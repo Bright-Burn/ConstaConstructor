@@ -3,7 +3,7 @@ import { FC, useLayoutEffect, useState } from 'react'
 
 import {
   ElementTypes,
-  FormGroupsTypes,
+  FormGroupsDictTypes,
   ILayoutElement,
   LayoutElementPropsStyles,
   LayoutElementStyles,
@@ -20,7 +20,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const layoutElementWithProps = element as ILayoutElement
-    setLayoutProps(layoutElementWithProps.props)
+    setLayoutProps(layoutElementWithProps.props.props)
   }, [element])
 
   const ActiveSide = ({
@@ -56,7 +56,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     >
       <SelectableLayer
         parentElementId={element.id}
-        elementType={FormGroupsTypes.Layout}
+        elementType={FormGroupsDictTypes.Layout}
         elementTypeUsage={ElementTypes.FormGroups}
       >
         <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />

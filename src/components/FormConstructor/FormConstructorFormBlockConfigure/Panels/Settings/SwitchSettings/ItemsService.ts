@@ -1,11 +1,11 @@
 import { ISelectedElement, SwitchProps } from '../../../../coreTypes'
 import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { BrandSwitchProps, SwitchElement } from '../../../../coreTypes/SwitchTypes'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElement: SwitchElement) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: ISelectedElement, newProps: SwitchProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandSwitchProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -15,43 +15,45 @@ export const useItemsHandlers = () => {
     )
   }
   const onChangeView = (value: SwitchPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: SwitchProps = {
-        ...(selectedElementProps as SwitchProps),
+    if (value) {
+      const newProps: BrandSwitchProps = {
+        props: selectedElementProps,
+        type: 'Switch',
       }
-      newProps.view = value
+      newProps.props.view = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeSize = (value: SwitchPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: SwitchProps = {
-        ...(selectedElementProps as SwitchProps),
+    if (value) {
+      const newProps: BrandSwitchProps = {
+        props: selectedElementProps,
+        type: 'Switch',
       }
-      newProps.size = value
+      newProps.props.size = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeAlign = (value: SwitchPropAlign | null) => {
-    if (selectedElement && value) {
-      const newProps: SwitchProps = {
-        ...(selectedElementProps as SwitchProps),
+    if (value) {
+      const newProps: BrandSwitchProps = {
+        props: selectedElementProps,
+        type: 'Switch',
       }
-      newProps.align = value
+      newProps.props.align = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeField =
     (propsName: keyof SwitchProps) =>
     ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: SwitchProps = {
-          ...(selectedElementProps as SwitchProps),
+        const newProps: BrandSwitchProps = {
+          props: selectedElementProps,
+          type: 'Switch',
         }
         // @ts-ignore
-        newProps[propsName] = value || ''
+        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
-      }
     }
   return {
     onChangeView,
@@ -59,10 +61,10 @@ export const useItemsHandlers = () => {
     onChangeAlign,
     onChangeField,
     itemsProps: {
-      size: (selectedElementProps as SwitchProps).size,
-      view: (selectedElementProps as SwitchProps).view,
-      align: (selectedElementProps as SwitchProps).align,
-      label: (selectedElementProps as SwitchProps).label,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      align: selectedElementProps.align,
+      label: selectedElementProps.label,
     },
   }
 }

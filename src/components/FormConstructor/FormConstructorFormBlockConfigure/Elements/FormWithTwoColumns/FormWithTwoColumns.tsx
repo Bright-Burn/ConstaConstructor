@@ -4,7 +4,7 @@ import {
   IFormFormWithTwoColumns,
   FormWithTwoColumnsProps,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IFormWithTwoColumns } from './types'
@@ -45,7 +45,7 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.CardWithBarChart}
+      elementType={FormElementDictTypes.CardWithBarChart}
       className={`${css.fullScreen}`}
     >
       <div className={`${css.formFullWidth} m-t-2xl`}>

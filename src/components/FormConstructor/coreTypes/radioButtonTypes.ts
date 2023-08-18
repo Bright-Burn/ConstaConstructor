@@ -1,4 +1,4 @@
-import { BaseProps, IFormElement } from './types'
+import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, IFormElement } from './types'
 import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 
 export type RadioButtonProps = {
@@ -10,6 +10,10 @@ export type RadioButtonProps = {
   checked?: boolean
 } & BaseProps
 
+export type BrandRadioButtonProps = BrandProps<RadioButtonProps, 'RadioButton'>
+
+export type RadioButtonElement = ConcreteSelectedElement<typeof FormElementDictTypes.RadioButton>
+
 export interface IFormElementRadioButton extends IFormElement {
-  props: RadioButtonProps
+  props: BrandRadioButtonProps
 }

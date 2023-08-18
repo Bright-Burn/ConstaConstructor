@@ -3,7 +3,7 @@ import { FC } from 'react'
 import uuid from 'react-uuid'
 import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementChoiceGroup, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementChoiceGroup, FormElementDictTypes } from '../../../../../../coreTypes'
 import { Item } from '../../../../Settings/ChoiceGroupSettings/types'
 
 import { setDraggableElement } from '../../../../../../store'
@@ -27,15 +27,18 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
     ]
     const newChoiceGroup: IFormElementChoiceGroup = {
       id: uuid(),
-      type: FormElementTypes.ChoiceGroup,
+      type: FormElementDictTypes.ChoiceGroup,
       props: {
-        size: 'm',
-        name: 'ChoiceGroupExample',
-        items: items,
-        className: '',
-        baseProps: {},
-        onChange: () => {},
-        getItemLabel: item => item.label,
+        props: {
+          size: 'm',
+          name: 'ChoiceGroupExample',
+          items: items,
+          className: '',
+          baseProps: {},
+          onChange: () => {},
+          getItemLabel: item => item.label,
+        },
+        type: 'ChoiceGroup'
       },
     }
     dispatch(setDraggableElement({ element: newChoiceGroup }))

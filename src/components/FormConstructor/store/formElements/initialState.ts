@@ -2,7 +2,7 @@ import uuid from 'react-uuid'
 import {
   IFormElement,
   IGroupElement,
-  FormGroupsTypes,
+  FormGroupsDictTypes,
   IFormConstructor,
   ILayoutElement,
 } from '../../coreTypes'
@@ -13,22 +13,25 @@ const initialLayoutId = uuid()
 
 export const initialLayout: ILayoutElement = {
   id: initialLayoutId,
-  type: FormGroupsTypes.Layout,
+  type: FormGroupsDictTypes.Layout,
   parentId: 'null',
   isOuter: false,
   props: {
-    constaProps: {
-      flex: 1,
-      direction: 'row',
-      horizontalAlign: 'left',
-      verticalAlign: 'top',
+    props: {
+      constaProps: {
+        flex: 1,
+        direction: 'row',
+        horizontalAlign: 'left',
+        verticalAlign: 'top',
+      },
+      styles: {
+        alignItems: 'normal',
+        justifyContent: 'start',
+      },
+      className: '',
+      baseProps: {},
     },
-    styles: {
-      alignItems: 'normal',
-      justifyContent: 'start',
-    },
-    className: '',
-    baseProps: {},
+    type: 'Layout'
   },
 }
 
@@ -37,7 +40,7 @@ const initialNumberPage = 1
 
 export const layuoutAdapter = createEntityAdapter<IFormElement | IGroupElement>({
   // Assume IDs are stored in a field other than `book.id`
-  selectId: layuout => layuout.id,
+  selectId: layout => layout.id,
 })
 
 export const initialState: IFormConstructor = {
