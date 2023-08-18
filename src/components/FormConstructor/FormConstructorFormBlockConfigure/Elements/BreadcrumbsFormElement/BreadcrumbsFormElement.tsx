@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IBreadcrumbsFormElement } from './types'
 
@@ -11,7 +11,7 @@ export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element })
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.BreadcrumbsForm}
+      elementType={FormElementDictTypes.BreadcrumbsForm}
     >
       <Breadcrumbs {...props} />
     </SelectableLayer>

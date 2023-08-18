@@ -6,33 +6,31 @@ import {
   iconNames,
 } from '../../../../coreTypes'
 import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { BrandButtonProps, ButtonElement } from '../../../../coreTypes/buttonTypes'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElement: ButtonElement) => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
     value: ButtonPropSize | ButtonPropForm | ButtonPropView | string | null,
     field: keyof ButtonProps,
   ) => {
-    if (selectedElement) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
+      const newProps: BrandButtonProps = {
+        props: selectedElementProps,
+        type: 'Button',
       }
       // @ts-ignore
-      newProps[field] = value
+      newProps.props[field] = value
       onDispatch(selectedElement, newProps)
-    }
   }
 
   const onChangeSwitch =
     (propsName: keyof ButtonProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElementProps) {
-        const newProps: ButtonProps = {
-          ...(selectedElementProps as ButtonProps),
-          [propsName]: checked,
+        const newProps: BrandButtonProps = {
+          props: selectedElementProps,
+          type: 'Button',
         }
         selectedElement && onDispatch(selectedElement, newProps)
         if (propsName === 'action' && checked === true) {
@@ -46,11 +44,12 @@ export const useItemsHandlers = () => {
 
   const onChangeButtonAction = (value: ButtonAction) => {
     if (selectedElement) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
+      const newProps: BrandButtonProps = {
+        props: selectedElementProps,
+        type: 'Button',
       }
 
-      newProps['action'] = value
+      newProps.props['action'] = value
 
       onUpdateSelected(selectedElement, newProps)
       if (buttonActionsActive.includes(value)) {
@@ -119,7 +118,7 @@ export const useItemsHandlers = () => {
     }
   }
 
-  const onUpdateSelected = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
+  const onUpdateSelected = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -130,26 +129,28 @@ export const useItemsHandlers = () => {
   }
 
   const onChangeIcon = (value: iconNames | null) => {
-    if (selectedElement && value) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
+    if (value) {
+      const newProps: BrandButtonProps = {
+        props: selectedElementProps,
+        type: 'Button',
       }
-      newProps.icon = value
+      newProps.props.icon = value
       onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeIconR = (value: iconNames | null) => {
-    if (selectedElement && value) {
-      const newProps: ButtonProps = {
-        ...(selectedElementProps as ButtonProps),
+    if (value) {
+      const newProps: BrandButtonProps = {
+        props: selectedElementProps,
+        type: 'Button',
       }
-      newProps.iconR = value
+      newProps.props.iconR = value
       onDispatch(selectedElement, newProps)
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: ButtonProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -166,18 +167,18 @@ export const useItemsHandlers = () => {
     onChangeIcon,
     onChangeIconR,
     itemsProps: {
-      size: (selectedElementProps as ButtonProps).size,
-      view: (selectedElementProps as ButtonProps).view,
-      action: (selectedElementProps as ButtonProps).action,
-      label: (selectedElementProps as ButtonProps).label,
-      disabled: (selectedElementProps as ButtonProps).disabled,
-      iconLeft: (selectedElementProps as ButtonProps).iconLeft,
-      form: (selectedElementProps as ButtonProps).form,
-      loading: (selectedElementProps as ButtonProps).loading,
-      iconRight: (selectedElementProps as ButtonProps).iconRight,
-      onlyIcon: (selectedElementProps as ButtonProps).onlyIcon,
-      icon: (selectedElementProps as ButtonProps).icon,
-      iconR: (selectedElementProps as ButtonProps).iconR,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      action: selectedElementProps.action,
+      label: selectedElementProps.label,
+      disabled: selectedElementProps.disabled,
+      iconLeft: selectedElementProps.iconLeft,
+      form: selectedElementProps.form,
+      loading: selectedElementProps.loading,
+      iconRight: selectedElementProps.iconRight,
+      onlyIcon: selectedElementProps.onlyIcon,
+      icon: selectedElementProps.icon,
+      iconR: selectedElementProps.iconR,
       activeAction: (selectedElementProps as ButtonProps).activeAction,
     },
   }

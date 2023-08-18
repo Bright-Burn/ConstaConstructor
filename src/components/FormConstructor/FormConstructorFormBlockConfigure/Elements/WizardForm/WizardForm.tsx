@@ -3,7 +3,7 @@ import {
   IFormElementWizardForm,
   wizardFormProps,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IWizardForm } from './types'
@@ -30,7 +30,7 @@ export const WizardForm: FC<IWizardForm> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.CardWithBarChart}
+      elementType={FormElementDictTypes.CardWithBarChart}
       className={`${css.fullScreen}`}
     >
       <div className={`${css.wizardFomr__Screen} m-t-m m-l-2xl m-r-2xl m-b-2xl`}>

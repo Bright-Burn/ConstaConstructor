@@ -1,4 +1,4 @@
-import { DatePickerProps, ISelectedElement } from '../../../../coreTypes'
+import { BrandDatePickerProps, DatePickerElement, DatePickerProps, ISelectedElement } from '../../../../coreTypes'
 import {
   DatePickerPropDateTimeView,
   DatePickerPropDropdownForm,
@@ -6,12 +6,11 @@ import {
 } from '@consta/uikit/DatePicker'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 import { PropForm } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (selectedElementProps: DatePickerProps, selectedElement: DatePickerElement) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: ISelectedElement, newProps: DatePickerProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandDatePickerProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -21,118 +20,126 @@ export const useItemsHandlers = () => {
     )
   }
   const onChangeType = (value: DatePickerPropType | null) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.type = value
+      newProps.props.type = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeForm = (value: PropForm | null) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.form = value
+      newProps.props.form = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeStatus = (value: TextFieldPropStatus | null) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.status = value
+      newProps.props.status = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.labelPosition = value
+      newProps.props.labelPosition = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeSize = (value: TextFieldPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.size = value
+      newProps.props.size = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeView = (value: TextFieldPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.view = value
+      newProps.props.view = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeMinDate = ({ value }: { value: Date | null }) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.minDate = value
+      newProps.props.minDate = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeMaxDate = ({ value }: { value: Date | null }) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.maxDate = value
+      newProps.props.maxDate = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeDateTimeView = (value: DatePickerPropDateTimeView | null) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.dateTimeView = value
+      newProps.props.dateTimeView = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeDropdownForm = (value: DatePickerPropDropdownForm | null) => {
-    if (selectedElement && value) {
-      const newProps: DatePickerProps = {
-        ...(selectedElementProps as DatePickerProps),
+    if (value) {
+      const newProps: BrandDatePickerProps = {
+        props: selectedElementProps,
+        type: 'DatePicker',
       }
-      newProps.dropdownForm = value
+      newProps.props.dropdownForm = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeField =
     (propsName: keyof DatePickerProps) =>
     ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: DatePickerProps = {
-          ...(selectedElementProps as DatePickerProps),
+        const newProps: BrandDatePickerProps = {
+          props: selectedElementProps,
+          type: 'DatePicker',
         }
         // @ts-ignore
-        newProps[propsName] = value || ''
+        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
-      }
     }
   const onChangeSwitch =
     (propsName: keyof DatePickerProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: DatePickerProps = {
-          ...(selectedElementProps as DatePickerProps),
+        const newProps: BrandDatePickerProps = {
+          props: selectedElementProps,
+          type: 'DatePicker',
         }
         // @ts-ignore
-        newProps[propsName] = checked
+        newProps.props[propsName] = checked
         onDispatch(selectedElement, newProps)
-      }
     }
   return {
     onChangeType,
@@ -148,22 +155,22 @@ export const useItemsHandlers = () => {
     onChangeField,
     onChangeSwitch,
     itemsProps: {
-      type: (selectedElementProps as DatePickerProps).type,
-      form: (selectedElementProps as DatePickerProps).form,
-      status: (selectedElementProps as DatePickerProps).status,
-      withClearButton: (selectedElementProps as DatePickerProps).withClearButton,
-      withAdditionalControls: (selectedElementProps as DatePickerProps).withAdditionalControls,
-      label: (selectedElementProps as DatePickerProps).label,
-      labelPosition: (selectedElementProps as DatePickerProps).labelPosition,
-      required: (selectedElementProps as DatePickerProps).required,
-      caption: (selectedElementProps as DatePickerProps).caption,
-      size: (selectedElementProps as DatePickerProps).size,
-      view: (selectedElementProps as DatePickerProps).view,
-      disabled: (selectedElementProps as DatePickerProps).disabled,
-      minDate: (selectedElementProps as DatePickerProps).minDate,
-      maxDate: (selectedElementProps as DatePickerProps).maxDate,
-      dateTimeView: (selectedElementProps as DatePickerProps).dateTimeView,
-      dropdownForm: (selectedElementProps as DatePickerProps).dropdownForm,
+      type: selectedElementProps.type,
+      form: selectedElementProps.form,
+      status: selectedElementProps.status,
+      withClearButton: selectedElementProps.withClearButton,
+      withAdditionalControls: selectedElementProps.withAdditionalControls,
+      label: selectedElementProps.label,
+      labelPosition: selectedElementProps.labelPosition,
+      required: selectedElementProps.required,
+      caption: selectedElementProps.caption,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      disabled: selectedElementProps.disabled,
+      minDate: selectedElementProps.minDate,
+      maxDate: selectedElementProps.maxDate,
+      dateTimeView: selectedElementProps.dateTimeView,
+      dropdownForm: selectedElementProps.dropdownForm,
     },
   }
 }

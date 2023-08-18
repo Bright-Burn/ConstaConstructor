@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IComboBoxFormElement } from './types'
 import { ComboboxProps, IFormElementComboBox } from '../../../coreTypes'
@@ -29,7 +29,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const comboBoxFormElement = element as IFormElementComboBox
-    setComboboxProps(comboBoxFormElement.props)
+    setComboboxProps(comboBoxFormElement.props.props)
   }, [element])
 
   return (
@@ -37,7 +37,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.ComboBox}
+      elementType={FormElementDictTypes.ComboBox}
     >
       <Combobox {...comboboxProps} />
     </SelectableLayer>

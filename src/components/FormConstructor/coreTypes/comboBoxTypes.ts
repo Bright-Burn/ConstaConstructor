@@ -1,5 +1,5 @@
 import { PropForm } from './selectTypes'
-import { BaseProps, IFormElement } from './types'
+import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, IFormElement } from './types'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 
 export type comboboxItemType = {
@@ -25,6 +25,10 @@ export type ComboboxProps = {
   onChange: () => void
 } & BaseProps
 
+export type BrandComboboxProps = BrandProps<ComboboxProps, 'ComboBox'>
+
+export type ComboBoxElement = ConcreteSelectedElement<typeof FormElementDictTypes.ComboBox>
+
 export interface IFormElementComboBox extends IFormElement {
-  props: ComboboxProps
+  props: BrandComboboxProps
 }

@@ -1,14 +1,20 @@
 import { Select } from '@consta/uikit/Select'
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from './types'
 import { Switch } from '@consta/uikit/Switch'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm, comboboxItemType } from '../../../../coreTypes'
+import { PropForm, comboboxItemType, ComboboxProps } from '../../../../coreTypes'
 import { Button } from '@consta/uikit/Button'
+import { ComboBoxElement } from '../../../../coreTypes/comboBoxTypes'
 
-export const ComboBoxSettings = () => {
+type ComboBoxSettingsType = {
+  selectedElementProps: ComboboxProps, 
+  selectedElement: ComboBoxElement,
+}
+
+export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({selectedElementProps, selectedElement}) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -20,7 +26,7 @@ export const ComboBoxSettings = () => {
     onChangeSize,
     onChangeForm,
     onChangeSwitch,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
   const [lines, setLines] = useState<comboboxItemType[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {

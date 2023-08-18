@@ -1,5 +1,5 @@
 import { Select } from '@consta/uikit/Select'
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Item, formArray, sizeArray, viewArray } from './types'
@@ -13,9 +13,14 @@ import {
 import { Combobox } from '@consta/uikit/Combobox'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
-import { iconNames } from '../../../../coreTypes'
+import { iconNames, ChoiceGroupElement, OwnChoiceGroupProps} from '../../../../coreTypes'
 
-export const ChoiceGroupSettings = () => {
+type ChoiceGroupSettingsType = {
+  selectedElementProps: OwnChoiceGroupProps, 
+  selectedElement: ChoiceGroupElement,
+}
+
+export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({selectedElementProps, selectedElement}) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -25,7 +30,7 @@ export const ChoiceGroupSettings = () => {
     onChangeForm,
     onChangeSwitch,
     onChangeActiveItem,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [lines, setLines] = useState<Item[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)

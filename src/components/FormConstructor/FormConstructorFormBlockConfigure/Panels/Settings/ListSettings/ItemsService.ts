@@ -3,17 +3,18 @@ import { ISelectedElement } from '../../../../coreTypes'
 import { ItemList, ListProps } from '../../../../coreTypes'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { BrandListProps, ListElement } from '../../../../coreTypes/ListTypes'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (selectedElementProps: ListProps, selectedElement: ListElement) => {
   const dispatch = useAppDispatch()
 
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
-    if (selectedElement && value) {
-      const newProps: ListProps = {
-        ...(selectedElementProps as ListProps),
+    if (value) {
+      const newProps: BrandListProps = {
+        props: selectedElementProps,
+        type: 'List',
       }
-      let itemsProps = [...newProps.items]
+      let itemsProps = [...newProps.props.items]
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
@@ -27,63 +28,66 @@ export const useItemsHandlers = () => {
           itemsProps.pop()
         }
       }
-      newProps.items = itemsProps
+      newProps.props.items = itemsProps
       onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeSize = (value: ListPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: ListProps = {
-        ...(selectedElementProps as ListProps),
+    if (value) {
+      const newProps: BrandListProps = {
+        props: selectedElementProps,
+        type: 'List',
       }
-      newProps.size = value
+      newProps.props.size = value
       onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeItems = (items: ItemList[]) => {
-    if (selectedElement && items) {
-      const newProps: ListProps = {
-        ...(selectedElementProps as ListProps),
+    if (items) {
+      const newProps: BrandListProps = {
+        props: selectedElementProps,
+        type: 'List',
       }
-      newProps.items = [...items]
-      newProps.value = items[0]
+      newProps.props.items = [...items]
+      newProps.props.value = items[0]
       onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeInnerOffset = (value: ListPropInnerOffset | null) => {
-    if (selectedElement && value) {
-      const newProps: ListProps = {
-        ...(selectedElementProps as ListProps),
+    if (value) {
+      const newProps: BrandListProps = {
+        props: selectedElementProps,
+        type: 'List',
       }
-      newProps.innerOffset = value
+      newProps.props.innerOffset = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeForm = (value: ListPropForm | null) => {
-    if (selectedElement && value) {
-      const newProps: ListProps = {
-        ...(selectedElementProps as ListProps),
+    if (value) {
+      const newProps: BrandListProps = {
+        props: selectedElementProps,
+        type: 'List',
       }
-      newProps.form = value
+      newProps.props.form = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeSwitch =
     (propsName: keyof ListProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: ListProps = {
-          ...(selectedElementProps as ListProps),
-        }
-        // @ts-ignore
-        newProps[propsName] = checked
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandListProps = {
+        props: selectedElementProps,
+        type: 'List',
       }
+      // @ts-ignore
+      newProps.props[propsName] = checked
+      onDispatch(selectedElement, newProps)
     }
-  const onDispatch = (selectedElement: ISelectedElement, newProps: ListProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandListProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -100,11 +104,11 @@ export const useItemsHandlers = () => {
     onChangeItemsCount,
     onChangeItems,
     itemsProps: {
-      activeItem: (selectedElementProps as ListProps).value,
-      items: (selectedElementProps as ListProps).items,
-      form: (selectedElementProps as ListProps).form,
-      size: (selectedElementProps as ListProps).size,
-      innerOffset: (selectedElementProps as ListProps).innerOffset,
+      activeItem: selectedElementProps.value,
+      items: selectedElementProps.items,
+      form: selectedElementProps.form,
+      size: selectedElementProps.size,
+      innerOffset: selectedElementProps.innerOffset,
     },
   }
 }

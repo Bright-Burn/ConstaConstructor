@@ -8,7 +8,7 @@ import {
   IFormElementFooterWithSwitch,
   footerWithSwitchProps,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 
 export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
@@ -24,7 +24,7 @@ export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Badge}
+      elementType={FormElementDictTypes.Badge}
     >
       <div className={`container-row flex-grow-1 space-between m-t-xs m-b-xs`}>
         <div className='left-side'>

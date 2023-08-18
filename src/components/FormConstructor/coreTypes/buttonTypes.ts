@@ -1,6 +1,6 @@
 import { IconComponent } from '@consta/uikit/Icon'
 import { iconNames } from './iconTypes'
-import { BaseProps, IFormElement, IGroupElement } from './types'
+import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, FormGroupsDictTypes, IFormElement, IGroupElement } from './types'
 import { Props } from '@consta/uikit/Button'
 
 ///  | 'RightSidebar' | 'LeftSidebar'
@@ -14,11 +14,15 @@ export interface ButtonProps extends BaseProps, Props {
   filled?: boolean
 }
 
+export type BrandButtonProps = BrandProps<ButtonProps, 'Button'>
+
+export type ButtonElement = ConcreteSelectedElement<typeof FormElementDictTypes.Button>
+
 export const buttonActions: ButtonAction[] = ['none', 'ButtonModal']
 export const buttonActionsActive = ['ButtonModal']
 
 export interface IFormElementButton extends IFormElement {
-  props: ButtonProps
+  props: BrandButtonProps
 }
 
 export const defaultHeight = '400px'
@@ -29,11 +33,15 @@ export interface ButtonGroupProps extends BaseProps {
   width: string
 }
 
+export type BrandButtonGroupProps = BrandProps<ButtonGroupProps, 'ButtonModal'>
+
+export type ButtonGroupElement = ConcreteSelectedElement<typeof FormGroupsDictTypes.ButtonModal>
+
 export interface IButtonActionElement extends IGroupElement {
   connectedButtonId: string
 }
 
 export interface IButtonModalElement extends IButtonActionElement {
   id: string
-  props: ButtonGroupProps
+  props: BrandButtonGroupProps
 }

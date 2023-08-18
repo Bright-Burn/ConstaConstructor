@@ -4,9 +4,17 @@ import styles from './styles.module.css'
 import { TextField } from '@consta/uikit/TextField'
 import { status, types, width, forms, sizes, view, labelPosition } from './TextFieldConstants'
 import { useItemsHandlers } from './ItemsService'
+import { TextFieldProps } from '../../../../coreTypes'
+import { TextFieldElement } from '../../../../coreTypes/textFieldTypes'
+import { FC } from 'react'
 
-export const TextFieldSettings = () => {
-  const { itemsProps, onChangeTextField, onChangeSwitch } = useItemsHandlers()
+type TextFieldSettingsType = {
+  selectedElementProps: TextFieldProps, 
+  selectedElement: TextFieldElement,
+}
+
+export const TextFieldSettings: FC<TextFieldSettingsType> = ({selectedElementProps, selectedElement}) => {
+  const { itemsProps, onChangeTextField, onChangeSwitch } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <div className={styles.textFieldSettings}>

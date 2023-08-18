@@ -1,0 +1,13 @@
+import { UnionProps, AllElementProps, AllElementTypes, ISelectedElement } from "../coreTypes/types"
+
+export function isElementProps<T extends AllElementProps>(element: UnionProps | null, type: AllElementTypes): element is T {
+    if (!element) return false
+  
+    return type in element
+}
+
+export function isElement<T extends ISelectedElement>(element: ISelectedElement | null, type: AllElementTypes): element is T {
+    if (!element) return false
+  
+    return type in element
+}

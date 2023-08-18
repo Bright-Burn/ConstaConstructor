@@ -2,12 +2,11 @@ import { TextFieldProps, ISelectedElement } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 import { useState } from 'react'
+import { BrandTextFieldProps, TextFieldElement } from '../../../../coreTypes/textFieldTypes'
 
-export const useItemsHandlers = () => {
+export const useItemsHandlers = (selectedElementProps: TextFieldProps, selectedElement: TextFieldElement) => {
   const [leftSideType, setLeftSideType] = useState('')
   const [rightSideType, setRightSideType] = useState('')
-
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
 
   const dispatch = useAppDispatch()
 
@@ -15,11 +14,12 @@ export const useItemsHandlers = () => {
     (propsName: keyof TextFieldProps) =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: TextFieldProps = {
-          ...(selectedElementProps as TextFieldProps),
+        const newProps: BrandTextFieldProps = {
+          props: selectedElementProps,
+          type: 'TextField'
         }
         // @ts-ignore
-        newProps[propsName] = value || ''
+        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
       }
     }
@@ -28,15 +28,16 @@ export const useItemsHandlers = () => {
     (propsName: keyof TextFieldProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: TextFieldProps = {
-          ...(selectedElementProps as TextFieldProps),
+        const newProps: BrandTextFieldProps = {
+          props: selectedElementProps,
+          type: 'TextField'
         }
         // @ts-ignore
-        newProps[propsName] = checked
+        newProps.props[propsName] = checked
         onDispatch(selectedElement, newProps)
       }
     }
-  const onDispatch = (selectedElement: ISelectedElement, newProps: TextFieldProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTextFieldProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -49,28 +50,28 @@ export const useItemsHandlers = () => {
     onChangeTextField,
     onChangeSwitch,
     itemsProps: {
-      caption: (selectedElementProps as TextFieldProps).caption,
-      disabled: (selectedElementProps as TextFieldProps).disabled,
-      form: (selectedElementProps as TextFieldProps).form,
-      incrementButtons: (selectedElementProps as TextFieldProps).incrementButtons,
-      label: (selectedElementProps as TextFieldProps).label,
-      labelPosition: (selectedElementProps as TextFieldProps).labelPosition,
-      max: (selectedElementProps as TextFieldProps).max,
-      maxLength: (selectedElementProps as TextFieldProps).maxLength,
-      maxRows: (selectedElementProps as TextFieldProps).maxRows,
-      min: (selectedElementProps as TextFieldProps).min,
-      minRows: (selectedElementProps as TextFieldProps).minRows,
-      placeholder: (selectedElementProps as TextFieldProps).placeholder,
-      size: (selectedElementProps as TextFieldProps).size,
-      required: (selectedElementProps as TextFieldProps).required,
-      rows: (selectedElementProps as TextFieldProps).rows,
-      status: (selectedElementProps as TextFieldProps).status,
-      step: (selectedElementProps as TextFieldProps).step,
-      type: (selectedElementProps as TextFieldProps).type,
-      value: (selectedElementProps as TextFieldProps).value,
-      view: (selectedElementProps as TextFieldProps).view,
-      width: (selectedElementProps as TextFieldProps).width,
-      withClearButton: (selectedElementProps as TextFieldProps).withClearButton,
+      caption: selectedElementProps.caption,
+      disabled: selectedElementProps.disabled,
+      form: selectedElementProps.form,
+      incrementButtons: selectedElementProps.incrementButtons,
+      label: selectedElementProps.label,
+      labelPosition: selectedElementProps.labelPosition,
+      max: selectedElementProps.max,
+      maxLength: selectedElementProps.maxLength,
+      maxRows: selectedElementProps.maxRows,
+      min: selectedElementProps.min,
+      minRows: selectedElementProps.minRows,
+      placeholder: selectedElementProps.placeholder,
+      size: selectedElementProps.size,
+      required: selectedElementProps.required,
+      rows: selectedElementProps.rows,
+      status: selectedElementProps.status,
+      step: selectedElementProps.step,
+      type: selectedElementProps.type,
+      value: selectedElementProps.value,
+      view: selectedElementProps.view,
+      width: selectedElementProps.width,
+      withClearButton: selectedElementProps.withClearButton,
       leftSideType,
       rightSideType,
     },

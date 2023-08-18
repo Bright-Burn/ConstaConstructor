@@ -2,7 +2,7 @@ import { FC, useLayoutEffect, useState } from 'react'
 import { DateTime } from '@consta/uikit/DateTime'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IDataTimeFormElement } from './types'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { DataTimeProps, IFormElementDataTime } from '../../../coreTypes'
 
 export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
@@ -11,14 +11,14 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const dataTimeFormElement = element as IFormElementDataTime
-    setDataTimeProps(dataTimeFormElement.props)
+    setDataTimeProps(dataTimeFormElement.props.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.DataTime}
+      elementType={FormElementDictTypes.DataTime}
     >
       <DateTime
         value={rangeValue}

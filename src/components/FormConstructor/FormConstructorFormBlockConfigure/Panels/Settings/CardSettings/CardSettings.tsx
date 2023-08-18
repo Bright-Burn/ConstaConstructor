@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { FC, useLayoutEffect, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import styles from './styles.module.css'
@@ -6,23 +6,27 @@ import { CardElementProps, CardElementPropsStyles } from '../../../../coreTypes'
 import { TextField } from '@consta/uikit/TextField'
 import { ISelectedElement } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { BrandCardElementPropsStyles, CardElement } from '../../../../coreTypes/cardTypes'
 
-export const CardSettings = () => {
+type CardSettingsType = {
+  selectedElementProps: CardElementPropsStyles, 
+  selectedElement: CardElement,
+}
+
+export const CardSettings: FC<CardSettingsType> = ({selectedElementProps, selectedElement}) => {
   const [props, setProps] = useState<CardElementPropsStyles>()
   const status: string[] = ['alert', 'success', 'warning', 'undefined']
   const form: string[] = ['round', 'square']
   const space: string[] = ['m', 'xs', 's', 'l', 'xl', '2xl', '3xl', '4xl', '5xl']
   const [widthValue, setWidthValue] = useState<string>('376')
   const [heightValue, setHeightValue] = useState<string>('227')
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
 
   useLayoutEffect(() => {
     if (selectedElementProps) {
-      const cardProps = selectedElementProps as CardElementPropsStyles
 
-      setHeightValue(cardProps.styles?.height?.replaceAll('px', '') || '')
-      setWidthValue(cardProps.styles?.width?.replaceAll('px', '') || '')
-      setProps(cardProps)
+      setHeightValue(selectedElementProps.styles?.height?.replaceAll('px', '') || '')
+      setWidthValue(selectedElementProps.styles?.width?.replaceAll('px', '') || '')
+      setProps(selectedElementProps)
     }
   }, [selectedElementProps])
 
@@ -30,71 +34,67 @@ export const CardSettings = () => {
 
   useLayoutEffect(() => {
     if (selectedElementProps) {
-      setProps(selectedElementProps as CardElementPropsStyles)
+      setProps(selectedElementProps)
     }
   }, [selectedElementProps])
 
   const onChangeCardField =
     (propsName: keyof CardElementProps) =>
     ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: CardElementPropsStyles = {
-          ...(selectedElementProps as CardElementPropsStyles),
-        }
-        newProps.constaProps = { ...newProps.constaProps }
-        // @ts-ignore
-        newProps.constaProps[propsName] = value
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandCardElementPropsStyles = {
+        props: selectedElementProps,
+        type: 'Card',
       }
+      newProps.props.constaProps = { ...newProps.props.constaProps }
+      // @ts-ignore
+      newProps.props.constaProps[propsName] = value
+      onDispatch(selectedElement, newProps)
     }
 
   const onChangeCardSwitch =
     (propsName: keyof CardElementProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: CardElementPropsStyles = {
-          ...(selectedElementProps as CardElementPropsStyles),
-        }
-        newProps.constaProps = { ...newProps.constaProps }
-        // @ts-ignore
-        newProps.constaProps[propsName] = checked
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandCardElementPropsStyles = {
+        props: selectedElementProps,
+        type: 'Card',
       }
+      newProps.props.constaProps = { ...newProps.props.constaProps }
+      // @ts-ignore
+      newProps.props.constaProps[propsName] = checked
+      onDispatch(selectedElement, newProps)
     }
 
   const onChangeWidth = (value: string | null) => {
-    const newProps: CardElementPropsStyles = {
-      ...(selectedElementProps as CardElementPropsStyles),
+    const newProps: BrandCardElementPropsStyles = {
+      props: selectedElementProps,
+      type: 'Card',
     }
-    newProps.styles = { ...newProps.styles }
-    if (selectedElement) {
-      if (value && value !== '0') {
-        newProps.styles.width = `${value}px`
-        onDispatch(selectedElement, newProps)
-      } else {
-        newProps.styles.width = undefined
-        onDispatch(selectedElement, newProps)
-      }
+    newProps.props.styles = { ...newProps.props.styles }
+    if (value && value !== '0') {
+      newProps.props.styles.width = `${value}px`
+      onDispatch(selectedElement, newProps)
+    } else {
+      newProps.props.styles.width = undefined
+      onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeHeight = (value: string | null) => {
-    const newProps: CardElementPropsStyles = {
-      ...(selectedElementProps as CardElementPropsStyles),
+    const newProps: BrandCardElementPropsStyles = {
+      props: selectedElementProps,
+      type: 'Card',
     }
-    newProps.styles = { ...newProps.styles }
-    if (selectedElement) {
-      if (value && value !== '0') {
-        newProps.styles.height = `${value}px`
-        onDispatch(selectedElement, newProps)
-      } else {
-        newProps.styles.height = undefined
-        onDispatch(selectedElement, newProps)
-      }
+    newProps.props.styles = { ...newProps.props.styles }
+    if (value && value !== '0') {
+      newProps.props.styles.height = `${value}px`
+      onDispatch(selectedElement, newProps)
+    } else {
+      newProps.props.styles.height = undefined
+      onDispatch(selectedElement, newProps)
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: CardElementPropsStyles) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandCardElementPropsStyles) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,

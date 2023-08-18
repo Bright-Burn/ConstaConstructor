@@ -4,7 +4,7 @@ import { IconSun } from '@consta/uikit/IconSun'
 import { IconSelect } from '@consta/uikit/IconSelect'
 import { User } from '@consta/uikit/User'
 import { FC } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { IHeaderCognitiveGeologist } from './types'
 import style from './styles.module.css'
@@ -16,7 +16,7 @@ export const HeaderCognitiveGeologist: FC<IHeaderCognitiveGeologist> = ({ elemen
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Badge}
+      elementType={FormElementDictTypes.Badge}
     >
       <Header
         className={`container-row flex-grow-1 ${style.container}`}

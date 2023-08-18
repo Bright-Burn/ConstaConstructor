@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IDatePickerFormElement } from './types'
 import { DatePickerProps, IFormElementDatePicker } from '../../../coreTypes'
@@ -9,7 +9,7 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
   const [datePickerProps, setDatePickerProps] = useState<DatePickerProps>()
 
   useLayoutEffect(() => {
-    const datePickerFormElement = element as IFormElementDatePicker
+    const datePickerFormElement = element
     setDatePickerProps(datePickerFormElement.props)
   }, [element])
 
@@ -17,7 +17,7 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.DatePicker}
+      elementType={FormElementDictTypes.DatePicker}
     >
       <DatePicker {...datePickerProps} />
     </SelectableLayer>

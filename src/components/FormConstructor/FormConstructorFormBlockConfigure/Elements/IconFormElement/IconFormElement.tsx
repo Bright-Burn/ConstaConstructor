@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IIconFormElement } from './types'
 import { IFormElementIcon, IconProps } from '../../../coreTypes'
@@ -10,14 +10,14 @@ export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const iconFormElement = element as IFormElementIcon
-    setIconProps(iconFormElement.props)
+    setIconProps(iconFormElement.props.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Icon}
+      elementType={FormElementDictTypes.Icon}
     >
       {iconProps && React.createElement(Icons[iconProps.icons], iconProps)}
     </SelectableLayer>

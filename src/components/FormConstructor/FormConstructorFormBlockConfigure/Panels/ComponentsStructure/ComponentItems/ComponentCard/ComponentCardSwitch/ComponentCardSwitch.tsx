@@ -3,21 +3,24 @@ import { FC } from 'react'
 import uuid from 'react-uuid'
 import { useAppDispatch, setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementSwitch, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementSwitch, FormElementDictTypes } from '../../../../../../coreTypes'
 export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newSwitch: IFormElementSwitch = {
       id: uuid(),
-      type: FormElementTypes.Switch,
+      type: FormElementDictTypes.Switch,
       props: {
-        size: 'm',
-        view: 'primary',
-        align: 'center',
-        label: 'Это переключатель',
-        className: '',
-        baseProps: {},
+        props: {
+          size: 'm',
+          view: 'primary',
+          align: 'center',
+          label: 'Это переключатель',
+          className: '',
+          baseProps: {},
+        },
+        type: 'Switch'
       },
     }
     dispatch(setDraggableElement({ element: newSwitch }))

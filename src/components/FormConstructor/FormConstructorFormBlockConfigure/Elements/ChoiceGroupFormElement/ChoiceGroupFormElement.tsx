@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import {
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
   MultipleChoiceGroupProps,
   SingleChoiceGroupProps,
 } from '../../../coreTypes'
@@ -21,7 +21,7 @@ export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element })
       parentElementId={element.id}
       className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.ChoiceGroup}
+      elementType={FormElementDictTypes.ChoiceGroup}
     >
       {checkMultiple(props) ? <ChoiceGroup {...props} /> : <ChoiceGroup {...props} />}
     </SelectableLayer>

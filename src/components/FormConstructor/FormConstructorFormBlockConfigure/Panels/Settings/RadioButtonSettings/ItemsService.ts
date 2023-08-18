@@ -1,12 +1,12 @@
 import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 import { RadioButtonProps, ISelectedElement } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { BrandRadioButtonProps, RadioButtonElement } from '../../../../coreTypes/radioButtonTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selectedElement: RadioButtonElement) => {
   const dispatch = useAppDispatch()
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: RadioButtonProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandRadioButtonProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -17,31 +17,34 @@ export const useItemsHandlers = () => {
   }
 
   const onChangeView = (value: RadioPropView | null) => {
-    if (selectedElement && value) {
-      const newProps: RadioButtonProps = {
-        ...(selectedElementProps as RadioButtonProps),
+    if (value) {
+      const newProps: BrandRadioButtonProps = {
+        props: selectedElementProps,
+        type: 'RadioButton'
       }
-      newProps.view = value
+      newProps.props.view = value
       onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeSize = (value: RadioPropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: RadioButtonProps = {
-        ...(selectedElementProps as RadioButtonProps),
+    if (value) {
+      const newProps: BrandRadioButtonProps = {
+        props: selectedElementProps,
+        type: 'RadioButton'
       }
-      newProps.size = value
+      newProps.props.size = value
       onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeAlign = (value: RadioPropAlign | null) => {
-    if (selectedElement && value) {
-      const newProps: RadioButtonProps = {
-        ...(selectedElementProps as RadioButtonProps),
+    if (value) {
+      const newProps: BrandRadioButtonProps = {
+        props: selectedElementProps,
+        type: 'RadioButton'
       }
-      newProps.align = value
+      newProps.props.align = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -49,35 +52,32 @@ export const useItemsHandlers = () => {
   const onChangeField =
     (propsName: keyof RadioButtonProps) =>
     ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: RadioButtonProps = {
-          ...(selectedElementProps as RadioButtonProps),
+        const newProps: BrandRadioButtonProps = {
+          props: selectedElementProps,
+          type: 'RadioButton'
         }
         // @ts-ignore
-        newProps[propsName] = value || ''
+        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
-      }
     }
 
   const onChangeSwitch =
     (propsName: keyof RadioButtonProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElementProps) {
-        const newProps: RadioButtonProps = {
-          ...(selectedElementProps as RadioButtonProps),
+        const newProps: BrandRadioButtonProps = {
+          props: selectedElementProps,
+          type: 'RadioButton',
           [propsName]: checked,
         }
-        selectedElement && onDispatch(selectedElement, newProps)
-      }
+        onDispatch(selectedElement, newProps)
     }
   const onChangeChacked = (checked: boolean) => {
-    if (selectedElement) {
-      const newProps: RadioButtonProps = {
-        ...(selectedElementProps as RadioButtonProps),
+      const newProps: BrandRadioButtonProps = {
+        props: selectedElementProps,
+        type: 'RadioButton'
       }
-      newProps.checked = checked
+      newProps.props.checked = checked
       onDispatch(selectedElement, newProps)
-    }
   }
 
   return {
@@ -88,12 +88,12 @@ export const useItemsHandlers = () => {
     onChangeSwitch,
     onChangeChacked,
     itemsProps: {
-      checked: (selectedElementProps as RadioButtonProps).checked,
-      size: (selectedElementProps as RadioButtonProps).size,
-      view: (selectedElementProps as RadioButtonProps).view,
-      align: (selectedElementProps as RadioButtonProps).align,
-      label: (selectedElementProps as RadioButtonProps).label,
-      disabled: (selectedElementProps as RadioButtonProps).disabled,
+      checked: selectedElementProps.checked,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      align: selectedElementProps.align,
+      label: selectedElementProps.label,
+      disabled: selectedElementProps.disabled,
     },
   }
 }

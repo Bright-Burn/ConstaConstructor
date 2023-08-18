@@ -3,7 +3,7 @@ import {
   LayoutPropHorizontalAlign,
   LayoutPropVerticalAlign,
 } from '@consta/uikit/Layout'
-import { BaseProps } from './types'
+import { BaseProps, BrandProps, ConcreteSelectedElement, FormGroupsDictTypes } from './types'
 import { ConstaColor } from '../../ConstaPalette'
 
 // Нет возможности использовать тип импортированный из консты, как это сделано с типом ButtonElementProps, так как нет возможности создать State, содержащий поле типа HTMLElement
@@ -60,3 +60,7 @@ export interface LayoutElementPropsStyles extends BaseProps {
   constaProps: LayoutElementProps
   styles?: LayoutElementStyles
 }
+
+export type BrandLayoutElementPropsStyles = BrandProps<LayoutElementPropsStyles, 'Layout'>
+
+export type LayoutElement = ConcreteSelectedElement<typeof FormGroupsDictTypes.Layout>

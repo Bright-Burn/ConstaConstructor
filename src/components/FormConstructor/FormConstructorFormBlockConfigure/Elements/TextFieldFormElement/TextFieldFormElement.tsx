@@ -6,7 +6,7 @@ import {
   IFormElementTextField,
   TextFieldProps,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 
 export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => {
@@ -14,7 +14,7 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
 
   useLayoutEffect(() => {
     const textFieldFormElement = element as IFormElementTextField
-    setTextFieldProps(textFieldFormElement.props)
+    setTextFieldProps(textFieldFormElement.props.props)
   }, [element])
   //логика для заполнения элемента
   const isFilled = element.props.filled
@@ -23,7 +23,7 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.TextField}
+      elementType={FormElementDictTypes.TextField}
       className={isFilled ? 'container-row flex-grow-1' : ''}>
       <TextField style={{ width: '100%' }} {...textFieldProps} />
     </SelectableLayer>

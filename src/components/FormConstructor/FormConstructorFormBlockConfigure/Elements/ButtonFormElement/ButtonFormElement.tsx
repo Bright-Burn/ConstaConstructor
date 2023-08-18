@@ -7,7 +7,7 @@ import {
   ButtonProps,
   IButtonActionElement,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 import { Icons } from '../IconFormElement/mocks'
 
@@ -43,7 +43,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
       <SelectableLayer
         parentElementId={element.id}
         elementTypeUsage={ElementTypes.FormElement}
-        elementType={FormElementTypes.Button}
+        elementType={FormElementDictTypes.Button}
         className={isFilled ? 'container-row flex-grow-1' : ''}>
         <Button
           {...element.props}

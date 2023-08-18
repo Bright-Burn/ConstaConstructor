@@ -13,7 +13,7 @@ import { IconAdd } from '@consta/uikit/IconAdd'
 import { IconHamburger } from '@consta/uikit/IconHamburger'
 import { IconComponent } from '@consta/icons/Icon'
 import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { Button } from '@consta/uikit/Button'
 
 type Item = {
@@ -56,7 +56,7 @@ export const ProjectGrid: FC<IProjectGrid> = ({ element }) => {
     <SelectableLayerFitSpace
       className={style.TableView}
       parentElementId={element.id}
-      elementType={FormElementTypes.ProjectGrid}
+      elementType={FormElementDictTypes.ProjectGrid}
       elementTypeUsage={ElementTypes.FormElement}
     >
       <div className={style.HeaderButtons}>

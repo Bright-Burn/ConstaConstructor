@@ -4,8 +4,15 @@ import { TextField } from '@consta/uikit/TextField'
 import { typeArray, viewArray } from './types'
 import { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
 import { DatePicker } from '@consta/uikit/DatePicker'
+import { DataTimeProps, DataTimeElement } from '../../../../coreTypes'
+import { FC } from 'react'
 
-export const DataTimeSettings = () => {
+type DataTimeSettingsType = {
+  selectedElementProps: DataTimeProps, 
+  selectedElement: DataTimeElement,
+}
+
+export const DataTimeSettings: FC<DataTimeSettingsType> = ({selectedElementProps, selectedElement}) =>  {
   const {
     itemsProps,
     onChangeType,
@@ -15,7 +22,7 @@ export const DataTimeSettings = () => {
     onChangeView,
     onChangeMinDate,
     onChangeMaxDate,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <>

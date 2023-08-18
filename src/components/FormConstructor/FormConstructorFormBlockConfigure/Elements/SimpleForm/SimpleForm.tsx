@@ -7,7 +7,7 @@ import {
   IFormElementSimpleForm,
   simpleFormProps,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { ISimpleForm } from './types'
@@ -29,7 +29,7 @@ export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.CardWithBarChart}
+      elementType={FormElementDictTypes.CardWithBarChart}
       className={'container-row'}
     >
       <div className={`${css.flexCenter} m-t-2xl`}>

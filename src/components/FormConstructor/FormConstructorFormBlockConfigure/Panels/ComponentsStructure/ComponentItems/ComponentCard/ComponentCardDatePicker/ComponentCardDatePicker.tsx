@@ -3,7 +3,7 @@ import { FC } from 'react'
 import uuid from 'react-uuid'
 import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementDatePicker, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementDatePicker, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -11,20 +11,23 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newDatePicker: IFormElementDatePicker = {
       id: uuid(),
-      type: FormElementTypes.DatePicker,
+      type: FormElementDictTypes.DatePicker,
       props: {
-        type: 'date',
-        form: 'default',
-        status: undefined,
-        label: 'Заголовок',
-        caption: 'Подпись',
-        labelPosition: 'top',
-        size: 'm',
-        view: 'default',
-        dateTimeView: 'classic',
-        dropdownForm: 'default',
-        className: '',
-        baseProps: {},
+        props: {
+          type: 'date',
+          form: 'default',
+          status: undefined,
+          label: 'Заголовок',
+          caption: 'Подпись',
+          labelPosition: 'top',
+          size: 'm',
+          view: 'default',
+          dateTimeView: 'classic',
+          dropdownForm: 'default',
+          className: '',
+          baseProps: {},
+        },
+        type: 'DatePicker'
       },
     }
     dispatch(setDraggableElement({ element: newDatePicker }))

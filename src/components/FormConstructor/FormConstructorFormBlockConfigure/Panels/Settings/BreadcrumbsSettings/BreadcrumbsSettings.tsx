@@ -6,10 +6,17 @@ import { DefaultItem } from '@consta/uikit/Breadcrumbs'
 import { useItemsHandlers } from './ItemsService'
 import { Button } from '@consta/uikit/Button'
 import { TextField } from '@consta/uikit/TextField'
+import { ISelectedElement, BreadcrumbProps, BrandBreadcrumbsProps, BreadcrumbsFormElement } from '../../../../coreTypes'
 
-export const BreadcrumbsSettings: FC = () => {
+type BreadcrumbSettingsType = {
+  selectedElementProps: BreadcrumbProps, 
+  selectedElement: BreadcrumbsFormElement,
+}
+
+export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({selectedElementProps, selectedElement}) => {
   const { itemsProps, onChangeItemsCount, onChangeItems, onChangeSize, onChangeFitMode } =
-    useItemsHandlers()
+    useItemsHandlers(selectedElementProps, selectedElement)
+
   const [pages, setPages] = useState<DefaultItem[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {

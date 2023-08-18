@@ -2,7 +2,7 @@ import { FC, useLayoutEffect, useState } from 'react'
 import { Card } from '@consta/uikit/Card'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ICardFormElement } from './types'
-import { ElementTypes, FormGroupsTypes } from '../../../coreTypes'
+import { ElementTypes, FormGroupsDictTypes } from '../../../coreTypes'
 import { DroppableLayer } from '../../DroppableLayer'
 import { CardElementPropsStyles } from '../../../coreTypes'
 import styles from './styles.module.css'
@@ -11,14 +11,14 @@ export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const cardFormElement = element
-    setCardProps(cardFormElement.props)
+    setCardProps(cardFormElement.props.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormGroupsTypes.Card}
+      elementType={FormGroupsDictTypes.Card}
     >
       <Card
         {...cardProps?.constaProps}
