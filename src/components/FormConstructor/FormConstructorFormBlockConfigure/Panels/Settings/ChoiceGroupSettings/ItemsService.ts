@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../../../store'
-import { BrandOwnChoiceGroupProps, ChoiceGroupElement, ISelectedElement, OwnChoiceGroupProps } from '../../../../coreTypes'
+import { BrandOwnChoiceGroupProps, ChoiceGroupElement, ISelectedElement, OwnChoiceGroupProps, DeepWriteable } from '../../../../coreTypes'
 import {
   ChoiceGroupPropForm,
   ChoiceGroupPropSize,
@@ -9,7 +9,7 @@ import { Item } from './types'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = (selectedElementProps: OwnChoiceGroupProps, selectedElement: ChoiceGroupElement) => {
+export const useItemsHandlers = (selectedElementProps: DeepWriteable<OwnChoiceGroupProps>, selectedElement: ChoiceGroupElement) => {
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandOwnChoiceGroupProps) => {
@@ -34,7 +34,7 @@ export const useItemsHandlers = (selectedElementProps: OwnChoiceGroupProps, sele
         for (let i = currentLength; i < Number(value); i++) {
           itemsProps = [
             ...itemsProps,
-            { icon: Icons['IconAdd'], labelIcon: 'IconAdd', label: `new ${i + 1}` },
+            { icon: Icons['IconAdd'], labelIcon: 'IconAdd', label: `new ${i + 1}` } as DeepWriteable<Item>,
           ]
         }
       } else {
@@ -47,7 +47,7 @@ export const useItemsHandlers = (selectedElementProps: OwnChoiceGroupProps, sele
     }
   }
 
-  const onChangeActiveItem = ({ value }: { value: Item[] | Item | null }) => {
+  const onChangeActiveItem = ({ value }: { value: DeepWriteable<Item[]> | DeepWriteable<Item> | null }) => {
     if (value) {
       const newProps: BrandOwnChoiceGroupProps = {
         props: selectedElementProps,
@@ -58,7 +58,7 @@ export const useItemsHandlers = (selectedElementProps: OwnChoiceGroupProps, sele
     }
   }
 
-  const onChangeItems = (items: Item[]) => {
+  const onChangeItems = (items: DeepWriteable<Item[]>) => {
     if (items) {
       const newProps: BrandOwnChoiceGroupProps = {
         props: selectedElementProps,

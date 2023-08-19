@@ -1,8 +1,9 @@
 import { BreadcrumbProps, ISelectedElement, BrandBreadcrumbsProps, BreadcrumbsFormElement } from '../../../../coreTypes'
 import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> };
 
-export const useItemsHandlers = (selectedElementProps: BreadcrumbProps, selectedElement: BreadcrumbsFormElement) => {
+export const useItemsHandlers = (selectedElementProps: DeepWriteable<BreadcrumbProps>, selectedElement: BreadcrumbsFormElement) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandBreadcrumbsProps) => {
     dispatch(
@@ -39,7 +40,7 @@ export const useItemsHandlers = (selectedElementProps: BreadcrumbProps, selected
     }
   }
 
-  const onChangeItems = (items: DefaultItem[]) => {
+  const onChangeItems = (items: DeepWriteable<DefaultItem[]>) => {
     if (selectedElement && items) {
       const newProps: BrandBreadcrumbsProps = {
         props: selectedElementProps,

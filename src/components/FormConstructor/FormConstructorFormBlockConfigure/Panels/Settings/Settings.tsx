@@ -10,6 +10,7 @@ import { getSettingsPanelState, toggleSettingsPanelState } from '../../../store'
 import { TextField } from '@consta/uikit/TextField'
 import { IconUpload } from '@consta/icons/IconUpload'
 
+import { SettingPanelQualifier } from './SettingsPanelQualifier'
 // import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
@@ -52,6 +53,12 @@ export const Settings: FC = () => {
               onClick={onSaveModule}
             />
           </div>
+          <SaveModalCard
+            onCloseModalCard={onClose}
+            onSave={onSaveProject}
+            showSaveModal={showSaveModal}
+          />
+          <SettingPanelQualifier />
         </div>
       ) : (
         <div className={styles.toggleButton}>
