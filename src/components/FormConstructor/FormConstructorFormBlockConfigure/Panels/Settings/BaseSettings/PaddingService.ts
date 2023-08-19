@@ -28,7 +28,7 @@ export const usePaddingHandlers = () => {
   const onChangePaddingLeft = ({ value }: { value: typeof paddingsLeft[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: BrandLayoutElementPropsStyles = {
-        props: selectedElementProps.props,
+        props: {...selectedElementProps.props},
         type: 'Layout'
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
@@ -50,7 +50,7 @@ export const usePaddingHandlers = () => {
   const onChangePaddingRight = ({ value }: { value: typeof paddingsRight[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: BrandLayoutElementPropsStyles = {
-        props: selectedElementProps.props,
+        props: {...selectedElementProps.props},
         type: 'Layout'
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
@@ -72,7 +72,7 @@ export const usePaddingHandlers = () => {
   const onChangePaddingTop = ({ value }: { value: typeof paddingsTop[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: BrandLayoutElementPropsStyles = {
-        props: selectedElementProps.props,
+        props: {...selectedElementProps.props},
         type: 'Layout'
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
@@ -94,7 +94,7 @@ export const usePaddingHandlers = () => {
   const onChangePaddingBottom = ({ value }: { value: typeof paddingsBottom[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: BrandLayoutElementPropsStyles = {
-        props: selectedElementProps.props,
+        props: {...selectedElementProps.props},
         type: 'Layout'
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }

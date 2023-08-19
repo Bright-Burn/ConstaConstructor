@@ -12,7 +12,7 @@ export const useItemsHandlers = (selectedElementProps: BadgeProps, selectedEleme
   ) => {
     if (selectedElement) {
       const newProps: BrandBadgeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Badge'
       }
 
@@ -29,7 +29,7 @@ export const useItemsHandlers = (selectedElementProps: BadgeProps, selectedEleme
   }) => {
     if (selectedElement) {
       const newProps: BrandBadgeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Badge'
       }
       newProps.props.minified = event.checked
@@ -41,7 +41,7 @@ export const useItemsHandlers = (selectedElementProps: BadgeProps, selectedEleme
   const handleOnChangeLabel = ({ value }: { value: string | null }) => {
     if (selectedElement) {
       const newProps: BrandBadgeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Badge'
       }
       newProps.props.label = value || undefined

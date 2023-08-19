@@ -16,7 +16,7 @@ export const useItemsHandlers = (selectedElementProps: DataTimeProps, selectedEl
   const onChangeType = ({ value }: { value: DateTimePropType | null }) => {
     if (selectedElement && value) {
       const newProps: BrandDataTimeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DataTime',
       }
       newProps.props.type = value
@@ -26,7 +26,7 @@ export const useItemsHandlers = (selectedElementProps: DataTimeProps, selectedEl
   const onChangeView = ({ value }: { value: DateTimePropView | null }) => {
     if (selectedElement && value) {
       const newProps: BrandDataTimeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DataTime',
       }
       newProps.props.view = value
@@ -36,7 +36,7 @@ export const useItemsHandlers = (selectedElementProps: DataTimeProps, selectedEl
   const onChangeMinDate = ({ value }: { value: Date | null }) => {
     if (selectedElement && value) {
       const newProps: BrandDataTimeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DataTime',
       }
       newProps.props.minDate = value
@@ -46,7 +46,7 @@ export const useItemsHandlers = (selectedElementProps: DataTimeProps, selectedEl
   const onChangeMaxDate = ({ value }: { value: Date | null }) => {
     if (selectedElement && value) {
       const newProps: BrandDataTimeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DataTime',
       }
       newProps.props.maxDate = value
@@ -56,7 +56,7 @@ export const useItemsHandlers = (selectedElementProps: DataTimeProps, selectedEl
   const onChangeMultiplicityHours = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: BrandDataTimeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DataTime',
       }
       newProps.props.multiplicityHours = +value
@@ -66,7 +66,7 @@ export const useItemsHandlers = (selectedElementProps: DataTimeProps, selectedEl
   const onChangeMultiplicityMinutes = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: BrandDataTimeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DataTime',
       }
       newProps.props.multiplicityMinutes = +value
@@ -76,7 +76,7 @@ export const useItemsHandlers = (selectedElementProps: DataTimeProps, selectedEl
   const onChangeMultiplicitySeconds = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: BrandDataTimeProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DataTime',
       }
       newProps.props.multiplicitySeconds = +value

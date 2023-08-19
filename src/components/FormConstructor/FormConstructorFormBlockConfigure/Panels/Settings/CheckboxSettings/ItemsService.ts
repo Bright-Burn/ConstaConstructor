@@ -12,7 +12,7 @@ export const useItemsHandlers = (selectedElementProps: CheckboxProps, selectedEl
   ) => {
     if (selectedElement) {
       const newProps: BrandCheckboxProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Checkbox'
       }
 
