@@ -74,5 +74,5 @@ export type {
 } from './types'
 
 export { FormGroupsDictTypes, FormElementDictTypes, ElementTypes } from './types'
-export type { FormGroupsTypes, FormElementTypes } from './types'
+export type { FormGroupsTypes, FormElementTypes, DeepWriteable } from './types'
 export { buttonActionsActive, buttonActions } from './buttonTypes'

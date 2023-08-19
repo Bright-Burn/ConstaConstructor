@@ -1,4 +1,4 @@
-import { BaseProps, IFormElement,  BrandProps, ConcreteSelectedElement, FormElementDictTypes } from './types'
+import { BaseProps, IFormElement,  BrandProps, ConcreteSelectedElement, FormElementDictTypes, DeepWriteable } from './types'
 import { ChoiceGroupProps } from '@consta/uikit/ChoiceGroup'
 import { IconComponent } from '@consta/uikit/Icon'
 
@@ -14,11 +14,11 @@ export interface IFormElementChoiceGroup extends IFormElement {
 
 export type ChoiceGroupElement = ConcreteSelectedElement<typeof FormElementDictTypes.ChoiceGroup>
 
-export type BrandOwnChoiceGroupProps = BrandProps<SingleChoiceGroupProps, 'ChoiceGroup'>
+export type BrandOwnChoiceGroupProps = BrandProps<DeepWriteable<OwnChoiceGroupProps>, 'ChoiceGroup'>
 
 export type Item = {
   label: string
   icon?: IconComponent
   labelIcon?: string
   disabled?: boolean
-}
+} 

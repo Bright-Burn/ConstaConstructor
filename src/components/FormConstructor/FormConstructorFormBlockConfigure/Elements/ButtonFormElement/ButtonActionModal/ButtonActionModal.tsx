@@ -15,7 +15,7 @@ export const ButtonActionModal: FC<IButtonActionViewer> = ({
   const [buttonGroupProps, setButtonGroupProps] = useState<ButtonGroupProps>()
 
   useEffect(() => {
-    setButtonGroupProps(buttonGroup.props)
+    setButtonGroupProps(buttonGroup.props.props)
   }, [buttonGroup])
 
   const onModalClick = (e: React.DragEvent<HTMLDivElement>) => {
