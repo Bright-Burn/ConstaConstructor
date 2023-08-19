@@ -22,7 +22,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeType = (value: DatePickerPropType | null) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.type = value
@@ -32,7 +32,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeForm = (value: PropForm | null) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.form = value
@@ -42,7 +42,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeStatus = (value: TextFieldPropStatus | null) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.status = value
@@ -52,7 +52,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.labelPosition = value
@@ -62,7 +62,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeSize = (value: TextFieldPropSize | null) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.size = value
@@ -72,7 +72,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeView = (value: TextFieldPropView | null) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.view = value
@@ -82,7 +82,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeMinDate = ({ value }: { value: Date | null }) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.minDate = value
@@ -92,7 +92,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeMaxDate = ({ value }: { value: Date | null }) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.maxDate = value
@@ -102,7 +102,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeDateTimeView = (value: DatePickerPropDateTimeView | null) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.dateTimeView = value
@@ -112,7 +112,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
   const onChangeDropdownForm = (value: DatePickerPropDropdownForm | null) => {
     if (value) {
       const newProps: BrandDatePickerProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'DatePicker',
       }
       newProps.props.dropdownForm = value
@@ -123,7 +123,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
     (propsName: keyof DatePickerProps) =>
     ({ value }: { value: string | null }) => {
         const newProps: BrandDatePickerProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'DatePicker',
         }
         // @ts-ignore
@@ -134,7 +134,7 @@ export const useItemsHandlers = (selectedElementProps: DatePickerProps, selected
     (propsName: keyof DatePickerProps) =>
     ({ checked }: { checked: boolean }) => {
         const newProps: BrandDatePickerProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'DatePicker',
         }
         // @ts-ignore

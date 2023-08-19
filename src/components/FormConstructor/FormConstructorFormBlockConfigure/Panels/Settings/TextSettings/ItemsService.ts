@@ -44,11 +44,11 @@ export const useItemsHandlers = (selectedElementProps: TextElementProps, selecte
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
         const newProps: BrandTextElementProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'Text',
         }
         // @ts-ignore
-        newProps[propsName] = value || ''
+        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
       }
     }

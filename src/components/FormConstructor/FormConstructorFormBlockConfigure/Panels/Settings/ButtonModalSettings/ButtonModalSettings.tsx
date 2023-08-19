@@ -17,7 +17,7 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({selectedElem
 
   useEffect(() => {
     const buttonGroupProps: BrandButtonGroupProps = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'ButtonModal'
     }
     setProps(buttonGroupProps)
@@ -25,7 +25,7 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({selectedElem
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandButtonGroupProps = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'ButtonModal'
     }
     newProps.props.width = value ? `${value}px` : ''

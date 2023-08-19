@@ -9,5 +9,5 @@ export function isElementProps<T extends AllElementProps>(element: UnionProps | 
 export function isElement<T extends ISelectedElement>(element: ISelectedElement | null, type: AllElementTypes): element is T {
     if (!element) return false
   
-    return type in element
+    return element.elementType === type
 }

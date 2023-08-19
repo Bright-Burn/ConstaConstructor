@@ -17,7 +17,7 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
     field: keyof ButtonProps,
   ) => {
       const newProps: BrandButtonProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Button',
       }
       // @ts-ignore
@@ -29,7 +29,7 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
     (propsName: keyof ButtonProps) =>
     ({ checked }: { checked: boolean }) => {
         const newProps: BrandButtonProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'Button',
         }
         selectedElement && onDispatch(selectedElement, newProps)
@@ -43,9 +43,8 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
     }
 
   const onChangeButtonAction = (value: ButtonAction) => {
-    if (selectedElement) {
       const newProps: BrandButtonProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Button',
       }
 
@@ -57,7 +56,6 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
       } else {
         removeConnectedElement()
       }
-    }
   }
 
   const addConnectedElement = () => {
@@ -131,7 +129,7 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
   const onChangeIcon = (value: iconNames | null) => {
     if (value) {
       const newProps: BrandButtonProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Button',
       }
       newProps.props.icon = value
@@ -142,7 +140,7 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
   const onChangeIconR = (value: iconNames | null) => {
     if (value) {
       const newProps: BrandButtonProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Button',
       }
       newProps.props.iconR = value

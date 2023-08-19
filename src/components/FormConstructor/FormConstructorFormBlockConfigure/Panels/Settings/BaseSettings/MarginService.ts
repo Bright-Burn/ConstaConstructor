@@ -29,7 +29,7 @@ export const useMarginHandlers = () => {
     if (selectedElement && value != null) {
       const newProps: BrandLayoutElementPropsStyles = {
         type: selectedElementProps.type,
-        props: selectedElementProps.props,
+        props: {...selectedElementProps.props},
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
 
@@ -52,7 +52,7 @@ export const useMarginHandlers = () => {
     if (selectedElement && value != null) {
       const newProps: BrandLayoutElementPropsStyles = {
         type: selectedElementProps.type,
-        props: selectedElementProps.props,
+        props: {...selectedElementProps.props},
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
 
@@ -74,7 +74,7 @@ export const useMarginHandlers = () => {
     if (selectedElement && value != null) {
       const newProps: BrandLayoutElementPropsStyles = {
         type: selectedElementProps.type,
-        props: selectedElementProps.props,
+        props: {...selectedElementProps.props},
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
 
@@ -96,7 +96,7 @@ export const useMarginHandlers = () => {
     if (selectedElement && value != null) {
       const newProps: BrandLayoutElementPropsStyles = {
         type: selectedElementProps.type,
-        props: selectedElementProps.props,
+        props: {...selectedElementProps.props},
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
 

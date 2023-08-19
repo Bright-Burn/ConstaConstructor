@@ -25,7 +25,7 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<OwnChoiceGr
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (value) {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'ChoiceGroup'
       }
       let itemsProps = [...newProps.props.items]
@@ -50,7 +50,7 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<OwnChoiceGr
   const onChangeActiveItem = ({ value }: { value: DeepWriteable<Item[]> | DeepWriteable<Item> | null }) => {
     if (value) {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'ChoiceGroup'
       }
       newProps.props.value = value
@@ -61,7 +61,7 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<OwnChoiceGr
   const onChangeItems = (items: DeepWriteable<Item[]>) => {
     if (items) {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'ChoiceGroup'
       }
       newProps.props.items = [...items]
@@ -73,7 +73,7 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<OwnChoiceGr
   const onChangeSize = (value: ChoiceGroupPropSize | null) => {
     if (value) {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'ChoiceGroup'
       }
       newProps.props.size = value
@@ -84,7 +84,7 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<OwnChoiceGr
   const onChangeView = (value: ChoiceGroupPropView | null) => {
     if (value) {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'ChoiceGroup'
       }
       newProps.props.view = value
@@ -95,7 +95,7 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<OwnChoiceGr
   const onChangeForm = (value: ChoiceGroupPropForm | null) => {
     if (value) {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'ChoiceGroup'
       }
       newProps.props.form = value
@@ -107,7 +107,7 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<OwnChoiceGr
     (propsName: keyof OwnChoiceGroupProps) =>
     ({ checked }: { checked: boolean }) => {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'ChoiceGroup'
       }
       // @ts-ignore
