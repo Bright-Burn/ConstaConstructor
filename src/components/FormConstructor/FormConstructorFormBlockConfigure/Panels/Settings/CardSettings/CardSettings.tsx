@@ -5,15 +5,15 @@ import styles from './styles.module.css'
 import { CardElementProps, CardElementPropsStyles } from '../../../../coreTypes'
 import { TextField } from '@consta/uikit/TextField'
 import { ISelectedElement } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BrandCardElementPropsStyles, CardElement } from '../../../../coreTypes/cardTypes'
 
 type CardSettingsType = {
-  selectedElementProps: CardElementPropsStyles, 
-  selectedElement: CardElement,
+  selectedElementProps: CardElementPropsStyles
+  selectedElement: CardElement
 }
 
-export const CardSettings: FC<CardSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selectedElement }) => {
   const [props, setProps] = useState<CardElementPropsStyles>()
   const status: string[] = ['alert', 'success', 'warning', 'undefined']
   const form: string[] = ['round', 'square']
@@ -23,7 +23,6 @@ export const CardSettings: FC<CardSettingsType> = ({selectedElementProps, select
 
   useLayoutEffect(() => {
     if (selectedElementProps) {
-
       setHeightValue(selectedElementProps.styles?.height?.replaceAll('px', '') || '')
       setWidthValue(selectedElementProps.styles?.width?.replaceAll('px', '') || '')
       setProps(selectedElementProps)
@@ -42,7 +41,7 @@ export const CardSettings: FC<CardSettingsType> = ({selectedElementProps, select
     (propsName: keyof CardElementProps) =>
     ({ value }: { value: string | null }) => {
       const newProps: BrandCardElementPropsStyles = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Card',
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
@@ -55,7 +54,7 @@ export const CardSettings: FC<CardSettingsType> = ({selectedElementProps, select
     (propsName: keyof CardElementProps) =>
     ({ checked }: { checked: boolean }) => {
       const newProps: BrandCardElementPropsStyles = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Card',
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
@@ -66,7 +65,7 @@ export const CardSettings: FC<CardSettingsType> = ({selectedElementProps, select
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandCardElementPropsStyles = {
-      props: {...selectedElementProps},
+      props: { ...selectedElementProps },
       type: 'Card',
     }
     newProps.props.styles = { ...newProps.props.styles }
@@ -81,7 +80,7 @@ export const CardSettings: FC<CardSettingsType> = ({selectedElementProps, select
 
   const onChangeHeight = (value: string | null) => {
     const newProps: BrandCardElementPropsStyles = {
-      props: {...selectedElementProps},
+      props: { ...selectedElementProps },
       type: 'Card',
     }
     newProps.props.styles = { ...newProps.props.styles }

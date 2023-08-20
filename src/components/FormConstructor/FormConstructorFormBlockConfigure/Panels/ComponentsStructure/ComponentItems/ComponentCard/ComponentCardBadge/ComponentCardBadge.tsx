@@ -22,7 +22,7 @@ export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'Badge'
+        type: 'Badge',
       },
     }
 

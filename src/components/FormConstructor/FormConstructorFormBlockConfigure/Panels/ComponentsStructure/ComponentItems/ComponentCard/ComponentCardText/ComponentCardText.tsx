@@ -18,7 +18,7 @@ export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'Text'
+        type: 'Text',
       },
     }
     dispatch(setDraggableElement({ element: newText }))

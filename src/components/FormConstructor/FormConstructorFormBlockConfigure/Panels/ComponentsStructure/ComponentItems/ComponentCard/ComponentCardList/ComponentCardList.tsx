@@ -36,7 +36,7 @@ export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
           baseProps: {},
           items: items,
         },
-        type: 'List'
+        type: 'List',
       },
     }
     dispatch(setDraggableElement({ element: newList }))

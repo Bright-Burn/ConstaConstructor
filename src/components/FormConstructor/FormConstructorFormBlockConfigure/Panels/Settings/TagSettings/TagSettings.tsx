@@ -11,11 +11,11 @@ import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 type TagSettingsType = {
-  selectedElementProps: TagProps, 
-  selectedElement: TagElement,
+  selectedElementProps: TagProps
+  selectedElement: TagElement
 }
 
-export const TagSettings: FC<TagSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selectedElement }) => {
   const {
     itemsProps,
     onChangeField,

@@ -3,7 +3,10 @@ import { RadioButtonProps, ISelectedElement } from '../../../../coreTypes'
 import { BrandRadioButtonProps, RadioButtonElement } from '../../../../coreTypes/radioButtonTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selectedElement: RadioButtonElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: RadioButtonProps,
+  selectedElement: RadioButtonElement,
+) => {
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandRadioButtonProps) => {
@@ -19,8 +22,8 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
   const onChangeView = (value: RadioPropView | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: {...selectedElementProps},
-        type: 'RadioButton'
+        props: { ...selectedElementProps },
+        type: 'RadioButton',
       }
       newProps.props.view = value
       onDispatch(selectedElement, newProps)
@@ -30,8 +33,8 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
   const onChangeSize = (value: RadioPropSize | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: {...selectedElementProps},
-        type: 'RadioButton'
+        props: { ...selectedElementProps },
+        type: 'RadioButton',
       }
       newProps.props.size = value
       onDispatch(selectedElement, newProps)
@@ -41,8 +44,8 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
   const onChangeAlign = (value: RadioPropAlign | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: {...selectedElementProps},
-        type: 'RadioButton'
+        props: { ...selectedElementProps },
+        type: 'RadioButton',
       }
       newProps.props.align = value
       onDispatch(selectedElement, newProps)
@@ -52,35 +55,35 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
   const onChangeField =
     (propsName: keyof RadioButtonProps) =>
     ({ value }: { value: string | null }) => {
-        const newProps: BrandRadioButtonProps = {
-          props: {
-            ...selectedElementProps,
-            [propsName]: value || '',
-          },
-          type: 'RadioButton'
-        }
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandRadioButtonProps = {
+        props: {
+          ...selectedElementProps,
+          [propsName]: value || '',
+        },
+        type: 'RadioButton',
+      }
+      onDispatch(selectedElement, newProps)
     }
 
   const onChangeSwitch =
     (propsName: keyof RadioButtonProps) =>
     ({ checked }: { checked: boolean }) => {
-        const newProps: BrandRadioButtonProps = {
-          props: {
-            ...selectedElementProps,
-            [propsName]: checked,
-          },
-          type: 'RadioButton',
-        }
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandRadioButtonProps = {
+        props: {
+          ...selectedElementProps,
+          [propsName]: checked,
+        },
+        type: 'RadioButton',
+      }
+      onDispatch(selectedElement, newProps)
     }
   const onChangeChacked = (checked: boolean) => {
-      const newProps: BrandRadioButtonProps = {
-        props: {...selectedElementProps},
-        type: 'RadioButton'
-      }
-      newProps.props.checked = checked
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandRadioButtonProps = {
+      props: { ...selectedElementProps },
+      type: 'RadioButton',
+    }
+    newProps.props.checked = checked
+    onDispatch(selectedElement, newProps)
   }
 
   return {

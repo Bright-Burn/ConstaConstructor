@@ -1,35 +1,33 @@
 import { BaseTypes } from './basePropsTypes'
-import { BrandCardElementPropsStyles, CardElementPropsStyles } from './cardTypes'
-import { BadgeProps, BrandBadgeProps, IFormElementBadge } from './badgeTypes'
-import { BrandTableProps, IFormElementTable, TableProps } from './tableTypes'
-import { BrandLayoutElementPropsStyles, LayoutElementPropsStyles } from './layoutTypes'
-import { BrandTabsElementProps, IFormElementTabs, TabsElementProps } from './tabsTypes'
-import { BrandInformerElementProps, IFormElementInformer, InformerElementProps } from './informerTypes'
-import { BrandCheckboxProps, CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
-import { BrandTextElementProps, IFormElementText, TextElementProps } from './textTypes'
-import { BrandTextFieldProps, IFormElementTextField, TextFieldProps } from './textFieldTypes'
+import { BrandCardElementPropsStyles } from './cardTypes'
+import { BrandBadgeProps, IFormElementBadge } from './badgeTypes'
+import { BrandTableProps, IFormElementTable } from './tableTypes'
+import { BrandLayoutElementPropsStyles } from './layoutTypes'
+import { BrandTabsElementProps, IFormElementTabs } from './tabsTypes'
+import { BrandInformerElementProps, IFormElementInformer } from './informerTypes'
+import { BrandCheckboxProps, IFormElementCheckbox } from './checkboxTypes'
+import { BrandTextElementProps, IFormElementText } from './textTypes'
+import { BrandTextFieldProps, IFormElementTextField } from './textFieldTypes'
 import { Values } from '../utils'
-import { BrandListProps, IFormElementList, ListProps } from './ListTypes'
-import { BrandRadioButtonProps, IFormElementRadioButton, RadioButtonProps } from './radioButtonTypes'
-import { BrandSwitchProps, IFormElementSwitch, SwitchProps } from './SwitchTypes'
-import { BrandDatePickerProps, DatePickerProps, IFormElementDatePicker } from './datePickerTypes'
-import { BrandComboboxProps, ComboboxProps, IFormElementComboBox } from './comboBoxTypes'
-import { BrandSelectProps, IFormElementSelect, SelectProps } from './selectTypes'
-import { BrandDataTimeProps, DataTimeProps, IFormElementDataTime } from './dataTimeTypes'
-import { BrandPrototypeRectProps, BrandPrototypeTextProps, PrototypeProps } from './prototypeTypes'
-import { BreadcrumbProps, IFormElementBreadcrumbs, BrandBreadcrumbsProps } from './BreadcrumbsTypes'
-import { IFormElementUser, UserProps, BrandUserProps } from './userTypes'
-import { IFormElementIcon, BrandIconProps, IconProps } from './iconTypes'
+import { BrandListProps, IFormElementList } from './ListTypes'
+import { BrandRadioButtonProps, IFormElementRadioButton } from './radioButtonTypes'
+import { BrandSwitchProps, IFormElementSwitch } from './SwitchTypes'
+import { BrandDatePickerProps, IFormElementDatePicker } from './datePickerTypes'
+import { BrandComboboxProps, IFormElementComboBox } from './comboBoxTypes'
+import { BrandSelectProps, IFormElementSelect } from './selectTypes'
+import { BrandDataTimeProps, IFormElementDataTime } from './dataTimeTypes'
+import { BrandPrototypeRectProps, BrandPrototypeTextProps } from './prototypeTypes'
+import { IFormElementBreadcrumbs, BrandBreadcrumbsProps } from './BreadcrumbsTypes'
+import { IFormElementUser, BrandUserProps } from './userTypes'
+import { IFormElementIcon, BrandIconProps } from './iconTypes'
 import {
   BrandButtonGroupProps,
   BrandButtonProps,
-  ButtonGroupProps,
-  ButtonProps,
   IButtonActionElement,
   IFormElementButton,
 } from './buttonTypes'
-import { BrandTagProps, IFormElementTagProps, TagProps } from './tagTypes'
-import { OwnChoiceGroupProps, IFormElementChoiceGroup, BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
+import { BrandTagProps, IFormElementTagProps } from './tagTypes'
+import { IFormElementChoiceGroup, BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
 import { EntityState } from '@reduxjs/toolkit'
 
 // Существует два типа элементов, элементы формы и группирующие панели
@@ -232,7 +230,10 @@ export type FormElementProps =
   | BrandOwnChoiceGroupProps
 
 // Все Union пропсы для GroupElement
-export type GroupElementProps = BrandLayoutElementPropsStyles | BrandCardElementPropsStyles | BrandButtonGroupProps
+export type GroupElementProps =
+  | BrandLayoutElementPropsStyles
+  | BrandCardElementPropsStyles
+  | BrandButtonGroupProps
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
 export type FormElementUnion =
@@ -293,4 +294,4 @@ interface IHistory {
   history: any
 }
 
-export type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> };
+export type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> }

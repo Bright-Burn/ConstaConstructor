@@ -9,12 +9,18 @@ import { TextFieldElement } from '../../../../coreTypes/textFieldTypes'
 import { FC } from 'react'
 
 type TextFieldSettingsType = {
-  selectedElementProps: TextFieldProps, 
-  selectedElement: TextFieldElement,
+  selectedElementProps: TextFieldProps
+  selectedElement: TextFieldElement
 }
 
-export const TextFieldSettings: FC<TextFieldSettingsType> = ({selectedElementProps, selectedElement}) => {
-  const { itemsProps, onChangeTextField, onChangeSwitch } = useItemsHandlers(selectedElementProps, selectedElement)
+export const TextFieldSettings: FC<TextFieldSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
+  const { itemsProps, onChangeTextField, onChangeSwitch } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
 
   return (
     <div className={styles.textFieldSettings}>

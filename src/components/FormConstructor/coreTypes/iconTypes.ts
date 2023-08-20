@@ -1,5 +1,11 @@
 import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
-import { BaseProps, IFormElement, BrandProps, ConcreteSelectedElement, FormElementDictTypes } from './types'
+import {
+  BaseProps,
+  IFormElement,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+} from './types'
 import { IconAlert } from '@consta/icons/IconAlert'
 import { IconHealth } from '@consta/icons/IconHealth'
 import { IconInfo } from '@consta/icons/IconInfo'

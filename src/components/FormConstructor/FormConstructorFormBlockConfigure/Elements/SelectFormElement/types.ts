@@ -1,4 +1,4 @@
-import { BrandSelectProps, IFormElementSelect } from '../../../coreTypes'
+import { IFormElementSelect } from '../../../coreTypes'
 
 export interface ISelectFormElement {
   element: IFormElementSelect

@@ -1,6 +1,14 @@
 import { IconComponent } from '@consta/uikit/Icon'
 import { iconNames } from './iconTypes'
-import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, FormGroupsDictTypes, IFormElement, IGroupElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  FormGroupsDictTypes,
+  IFormElement,
+  IGroupElement,
+} from './types'
 import { Props } from '@consta/uikit/Button'
 
 ///  | 'RightSidebar' | 'LeftSidebar'

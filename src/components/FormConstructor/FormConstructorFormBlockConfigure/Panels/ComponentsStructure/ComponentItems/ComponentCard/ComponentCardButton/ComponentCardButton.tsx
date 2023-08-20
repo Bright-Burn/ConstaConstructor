@@ -24,7 +24,7 @@ export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'Button'
+        type: 'Button',
       },
     }
     dispatch(setDraggableElement({ element: newButton }))

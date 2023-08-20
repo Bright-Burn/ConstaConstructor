@@ -1,5 +1,5 @@
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ISelectedElement, TextElementProps, BrandTextElementProps, FormElementDictTypes } from '../../../../coreTypes'
+import { ISelectedElement, TextElementProps, BrandTextElementProps } from '../../../../coreTypes'
 import {
   TextPropSize,
   TextPropView,
@@ -12,7 +12,10 @@ import {
 import { getPropsValue } from './textConstants'
 import { TextElement } from '../../../../coreTypes/textTypes'
 
-export const useItemsHandlers = (selectedElementProps: TextElementProps, selectedElement: TextElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: TextElementProps,
+  selectedElement: TextElement,
+) => {
   const dispatch = useAppDispatch()
   const onChangeField = (
     value:
@@ -29,7 +32,7 @@ export const useItemsHandlers = (selectedElementProps: TextElementProps, selecte
   ) => {
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Text',
       }
       // @ts-ignore
@@ -44,7 +47,7 @@ export const useItemsHandlers = (selectedElementProps: TextElementProps, selecte
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
         const newProps: BrandTextElementProps = {
-          props: {...selectedElementProps},
+          props: { ...selectedElementProps },
           type: 'Text',
         }
         // @ts-ignore
@@ -63,7 +66,7 @@ export const useItemsHandlers = (selectedElementProps: TextElementProps, selecte
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
         type: 'Text',
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
       }
       const newValue = getPropsValue(field)
       // @ts-ignore
@@ -76,7 +79,7 @@ export const useItemsHandlers = (selectedElementProps: TextElementProps, selecte
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
         type: 'Text',
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
       }
       newProps.props.truncate = checked
 

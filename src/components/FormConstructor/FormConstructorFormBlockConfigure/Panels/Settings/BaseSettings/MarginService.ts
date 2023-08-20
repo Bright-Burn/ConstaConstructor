@@ -1,8 +1,6 @@
-import { ISelectedElement, LayoutElementPropsStyles, UnionProps } from '../../../../coreTypes'
+import { ISelectedElement, UnionProps } from '../../../../coreTypes'
 import { marginBottom, marginLeft, marginRight, marginTop } from './types'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { BrandLayoutElementPropsStyles } from '../../../../coreTypes/layoutTypes'
-import { isElementProps } from '../../../../utils/quard'
 
 export const useMarginHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -12,7 +10,7 @@ export const useMarginHandlers = () => {
       onChangemarginBottom: () => {},
       onChangemarginLeft: () => {},
       onChangemarginRight: () => {},
-      onChangemarginTop: () => {}
+      onChangemarginTop: () => {},
     }
   }
   const dispatch = useAppDispatch()
@@ -28,7 +26,7 @@ export const useMarginHandlers = () => {
   const onChangemarginLeft = ({ value }: { value: typeof marginLeft[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
-      if ('constaProps' in newProps.props){
+      if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
 
@@ -50,7 +48,7 @@ export const useMarginHandlers = () => {
   const onChangemarginRight = ({ value }: { value: typeof marginRight[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
-      if ('constaProps' in newProps.props){
+      if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
 
@@ -71,7 +69,7 @@ export const useMarginHandlers = () => {
   const onChangemarginTop = ({ value }: { value: typeof marginTop[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
-      if ('constaProps' in newProps.props){
+      if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
 
@@ -92,7 +90,7 @@ export const useMarginHandlers = () => {
   const onChangemarginBottom = ({ value }: { value: typeof marginBottom[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
-      if ('constaProps' in newProps.props){
+      if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
 
@@ -115,6 +113,6 @@ export const useMarginHandlers = () => {
     onChangemarginBottom,
     onChangemarginLeft,
     onChangemarginRight,
-    onChangemarginTop
+    onChangemarginTop,
   }
 }

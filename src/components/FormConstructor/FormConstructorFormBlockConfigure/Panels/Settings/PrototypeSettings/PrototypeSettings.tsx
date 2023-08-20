@@ -2,65 +2,74 @@ import React from 'react'
 import { useTextSettingsStore } from './PrototypeSettingsService'
 import { TextField, TextFieldPropValue } from '@consta/uikit/TextField'
 import { FC } from 'react'
-import { BrandPrototypeRectProps, BrandPrototypeTextProps, PrototypeProps, PrototypeRectElement, PrototypeTextElement } from '../../../../coreTypes'
+import {
+  BrandPrototypeRectProps,
+  BrandPrototypeTextProps,
+  PrototypeProps,
+  PrototypeRectElement,
+  PrototypeTextElement,
+} from '../../../../coreTypes'
 
 type PrototypeSettingsType = {
-  selectedElementProps: PrototypeProps,
-  selectedElement: PrototypeRectElement | PrototypeTextElement,
+  selectedElementProps: PrototypeProps
+  selectedElement: PrototypeRectElement | PrototypeTextElement
 }
 
-export const PrototypeSettings: FC<PrototypeSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const PrototypeSettings: FC<PrototypeSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const { textProps, onDispatch } = useTextSettingsStore(selectedElementProps, selectedElement)
 
   const { width, height, left, top, zIndex } = textProps
   const onWidthChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = { 
-      props: {...textProps},
-      type: selectedElement.elementType
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+      props: { ...textProps },
+      type: selectedElement.elementType,
     }
     newProps.props.width = Number(value)
     onDispatch(newProps)
   }
 
   const onHeightChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = { 
-      props: {...textProps},
-      type: selectedElement.elementType
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+      props: { ...textProps },
+      type: selectedElement.elementType,
     }
     newProps.props.height = Number(value)
     onDispatch(newProps)
   }
   const onTopChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = { 
-      props: {...textProps},
-      type: selectedElement.elementType
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+      props: { ...textProps },
+      type: selectedElement.elementType,
     }
     newProps.props.top = Number(value)
     onDispatch(newProps)
   }
 
   const onLeftChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = { 
-      props: {...textProps},
-      type: selectedElement.elementType
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+      props: { ...textProps },
+      type: selectedElement.elementType,
     }
     newProps.props.left = Number(value)
     onDispatch(newProps)
   }
 
   const onZIndexChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = { 
-      props: {...textProps},
-      type: selectedElement.elementType
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+      props: { ...textProps },
+      type: selectedElement.elementType,
     }
     newProps.props.zIndex = Number(value)
     onDispatch(newProps)
   }
 
   const onTextChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = { 
-      props: {...textProps},
-      type: selectedElement.elementType
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+      props: { ...textProps },
+      type: selectedElement.elementType,
     }
     newProps.props.text = String(value)
     onDispatch(newProps)

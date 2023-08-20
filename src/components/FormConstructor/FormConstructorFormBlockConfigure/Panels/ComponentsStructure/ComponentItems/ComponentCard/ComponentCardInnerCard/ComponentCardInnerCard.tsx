@@ -28,7 +28,7 @@ export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
             height: '227px',
           },
         },
-        type: 'Card'
+        type: 'Card',
       },
     }
     dispatch(setDraggableElement({ element: newCard }))

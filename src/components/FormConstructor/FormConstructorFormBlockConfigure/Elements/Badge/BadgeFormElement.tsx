@@ -8,7 +8,6 @@ import { BadgeProps } from '../../../coreTypes/badgeTypes'
 export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const [badgeProps, setbadgeProps] = useState<BadgeProps>()
 
-
   useLayoutEffect(() => {
     const badgeFormElement = element
     setbadgeProps(badgeFormElement.props.props)

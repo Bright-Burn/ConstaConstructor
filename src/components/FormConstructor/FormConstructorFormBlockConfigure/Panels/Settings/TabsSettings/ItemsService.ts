@@ -1,10 +1,13 @@
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 import { FitMode } from './types'
 import { tabItemType, TabsElementProps, ISelectedElement } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BrandTabsElementProps, TabsElement } from '../../../../coreTypes/tabsTypes'
 
-export const useItemsHandlers = (selectedElementProps: TabsElementProps, selectedElement: TabsElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: TabsElementProps,
+  selectedElement: TabsElement,
+) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTabsElementProps) => {
     dispatch(
@@ -18,7 +21,7 @@ export const useItemsHandlers = (selectedElementProps: TabsElementProps, selecte
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Tabs',
       }
       let itemsProps = [...newProps.props.items]
@@ -39,7 +42,7 @@ export const useItemsHandlers = (selectedElementProps: TabsElementProps, selecte
   const onChangeActiveItem = ({ value }: { value: tabItemType | null }) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Tabs',
       }
       newProps.props.value = value
@@ -49,7 +52,7 @@ export const useItemsHandlers = (selectedElementProps: TabsElementProps, selecte
   const onChangeItems = (items: tabItemType[]) => {
     if (items) {
       const newProps: BrandTabsElementProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Tabs',
       }
       newProps.props.items = [...items]
@@ -60,7 +63,7 @@ export const useItemsHandlers = (selectedElementProps: TabsElementProps, selecte
   const onChangeLinePosition = (value: TabsPropLinePosition | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Tabs',
       }
       newProps.props.linePosition = value
@@ -70,7 +73,7 @@ export const useItemsHandlers = (selectedElementProps: TabsElementProps, selecte
   const onChangeView = (value: TabsPropView | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Tabs',
       }
       newProps.props.view = value
@@ -80,7 +83,7 @@ export const useItemsHandlers = (selectedElementProps: TabsElementProps, selecte
   const onChangeSize = (value: TabsPropSize | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Tabs',
       }
       newProps.props.size = value
@@ -90,7 +93,7 @@ export const useItemsHandlers = (selectedElementProps: TabsElementProps, selecte
   const onChangeFitMode = (value: FitMode | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Tabs',
       }
       newProps.props.fitMode = value

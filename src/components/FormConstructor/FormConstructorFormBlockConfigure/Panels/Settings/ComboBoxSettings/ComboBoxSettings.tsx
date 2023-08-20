@@ -10,11 +10,14 @@ import { Button } from '@consta/uikit/Button'
 import { ComboBoxElement } from '../../../../coreTypes/comboBoxTypes'
 
 type ComboBoxSettingsType = {
-  selectedElementProps: ComboboxProps, 
-  selectedElement: ComboBoxElement,
+  selectedElementProps: ComboboxProps
+  selectedElement: ComboBoxElement
 }
 
-export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeItemsCount,

@@ -9,20 +9,23 @@ import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Bu
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BrandButtonProps, ButtonElement } from '../../../../coreTypes/buttonTypes'
 
-export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElement: ButtonElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: ButtonProps,
+  selectedElement: ButtonElement,
+) => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
     value: ButtonPropSize | ButtonPropForm | ButtonPropView | string | null,
     field: keyof ButtonProps,
   ) => {
-      const newProps: BrandButtonProps = {
-        props: {...selectedElementProps},
-        type: 'Button',
-      }
-      // @ts-ignore
-      newProps.props[field] = value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandButtonProps = {
+      props: { ...selectedElementProps },
+      type: 'Button',
+    }
+    // @ts-ignore
+    newProps.props[field] = value
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeSwitch =
@@ -46,18 +49,29 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
 
   const onChangeButtonAction = (value: ButtonAction) => {
       const newProps: BrandButtonProps = {
-        props: {...selectedElementProps},
+        props: {
+          ...selectedElementProps,
+          [propsName]: checked,
+        },
         type: 'Button',
       }
+      selectedElement && onDispatch(selectedElement, newProps)
+    }
 
-      newProps.props['action'] = value
+  const onChangeButtonAction = (value: ButtonAction) => {
+    const newProps: BrandButtonProps = {
+      props: { ...selectedElementProps },
+      type: 'Button',
+    }
 
-      onUpdateSelected(selectedElement, newProps)
-      if (buttonActionsActive.includes(value)) {
-        addConnectedElement()
-      } else {
-        removeConnectedElement()
-      }
+    newProps.props['action'] = value
+
+    onUpdateSelected(selectedElement, newProps)
+    if (buttonActionsActive.includes(value)) {
+      addConnectedElement()
+    } else {
+      removeConnectedElement()
+    }
   }
 
   const addConnectedElement = () => {
@@ -123,7 +137,7 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: {...newProps},
+        newProps: { ...newProps },
       }),
     )
   }
@@ -131,7 +145,7 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
   const onChangeIcon = (value: iconNames | null) => {
     if (value) {
       const newProps: BrandButtonProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Button',
       }
       newProps.props.icon = value
@@ -142,7 +156,7 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
   const onChangeIconR = (value: iconNames | null) => {
     if (value) {
       const newProps: BrandButtonProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Button',
       }
       newProps.props.iconR = value

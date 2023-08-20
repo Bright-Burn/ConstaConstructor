@@ -1,5 +1,11 @@
 import { TextProps } from '@consta/uikit/Text'
-import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, IFormElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  IFormElement,
+} from './types'
 
 type TextContent = { content: string }
 

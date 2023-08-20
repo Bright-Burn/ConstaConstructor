@@ -6,16 +6,19 @@ import { views, sizes, width, status } from './UserConstants'
 import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@consta/uikit/User'
 import { TextField } from '@consta/uikit/TextField'
 import { useItemsHandlers } from './ItemsService'
-import { UserProps, UserElement, BrandUserProps } from '../../../../coreTypes'
+import { UserProps, UserElement } from '../../../../coreTypes'
 
 type UserSettingsType = {
-  selectedElementProps: UserProps, 
-  selectedElement: UserElement,
+  selectedElementProps: UserProps
+  selectedElement: UserElement
 }
 
-export const UserSettings: FC<UserSettingsType> = ({selectedElementProps, selectedElement}) => {
-  const { itemsProps, onChangeSwitch, onChangeField } = useItemsHandlers(selectedElementProps, selectedElement)
-  
+export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selectedElement }) => {
+  const { itemsProps, onChangeSwitch, onChangeField } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
+
   return (
     <div className={styles.userSettings}>
       {itemsProps ? (

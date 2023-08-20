@@ -1,9 +1,12 @@
 import { ISelectedElement, SwitchProps } from '../../../../coreTypes'
 import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BrandSwitchProps, SwitchElement } from '../../../../coreTypes/SwitchTypes'
 
-export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElement: SwitchElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: SwitchProps,
+  selectedElement: SwitchElement,
+) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandSwitchProps) => {
     dispatch(
@@ -17,7 +20,7 @@ export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElem
   const onChangeView = (value: SwitchPropView | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Switch',
       }
       newProps.props.view = value
@@ -27,7 +30,7 @@ export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElem
   const onChangeSize = (value: SwitchPropSize | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Switch',
       }
       newProps.props.size = value
@@ -37,7 +40,7 @@ export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElem
   const onChangeAlign = (value: SwitchPropAlign | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'Switch',
       }
       newProps.props.align = value
@@ -47,13 +50,13 @@ export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElem
   const onChangeField =
     (propsName: keyof SwitchProps) =>
     ({ value }: { value: string | null }) => {
-        const newProps: BrandSwitchProps = {
-          props: {...selectedElementProps},
-          type: 'Switch',
-        }
-        // @ts-ignore
-        newProps.props[propsName] = value || ''
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandSwitchProps = {
+        props: { ...selectedElementProps },
+        type: 'Switch',
+      }
+      // @ts-ignore
+      newProps.props[propsName] = value || ''
+      onDispatch(selectedElement, newProps)
     }
   return {
     onChangeView,

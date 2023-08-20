@@ -20,7 +20,7 @@ export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'Switch'
+        type: 'Switch',
       },
     }
     dispatch(setDraggableElement({ element: newSwitch }))

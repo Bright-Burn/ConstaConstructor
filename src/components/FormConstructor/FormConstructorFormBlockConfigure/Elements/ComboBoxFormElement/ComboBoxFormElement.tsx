@@ -2,7 +2,7 @@ import { FC, useLayoutEffect, useState } from 'react'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IComboBoxFormElement } from './types'
-import { ComboboxProps, IFormElementComboBox } from '../../../coreTypes'
+import { ComboboxProps } from '../../../coreTypes'
 import { Combobox } from '@consta/uikit/Combobox'
 import style from './style.module.css'
 

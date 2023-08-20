@@ -2,7 +2,6 @@ import { FC, ReactNode, useEffect } from 'react'
 import { useAppDispatch, useAppSelector, deleteFormElement } from '../../store'
 import css from './styles.module.css'
 import { togglePanels } from '../../store'
-import { popHistory } from '../../store/formElements/history/reducers'
 import { popHistoryElement } from '../../store/history'
 
 interface Props {

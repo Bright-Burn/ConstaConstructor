@@ -30,7 +30,7 @@ export const ComponentCardTextField: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'TextField'
+        type: 'TextField',
       },
     }
     dispatch(setDraggableElement({ element: newTextField }))

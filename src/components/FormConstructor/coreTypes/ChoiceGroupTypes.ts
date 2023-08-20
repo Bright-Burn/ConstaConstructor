@@ -1,4 +1,11 @@
-import { BaseProps, IFormElement,  BrandProps, ConcreteSelectedElement, FormElementDictTypes, DeepWriteable } from './types'
+import {
+  BaseProps,
+  IFormElement,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  DeepWriteable,
+} from './types'
 import { ChoiceGroupProps } from '@consta/uikit/ChoiceGroup'
 import { IconComponent } from '@consta/uikit/Icon'
 
@@ -21,4 +28,4 @@ export type Item = {
   icon?: IconComponent
   labelIcon?: string
   disabled?: boolean
-} 
+}

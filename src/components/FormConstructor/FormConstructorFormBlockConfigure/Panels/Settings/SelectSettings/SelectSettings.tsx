@@ -11,11 +11,14 @@ import { PropForm, tabItemType, SelectProps, SelectElement } from '../../../../c
 import { FC } from 'react'
 
 type SelectSettingsType = {
-  selectedElementProps: SelectProps, 
-  selectedElement: SelectElement,
+  selectedElementProps: SelectProps
+  selectedElement: SelectElement
 }
 
-export const SelectSettings: FC<SelectSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const SelectSettings: FC<SelectSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -28,7 +31,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({selectedElementProps, se
     onChangeField,
     onChangeLabelPosition,
   } = useItemsHandlers(selectedElementProps, selectedElement)
-  
+
   const [tabs, setTabs] = useState<tabItemType[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {

@@ -1,32 +1,35 @@
 import { FC, useEffect, useState } from 'react'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 import styles from './styles.module.css'
 import { TextField } from '@consta/uikit/TextField'
 import { ISelectedElement, ButtonGroupProps } from '../../../../coreTypes'
 import { BrandButtonGroupProps, ButtonGroupElement } from '../../../../coreTypes/buttonTypes'
 
 type ButtonModuleSettingsType = {
-  selectedElementProps: ButtonGroupProps, 
-  selectedElement: ButtonGroupElement,
+  selectedElementProps: ButtonGroupProps
+  selectedElement: ButtonGroupElement
 }
 
-export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const [props, setProps] = useState<BrandButtonGroupProps>()
 
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     const buttonGroupProps: BrandButtonGroupProps = {
-      props: {...selectedElementProps},
-      type: 'ButtonModal'
+      props: { ...selectedElementProps },
+      type: 'ButtonModal',
     }
     setProps(buttonGroupProps)
   }, [selectedElementProps])
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandButtonGroupProps = {
-      props: {...selectedElementProps},
-      type: 'ButtonModal'
+      props: { ...selectedElementProps },
+      type: 'ButtonModal',
     }
     newProps.props.width = value ? `${value}px` : ''
     onDispatch(selectedElement, newProps)
@@ -36,7 +39,7 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({selectedElem
     if (props) {
       const newProps: BrandButtonGroupProps = {
         props: selectedElementProps,
-        type: 'ButtonModal'
+        type: 'ButtonModal',
       }
       newProps.props.height = value ? `${value}px` : ''
       onDispatch(selectedElement, newProps)

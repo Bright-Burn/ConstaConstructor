@@ -21,7 +21,7 @@ export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'BreadcrumbsFormElement'
+        type: 'BreadcrumbsFormElement',
       },
     }
     dispatch(setDraggableElement({ element: newBreadcrumb }))
