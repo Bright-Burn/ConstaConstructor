@@ -1,5 +1,11 @@
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
-import { BaseProps, IFormElement, BrandProps, ConcreteSelectedElement, FormElementDictTypes } from './types'
+import {
+  BaseProps,
+  IFormElement,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+} from './types'
 import { iconNames } from './iconTypes'
 
 export declare const tagBasePropGroupStringValue: readonly [

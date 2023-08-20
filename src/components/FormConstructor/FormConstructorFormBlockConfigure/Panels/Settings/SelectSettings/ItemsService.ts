@@ -1,8 +1,18 @@
-import { PropForm, SelectProps, ISelectedElement, selectitemType, BrandSelectProps, SelectElement  } from '../../../../coreTypes'
+import {
+  PropForm,
+  SelectProps,
+  ISelectedElement,
+  selectitemType,
+  BrandSelectProps,
+  SelectElement,
+} from '../../../../coreTypes'
 import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
-export const useItemsHandlers = (selectedElementProps: SelectProps, selectedElement: SelectElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: SelectProps,
+  selectedElement: SelectElement,
+) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: SelectElement, newProps: BrandSelectProps) => {
     dispatch(
@@ -16,7 +26,7 @@ export const useItemsHandlers = (selectedElementProps: SelectProps, selectedElem
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: BrandSelectProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'SelectForm',
       }
 
@@ -38,7 +48,7 @@ export const useItemsHandlers = (selectedElementProps: SelectProps, selectedElem
   const onChangeItems = (items: selectitemType[]) => {
     if (selectedElement && items) {
       const newProps: BrandSelectProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'SelectForm',
       }
 
@@ -50,7 +60,7 @@ export const useItemsHandlers = (selectedElementProps: SelectProps, selectedElem
   const onChangeSize = (value: TextFieldPropSize | null) => {
     if (selectedElement && value) {
       const newProps: BrandSelectProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'SelectForm',
       }
 
@@ -61,7 +71,7 @@ export const useItemsHandlers = (selectedElementProps: SelectProps, selectedElem
   const onChangeView = (value: TextFieldPropView | null) => {
     if (selectedElement && value) {
       const newProps: BrandSelectProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'SelectForm',
       }
 
@@ -72,7 +82,7 @@ export const useItemsHandlers = (selectedElementProps: SelectProps, selectedElem
   const onChangeForm = (value: PropForm | null) => {
     if (selectedElement && value) {
       const newProps: BrandSelectProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'SelectForm',
       }
 
@@ -83,7 +93,7 @@ export const useItemsHandlers = (selectedElementProps: SelectProps, selectedElem
   const onChangeStatus = (value: TextFieldPropStatus | null) => {
     if (selectedElement && value) {
       const newProps: BrandSelectProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'SelectForm',
       }
 
@@ -94,7 +104,7 @@ export const useItemsHandlers = (selectedElementProps: SelectProps, selectedElem
   const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
     if (selectedElement && value) {
       const newProps: BrandSelectProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'SelectForm',
       }
 

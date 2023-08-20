@@ -19,11 +19,14 @@ import { LayoutPalette } from '../../../../../ConstaPalette'
 import { LayoutElement } from '../../../../coreTypes/layoutTypes'
 
 type LayoutSettingsType = {
-  selectedElementProps: LayoutElementPropsStyles, 
-  selectedElement: LayoutElement,
+  selectedElementProps: LayoutElementPropsStyles
+  selectedElement: LayoutElement
 }
 
-export const LayoutSettings: FC<LayoutSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const LayoutSettings: FC<LayoutSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeFlex,

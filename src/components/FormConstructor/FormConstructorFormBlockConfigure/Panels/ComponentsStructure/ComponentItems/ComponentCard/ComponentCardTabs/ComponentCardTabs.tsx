@@ -22,12 +22,12 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
           baseProps: {},
           value: items[0],
           items: items,
-          onChange: () => { },
+          onChange: () => {},
           linePosition: 'top',
           fitMode: 'dropdown',
           size: 'm',
         },
-        type: 'Tabs'
+        type: 'Tabs',
       },
     }
     dispatch(setDraggableElement({ element: newTabs }))

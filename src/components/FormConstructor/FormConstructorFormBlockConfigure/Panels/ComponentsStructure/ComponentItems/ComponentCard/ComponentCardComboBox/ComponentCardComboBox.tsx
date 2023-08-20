@@ -26,18 +26,18 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
       id: uuid(),
       type: FormElementDictTypes.ComboBox,
       props: {
-          props: {
-            size: 'm',
-            placeholder: 'placeholder',
-            caption: 'Хорошо подумайте, это важно',
-            label: 'Здесь можно выбрать цвет',
-            view: 'default',
-            className: '',
-            baseProps: {},
-            items: items,
-            onChange: () => {},
-          },
-          type: 'ComboBox'
+        props: {
+          size: 'm',
+          placeholder: 'placeholder',
+          caption: 'Хорошо подумайте, это важно',
+          label: 'Здесь можно выбрать цвет',
+          view: 'default',
+          className: '',
+          baseProps: {},
+          items: items,
+          onChange: () => {},
+        },
+        type: 'ComboBox',
       },
     }
     dispatch(setDraggableElement({ element: newTabs }))

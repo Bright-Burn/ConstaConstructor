@@ -21,7 +21,7 @@ export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'Tag'
+        type: 'Tag',
       },
     }
     dispatch(setDraggableElement({ element: newTag }))

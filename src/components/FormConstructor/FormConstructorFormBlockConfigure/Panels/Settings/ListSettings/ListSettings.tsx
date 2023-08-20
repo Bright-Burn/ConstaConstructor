@@ -8,21 +8,20 @@ import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/L
 import { ItemList, ListProps } from '../../../../coreTypes'
 import styles from './styles.module.css'
 import { Switch } from '@consta/uikit/Switch'
-import { useAppSelector } from '../../../../store'
 import { BrandListProps, ListElement } from '../../../../coreTypes/ListTypes'
 
 type ListSettingsType = {
-  selectedElementProps: ListProps, 
-  selectedElement: ListElement,
+  selectedElementProps: ListProps
+  selectedElement: ListElement
 }
 
-export const ListSettings: FC<ListSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selectedElement }) => {
   const [props, setProps] = useState<BrandListProps>()
 
   useLayoutEffect(() => {
     if (selectedElement) {
       const textFieldProps: BrandListProps = {
-        props: {...selectedElementProps},
+        props: { ...selectedElementProps },
         type: 'List',
       }
 

@@ -1,4 +1,10 @@
-import { BaseProps, IFormElement, BrandProps, ConcreteSelectedElement, FormElementDictTypes } from './types'
+import {
+  BaseProps,
+  IFormElement,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+} from './types'
 import { UserPropSize, UserPropStatus, UserPropView, UserPropWidth } from '@consta/uikit/User'
 
 export type UserProps = {

@@ -1,5 +1,3 @@
-import { BrandProps } from "./types"
-
 export const paddingsLeft = [
   '',
   'p-l-xs',

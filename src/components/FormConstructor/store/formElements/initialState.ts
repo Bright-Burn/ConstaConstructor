@@ -31,7 +31,7 @@ export const initialLayout: ILayoutElement = {
       className: '',
       baseProps: {},
     },
-    type: 'Layout'
+    type: 'Layout',
   },
 }
 

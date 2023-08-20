@@ -16,7 +16,7 @@ import { deselectElement } from './reducers/setSelectedElement'
 
 export const formConstructorSlice = createSlice({
   name: 'formConstructor',
-  initialState, 
+  initialState,
   reducers: {
     setDraggableElement: setDraggableElement,
     loadProjectFromJson: loadProjectFromJson,

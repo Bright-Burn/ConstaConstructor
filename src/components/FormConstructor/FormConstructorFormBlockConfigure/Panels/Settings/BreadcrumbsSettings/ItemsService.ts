@@ -1,9 +1,17 @@
-import { BreadcrumbProps, ISelectedElement, BrandBreadcrumbsProps, BreadcrumbsFormElement } from '../../../../coreTypes'
+import {
+  BreadcrumbProps,
+  ISelectedElement,
+  BrandBreadcrumbsProps,
+  BreadcrumbsFormElement,
+} from '../../../../coreTypes'
 import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> };
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> }
 
-export const useItemsHandlers = (selectedElementProps: DeepWriteable<BreadcrumbProps>, selectedElement: BreadcrumbsFormElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: DeepWriteable<BreadcrumbProps>,
+  selectedElement: BreadcrumbsFormElement,
+) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandBreadcrumbsProps) => {
     dispatch(
@@ -18,8 +26,8 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<BreadcrumbP
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
       const newProps: BrandBreadcrumbsProps = {
-        props: {...selectedElementProps},
-        type: 'BreadcrumbsFormElement'
+        props: { ...selectedElementProps },
+        type: 'BreadcrumbsFormElement',
       }
 
       let itemsProps = [...newProps.props.items]
@@ -43,8 +51,8 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<BreadcrumbP
   const onChangeItems = (items: DeepWriteable<DefaultItem[]>) => {
     if (selectedElement && items) {
       const newProps: BrandBreadcrumbsProps = {
-        props: {...selectedElementProps},
-        type: 'BreadcrumbsFormElement'
+        props: { ...selectedElementProps },
+        type: 'BreadcrumbsFormElement',
       }
 
       newProps.props.items = [...items]
@@ -55,8 +63,8 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<BreadcrumbP
   const onChangeSize = (value: BreadcrumbPropSize | null) => {
     if (selectedElement && value) {
       const newProps: BrandBreadcrumbsProps = {
-        props: {...selectedElementProps},
-        type: 'BreadcrumbsFormElement'
+        props: { ...selectedElementProps },
+        type: 'BreadcrumbsFormElement',
       }
 
       newProps.props.size = value
@@ -67,8 +75,8 @@ export const useItemsHandlers = (selectedElementProps: DeepWriteable<BreadcrumbP
   const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
     if (selectedElement && value) {
       const newProps: BrandBreadcrumbsProps = {
-        props: {...selectedElementProps},
-        type: 'BreadcrumbsFormElement'
+        props: { ...selectedElementProps },
+        type: 'BreadcrumbsFormElement',
       }
 
       newProps.props.fitMode = value

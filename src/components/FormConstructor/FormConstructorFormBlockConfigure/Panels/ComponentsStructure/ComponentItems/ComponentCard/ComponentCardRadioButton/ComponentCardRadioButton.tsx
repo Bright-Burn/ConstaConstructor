@@ -22,7 +22,7 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
           className: '',
           baseProps: {},
         },
-        type: 'RadioButton'
+        type: 'RadioButton',
       },
     }
     dispatch(setDraggableElement({ element: newRadioButton }))

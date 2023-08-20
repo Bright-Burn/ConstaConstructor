@@ -9,11 +9,14 @@ import { RadioButtonProps } from '../../../../coreTypes'
 import { RadioButtonElement } from '../../../../coreTypes/radioButtonTypes'
 
 type RadioButtonSettingsType = {
-  selectedElementProps: RadioButtonProps, 
-  selectedElement: RadioButtonElement,
+  selectedElementProps: RadioButtonProps
+  selectedElement: RadioButtonElement
 }
 
-export const RadioButtonSettings: FC<RadioButtonSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const RadioButtonSettings: FC<RadioButtonSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeSwitch, onChangeField } =
     useItemsHandlers(selectedElementProps, selectedElement)
 

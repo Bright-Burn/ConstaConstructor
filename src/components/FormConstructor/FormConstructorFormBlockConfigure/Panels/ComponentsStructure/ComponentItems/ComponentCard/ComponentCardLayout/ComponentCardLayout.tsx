@@ -18,21 +18,21 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name }) => {
       isOuter: isOuter,
       props: {
         props: {
-        constaProps: {
-          flex: 1,
-          direction: 'row',
-          horizontalAlign: 'left',
-          verticalAlign: 'top',
+          constaProps: {
+            flex: 1,
+            direction: 'row',
+            horizontalAlign: 'left',
+            verticalAlign: 'top',
+          },
+          styles: {
+            alignItems: 'normal',
+            justifyContent: 'start',
+          },
+          className: '',
+          baseProps: {},
         },
-        styles: {
-          alignItems: 'normal',
-          justifyContent: 'start',
-        },
-        className: '',
-        baseProps: {},
-      }, 
-      type: 'Layout'
-    },
+        type: 'Layout',
+      },
     }
     dispatch(setDraggableElement({ element: layoutElement }))
   }

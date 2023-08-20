@@ -9,12 +9,15 @@ import { FC } from 'react'
 import { BadgeElement, BadgeProps } from '../../../../coreTypes/badgeTypes'
 
 type BadgeSettingsType = {
-  selectedElementProps: BadgeProps, 
-  selectedElement: BadgeElement,
+  selectedElementProps: BadgeProps
+  selectedElement: BadgeElement
 }
 
-export const BadgeSettings: FC<BadgeSettingsType> = ({selectedElementProps, selectedElement}) => {
-  const { itemsProps, onChangeMinified, handleOnChangeLabel, onChangeField } = useItemsHandlers(selectedElementProps, selectedElement)
+export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, selectedElement }) => {
+  const { itemsProps, onChangeMinified, handleOnChangeLabel, onChangeField } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
 
   return (
     <div className={styles.badgeSettings}>

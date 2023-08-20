@@ -3,7 +3,7 @@ import { Checkbox } from '@consta/uikit/Checkbox'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ICheckboxFormElement } from './types'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { CheckboxProps, IFormElementCheckbox } from '../../../coreTypes'
+import { CheckboxProps } from '../../../coreTypes'
 
 export const CheckboxFormElement: FC<ICheckboxFormElement> = ({ element }) => {
   const [checkboxProps, setCheckboxProps] = useState<CheckboxProps>()

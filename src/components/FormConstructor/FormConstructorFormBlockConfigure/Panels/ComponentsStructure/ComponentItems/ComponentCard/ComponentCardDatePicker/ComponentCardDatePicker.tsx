@@ -27,7 +27,7 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'DatePicker'
+        type: 'DatePicker',
       },
     }
     dispatch(setDraggableElement({ element: newDatePicker }))

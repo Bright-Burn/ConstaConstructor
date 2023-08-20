@@ -4,7 +4,10 @@ import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../
 import { useState } from 'react'
 import { BrandTextFieldProps, TextFieldElement } from '../../../../coreTypes/textFieldTypes'
 
-export const useItemsHandlers = (selectedElementProps: TextFieldProps, selectedElement: TextFieldElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: TextFieldProps,
+  selectedElement: TextFieldElement,
+) => {
   const [leftSideType, setLeftSideType] = useState('')
   const [rightSideType, setRightSideType] = useState('')
 
@@ -15,8 +18,8 @@ export const useItemsHandlers = (selectedElementProps: TextFieldProps, selectedE
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
         const newProps: BrandTextFieldProps = {
-          props: {...selectedElementProps},
-          type: 'TextField'
+          props: { ...selectedElementProps },
+          type: 'TextField',
         }
         // @ts-ignore
         newProps.props[propsName] = value || ''
@@ -29,8 +32,8 @@ export const useItemsHandlers = (selectedElementProps: TextFieldProps, selectedE
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
         const newProps: BrandTextFieldProps = {
-          props: {...selectedElementProps},
-          type: 'TextField'
+          props: { ...selectedElementProps },
+          type: 'TextField',
         }
         // @ts-ignore
         newProps.props[propsName] = checked

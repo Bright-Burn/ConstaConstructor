@@ -3,7 +3,7 @@ import { DateTime } from '@consta/uikit/DateTime'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IDataTimeFormElement } from './types'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { DataTimeProps, IFormElementDataTime } from '../../../coreTypes'
+import { DataTimeProps } from '../../../coreTypes'
 
 export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
   const [dataTimeProps, setDataTimeProps] = useState<DataTimeProps>()

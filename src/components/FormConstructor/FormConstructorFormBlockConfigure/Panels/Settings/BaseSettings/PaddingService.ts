@@ -1,9 +1,7 @@
 import { ISelectedElement, LayoutElementPropsStyles } from '../../../../coreTypes'
 import { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { BrandLayoutElementPropsStyles } from '../../../../coreTypes/layoutTypes'
-import { isElementProps } from '../../../../utils/quard'
-import { AllElementProps, UnionProps } from '../../../../coreTypes/types'
+import { UnionProps } from '../../../../coreTypes/types'
 
 export const usePaddingHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -13,10 +11,10 @@ export const usePaddingHandlers = () => {
       onChangePaddingBottom: () => {},
       onChangePaddingLeft: () => {},
       onChangePaddingRight: () => {},
-      onChangePaddingTop: () => {}
+      onChangePaddingTop: () => {},
     }
   }
-  
+
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: UnionProps) => {
     dispatch(
@@ -32,7 +30,7 @@ export const usePaddingHandlers = () => {
       console.log(selectedElementProps)
       const newProps: UnionProps = structuredClone(selectedElementProps)
       console.log(newProps)
-      if ('constaProps' in newProps.props){
+      if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
       newProps.props.baseProps = {
@@ -53,7 +51,7 @@ export const usePaddingHandlers = () => {
   const onChangePaddingRight = ({ value }: { value: typeof paddingsRight[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
-      if ('constaProps' in newProps.props){
+      if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
       newProps.props.baseProps = {
@@ -72,9 +70,9 @@ export const usePaddingHandlers = () => {
     }
   }
   const onChangePaddingTop = ({ value }: { value: typeof paddingsTop[number] | null }) => {
-    if (selectedElement && value != null) {      
+    if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
-      if ('constaProps' in newProps.props){
+      if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
       newProps.props.baseProps = {
@@ -94,8 +92,8 @@ export const usePaddingHandlers = () => {
   }
   const onChangePaddingBottom = ({ value }: { value: typeof paddingsBottom[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)     
-      if ('constaProps' in newProps.props){
+      const newProps: UnionProps = structuredClone(selectedElementProps)
+      if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
       newProps.props.baseProps = {

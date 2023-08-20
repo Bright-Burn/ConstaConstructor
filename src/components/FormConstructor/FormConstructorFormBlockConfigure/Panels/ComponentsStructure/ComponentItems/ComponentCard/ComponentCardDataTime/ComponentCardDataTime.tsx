@@ -22,7 +22,7 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
           multiplicityMinutes: 1,
           multiplicitySeconds: 1,
         },
-        type: 'DataTime'
+        type: 'DataTime',
       },
     }
     dispatch(setDraggableElement({ element: newDataTime }))

@@ -3,7 +3,10 @@ import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/u
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BrandCheckboxProps, CheckboxElement } from '../../../../coreTypes/checkboxTypes'
 
-export const useItemsHandlers = (selectedElementProps: CheckboxProps, selectedElement: CheckboxElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: CheckboxProps,
+  selectedElement: CheckboxElement,
+) => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -12,8 +15,8 @@ export const useItemsHandlers = (selectedElementProps: CheckboxProps, selectedEl
   ) => {
     if (selectedElement) {
       const newProps: BrandCheckboxProps = {
-        props: {...selectedElementProps},
-        type: 'Checkbox'
+        props: { ...selectedElementProps },
+        type: 'Checkbox',
       }
 
       // @ts-ignore

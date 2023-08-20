@@ -23,7 +23,7 @@ export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'User'
+        type: 'User',
       },
     }
     dispatch(setDraggableElement({ element: newUser }))

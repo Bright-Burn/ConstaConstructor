@@ -8,11 +8,14 @@ import { DataTimeProps, DataTimeElement } from '../../../../coreTypes'
 import { FC } from 'react'
 
 type DataTimeSettingsType = {
-  selectedElementProps: DataTimeProps, 
-  selectedElement: DataTimeElement,
+  selectedElementProps: DataTimeProps
+  selectedElement: DataTimeElement
 }
 
-export const DataTimeSettings: FC<DataTimeSettingsType> = ({selectedElementProps, selectedElement}) =>  {
+export const DataTimeSettings: FC<DataTimeSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeType,

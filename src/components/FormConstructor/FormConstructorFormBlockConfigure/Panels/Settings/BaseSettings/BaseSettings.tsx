@@ -32,7 +32,7 @@ export const BaseSettings = () => {
     onChangemarginBottom,
     onChangemarginLeft,
     onChangemarginRight,
-    onChangemarginTop
+    onChangemarginTop,
   } = useMarginHandlers()
   return (
     <>

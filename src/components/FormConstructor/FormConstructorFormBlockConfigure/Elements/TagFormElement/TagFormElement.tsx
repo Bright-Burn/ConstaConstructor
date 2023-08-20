@@ -3,7 +3,7 @@ import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITagFormElement } from './types'
 import style from './style.module.css'
-import { IFormElementTagProps, TagProps } from '../../../coreTypes'
+import { TagProps } from '../../../coreTypes'
 import { Tag } from '@consta/uikit/Tag'
 import { Icons } from '../IconFormElement/mocks'
 

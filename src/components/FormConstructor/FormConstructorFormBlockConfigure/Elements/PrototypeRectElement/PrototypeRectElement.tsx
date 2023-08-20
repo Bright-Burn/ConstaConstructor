@@ -1,7 +1,5 @@
 import { FC } from 'react'
-import { IFormElement } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types'
 import { IFormElementPrototype } from '../../../coreTypes/prototypeTypes'
 
 interface IPrototypeRectElement {

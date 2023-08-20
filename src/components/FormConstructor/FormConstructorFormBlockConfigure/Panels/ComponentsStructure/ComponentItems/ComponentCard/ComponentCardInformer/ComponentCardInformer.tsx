@@ -22,7 +22,7 @@ export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'Informer'
+        type: 'Informer',
       },
     }
     dispatch(setDraggableElement({ element: newInformer }))

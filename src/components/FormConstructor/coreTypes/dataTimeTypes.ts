@@ -1,5 +1,11 @@
 import { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
-import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, IFormElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  IFormElement,
+} from './types'
 
 export type DataTimeProps = {
   type?: DateTimePropType

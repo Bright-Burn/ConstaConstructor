@@ -4,7 +4,6 @@ import { FC, useLayoutEffect, useState } from 'react'
 import {
   ElementTypes,
   FormGroupsDictTypes,
-  ILayoutElement,
   LayoutElementPropsStyles,
   LayoutElementStyles,
 } from '../../../coreTypes'

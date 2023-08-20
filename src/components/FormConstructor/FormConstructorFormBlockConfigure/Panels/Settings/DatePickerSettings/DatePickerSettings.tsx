@@ -23,11 +23,14 @@ import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@cons
 import { DatePickerElement, DatePickerProps, PropForm } from '../../../../coreTypes'
 
 type DatePickerSettingsType = {
-  selectedElementProps: DatePickerProps, 
-  selectedElement: DatePickerElement,
+  selectedElementProps: DatePickerProps
+  selectedElement: DatePickerElement
 }
 
-export const DatePickerSettings: FC<DatePickerSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const DatePickerSettings: FC<DatePickerSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeType,

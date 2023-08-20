@@ -19,7 +19,7 @@ export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
           icons: 'IconAlert',
           baseProps: {},
         },
-        type: 'Icon'
+        type: 'Icon',
       },
     }
     dispatch(setDraggableElement({ element: newIcon }))

@@ -14,11 +14,14 @@ import { Text } from '@consta/uikit/Text'
 import { ButtonElement } from '../../../../coreTypes/buttonTypes'
 
 type ButtonSettingsType = {
-  selectedElementProps: ButtonProps, 
-  selectedElement: ButtonElement,
+  selectedElementProps: ButtonProps
+  selectedElement: ButtonElement
 }
 
-export const ButtonSettings: FC<ButtonSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const ButtonSettings: FC<ButtonSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeField,

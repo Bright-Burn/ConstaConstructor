@@ -17,7 +17,7 @@ export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element })
     props: SingleChoiceGroupProps | MultipleChoiceGroupProps,
   ): props is MultipleChoiceGroupProps => Array.isArray(props.value)
 
-  const props = {...element.props} as BrandProps<OwnChoiceGroupProps, 'ChoiceGroup'>
+  const props = { ...element.props } as BrandProps<OwnChoiceGroupProps, 'ChoiceGroup'>
   return (
     <SelectableLayer
       parentElementId={element.id}
@@ -25,7 +25,11 @@ export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element })
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ChoiceGroup}
     >
-      {checkMultiple(props.props) ? <ChoiceGroup {...props.props} /> : <ChoiceGroup {...props.props} />}
+      {checkMultiple(props.props) ? (
+        <ChoiceGroup {...props.props} />
+      ) : (
+        <ChoiceGroup {...props.props} />
+      )}
     </SelectableLayer>
   )
 }

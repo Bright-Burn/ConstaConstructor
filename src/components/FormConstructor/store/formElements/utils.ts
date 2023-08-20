@@ -1,9 +1,4 @@
-import {
-  IFormConstructor,
-  IButtonActionElement,
-  IFormElementButton,
-  buttonActionsActive,
-} from '../../coreTypes'
+import { IFormConstructor } from '../../coreTypes'
 
 export const deleteFormElementFromTree = (elementId: string, state: IFormConstructor) => {
   // const allElementsTree = new Map(state.allElementsTree)

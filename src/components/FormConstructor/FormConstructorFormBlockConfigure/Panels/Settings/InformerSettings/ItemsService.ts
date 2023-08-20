@@ -1,9 +1,12 @@
 import { ISelectedElement, InformerElementProps } from '../../../../coreTypes'
 import { InformerPropSize, InformerPropView, InformerPropStatus } from '@consta/uikit/Informer'
-import { useAppSelector, setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BrandInformerElementProps, InformerElement } from '../../../../coreTypes/informerTypes'
 
-export const useItemsHandlers = (selectedElementProps: InformerElementProps, selectedElement: InformerElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: InformerElementProps,
+  selectedElement: InformerElement,
+) => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -16,7 +19,7 @@ export const useItemsHandlers = (selectedElementProps: InformerElementProps, sel
           ...selectedElementProps,
           [field]: value,
         },
-        type: 'Informer'
+        type: 'Informer',
       }
       onDispatch(selectedElement, newProps)
     }

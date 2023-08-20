@@ -13,15 +13,23 @@ import {
 import { Combobox } from '@consta/uikit/Combobox'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
-import { iconNames, ChoiceGroupElement, OwnChoiceGroupProps, DeepWriteable } from '../../../../coreTypes'
+import {
+  iconNames,
+  ChoiceGroupElement,
+  OwnChoiceGroupProps,
+  DeepWriteable,
+} from '../../../../coreTypes'
 import { IconComponent } from '@consta/uikit/Icon'
 
 type ChoiceGroupSettingsType = {
-  selectedElementProps: DeepWriteable<OwnChoiceGroupProps>,
-  selectedElement: ChoiceGroupElement,
+  selectedElementProps: DeepWriteable<OwnChoiceGroupProps>
+  selectedElement: ChoiceGroupElement
 }
 
-export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({ selectedElementProps, selectedElement }) => {
+export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -147,7 +155,11 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({ selectedEleme
           placeholder='Выберите вариант'
           items={itemsProps.items as Item[]}
           value={itemsProps.value as Item[]}
-          onChange={(value) => onChangeActiveItem(value as { value: DeepWriteable<Item[]> | DeepWriteable<Item> | null })}
+          onChange={value =>
+            onChangeActiveItem(
+              value as { value: DeepWriteable<Item[]> | DeepWriteable<Item> | null },
+            )
+          }
           getItemKey={(key: Item) => key.label}
           multiple
         />

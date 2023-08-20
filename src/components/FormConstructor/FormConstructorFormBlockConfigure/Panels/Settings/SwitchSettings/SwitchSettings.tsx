@@ -8,13 +8,18 @@ import { SwitchElement } from '../../../../coreTypes/SwitchTypes'
 import { FC } from 'react'
 
 type SwitchSettingsType = {
-  selectedElementProps: SwitchProps,
-  selectedElement: SwitchElement,
+  selectedElementProps: SwitchProps
+  selectedElement: SwitchElement
 }
 
-export const SwitchSettings: FC<SwitchSettingsType> = ({selectedElementProps, selectedElement}) => {
-  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField } =
-    useItemsHandlers(selectedElementProps, selectedElement)
+export const SwitchSettings: FC<SwitchSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
+  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
 
   return (
     <>

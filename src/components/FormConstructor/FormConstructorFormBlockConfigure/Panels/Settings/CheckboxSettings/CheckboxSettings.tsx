@@ -13,11 +13,14 @@ import { FC } from 'react'
 import { CheckboxElement, CheckboxProps } from '../../../../coreTypes/checkboxTypes'
 
 type CheckboxSettingsType = {
-  selectedElementProps: CheckboxProps, 
-  selectedElement: CheckboxElement,
+  selectedElementProps: CheckboxProps
+  selectedElement: CheckboxElement
 }
 
-export const CheckboxSettings: FC<CheckboxSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const CheckboxSettings: FC<CheckboxSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const { itemsProps, onChangeField } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (

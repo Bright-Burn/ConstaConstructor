@@ -9,8 +9,8 @@ import { tabItemType, TabsElementProps } from '../../../../coreTypes'
 import { TabsElement } from '../../../../coreTypes/tabsTypes'
 
 type TabsSettingsType = {
-  selectedElementProps: TabsElementProps, 
-  selectedElement: TabsElement,
+  selectedElementProps: TabsElementProps
+  selectedElement: TabsElement
 }
 
 export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selectedElement }) => {

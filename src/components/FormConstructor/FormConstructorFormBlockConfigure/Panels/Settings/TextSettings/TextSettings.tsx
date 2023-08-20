@@ -27,18 +27,18 @@ import {
   display,
 } from './textConstants'
 import { useItemsHandlers } from './ItemsService'
-import { FormElementDictTypes, TextElementProps } from '../../../../coreTypes'
+import { TextElementProps } from '../../../../coreTypes'
 import { TextElement } from '../../../../coreTypes/textTypes'
 
 type TextSettingsType = {
-  selectedProps: TextElementProps, 
-  selectedElement: TextElement,
+  selectedProps: TextElementProps
+  selectedElement: TextElement
 }
 
 export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElement }) => {
   const { itemsProps, onChangeText, onChangeCheckboxValues, onChangeTruncate, onChangeField } =
     useItemsHandlers(selectedProps, selectedElement)
-    
+
   return (
     <div className={styles.textSettings}>
       {itemsProps ? (

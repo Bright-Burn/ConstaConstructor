@@ -1,5 +1,11 @@
 import { BadgePropSize } from '@consta/uikit/Badge'
-import { BaseProps, BrandProps, ConcreteSelectedElement, FormElementDictTypes, IFormElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  IFormElement,
+} from './types'
 
 export type TableProps = {
   size?: BadgePropSize

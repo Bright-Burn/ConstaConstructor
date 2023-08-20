@@ -9,11 +9,14 @@ import { TextField } from '@consta/uikit/TextField'
 import { BreadcrumbProps, BreadcrumbsFormElement, DeepWriteable } from '../../../../coreTypes'
 
 type BreadcrumbSettingsType = {
-  selectedElementProps: DeepWriteable<BreadcrumbProps>, 
-  selectedElement: BreadcrumbsFormElement,
+  selectedElementProps: DeepWriteable<BreadcrumbProps>
+  selectedElement: BreadcrumbsFormElement
 }
 
-export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const { itemsProps, onChangeItemsCount, onChangeItems, onChangeSize, onChangeFitMode } =
     useItemsHandlers(selectedElementProps, selectedElement)
 

@@ -9,11 +9,14 @@ import { InformerElement } from '../../../../coreTypes/informerTypes'
 import { FC } from 'react'
 
 type InformerSettingsType = {
-  selectedElementProps: InformerElementProps, 
-  selectedElement: InformerElement,
+  selectedElementProps: InformerElementProps
+  selectedElement: InformerElement
 }
 
-export const InformerSettings: FC<InformerSettingsType> = ({selectedElementProps, selectedElement}) => {
+export const InformerSettings: FC<InformerSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const { itemsProps, onChangeField } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (

@@ -22,7 +22,7 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
         },
-        type: 'Checkbox'
+        type: 'Checkbox',
       },
     }
     dispatch(setDraggableElement({ element: newCheckbox }))

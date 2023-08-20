@@ -1,9 +1,12 @@
 import { ISelectedElement, BadgeProps } from '../../../../coreTypes'
 import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BadgeElement, BrandBadgeProps } from '../../../../coreTypes/badgeTypes'
 
-export const useItemsHandlers = (selectedElementProps: BadgeProps, selectedElement: BadgeElement) => {
+export const useItemsHandlers = (
+  selectedElementProps: BadgeProps,
+  selectedElement: BadgeElement,
+) => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -12,8 +15,8 @@ export const useItemsHandlers = (selectedElementProps: BadgeProps, selectedEleme
   ) => {
     if (selectedElement) {
       const newProps: BrandBadgeProps = {
-        props: {...selectedElementProps},
-        type: 'Badge'
+        props: { ...selectedElementProps },
+        type: 'Badge',
       }
 
       // @ts-ignore
@@ -29,8 +32,8 @@ export const useItemsHandlers = (selectedElementProps: BadgeProps, selectedEleme
   }) => {
     if (selectedElement) {
       const newProps: BrandBadgeProps = {
-        props: {...selectedElementProps},
-        type: 'Badge'
+        props: { ...selectedElementProps },
+        type: 'Badge',
       }
       newProps.props.minified = event.checked
 
@@ -41,8 +44,8 @@ export const useItemsHandlers = (selectedElementProps: BadgeProps, selectedEleme
   const handleOnChangeLabel = ({ value }: { value: string | null }) => {
     if (selectedElement) {
       const newProps: BrandBadgeProps = {
-        props: {...selectedElementProps},
-        type: 'Badge'
+        props: { ...selectedElementProps },
+        type: 'Badge',
       }
       newProps.props.label = value || undefined
 
