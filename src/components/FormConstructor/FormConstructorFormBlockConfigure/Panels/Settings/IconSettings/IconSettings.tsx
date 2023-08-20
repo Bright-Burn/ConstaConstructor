@@ -16,13 +16,12 @@ type IconSettingsType = {
 export const IconSettings: FC<IconSettingsType> = ({selectedElementProps, selectedElement}) => {
   const dispatch = useAppDispatch()
 
-  if (selectedElementProps && 'icons' in selectedElementProps) {
-    const props = selectedElementProps
+    const props = {...selectedElementProps}
 
     const onChangeSize = (value: IconPropSize | null) => {
       if (selectedElement && value) {
         const newProps: BrandIconProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'Icon'
         }
         newProps.props.size = value
@@ -33,7 +32,7 @@ export const IconSettings: FC<IconSettingsType> = ({selectedElementProps, select
     const onChangeView = (value: IconPropView | null) => {
       if (selectedElement && value) {
         const newProps:  BrandIconProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'Icon'
         }
         newProps.props.view = value
@@ -44,7 +43,7 @@ export const IconSettings: FC<IconSettingsType> = ({selectedElementProps, select
     const onChangeIcon = (value: iconNames | null) => {
       if (selectedElement && value) {
         const newProps:  BrandIconProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'Icon'
         }
         newProps.props.icons = value
@@ -112,6 +111,4 @@ export const IconSettings: FC<IconSettingsType> = ({selectedElementProps, select
         ) : null}
       </div>
     )
-  }
-  return null
 }

@@ -1,5 +1,5 @@
 import { IFormElement } from '../../../coreTypes'
 
 export interface ICheckboxFormElement {
-  element: IFormElement
+  element: IFormElement<'Checkbox'>
 }

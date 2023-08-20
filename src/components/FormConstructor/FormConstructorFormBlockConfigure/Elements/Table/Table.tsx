@@ -42,7 +42,7 @@ export const Table: FC<ITable> = ({ element }) => {
   }
 
   useLayoutEffect(() => {
-    const tableElement = element as IFormElementTable
+    const tableElement = element
     setTableProps(tableElement.props.props)
   }, [element])
 

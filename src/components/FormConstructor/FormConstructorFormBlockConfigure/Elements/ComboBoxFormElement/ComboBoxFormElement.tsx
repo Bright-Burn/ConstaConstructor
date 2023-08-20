@@ -28,7 +28,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   })
 
   useLayoutEffect(() => {
-    const comboBoxFormElement = element as IFormElementComboBox
+    const comboBoxFormElement = element
     setComboboxProps(comboBoxFormElement.props.props)
   }, [element])
 

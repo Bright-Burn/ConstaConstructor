@@ -10,7 +10,7 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
   console.log(element)
 
   useLayoutEffect(() => {
-    const datePickerFormElement = element as IFormElementDatePicker
+    const datePickerFormElement = element
     setDatePickerProps(datePickerFormElement.props.props)
   }, [element])
 

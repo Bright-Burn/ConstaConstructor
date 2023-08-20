@@ -9,7 +9,7 @@ export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
   const [iconProps, setIconProps] = useState<IconProps>()
 
   useLayoutEffect(() => {
-    const iconFormElement = element as IFormElementIcon
+    const iconFormElement = element
     setIconProps(iconFormElement.props.props)
   }, [element])
 

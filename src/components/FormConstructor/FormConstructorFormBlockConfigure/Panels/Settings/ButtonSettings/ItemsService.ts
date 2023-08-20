@@ -29,7 +29,9 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
     (propsName: keyof ButtonProps) =>
     ({ checked }: { checked: boolean }) => {
         const newProps: BrandButtonProps = {
-          props: {...selectedElementProps},
+          props: {
+            ...selectedElementProps, 
+            [propsName]: checked},
           type: 'Button',
         }
         selectedElement && onDispatch(selectedElement, newProps)
@@ -121,7 +123,7 @@ export const useItemsHandlers = (selectedElementProps: ButtonProps, selectedElem
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps: {...newProps},
       }),
     )
   }

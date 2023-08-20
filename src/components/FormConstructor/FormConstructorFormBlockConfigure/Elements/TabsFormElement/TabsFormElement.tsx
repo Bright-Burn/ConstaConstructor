@@ -17,7 +17,7 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
   })
 
   useLayoutEffect(() => {
-    const tabsFormElementWithProps = element as IFormElementTabs
+    const tabsFormElementWithProps = element
     setTabsProps(tabsFormElementWithProps.props.props)
   }, [element])
 

@@ -8,7 +8,7 @@ interface IPrototypeTextElement {
 }
 
 export const PrototypeTextElement: FC<IPrototypeTextElement> = ({ element }) => {
-  const { width, height, top, left, text, zIndex } = element.props.props
+  const { width, height, top, left, text, zIndex } = element.props
 
   const style: React.CSSProperties = {
     width,

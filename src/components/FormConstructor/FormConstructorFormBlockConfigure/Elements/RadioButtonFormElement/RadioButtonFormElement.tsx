@@ -9,7 +9,7 @@ export const RadioButtonFormElement: FC<IRadioButtonFormElement> = ({ element })
   const [radioButtonProps, setRadioButtonProps] = useState<RadioButtonProps>()
 
   useLayoutEffect(() => {
-    const radioButtonFormElement = element as IFormElementRadioButton
+    const radioButtonFormElement = element
     setRadioButtonProps(radioButtonFormElement.props.props)
   }, [element])
 

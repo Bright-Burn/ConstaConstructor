@@ -19,7 +19,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const isGridVisible = useAppSelector(checkIsGridVisible)
 
   useLayoutEffect(() => {
-    const layoutElementWithProps = element as ILayoutElement
+    const layoutElementWithProps = element
     setLayoutProps(layoutElementWithProps.props.props)
   }, [element])
 

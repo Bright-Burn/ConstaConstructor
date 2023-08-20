@@ -1,5 +1,5 @@
 import { IFormElement } from '../../../coreTypes'
 
 export interface IDatePickerFormElement {
-  element: IFormElement
+  element: IFormElement<'DatePicker'>
 }

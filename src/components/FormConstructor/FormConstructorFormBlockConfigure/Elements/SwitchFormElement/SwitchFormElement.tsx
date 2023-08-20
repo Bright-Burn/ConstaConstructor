@@ -9,7 +9,7 @@ export const SwitchFormElement: FC<ISwitchFormElement> = ({ element }) => {
   const [switchProps, setSwitchProps] = useState<SwitchProps>()
 
   useLayoutEffect(() => {
-    const switchFormElement = element as IFormElementSwitch
+    const switchFormElement = element
     setSwitchProps(switchFormElement.props.props)
   }, [element])
 

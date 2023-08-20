@@ -13,13 +13,12 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     label: 'Рисунок',
     className: '',
     baseProps: {},
-    onChange: () => {},
     mode: 'link',
     checked: false,
   })
 
   useLayoutEffect(() => {
-    const tagFormElement = element as IFormElementTagProps
+    const tagFormElement = element
     setTagPropsProps(tagFormElement.props.props)
   }, [element])
 

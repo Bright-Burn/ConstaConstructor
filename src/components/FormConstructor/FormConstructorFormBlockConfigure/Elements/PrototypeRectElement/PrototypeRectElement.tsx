@@ -9,7 +9,8 @@ interface IPrototypeRectElement {
 }
 
 export const PrototypeRectElement: FC<IPrototypeRectElement> = ({ element }) => {
-  const { width, height, top, left, zIndex } = element.props.props
+  console.log(element)
+  const { width, height, top, left, zIndex } = element.props
   return (
     <div style={{ top, left, position: 'absolute' }}>
       <SelectableLayer
