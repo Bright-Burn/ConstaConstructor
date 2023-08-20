@@ -33,7 +33,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
     () =>
     ({ value }: { value: string | null }) => {
       const newProps: BrandLayoutElementPropsStyles = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Layout'
       }
       newProps.props.constaProps = { ...newProps.props.constaProps }
@@ -46,7 +46,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeDirection = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout'
     }
 
@@ -58,7 +58,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeVerticalAligment = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout'
     }
     newProps.props.constaProps = { ...newProps.props.constaProps }
@@ -69,7 +69,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeHorizontalAligment = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout'
     }
 
@@ -81,7 +81,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeJustifyContent = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
 
@@ -93,7 +93,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeAlignItems = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
 
@@ -105,7 +105,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
@@ -127,7 +127,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeHeight = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
@@ -149,7 +149,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeBorderWidth = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
 
@@ -161,7 +161,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeBorderStyle = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
@@ -171,7 +171,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeBorderSide = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
@@ -181,7 +181,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeBorderColor = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
 
@@ -193,7 +193,7 @@ export const useItemsHandlers = (selectedElementProps: LayoutElementPropsStyles,
 
   const onChangeBackroundColor = (color: ConstaColor) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: selectedElementProps,
+      props: {...selectedElementProps},
       type: 'Layout',
     }
 

@@ -29,11 +29,11 @@ export const useItemsHandlers = (selectedElementProps: TextElementProps, selecte
   ) => {
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Text',
       }
       // @ts-ignore
-      newProps[field] = value
+      newProps.props[field] = value
 
       onDispatch(selectedElement, newProps)
     }
@@ -63,7 +63,7 @@ export const useItemsHandlers = (selectedElementProps: TextElementProps, selecte
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
         type: 'Text',
-        props: selectedElementProps,
+        props: {...selectedElementProps},
       }
       const newValue = getPropsValue(field)
       // @ts-ignore
@@ -76,7 +76,7 @@ export const useItemsHandlers = (selectedElementProps: TextElementProps, selecte
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
         type: 'Text',
-        props: selectedElementProps,
+        props: {...selectedElementProps},
       }
       newProps.props.truncate = checked
 

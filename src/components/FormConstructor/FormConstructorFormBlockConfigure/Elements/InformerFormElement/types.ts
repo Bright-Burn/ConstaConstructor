@@ -1,5 +1,5 @@
 import { IFormElement } from '../../../coreTypes'
 
 export interface IInformerFormElement {
-  element: IFormElement
+  element: IFormElement<'Informer'>
 }

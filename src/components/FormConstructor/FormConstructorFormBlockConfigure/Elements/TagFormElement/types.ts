@@ -1,5 +1,5 @@
 import { IFormElement } from '../../../coreTypes'
 
 export interface ITagFormElement {
-  element: IFormElement
+  element: IFormElement<'Tag'>
 }

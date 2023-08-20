@@ -20,7 +20,6 @@ export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
           checked: false,
           className: '',
           baseProps: {},
-          onChange: () => { },
         },
         type: 'Tag'
       },

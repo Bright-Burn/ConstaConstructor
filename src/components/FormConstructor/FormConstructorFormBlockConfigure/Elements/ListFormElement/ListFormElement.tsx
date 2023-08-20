@@ -27,7 +27,7 @@ export const ListFormElement: FC<IListFormElement> = ({ element }) => {
   const [ListProps, setListProps] = useState<ListProps>()
 
   useLayoutEffect(() => {
-    const ListFormElement = element as IFormElementList
+    const ListFormElement = element
     setListProps(ListFormElement.props.props)
   }, [element])
 

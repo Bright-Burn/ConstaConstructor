@@ -13,11 +13,12 @@ type TableSettingsType = {
 export const TableSettings: FC<TableSettingsType> = ({selectedElementProps, selectedElement}) => {
   const [props, setProps] = useState<TableProps>()
   const dispatch = useAppDispatch()
+  console.log(selectedElementProps)
 
   const handleOnChangeLabelRow = ({ value }: { value: string | null }) => {
     if (selectedElement) {
       const newProps: BrandTableProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Table'
       }
       newProps.props.row = value === null ? undefined : +value
@@ -28,7 +29,7 @@ export const TableSettings: FC<TableSettingsType> = ({selectedElementProps, sele
   const handleOnChangeLabelColumn = ({ value }: { value: string | null }) => {
     if (selectedElement) {
       const newProps: BrandTableProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Table'
       }
       newProps.props.column = value === null ? undefined : +value
@@ -48,7 +49,7 @@ export const TableSettings: FC<TableSettingsType> = ({selectedElementProps, sele
 
   useLayoutEffect(() => {
     if (selectedElement) {
-      setProps(selectedElementProps as TableProps)
+      setProps(selectedElementProps)
     }
   }, [selectedElementProps, selectedElement])
 

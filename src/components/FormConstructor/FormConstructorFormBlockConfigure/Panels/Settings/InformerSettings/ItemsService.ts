@@ -12,11 +12,12 @@ export const useItemsHandlers = (selectedElementProps: InformerElementProps, sel
   ) => {
     if (selectedElement) {
       const newProps: BrandInformerElementProps = {
-        props: selectedElementProps,
+        props: {
+          ...selectedElementProps,
+          [field]: value,
+        },
         type: 'Informer'
       }
-      // @ts-ignore
-      newProps[field] = value
       onDispatch(selectedElement, newProps)
     }
   }

@@ -11,7 +11,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (value) {
       const newProps: BrandListProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'List',
       }
       let itemsProps = [...newProps.props.items]
@@ -36,7 +36,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
   const onChangeSize = (value: ListPropSize | null) => {
     if (value) {
       const newProps: BrandListProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'List',
       }
       newProps.props.size = value
@@ -47,7 +47,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
   const onChangeItems = (items: ItemList[]) => {
     if (items) {
       const newProps: BrandListProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'List',
       }
       newProps.props.items = [...items]
@@ -59,7 +59,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
   const onChangeInnerOffset = (value: ListPropInnerOffset | null) => {
     if (value) {
       const newProps: BrandListProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'List',
       }
       newProps.props.innerOffset = value
@@ -69,7 +69,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
   const onChangeForm = (value: ListPropForm | null) => {
     if (value) {
       const newProps: BrandListProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'List',
       }
       newProps.props.form = value
@@ -80,7 +80,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
     (propsName: keyof ListProps) =>
     ({ checked }: { checked: boolean }) => {
       const newProps: BrandListProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'List',
       }
       // @ts-ignore

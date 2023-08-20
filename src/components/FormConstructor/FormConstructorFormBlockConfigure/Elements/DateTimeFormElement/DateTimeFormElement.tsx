@@ -10,7 +10,7 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
   const [rangeValue, setRangeValue] = useState<[Date?, Date?]>([])
 
   useLayoutEffect(() => {
-    const dataTimeFormElement = element as IFormElementDataTime
+    const dataTimeFormElement = element
     setDataTimeProps(dataTimeFormElement.props.props)
   }, [element])
 

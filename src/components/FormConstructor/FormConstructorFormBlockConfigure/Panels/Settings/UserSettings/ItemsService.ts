@@ -11,11 +11,11 @@ export const useItemsHandlers = (selectedElementProps: UserProps, selectedElemen
   ) => {
     if (selectedElement) {
       const newProps: BrandUserProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'User'
       }
       // @ts-ignore
-      newProps[field] = value
+      newProps.props[field] = value
 
       onDispatch(selectedElement, newProps)
     }
@@ -25,11 +25,11 @@ export const useItemsHandlers = (selectedElementProps: UserProps, selectedElemen
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
         const newProps: BrandUserProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'User'
         }
         // @ts-ignore
-        newProps[propsName] = checked
+        newProps.props[propsName] = checked
         onDispatch(selectedElement, newProps)
       }
     }

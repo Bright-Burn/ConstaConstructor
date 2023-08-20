@@ -13,7 +13,7 @@ export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
   const [informerProps, setInformerProps] = useState<InformerElementProps>()
 
   useLayoutEffect(() => {
-    const informerFormElement = element as IFormElementInformer
+    const informerFormElement = element
     setInformerProps(informerFormElement.props.props)
   }, [element])
 

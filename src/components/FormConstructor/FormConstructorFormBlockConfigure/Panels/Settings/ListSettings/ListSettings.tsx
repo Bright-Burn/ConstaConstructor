@@ -22,7 +22,7 @@ export const ListSettings: FC<ListSettingsType> = ({selectedElementProps, select
   useLayoutEffect(() => {
     if (selectedElement) {
       const textFieldProps: BrandListProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'List',
       }
 

@@ -36,14 +36,14 @@ export class PrototypeProps {
   }
 }
 
-export type BrandPrototypeRectProps = BrandProps<PrototypeProps, 'PrototypeRectElement'>
+export type BrandPrototypeRectProps = BrandProps<PrototypePropsType, 'PrototypeRectElement'>
 
-export type BrandPrototypeTextProps = BrandProps<PrototypeProps, 'PrototypeTextElement'>
+export type BrandPrototypeTextProps = BrandProps<PrototypePropsType, 'PrototypeTextElement'>
 
 export type PrototypeRectElement = ConcreteSelectedElement<typeof FormElementDictTypes.PrototypeRectElement>
 
 export type PrototypeTextElement = ConcreteSelectedElement<typeof FormElementDictTypes.PrototypeTextElement>
 
 export interface IFormElementPrototype extends IFormElement {
-  props: BrandPrototypeRectProps | BrandPrototypeTextProps
+  props: PrototypeProps
 }

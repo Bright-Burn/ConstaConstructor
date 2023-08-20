@@ -21,7 +21,7 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
   const onChangeSize = (value: TagBasePropSize | null) => {
     if (selectedElement && value) {
       const newProps: BrandTagProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Tag'
       }
       newProps.props.size = value
@@ -32,7 +32,7 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
   const onChangeMode = (value: TagBasePropMode | null) => {
     if (selectedElement && value) {
       const newProps: BrandTagProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Tag'
       }
       newProps.props.mode = value
@@ -45,11 +45,12 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
         const newProps: BrandTagProps = {
-          props: selectedElementProps,
+          props: {
+            ...selectedElementProps,
+            [propsName]: value || '',
+          },
           type: 'Tag'
         }
-        // @ts-ignore
-        newProps[propsName] = value || ''
         onDispatch(selectedElement, newProps)
       }
     }
@@ -57,7 +58,7 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
   const onChangeGroup = (value: TagBasePropGroup | null) => {
     if (selectedElement && value) {
       const newProps: BrandTagProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Tag'
       }
       newProps.props.group = value
@@ -70,11 +71,12 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
         const newProps: BrandTagProps = {
-          props: selectedElementProps,
+          props: {
+            ...selectedElementProps,
+            [propsName]: checked,
+          },
           type: 'Tag'
         }
-        // @ts-ignore
-        newProps[propsName] = checked
         onDispatch(selectedElement, newProps)
       }
     }
@@ -82,7 +84,7 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
   const onChangeIcon = (value: iconNames | null) => {
     if (selectedElement && value) {
       const newProps: BrandTagProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Tag'
       }
       newProps.props.icon = value

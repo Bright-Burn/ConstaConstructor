@@ -15,7 +15,7 @@ export const useItemsHandlers = (selectedElementProps: TextFieldProps, selectedE
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
         const newProps: BrandTextFieldProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'TextField'
         }
         // @ts-ignore
@@ -29,7 +29,7 @@ export const useItemsHandlers = (selectedElementProps: TextFieldProps, selectedE
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
         const newProps: BrandTextFieldProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'TextField'
         }
         // @ts-ignore

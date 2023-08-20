@@ -19,7 +19,7 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
   const onChangeView = (value: RadioPropView | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'RadioButton'
       }
       newProps.props.view = value
@@ -30,7 +30,7 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
   const onChangeSize = (value: RadioPropSize | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'RadioButton'
       }
       newProps.props.size = value
@@ -41,7 +41,7 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
   const onChangeAlign = (value: RadioPropAlign | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'RadioButton'
       }
       newProps.props.align = value
@@ -53,11 +53,12 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
     (propsName: keyof RadioButtonProps) =>
     ({ value }: { value: string | null }) => {
         const newProps: BrandRadioButtonProps = {
-          props: selectedElementProps,
+          props: {
+            ...selectedElementProps,
+            [propsName]: value || '',
+          },
           type: 'RadioButton'
         }
-        // @ts-ignore
-        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
     }
 
@@ -65,15 +66,17 @@ export const useItemsHandlers = (selectedElementProps: RadioButtonProps, selecte
     (propsName: keyof RadioButtonProps) =>
     ({ checked }: { checked: boolean }) => {
         const newProps: BrandRadioButtonProps = {
-          props: selectedElementProps,
+          props: {
+            ...selectedElementProps,
+            [propsName]: checked,
+          },
           type: 'RadioButton',
-          [propsName]: checked,
         }
         onDispatch(selectedElement, newProps)
     }
   const onChangeChacked = (checked: boolean) => {
       const newProps: BrandRadioButtonProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'RadioButton'
       }
       newProps.props.checked = checked

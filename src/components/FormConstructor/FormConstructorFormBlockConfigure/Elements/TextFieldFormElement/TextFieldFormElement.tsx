@@ -13,7 +13,7 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
   const [textFieldProps, setTextFieldProps] = useState<TextFieldProps>()
 
   useLayoutEffect(() => {
-    const textFieldFormElement = element as IFormElementTextField
+    const textFieldFormElement = element
     setTextFieldProps(textFieldFormElement.props.props)
   }, [element])
   //логика для заполнения элемента

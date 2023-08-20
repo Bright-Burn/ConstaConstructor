@@ -17,7 +17,7 @@ export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElem
   const onChangeView = (value: SwitchPropView | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Switch',
       }
       newProps.props.view = value
@@ -27,7 +27,7 @@ export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElem
   const onChangeSize = (value: SwitchPropSize | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Switch',
       }
       newProps.props.size = value
@@ -37,7 +37,7 @@ export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElem
   const onChangeAlign = (value: SwitchPropAlign | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: selectedElementProps,
+        props: {...selectedElementProps},
         type: 'Switch',
       }
       newProps.props.align = value
@@ -48,7 +48,7 @@ export const useItemsHandlers = (selectedElementProps: SwitchProps, selectedElem
     (propsName: keyof SwitchProps) =>
     ({ value }: { value: string | null }) => {
         const newProps: BrandSwitchProps = {
-          props: selectedElementProps,
+          props: {...selectedElementProps},
           type: 'Switch',
         }
         // @ts-ignore

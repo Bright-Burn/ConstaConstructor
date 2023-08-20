@@ -22,8 +22,6 @@ export type TagProps = {
   checked: boolean
   group?: TagBasePropGroup
   Icon?: boolean
-  onCancel?: () => void
-  onChange?: () => void
   icon?: iconNames
 } & BaseProps
 

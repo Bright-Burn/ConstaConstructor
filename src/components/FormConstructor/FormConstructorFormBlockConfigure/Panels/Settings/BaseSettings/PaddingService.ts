@@ -3,20 +3,22 @@ import { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './type
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 import { BrandLayoutElementPropsStyles } from '../../../../coreTypes/layoutTypes'
 import { isElementProps } from '../../../../utils/quard'
+import { AllElementProps, UnionProps } from '../../../../coreTypes/types'
 
 export const usePaddingHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-  if (!isElementProps<BrandLayoutElementPropsStyles>(selectedElementProps, 'Layout')) {
+  if (!selectedElementProps) {
     return {
+      paddingProps: null,
       onChangePaddingBottom: () => {},
       onChangePaddingLeft: () => {},
       onChangePaddingRight: () => {},
-      onChangePaddingTop: () => {},
-      paddingProps: null,
+      onChangePaddingTop: () => {}
     }
   }
+  
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandLayoutElementPropsStyles) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: UnionProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -27,11 +29,12 @@ export const usePaddingHandlers = () => {
   }
   const onChangePaddingLeft = ({ value }: { value: typeof paddingsLeft[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: BrandLayoutElementPropsStyles = {
-        props: {...selectedElementProps.props},
-        type: 'Layout'
+      console.log(selectedElementProps)
+      const newProps: UnionProps = structuredClone(selectedElementProps)
+      console.log(newProps)
+      if ('constaProps' in newProps.props){
+        newProps.props.constaProps = { ...newProps.props.constaProps }
       }
-      newProps.props.constaProps = { ...newProps.props.constaProps }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
         padding: { ...(newProps.props.baseProps?.padding ?? {}), paddingLeft: value },
@@ -49,11 +52,10 @@ export const usePaddingHandlers = () => {
   }
   const onChangePaddingRight = ({ value }: { value: typeof paddingsRight[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: BrandLayoutElementPropsStyles = {
-        props: {...selectedElementProps.props},
-        type: 'Layout'
+      const newProps: UnionProps = structuredClone(selectedElementProps)
+      if ('constaProps' in newProps.props){
+        newProps.props.constaProps = { ...newProps.props.constaProps }
       }
-      newProps.props.constaProps = { ...newProps.props.constaProps }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
         padding: { ...(newProps.props.baseProps?.padding ?? {}), paddingRight: value },
@@ -70,12 +72,11 @@ export const usePaddingHandlers = () => {
     }
   }
   const onChangePaddingTop = ({ value }: { value: typeof paddingsTop[number] | null }) => {
-    if (selectedElement && value != null) {
-      const newProps: BrandLayoutElementPropsStyles = {
-        props: {...selectedElementProps.props},
-        type: 'Layout'
+    if (selectedElement && value != null) {      
+      const newProps: UnionProps = structuredClone(selectedElementProps)
+      if ('constaProps' in newProps.props){
+        newProps.props.constaProps = { ...newProps.props.constaProps }
       }
-      newProps.props.constaProps = { ...newProps.props.constaProps }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
         padding: { ...(newProps.props.baseProps?.padding ?? {}), paddingTop: value },
@@ -93,11 +94,10 @@ export const usePaddingHandlers = () => {
   }
   const onChangePaddingBottom = ({ value }: { value: typeof paddingsBottom[number] | null }) => {
     if (selectedElement && value != null) {
-      const newProps: BrandLayoutElementPropsStyles = {
-        props: {...selectedElementProps.props},
-        type: 'Layout'
+      const newProps: UnionProps = structuredClone(selectedElementProps)     
+      if ('constaProps' in newProps.props){
+        newProps.props.constaProps = { ...newProps.props.constaProps }
       }
-      newProps.props.constaProps = { ...newProps.props.constaProps }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
         padding: { ...(newProps.props.baseProps?.padding ?? {}), paddingBottom: value },

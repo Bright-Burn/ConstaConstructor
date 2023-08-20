@@ -84,11 +84,12 @@ export const useItemsHandlers = (selectedElementProps: ComboboxProps, selectedEl
     (propsName: keyof ComboboxProps) =>
     ({ value }: { value: string | null }) => {
         const newProps: BrandComboboxProps = {
-          props: {...selectedElementProps},
+          props: {
+            ...selectedElementProps,
+            [propsName]: value || '',
+          },
           type: 'ComboBox',
         }
-        // @ts-ignore
-        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
     }
 
@@ -118,7 +119,10 @@ export const useItemsHandlers = (selectedElementProps: ComboboxProps, selectedEl
     (propsName: keyof ComboboxProps) =>
     ({ checked }: { checked: boolean }) => {
         const newProps: BrandComboboxProps = {
-          props: {...selectedElementProps},
+          props: {
+            ...selectedElementProps,
+            [propsName]: checked,
+          },
           type: 'ComboBox',
         }
         // @tsignore[propsName] = checked
