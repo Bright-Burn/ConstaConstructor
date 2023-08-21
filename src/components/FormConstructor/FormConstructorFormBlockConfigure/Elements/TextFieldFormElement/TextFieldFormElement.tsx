@@ -12,7 +12,7 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
     setTextFieldProps(textFieldFormElement.props.props)
   }, [element])
   //логика для заполнения элемента
-  const isFilled = element.props.filled
+  const isFilled = element.props.props.filled
   //
   return (
     <SelectableLayer
