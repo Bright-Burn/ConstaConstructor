@@ -45,18 +45,6 @@ export const useItemsHandlers = (
           onChangeButtonAction('none')
         }
       }
-    }
-
-  const onChangeButtonAction = (value: ButtonAction) => {
-      const newProps: BrandButtonProps = {
-        props: {
-          ...selectedElementProps,
-          [propsName]: checked,
-        },
-        type: 'Button',
-      }
-      selectedElement && onDispatch(selectedElement, newProps)
-    }
 
   const onChangeButtonAction = (value: ButtonAction) => {
     const newProps: BrandButtonProps = {

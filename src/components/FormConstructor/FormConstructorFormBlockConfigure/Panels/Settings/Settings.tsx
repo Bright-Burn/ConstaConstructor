@@ -18,6 +18,7 @@ export const Settings: FC = () => {
 
   const settingsPanelState = useAppSelector(getSettingsPanelState)
 
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
   const changeTextFieldValue = ({ value }: { value: string | null }) => setModuleName(value)
@@ -36,7 +37,7 @@ export const Settings: FC = () => {
     <>
       {settingsPanelState ? (
         <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer} `}>
-          <div className={`${styles.elementSettings} m-t-s`}>{getSettingsPanel()}</div>
+          <SettingPanelQualifier />
           <div className={styles.exportText}>
             <TextField
               width='full'
@@ -53,12 +54,6 @@ export const Settings: FC = () => {
               onClick={onSaveModule}
             />
           </div>
-          <SaveModalCard
-            onCloseModalCard={onClose}
-            onSave={onSaveProject}
-            showSaveModal={showSaveModal}
-          />
-          <SettingPanelQualifier />
         </div>
       ) : (
         <div className={styles.toggleButton}>

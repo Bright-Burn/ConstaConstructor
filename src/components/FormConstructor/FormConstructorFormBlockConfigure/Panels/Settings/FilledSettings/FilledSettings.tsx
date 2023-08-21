@@ -1,5 +1,5 @@
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { BaseProps, fillType, UnionProps } from '../../../../coreTypes'
+import { UnionProps } from '../../../../coreTypes'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
 import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
