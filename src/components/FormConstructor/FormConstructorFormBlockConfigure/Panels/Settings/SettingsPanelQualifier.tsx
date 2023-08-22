@@ -298,7 +298,6 @@ const getSettingsPanel = (
 
         return (
           <>
-            <FilledSettings />
             <ButtonSettings
               selectedElementProps={selectedElementProps.props}
               selectedElement={element}
