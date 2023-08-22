@@ -20,14 +20,20 @@ const fillValues = [
   { name: 'filled', icon: IconMaxWidth },
 ]
 interface IFilledSettings {
-  selectedElementProps: ButtonProps | TextFieldProps 
+  selectedElementProps: ButtonProps | TextFieldProps
   selectedElement: ButtonElement | TextFieldElement
 }
-export const FilledSettings: React.FC<IFilledSettings> = ({ selectedElementProps, selectedElement }) => {
+export const FilledSettings: React.FC<IFilledSettings> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const dispatch = useAppDispatch()
 
   function onFilledChange({ value }: { value: fillType | null }): void {
-    const newProps = { ...selectedElementProps, props: {...selectedElementProps, filled: value?.name === 'filled' ? true : false } }
+    const newProps = {
+      props: { ...selectedElementProps, filled: value?.name === 'filled' ? true : false },
+      type: 'Button',
+    }
 
     if (selectedElement) {
       dispatch(
