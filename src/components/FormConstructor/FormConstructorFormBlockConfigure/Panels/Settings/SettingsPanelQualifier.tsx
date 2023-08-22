@@ -240,7 +240,6 @@ const getSettingsPanel = (
 
         return (
           <>
-            <FilledSettings />
             <TextFieldSettings
               selectedElementProps={selectedElementProps.props}
               selectedElement={element}
