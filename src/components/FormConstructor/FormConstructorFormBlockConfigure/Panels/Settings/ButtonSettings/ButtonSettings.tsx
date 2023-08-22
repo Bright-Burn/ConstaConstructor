@@ -56,7 +56,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                   onChangeField(value, 'size')
                 }}
               />
-              <FilledSettings />
+              <FilledSettings selectedElement={selectedElement} selectedElementProps={selectedElementProps}/>
             </div>
             <div className={styles.rowSettings}>
               <Select
