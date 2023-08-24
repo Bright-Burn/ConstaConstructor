@@ -27,9 +27,7 @@ export const usePaddingHandlers = () => {
   }
   const onChangePaddingLeft = ({ value }: { value: typeof paddingsLeft[number] | null }) => {
     if (selectedElement && value != null) {
-      console.log(selectedElementProps)
       const newProps: UnionProps = structuredClone(selectedElementProps)
-      console.log(newProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }

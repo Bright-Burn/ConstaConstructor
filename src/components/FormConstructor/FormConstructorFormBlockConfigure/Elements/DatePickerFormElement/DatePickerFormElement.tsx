@@ -7,7 +7,6 @@ import { DatePicker } from '@consta/uikit/DatePicker'
 
 export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) => {
   const [datePickerProps, setDatePickerProps] = useState<DatePickerProps>()
-  console.log(element)
 
   useLayoutEffect(() => {
     const datePickerFormElement = element
