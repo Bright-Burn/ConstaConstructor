@@ -22,7 +22,7 @@ export interface ButtonProps extends BaseProps, Props {
   filled?: boolean
 }
 
-export type BrandButtonProps = BrandProps<ButtonProps, 'Button'> & { filled?: boolean }
+export type BrandButtonProps = BrandProps<ButtonProps, 'Button'>
 
 export type ButtonElement = ConcreteSelectedElement<typeof FormElementDictTypes.Button>
 
