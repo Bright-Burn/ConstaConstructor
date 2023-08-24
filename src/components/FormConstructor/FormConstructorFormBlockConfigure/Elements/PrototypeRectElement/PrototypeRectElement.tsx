@@ -7,7 +7,6 @@ interface IPrototypeRectElement {
 }
 
 export const PrototypeRectElement: FC<IPrototypeRectElement> = ({ element }) => {
-  console.log(element)
   const { width, height, top, left, zIndex } = element.props
   return (
     <div style={{ top, left, position: 'absolute' }}>
