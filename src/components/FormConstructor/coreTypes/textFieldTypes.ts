@@ -39,7 +39,7 @@ export type TextFieldProps = {
 } & BaseProps &
   TextFieldPropsTextareaType<string>
 
-export type BrandTextFieldProps = BrandProps<TextFieldProps, 'TextField'> & { filled?: boolean }
+export type BrandTextFieldProps = BrandProps<TextFieldProps, 'TextField'>
 
 export type TextFieldElement = ConcreteSelectedElement<typeof FormElementDictTypes.TextField>
 
