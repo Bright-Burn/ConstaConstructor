@@ -103,7 +103,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
             onChange={onChangeActiveItem}
           />
         </div>
-        <Collapse label='Название табов' isOpen={isOpen} onClick={() => setOpen(!isOpen)}>
+        <Collapse size='xs' label='Название табов' isOpen={isOpen} onClick={() => setOpen(!isOpen)}>
           {itemsProps.items.map((tab, index) => {
             return (
               <div className={style.rowSettings}>
