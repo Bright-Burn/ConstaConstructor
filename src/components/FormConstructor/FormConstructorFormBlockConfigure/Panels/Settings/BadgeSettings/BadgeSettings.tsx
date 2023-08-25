@@ -5,9 +5,19 @@ import { Checkbox } from '@consta/uikit/Checkbox'
 import { TextField } from '@consta/uikit/TextField'
 import { sizes, views, statuses, forms } from './textConstants'
 import { useItemsHandlers } from './ItemsService'
+import { FC } from 'react'
+import { BadgeElement, BadgeProps } from '../../../../coreTypes/badgeTypes'
 
-export const BadgeSettings = () => {
-  const { itemsProps, onChangeMinified, handleOnChangeLabel, onChangeField } = useItemsHandlers()
+type BadgeSettingsType = {
+  selectedElementProps: BadgeProps
+  selectedElement: BadgeElement
+}
+
+export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, selectedElement }) => {
+  const { itemsProps, onChangeMinified, handleOnChangeLabel, onChangeField } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
 
   return (
     <div className={styles.badgeSettings}>

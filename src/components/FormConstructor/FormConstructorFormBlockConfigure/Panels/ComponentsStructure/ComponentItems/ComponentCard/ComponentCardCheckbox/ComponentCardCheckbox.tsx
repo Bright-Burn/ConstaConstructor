@@ -1,7 +1,7 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
-import { FormElementTypes, IFormElementCheckbox } from '../../../../../../coreTypes'
+import { FormElementDictTypes, IFormElementCheckbox } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
@@ -10,16 +10,19 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newCheckbox: IFormElementCheckbox = {
       id: uuid(),
-      type: FormElementTypes.Checkbox,
+      type: FormElementDictTypes.Checkbox,
       props: {
-        checked: false,
-        size: 's',
-        view: 'primary',
-        align: 'center',
-        disabled: false,
-        label: 'Checkbox',
-        className: '',
-        baseProps: {},
+        props: {
+          checked: false,
+          size: 's',
+          view: 'primary',
+          align: 'center',
+          disabled: false,
+          label: 'Checkbox',
+          className: '',
+          baseProps: {},
+        },
+        type: 'Checkbox',
       },
     }
     dispatch(setDraggableElement({ element: newCheckbox }))

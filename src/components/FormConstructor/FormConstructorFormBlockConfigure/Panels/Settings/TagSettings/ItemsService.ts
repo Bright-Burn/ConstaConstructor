@@ -1,15 +1,19 @@
-import { useAppSelector } from '../../../../store'
-import { ISelectedElement, TagProps } from '../../../../coreTypes'
+import {
+  ISelectedElement,
+  TagProps,
+  iconNames,
+  TagElement,
+  BrandTagProps,
+} from '../../../../coreTypes'
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 import { TagBasePropGroup, TagBasePropMode } from './types'
-import { iconNames } from '../../../../coreTypes'
+import {} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement: TagElement) => {
   const dispatch = useAppDispatch()
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: TagProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTagProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -21,20 +25,22 @@ export const useItemsHandlers = () => {
 
   const onChangeSize = (value: TagBasePropSize | null) => {
     if (selectedElement && value) {
-      const newProps: TagProps = {
-        ...(selectedElementProps as TagProps),
+      const newProps: BrandTagProps = {
+        props: { ...selectedElementProps },
+        type: 'Tag',
       }
-      newProps.size = value
+      newProps.props.size = value
       onDispatch(selectedElement, newProps)
     }
   }
 
   const onChangeMode = (value: TagBasePropMode | null) => {
     if (selectedElement && value) {
-      const newProps: TagProps = {
-        ...(selectedElementProps as TagProps),
+      const newProps: BrandTagProps = {
+        props: { ...selectedElementProps },
+        type: 'Tag',
       }
-      newProps.mode = value
+      newProps.props.mode = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -43,21 +49,24 @@ export const useItemsHandlers = () => {
     (propsName: keyof TagProps) =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: TagProps = {
-          ...(selectedElementProps as TagProps),
+        const newProps: BrandTagProps = {
+          props: {
+            ...selectedElementProps,
+            [propsName]: value || '',
+          },
+          type: 'Tag',
         }
-        // @ts-ignore
-        newProps[propsName] = value || ''
         onDispatch(selectedElement, newProps)
       }
     }
 
   const onChangeGroup = (value: TagBasePropGroup | null) => {
     if (selectedElement && value) {
-      const newProps: TagProps = {
-        ...(selectedElementProps as TagProps),
+      const newProps: BrandTagProps = {
+        props: { ...selectedElementProps },
+        type: 'Tag',
       }
-      newProps.group = value
+      newProps.props.group = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -66,21 +75,24 @@ export const useItemsHandlers = () => {
     (propsName: keyof TagProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: TagProps = {
-          ...(selectedElementProps as TagProps),
+        const newProps: BrandTagProps = {
+          props: {
+            ...selectedElementProps,
+            [propsName]: checked,
+          },
+          type: 'Tag',
         }
-        // @ts-ignore
-        newProps[propsName] = checked
         onDispatch(selectedElement, newProps)
       }
     }
 
   const onChangeIcon = (value: iconNames | null) => {
     if (selectedElement && value) {
-      const newProps: TagProps = {
-        ...(selectedElementProps as TagProps),
+      const newProps: BrandTagProps = {
+        props: { ...selectedElementProps },
+        type: 'Tag',
       }
-      newProps.icon = value
+      newProps.props.icon = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -93,12 +105,12 @@ export const useItemsHandlers = () => {
     onChangeSwitch,
     onChangeIcon,
     itemsProps: {
-      label: (selectedElementProps as TagProps).label,
-      size: (selectedElementProps as TagProps).size,
-      mode: (selectedElementProps as TagProps).mode,
-      group: (selectedElementProps as TagProps).group,
-      iconSwitch: (selectedElementProps as TagProps).Icon,
-      icon: (selectedElementProps as TagProps).icon,
+      label: selectedElementProps.label,
+      size: selectedElementProps.size,
+      mode: selectedElementProps.mode,
+      group: selectedElementProps.group,
+      iconSwitch: selectedElementProps.Icon,
+      icon: selectedElementProps.icon,
     },
   }
 }

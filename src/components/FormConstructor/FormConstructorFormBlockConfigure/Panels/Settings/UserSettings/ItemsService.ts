@@ -1,9 +1,8 @@
 import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@consta/uikit/User'
-import { UserProps, ISelectedElement } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { UserProps, ISelectedElement, UserElement, BrandUserProps } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (selectedElementProps: UserProps, selectedElement: UserElement) => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -11,11 +10,12 @@ export const useItemsHandlers = () => {
     field: keyof UserProps,
   ) => {
     if (selectedElement) {
-      const newProps: UserProps = {
-        ...(selectedElementProps as UserProps),
+      const newProps: BrandUserProps = {
+        props: { ...selectedElementProps },
+        type: 'User',
       }
       // @ts-ignore
-      newProps[field] = value
+      newProps.props[field] = value
 
       onDispatch(selectedElement, newProps)
     }
@@ -24,16 +24,17 @@ export const useItemsHandlers = () => {
     (propsName: keyof UserProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: UserProps = {
-          ...(selectedElementProps as UserProps),
+        const newProps: BrandUserProps = {
+          props: { ...selectedElementProps },
+          type: 'User',
         }
         // @ts-ignore
-        newProps[propsName] = checked
+        newProps.props[propsName] = checked
         onDispatch(selectedElement, newProps)
       }
     }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: UserProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandUserProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -46,16 +47,16 @@ export const useItemsHandlers = () => {
     onChangeField,
     onChangeSwitch,
     itemsProps: {
-      avatarUrl: (selectedElementProps as UserProps).avatarUrl,
-      checked: (selectedElementProps as UserProps).checked,
-      info: (selectedElementProps as UserProps).info,
-      name: (selectedElementProps as UserProps).name,
-      onlyAvatar: (selectedElementProps as UserProps).onlyAvatar,
-      size: (selectedElementProps as UserProps).size,
-      status: (selectedElementProps as UserProps).status,
-      view: (selectedElementProps as UserProps).view,
-      width: (selectedElementProps as UserProps).width,
-      withArrow: (selectedElementProps as UserProps).withArrow,
+      avatarUrl: selectedElementProps.avatarUrl,
+      checked: selectedElementProps.checked,
+      info: selectedElementProps.info,
+      name: selectedElementProps.name,
+      onlyAvatar: selectedElementProps.onlyAvatar,
+      size: selectedElementProps.size,
+      status: selectedElementProps.status,
+      view: selectedElementProps.view,
+      width: selectedElementProps.width,
+      withArrow: selectedElementProps.withArrow,
     },
   }
 }

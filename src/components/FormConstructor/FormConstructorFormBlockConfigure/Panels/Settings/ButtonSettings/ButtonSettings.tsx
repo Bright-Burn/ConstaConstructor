@@ -1,4 +1,5 @@
-import React from 'react'
+import { buttonActions, ButtonProps } from '../../../../coreTypes'
+import React, { FC } from 'react'
 import styles from './styles.module.css'
 import { Select } from '@consta/uikit/Select'
 import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
@@ -10,10 +11,25 @@ import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { FilledSettings } from '../FilledSettings'
 import { Text } from '@consta/uikit/Text'
+import { ButtonElement } from '../../../../coreTypes/buttonTypes'
 
-export const ButtonSettings = () => {
-  const { itemsProps, onChangeField, onChangeSwitch, onChangeIcon, onChangeIconR } =
-    useItemsHandlers()
+type ButtonSettingsType = {
+  selectedElementProps: ButtonProps
+  selectedElement: ButtonElement
+}
+
+export const ButtonSettings: FC<ButtonSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
+  const {
+    itemsProps,
+    onChangeField,
+    onChangeSwitch,
+    onChangeButtonAction,
+    onChangeIcon,
+    onChangeIconR,
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <div className={styles.buttonPropsSettings}>
@@ -40,7 +56,7 @@ export const ButtonSettings = () => {
                   onChangeField(value, 'size')
                 }}
               />
-              <FilledSettings />
+              <FilledSettings selectedElement={selectedElement} selectedElementProps={selectedElementProps}/>
             </div>
             <div className={styles.rowSettings}>
               <Select

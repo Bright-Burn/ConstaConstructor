@@ -1,11 +1,20 @@
-import { PropForm, SelectProps, ISelectedElement, selectitemType } from '../../../../coreTypes'
+import {
+  PropForm,
+  SelectProps,
+  ISelectedElement,
+  selectitemType,
+  BrandSelectProps,
+  SelectElement,
+} from '../../../../coreTypes'
 import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (
+  selectedElementProps: SelectProps,
+  selectedElement: SelectElement,
+) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: ISelectedElement, newProps: SelectProps) => {
+  const onDispatch = (selectedElement: SelectElement, newProps: BrandSelectProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -16,10 +25,12 @@ export const useItemsHandlers = () => {
   }
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
+      const newProps: BrandSelectProps = {
+        props: { ...selectedElementProps },
+        type: 'SelectForm',
       }
-      let itemsProps = [...newProps.items]
+
+      let itemsProps = [...newProps.props.items]
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
@@ -30,62 +41,74 @@ export const useItemsHandlers = () => {
           itemsProps.pop()
         }
       }
-      newProps.items = itemsProps
+      newProps.props.items = itemsProps
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeItems = (items: selectitemType[]) => {
     if (selectedElement && items) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
+      const newProps: BrandSelectProps = {
+        props: { ...selectedElementProps },
+        type: 'SelectForm',
       }
-      newProps.items = [...items]
-      newProps.value = items[0]
+
+      newProps.props.items = [...items]
+      newProps.props.value = items[0]
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeSize = (value: TextFieldPropSize | null) => {
     if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
+      const newProps: BrandSelectProps = {
+        props: { ...selectedElementProps },
+        type: 'SelectForm',
       }
-      newProps.size = value
+
+      newProps.props.size = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeView = (value: TextFieldPropView | null) => {
     if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
+      const newProps: BrandSelectProps = {
+        props: { ...selectedElementProps },
+        type: 'SelectForm',
       }
-      newProps.view = value
+
+      newProps.props.view = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeForm = (value: PropForm | null) => {
     if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
+      const newProps: BrandSelectProps = {
+        props: { ...selectedElementProps },
+        type: 'SelectForm',
       }
-      newProps.form = value
+
+      newProps.props.form = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeStatus = (value: TextFieldPropStatus | null) => {
     if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
+      const newProps: BrandSelectProps = {
+        props: { ...selectedElementProps },
+        type: 'SelectForm',
       }
-      newProps.status = value
+
+      newProps.props.status = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeLabelPosition = (value: 'top' | 'left' | null) => {
     if (selectedElement && value) {
-      const newProps: SelectProps = {
-        ...(selectedElementProps as SelectProps),
+      const newProps: BrandSelectProps = {
+        props: { ...selectedElementProps },
+        type: 'SelectForm',
       }
-      newProps.labelPosition = value
+
+      newProps.props.labelPosition = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -93,11 +116,13 @@ export const useItemsHandlers = () => {
     (propsName: keyof SelectProps) =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: SelectProps = {
-          ...(selectedElementProps as SelectProps),
+        const newProps: BrandSelectProps = {
+          props: {
+            ...selectedElementProps,
+            [propsName]: value || '',
+          },
+          type: 'SelectForm',
         }
-        // @ts-ignore
-        newProps[propsName] = value || ''
         onDispatch(selectedElement, newProps)
       }
     }
@@ -105,11 +130,13 @@ export const useItemsHandlers = () => {
     (propsName: keyof SelectProps) =>
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
-        const newProps: SelectProps = {
-          ...(selectedElementProps as SelectProps),
+        const newProps: BrandSelectProps = {
+          props: {
+            ...selectedElementProps,
+            [propsName]: checked,
+          },
+          type: 'SelectForm',
         }
-        // @ts-ignore
-        newProps[propsName] = checked
         onDispatch(selectedElement, newProps)
       }
     }
@@ -124,18 +151,18 @@ export const useItemsHandlers = () => {
     onChangeField,
     onChangeSwitch,
     itemsProps: {
-      disabled: (selectedElementProps as SelectProps).disabled,
-      size: (selectedElementProps as SelectProps).size,
-      view: (selectedElementProps as SelectProps).view,
-      form: (selectedElementProps as SelectProps).form,
-      items: (selectedElementProps as SelectProps).items,
-      required: (selectedElementProps as SelectProps).required,
-      status: (selectedElementProps as SelectProps).status,
-      caption: (selectedElementProps as SelectProps).caption,
-      label: (selectedElementProps as SelectProps).label,
-      labelPosition: (selectedElementProps as SelectProps).labelPosition,
-      placeholder: (selectedElementProps as SelectProps).placeholder,
-      isLoading: (selectedElementProps as SelectProps).isLoading,
+      disabled: selectedElementProps.disabled,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      form: selectedElementProps.form,
+      items: selectedElementProps.items,
+      required: selectedElementProps.required,
+      status: selectedElementProps.status,
+      caption: selectedElementProps.caption,
+      label: selectedElementProps.label,
+      labelPosition: selectedElementProps.labelPosition,
+      placeholder: selectedElementProps.placeholder,
+      isLoading: selectedElementProps.isLoading,
     },
   }
 }

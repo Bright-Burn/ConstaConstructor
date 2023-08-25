@@ -1,11 +1,14 @@
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { BaseProps } from '../../../../coreTypes'
+import { ButtonProps, TextFieldProps, UnionProps } from '../../../../coreTypes'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
 import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
 import style from './styles.module.css'
 import { Text } from '@consta/uikit/Text'
 import { IconComponent } from '@consta/uikit/Icon'
+import { TextFieldElement } from '../../../../coreTypes/textFieldTypes'
+import { ButtonElement } from '../../../../coreTypes/buttonTypes'
+import React from 'react'
 
 type fillType = {
   name: string
@@ -16,21 +19,28 @@ const fillValues = [
   { name: 'default', icon: IconMaxHeight },
   { name: 'filled', icon: IconMaxWidth },
 ]
-
-export const FilledSettings = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
-
+interface IFilledSettings {
+  selectedElementProps: ButtonProps | TextFieldProps
+  selectedElement: ButtonElement | TextFieldElement
+}
+export const FilledSettings: React.FC<IFilledSettings> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const dispatch = useAppDispatch()
 
   function onFilledChange({ value }: { value: fillType | null }): void {
-    const newProps = { ...selectedElementProps, filled: value?.name === 'filled' ? true : false }
+    const newProps = {
+      props: { ...selectedElementProps, filled: value?.name === 'filled' ? true : false },
+      type: 'Button',
+    }
 
     if (selectedElement) {
       dispatch(
         setSelectedElement({
           elementType: selectedElement?.elementType,
           elementId: selectedElement?.elementId,
-          newProps: newProps as BaseProps,
+          newProps: newProps as UnionProps,
         }),
       )
     }

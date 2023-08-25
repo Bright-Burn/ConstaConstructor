@@ -1,10 +1,9 @@
 import React, { FC, useLayoutEffect, useState } from 'react'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ISelectFormElement } from './types'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes, SelectProps } from '../../../coreTypes'
 import { Select } from '@consta/uikit/Select'
 import style from './style.module.css'
-import { IFormElementSelect, SelectProps } from '../../../coreTypes'
 
 export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
   const [selectProps, setSelectProps] = useState<SelectProps>({
@@ -29,8 +28,8 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
   })
 
   useLayoutEffect(() => {
-    const selectFormElementWithProps = element as IFormElementSelect
-    setSelectProps(selectFormElementWithProps.props)
+    const selectFormElementWithProps = element
+    setSelectProps(selectFormElementWithProps.props.props)
   }, [element])
 
   return (
@@ -38,7 +37,7 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.Select}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Select}
+      elementType={FormElementDictTypes.Select}
     >
       <Select {...selectProps} />
     </SelectableLayer>

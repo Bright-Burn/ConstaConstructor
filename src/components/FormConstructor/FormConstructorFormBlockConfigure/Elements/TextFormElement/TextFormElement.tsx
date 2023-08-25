@@ -1,7 +1,7 @@
 import { FC, useLayoutEffect, useState } from 'react'
 import {
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
   IFormElementText,
   TextElementProps,
 } from '../../../coreTypes'
@@ -14,14 +14,14 @@ export const TextFormElement: FC<ITextFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const textFormElement = element as IFormElementText
-    setTextProps(textFormElement.props)
+    setTextProps(textFormElement.props.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Text}
+      elementType={FormElementDictTypes.Text}
     >
       <Text {...textProps}>{textProps?.content} </Text>
     </SelectableLayer>

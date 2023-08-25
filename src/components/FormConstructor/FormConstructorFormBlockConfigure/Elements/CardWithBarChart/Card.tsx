@@ -4,7 +4,7 @@ import {
   cardWithChartProps,
   IFormElementCardWithChart,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 import { Card } from '@consta/uikit/Card'
 import { Bar } from '@consta/charts/Bar'
@@ -100,7 +100,7 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.CardWithBarChart}
+      elementType={FormElementDictTypes.CardWithBarChart}
       className={`${css.fullScreen}`}
     >
       <Card className={css.cardStyle}>

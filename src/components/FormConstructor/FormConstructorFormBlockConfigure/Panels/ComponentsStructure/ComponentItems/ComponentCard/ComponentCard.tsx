@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 import { ComponentCardBadge } from './ComponentCardBadge'
 import { ComponentCardCheckbox } from './ComponentCardCheckbox'
 import { SwitchComponent } from '../../../../SwitchComponent'
-import { FormElementTypes, FormGroupsTypes } from '../../../../../coreTypes'
+import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../../coreTypes'
 import { ComponentCardLayout } from './ComponentCardLayout'
 import { ComponentCardTabs } from './ComponentCardTabs'
 import { ComponentCardText } from './ComponentCardText'
@@ -29,27 +29,27 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
   return (
     <div className={`${styles.componentCard}`}>
       <SwitchComponent testValue={formElementType || groupElementType || ''}>
-        <ComponentCardBadge name={name} value={FormElementTypes.Badge} />
-        <ComponentCardCheckbox name={name} value={FormElementTypes.Checkbox} />
-        <ComponentCardLayout name={name} value={FormGroupsTypes.Layout} />
-        <ComponentCardInnerCard name={name} value={FormGroupsTypes.Card} />
-        <ComponentCardTabs name={name} value={FormElementTypes.Tabs} />
-        <ComponentCardTextField name={name} value={FormElementTypes.TextField} />
-        <ComponentCardText name={name} value={FormElementTypes.Text} />
-        <ComponentCardButton name={name} value={FormElementTypes.Button} />
-        <ComponentCardInformer name={name} value={FormElementTypes.Informer} />
-        <ComponentCardList name={name} value={FormElementTypes.List} />
-        <ComponentCardRadioButton name={name} value={FormElementTypes.RadioButton} />
-        <ComponentCardSwitch name={name} value={FormElementTypes.Switch} />
-        <ComponentCardDatePicker name={name} value={FormElementTypes.DatePicker} />
-        <ComponentCardComboBox name={name} value={FormElementTypes.ComboBox} />
-        <ComponentCardSelect name={name} value={FormElementTypes.Select} />
-        <ComponentCardDataTime name={name} value={FormElementTypes.DataTime} />
-        <ComponentCardBreadcrumb name={name} value={FormElementTypes.BreadcrumbsForm} />
-        <ComponentCardUser name={name} value={FormElementTypes.User} />
-        <ComponentCardIcon name={name} value={FormElementTypes.Icon} />
-        <ComponentCardTag name={name} value={FormElementTypes.Tag} />
-        <ComponentCardChoiceGroup name={name} value={FormElementTypes.ChoiceGroup} />
+        <ComponentCardBadge name={name} value={FormElementDictTypes.Badge} />
+        <ComponentCardCheckbox name={name} value={FormElementDictTypes.Checkbox} />
+        <ComponentCardLayout name={name} value={FormGroupsDictTypes.Layout} />
+        <ComponentCardInnerCard name={name} value={FormGroupsDictTypes.Card} />
+        <ComponentCardTabs name={name} value={FormElementDictTypes.Tabs} />
+        <ComponentCardTextField name={name} value={FormElementDictTypes.TextField} />
+        <ComponentCardText name={name} value={FormElementDictTypes.Text} />
+        <ComponentCardButton name={name} value={FormElementDictTypes.Button} />
+        <ComponentCardInformer name={name} value={FormElementDictTypes.Informer} />
+        <ComponentCardList name={name} value={FormElementDictTypes.List} />
+        <ComponentCardRadioButton name={name} value={FormElementDictTypes.RadioButton} />
+        <ComponentCardSwitch name={name} value={FormElementDictTypes.Switch} />
+        <ComponentCardDatePicker name={name} value={FormElementDictTypes.DatePicker} />
+        <ComponentCardComboBox name={name} value={FormElementDictTypes.ComboBox} />
+        <ComponentCardSelect name={name} value={FormElementDictTypes.Select} />
+        <ComponentCardDataTime name={name} value={FormElementDictTypes.DataTime} />
+        <ComponentCardBreadcrumb name={name} value={FormElementDictTypes.BreadcrumbsForm} />
+        <ComponentCardUser name={name} value={FormElementDictTypes.User} />
+        <ComponentCardIcon name={name} value={FormElementDictTypes.Icon} />
+        <ComponentCardTag name={name} value={FormElementDictTypes.Tag} />
+        <ComponentCardChoiceGroup name={name} value={FormElementDictTypes.ChoiceGroup} />
       </SwitchComponent>
     </div>
   )

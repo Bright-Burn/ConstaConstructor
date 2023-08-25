@@ -1,5 +1,5 @@
-import { IFormElementTabs } from '../../../coreTypes'
+import { IFormElementSelect } from '../../../coreTypes'
 
 export interface ISelectFormElement {
-  element: IFormElementTabs
+  element: IFormElementSelect
 }

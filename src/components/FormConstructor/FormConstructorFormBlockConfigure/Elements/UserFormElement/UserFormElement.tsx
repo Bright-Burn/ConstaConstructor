@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IUserFormElement } from './types'
 import { IFormElementUser, UserProps } from '../../../coreTypes'
@@ -10,14 +10,14 @@ export const UserFormElement: FC<IUserFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const userFormElement = element as IFormElementUser
-    setUserProps(userFormElement.props)
+    setUserProps(userFormElement.props.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.User}
+      elementType={FormElementDictTypes.User}
     >
       <User {...userProps} />
     </SelectableLayer>

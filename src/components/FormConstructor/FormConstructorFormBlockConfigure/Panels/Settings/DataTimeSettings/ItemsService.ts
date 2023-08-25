@@ -1,11 +1,13 @@
-import { DataTimeProps, ISelectedElement } from '../../../../coreTypes'
+import { DataTimeProps, BrandDataTimeProps, DataTimeElement } from '../../../../coreTypes'
 import { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (
+  selectedElementProps: DataTimeProps,
+  selectedElement: DataTimeElement,
+) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: ISelectedElement, newProps: DataTimeProps) => {
+  const onDispatch = (selectedElement: DataTimeElement, newProps: BrandDataTimeProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -16,64 +18,71 @@ export const useItemsHandlers = () => {
   }
   const onChangeType = ({ value }: { value: DateTimePropType | null }) => {
     if (selectedElement && value) {
-      const newProps: DataTimeProps = {
-        ...(selectedElementProps as DataTimeProps),
+      const newProps: BrandDataTimeProps = {
+        props: { ...selectedElementProps },
+        type: 'DataTime',
       }
-      newProps.type = value
+      newProps.props.type = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeView = ({ value }: { value: DateTimePropView | null }) => {
     if (selectedElement && value) {
-      const newProps: DataTimeProps = {
-        ...(selectedElementProps as DataTimeProps),
+      const newProps: BrandDataTimeProps = {
+        props: { ...selectedElementProps },
+        type: 'DataTime',
       }
-      newProps.view = value
+      newProps.props.view = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeMinDate = ({ value }: { value: Date | null }) => {
     if (selectedElement && value) {
-      const newProps: DataTimeProps = {
-        ...(selectedElementProps as DataTimeProps),
+      const newProps: BrandDataTimeProps = {
+        props: { ...selectedElementProps },
+        type: 'DataTime',
       }
-      newProps.minDate = value
+      newProps.props.minDate = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeMaxDate = ({ value }: { value: Date | null }) => {
     if (selectedElement && value) {
-      const newProps: DataTimeProps = {
-        ...(selectedElementProps as DataTimeProps),
+      const newProps: BrandDataTimeProps = {
+        props: { ...selectedElementProps },
+        type: 'DataTime',
       }
-      newProps.maxDate = value
+      newProps.props.maxDate = value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeMultiplicityHours = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: DataTimeProps = {
-        ...(selectedElementProps as DataTimeProps),
+      const newProps: BrandDataTimeProps = {
+        props: { ...selectedElementProps },
+        type: 'DataTime',
       }
-      newProps.multiplicityHours = +value
+      newProps.props.multiplicityHours = +value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeMultiplicityMinutes = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: DataTimeProps = {
-        ...(selectedElementProps as DataTimeProps),
+      const newProps: BrandDataTimeProps = {
+        props: { ...selectedElementProps },
+        type: 'DataTime',
       }
-      newProps.multiplicityMinutes = +value
+      newProps.props.multiplicityMinutes = +value
       onDispatch(selectedElement, newProps)
     }
   }
   const onChangeMultiplicitySeconds = ({ value }: { value: string | null }) => {
     if (selectedElement && value) {
-      const newProps: DataTimeProps = {
-        ...(selectedElementProps as DataTimeProps),
+      const newProps: BrandDataTimeProps = {
+        props: { ...selectedElementProps },
+        type: 'DataTime',
       }
-      newProps.multiplicitySeconds = +value
+      newProps.props.multiplicitySeconds = +value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -86,13 +95,13 @@ export const useItemsHandlers = () => {
     onChangeMinDate,
     onChangeMaxDate,
     itemsProps: {
-      type: (selectedElementProps as DataTimeProps).type,
-      view: (selectedElementProps as DataTimeProps).view,
-      minDate: (selectedElementProps as DataTimeProps).minDate,
-      maxDate: (selectedElementProps as DataTimeProps).maxDate,
-      multiplicityHours: (selectedElementProps as DataTimeProps).multiplicityHours,
-      multiplicityMinutes: (selectedElementProps as DataTimeProps).multiplicityMinutes,
-      multiplicitySeconds: (selectedElementProps as DataTimeProps).multiplicitySeconds,
+      type: selectedElementProps.type,
+      view: selectedElementProps.view,
+      minDate: selectedElementProps.minDate,
+      maxDate: selectedElementProps.maxDate,
+      multiplicityHours: selectedElementProps.multiplicityHours,
+      multiplicityMinutes: selectedElementProps.multiplicityMinutes,
+      multiplicitySeconds: selectedElementProps.multiplicitySeconds,
     },
   }
 }

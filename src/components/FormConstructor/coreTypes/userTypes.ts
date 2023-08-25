@@ -1,4 +1,10 @@
-import { BaseProps, IFormElement } from './types'
+import {
+  BaseProps,
+  IFormElement,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+} from './types'
 import { UserPropSize, UserPropStatus, UserPropView, UserPropWidth } from '@consta/uikit/User'
 
 export type UserProps = {
@@ -14,6 +20,10 @@ export type UserProps = {
   checked?: boolean
 } & BaseProps
 
+export type BrandUserProps = BrandProps<UserProps, 'User'>
+
+export type UserElement = ConcreteSelectedElement<typeof FormElementDictTypes.User>
+
 export interface IFormElementUser extends IFormElement {
-  props: UserProps
+  props: BrandUserProps
 }

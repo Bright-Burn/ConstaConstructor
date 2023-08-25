@@ -1,5 +1,11 @@
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
-import { BaseProps, IFormElement } from './types'
+import {
+  BaseProps,
+  IFormElement,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+} from './types'
 import { iconNames } from './iconTypes'
 
 export declare const tagBasePropGroupStringValue: readonly [
@@ -22,11 +28,13 @@ export type TagProps = {
   checked: boolean
   group?: TagBasePropGroup
   Icon?: boolean
-  onCancel?: () => void
-  onChange?: () => void
   icon?: iconNames
 } & BaseProps
 
+export type BrandTagProps = BrandProps<TagProps, 'Tag'>
+
+export type TagElement = ConcreteSelectedElement<typeof FormElementDictTypes.Tag>
+
 export interface IFormElementTagProps extends IFormElement {
-  props: TagProps
+  props: BrandTagProps
 }

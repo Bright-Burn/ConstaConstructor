@@ -1,7 +1,7 @@
 import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
-import { IFormElementTabs, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementTabs, FormElementDictTypes } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
@@ -14,17 +14,20 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
     ]
     const newTabs: IFormElementTabs = {
       id: uuid(),
-      type: FormElementTypes.Tabs,
+      type: FormElementDictTypes.Tabs,
       props: {
-        view: 'clear',
-        className: '',
-        baseProps: {},
-        value: items[0],
-        items: items,
-        onChange: () => {},
-        linePosition: 'top',
-        fitMode: 'dropdown',
-        size: 'm',
+        props: {
+          view: 'clear',
+          className: '',
+          baseProps: {},
+          value: items[0],
+          items: items,
+          onChange: () => {},
+          linePosition: 'top',
+          fitMode: 'dropdown',
+          size: 'm',
+        },
+        type: 'Tabs',
       },
     }
     dispatch(setDraggableElement({ element: newTabs }))

@@ -3,7 +3,7 @@ import { FC } from 'react'
 import uuid from 'react-uuid'
 import { useAppDispatch, setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementUser, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementUser, FormElementDictTypes } from '../../../../../../coreTypes'
 
 export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -11,16 +11,19 @@ export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newUser: IFormElementUser = {
       id: uuid(),
-      type: FormElementTypes.User,
+      type: FormElementDictTypes.User,
       props: {
-        view: 'clear',
-        width: 'default',
-        size: 'm',
-        status: undefined,
-        name: 'Имя Фамилия',
-        info: 'Сегодня на Почтамтской',
-        className: '',
-        baseProps: {},
+        props: {
+          view: 'clear',
+          width: 'default',
+          size: 'm',
+          status: undefined,
+          name: 'Имя Фамилия',
+          info: 'Сегодня на Почтамтской',
+          className: '',
+          baseProps: {},
+        },
+        type: 'User',
       },
     }
     dispatch(setDraggableElement({ element: newUser }))

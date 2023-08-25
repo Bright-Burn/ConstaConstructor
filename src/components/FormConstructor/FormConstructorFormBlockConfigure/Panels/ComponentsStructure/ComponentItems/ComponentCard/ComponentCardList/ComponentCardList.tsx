@@ -2,7 +2,7 @@ import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
 import { useAppDispatch, setDraggableElement } from '../../../../../../store'
-import { IFormElementList, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementList, FormElementDictTypes } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -27,13 +27,16 @@ export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
     ]
     const newList: IFormElementList = {
       id: uuid(),
-      type: FormElementTypes.List,
+      type: FormElementDictTypes.List,
       props: {
-        size: 's',
-        innerOffset: 'normal',
-        className: '',
-        baseProps: {},
-        items: items,
+        props: {
+          size: 's',
+          innerOffset: 'normal',
+          className: '',
+          baseProps: {},
+          items: items,
+        },
+        type: 'List',
       },
     }
     dispatch(setDraggableElement({ element: newList }))

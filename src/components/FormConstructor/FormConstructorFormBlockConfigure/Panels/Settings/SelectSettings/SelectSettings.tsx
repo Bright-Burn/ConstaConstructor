@@ -7,9 +7,18 @@ import { formArray, labelPositionArray, sizeArray, statusArray, viewArray } from
 
 import { Switch } from '@consta/uikit/Switch'
 import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm, tabItemType } from '../../../../coreTypes'
+import { PropForm, tabItemType, SelectProps, SelectElement } from '../../../../coreTypes'
+import { FC } from 'react'
 
-export const SelectSettings = () => {
+type SelectSettingsType = {
+  selectedElementProps: SelectProps
+  selectedElement: SelectElement
+}
+
+export const SelectSettings: FC<SelectSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -21,7 +30,8 @@ export const SelectSettings = () => {
     onChangeSize,
     onChangeField,
     onChangeLabelPosition,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
+
   const [tabs, setTabs] = useState<tabItemType[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
   const labelsEditingHandler = (value: boolean) => {

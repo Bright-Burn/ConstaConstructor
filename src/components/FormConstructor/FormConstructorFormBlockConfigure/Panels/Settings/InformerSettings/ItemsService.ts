@@ -1,9 +1,12 @@
 import { ISelectedElement, InformerElementProps } from '../../../../coreTypes'
 import { InformerPropSize, InformerPropView, InformerPropStatus } from '@consta/uikit/Informer'
-import { useAppSelector, setSelectedElement, useAppDispatch } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { BrandInformerElementProps, InformerElement } from '../../../../coreTypes/informerTypes'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (
+  selectedElementProps: InformerElementProps,
+  selectedElement: InformerElement,
+) => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -11,16 +14,18 @@ export const useItemsHandlers = () => {
     field: keyof InformerElementProps,
   ) => {
     if (selectedElement) {
-      const newProps: InformerElementProps = {
-        ...(selectedElementProps as InformerElementProps),
+      const newProps: BrandInformerElementProps = {
+        props: {
+          ...selectedElementProps,
+          [field]: value,
+        },
+        type: 'Informer',
       }
-      // @ts-ignore
-      newProps[field] = value
       onDispatch(selectedElement, newProps)
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: InformerElementProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandInformerElementProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -33,12 +38,12 @@ export const useItemsHandlers = () => {
   return {
     onChangeField,
     itemsProps: {
-      size: (selectedElementProps as InformerElementProps).size,
-      view: (selectedElementProps as InformerElementProps).view,
-      icon: (selectedElementProps as InformerElementProps).icon,
-      label: (selectedElementProps as InformerElementProps).label,
-      title: (selectedElementProps as InformerElementProps).title,
-      status: (selectedElementProps as InformerElementProps).status,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      icon: selectedElementProps.icon,
+      label: selectedElementProps.label,
+      title: selectedElementProps.title,
+      status: selectedElementProps.status,
     },
   }
 }

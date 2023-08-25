@@ -1,5 +1,5 @@
 import { Select } from '@consta/uikit/Select'
-import { useLayoutEffect, useState } from 'react'
+import { FC, useLayoutEffect, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
@@ -8,15 +8,22 @@ import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/L
 import { ItemList, ListProps } from '../../../../coreTypes'
 import styles from './styles.module.css'
 import { Switch } from '@consta/uikit/Switch'
-import { useAppSelector } from '../../../../store'
+import { BrandListProps, ListElement } from '../../../../coreTypes/ListTypes'
 
-export const ListSettings = () => {
-  const [props, setProps] = useState<ListProps>()
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+type ListSettingsType = {
+  selectedElementProps: ListProps
+  selectedElement: ListElement
+}
+
+export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selectedElement }) => {
+  const [props, setProps] = useState<BrandListProps>()
 
   useLayoutEffect(() => {
     if (selectedElement) {
-      const textFieldProps = selectedElementProps as ListProps
+      const textFieldProps: BrandListProps = {
+        props: { ...selectedElementProps },
+        type: 'List',
+      }
 
       setProps(textFieldProps)
     }
@@ -30,7 +37,7 @@ export const ListSettings = () => {
     onChangeForm,
     onChangeItemsCount,
     onChangeItems,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [lines, setLines] = useState<ItemList[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
@@ -100,7 +107,7 @@ export const ListSettings = () => {
       <Switch
         className={styles.Switch}
         style={{ paddingBottom: 10 }}
-        checked={props?.withListBox ?? false}
+        checked={props?.props.withListBox ?? false}
         label='withListBox'
         onChange={onChangeSwitch('withListBox')}
       />

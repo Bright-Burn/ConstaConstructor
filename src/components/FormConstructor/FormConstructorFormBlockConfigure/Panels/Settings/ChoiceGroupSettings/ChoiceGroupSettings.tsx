@@ -1,5 +1,5 @@
 import { Select } from '@consta/uikit/Select'
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Item, formArray, sizeArray, viewArray } from './types'
@@ -13,9 +13,23 @@ import {
 import { Combobox } from '@consta/uikit/Combobox'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
-import { iconNames } from '../../../../coreTypes'
+import {
+  iconNames,
+  ChoiceGroupElement,
+  OwnChoiceGroupProps,
+  DeepWriteable,
+} from '../../../../coreTypes'
+import { IconComponent } from '@consta/uikit/Icon'
 
-export const ChoiceGroupSettings = () => {
+type ChoiceGroupSettingsType = {
+  selectedElementProps: DeepWriteable<OwnChoiceGroupProps>
+  selectedElement: ChoiceGroupElement
+}
+
+export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -25,9 +39,9 @@ export const ChoiceGroupSettings = () => {
     onChangeForm,
     onChangeSwitch,
     onChangeActiveItem,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
-  const [lines, setLines] = useState<Item[]>(itemsProps.items)
+  const [lines, setLines] = useState<DeepWriteable<Item[]>>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
 
   const labelsEditingHandler = (value: boolean) => {
@@ -57,7 +71,7 @@ export const ChoiceGroupSettings = () => {
     if (value !== null)
       (newLines[index] = {
         ...newLines[index],
-        icon: Icons[value as iconNames],
+        icon: Icons[value as iconNames] as DeepWriteable<IconComponent>,
         labelIcon: value,
       }),
         setLines([...newLines])
@@ -139,9 +153,13 @@ export const ChoiceGroupSettings = () => {
         <Combobox
           label='Выберите активные элементы'
           placeholder='Выберите вариант'
-          items={itemsProps.items}
+          items={itemsProps.items as Item[]}
           value={itemsProps.value as Item[]}
-          onChange={onChangeActiveItem}
+          onChange={value =>
+            onChangeActiveItem(
+              value as { value: DeepWriteable<Item[]> | DeepWriteable<Item> | null },
+            )
+          }
           getItemKey={(key: Item) => key.label}
           multiple
         />
@@ -149,9 +167,9 @@ export const ChoiceGroupSettings = () => {
         <Select
           label='Активный элемент'
           items={itemsProps.items}
-          value={itemsProps.value as Item}
+          value={itemsProps.value as DeepWriteable<Item>}
           onChange={onChangeActiveItem}
-          getItemKey={(key: Item) => key.label}
+          getItemKey={(key: DeepWriteable<Item>) => key.label}
         />
       )}
       <Select

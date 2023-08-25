@@ -1,110 +1,110 @@
-import { FormElementTypes, FormGroupsTypes } from '../../../../coreTypes'
+import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../coreTypes'
 import uuid from 'react-uuid'
 
 export const constaCards = [
   {
     id: uuid(),
     name: 'Панель',
-    groupElementType: FormGroupsTypes.Layout,
+    groupElementType: FormGroupsDictTypes.Layout,
   },
   {
     id: uuid(),
     name: 'Кнопка',
-    formElementType: FormElementTypes.Button,
+    formElementType: FormElementDictTypes.Button,
   },
   {
     id: uuid(),
     name: 'Карточка',
-    groupElementType: FormGroupsTypes.Card,
+    groupElementType: FormGroupsDictTypes.Card,
   },
   {
     id: uuid(),
     name: 'Badge',
-    formElementType: FormElementTypes.Badge,
+    formElementType: FormElementDictTypes.Badge,
   },
   {
     id: uuid(),
     name: 'Табы',
-    formElementType: FormElementTypes.Tabs,
+    formElementType: FormElementDictTypes.Tabs,
   },
   {
     id: uuid(),
     name: 'Informer',
-    formElementType: FormElementTypes.Informer,
+    formElementType: FormElementDictTypes.Informer,
   },
   {
     id: uuid(),
     name: 'Text',
-    formElementType: FormElementTypes.Text,
+    formElementType: FormElementDictTypes.Text,
   },
   {
     id: uuid(),
     name: 'Checkbox',
-    formElementType: FormElementTypes.Checkbox,
+    formElementType: FormElementDictTypes.Checkbox,
   },
   {
     id: uuid(),
     name: 'TextField',
-    formElementType: FormElementTypes.TextField,
+    formElementType: FormElementDictTypes.TextField,
   },
   {
     id: uuid(),
     name: 'RadioButton',
-    formElementType: FormElementTypes.RadioButton,
+    formElementType: FormElementDictTypes.RadioButton,
   },
   {
     id: uuid(),
     name: 'List',
-    formElementType: FormElementTypes.List,
+    formElementType: FormElementDictTypes.List,
   },
   {
     id: uuid(),
     name: 'Switch',
-    formElementType: FormElementTypes.Switch,
+    formElementType: FormElementDictTypes.Switch,
   },
   {
     id: uuid(),
     name: 'DatePicker',
-    formElementType: FormElementTypes.DatePicker,
+    formElementType: FormElementDictTypes.DatePicker,
   },
   {
     id: uuid(),
     name: 'ComboBox',
-    formElementType: FormElementTypes.ComboBox,
+    formElementType: FormElementDictTypes.ComboBox,
   },
   {
     id: uuid(),
     name: 'Select',
-    formElementType: FormElementTypes.Select,
+    formElementType: FormElementDictTypes.Select,
   },
   {
     id: uuid(),
     name: 'DataTime',
-    formElementType: FormElementTypes.DataTime,
+    formElementType: FormElementDictTypes.DataTime,
   },
   {
     id: uuid(),
     name: 'Breadcrumbs',
-    formElementType: FormElementTypes.BreadcrumbsForm,
+    formElementType: FormElementDictTypes.BreadcrumbsForm,
   },
   {
     id: uuid(),
     name: 'User',
-    formElementType: FormElementTypes.User,
+    formElementType: FormElementDictTypes.User,
   },
   {
     id: uuid(),
     name: 'Icon',
-    formElementType: FormElementTypes.Icon,
+    formElementType: FormElementDictTypes.Icon,
   },
   {
     id: uuid(),
     name: 'Tag',
-    formElementType: FormElementTypes.Tag,
+    formElementType: FormElementDictTypes.Tag,
   },
   {
     id: uuid(),
     name: 'ChoiceGroup',
-    formElementType: FormElementTypes.ChoiceGroup,
+    formElementType: FormElementDictTypes.ChoiceGroup,
   },
 ]

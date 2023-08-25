@@ -1,14 +1,21 @@
 import { Select } from '@consta/uikit/Select'
 import React from 'react'
+import { FC } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { TagBasePropGroup, TagBasePropMode, groupArray, modeArray, sizeArray } from './types'
+import { TagProps, TagElement } from '../../../../coreTypes'
 import { Switch } from '@consta/uikit/Switch'
 import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 
-export const TagSettings = () => {
+type TagSettingsType = {
+  selectedElementProps: TagProps
+  selectedElement: TagElement
+}
+
+export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selectedElement }) => {
   const {
     itemsProps,
     onChangeField,
@@ -17,7 +24,7 @@ export const TagSettings = () => {
     onChangeGroup,
     onChangeSwitch,
     onChangeIcon,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <>

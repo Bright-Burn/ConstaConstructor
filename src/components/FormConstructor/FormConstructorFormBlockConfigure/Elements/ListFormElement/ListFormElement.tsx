@@ -1,9 +1,9 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IListFormElement } from './types'
 import { List } from '@consta/uikit/ListCanary'
-import { IFormElementList, ItemList, ListProps } from '../../../coreTypes'
+import { ItemList, ListProps } from '../../../coreTypes'
 import { ListBox } from '@consta/uikit/ListCanary'
 
 const items: ItemList[] = [
@@ -27,15 +27,15 @@ export const ListFormElement: FC<IListFormElement> = ({ element }) => {
   const [ListProps, setListProps] = useState<ListProps>()
 
   useLayoutEffect(() => {
-    const ListFormElement = element as IFormElementList
-    setListProps(ListFormElement.props)
+    const ListFormElement = element
+    setListProps(ListFormElement.props.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.List}
+      elementType={FormElementDictTypes.List}
     >
       {ListProps?.withListBox === true ? (
         <ListBox form={ListProps.form} shadow border>

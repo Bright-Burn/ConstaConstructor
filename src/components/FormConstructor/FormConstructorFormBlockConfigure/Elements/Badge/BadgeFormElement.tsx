@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IBadgeFormElement } from './types'
 import { Badge } from '@consta/uikit/Badge'
@@ -10,14 +10,14 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
 
   useLayoutEffect(() => {
     const badgeFormElement = element
-    setbadgeProps(badgeFormElement.props)
+    setbadgeProps(badgeFormElement.props.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Badge}
+      elementType={FormElementDictTypes.Badge}
     >
       <Badge {...badgeProps} />
     </SelectableLayer>

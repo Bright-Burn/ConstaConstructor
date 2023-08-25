@@ -1,5 +1,5 @@
 import { IFormElement } from '../../../coreTypes'
 
 export interface IComboBoxFormElement {
-  element: IFormElement
+  element: IFormElement<'ComboBox'>
 }

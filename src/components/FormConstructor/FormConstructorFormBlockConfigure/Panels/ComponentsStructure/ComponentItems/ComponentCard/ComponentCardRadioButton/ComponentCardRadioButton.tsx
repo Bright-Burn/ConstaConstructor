@@ -3,7 +3,7 @@ import { FC } from 'react'
 import uuid from 'react-uuid'
 import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementRadioButton, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementRadioButton, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -11,15 +11,18 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newRadioButton: IFormElementRadioButton = {
       id: uuid(),
-      type: FormElementTypes.RadioButton,
+      type: FormElementDictTypes.RadioButton,
       props: {
-        checked: false,
-        size: 'm',
-        view: 'primary',
-        align: 'center',
-        label: 'Это радиокнопка',
-        className: '',
-        baseProps: {},
+        props: {
+          checked: false,
+          size: 'm',
+          view: 'primary',
+          align: 'center',
+          label: 'Это радиокнопка',
+          className: '',
+          baseProps: {},
+        },
+        type: 'RadioButton',
       },
     }
     dispatch(setDraggableElement({ element: newRadioButton }))

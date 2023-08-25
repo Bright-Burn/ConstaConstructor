@@ -2,7 +2,7 @@ import { Text } from '@consta/uikit/Text'
 import { FC } from 'react'
 import uuid from 'react-uuid'
 import { IComponetCardElement } from '../types'
-import { IFormElementDataTime, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementDataTime, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 
 export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
@@ -11,15 +11,18 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newDataTime: IFormElementDataTime = {
       id: uuid(),
-      type: FormElementTypes.DataTime,
+      type: FormElementDictTypes.DataTime,
       props: {
-        type: 'date',
-        view: 'classic',
-        className: '',
-        baseProps: {},
-        multiplicityHours: 1,
-        multiplicityMinutes: 1,
-        multiplicitySeconds: 1,
+        props: {
+          type: 'date',
+          view: 'classic',
+          className: '',
+          baseProps: {},
+          multiplicityHours: 1,
+          multiplicityMinutes: 1,
+          multiplicitySeconds: 1,
+        },
+        type: 'DataTime',
       },
     }
     dispatch(setDraggableElement({ element: newDataTime }))

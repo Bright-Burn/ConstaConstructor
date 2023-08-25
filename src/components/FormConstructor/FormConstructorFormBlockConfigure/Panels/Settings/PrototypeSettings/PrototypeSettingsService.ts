@@ -1,32 +1,32 @@
-import { useAppSelector } from '../../../../store'
-import { PrototypeProps } from './types'
+import {
+  BrandPrototypeRectProps,
+  BrandPrototypeTextProps,
+  PrototypeProps,
+  PrototypeRectElement,
+  PrototypeTextElement,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-export const useTextSettingsStore = () => {
+export const useTextSettingsStore = (
+  selectedElementProps: PrototypeProps,
+  selectedElement: PrototypeRectElement | PrototypeTextElement,
+) => {
   const dispatch = useAppDispatch()
 
-  const store = useAppSelector(state => state.formConstructor)
-
-  if (!store) return null
-
-  const { selectedElementProps, selectedElement } = store
-  const onDispatch = (newProps: PrototypeProps) => {
+  const onDispatch = (newProps: BrandPrototypeTextProps | BrandPrototypeRectProps) => {
     if (selectedElement?.elementType) {
       dispatch(
         setSelectedElement({
           elementType: selectedElement?.elementType,
           elementId: selectedElement?.elementId,
-          newProps: new PrototypeProps(newProps),
+          newProps: newProps,
         }),
       )
     }
   }
-  if (selectedElementProps instanceof PrototypeProps) {
-    return {
-      onDispatch,
-      textProps: selectedElementProps,
-    }
-  }
 
-  return null
+  return {
+    onDispatch,
+    textProps: selectedElementProps,
+  }
 }

@@ -1,4 +1,10 @@
-import { BaseProps, IFormElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  IFormElement,
+} from './types'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
 
 export type ItemList = {
@@ -16,6 +22,10 @@ export type ListProps = {
   form?: ListPropForm
 } & BaseProps
 
+export type BrandListProps = BrandProps<ListProps, 'List'>
+
+export type ListElement = ConcreteSelectedElement<typeof FormElementDictTypes.List>
+
 export interface IFormElementList extends IFormElement {
-  props: ListProps
+  props: BrandListProps
 }

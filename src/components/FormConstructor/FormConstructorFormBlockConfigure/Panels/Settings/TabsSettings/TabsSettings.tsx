@@ -1,12 +1,19 @@
 import { Select } from '@consta/uikit/Select'
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Button } from '@consta/uikit/Button'
 import { FitMode, fitModeArray, linePositionArray, sizeArray, viewArray } from './types'
 import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/TabsDeprecated'
-import { tabItemType } from '../../../../coreTypes'
-export const TabsSettings = () => {
+import { tabItemType, TabsElementProps } from '../../../../coreTypes'
+import { TabsElement } from '../../../../coreTypes/tabsTypes'
+
+type TabsSettingsType = {
+  selectedElementProps: TabsElementProps
+  selectedElement: TabsElement
+}
+
+export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selectedElement }) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -16,7 +23,7 @@ export const TabsSettings = () => {
     onChangeView,
     onChangeSize,
     onChangeFitMode,
-  } = useItemsHandlers()
+  } = useItemsHandlers(selectedElementProps, selectedElement)
   const [tabs, setTabs] = useState<tabItemType[]>(itemsProps.items)
   const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
 

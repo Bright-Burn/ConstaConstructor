@@ -1,10 +1,20 @@
 import { TextProps } from '@consta/uikit/Text'
-import { BaseProps, IFormElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  IFormElement,
+} from './types'
 
 type TextContent = { content: string }
 
-export type TextElementProps = TextProps & BaseProps & TextContent
+export type TextElementProps = TextProps & TextContent & BaseProps
+
+export type TextElement = ConcreteSelectedElement<typeof FormElementDictTypes.Text>
+
+export type BrandTextElementProps = BrandProps<TextElementProps, 'Text'>
 
 export interface IFormElementText extends IFormElement {
-  props: TextElementProps
+  props: BrandTextElementProps
 }

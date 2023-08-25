@@ -1,5 +1,5 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { IRadioButtonFormElement } from './types'
 import { IFormElementRadioButton, RadioButtonProps } from '../../../coreTypes'
@@ -9,15 +9,15 @@ export const RadioButtonFormElement: FC<IRadioButtonFormElement> = ({ element })
   const [radioButtonProps, setRadioButtonProps] = useState<RadioButtonProps>()
 
   useLayoutEffect(() => {
-    const radioButtonFormElement = element as IFormElementRadioButton
-    setRadioButtonProps(radioButtonFormElement.props)
+    const radioButtonFormElement = element
+    setRadioButtonProps(radioButtonFormElement.props.props)
   }, [element])
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.RadioButton}
+      elementType={FormElementDictTypes.RadioButton}
     >
       <Radio {...radioButtonProps} />
     </SelectableLayer>

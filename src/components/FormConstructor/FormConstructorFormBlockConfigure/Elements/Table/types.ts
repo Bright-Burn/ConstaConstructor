@@ -1,5 +1,5 @@
 import { IFormElement } from '../../../coreTypes'
 
 export interface ITable {
-  element: IFormElement
+  element: IFormElement<'Table'>
 }

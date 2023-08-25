@@ -1,5 +1,5 @@
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { ISelectedElement, TextElementProps } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { ISelectedElement, TextElementProps, BrandTextElementProps } from '../../../../coreTypes'
 import {
   TextPropSize,
   TextPropView,
@@ -10,9 +10,12 @@ import {
   TextPropType,
 } from '@consta/uikit/Text'
 import { getPropsValue } from './textConstants'
+import { TextElement } from '../../../../coreTypes/textTypes'
 
-export const useItemsHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+export const useItemsHandlers = (
+  selectedElementProps: TextElementProps,
+  selectedElement: TextElement,
+) => {
   const dispatch = useAppDispatch()
   const onChangeField = (
     value:
@@ -28,11 +31,12 @@ export const useItemsHandlers = () => {
     field: keyof TextElementProps,
   ) => {
     if (selectedElement) {
-      const newProps: TextElementProps = {
-        ...(selectedElementProps as TextElementProps),
+      const newProps: BrandTextElementProps = {
+        props: { ...selectedElementProps },
+        type: 'Text',
       }
       // @ts-ignore
-      newProps[field] = value
+      newProps.props[field] = value
 
       onDispatch(selectedElement, newProps)
     }
@@ -42,11 +46,12 @@ export const useItemsHandlers = () => {
     (propsName: keyof TextElementProps) =>
     ({ value }: { value: string | null }) => {
       if (selectedElement) {
-        const newProps: TextElementProps = {
-          ...(selectedElementProps as TextElementProps),
+        const newProps: BrandTextElementProps = {
+          props: { ...selectedElementProps },
+          type: 'Text',
         }
         // @ts-ignore
-        newProps[propsName] = value || ''
+        newProps.props[propsName] = value || ''
         onDispatch(selectedElement, newProps)
       }
     }
@@ -59,8 +64,9 @@ export const useItemsHandlers = () => {
     field: keyof TextElementProps,
   ) => {
     if (selectedElement) {
-      const newProps: TextElementProps = {
-        ...(selectedElementProps as TextElementProps),
+      const newProps: BrandTextElementProps = {
+        type: 'Text',
+        props: { ...selectedElementProps },
       }
       const newValue = getPropsValue(field)
       // @ts-ignore
@@ -71,16 +77,17 @@ export const useItemsHandlers = () => {
   }
   const onChangeTruncate = ({ checked }: { checked: boolean }) => {
     if (selectedElement) {
-      const newProps: TextElementProps = {
-        ...(selectedElementProps as TextElementProps),
+      const newProps: BrandTextElementProps = {
+        type: 'Text',
+        props: { ...selectedElementProps },
       }
-      newProps.truncate = checked
+      newProps.props.truncate = checked
 
       onDispatch(selectedElement, newProps)
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: TextElementProps) => {
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTextElementProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
@@ -95,21 +102,21 @@ export const useItemsHandlers = () => {
     onChangeTruncate,
     onChangeField,
     itemsProps: {
-      size: (selectedElementProps as TextElementProps).size,
-      view: (selectedElementProps as TextElementProps).view,
-      align: (selectedElementProps as TextElementProps).align,
-      content: (selectedElementProps as TextElementProps).content,
-      weight: (selectedElementProps as TextElementProps).weight,
-      lineHeight: (selectedElementProps as TextElementProps).lineHeight,
-      spacing: (selectedElementProps as TextElementProps).spacing,
-      display: (selectedElementProps as TextElementProps).display,
-      font: (selectedElementProps as TextElementProps).font,
-      type: (selectedElementProps as TextElementProps).type,
-      decoration: (selectedElementProps as TextElementProps).decoration,
-      fontStyle: (selectedElementProps as TextElementProps).fontStyle,
-      cursor: (selectedElementProps as TextElementProps).cursor,
-      transform: (selectedElementProps as TextElementProps).transform,
-      truncate: (selectedElementProps as TextElementProps).truncate,
+      size: selectedElementProps.size,
+      view: selectedElementProps.view,
+      align: selectedElementProps.align,
+      content: selectedElementProps.content,
+      weight: selectedElementProps.weight,
+      lineHeight: selectedElementProps.lineHeight,
+      spacing: selectedElementProps.spacing,
+      display: selectedElementProps.display,
+      font: selectedElementProps.font,
+      type: selectedElementProps.type,
+      decoration: selectedElementProps.decoration,
+      fontStyle: selectedElementProps.fontStyle,
+      cursor: selectedElementProps.cursor,
+      transform: selectedElementProps.transform,
+      truncate: selectedElementProps.truncate,
     },
   }
 }

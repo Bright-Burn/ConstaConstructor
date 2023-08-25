@@ -1,6 +1,4 @@
 import { IFormConstructor } from '../../../coreTypes'
-import { HISTORY_LIMIT } from './reducers'
-import { ISavePoint } from './types'
 
 export const pushHistory = (state: IFormConstructor) => {
   // const savePoint: ISavePoint = {

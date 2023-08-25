@@ -1,4 +1,10 @@
-import { BaseProps, IFormElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  IFormElement,
+} from './types'
 import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
 
 export type selectitemType = {
@@ -40,6 +46,10 @@ export type SelectProps = {
 } & BaseProps &
   TextContent
 
+export type BrandSelectProps = BrandProps<SelectProps, 'SelectForm'>
+
+export type SelectElement = ConcreteSelectedElement<typeof FormElementDictTypes.Select>
+
 export interface IFormElementSelect extends IFormElement {
-  props: SelectProps
+  props: BrandSelectProps
 }

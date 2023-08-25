@@ -3,10 +3,23 @@ import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { alignArray, sizeArray, viewArray } from './types'
 import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
+import { SwitchProps } from '../../../../coreTypes'
+import { SwitchElement } from '../../../../coreTypes/SwitchTypes'
+import { FC } from 'react'
 
-export const SwitchSettings = () => {
-  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField } =
-    useItemsHandlers()
+type SwitchSettingsType = {
+  selectedElementProps: SwitchProps
+  selectedElement: SwitchElement
+}
+
+export const SwitchSettings: FC<SwitchSettingsType> = ({
+  selectedElementProps,
+  selectedElement,
+}) => {
+  const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
 
   return (
     <>

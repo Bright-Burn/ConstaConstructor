@@ -1,9 +1,9 @@
 import { FC, useLayoutEffect, useState } from 'react'
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITagFormElement } from './types'
 import style from './style.module.css'
-import { IFormElementTagProps, TagProps } from '../../../coreTypes'
+import { TagProps } from '../../../coreTypes'
 import { Tag } from '@consta/uikit/Tag'
 import { Icons } from '../IconFormElement/mocks'
 
@@ -13,14 +13,13 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     label: 'Рисунок',
     className: '',
     baseProps: {},
-    onChange: () => {},
     mode: 'link',
     checked: false,
   })
 
   useLayoutEffect(() => {
-    const tagFormElement = element as IFormElementTagProps
-    setTagPropsProps(tagFormElement.props)
+    const tagFormElement = element
+    setTagPropsProps(tagFormElement.props.props)
   }, [element])
 
   function getTag() {
@@ -92,7 +91,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Tag}
+      elementType={FormElementDictTypes.Tag}
     >
       {getTag()}
     </SelectableLayer>

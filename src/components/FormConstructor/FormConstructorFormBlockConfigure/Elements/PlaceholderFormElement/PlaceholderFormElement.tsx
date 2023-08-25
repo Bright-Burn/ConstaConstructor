@@ -2,7 +2,7 @@ import { FC, useLayoutEffect, useState } from 'react'
 
 import { Text } from '@consta/uikit/Text'
 
-import { ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { IPlaceholderFormElement } from './types'
 import { IFormElementPlaceholder, PlaceholderProps } from '../../../coreTypes'
 
@@ -23,7 +23,7 @@ export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({ element })
     <SelectableLayerFitSpace
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Placeholder}
+      elementType={FormElementDictTypes.Placeholder}
     >
       <div className={style.container}>
         <img src={ImageSvg} />

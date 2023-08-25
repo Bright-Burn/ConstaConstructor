@@ -3,7 +3,7 @@ import { FC } from 'react'
 import uuid from 'react-uuid'
 import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import { IFormElementTagProps, FormElementTypes } from '../../../../../../coreTypes'
+import { IFormElementTagProps, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
 export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -11,15 +11,17 @@ export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
   const onStartDragComponentCard = (event: React.DragEvent) => {
     const newTag: IFormElementTagProps = {
       id: uuid(),
-      type: FormElementTypes.Tag,
+      type: FormElementDictTypes.Tag,
       props: {
-        size: 'm',
-        label: 'Рисунок',
-        mode: 'link',
-        checked: false,
-        className: '',
-        baseProps: {},
-        onChange: () => {},
+        props: {
+          size: 'm',
+          label: 'Рисунок',
+          mode: 'link',
+          checked: false,
+          className: '',
+          baseProps: {},
+        },
+        type: 'Tag',
       },
     }
     dispatch(setDraggableElement({ element: newTag }))

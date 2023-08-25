@@ -1,5 +1,11 @@
 import { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
-import { BaseProps, IFormElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  IFormElement,
+} from './types'
 import { IconComponent } from '@consta/icons/Icon'
 
 export type Props = {
@@ -12,6 +18,10 @@ export type Props = {
 }
 export type InformerElementProps = Props & BaseProps
 
+export type InformerElement = ConcreteSelectedElement<typeof FormElementDictTypes.Informer>
+
+export type BrandInformerElementProps = BrandProps<InformerElementProps, 'Informer'>
+
 export interface IFormElementInformer extends IFormElement {
-  props: InformerElementProps
+  props: BrandInformerElementProps
 }

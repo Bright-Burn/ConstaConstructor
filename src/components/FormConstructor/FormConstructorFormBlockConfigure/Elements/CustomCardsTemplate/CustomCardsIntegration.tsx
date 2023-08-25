@@ -5,7 +5,7 @@ import {
   IFormElementCustomCards,
   CustomCardsProps,
   ElementTypes,
-  FormElementTypes,
+  FormElementDictTypes,
 } from '../../../coreTypes'
 
 import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
@@ -24,7 +24,7 @@ export const CustomCards: FC<ICustomCardFormElement> = ({ element }) => {
     <SelectableLayerFitSpace
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.CustomCards}
+      elementType={FormElementDictTypes.CustomCards}
     >
       <CustomCardsTemplate />
       <DroppableLayer parentElementId={element.id} />

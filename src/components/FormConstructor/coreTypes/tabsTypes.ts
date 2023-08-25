@@ -1,4 +1,10 @@
-import { BaseProps, IFormElement } from './types'
+import {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  FormElementDictTypes,
+  IFormElement,
+} from './types'
 import {
   TabsPropGetItemLabel,
   TabsPropSize,
@@ -36,6 +42,10 @@ export type TabsProps = {
 
 export type TabsElementProps = TabsProps & BaseProps
 
+export type BrandTabsElementProps = BrandProps<TabsElementProps, 'Tabs'>
+
+export type TabsElement = ConcreteSelectedElement<typeof FormElementDictTypes.Tabs>
+
 export interface IFormElementTabs extends IFormElement {
-  props: TabsElementProps
+  props: BrandTabsElementProps
 }

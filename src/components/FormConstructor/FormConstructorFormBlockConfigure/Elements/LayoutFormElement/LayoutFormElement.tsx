@@ -3,8 +3,7 @@ import { FC, useLayoutEffect, useState } from 'react'
 
 import {
   ElementTypes,
-  FormGroupsTypes,
-  ILayoutElement,
+  FormGroupsDictTypes,
   LayoutElementPropsStyles,
   LayoutElementStyles,
 } from '../../../coreTypes'
@@ -19,8 +18,8 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const isGridVisible = useAppSelector(checkIsGridVisible)
 
   useLayoutEffect(() => {
-    const layoutElementWithProps = element as ILayoutElement
-    setLayoutProps(layoutElementWithProps.props)
+    const layoutElementWithProps = element
+    setLayoutProps(layoutElementWithProps.props.props)
   }, [element])
 
   const ActiveSide = ({
@@ -56,7 +55,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     >
       <SelectableLayer
         parentElementId={element.id}
-        elementType={FormGroupsTypes.Layout}
+        elementType={FormGroupsDictTypes.Layout}
         elementTypeUsage={ElementTypes.FormGroups}
       >
         <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />

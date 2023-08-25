@@ -1,6 +1,6 @@
 import { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import { IFormElementTable, TableProps, ElementTypes, FormElementTypes } from '../../../coreTypes'
+import { TableProps, ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
 import { ITable } from './types'
 import style from './styles.module.css'
@@ -42,8 +42,8 @@ export const Table: FC<ITable> = ({ element }) => {
   }
 
   useLayoutEffect(() => {
-    const tableElement = element as IFormElementTable
-    setTableProps(tableElement.props)
+    const tableElement = element
+    setTableProps(tableElement.props.props)
   }, [element])
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export const Table: FC<ITable> = ({ element }) => {
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementTypes.Table}
+      elementType={FormElementDictTypes.Table}
       className={`${style.fullScreen}`}
     >
       <div className='ag-theme-material' style={{ width: '100%' }}>
