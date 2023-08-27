@@ -11,8 +11,7 @@ import {
   viewArray,
 } from './types'
 import { Switch } from '@consta/uikit/Switch'
-import { comboboxItemType, ComboboxProps } from '../../../../coreTypes'
-import { ComboBoxElement } from '../../../../coreTypes/comboBoxTypes'
+import { comboboxItemType, ComboboxProps, ComboBoxElement } from '../../../../coreTypes'
 import { Text } from '@consta/uikit/Text'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import styles from './styles.module.css'
@@ -111,7 +110,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         <Select
           className={styles.widthTopLeftFlex}
           size='xs'
-          disabled={!!itemsProps.label ? false : true}
+          disabled={!!!itemsProps.label}
           getItemKey={(key: string) => key}
           getItemLabel={(label: string) => label}
           value={itemsProps.labelPosition || 'top'}
@@ -121,7 +120,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         <TextField
           className={styles.widthFlex}
           width='full'
-          disabled={!!itemsProps.label ? false : true}
+          disabled={!!!itemsProps.label}
           value={itemsProps.label}
           onChange={({ value }) => onChangeField(value, 'label')}
           size='xs'
@@ -142,7 +141,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         />
         <TextField
           size='xs'
-          disabled={!!itemsProps.caption ? false : true}
+          disabled={!!!itemsProps.caption}
           value={itemsProps.caption}
           onChange={({ value }) => onChangeField(value, 'caption')}
         />
