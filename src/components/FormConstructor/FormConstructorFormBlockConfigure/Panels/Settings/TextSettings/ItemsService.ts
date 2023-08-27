@@ -1,38 +1,19 @@
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ISelectedElement, TextElementProps, BrandTextElementProps } from '../../../../coreTypes'
 import {
-  TextPropSize,
-  TextPropView,
-  TextPropAlign,
-  TextPropWeight,
-  TextPropDisplay,
-  TextPropFont,
-  TextPropType,
-} from '@consta/uikit/Text'
-import { getPropsValue } from './textConstants'
-import { TextElement } from '../../../../coreTypes/textTypes'
-import { AlignTextType, textDecorationType } from '../../../../coreTypes/textTypes'
+  ISelectedElement,
+  TextElementProps,
+  BrandTextElementProps,
+  TextElement,
+  textDecorationType,
+} from '../../../../coreTypes'
+import { ValueTypes } from './fileTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: TextElementProps,
   selectedElement: TextElement,
 ) => {
   const dispatch = useAppDispatch()
-  const onChangeField = (
-    value:
-      | TextPropSize
-      | TextPropView
-      | TextPropAlign
-      | TextPropWeight
-      | TextPropDisplay
-      | TextPropFont
-      | TextPropType
-      | string
-      | TextPropType
-      | null
-      | AlignTextType,
-    field: keyof TextElementProps,
-  ) => {
+  const onChangeField = (value: ValueTypes, field: keyof TextElementProps) => {
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
         props: { ...selectedElementProps, [field]: value },
