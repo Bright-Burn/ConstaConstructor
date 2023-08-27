@@ -4,8 +4,7 @@ import styles from './styles.module.css'
 import { TextField } from '@consta/uikit/TextField'
 import { status, types, forms, sizes, view, labelPosition } from './TextFieldConstants'
 import { useItemsHandlers } from './ItemsService'
-import { TextFieldProps } from '../../../../coreTypes'
-import { TextFieldElement } from '../../../../coreTypes/textFieldTypes'
+import { TextFieldProps, TextFieldElement } from '../../../../coreTypes'
 import { FC } from 'react'
 import { Text } from '@consta/uikit/Text'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
@@ -103,7 +102,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             <Select
               className={styles.widthTopLeftFlex}
               size='xs'
-              disabled={!!itemsProps.label ? false : true}
+              disabled={!!!itemsProps.label}
               getItemKey={key => key}
               getItemLabel={label => label}
               value={itemsProps.labelPosition || 'top'}
@@ -113,7 +112,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             <TextField
               className={styles.widthFlex}
               width='full'
-              disabled={!!itemsProps.label ? false : true}
+              disabled={!!!itemsProps.label}
               value={itemsProps.label}
               onChange={onChangeTextField('label')}
               size='xs'
@@ -134,6 +133,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             />
             <TextField
               size='xs'
+              disabled={!!!itemsProps.caption}
               value={itemsProps.caption}
               onChange={onChangeTextField('caption')}
             />
@@ -156,7 +156,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
               value={`${itemsProps.maxLength}`}
               type='number'
               size='xs'
-              disabled={!!itemsProps.maxLength ? false : true}
+              disabled={!!!itemsProps.maxLength}
               min='0'
             />
           </div>

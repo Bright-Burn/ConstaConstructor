@@ -55,7 +55,12 @@ export type { TagProps, IFormElementTagProps, BrandTagProps, TagElement } from '
 export type { IFormElementUser, UserProps, BrandUserProps, UserElement } from './userTypes'
 export type { ComboboxProps, IFormElementComboBox, comboboxItemType } from './comboBoxTypes'
 export type { ItemList, ListProps } from './ListTypes'
-export type { IFormElementTextField, TextFieldProps } from './textFieldTypes'
+export type {
+  IFormElementTextField,
+  TextFieldProps,
+  TextFieldElement,
+  BrandTextFieldProps,
+} from './textFieldTypes'
 export type {
   BreadcrumbProps,
   IFormElementBreadcrumbs,
