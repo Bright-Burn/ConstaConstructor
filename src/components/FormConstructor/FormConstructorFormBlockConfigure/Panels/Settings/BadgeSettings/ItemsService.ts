@@ -1,7 +1,12 @@
-import { ISelectedElement, BadgeProps, iconNames } from '../../../../coreTypes'
+import {
+  ISelectedElement,
+  BadgeProps,
+  iconNames,
+  BadgeElement,
+  BrandBadgeProps,
+} from '../../../../coreTypes'
 import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BadgeElement, BrandBadgeProps } from '../../../../coreTypes/badgeTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: BadgeProps,
@@ -19,9 +24,6 @@ export const useItemsHandlers = (
         type: 'Badge',
       }
 
-      // @ts-ignore
-      newProps.props[field] = value
-
       onDispatch(selectedElement, newProps)
     }
   }
@@ -34,7 +36,8 @@ export const useItemsHandlers = (
           props: { ...selectedElementProps, [propsName]: checked },
           type: 'Badge',
         }
-        selectedElement && onDispatch(selectedElement, newProps)
+
+        onDispatch(selectedElement, newProps)
       }
     }
 
@@ -45,6 +48,7 @@ export const useItemsHandlers = (
         type: 'Badge',
       }
       newProps.props.iconLeft = value
+
       onDispatch(selectedElement, newProps)
     }
   }

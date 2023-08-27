@@ -1,7 +1,7 @@
 export type { IFormElementText, TextElementProps, BrandTextElementProps } from './textTypes'
 export type { IFormElementInformer, InformerElementProps } from './informerTypes'
 export type { IFormElementCheckbox, CheckboxProps } from './checkboxTypes'
-export type { BadgeProps, IFormElementBadge } from './badgeTypes'
+export type { BadgeProps, IFormElementBadge, BadgeElement, BrandBadgeProps } from './badgeTypes'
 export type {
   LayoutElementPropsStyles,
   LayoutElementStyles,
@@ -50,6 +50,7 @@ export type {
   IconElement,
   BrandIconProps,
 } from './iconTypes'
+export { Icons } from './iconTypes'
 export type { IFormElementTabs, tabItemType, TabsElementProps, TabsProps } from './tabsTypes'
 export type { TagProps, IFormElementTagProps, BrandTagProps, TagElement } from './tagTypes'
 export type { IFormElementUser, UserProps, BrandUserProps, UserElement } from './userTypes'
