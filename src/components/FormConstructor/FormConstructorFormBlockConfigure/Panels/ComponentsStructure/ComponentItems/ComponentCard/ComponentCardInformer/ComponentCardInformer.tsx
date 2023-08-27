@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { FormElementDictTypes, IFormElementInformer } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import InformerImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/InformerImage'
 import styles from '../styles.module.css'
+import InformerImage from './InformerImage'
 
 export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

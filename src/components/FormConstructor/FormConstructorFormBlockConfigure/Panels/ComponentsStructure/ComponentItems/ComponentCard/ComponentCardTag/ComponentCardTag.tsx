@@ -5,8 +5,8 @@ import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementTagProps, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
-import TagImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/TagImage'
 import styles from '../styles.module.css'
+import TagImage from './TagImage'
 
 export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

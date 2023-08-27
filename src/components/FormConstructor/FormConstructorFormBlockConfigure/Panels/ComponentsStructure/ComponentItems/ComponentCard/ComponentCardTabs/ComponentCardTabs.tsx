@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { IFormElementTabs, FormElementDictTypes } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import TabsImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/TabsImage'
 import styles from '../styles.module.css'
+import TabsImage from './TabsImage'
 
 export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

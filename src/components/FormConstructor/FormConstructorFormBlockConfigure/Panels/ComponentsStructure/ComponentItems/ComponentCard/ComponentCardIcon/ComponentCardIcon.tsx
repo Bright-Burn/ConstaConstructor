@@ -4,7 +4,7 @@ import uuid from 'react-uuid'
 import { useAppDispatch, setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementIcon, FormElementDictTypes } from '../../../../../../coreTypes'
-import { IconImage } from './IconImage'
+import IconImage from './IconImage'
 import styles from '../styles.module.css'
 
 export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {

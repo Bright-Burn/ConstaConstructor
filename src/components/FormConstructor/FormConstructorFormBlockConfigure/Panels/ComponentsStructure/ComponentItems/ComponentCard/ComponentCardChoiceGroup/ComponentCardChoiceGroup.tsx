@@ -9,9 +9,9 @@ import {
   DeepWriteable,
 } from '../../../../../../coreTypes'
 import { Item } from '../../../../Settings/ChoiceGroupSettings/types'
-import ChoiceGroupImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/ChoiceGroupImage'
 import { setDraggableElement } from '../../../../../../store'
 import styles from '../styles.module.css'
+import ChoiceGroupImage from './ChoiceGroupImage'
 
 export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
