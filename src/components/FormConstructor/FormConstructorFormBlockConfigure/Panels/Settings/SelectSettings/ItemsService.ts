@@ -1,12 +1,6 @@
-import {
-  PropForm,
-  SelectProps,
-  selectitemType,
-  BrandSelectProps,
-  SelectElement,
-} from '../../../../coreTypes'
-import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
+import { SelectProps, selectitemType, BrandSelectProps, SelectElement } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { ValueType } from './fileTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: SelectProps,
@@ -57,20 +51,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeField = (
-    value:
-      | TextFieldPropStatus
-      | PropForm
-      | TextFieldPropView
-      | TextFieldPropSize
-      | 'top'
-      | 'left'
-      | boolean
-      | null
-      | selectitemType
-      | string,
-    field: keyof SelectProps,
-  ) => {
+  const onChangeField = (value: ValueType, field: keyof SelectProps) => {
     if (selectedElement) {
       const newProps: BrandSelectProps = {
         props: { ...selectedElementProps, [field]: value },
