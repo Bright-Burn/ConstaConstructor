@@ -1,16 +1,15 @@
-import { TextFieldProps, ISelectedElement } from '../../../../coreTypes'
+import {
+  TextFieldProps,
+  ISelectedElement,
+  BrandTextFieldProps,
+  TextFieldElement,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-
-import { useState } from 'react'
-import { BrandTextFieldProps, TextFieldElement } from '../../../../coreTypes/textFieldTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: TextFieldProps,
   selectedElement: TextFieldElement,
 ) => {
-  const [leftSideType, setLeftSideType] = useState('')
-  const [rightSideType, setRightSideType] = useState('')
-
   const dispatch = useAppDispatch()
 
   const onChangeTextField =
@@ -82,8 +81,6 @@ export const useItemsHandlers = (
       view: selectedElementProps.view,
       width: selectedElementProps.width,
       withClearButton: selectedElementProps.withClearButton,
-      leftSideType,
-      rightSideType,
     },
   }
 }
