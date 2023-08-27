@@ -6,8 +6,8 @@ import { IComponetCardElement } from '../types'
 import { IFormElementBreadcrumbs } from './types'
 import { pagesSubMenu } from '../../../../../Elements/BreadcrumbsFormElement/mocks'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import BreadcrumbsImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/BreadcrumbsImage'
 import styles from '../styles.module.css'
+import BreadcrumbsImage from './BreadcrumbsImage'
 
 export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { FormGroupsDictTypes, ICardElement } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
-import CardImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/CardImage'
 import styles from '../styles.module.css'
+import CardImage from './CardImage'
 
 export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

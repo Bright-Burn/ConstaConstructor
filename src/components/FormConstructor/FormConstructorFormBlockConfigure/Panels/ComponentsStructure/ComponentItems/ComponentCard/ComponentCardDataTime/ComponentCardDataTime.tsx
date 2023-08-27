@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { IComponetCardElement } from '../types'
 import { IFormElementDataTime, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import DateTimeImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/DateTimeImage'
 import styles from '../styles.module.css'
+import DateTimeImage from './DateTimeImage'
 
 export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

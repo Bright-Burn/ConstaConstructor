@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { IComponetCardElement } from '../types'
 import { IFormElementComboBox, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import ComboboxImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/ComboboxImage'
 import styles from '../styles.module.css'
+import ComboboxImage from './ComboboxImage'
 
 export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

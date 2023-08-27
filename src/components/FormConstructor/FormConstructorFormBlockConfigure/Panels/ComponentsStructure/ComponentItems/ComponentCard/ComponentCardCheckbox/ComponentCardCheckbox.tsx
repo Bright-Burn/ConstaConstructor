@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { FormElementDictTypes, IFormElementCheckbox } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import CheckboxImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/CheckboxImage'
 import styles from '../styles.module.css'
+import CheckboxImage from './CheckboxImage'
 
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

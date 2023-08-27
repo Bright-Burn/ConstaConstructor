@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { FormElementDictTypes, IFormElementBadge } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import BadgeImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/BadgeImage'
 import styles from '../styles.module.css'
+import BadgeImage from './BadgeImage'
 
 export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
