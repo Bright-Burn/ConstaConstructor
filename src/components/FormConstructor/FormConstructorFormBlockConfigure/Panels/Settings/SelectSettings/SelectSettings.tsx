@@ -11,10 +11,9 @@ import {
   viewArray,
 } from './types'
 import { Switch } from '@consta/uikit/Switch'
-import { tabItemType, SelectProps, SelectElement } from '../../../../coreTypes'
+import { SelectProps, SelectElement } from '../../../../coreTypes'
 import { FC } from 'react'
-import { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm, selectitemType } from '../../../../coreTypes'
+import { selectitemType } from '../../../../coreTypes'
 import styles from './styles.module.css'
 import { Text } from '@consta/uikit/Text'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
@@ -113,7 +112,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
         <Select
           className={styles.widthTopLeftFlex}
           size='xs'
-          disabled={!!itemsProps.label ? false : true}
+          disabled={!!!itemsProps.label}
           getItemKey={(key: string) => key}
           getItemLabel={(label: string) => label}
           value={itemsProps.labelPosition || 'top'}
@@ -123,7 +122,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
         <TextField
           className={styles.widthFlex}
           width='full'
-          disabled={!!itemsProps.label ? false : true}
+          disabled={!!!itemsProps.label}
           value={itemsProps.label}
           onChange={({ value }) => onChangeField(value, 'label')}
           size='xs'
@@ -144,7 +143,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
         />
         <TextField
           size='xs'
-          disabled={!!itemsProps.caption ? false : true}
+          disabled={!!!itemsProps.caption}
           value={itemsProps.caption}
           onChange={({ value }) => onChangeField(value, 'caption')}
         />
