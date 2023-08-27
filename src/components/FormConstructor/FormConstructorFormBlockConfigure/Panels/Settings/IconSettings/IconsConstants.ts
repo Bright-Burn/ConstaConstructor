@@ -1,5 +1,5 @@
 import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
-import { iconNames } from '../../../../coreTypes'
+import { IconNames } from '../../../../coreTypes'
 
 export const sizes: IconPropSize[] = ['m', 's', 'l', 'xs']
 export const views: IconPropView[] = [
@@ -14,7 +14,7 @@ export const views: IconPropView[] = [
   'disabled',
 ]
 
-export const icons: iconNames[] = [
+export const icons: IconNames[] = [
   'IconAlert',
   'IconHealth',
   'IconInfo',

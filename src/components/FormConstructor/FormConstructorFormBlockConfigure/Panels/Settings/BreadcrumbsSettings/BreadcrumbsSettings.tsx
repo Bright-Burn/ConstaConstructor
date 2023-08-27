@@ -4,14 +4,17 @@ import { Select } from '@consta/uikit/Select'
 import { fitMode, sizes } from './BreadcrumbsConstants'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
-import { BreadcrumbProps, BreadcrumbsFormElement, DeepWriteable } from '../../../../coreTypes'
+import {
+  BreadcrumbProps,
+  BreadcrumbsFormElement,
+  DeepWriteable,
+  Icons,
+  IconNames,
+} from '../../../../coreTypes'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Switch } from '@consta/uikit/Switch'
-import { Icons, iconNames } from '../../../../coreTypes/iconTypes'
 import { icons } from '../IconSettings/IconsConstants'
 import { Text } from '@consta/uikit/Text'
-import { DefaultItem } from '@consta/uikit/Breadcrumbs'
-import { DefaultItemBreadcrumbsType } from '../../../../coreTypes/BreadcrumbsTypes'
 import { IconComponent } from '@consta/uikit/Icon'
 
 type BreadcrumbSettingsType = {
@@ -48,7 +51,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
   // TODO убрать когда избавимся от DeepWriteable
   const iconComponentToDeepWriteable = (x: IconComponent) => x as DeepWriteable<IconComponent>
 
-  const checkValueIsIconNames = (value: string): value is iconNames => {
+  const checkValueIsIconNames = (value: string): value is IconNames => {
     return value in Icons
   }
 
