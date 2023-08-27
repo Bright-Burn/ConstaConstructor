@@ -5,12 +5,11 @@ import { TextField } from '@consta/uikit/TextField'
 import { sizes, views, statuses, forms } from './textConstants'
 import { useItemsHandlers } from './ItemsService'
 import { FC } from 'react'
-import { BadgeElement, BadgeProps } from '../../../../coreTypes/badgeTypes'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Text } from '@consta/uikit/Text'
 import { Switch } from '@consta/uikit/Switch'
 import { icons } from '../IconSettings/IconsConstants'
-import { Icons } from '../../../../coreTypes/iconTypes'
+import { Icons, BadgeElement, BadgeProps } from '../../../../coreTypes'
 
 type BadgeSettingsType = {
   selectedElementProps: BadgeProps
