@@ -4,14 +4,8 @@ import {
   DatePickerProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import {
-  DatePickerPropDateTimeView,
-  DatePickerPropDropdownForm,
-  DatePickerPropType,
-} from '@consta/uikit/DatePicker'
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { ValueType } from './fileTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: DatePickerProps,
@@ -53,24 +47,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeField = (
-    value:
-      | DatePickerPropDropdownForm
-      | DatePickerPropDateTimeView
-      | Date
-      | TextFieldPropView
-      | TextFieldPropSize
-      | PropForm
-      | DatePickerPropType
-      | TextFieldPropStatus
-      | null
-      | 'top'
-      | 'left'
-      | boolean
-      | string
-      | Date[],
-    field: keyof DatePickerProps,
-  ) => {
+  const onChangeField = (value: ValueType, field: keyof DatePickerProps) => {
     if (selectedElement) {
       const newProps: BrandDatePickerProps = {
         props: { ...selectedElementProps, [field]: value },
