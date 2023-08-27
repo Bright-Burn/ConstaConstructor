@@ -1,7 +1,7 @@
 export type { IFormElementText, TextElementProps, BrandTextElementProps } from './textTypes'
 export type { IFormElementInformer, InformerElementProps } from './informerTypes'
 export type { IFormElementCheckbox, CheckboxProps } from './checkboxTypes'
-export type { BadgeProps, IFormElementBadge } from './badgeTypes'
+export type { BadgeProps, IFormElementBadge, BadgeElement, BrandBadgeProps } from './badgeTypes'
 export type {
   LayoutElementPropsStyles,
   LayoutElementStyles,
