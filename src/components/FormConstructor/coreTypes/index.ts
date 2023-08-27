@@ -54,7 +54,12 @@ export { Icons } from './iconTypes'
 export type { IFormElementTabs, tabItemType, TabsElementProps, TabsProps } from './tabsTypes'
 export type { TagProps, IFormElementTagProps, BrandTagProps, TagElement } from './tagTypes'
 export type { IFormElementUser, UserProps, BrandUserProps, UserElement } from './userTypes'
-export type { ComboboxProps, IFormElementComboBox, comboboxItemType } from './comboBoxTypes'
+export type {
+  ComboboxProps,
+  IFormElementComboBox,
+  comboboxItemType,
+  ComboBoxElement,
+} from './comboBoxTypes'
 export type { ItemList, ListProps } from './ListTypes'
 export type { IFormElementTextField, TextFieldProps } from './textFieldTypes'
 export type {
