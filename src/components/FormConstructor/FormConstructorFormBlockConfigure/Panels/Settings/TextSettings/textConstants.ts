@@ -10,14 +10,13 @@ import {
   TextPropType,
   TextPropTransform,
 } from '@consta/uikit/Text'
-import { TextElementProps } from '../../../../coreTypes'
+import { AlignTextType, TextElementProps, textDecorationType } from '../../../../coreTypes'
 import { IconAlignLeft } from '@consta/icons/IconAlignLeft'
 import { IconAlignCenter } from '@consta/icons/IconAlignCenter'
 import { IconAlignRight } from '@consta/icons/IconAlignRight'
 import { IconColorText } from '@consta/icons/IconColorText'
 import { IconItalic } from '@consta/icons/IconItalic'
 import { IconType } from '@consta/icons/IconType'
-import { AlignTextType, textDecorationType } from '../../../../coreTypes/textTypes'
 
 export const sizes: TextPropSize[] = [
   'm',
