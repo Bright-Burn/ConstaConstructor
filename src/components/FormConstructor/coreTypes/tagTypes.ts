@@ -6,7 +6,7 @@ import {
   ConcreteSelectedElement,
   FormElementDictTypes,
 } from './types'
-import { iconNames } from './iconTypes'
+import { IconNames } from './iconTypes'
 
 export declare const tagBasePropGroupStringValue: readonly [
   '1',
@@ -28,7 +28,7 @@ export type TagProps = {
   checked: boolean
   group?: TagBasePropGroup
   Icon?: boolean
-  icon?: iconNames
+  icon?: IconNames
 } & BaseProps
 
 export type BrandTagProps = BrandProps<TagProps, 'Tag'>

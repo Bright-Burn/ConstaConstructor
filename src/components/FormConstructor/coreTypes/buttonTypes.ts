@@ -1,5 +1,5 @@
 import { IconComponent } from '@consta/uikit/Icon'
-import { iconNames } from './iconTypes'
+import { IconNames } from './iconTypes'
 import {
   BaseProps,
   BrandProps,
@@ -17,8 +17,8 @@ export type ButtonAction = 'none' | 'ButtonModal'
 export interface ButtonProps extends BaseProps, Props {
   action: ButtonAction
   activeAction?: boolean
-  icon?: iconNames
-  iconR?: iconNames
+  icon?: IconNames
+  iconR?: IconNames
   filled?: boolean
 }
 

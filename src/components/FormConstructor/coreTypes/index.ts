@@ -44,12 +44,13 @@ export type { IFormElementRadioButton, RadioButtonProps } from './radioButtonTyp
 export type { IFormElementList } from './ListTypes'
 export type { AlignItems, JustifyContentProps } from './layoutTypes'
 export type {
-  iconNames,
+  IconNames,
   IFormElementIcon,
   IconProps,
   IconElement,
   BrandIconProps,
 } from './iconTypes'
+export { Icons } from './iconTypes'
 export type { IFormElementTabs, tabItemType, TabsElementProps, TabsProps } from './tabsTypes'
 export type { TagProps, IFormElementTagProps, BrandTagProps, TagElement } from './tagTypes'
 export type { IFormElementUser, UserProps, BrandUserProps, UserElement } from './userTypes'
