@@ -58,6 +58,7 @@ export type {
   IFormElementComboBox,
   comboboxItemType,
   ComboBoxElement,
+  BrandComboboxProps,
 } from './comboBoxTypes'
 export type { ItemList, ListProps } from './ListTypes'
 export type { IFormElementTextField, TextFieldProps } from './textFieldTypes'
