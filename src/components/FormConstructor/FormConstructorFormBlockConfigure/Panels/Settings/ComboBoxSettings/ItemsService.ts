@@ -1,7 +1,12 @@
-import { comboboxItemType, ISelectedElement, ComboboxProps, PropForm } from '../../../../coreTypes'
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
+import {
+  comboboxItemType,
+  ISelectedElement,
+  ComboboxProps,
+  BrandComboboxProps,
+  ComboBoxElement,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BrandComboboxProps, ComboBoxElement } from '../../../../coreTypes/comboBoxTypes'
+import { ValueType } from './fileTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: ComboboxProps,
@@ -49,21 +54,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeField = (
-    value:
-      | TextFieldPropStatus
-      | PropForm
-      | TextFieldPropView
-      | TextFieldPropSize
-      | 'top'
-      | 'left'
-      | boolean
-      | null
-      | comboboxItemType
-      | comboboxItemType[]
-      | string,
-    field: keyof ComboboxProps,
-  ) => {
+  const onChangeField = (value: ValueType, field: keyof ComboboxProps) => {
     if (selectedElement) {
       const newProps: BrandComboboxProps = {
         props: { ...selectedElementProps, [field]: value },
