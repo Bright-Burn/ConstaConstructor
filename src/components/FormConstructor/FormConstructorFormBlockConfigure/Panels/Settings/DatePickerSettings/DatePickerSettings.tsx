@@ -14,8 +14,7 @@ import {
   typeArray,
   viewArray,
 } from './types'
-import { DatePickerElement, DatePickerProps, PropForm } from '../../../../coreTypes'
-import { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
+import { DatePickerElement, DatePickerProps } from '../../../../coreTypes'
 import styles from './styles.module.css'
 import { Text } from '@consta/uikit/Text'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
@@ -134,7 +133,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             <Select
               className={styles.widthTopLeftFlex}
               size='xs'
-              disabled={!!itemsProps.label ? false : true}
+              disabled={!!!itemsProps.label}
               getItemKey={(key: string) => key}
               getItemLabel={(label: string) => label}
               value={itemsProps.labelPosition || 'top'}
@@ -144,7 +143,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             <TextField
               className={styles.widthFlex}
               width='full'
-              disabled={!!itemsProps.label ? false : true}
+              disabled={!!!itemsProps.label}
               value={itemsProps.label}
               onChange={({ value }) => onChangeField(value, 'label')}
               size='xs'
@@ -165,7 +164,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             />
             <TextField
               size='xs'
-              disabled={!!itemsProps.caption ? false : true}
+              disabled={!!!itemsProps.caption}
               value={itemsProps.caption}
               onChange={({ value }) => onChangeField(value, 'caption')}
             />
