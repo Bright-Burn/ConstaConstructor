@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export const IconImage = (props: React.SVGProps<SVGSVGElement>) => {
+const IconImage = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg width='96' height='71' viewBox='0 0 96 71' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <g clip-path='url(#clip0_1051_3809)'>
@@ -62,3 +62,5 @@ export const IconImage = (props: React.SVGProps<SVGSVGElement>) => {
     </svg>
   )
 }
+
+export default IconImage

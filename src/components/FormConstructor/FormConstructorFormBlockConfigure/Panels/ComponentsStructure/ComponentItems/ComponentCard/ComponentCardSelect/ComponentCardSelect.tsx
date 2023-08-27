@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { IComponetCardElement } from '../types'
 import { IFormElementSelect, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import SelectImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/SelectImage'
 import styles from '../styles.module.css'
+import SelectImage from './SelectImage'
 
 export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

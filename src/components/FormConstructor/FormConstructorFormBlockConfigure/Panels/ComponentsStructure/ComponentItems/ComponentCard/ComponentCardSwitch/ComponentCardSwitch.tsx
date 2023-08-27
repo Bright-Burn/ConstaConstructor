@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { useAppDispatch, setDraggableElement } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementSwitch, FormElementDictTypes } from '../../../../../../coreTypes'
-import SwitchImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/SwitchImage'
 import styles from '../styles.module.css'
+import SwitchImage from './SwitchImage'
 
 export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

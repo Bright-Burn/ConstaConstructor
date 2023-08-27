@@ -5,8 +5,8 @@ import { useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
 import { IFormElementDatePicker, FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement } from '../../../../../../store'
-import DatePickerImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/DatePickerImage'
 import styles from '../styles.module.css'
+import DatePickerImage from './DatePickerImage'
 
 export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

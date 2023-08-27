@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export const ListImage = (props: React.SVGProps<SVGSVGElement>) => {
+const ListImage = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg width='96' height='68' viewBox='0 0 96 68' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <g filter='url(#filter0_d_1051_788)'>
@@ -80,3 +80,5 @@ export const ListImage = (props: React.SVGProps<SVGSVGElement>) => {
     </svg>
   )
 }
+
+export default ListImage

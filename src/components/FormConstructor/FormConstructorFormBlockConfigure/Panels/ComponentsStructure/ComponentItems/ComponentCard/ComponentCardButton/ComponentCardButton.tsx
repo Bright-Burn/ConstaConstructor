@@ -4,8 +4,8 @@ import uuid from 'react-uuid'
 import { FormElementDictTypes, IFormElementButton } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { IComponetCardElement } from '../types'
-import ButtonImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/ButtonImage'
 import styles from '../styles.module.css'
+import ButtonImage from './ButtonImage'
 
 export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
