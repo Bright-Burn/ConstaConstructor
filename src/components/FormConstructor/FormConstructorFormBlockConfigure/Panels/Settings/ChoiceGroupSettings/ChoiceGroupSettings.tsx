@@ -14,7 +14,7 @@ import { Combobox } from '@consta/uikit/Combobox'
 import { icons } from '../IconSettings/IconsConstants'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import {
-  iconNames,
+  IconNames,
   ChoiceGroupElement,
   OwnChoiceGroupProps,
   DeepWriteable,
@@ -71,7 +71,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
     if (value !== null)
       (newLines[index] = {
         ...newLines[index],
-        icon: Icons[value as iconNames] as DeepWriteable<IconComponent>,
+        icon: Icons[value as IconNames] as DeepWriteable<IconComponent>,
         labelIcon: value,
       }),
         setLines([...newLines])
@@ -124,9 +124,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
                       role='option'
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
-                      onClick={onClick}
-                    >
-                      {React.createElement(Icons[item as iconNames])}
+                      onClick={onClick}>
+                      {React.createElement(Icons[item as IconNames])}
                       <div>{item}</div>
                     </div>
                   )}

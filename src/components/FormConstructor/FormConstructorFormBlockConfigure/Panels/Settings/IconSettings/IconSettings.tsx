@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
 import {
   IconProps,
-  iconNames,
+  IconNames,
   ISelectedElement,
   IconElement,
   BrandIconProps,
@@ -47,7 +47,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
     }
   }
 
-  const onChangeIcon = (value: iconNames | null) => {
+  const onChangeIcon = (value: IconNames | null) => {
     if (selectedElement && value) {
       const newProps: BrandIconProps = {
         props: { ...selectedElementProps },

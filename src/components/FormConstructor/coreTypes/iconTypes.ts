@@ -48,12 +48,12 @@ import { IconSlide } from '@consta/icons/IconSlide'
 import { IconTrash } from '@consta/icons/IconTrash'
 import { IconUpload } from '@consta/icons/IconUpload'
 
-export type iconNames = keyof typeof Icons
+export type IconNames = keyof typeof Icons
 
 export type IconProps = {
   size?: IconPropSize
   view?: IconPropView
-  icons: iconNames
+  icons: IconNames
 } & BaseProps
 
 export interface IFormElementIcon extends IFormElement {

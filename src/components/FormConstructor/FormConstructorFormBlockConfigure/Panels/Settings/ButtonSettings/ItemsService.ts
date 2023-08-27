@@ -3,7 +3,7 @@ import {
   ButtonProps,
   buttonActionsActive,
   ISelectedElement,
-  iconNames,
+  IconNames,
 } from '../../../../coreTypes'
 import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
@@ -31,20 +31,21 @@ export const useItemsHandlers = (
   const onChangeSwitch =
     (propsName: keyof ButtonProps) =>
     ({ checked }: { checked: boolean }) => {
-        const newProps: BrandButtonProps = {
-          props: {
-            ...selectedElementProps, 
-            [propsName]: checked},
-          type: 'Button',
-        }
-        selectedElement && onDispatch(selectedElement, newProps)
-        if (propsName === 'action' && checked === true) {
-          onChangeButtonAction('ButtonModal')
-        }
-        if (propsName === 'action' && checked === false) {
-          onChangeButtonAction('none')
-        }
+      const newProps: BrandButtonProps = {
+        props: {
+          ...selectedElementProps,
+          [propsName]: checked,
+        },
+        type: 'Button',
       }
+      selectedElement && onDispatch(selectedElement, newProps)
+      if (propsName === 'action' && checked === true) {
+        onChangeButtonAction('ButtonModal')
+      }
+      if (propsName === 'action' && checked === false) {
+        onChangeButtonAction('none')
+      }
+    }
 
   const onChangeButtonAction = (value: ButtonAction) => {
     const newProps: BrandButtonProps = {
@@ -130,7 +131,7 @@ export const useItemsHandlers = (
     )
   }
 
-  const onChangeIcon = (value: iconNames | null) => {
+  const onChangeIcon = (value: IconNames | null) => {
     if (value) {
       const newProps: BrandButtonProps = {
         props: { ...selectedElementProps },
@@ -141,7 +142,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeIconR = (value: iconNames | null) => {
+  const onChangeIconR = (value: IconNames | null) => {
     if (value) {
       const newProps: BrandButtonProps = {
         props: { ...selectedElementProps },

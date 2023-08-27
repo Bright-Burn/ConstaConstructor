@@ -1,7 +1,7 @@
 import {
   ISelectedElement,
   TagProps,
-  iconNames,
+  IconNames,
   TagElement,
   BrandTagProps,
 } from '../../../../coreTypes'
@@ -86,7 +86,7 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
       }
     }
 
-  const onChangeIcon = (value: iconNames | null) => {
+  const onChangeIcon = (value: IconNames | null) => {
     if (selectedElement && value) {
       const newProps: BrandTagProps = {
         props: { ...selectedElementProps },
