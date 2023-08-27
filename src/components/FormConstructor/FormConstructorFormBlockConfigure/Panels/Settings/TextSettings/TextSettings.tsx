@@ -2,7 +2,7 @@ import styles from './styles.module.css'
 import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
-import { TextPropSize, TextPropLineHeight, Text, TextPropView } from '@consta/uikit/Text'
+import { Text } from '@consta/uikit/Text'
 import { Switch } from '@consta/uikit/Switch'
 import {
   textAlign,
@@ -14,12 +14,10 @@ import {
   views,
 } from './textConstants'
 import { useItemsHandlers } from './ItemsService'
-import { TextElementProps } from '../../../../coreTypes'
-import { TextElement } from '../../../../coreTypes/textTypes'
+import { TextElement, TextElementProps, textDecorationType } from '../../../../coreTypes'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { useState } from 'react'
 import { Collapse } from '@consta/uikit/Collapse'
-import { textDecorationType } from '../../../../coreTypes/textTypes'
 
 type TextSettingsType = {
   selectedProps: TextElementProps
