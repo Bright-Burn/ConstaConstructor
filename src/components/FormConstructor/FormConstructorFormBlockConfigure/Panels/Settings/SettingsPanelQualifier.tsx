@@ -28,6 +28,8 @@ import { ButtonModuleSettings } from './ButtonModalSettings'
 import { FilledSettings } from './FilledSettings/FilledSettings'
 import { TagSettings } from './TagSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
+import { NotFound } from './NotFound'
+
 
 import styles from './styles.module.css'
 import { FormGroupsDictTypes, ISelectedElement, UnionProps } from '../../../coreTypes/types'
@@ -240,6 +242,7 @@ const getSettingsPanel = (
 
         return (
           <>
+            <FilledSettings selectedElement={element} selectedElementProps={selectedElementProps.props}/>
             <TextFieldSettings
               selectedElementProps={selectedElementProps.props}
               selectedElement={element}
@@ -519,13 +522,10 @@ const getSettingsPanel = (
         }
 
         return (
-          <>
-            <IconSettings
-              selectedElementProps={selectedElementProps.props}
-              selectedElement={element}
-            />
-            <BaseSettings />
-          </>
+          <IconSettings
+            selectedElementProps={selectedElementProps.props}
+            selectedElement={element}
+          />
         )
       }
       default:
@@ -537,9 +537,8 @@ const getSettingsPanel = (
 export const SettingPanelQualifier: FC = () => {
   const { selectedElement, selectedElementProps } = useAppSelector(state => state.formConstructor)
 
-  return (
-    <div className={`${styles.elementSettings} m-t-s`}>
-      {getSettingsPanel(selectedElementProps, selectedElement)}
-    </div>
-  )
+  return selectedElement ?   <div className={`${styles.elementSettings} m-t-s`}>
+  {getSettingsPanel(selectedElementProps, selectedElement)}
+</div> : <NotFound/>
+  
 }
