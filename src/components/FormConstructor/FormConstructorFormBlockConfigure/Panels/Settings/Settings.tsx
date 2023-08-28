@@ -36,7 +36,7 @@ export const Settings: FC = () => {
   return (
     <>
       {settingsPanelState ? (
-        <div className={`borderCard ${styles.settingsBlock} ${styles.settingsContainer} `}>
+        <div className={`${styles.settingsBlock} ${styles.settingsContainer} `}>
           <SettingPanelQualifier />
           <div className={styles.exportText}>
             <TextField

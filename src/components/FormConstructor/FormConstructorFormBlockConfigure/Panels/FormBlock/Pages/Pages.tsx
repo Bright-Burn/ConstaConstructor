@@ -29,7 +29,7 @@ export const Pages = ({ pages }: PagesProps) => {
   }
 
   return (
-    <div className={`container-row space-center borderCard ${styles.pagesBlock}`}>
+    <div className={`container-row space-center ${styles.pagesBlock}`}>
       <>
         {pages.map((page, index) => (
           <Card className={`${styles.pageBlock}`} form='round'>

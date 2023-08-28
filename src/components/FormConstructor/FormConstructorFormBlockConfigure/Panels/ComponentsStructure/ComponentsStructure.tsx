@@ -40,13 +40,15 @@ export const ComponentsStructure = () => {
   return (
     <>
       {componentsStructurePanelState ? (
-        <div className={`${styles.componentStructure} borderCard`}>
+        <div className={`${styles.componentStructure}`}>
           <div className={styles.tabs}>
             <Tabs
+              className={styles.tabs_margin}
               value={tabValue}
               onChange={({ value }) => setTabValue(value)}
               items={componentsTabItems}
               size='s'
+              view='clear'
             />
           </div>
           {getTabContentRenderer()}
