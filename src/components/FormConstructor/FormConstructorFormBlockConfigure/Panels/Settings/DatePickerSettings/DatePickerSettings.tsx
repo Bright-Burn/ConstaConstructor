@@ -133,7 +133,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             <Select
               className={styles.widthTopLeftFlex}
               size='xs'
-              disabled={!!!itemsProps.label}
+              disabled={!itemsProps.label}
               getItemKey={(key: string) => key}
               getItemLabel={(label: string) => label}
               value={itemsProps.labelPosition || 'top'}
@@ -143,7 +143,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             <TextField
               className={styles.widthFlex}
               width='full'
-              disabled={!!!itemsProps.label}
+              disabled={!itemsProps.label}
               value={itemsProps.label}
               onChange={({ value }) => onChangeField(value, 'label')}
               size='xs'
@@ -164,7 +164,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             />
             <TextField
               size='xs'
-              disabled={!!!itemsProps.caption}
+              disabled={!itemsProps.caption}
               value={itemsProps.caption}
               onChange={({ value }) => onChangeField(value, 'caption')}
             />
