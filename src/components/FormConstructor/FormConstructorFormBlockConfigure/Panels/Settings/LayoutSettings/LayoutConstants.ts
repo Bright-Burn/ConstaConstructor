@@ -1,6 +1,6 @@
 import { AlignItems, JustifyContentProps } from '../../../../coreTypes'
 import { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta/uikit/Layout'
-import { BorderSide, BorderStyle, LayoutPropDirection } from '../../../../coreTypes/layoutTypes'
+import { BorderSide, BorderStyle, BorderWidth, LayoutPropDirection } from '../../../../coreTypes'
 import { IconColumns } from '@consta/uikit/IconColumns'
 import { IconAlignJustify } from '@consta/uikit/IconAlignJustify'
 
@@ -37,7 +37,15 @@ export const directions: LayoutPropDirection[] = [
   { name: 'row', icon: IconAlignJustify },
 ]
 
-export const borderWidths = ['', 'inherit', 'medium', 'thick', 'thin', 'initial', 'revert', 'unset']
+export const borderWidths: BorderWidth[] = [
+  'inherit',
+  'medium',
+  'thick',
+  'thin',
+  'initial',
+  'revert',
+  'unset',
+]
 
 export const borderStyle: BorderStyle[] = [
   { name: 'hidden' },

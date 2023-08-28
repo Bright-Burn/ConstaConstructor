@@ -29,7 +29,6 @@ export type BorderStyle = {
 }
 
 export type BorderWidth = 'inherit' | 'initial' | 'revert' | 'unset' | 'thin' | 'medium' | 'thick'
-export type BorderColor = 'red' | 'black' | 'blue' | 'yellow'
 export type BorderSide = {
   name: ' ' | 'borderLeft' | 'borderRight' | 'borderTop' | 'borderBottom' | ''
   icon?: IconComponent
