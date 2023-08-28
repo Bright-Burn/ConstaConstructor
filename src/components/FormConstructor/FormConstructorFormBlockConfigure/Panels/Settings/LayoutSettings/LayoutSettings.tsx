@@ -3,7 +3,6 @@ import './Select.variants.css'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import styles from './styles.module.css'
-import { LayoutElementPropsStyles } from '../../../../coreTypes'
 import { useItemsHandlers } from './ItemsService'
 import {
   directions,
@@ -14,16 +13,18 @@ import {
   borderSide,
 } from './LayoutConstants'
 import { LayoutPalette } from '../../../../../ConstaPalette'
-import { LayoutElement } from '../../../../coreTypes'
 import { Text } from '@consta/uikit/Text'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import {
   AlignItems,
   BorderSide,
   BorderStyle,
+  BorderWidth,
   JustifyContentProps,
   LayoutPropDirection,
-} from '../../../../coreTypes/layoutTypes'
+  LayoutElement,
+  LayoutElementPropsStyles,
+} from '../../../../coreTypes'
 import { cn } from '../../../../utils/bem'
 import { IconComponent } from '@consta/uikit/Icon'
 
@@ -190,7 +191,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                   onMouseEnter={onMouseEnter}
                   onClick={onClick}>
                   {item.name === 'hidden' ? (
-                    <Text className={styles.paddingHidden} size='xs'>
+                    <Text className={styles.selectElement} size='xs'>
                       Без стиля (скрытый)
                     </Text>
                   ) : (
@@ -202,19 +203,19 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                 </div>
               )}
               renderValue={({ item }) => (
-                <div className={styles.select}>
+                <div className={styles.selectElement}>
                   {item.icon && funcName(item.icon)}
                   <Text size='xs'>{item.name}</Text>
                 </div>
               )}
             />
             <Select
-              getItemKey={key => key}
+              getItemKey={(key: BorderWidth) => key}
               label='Толщина'
               size='xs'
-              getItemLabel={label => label}
+              getItemLabel={(label: BorderWidth) => label}
               items={borderWidths}
-              value={`${itemsProps.styles?.borderWidth || ''}`}
+              value={itemsProps.styles?.borderWidth}
               onChange={({ value }) => onChangeBorderWidth(value)}
             />
           </div>

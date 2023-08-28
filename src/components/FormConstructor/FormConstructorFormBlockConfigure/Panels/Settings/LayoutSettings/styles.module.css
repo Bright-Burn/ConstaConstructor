@@ -29,19 +29,9 @@
   flex: 1;
 }
 
-.select {
-  display: flex;
-  gap: var(--space-s);
-  padding-left: var(--space-s);
-}
-
 .selectElement {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-s);
-  padding-left: var(--space-s);
-}
-
-.paddingHidden {
-  padding-left: var(--space-xs);
+  padding-left: var(--space-2xs);
 }
