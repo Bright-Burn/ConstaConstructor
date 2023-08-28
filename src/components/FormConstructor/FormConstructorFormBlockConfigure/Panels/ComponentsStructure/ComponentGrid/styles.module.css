@@ -4,11 +4,7 @@
   flex-basis: 0;
   padding: var(--space-s);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   overflow-y: auto;
-}
-
-.componentGrid {
-  display: flex;
   gap: var(--space-s);
 }

@@ -39,7 +39,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
   return (
     <div className={styles.cardLayout} draggable={true} onDragStart={onStartDragComponentCard}>
       <div className={styles.layerOut}>
-        <Text className={styles.marginText}>Layer {isOuter ? 'out' : 'in'}</Text>
+        <Text className={styles.marginText}>{name}</Text>
         <div className={styles.borderFlex}>
           <div className={isOuter ? styles.borderOut : styles.borderIn}>
             {!isOuter && <div className={styles.borderInIn}></div>}

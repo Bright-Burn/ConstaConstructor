@@ -5,6 +5,7 @@ export interface IComponentCard {
   name: string
   groupElementType?: FormGroupsTypes
   formElementType?: FormElementTypes
+  isOuter?: boolean
 }
 
 export interface IComponetCardElement {

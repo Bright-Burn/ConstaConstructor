@@ -3,9 +3,8 @@ import React, { FC, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { linePositionArray, sizeArray } from './types'
-import { TabsPropLinePosition, TabsPropSize } from '@consta/uikit/TabsDeprecated'
 import style from './styles.module.css'
-import { Icons, iconNames } from '../../../../coreTypes/iconTypes'
+import { Icons, IconNames } from '../../../../coreTypes'
 import { Switch } from '@consta/uikit/Switch'
 import { Collapse } from '@consta/uikit/Collapse'
 import { icons } from '../IconSettings/IconsConstants'
@@ -48,7 +47,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
     if (value !== null)
       (newTabs[index] = {
         ...newTabs[index],
-        iconLeft: Icons[value as iconNames],
+        iconLeft: Icons[value as IconNames],
         labelIconLeft: value,
       }),
         onChangeItems(newTabs)
@@ -137,7 +136,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                         aria-selected={active}
                         onMouseEnter={onMouseEnter}
                         onClick={onClick}>
-                        {React.createElement(Icons[item as iconNames], { size: 'xs' })}
+                        {React.createElement(Icons[item as IconNames], { size: 'xs' })}
                         <Text size='xs'>{item}</Text>
                       </div>
                     )}
