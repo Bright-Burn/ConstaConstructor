@@ -11,8 +11,8 @@
   border-right: 1px solid var(--color-typo-system)
 }
 
-.tabs :global(.MixFocus_before:focus::before) {
-  box-shadow: none;
+.tabs :global(.TabsTab:before) {
+  content: none !important;
 }
 
 .tabs {
