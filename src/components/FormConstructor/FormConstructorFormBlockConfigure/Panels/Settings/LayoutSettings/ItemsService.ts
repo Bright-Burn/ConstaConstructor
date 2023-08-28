@@ -4,7 +4,6 @@ import {
   AlignItems,
   BorderWidth,
   BorderStyle,
-  BorderColor,
   BorderSide,
   LayoutElementPropsStyles,
   ISelectedElement,
@@ -48,33 +47,30 @@ export const useItemsHandlers = (
       onDispatch(selectedElement, newProps)
     }
 
-  const onChangeDirection = (value: LayoutPropDirection | null) => {
-    const newProps: BrandLayoutElementPropsStyles = {
-      props: {
-        ...selectedElementProps,
-        constaProps: {
-          direction: value ? value : undefined,
-        },
-      },
-      type: 'Layout',
-    }
-    newProps.props.constaProps = { ...newProps.props.constaProps }
-
-    onDispatch(selectedElement, newProps)
-  }
-
-  const onChangeVerticalAligment = (value: string | null) => {
+  const onChangeDirection = (value: LayoutPropDirection) => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedElementProps },
       type: 'Layout',
     }
     newProps.props.constaProps = { ...newProps.props.constaProps }
 
-    newProps.props.constaProps['verticalAlign'] = value as LayoutPropVerticalAlign
+    newProps.props.constaProps.direction = value
+
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeHorizontalAligment = (value: string | null) => {
+  const onChangeVerticalAligment = (value: LayoutPropVerticalAlign) => {
+    const newProps: BrandLayoutElementPropsStyles = {
+      props: { ...selectedElementProps },
+      type: 'Layout',
+    }
+    newProps.props.constaProps = { ...newProps.props.constaProps }
+
+    newProps.props.constaProps.verticalAlign = value
+    onDispatch(selectedElement, newProps)
+  }
+
+  const onChangeHorizontalAligment = (value: LayoutPropHorizontalAlign) => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedElementProps },
       type: 'Layout',
@@ -82,37 +78,31 @@ export const useItemsHandlers = (
 
     newProps.props.constaProps = { ...newProps.props.constaProps }
 
-    newProps.props.constaProps['horizontalAlign'] = value as LayoutPropHorizontalAlign
+    newProps.props.constaProps.horizontalAlign = value
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeJustifyContent = (value: JustifyContentProps | null) => {
+  const onChangeJustifyContent = (value: JustifyContentProps) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: {
-        ...selectedElementProps,
-        styles: {
-          justifyContent: value ? value : undefined,
-        },
-      },
+      props: { ...selectedElementProps },
       type: 'Layout',
     }
 
     newProps.props.styles = { ...newProps.props.styles }
 
+    newProps.props.styles.justifyContent = value
+
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeAlignItems = (value: AlignItems | null) => {
+  const onChangeAlignItems = (value: AlignItems) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: {
-        ...selectedElementProps,
-        styles: {
-          alignItems: value ? value : undefined,
-        },
-      },
+      props: { ...selectedElementProps },
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
+
+    newProps.props.styles.alignItems = value
 
     onDispatch(selectedElement, newProps)
   }
@@ -161,58 +151,49 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeBorderWidth = (value: string | null) => {
+  const onChangeBorderWidth = (value: BorderWidth | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedElementProps },
       type: 'Layout',
     }
 
     newProps.props.styles = { ...newProps.props.styles }
-
-    newProps.props.styles.borderWidth = value as BorderWidth
+    newProps.props.styles.borderWidth = value ? value : undefined
     onDispatch(selectedElement, newProps)
   }
 
   const onChangeBorderStyle = (value: BorderStyle | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: {
-        ...selectedElementProps,
-        styles: {
-          borderStyle: value ? value : undefined,
-        },
-      },
+      props: { ...selectedElementProps },
       type: 'Layout',
     }
+
     newProps.props.styles = { ...newProps.props.styles }
+    newProps.props.styles.borderStyle = value ? value : undefined
+
     onDispatch(selectedElement, newProps)
   }
 
   const onChangeBorderSide = (value: BorderSide | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: {
-        ...selectedElementProps,
-        styles: {
-          borderSide: value ? value : undefined,
-        },
-      },
+      props: { ...selectedElementProps },
       type: 'Layout',
     }
+
     newProps.props.styles = { ...newProps.props.styles }
+    newProps.props.styles.borderSide = value ? value : undefined
+
     onDispatch(selectedElement, newProps)
   }
 
   const onChangeBorderColor = (value: ConstaColor) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: {
-        ...selectedElementProps,
-        styles: {
-          borderColor: value,
-        },
-      },
+      props: { ...selectedElementProps },
       type: 'Layout',
     }
 
     newProps.props.styles = { ...newProps.props.styles }
+    newProps.props.styles.borderColor = value
 
     onDispatch(selectedElement, newProps)
   }
@@ -224,8 +205,8 @@ export const useItemsHandlers = (
     }
 
     newProps.props.styles = { ...newProps.props.styles }
-
     newProps.props.styles.backgroundColor = color
+
     onDispatch(selectedElement, newProps)
   }
 

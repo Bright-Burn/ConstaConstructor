@@ -2,13 +2,7 @@ import { createIcon } from '@consta/icons/Icon'
 
 const BorderInsetXs = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg
-      width='12'
-      height='12'
-      viewBox='0 0 12 12'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      {...props}>
+    <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M2 1.5H1.5V2L1.5 9.79289L0.5 10.7929L0.5 0.5L10.7929 0.5L9.79289 1.5L2 1.5Z'
         stroke='#4D525B'

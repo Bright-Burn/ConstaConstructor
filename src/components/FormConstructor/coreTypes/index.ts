@@ -13,7 +13,6 @@ export type {
   LayoutElementPropsStyles,
   LayoutElementStyles,
   LayoutElementProps,
-  BorderColor,
   BorderSide,
   BorderStyle,
   BorderWidth,

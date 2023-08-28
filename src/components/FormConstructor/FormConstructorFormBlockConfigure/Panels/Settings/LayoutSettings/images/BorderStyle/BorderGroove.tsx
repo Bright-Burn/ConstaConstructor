@@ -2,13 +2,7 @@ import { createIcon } from '@consta/icons/Icon'
 
 const BorderGrooveXs = (props: React.SVGProps<SVGSVGElement>) => {
   return (
-    <svg
-      width='12'
-      height='12'
-      viewBox='0 0 12 12'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-      {...props}>
+    <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M2 1.5L1.5 1.5L1.5 2L1.5 9.79289L0.499998 10.7929L0.5 0.5L10.7929 0.500002L9.79289 1.5L2 1.5Z'
         stroke='#4D525B'
