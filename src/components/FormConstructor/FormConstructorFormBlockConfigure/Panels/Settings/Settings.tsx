@@ -1,11 +1,9 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { saveModuleToFile, useAppDispatch, useAppSelector } from '../../../store'
-import { FormElementTypes, FormGroupsTypes } from '../../../coreTypes'
-import { LayoutSettings } from './LayoutSettings'
+
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
-import { NotFound } from './NotFound'
 import { getSettingsPanelState, toggleSettingsPanelState } from '../../../store'
 import { TextField } from '@consta/uikit/TextField'
 import { IconUpload } from '@consta/icons/IconUpload'
@@ -32,7 +30,7 @@ export const Settings: FC = () => {
   const toggleSettingsPanel = () => {
     dispatch(toggleSettingsPanelState())
   }
-
+  
   return (
     <>
       {settingsPanelState ? (
