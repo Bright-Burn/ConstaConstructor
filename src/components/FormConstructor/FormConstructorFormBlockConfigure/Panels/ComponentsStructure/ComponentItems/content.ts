@@ -103,3 +103,18 @@ export const constaCards = [
     formElementType: FormElementDictTypes.Icon,
   },
 ]
+
+export const groupElement = [
+  {
+    id: uuid(),
+    name: 'Layout in',
+    groupElementType: FormGroupsDictTypes.Layout,
+    isOuter: false,
+  },
+  {
+    id: uuid(),
+    name: 'Layout out',
+    groupElementType: FormGroupsDictTypes.Layout,
+    isOuter: true,
+  },
+]
