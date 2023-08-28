@@ -8,10 +8,13 @@
 }
 
 .settingsContainer {
-  padding: 0.5rem !important;
+  padding: 0.5rem;
+  min-width: 35rem;
+  max-width: 35rem;
 }
 
 .elementSettings {
+  overflow-x: hidden;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -23,6 +26,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
 .toggleButton {
   position: absolute;
   right: 10px;
@@ -34,15 +38,16 @@
   margin: 0px;
   height: 100%;
 }
+
 .toggleButton:hover {
   opacity: 1;
 }
 
 .exportText {
   display: flex;
+  align-items: flex-end;
 }
 
 .exportButton {
-  margin-top: 33px;
-  margin-left: 12px;
+  margin-left: var(--space-xs);
 }

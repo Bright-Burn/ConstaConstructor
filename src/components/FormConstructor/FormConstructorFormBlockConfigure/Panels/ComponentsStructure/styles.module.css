@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
+  min-width: 35rem;
+  max-width: 35rem;
 }
 
 .tabs {
@@ -23,6 +25,7 @@
   margin: 0px;
   height: 100%;
 }
+
 .toggleButton:hover {
   opacity: 1;
 }
