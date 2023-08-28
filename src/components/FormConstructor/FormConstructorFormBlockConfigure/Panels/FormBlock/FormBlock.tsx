@@ -21,9 +21,9 @@ export const FormBlock: FC = () => {
   }, [selectedElement])
 
   return (
-    <div className={`${styles.formBlock} borderCard`}>
+    <div className={`${styles.formBlock}`}>
       <Pages pages={pages} />
-      <div className={`${styles.formBlock} borderCard`}>
+      <div className={`${styles.formBlock}`}>
         {pages.map(page =>
           page && page.id === selectedPageId ? (
             <div className={`${styles.formBlockContent}`}>
