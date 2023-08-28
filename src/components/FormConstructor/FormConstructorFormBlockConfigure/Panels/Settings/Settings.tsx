@@ -44,12 +44,14 @@ export const Settings: FC = () => {
               value={moduleName}
               onChange={changeTextFieldValue}
               type='text'
+              size='xs'
               label='Экспортировать компонент'
               placeholder='Введите название компонента'
             />
             <Button
               className={styles.exportButton}
               view='clear'
+              size='xs'
               iconLeft={IconUpload}
               onClick={onSaveModule}
             />
