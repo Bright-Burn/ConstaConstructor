@@ -102,7 +102,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             <Select
               className={styles.widthTopLeftFlex}
               size='xs'
-              disabled={!!!itemsProps.label}
+              disabled={!itemsProps.label}
               getItemKey={key => key}
               getItemLabel={label => label}
               value={itemsProps.labelPosition || 'top'}
@@ -112,7 +112,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             <TextField
               className={styles.widthFlex}
               width='full'
-              disabled={!!!itemsProps.label}
+              disabled={!itemsProps.label}
               value={itemsProps.label}
               onChange={onChangeTextField('label')}
               size='xs'
@@ -133,7 +133,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             />
             <TextField
               size='xs'
-              disabled={!!!itemsProps.caption}
+              disabled={!itemsProps.caption}
               value={itemsProps.caption}
               onChange={onChangeTextField('caption')}
             />
@@ -156,7 +156,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
               value={`${itemsProps.maxLength}`}
               type='number'
               size='xs'
-              disabled={!!!itemsProps.maxLength}
+              disabled={!itemsProps.maxLength}
               min='0'
             />
           </div>
