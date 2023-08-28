@@ -4,7 +4,7 @@ import {
   BrandTextFieldProps,
   TextFieldElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
   selectedElementProps: TextFieldProps,
@@ -33,13 +33,13 @@ export const useItemsHandlers = (
           props: { ...selectedElementProps, [propsName]: checked },
           type: 'TextField',
         }
-        if (propsName === 'label' && checked === true) {
+        if (propsName === 'label' && checked) {
           newProps.props.label = 'Заголовок'
         }
-        if (propsName === 'caption' && checked === true) {
+        if (propsName === 'caption' && checked) {
           newProps.props.caption = 'Подпись'
         }
-        if (propsName === 'maxLength' && checked === true) {
+        if (propsName === 'maxLength' && checked) {
           newProps.props.maxLength = 1
         }
 
