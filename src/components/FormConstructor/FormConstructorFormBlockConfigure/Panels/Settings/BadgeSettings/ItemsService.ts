@@ -1,7 +1,7 @@
 import {
   ISelectedElement,
   BadgeProps,
-  iconNames,
+  IconNames,
   BadgeElement,
   BrandBadgeProps,
 } from '../../../../coreTypes'
@@ -41,7 +41,7 @@ export const useItemsHandlers = (
       }
     }
 
-  const onChangeIconLeft = (value: iconNames | null) => {
+  const onChangeIconLeft = (value: IconNames | null) => {
     if (selectedElement && value) {
       const newProps: BrandBadgeProps = {
         props: { ...selectedElementProps },
