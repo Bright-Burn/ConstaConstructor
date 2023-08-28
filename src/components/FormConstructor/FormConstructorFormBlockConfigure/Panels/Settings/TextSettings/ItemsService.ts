@@ -6,7 +6,7 @@ import {
   TextElement,
   textDecorationType,
 } from '../../../../coreTypes'
-import { ValueTypes } from './fileTypes'
+import { ValueTypes } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: TextElementProps,
