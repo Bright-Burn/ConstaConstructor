@@ -94,9 +94,9 @@ export type {
 } from './ChoiceGroupTypes'
 export type {
   PrototypePropsType,
-  PrototypeRectElement,
+  PrototypeRectangleElement,
   PrototypeTextElement,
-  BrandPrototypeRectProps,
+  BrandPrototypeRectangleProps,
   BrandPrototypeTextProps,
   PrototypeProps,
 } from './prototypeTypes'

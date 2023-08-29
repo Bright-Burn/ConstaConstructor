@@ -42,12 +42,15 @@ export class PrototypeProps {
   }
 }
 
-export type BrandPrototypeRectProps = BrandProps<PrototypePropsType, 'PrototypeRectElement'>
+export type BrandPrototypeRectangleProps = BrandProps<
+  PrototypePropsType,
+  'PrototypeRectangleElement'
+>
 
 export type BrandPrototypeTextProps = BrandProps<PrototypePropsType, 'PrototypeTextElement'>
 
-export type PrototypeRectElement = ConcreteSelectedElement<
-  typeof FormElementDictTypes.PrototypeRectElement
+export type PrototypeRectangleElement = ConcreteSelectedElement<
+  typeof FormElementDictTypes.PrototypeRectangleElement
 >
 
 export type PrototypeTextElement = ConcreteSelectedElement<

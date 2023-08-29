@@ -1,19 +1,19 @@
 import {
-  BrandPrototypeRectProps,
+  BrandPrototypeRectangleProps,
   BrandPrototypeTextProps,
   PrototypeProps,
-  PrototypeRectElement,
+  PrototypeRectangleElement,
   PrototypeTextElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useTextSettingsStore = (
   selectedElementProps: PrototypeProps,
-  selectedElement: PrototypeRectElement | PrototypeTextElement,
+  selectedElement: PrototypeRectangleElement | PrototypeTextElement,
 ) => {
   const dispatch = useAppDispatch()
 
-  const onDispatch = (newProps: BrandPrototypeTextProps | BrandPrototypeRectProps) => {
+  const onDispatch = (newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps) => {
     if (selectedElement?.elementType) {
       dispatch(
         setSelectedElement({
