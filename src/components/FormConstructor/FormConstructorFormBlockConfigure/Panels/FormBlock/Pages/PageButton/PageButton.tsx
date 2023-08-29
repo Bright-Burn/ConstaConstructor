@@ -9,14 +9,13 @@ export const PageButton: FC<IPageButton> = ({
   isSelectedPage,
   pageId,
   page,
-  isNameEdited,
   changePage,
-  setEditedName,
+  changeIsNameEdited,
 }) => {
   const dispatch = useAppDispatch()
 
   const changeValueName = () => {
-    setEditedName(!isNameEdited)
+    changeIsNameEdited()
   }
 
   const deletePage = (pageId: string) => {
