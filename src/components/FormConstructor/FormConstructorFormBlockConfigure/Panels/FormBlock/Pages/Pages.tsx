@@ -15,7 +15,7 @@ import { PagePopover } from './PagePopover'
 import { PageEdit } from './PageEdit'
 
 export const Pages = ({ pages }: PagesProps) => {
-  const [isNameEdited, setNameEdited] = useState<boolean>(false)
+  const [isNameEdited, setIsNameEdited] = useState<boolean>(false)
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
@@ -24,12 +24,12 @@ export const Pages = ({ pages }: PagesProps) => {
   }
 
   const setNewPageName = (pageName: string | null) => {
-    setNameEdited(!isNameEdited)
+    setIsNameEdited(!isNameEdited)
     pageName && dispatch(changePageName(pageName))
   }
 
   const changeIsNameEdited = () => {
-    setNameEdited(!isNameEdited)
+    setIsNameEdited(!isNameEdited)
   }
 
   const onClickShowGrid = () => {
