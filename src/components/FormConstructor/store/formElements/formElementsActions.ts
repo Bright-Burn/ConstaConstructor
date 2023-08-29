@@ -45,8 +45,8 @@ export const changeActivePage = (pageId: string) => (dispatch: AppDispatch) => {
   dispatch(formConstructorSlice.actions.changeActivePage({ id: pageId }))
 }
 
-export const changeNamePage = (pageName: string, pageId: string) => (dispatch: AppDispatch) => {
-  dispatch(formConstructorSlice.actions.changeNamePage({ pageName: pageName, id: pageId }))
+export const changePageName = (pageName: string) => (dispatch: AppDispatch) => {
+  dispatch(formConstructorSlice.actions.changePageName({ pageName: pageName }))
 }
 
 export const setSelectedElement =

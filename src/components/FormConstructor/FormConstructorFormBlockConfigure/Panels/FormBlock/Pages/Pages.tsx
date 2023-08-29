@@ -9,7 +9,7 @@ import {
   addNewPage,
   deletePage as deletePageAction,
   toggleGrid,
-  changeNamePage,
+  changePageName,
 } from '../../../../store'
 import { useRef, useState } from 'react'
 import { IconShape } from '@consta/icons/IconShape'
@@ -42,7 +42,7 @@ export const Pages = ({ pages }: PagesProps) => {
 
   const newNamePage = (pageName: string | null) => {
     setNameEdited(!isNameEdited)
-    pageName && dispatch(changeNamePage(pageName, selectedPageId))
+    pageName && dispatch(changePageName(pageName))
   }
 
   const onClickShowGrid = () => {
