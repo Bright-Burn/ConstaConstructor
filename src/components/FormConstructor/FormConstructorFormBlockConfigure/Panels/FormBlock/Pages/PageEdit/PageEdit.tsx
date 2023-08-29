@@ -4,7 +4,7 @@ import { IPageEdit } from './types'
 import { TextField } from '@consta/uikit/TextField'
 import { IconCheck } from '@consta/icons/IconCheck'
 
-export const PageEdit: FC<IPageEdit> = ({ newPageName, isSelectedPage, defaultPageName }) => {
+export const PageEdit: FC<IPageEdit> = ({ setNewPageName, isSelectedPage, defaultPageName }) => {
   const [pageName, setPageName] = useState<string | null>(defaultPageName)
 
   const changePageName = ({ value }: { value: string | null }) => setPageName(value)
@@ -18,7 +18,7 @@ export const PageEdit: FC<IPageEdit> = ({ newPageName, isSelectedPage, defaultPa
         size='xs'
         form='brick'
         onlyIcon
-        onClick={() => newPageName(pageName)}
+        onClick={() => setNewPageName(pageName)}
       />
     </>
   )

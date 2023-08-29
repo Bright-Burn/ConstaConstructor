@@ -15,7 +15,7 @@ import { PagePopover } from './PagePopover'
 import { PageEdit } from './PageEdit'
 
 export const Pages = ({ pages }: PagesProps) => {
-  const [isNameEdited, setNameEdited] = useState<boolean>(false)
+  const [isNameEdited, setEditedName] = useState<boolean>(false)
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
@@ -23,8 +23,8 @@ export const Pages = ({ pages }: PagesProps) => {
     dispatch(changeActivePage(pageId))
   }
 
-  const newPageName = (pageName: string | null) => {
-    setNameEdited(!isNameEdited)
+  const setNewPageName = (pageName: string | null) => {
+    setEditedName(!isNameEdited)
     pageName && dispatch(changePageName(pageName))
   }
 
@@ -42,13 +42,13 @@ export const Pages = ({ pages }: PagesProps) => {
               {selectedPageId === page.id && isNameEdited ? (
                 <PageEdit
                   isSelectedPage={selectedPageId === page.id}
-                  newPageName={newPageName}
+                  setNewPageName={setNewPageName}
                   defaultPageName={page.name}
                 />
               ) : (
                 <PageButton
                   changePage={changePage}
-                  setNameEdited={setNameEdited}
+                  setEditedName={setEditedName}
                   index={index}
                   page={page}
                   isNameEdited={isNameEdited}
@@ -64,9 +64,9 @@ export const Pages = ({ pages }: PagesProps) => {
           isNameEdited={isNameEdited}
           selectedPageId={selectedPageId}
           pages={pages}
-          newPageName={newPageName}
+          setNewPageName={setNewPageName}
           changePage={changePage}
-          setNameEdited={setNameEdited}
+          setEditedName={setEditedName}
         />
       </div>
       <IconShape className={styles.iconGrid} onClick={onClickShowGrid} />

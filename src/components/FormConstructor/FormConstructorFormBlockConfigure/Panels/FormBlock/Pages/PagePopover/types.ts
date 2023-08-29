@@ -4,7 +4,7 @@ export type IPagePopover = {
   selectedPageId: string
   isNameEdited: boolean
   pages: PageOfLayout[]
-  newPageName: (pageName: string | null) => void
+  setNewPageName: (pageName: string | null) => void
   changePage: (pageId: string) => void
-  setNameEdited: (id: boolean) => void
+  setEditedName: (id: boolean) => void
 }
