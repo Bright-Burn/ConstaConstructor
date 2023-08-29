@@ -1,5 +1,4 @@
 import React, { FC, useLayoutEffect, useState } from 'react'
-import './Select.variants.css'
 import { Select } from '@consta/uikit/Select'
 import { TextField } from '@consta/uikit/TextField'
 import styles from './styles.module.css'
@@ -25,7 +24,6 @@ import {
   LayoutElement,
   LayoutElementPropsStyles,
 } from '../../../../coreTypes'
-import { cn } from '../../../../utils/bem'
 import { IconComponent } from '@consta/uikit/Icon'
 
 type LayoutSettingsType = {
@@ -54,8 +52,6 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
 
   const [widthValue, setWidthValue] = useState<string>('0')
   const [heightValue, setHeightValue] = useState<string>('0')
-
-  const cnSelectVariants = cn('SelectVariants')
 
   useLayoutEffect(() => {
     if (itemsProps.selectedElementProps) {
@@ -181,9 +177,9 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
               items={borderStyle}
               value={itemsProps.styles?.borderStyle}
               onChange={({ value }) => onChangeBorderStyle(value)}
-              renderItem={({ item, active, hovered, onClick, onMouseEnter }) => (
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
                 <div
-                  className={cnSelectVariants('MyItem', { active, hovered })}
+                  className={`${styles.SelectItem} ${active ? styles.SelectItemActive : ''}`}
                   role='option'
                   tabIndex={0}
                   aria-selected={active}
@@ -191,13 +187,18 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                   onMouseEnter={onMouseEnter}
                   onClick={onClick}>
                   {item.name === 'hidden' ? (
-                    <Text className={styles.selectElement} size='xs'>
+                    <Text
+                      className={`${styles.selectElement} ${active ? styles.BorderLeftItem : ''}`}
+                      size='xs'>
                       Без стиля (скрытый)
                     </Text>
                   ) : (
-                    <div className={styles.selectElement}>
+                    <div
+                      className={`${styles.selectElement} ${active ? styles.BorderLeftItem : ''}`}>
                       {item.icon && funcName(item.icon)}
-                      <Text size='xs'>{item.name}</Text>
+                      <Text className={`${active ? styles.SelectItemActive : ''}`} size='xs'>
+                        {item.name}
+                      </Text>
                     </div>
                   )}
                 </div>
