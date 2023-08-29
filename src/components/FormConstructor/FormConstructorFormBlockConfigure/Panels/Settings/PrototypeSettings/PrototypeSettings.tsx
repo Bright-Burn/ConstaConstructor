@@ -3,16 +3,16 @@ import { useTextSettingsStore } from './PrototypeSettingsService'
 import { TextField, TextFieldPropValue } from '@consta/uikit/TextField'
 import { FC } from 'react'
 import {
-  BrandPrototypeRectProps,
+  BrandPrototypeRectangleProps,
   BrandPrototypeTextProps,
   PrototypeProps,
-  PrototypeRectElement,
+  PrototypeRectangleElement,
   PrototypeTextElement,
 } from '../../../../coreTypes'
 
 type PrototypeSettingsType = {
   selectedElementProps: PrototypeProps
-  selectedElement: PrototypeRectElement | PrototypeTextElement
+  selectedElement: PrototypeRectangleElement | PrototypeTextElement
 }
 
 export const PrototypeSettings: FC<PrototypeSettingsType> = ({
@@ -23,7 +23,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
 
   const { width, height, left, top, zIndex } = textProps
   const onWidthChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
     }
@@ -32,7 +32,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
   }
 
   const onHeightChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
     }
@@ -40,7 +40,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
     onDispatch(newProps)
   }
   const onTopChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
     }
@@ -49,7 +49,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
   }
 
   const onLeftChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
     }
@@ -58,7 +58,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
   }
 
   const onZIndexChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
     }
@@ -67,7 +67,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
   }
 
   const onTextChange = ({ value }: { value: TextFieldPropValue }) => {
-    const newProps: BrandPrototypeTextProps | BrandPrototypeRectProps = {
+    const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
     }

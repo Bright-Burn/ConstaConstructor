@@ -30,7 +30,6 @@ import { TagSettings } from './TagSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
 import { NotFound } from './NotFound'
 
-
 import styles from './styles.module.css'
 import { FormGroupsDictTypes, ISelectedElement, UnionProps } from '../../../coreTypes/types'
 import { BrandInformerElementProps } from '../../../coreTypes/informerTypes'
@@ -43,7 +42,7 @@ import {
   BrandUserProps,
   BrandBreadcrumbsProps,
   BrandPrototypeTextProps,
-  BrandPrototypeRectProps,
+  BrandPrototypeRectangleProps,
   BrandDatePickerProps,
   BrandDataTimeProps,
   BrandSelectProps,
@@ -242,7 +241,6 @@ const getSettingsPanel = (
 
         return (
           <>
-            <FilledSettings selectedElement={element} selectedElementProps={selectedElementProps.props}/>
             <TextFieldSettings
               selectedElementProps={selectedElementProps.props}
               selectedElement={element}
@@ -418,9 +416,12 @@ const getSettingsPanel = (
           />
         )
       }
-      case FormElementDictTypes.PrototypeRectElement: {
+      case FormElementDictTypes.PrototypeRectangleElement: {
         if (
-          !isElementProps<BrandPrototypeRectProps>(selectedElementProps, 'PrototypeRectElement')
+          !isElementProps<BrandPrototypeRectangleProps>(
+            selectedElementProps,
+            'PrototypeRectangleElement',
+          )
         ) {
           return
         }
@@ -537,8 +538,11 @@ const getSettingsPanel = (
 export const SettingPanelQualifier: FC = () => {
   const { selectedElement, selectedElementProps } = useAppSelector(state => state.formConstructor)
 
-  return selectedElement ?   <div className={`${styles.elementSettings} m-t-s`}>
-  {getSettingsPanel(selectedElementProps, selectedElement)}
-</div> : <NotFound/>
-  
+  return selectedElement ? (
+    <div className={`${styles.elementSettings} m-t-s`}>
+      {getSettingsPanel(selectedElementProps, selectedElement)}
+    </div>
+  ) : (
+    <NotFound title=' ' description='Нет выбранного элемента для настройки' />
+  )
 }

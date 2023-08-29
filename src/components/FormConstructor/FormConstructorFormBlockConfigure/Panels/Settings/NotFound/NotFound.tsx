@@ -7,8 +7,8 @@ export const NotFound = ({ title, description }: { title: string; description: s
     <>
       <ResponsesEmptyPockets
         className={style.notFound}
-        title={title || ''}
-        description={description || 'Нет выбранного элемента для настройки'}
+        title={title}
+        description={description}
         actions={<></>}
         size='m'
       />
