@@ -23,7 +23,7 @@ import {
   TableMock,
   ExpertiseFormMock,
   PrototypeTextMock,
-  PrototypeRectMock,
+  PrototypeRectangleMock,
 } from '../../../Elements'
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 import { saveModuleToFile, addBaseElement, getAllFormElements } from '../../../../store'
@@ -49,7 +49,7 @@ export const BaseComponents: FC = () => {
     TableMock,
     ExpertiseFormMock,
     PrototypeTextMock,
-    PrototypeRectMock,
+    PrototypeRectangleMock,
   ]
 
   const dispatch = useBaseComponentsDispatch()

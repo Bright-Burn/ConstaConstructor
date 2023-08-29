@@ -48,7 +48,7 @@ const saveFile = (projData: ProjectDataSerializable) => {
 //   allElementsMapParsed: Map<string, IFormElement | IGroupElement>,
 // ): void => {
 //   Array.from(allElementsMapParsed).forEach(([, value]) => {
-//     if (value.type === 'PrototypeTextElement' || value.type === 'PrototypeRectElement') {
+//     if (value.type === 'PrototypeTextElement' || value.type === 'PrototypeRectangleElement') {
 //       if ('zIndex' in value.props) {
 //         value.props = new PrototypeProps(value.props)
 //       }

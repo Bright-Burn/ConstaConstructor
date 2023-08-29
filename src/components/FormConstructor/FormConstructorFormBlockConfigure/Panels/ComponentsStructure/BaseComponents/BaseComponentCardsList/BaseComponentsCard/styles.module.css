@@ -1,12 +1,12 @@
 .componentCard {
   border-radius: 0.5rem;
-  border: 2px solid #00416633;
+  border: 0.125rem solid #00416633;
 }
 
 .imgBox {
   display: flex;
-  width: 96px;
-  height: 70px;
+  width: 6rem;
+  height: 4.375rem;
 }
 
 .img {

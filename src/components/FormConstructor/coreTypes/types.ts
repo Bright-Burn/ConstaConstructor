@@ -81,7 +81,7 @@ export const FormElementDictTypes = {
   DataTime: 'DataTime',
   ExpertiseForm: 'ExpertiseForm',
   PrototypeTextElement: 'PrototypeTextElement',
-  PrototypeRectElement: 'PrototypeRectElement',
+  PrototypeRectangleElement: 'PrototypeRectangleElement',
   BreadcrumbsForm: 'BreadcrumbsFormElement',
   User: 'User',
   Icon: 'Icon',
@@ -176,7 +176,7 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
     ? {}
     : {} & T extends 'PrototypeTextElement'
     ? {}
-    : {} & T extends 'PrototypeRectElement'
+    : {} & T extends 'PrototypeRectangleElement'
     ? {}
     : {}
 }

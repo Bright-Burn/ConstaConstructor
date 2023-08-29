@@ -2,16 +2,16 @@ import { IBaseComponent } from '../../../store/baseComponentsItems';
 import uuid from 'react-uuid';
 import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types';
 
-export const CustomTextMockId2 = uuid();
+export const rectangleMockId = uuid();
 
-export const PrototypeRectMock = {
-  id: CustomTextMockId2,
+export const PrototypeRectangleMock = {
+  id: rectangleMockId,
   name: 'Прямоугольник',
   description: 'Прямоугольник',
   childrenElementList: [
     {
       id: 'd333d332-d8c2-4280-a8cd-e90b2faa860e',
-      type: 'PrototypeRectElement',
+      type: 'PrototypeRectangleElement',
       props: new PrototypeProps({
         baseProps: {},
         className: '',

@@ -26,6 +26,31 @@ export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseCompon
 
   return (
     <>
+      {/* TODO переместить как разработается дизайн готовых компонент */}
+      {/* <BaseComponentGroupCard
+    name='Хеадеры'
+        baseComponents={groupComponentsMap.get(GroupCards.Headers) || []}
+      />
+      <BaseComponentGroupCard
+        name='Формы'
+        baseComponents={groupComponentsMap.get(GroupCards.Forms) || []}
+      />
+      <BaseComponentGroupCard
+        name='Дашборды'
+        baseComponents={groupComponentsMap.get(GroupCards.Dashboards) || []}
+      />
+      <BaseComponentGroupCard
+        name='Карточки'
+        baseComponents={groupComponentsMap.get(GroupCards.Cards) || []}
+      />
+      <BaseComponentGroupCard
+        name='Таблицы'
+        baseComponents={groupComponentsMap.get(GroupCards.Tables) || []}
+      />
+      <BaseComponentGroupCard
+        name='Футеры'
+        baseComponents={groupComponentsMap.get(GroupCards.Footers) || []}
+      /> */}
       <BaseComponentGroupCard
         name='Другое'
         baseComponents={groupComponentsMap.get(GroupCards.Others) || []}
