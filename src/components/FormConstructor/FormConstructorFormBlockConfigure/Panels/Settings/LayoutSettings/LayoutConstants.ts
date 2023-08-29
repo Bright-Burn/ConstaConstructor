@@ -30,7 +30,12 @@ import {
   JustifyPositionSpaceAround,
   JustifyPositionSpaceEvenly,
 } from './images/JustifyContent'
-import { AlignPositionStart, AlignPositionCenter, AlignPositionEnd } from './images/AlignItems'
+import {
+  AlignPositionStart,
+  AlignPositionCenter,
+  AlignPositionEnd,
+  AlignPositionNormal,
+} from './images/AlignItems'
 
 export const directions: LayoutPropDirection[] = [
   { name: 'column', icon: IconColumns },
@@ -71,7 +76,7 @@ export const justifyContentProps: JustifyContentProps[] = [
 ]
 
 export const alignItems: AlignItems[] = [
-  { name: 'normal', icon: JustifyPositionCenter },
+  { name: 'normal', icon: AlignPositionNormal },
   { name: 'center', icon: AlignPositionCenter },
   { name: 'start', icon: AlignPositionStart },
   { name: 'end', icon: AlignPositionEnd },
