@@ -11,7 +11,7 @@ export {
   deletePage,
   deleteFormElement,
   saveModuleToFile,
-  changeNamePage,
+  changePageName,
 } from './formElementsActions'
 export type { IFormConstructorSerializable } from './formElementsActions'
 export {
