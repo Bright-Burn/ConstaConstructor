@@ -2,13 +2,13 @@ import React from 'react'
 import style from './styles.module.css'
 import { ResponsesEmptyPockets } from '@consta/uikit/ResponsesEmptyPockets'
 
-export const NotFound = () => {
+export const NotFound = ({ title, description }: { title: string; description: string }) => {
   return (
     <>
       <ResponsesEmptyPockets
         className={style.notFound}
-        title=' '
-        description='Нет выбранного элемента для настройки'
+        title={title || ''}
+        description={description || 'Нет выбранного элемента для настройки'}
         actions={<></>}
         size='m'
       />

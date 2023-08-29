@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { IBaseComponentGroupCard } from './types'
 import styles from './styles.module.css'
 import { BaseComponentsCard } from '../BaseComponentsCard'
-import { ResponsesEmptyPockets } from '@consta/uikit/ResponsesEmptyPockets'
+import { NotFound } from '../../../../Settings/NotFound'
 
 export const BaseComponentGroupCard: FC<IBaseComponentGroupCard> = ({ name, baseComponents }) => {
   return (
@@ -10,14 +10,7 @@ export const BaseComponentGroupCard: FC<IBaseComponentGroupCard> = ({ name, base
       {baseComponents.map(bc => {
         return <BaseComponentsCard key={bc.id} {...bc} />
       })}
-      {baseComponents.length === 0 && (
-        <ResponsesEmptyPockets
-          title='Здесь пока ничего нет'
-          description=' '
-          actions={<></>}
-          size='m'
-        />
-      )}
+      {baseComponents.length === 0 && <NotFound title='Здесь пока ничего нет' description=' ' />}
     </div>
   )
 }

@@ -1,7 +1,11 @@
+import uuid from 'react-uuid';
 import { IBaseComponent } from '../../../store/baseComponentsItems'
 
+export const placeholderMockId = uuid();
+
+
 export const placeholderMock: IBaseComponent = {
-  id: '17d2fc29-bcac-f264-45e9-6bda6388f531',
+  id: placeholderMockId,
   name: 'Плейсхолдер',
   description: '',
   childrenElementList: [

@@ -30,7 +30,7 @@ export const Settings: FC = () => {
   const toggleSettingsPanel = () => {
     dispatch(toggleSettingsPanelState())
   }
-  
+
   return (
     <>
       {settingsPanelState ? (
