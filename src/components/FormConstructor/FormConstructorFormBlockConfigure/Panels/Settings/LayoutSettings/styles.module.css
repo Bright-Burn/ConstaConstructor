@@ -35,3 +35,18 @@
   gap: var(--space-s);
   padding-left: var(--space-2xs);
 }
+
+.SelectItemActive {
+  color: var(--color-control-typo-secondary);
+}
+
+.SelectItem:hover {
+  background-color: var(--color-control-bg-clear-hover);
+}
+
+.BorderLeftItem {
+  color: var(--color-control-typo-secondary);
+  border-left-color: var(--color-control-typo-secondary);
+  border-left-width: 2px;
+  border-left-style: solid;
+}
