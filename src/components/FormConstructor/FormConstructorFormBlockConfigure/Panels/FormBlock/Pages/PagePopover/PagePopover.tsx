@@ -16,7 +16,7 @@ export const PagePopover: FC<IPagePopover> = ({
   pages,
   setNewPageName,
   changePage,
-  setEditedName,
+  changeIsNameEdited,
 }) => {
   const [isPopoverOpened, setPopoverOpened] = useState<boolean>(false)
   const anchorRef = useRef<HTMLButtonElement>(null)
@@ -65,10 +65,9 @@ export const PagePopover: FC<IPagePopover> = ({
                     ) : (
                       <PageButton
                         changePage={changePage}
-                        setEditedName={setEditedName}
+                        changeIsNameEdited={changeIsNameEdited}
                         index={index}
                         page={page}
-                        isNameEdited={isNameEdited}
                         isSelectedPage={selectedPageId === page.id}
                         pageId={page.id}
                         pageName={page.name}

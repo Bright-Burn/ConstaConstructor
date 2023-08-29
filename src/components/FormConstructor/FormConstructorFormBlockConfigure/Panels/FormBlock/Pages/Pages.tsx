@@ -15,7 +15,7 @@ import { PagePopover } from './PagePopover'
 import { PageEdit } from './PageEdit'
 
 export const Pages = ({ pages }: PagesProps) => {
-  const [isNameEdited, setEditedName] = useState<boolean>(false)
+  const [isNameEdited, setNameEdited] = useState<boolean>(false)
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
@@ -24,8 +24,12 @@ export const Pages = ({ pages }: PagesProps) => {
   }
 
   const setNewPageName = (pageName: string | null) => {
-    setEditedName(!isNameEdited)
+    setNameEdited(!isNameEdited)
     pageName && dispatch(changePageName(pageName))
+  }
+
+  const changeIsNameEdited = () => {
+    setNameEdited(!isNameEdited)
   }
 
   const onClickShowGrid = () => {
@@ -48,10 +52,9 @@ export const Pages = ({ pages }: PagesProps) => {
               ) : (
                 <PageButton
                   changePage={changePage}
-                  setEditedName={setEditedName}
+                  changeIsNameEdited={changeIsNameEdited}
                   index={index}
                   page={page}
-                  isNameEdited={isNameEdited}
                   isSelectedPage={selectedPageId === page.id}
                   pageId={page.id}
                   pageName={page.name}
@@ -66,7 +69,7 @@ export const Pages = ({ pages }: PagesProps) => {
           pages={pages}
           setNewPageName={setNewPageName}
           changePage={changePage}
-          setEditedName={setEditedName}
+          changeIsNameEdited={changeIsNameEdited}
         />
       </div>
       <IconShape className={styles.iconGrid} onClick={onClickShowGrid} />
