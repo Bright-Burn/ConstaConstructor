@@ -16,7 +16,7 @@ import { BrandDatePickerProps, IFormElementDatePicker } from './datePickerTypes'
 import { BrandComboboxProps, IFormElementComboBox } from './comboBoxTypes'
 import { BrandSelectProps, IFormElementSelect } from './selectTypes'
 import { BrandDataTimeProps, IFormElementDataTime } from './dataTimeTypes'
-import { BrandPrototypeRectProps, BrandPrototypeTextProps } from './prototypeTypes'
+import { BrandPrototypeRectangleProps, BrandPrototypeTextProps } from './prototypeTypes'
 import { IFormElementBreadcrumbs, BrandBreadcrumbsProps } from './BreadcrumbsTypes'
 import { IFormElementUser, BrandUserProps } from './userTypes'
 import { IFormElementIcon, BrandIconProps } from './iconTypes'
@@ -222,7 +222,7 @@ export type FormElementProps =
   | BrandSelectProps
   | BrandDataTimeProps
   | BrandPrototypeTextProps
-  | BrandPrototypeRectProps
+  | BrandPrototypeRectangleProps
   | BrandBreadcrumbsProps
   | BrandUserProps
   | BrandIconProps
@@ -262,7 +262,7 @@ export type FormElementUnion =
 export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
 
 /// По мере расширения сюда подем дописывать новые объединения
-export type UnionProps = (FormElementProps | GroupElementProps)
+export type UnionProps = FormElementProps | GroupElementProps
 export interface BaseProps {
   className: string
   baseProps: BaseTypes
