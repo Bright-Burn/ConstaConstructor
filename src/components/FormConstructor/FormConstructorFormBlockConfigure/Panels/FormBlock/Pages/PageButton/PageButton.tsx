@@ -3,21 +3,31 @@ import { IconEdit } from '@consta/icons/IconEdit'
 import { Button } from '@consta/uikit/Button'
 import { FC } from 'react'
 import { IPageButton } from './types'
+import { useAppDispatch, deletePage as deletePageAction } from '../../../../../store'
 
 export const PageButton: FC<IPageButton> = ({
   isSelectedPage,
-  pageName,
   pageId,
-  index,
-  deletePage,
+  page,
+  isNameEdited,
   changePage,
-  changeValueName,
+  setNameEdited,
 }) => {
+  const dispatch = useAppDispatch()
+
+  const changeValueName = () => {
+    setNameEdited(!isNameEdited)
+  }
+
+  const deletePage = (pageId: string) => {
+    dispatch(deletePageAction(pageId))
+  }
+
   return (
     <>
       <Button
         view={isSelectedPage ? 'ghost' : 'clear'}
-        label={pageName}
+        label={page.name}
         size='xs'
         form='brick'
         onClick={() => changePage(pageId)}
@@ -30,7 +40,7 @@ export const PageButton: FC<IPageButton> = ({
             size='xs'
             form='brick'
             onlyIcon
-            onClick={() => changeValueName(index)}
+            onClick={() => changeValueName()}
           />
           <Button
             iconLeft={IconClose}

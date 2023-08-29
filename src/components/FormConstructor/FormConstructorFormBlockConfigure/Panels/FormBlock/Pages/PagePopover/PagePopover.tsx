@@ -1,31 +1,31 @@
 import { IconArrowDown } from '@consta/icons/IconArrowDown'
 import { IconArrowUp } from '@consta/icons/IconArrowUp'
-import { IconCheck } from '@consta/icons/IconCheck'
-import { IconClose } from '@consta/icons/IconClose'
-import { IconEdit } from '@consta/icons/IconEdit'
 import { Button } from '@consta/uikit/Button'
 import { Card } from '@consta/uikit/Card'
 import { Popover } from '@consta/uikit/Popover'
-import { TextField } from '@consta/uikit/TextField'
-import { deletePage } from '../../../../../store'
 import styles from '../styles.module.css'
-import { FC } from 'react'
+import { FC, useRef, useState } from 'react'
 import { IPagePopover } from './types'
+import { useAppDispatch, addNewPage } from '../../../../../store'
+import { PageEdit } from '../PageEdit'
+import { PageButton } from '../PageButton'
 
 export const PagePopover: FC<IPagePopover> = ({
-  isPopoverOpened,
-  anchorRef,
   selectedPageId,
   isNameEdited,
-  pageName,
   pages,
-  setPopoverOpened,
-  addPage,
-  handleChangePageName,
-  newNamePage,
+  newPageName,
   changePage,
-  changeValueName,
+  setNameEdited,
 }) => {
+  const [isPopoverOpened, setPopoverOpened] = useState<boolean>(false)
+  const anchorRef = useRef<HTMLButtonElement>(null)
+  const dispatch = useAppDispatch()
+
+  const addPage = () => {
+    dispatch(addNewPage())
+  }
+
   return (
     <>
       {pages.length >= 9 && (
@@ -57,51 +57,22 @@ export const PagePopover: FC<IPagePopover> = ({
                 return (
                   <Card shadow={false} className={`${styles.popoverPageBlock}`} form='round'>
                     {selectedPageId === page.id && isNameEdited ? (
-                      <>
-                        <TextField
-                          size='xs'
-                          type='text'
-                          value={pageName}
-                          onChange={handleChangePageName}></TextField>
-                        <Button
-                          iconLeft={IconCheck}
-                          view={selectedPageId === page.id ? 'ghost' : 'clear'}
-                          size='xs'
-                          form='brick'
-                          onlyIcon
-                          onClick={() => newNamePage(pageName)}
-                        />
-                      </>
+                      <PageEdit
+                        defaultPageName={page.name}
+                        isSelectedPage={selectedPageId === page.id}
+                        newPageName={newPageName}
+                      />
                     ) : (
-                      <>
-                        <Button
-                          label={page.name}
-                          view={selectedPageId === page.id ? 'ghost' : 'clear'}
-                          size='xs'
-                          form='brick'
-                          onClick={() => changePage(page.id)}
-                        />
-                        {selectedPageId === page.id && (
-                          <>
-                            <Button
-                              iconLeft={IconEdit}
-                              view={selectedPageId === page.id ? 'ghost' : 'clear'}
-                              size='xs'
-                              form='brick'
-                              onlyIcon
-                              onClick={() => changeValueName(index)}
-                            />
-                            <Button
-                              iconLeft={IconClose}
-                              view={selectedPageId === page.id ? 'ghost' : 'clear'}
-                              size='xs'
-                              form='brick'
-                              onlyIcon
-                              onClick={() => deletePage(page.id)}
-                            />
-                          </>
-                        )}
-                      </>
+                      <PageButton
+                        changePage={changePage}
+                        setNameEdited={setNameEdited}
+                        index={index}
+                        page={page}
+                        isNameEdited={isNameEdited}
+                        isSelectedPage={selectedPageId === page.id}
+                        pageId={page.id}
+                        pageName={page.name}
+                      />
                     )}
                   </Card>
                 )
