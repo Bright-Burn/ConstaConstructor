@@ -7,7 +7,6 @@ import {
   ILayoutElement,
 } from '../../coreTypes'
 import { createEntityAdapter } from '@reduxjs/toolkit'
-import { BorderDott } from '../../FormConstructorFormBlockConfigure/Panels/Settings/LayoutSettings/images/BorderStyle'
 
 export const rootId = uuid()
 const initialLayoutId = uuid()
@@ -29,7 +28,7 @@ export const initialLayout: ILayoutElement = {
         alignItems: { name: 'normal' },
         justifyContent: { name: 'start' },
         borderSide: { name: ' ' },
-        borderStyle: { name: 'dotted', icon: BorderDott },
+        borderStyle: { name: 'dotted' },
         borderWidth: 'thin',
       },
       className: '',
