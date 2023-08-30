@@ -2,13 +2,13 @@ import { Select } from '@consta/uikit/Select'
 import { FC, useLayoutEffect, useState } from 'react'
 import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
-import { Button } from '@consta/uikit/Button'
 import { FormArray, sizeArray, innerOffsetArray } from './types'
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
-import { ItemList, ListProps } from '../../../../coreTypes'
+import { ListProps } from '../../../../coreTypes'
 import styles from './styles.module.css'
 import { Switch } from '@consta/uikit/Switch'
-import { BrandListProps, ListElement } from '../../../../coreTypes/ListTypes'
+import { ListElement } from '../../../../coreTypes/ListTypes'
+import { Collapse } from '@consta/uikit/Collapse'
 
 type ListSettingsType = {
   selectedElementProps: ListProps
@@ -16,117 +16,85 @@ type ListSettingsType = {
 }
 
 export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selectedElement }) => {
-  const [props, setProps] = useState<BrandListProps>()
+  const { itemsProps, onChangeField, onChangeSwitch, onChangeItemsCount } = useItemsHandlers(
+    selectedElementProps,
+    selectedElement,
+  )
 
-  useLayoutEffect(() => {
-    if (selectedElement) {
-      const textFieldProps: BrandListProps = {
-        props: { ...selectedElementProps },
-        type: 'List',
-      }
-
-      setProps(textFieldProps)
-    }
-  }, [selectedElementProps, selectedElement])
-
-  const {
-    itemsProps,
-    onChangeSize,
-    onChangeSwitch,
-    onChangeInnerOffset,
-    onChangeForm,
-    onChangeItemsCount,
-    onChangeItems,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
-
-  const [lines, setLines] = useState<ItemList[]>(itemsProps.items)
-  const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
-  const labelsEditingHandler = (value: boolean) => {
-    setLines(itemsProps.items)
-    setIsLabelsEditing(value)
-  }
-
-  const applyNewTabs = () => {
-    onChangeItems(lines)
-    setIsLabelsEditing(false)
-  }
+  const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
 
   const onTabLabelEdit = (value: string | null, index: number) => {
-    const newTabs = [...lines]
-    newTabs[index] = { ...newTabs[index], label: `${value}` }
-    setLines([...newTabs])
+    const newTabs = [...itemsProps.items]
+    if (!value) newTabs[index] = { ...newTabs[index], label: `` }
+    else newTabs[index] = { ...newTabs[index], label: `${value}` }
+    onChangeField([...newTabs], 'items')
   }
 
   return (
-    <>
-      {!isLabelsEditing && (
-        <>
-          <TextField
-            label='Количество строк'
-            type='number'
-            value={`${itemsProps.items.length}`}
-            onChange={onChangeItemsCount}
-          />
-          <Button
-            view='secondary'
-            className='m-b-xs m-t-xs'
-            label={'Сменить названия строк'}
-            onClick={() => labelsEditingHandler(true)}
-          />
-        </>
-      )}
-      {isLabelsEditing && (
-        <>
-          {lines.map((line, index) => {
-            return (
-              <TextField
-                key={index}
-                label={`${index + 1}`}
-                value={`${line.label}`}
-                onChange={event => onTabLabelEdit(event.value, index)}
-              />
-            )
-          })}
-          <Button
-            size='xs'
-            className='m-b-xs m-t-xs'
-            label='Применить'
-            onClick={() => applyNewTabs()}
-          />
-          <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
-        </>
-      )}
-      <Select
-        label='size'
-        getItemKey={(key: ListPropSize) => key}
-        getItemLabel={(label: ListPropSize) => label}
-        value={itemsProps.size}
-        items={sizeArray}
-        onChange={({ value }) => onChangeSize(value)}
-      />
+    <div className={styles.listSettings}>
+      <div className={styles.rowSettings}>
+        <Select
+          label='Размер'
+          size='xs'
+          getItemKey={(key: ListPropSize) => key}
+          getItemLabel={(label: ListPropSize) => label}
+          value={itemsProps.size}
+          items={sizeArray}
+          onChange={({ value }) => onChangeField(value, 'size')}
+        />
+        <Select
+          label='Отступы'
+          size='xs'
+          getItemKey={(key: ListPropInnerOffset) => key}
+          getItemLabel={(label: ListPropInnerOffset) => label}
+          value={itemsProps.innerOffset}
+          items={innerOffsetArray}
+          onChange={({ value }) => onChangeField(value, 'innerOffset')}
+        />
+      </div>
       <Switch
-        className={styles.Switch}
-        style={{ paddingBottom: 10 }}
-        checked={props?.props.withListBox ?? false}
-        label='withListBox'
+        checked={itemsProps.withListBox ?? false}
+        label='Оборачивание списка'
+        size='xs'
         onChange={onChangeSwitch('withListBox')}
       />
       <Select
-        label='innerOffset'
-        getItemKey={(key: ListPropInnerOffset) => key}
-        getItemLabel={(label: ListPropInnerOffset) => label}
-        value={itemsProps.innerOffset}
-        items={innerOffsetArray}
-        onChange={({ value }) => onChangeInnerOffset(value)}
-      />
-      <Select
-        label='Form'
+        label='Форма'
+        size='xs'
+        disabled={!itemsProps?.withListBox}
         getItemKey={(key: ListPropForm) => key}
         getItemLabel={(label: ListPropForm) => label}
-        value={itemsProps.form}
+        value={itemsProps.form || 'default'}
         items={FormArray}
-        onChange={({ value }) => onChangeForm(value)}
+        onChange={({ value }) => onChangeField(value, 'form')}
       />
-    </>
+      <TextField
+        label='Количество вариантов'
+        type='number'
+        size='xs'
+        value={`${itemsProps.items.length}`}
+        onChange={onChangeItemsCount}
+      />
+      <Collapse
+        label='Название вариантов'
+        size='xs'
+        isOpen={isOpenVariable}
+        onClick={() => setOpenVariable(!isOpenVariable)}>
+        {itemsProps.items.map((line, index) => {
+          return (
+            <>
+              <TextField
+                className={styles.widthFlex}
+                size='xs'
+                key={index}
+                label={`Вариант ${index + 1}`}
+                value={`${line.label}`}
+                onChange={event => onTabLabelEdit(event.value, index)}
+              />
+            </>
+          )
+        })}
+      </Collapse>
+    </div>
   )
 }

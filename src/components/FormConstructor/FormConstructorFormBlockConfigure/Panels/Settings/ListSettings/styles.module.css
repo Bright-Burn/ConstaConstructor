@@ -1,3 +1,24 @@
-.Switch {
-  margin-top: 10px;
+.listSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+}
+
+.columnSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  flex: 1;
+  align-self: flex-end;
+}
+
+.widthFlex {
+  display: flex;
+  padding-top: var(--space-s);
 }

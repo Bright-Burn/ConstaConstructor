@@ -1,8 +1,8 @@
 import { ISelectedElement } from '../../../../coreTypes'
-import { ItemList, ListProps } from '../../../../coreTypes'
-import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
+import { ListProps } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { BrandListProps, ListElement } from '../../../../coreTypes/ListTypes'
+import { ValueType } from './types'
 
 export const useItemsHandlers = (selectedElementProps: ListProps, selectedElement: ListElement) => {
   const dispatch = useAppDispatch()
@@ -32,60 +32,28 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
     }
   }
 
-  const onChangeSize = (value: ListPropSize | null) => {
-    if (value) {
+  const onChangeField = (value: ValueType, field: keyof ListProps) => {
+    if (selectedElement) {
       const newProps: BrandListProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'List',
       }
-      newProps.props.size = value
+
       onDispatch(selectedElement, newProps)
     }
   }
 
-  const onChangeItems = (items: ItemList[]) => {
-    if (items) {
-      const newProps: BrandListProps = {
-        props: { ...selectedElementProps },
-        type: 'List',
-      }
-      newProps.props.items = [...items]
-      newProps.props.value = items[0]
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeInnerOffset = (value: ListPropInnerOffset | null) => {
-    if (value) {
-      const newProps: BrandListProps = {
-        props: { ...selectedElementProps },
-        type: 'List',
-      }
-      newProps.props.innerOffset = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-  const onChangeForm = (value: ListPropForm | null) => {
-    if (value) {
-      const newProps: BrandListProps = {
-        props: { ...selectedElementProps },
-        type: 'List',
-      }
-      newProps.props.form = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
   const onChangeSwitch =
     (propsName: keyof ListProps) =>
     ({ checked }: { checked: boolean }) => {
       const newProps: BrandListProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [propsName]: checked },
         type: 'List',
       }
-      // @ts-ignore
-      newProps.props[propsName] = checked
+
       onDispatch(selectedElement, newProps)
     }
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandListProps) => {
     dispatch(
       setSelectedElement({
@@ -96,18 +64,16 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
     )
   }
   return {
-    onChangeSize,
+    onChangeField,
     onChangeSwitch,
-    onChangeInnerOffset,
-    onChangeForm,
     onChangeItemsCount,
-    onChangeItems,
     itemsProps: {
       activeItem: selectedElementProps.value,
       items: selectedElementProps.items,
       form: selectedElementProps.form,
       size: selectedElementProps.size,
       innerOffset: selectedElementProps.innerOffset,
+      withListBox: selectedElementProps.withListBox,
     },
   }
 }
