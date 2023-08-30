@@ -1,21 +1,16 @@
-import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@consta/uikit/User'
 import { UserProps, ISelectedElement, UserElement, BrandUserProps } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { ValueType } from './UserConstants'
 
 export const useItemsHandlers = (selectedElementProps: UserProps, selectedElement: UserElement) => {
   const dispatch = useAppDispatch()
 
-  const onChangeField = (
-    value: UserPropView | UserPropWidth | UserPropSize | UserPropStatus | string,
-    field: keyof UserProps,
-  ) => {
+  const onChangeField = (value: ValueType, field: keyof UserProps) => {
     if (selectedElement) {
       const newProps: BrandUserProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'User',
       }
-      // @ts-ignore
-      newProps.props[field] = value
 
       onDispatch(selectedElement, newProps)
     }
@@ -25,11 +20,9 @@ export const useItemsHandlers = (selectedElementProps: UserProps, selectedElemen
     ({ checked }: { checked: boolean }) => {
       if (selectedElement) {
         const newProps: BrandUserProps = {
-          props: { ...selectedElementProps },
+          props: { ...selectedElementProps, [propsName]: checked },
           type: 'User',
         }
-        // @ts-ignore
-        newProps.props[propsName] = checked
         onDispatch(selectedElement, newProps)
       }
     }

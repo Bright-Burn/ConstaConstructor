@@ -2,11 +2,11 @@ import styles from './styles.module.css'
 import { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
-import { views, sizes, width, status } from './UserConstants'
-import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@consta/uikit/User'
+import { views, sizes, status } from './UserConstants'
 import { TextField } from '@consta/uikit/TextField'
 import { useItemsHandlers } from './ItemsService'
 import { UserProps, UserElement } from '../../../../coreTypes'
+import { FilledSettings } from '../FilledSettings'
 
 type UserSettingsType = {
   selectedElementProps: UserProps
@@ -21,83 +21,85 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
 
   return (
     <div className={styles.userSettings}>
-      {itemsProps ? (
-        <>
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={views}
-            label='view'
-            value={itemsProps.view}
-            onChange={({ value }) => {
-              onChangeField(value as UserPropView, 'view')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={width}
-            label='width'
-            value={itemsProps.width}
-            onChange={({ value }) => {
-              onChangeField(value as UserPropWidth, 'width')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={sizes}
-            label='size'
-            value={itemsProps.size}
-            onChange={({ value }) => {
-              onChangeField(value as UserPropSize, 'size')
-            }}
-          />
-          <Select
-            getItemKey={(item: string | undefined) => item || ''}
-            getItemLabel={(item: string | undefined) => item || ''}
-            items={status}
-            label='status'
-            value={itemsProps.status}
-            onChange={({ value }) => {
-              onChangeField(value as UserPropStatus, 'status')
-            }}
-          />
-          <TextField
-            label='avatarUrl'
-            value={itemsProps.avatarUrl}
-            onChange={({ value }) => {
-              onChangeField(value as string, 'avatarUrl')
-            }}
-          />
-          <TextField
-            label='Name'
-            value={itemsProps.name}
-            onChange={({ value }) => {
-              onChangeField(value as string, 'name')
-            }}
-          />
-          <TextField
-            label='Info'
-            value={itemsProps.info}
-            onChange={({ value }) => {
-              onChangeField(value as string, 'info')
-            }}
-          />
-          <Switch
-            checked={itemsProps.withArrow ?? false}
-            label='withArrow'
-            onChange={onChangeSwitch('withArrow')}
-          />
-          <Switch
-            checked={itemsProps.onlyAvatar ?? false}
-            label='onlyAvatar'
-            onChange={onChangeSwitch('onlyAvatar')}
-          />
-        </>
-      ) : (
-        <></>
-      )}
+      <div className={styles.rowSettings}>
+        <Select
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
+          items={sizes}
+          label='Размер'
+          size='xs'
+          value={itemsProps.size}
+          onChange={({ value }) => {
+            onChangeField(value, 'size')
+          }}
+        />
+        <Select
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
+          items={views}
+          label='Вид'
+          size='xs'
+          value={itemsProps.view}
+          onChange={({ value }) => {
+            onChangeField(value, 'view')
+          }}
+        />
+      </div>
+      <div className={styles.rowSettings}>
+        <FilledSettings
+          selectedElement={selectedElement}
+          selectedElementProps={selectedElementProps}
+          element='User'
+        />
+        <Select
+          className={styles.widthFlex}
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
+          items={status}
+          label='Статус'
+          size='xs'
+          value={itemsProps.status}
+          onChange={({ value }) => {
+            onChangeField(value, 'status')
+          }}
+        />
+      </div>
+      <TextField
+        label='Ссылка на аватарку'
+        size='xs'
+        value={itemsProps.avatarUrl}
+        onChange={({ value }) => {
+          onChangeField(value, 'avatarUrl')
+        }}
+      />
+      <TextField
+        label='Имя'
+        size='xs'
+        value={itemsProps.name}
+        onChange={({ value }) => {
+          onChangeField(value, 'name')
+        }}
+      />
+      <TextField
+        label='Доп. информация'
+        size='xs'
+        value={itemsProps.info}
+        onChange={({ value }) => {
+          onChangeField(value, 'info')
+        }}
+      />
+      <Switch
+        checked={itemsProps.withArrow ?? false}
+        label='С стрелочкой'
+        size='xs'
+        onChange={onChangeSwitch('withArrow')}
+      />
+      <Switch
+        checked={itemsProps.onlyAvatar ?? false}
+        label='Только аватарка'
+        size='xs'
+        onChange={onChangeSwitch('onlyAvatar')}
+      />
     </div>
   )
 }
