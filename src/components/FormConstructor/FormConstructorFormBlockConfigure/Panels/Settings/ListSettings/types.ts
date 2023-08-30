@@ -1,4 +1,13 @@
 import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
+import { ItemList } from '../../../../coreTypes'
+
+export type ValueType =
+  | ListPropSize
+  | ItemList[]
+  | ListPropInnerOffset
+  | ListPropForm
+  | string
+  | null
 
 export const FormArray: ListPropForm[] = ['default', 'brick', 'round']
 
