@@ -5,6 +5,7 @@ import {
 } from '@consta/uikit/ChoiceGroup'
 import { UserPropWidth } from '@consta/uikit/User'
 import { IconComponent } from '@consta/uikit/Icon'
+import { DeepWriteable } from '../../../../coreTypes'
 
 export type Item = {
   label: string
@@ -12,6 +13,16 @@ export type Item = {
   labelIcon?: string
   disabled?: boolean
 }
+
+export type ValueType =
+  | ChoiceGroupPropForm
+  | ChoiceGroupPropView
+  | ChoiceGroupPropSize
+  | null
+  | string
+  | DeepWriteable<Item>
+  | Item[]
+  | Item
 
 export const viewArray: ChoiceGroupPropView[] = ['ghost', 'primary', 'secondary']
 
