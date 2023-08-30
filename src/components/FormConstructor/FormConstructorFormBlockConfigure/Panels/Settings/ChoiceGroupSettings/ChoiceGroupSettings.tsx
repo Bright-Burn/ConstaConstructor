@@ -20,6 +20,9 @@ import {
   DeepWriteable,
 } from '../../../../coreTypes'
 import { IconComponent } from '@consta/uikit/Icon'
+import styles from './styles.module.css'
+import { Collapse } from '@consta/uikit/Collapse'
+import { Text } from '@consta/uikit/Text'
 
 type ChoiceGroupSettingsType = {
   selectedElementProps: DeepWriteable<OwnChoiceGroupProps>
@@ -30,181 +33,185 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const {
-    itemsProps,
-    onChangeItemsCount,
-    onChangeItems,
-    onChangeView,
-    onChangeSize,
-    onChangeForm,
-    onChangeSwitch,
-    onChangeActiveItem,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
-
-  const [lines, setLines] = useState<DeepWriteable<Item[]>>(itemsProps.items)
-  const [isLabelsEditing, setIsLabelsEditing] = useState<boolean>(false)
-
-  const labelsEditingHandler = (value: boolean) => {
-    setLines(itemsProps.items)
-    setIsLabelsEditing(value)
-  }
-
-  const applyNewLines = () => {
-    onChangeItems(lines)
-    setIsLabelsEditing(false)
-  }
+  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField, onChangeSwitch } =
+    useItemsHandlers(selectedElementProps, selectedElement)
+  const [isOpenVariable, setIsOpenVariable] = useState<boolean>(false)
+  const [isDisabledPage, setIsDisabledPage] = useState<boolean>(false)
 
   const onLinesLabelEdit = (value: string | null, index: number) => {
-    const newLines = [...lines]
-    newLines[index] = { ...newLines[index], label: `${value}` }
-    setLines([...newLines])
+    const newLines = [...itemsProps.items]
+    if (!value) newLines[index] = { ...newLines[index], label: `` }
+    else newLines[index] = { ...newLines[index], label: `${value}` }
+    onChangeItems([...newLines])
   }
 
-  const onLinesDisabledEdit = (value: boolean, index: number) => {
-    const newLines = [...lines]
-    newLines[index] = { ...newLines[index], disabled: value }
-    setLines([...newLines])
+  const onDisabledPage = (value: boolean) => {
+    const newPage = [...itemsProps.items].map(page => {
+      const { icon, labelIcon, ...other } = page
+      return other
+    })
+    onChangeItems(newPage)
+    setIsDisabledPage(value)
+  }
+
+  // TODO убрать когда избавимся от DeepWriteable
+  const iconComponentToDeepWriteable = (x: IconComponent) => x as DeepWriteable<IconComponent>
+
+  const checkValueIsIconNames = (value: string): value is IconNames => {
+    return value in Icons
   }
 
   const onLinesIconEdit = (value: string | null, index: number) => {
-    const newLines = [...lines]
-    if (value !== null)
+    const newLines = [...itemsProps.items]
+    if (value !== null && checkValueIsIconNames(value))
       (newLines[index] = {
         ...newLines[index],
-        icon: Icons[value as IconNames] as DeepWriteable<IconComponent>,
+        icon: iconComponentToDeepWriteable(Icons[value]),
         labelIcon: value,
       }),
-        setLines([...newLines])
+        onChangeItems([...newLines])
   }
 
   return (
-    <>
-      {!isLabelsEditing && (
-        <>
-          <TextField
-            label='Количество вариантов'
-            type='number'
-            value={`${itemsProps.items.length}`}
-            onChange={onChangeItemsCount}
-          />
-          <Button
-            view='secondary'
-            className='m-b-xs m-t-xs'
-            label={'Сменить названия в списке'}
-            onClick={() => labelsEditingHandler(true)}
-          />
-        </>
-      )}
-      {isLabelsEditing && (
-        <>
-          {lines.map((line, index) => {
-            return (
-              <>
-                <TextField
-                  key={index}
-                  label={`${index + 1}`}
-                  value={`${line.label}`}
-                  onChange={event => onLinesLabelEdit(event.value, index)}
-                />
-                <Switch
-                  label='disabled'
-                  checked={line.disabled}
-                  onChange={event => onLinesDisabledEdit(event.checked, index)}
-                />
-                <Select
-                  getItemKey={(item: string | undefined) => item || ''}
-                  getItemLabel={(item: string | undefined) => item || ''}
-                  items={icons}
-                  label='icons'
-                  value={line.labelIcon}
-                  onChange={event => onLinesIconEdit(event.value, index)}
-                  renderItem={({ item, active, onClick, onMouseEnter }) => (
-                    <div
-                      style={{ display: 'flex', alignItems: 'center' }}
-                      role='option'
-                      aria-selected={active}
-                      onMouseEnter={onMouseEnter}
-                      onClick={onClick}>
-                      {React.createElement(Icons[item as IconNames])}
-                      <div>{item}</div>
-                    </div>
-                  )}
-                />
-              </>
-            )
-          })}
-          <Button
-            size='xs'
-            className='m-b-xs m-t-xs'
-            label='Применить'
-            onClick={() => applyNewLines()}
-          />
-          <Button size='xs' label='Отменить' onClick={() => labelsEditingHandler(false)} />
-        </>
-      )}
-
+    <div className={styles.choiceGroupSettings}>
+      <div className={styles.rowSettings}>
+        <Select
+          label='Размер'
+          size='xs'
+          getItemKey={(key: ChoiceGroupPropSize) => key}
+          getItemLabel={(label: ChoiceGroupPropSize) => label}
+          value={itemsProps.size}
+          items={sizeArray}
+          onChange={({ value }) => onChangeField(value, 'size')}
+        />
+        <Select
+          label='Вид'
+          size='xs'
+          getItemKey={(key: ChoiceGroupPropView) => key}
+          getItemLabel={(label: ChoiceGroupPropView) => label}
+          value={itemsProps.view}
+          items={viewArray}
+          onChange={({ value }) => onChangeField(value, 'view')}
+        />
+      </div>
+      <Select
+        label='Форма'
+        size='xs'
+        getItemKey={(key: ChoiceGroupPropForm) => key}
+        getItemLabel={(label: ChoiceGroupPropForm) => label}
+        value={itemsProps.form}
+        items={formArray}
+        onChange={({ value }) => onChangeField(value, 'form')}
+      />
+      <Switch
+        onChange={onChangeSwitch('onlyIcon')}
+        label='Только инконки'
+        size='xs'
+        checked={itemsProps.onlyIcon}
+      />
+      <Switch
+        onChange={onChangeSwitch('disabled')}
+        label='Состояние блокировки'
+        size='xs'
+        checked={itemsProps.disabled}
+      />
+      <TextField
+        label='Количество вариантов'
+        size='xs'
+        type='number'
+        value={`${itemsProps.items.length}`}
+        onChange={onChangeItemsCount}
+      />
+      <Switch
+        label='Иконки у вариантов'
+        size='xs'
+        checked={isDisabledPage}
+        onChange={e => onDisabledPage(e.checked)}
+      />
       <Switch
         onChange={onChangeSwitch('multiple')}
-        label='multiple'
+        label='Мультивыбор'
+        size='xs'
         checked={itemsProps.multiple}
       />
       {itemsProps.multiple ? (
         <Combobox
           label='Выберите активные элементы'
+          size='xs'
           placeholder='Выберите вариант'
           items={itemsProps.items as Item[]}
           value={itemsProps.value as Item[]}
-          onChange={value =>
-            onChangeActiveItem(
-              value as { value: DeepWriteable<Item[]> | DeepWriteable<Item> | null },
-            )
-          }
           getItemKey={(key: Item) => key.label}
+          onChange={({ value }) => onChangeField(value, 'value')}
           multiple
         />
       ) : (
         <Select
           label='Активный элемент'
+          size='xs'
           items={itemsProps.items}
           value={itemsProps.value as DeepWriteable<Item>}
-          onChange={onChangeActiveItem}
           getItemKey={(key: DeepWriteable<Item>) => key.label}
+          onChange={({ value }) => onChangeField(value, 'value')}
         />
       )}
-      <Select
-        label='size'
-        getItemKey={(key: ChoiceGroupPropSize) => key}
-        getItemLabel={(label: ChoiceGroupPropSize) => label}
-        value={itemsProps.size}
-        items={sizeArray}
-        onChange={({ value }) => onChangeSize(value)}
-      />
-      <Select
-        label='view'
-        getItemKey={(key: ChoiceGroupPropView) => key}
-        getItemLabel={(label: ChoiceGroupPropView) => label}
-        value={itemsProps.view}
-        items={viewArray}
-        onChange={({ value }) => onChangeView(value)}
-      />
-      <Select
-        label='form'
-        getItemKey={(key: ChoiceGroupPropForm) => key}
-        getItemLabel={(label: ChoiceGroupPropForm) => label}
-        value={itemsProps.form}
-        items={formArray}
-        onChange={({ value }) => onChangeForm(value)}
-      />
-      <Switch
-        onChange={onChangeSwitch('onlyIcon')}
-        label='onlyIcon'
-        checked={itemsProps.onlyIcon}
-      />
-      <Switch
-        onChange={onChangeSwitch('disabled')}
-        label='disabled'
-        checked={itemsProps.disabled}
-      />
-    </>
+      <Collapse
+        label='Название вариантов'
+        size='xs'
+        isOpen={isOpenVariable}
+        onClick={() => setIsOpenVariable(!isOpenVariable)}>
+        {itemsProps.items.map((line, index) => {
+          return (
+            <>
+              <div className={styles.rowSettingsCollapse}>
+                <TextField
+                  className={styles.widthFlex}
+                  size='xs'
+                  key={index}
+                  label={`Вариант ${index + 1}`}
+                  value={`${line.label}`}
+                  onChange={event => onLinesLabelEdit(event.value, index)}
+                />
+                <Select
+                  className={styles.widthFlex}
+                  label='Иконка'
+                  size='xs'
+                  disabled={!isDisabledPage}
+                  getItemKey={key => key}
+                  getItemLabel={label => label}
+                  value={line.labelIcon}
+                  items={icons}
+                  onChange={event => onLinesIconEdit(event.value, index)}
+                  renderItem={({ item, active, onClick, onMouseEnter }) => (
+                    <div
+                      className={`${styles.selectElement} ${styles.SelectItem} ${
+                        active ? styles.SelectItemActive : ''
+                      }`}
+                      role='option'
+                      aria-selected={active}
+                      onMouseEnter={onMouseEnter}
+                      onClick={onClick}>
+                      {checkValueIsIconNames(item) &&
+                        React.createElement(Icons[item], {
+                          size: 'xs',
+                          className: `${active && styles.BorderLeftItem}`,
+                        })}
+                      <Text size='xs'>{item}</Text>
+                    </div>
+                  )}
+                  renderValue={({ item }) => (
+                    <div className={styles.selectElement}>
+                      {checkValueIsIconNames(item) &&
+                        React.createElement(Icons[item], { size: 'xs' })}
+                      <Text size='xs'>{item}</Text>
+                    </div>
+                  )}
+                />
+              </div>
+            </>
+          )
+        })}
+      </Collapse>
+    </div>
   )
 }

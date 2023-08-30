@@ -1,0 +1,52 @@
+.choiceGroupSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+}
+
+.columnSettings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  flex: 1;
+  align-self: flex-end;
+}
+
+.rowSettingsCollapse {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+  padding-top: var(--space-s);
+}
+
+.widthFlex {
+  flex: 1;
+}
+
+.selectElement {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.SelectItemActive {
+  color: var(--color-control-typo-secondary);
+  border-left-color: var(--color-control-typo-secondary);
+  border-left-width: 2px;
+  border-left-style: solid;
+}
+
+.SelectItem:hover {
+  background-color: var(--color-control-bg-clear-hover);
+}
+
+.BorderLeftItem {
+  color: var(--color-control-typo-secondary);
+  margin-left: var(--space-2xs);
+}

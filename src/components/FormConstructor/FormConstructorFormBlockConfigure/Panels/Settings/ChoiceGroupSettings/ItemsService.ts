@@ -5,13 +5,7 @@ import {
   OwnChoiceGroupProps,
   DeepWriteable,
 } from '../../../../coreTypes'
-import {
-  ChoiceGroupPropForm,
-  ChoiceGroupPropSize,
-  ChoiceGroupPropView,
-} from '@consta/uikit/ChoiceGroup'
-import { Item } from './types'
-import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { Item, ValueType } from './types'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
@@ -43,9 +37,7 @@ export const useItemsHandlers = (
           itemsProps = [
             ...itemsProps,
             {
-              icon: Icons['IconAdd'],
-              labelIcon: 'IconAdd',
-              label: `new ${i + 1}`,
+              label: `Вариант ${i + 1}`,
             } as DeepWriteable<Item>,
           ]
         }
@@ -59,21 +51,6 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeActiveItem = ({
-    value,
-  }: {
-    value: DeepWriteable<Item[]> | DeepWriteable<Item> | null
-  }) => {
-    if (value) {
-      const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps },
-        type: 'ChoiceGroup',
-      }
-      newProps.props.value = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
   const onChangeItems = (items: DeepWriteable<Item[]>) => {
     if (items) {
       const newProps: BrandOwnChoiceGroupProps = {
@@ -81,40 +58,17 @@ export const useItemsHandlers = (
         type: 'ChoiceGroup',
       }
       newProps.props.items = [...items]
-      newProps.props.value = items[0]
       onDispatch(selectedElement, newProps)
     }
   }
 
-  const onChangeSize = (value: ChoiceGroupPropSize | null) => {
-    if (value) {
+  const onChangeField = (value: ValueType, field: keyof DeepWriteable<OwnChoiceGroupProps>) => {
+    if (selectedElement) {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [field]: value },
         type: 'ChoiceGroup',
       }
-      newProps.props.size = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
 
-  const onChangeView = (value: ChoiceGroupPropView | null) => {
-    if (value) {
-      const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps },
-        type: 'ChoiceGroup',
-      }
-      newProps.props.view = value
-      onDispatch(selectedElement, newProps)
-    }
-  }
-
-  const onChangeForm = (value: ChoiceGroupPropForm | null) => {
-    if (value) {
-      const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps },
-        type: 'ChoiceGroup',
-      }
-      newProps.props.form = value
       onDispatch(selectedElement, newProps)
     }
   }
@@ -123,21 +77,16 @@ export const useItemsHandlers = (
     (propsName: keyof OwnChoiceGroupProps) =>
     ({ checked }: { checked: boolean }) => {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedElementProps, [propsName]: checked },
         type: 'ChoiceGroup',
       }
-      // @ts-ignore
-      newProps.props[propsName] = checked
       onDispatch(selectedElement, newProps)
     }
 
   return {
     onChangeItemsCount,
     onChangeItems,
-    onChangeView,
-    onChangeSize,
-    onChangeForm,
-    onChangeActiveItem,
+    onChangeField,
     onChangeSwitch,
     itemsProps: {
       items: selectedElementProps.items,

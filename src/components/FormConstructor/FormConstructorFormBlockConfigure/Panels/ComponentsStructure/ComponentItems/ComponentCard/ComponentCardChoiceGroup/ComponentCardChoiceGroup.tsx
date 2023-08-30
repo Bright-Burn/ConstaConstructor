@@ -20,15 +20,12 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
     const items: DeepWriteable<Item[]> = [
       {
         label: 'Первый',
-        disabled: false,
       },
       {
         label: 'Второй',
-        disabled: true,
       },
       {
         label: 'Третий',
-        disabled: false,
       },
     ]
     const newChoiceGroup: IFormElementChoiceGroup = {
