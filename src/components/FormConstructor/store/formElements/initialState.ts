@@ -20,15 +20,15 @@ export const initialLayout: ILayoutElement = {
     props: {
       constaProps: {
         flex: 1,
-        direction: { name: 'row' },
+        direction: 'row',
         horizontalAlign: 'left',
         verticalAlign: 'top',
       },
       styles: {
-        alignItems: { name: 'normal' },
-        justifyContent: { name: 'start' },
-        borderSide: { name: ' ' },
-        borderStyle: { name: 'dotted' },
+        alignItems: 'normal',
+        justifyContent: 'start',
+        borderSide: ' ',
+        borderStyle: 'dotted',
         borderWidth: 'thin',
       },
       className: '',

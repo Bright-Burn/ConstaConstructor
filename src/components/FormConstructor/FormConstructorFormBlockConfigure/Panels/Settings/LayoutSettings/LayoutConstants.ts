@@ -36,8 +36,9 @@ import {
   AlignPositionEnd,
   AlignPositionNormal,
 } from './images/AlignItems'
+import { IconComponent } from '@consta/uikit/Icon'
 
-export const directions: LayoutPropDirection[] = [
+export const directions: { name: LayoutPropDirection; icon: IconComponent }[] = [
   { name: 'column', icon: IconColumns },
   { name: 'row', icon: IconAlignJustify },
 ]
@@ -52,8 +53,8 @@ export const borderWidths: BorderWidth[] = [
   'unset',
 ]
 
-export const borderStyle: BorderStyle[] = [
-  { name: 'hidden' },
+export const borderStyle: { name: BorderStyle; icon: IconComponent }[] = [
+  { name: 'hidden', icon: BorderSolid },
   { name: 'solid', icon: BorderSolid },
   { name: 'dotted', icon: BorderDott },
   { name: 'dashed', icon: BorderDashed },
@@ -66,7 +67,7 @@ export const borderStyle: BorderStyle[] = [
 export const verticalAligns: LayoutPropVerticalAlign[] = ['top', 'bottom']
 export const horizontalAligns: LayoutPropHorizontalAlign[] = ['left', 'right']
 
-export const justifyContentProps: JustifyContentProps[] = [
+export const justifyContentProps: { name: JustifyContentProps; icon: IconComponent }[] = [
   { name: 'start', icon: JustifyPositionStart },
   { name: 'center', icon: JustifyPositionCenter },
   { name: 'end', icon: JustifyPositionEnd },
@@ -75,15 +76,18 @@ export const justifyContentProps: JustifyContentProps[] = [
   { name: 'space-evenly', icon: JustifyPositionSpaceEvenly },
 ]
 
-export const alignItems: AlignItems[] = [
+export const alignItems: {name: AlignItems, icon: IconComponent}[] = [
   { name: 'normal', icon: AlignPositionNormal },
   { name: 'center', icon: AlignPositionCenter },
   { name: 'start', icon: AlignPositionStart },
   { name: 'end', icon: AlignPositionEnd },
 ]
 
-export const borderSide: BorderSide[] = [
-  { name: '', icon: BorderNone },
+export const borderSide: {
+  name: BorderSide
+  icon: IconComponent
+}[] = [
+  { name: '  ', icon: BorderNone },
   { name: 'borderLeft', icon: BorderLeft },
   { name: 'borderRight', icon: BorderRight },
   { name: 'borderTop', icon: BorderTop },

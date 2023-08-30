@@ -14,16 +14,7 @@ import {
 import { LayoutPalette } from '../../../../../ConstaPalette'
 import { Text } from '@consta/uikit/Text'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import {
-  AlignItems,
-  BorderSide,
-  BorderStyle,
-  BorderWidth,
-  JustifyContentProps,
-  LayoutPropDirection,
-  LayoutElement,
-  LayoutElementPropsStyles,
-} from '../../../../coreTypes'
+import { BorderWidth, LayoutElement, LayoutElementPropsStyles } from '../../../../coreTypes'
 import { IconComponent } from '@consta/uikit/Icon'
 
 type LayoutSettingsType = {
@@ -110,14 +101,16 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                 Направление
               </Text>
               <ChoiceGroup
-                value={itemsProps.constaProps.direction}
+                value={directions.find(arr => {
+                  if (arr.name === itemsProps.constaProps?.direction) return arr
+                })}
                 items={directions}
-                getItemLabel={(label: LayoutPropDirection) => label.name}
+                getItemLabel={label => label.name}
                 name='ChoiceGroupExample'
                 size='xs'
                 onlyIcon
                 view='ghost'
-                onChange={({ value }) => onChangeDirection(value)}
+                onChange={({ value }) => onChangeDirection(value.name)}
               />
             </div>
           </div>
@@ -127,14 +120,16 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                 Распределение
               </Text>
               <ChoiceGroup
-                value={itemsProps.styles?.justifyContent}
+                value={justifyContentProps.find(arr => {
+                  if (arr.name === itemsProps.styles?.justifyContent) return arr
+                })}
                 items={justifyContentProps}
-                getItemLabel={(label: JustifyContentProps) => label.name}
+                getItemLabel={label => label.name}
                 name='ChoiceGroupExample'
                 size='xs'
                 onlyIcon
                 view='ghost'
-                onChange={({ value }) => onChangeJustifyContent(value)}
+                onChange={({ value }) => onChangeJustifyContent(value.name)}
               />
             </div>
             <div className={styles.columnSettings}>
@@ -142,14 +137,16 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                 Привязка
               </Text>
               <ChoiceGroup
-                value={itemsProps.styles?.alignItems}
+                value={alignItems.find(arr => {
+                  if (arr.name === itemsProps.styles?.alignItems) return arr
+                })}
                 items={alignItems}
-                getItemLabel={(label: AlignItems) => label.name}
+                getItemLabel={label => label.name}
                 name='ChoiceGroupExample'
                 size='xs'
                 onlyIcon
                 view='ghost'
-                onChange={({ value }) => onChangeAlignItems(value)}
+                onChange={({ value }) => onChangeAlignItems(value.name)}
               />
             </div>
           </div>
@@ -158,25 +155,29 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
               Граница
             </Text>
             <ChoiceGroup
-              value={itemsProps.styles?.borderSide}
+              value={borderSide.find(arr => {
+                if (arr.name === itemsProps.styles?.borderSide) return arr
+              })}
               items={borderSide}
-              getItemLabel={(label: BorderSide) => label.name}
+              getItemLabel={label => label.name}
               name='ChoiceGroupExample'
               size='xs'
               onlyIcon
               view='ghost'
-              onChange={({ value }) => onChangeBorderSide(value)}
+              onChange={({ value }) => onChangeBorderSide(value.name)}
             />
           </div>
           <div className={styles.rowSettings}>
             <Select
-              getItemKey={(key: BorderStyle) => key.name}
+              getItemKey={key => key.name}
               label='Стиль'
               size='xs'
-              getItemLabel={(label: BorderStyle) => label.name}
+              getItemLabel={label => label.name}
               items={borderStyle}
-              value={itemsProps.styles?.borderStyle}
-              onChange={({ value }) => onChangeBorderStyle(value)}
+              value={borderStyle.find(arr => {
+                if (arr.name === itemsProps.styles?.borderStyle) return arr
+              })}
+              onChange={({ value }) => onChangeBorderStyle(value?.name)}
               renderItem={({ item, active, onClick, onMouseEnter }) => (
                 <div
                   className={`${styles.SelectItem} ${active ? styles.SelectItemActive : ''}`}
