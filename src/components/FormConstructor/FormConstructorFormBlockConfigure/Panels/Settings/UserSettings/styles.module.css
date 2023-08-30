@@ -1,4 +1,15 @@
 .userSettings {
   display: flex;
   flex-direction: column;
+  gap: var(--space-s);
+}
+
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-s);
+}
+
+.widthFlex {
+  flex: 1;
 }
