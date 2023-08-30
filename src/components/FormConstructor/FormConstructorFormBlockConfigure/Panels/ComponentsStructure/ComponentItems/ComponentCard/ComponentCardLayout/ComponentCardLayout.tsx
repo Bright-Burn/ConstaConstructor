@@ -1,13 +1,10 @@
-import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import uuid from 'react-uuid'
 import { FormGroupsDictTypes, ILayoutElement } from '../../../../../../coreTypes'
 import { IComponetCardElement } from '../types'
 import styles from './styles.module.css'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import { borderStyle } from '../../../../Settings/LayoutSettings/LayoutConstants'
-import { BorderDott } from '../../../../Settings/LayoutSettings/images/BorderStyle'
 
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter }) => {
   const dispatch = useAppDispatch()
@@ -21,15 +18,15 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
         props: {
           constaProps: {
             flex: 1,
-            direction: { name: 'row' },
+            direction: 'row',
             horizontalAlign: 'left',
             verticalAlign: 'top',
           },
           styles: {
-            alignItems: { name: 'normal' },
-            justifyContent: { name: 'start' },
-            borderSide: { name: ' ' },
-            borderStyle: { name: 'dotted', icon: BorderDott },
+            alignItems: 'normal',
+            justifyContent: 'start',
+            borderSide: ' ',
+            borderStyle: 'dotted',
             borderWidth: 'thin',
           },
           className: '',
