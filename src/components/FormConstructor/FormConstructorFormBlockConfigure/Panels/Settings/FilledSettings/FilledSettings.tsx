@@ -1,5 +1,11 @@
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { ButtonProps, TextFieldProps, UnionProps } from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+import {
+  ButtonProps,
+  TextFieldProps,
+  UnionProps,
+  UserElement,
+  UserProps,
+} from '../../../../coreTypes'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
 import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
@@ -20,9 +26,9 @@ const fillValues = [
   { name: 'filled', icon: IconMaxWidth },
 ]
 interface IFilledSettings {
-  selectedElementProps: ButtonProps | TextFieldProps
-  selectedElement: ButtonElement | TextFieldElement
-  element: 'Button' | 'TextField'
+  selectedElementProps: ButtonProps | TextFieldProps | UserProps
+  selectedElement: ButtonElement | TextFieldElement | UserElement
+  element: 'Button' | 'TextField' | 'User'
 }
 export const FilledSettings: React.FC<IFilledSettings> = ({
   selectedElementProps,

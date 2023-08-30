@@ -18,6 +18,7 @@ export type UserProps = {
   withArrow?: boolean
   onlyAvatar?: boolean
   checked?: boolean
+  filled?: boolean
 } & BaseProps
 
 export type BrandUserProps = BrandProps<UserProps, 'User'>

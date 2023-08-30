@@ -13,12 +13,14 @@ export const UserFormElement: FC<IUserFormElement> = ({ element }) => {
     setUserProps(userFormElement.props.props)
   }, [element])
 
+  const isFilled = element.props.props.filled
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.User}
-    >
+      className={isFilled ? 'container-row flex-grow-1' : ''}>
       <User {...userProps} />
     </SelectableLayer>
   )
