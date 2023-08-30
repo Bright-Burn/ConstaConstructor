@@ -29,14 +29,14 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     borderWidth,
   }: LayoutElementStyles) => {
     const sideCss = {
-      [`${borderSide?.name}Width`]: borderWidth,
-      [`${borderSide?.name}Style`]: borderStyle?.name,
-      [`${borderSide?.name}Color`]: borderColor,
+      [`${borderSide}Width`]: borderWidth,
+      [`${borderSide}Style`]: borderStyle,
+      [`${borderSide}Color`]: borderColor,
       borderWidth: '',
       borderStyle: '',
       borderColor: '',
     }
-    if (borderSide?.name === ' ') {
+    if (borderSide === ' ') {
       return undefined
     }
     return sideCss
@@ -56,12 +56,8 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
         borderColor: `var(--${layoutProps?.styles?.borderColor})`,
         overflow: 'hidden',
         transition: 'none',
-        borderStyle: layoutProps?.styles?.borderStyle?.name,
-        justifyContent: layoutProps?.styles?.justifyContent?.name,
-        alignItems: layoutProps?.styles?.alignItems?.name,
         ...activeSide,
-      }}
-      direction={layoutProps?.constaProps.direction?.name}>
+      }}>
       <SelectableLayer
         parentElementId={element.id}
         elementType={FormGroupsDictTypes.Layout}

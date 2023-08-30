@@ -162,7 +162,7 @@ export const useItemsHandlers = (
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeBorderStyle = (value: BorderStyle | null) => {
+  const onChangeBorderStyle = (value: BorderStyle | null | undefined) => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedElementProps },
       type: 'Layout',
