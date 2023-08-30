@@ -6,7 +6,7 @@ import {
   ComboBoxElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ValueType } from './fileTypes'
+import { ValueType } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: ComboboxProps,
