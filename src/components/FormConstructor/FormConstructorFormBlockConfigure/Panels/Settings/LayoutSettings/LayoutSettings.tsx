@@ -10,6 +10,11 @@ import {
   borderWidths,
   borderStyle,
   borderSide,
+  directionDict,
+  justifyContentDict,
+  alignItemsDict,
+  borderSideDict,
+  borderStyleDict,
 } from './LayoutConstants'
 import { LayoutPalette } from '../../../../../ConstaPalette'
 import { Text } from '@consta/uikit/Text'
@@ -101,9 +106,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                 Направление
               </Text>
               <ChoiceGroup
-                value={directions.find(arr => {
-                  if (arr.name === itemsProps.constaProps?.direction) return arr
-                })}
+                value={directionDict[itemsProps.constaProps?.direction || 'row']}
                 items={directions}
                 getItemLabel={label => label.name}
                 name='ChoiceGroupExample'
@@ -120,9 +123,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                 Распределение
               </Text>
               <ChoiceGroup
-                value={justifyContentProps.find(arr => {
-                  if (arr.name === itemsProps.styles?.justifyContent) return arr
-                })}
+                value={justifyContentDict[itemsProps.styles?.justifyContent || 'start']}
                 items={justifyContentProps}
                 getItemLabel={label => label.name}
                 name='ChoiceGroupExample'
@@ -137,9 +138,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                 Привязка
               </Text>
               <ChoiceGroup
-                value={alignItems.find(arr => {
-                  if (arr.name === itemsProps.styles?.alignItems) return arr
-                })}
+                value={alignItemsDict[itemsProps.styles?.alignItems || 'normal']}
                 items={alignItems}
                 getItemLabel={label => label.name}
                 name='ChoiceGroupExample'
@@ -155,9 +154,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
               Граница
             </Text>
             <ChoiceGroup
-              value={borderSide.find(arr => {
-                if (arr.name === itemsProps.styles?.borderSide) return arr
-              })}
+              value={borderSideDict[itemsProps.styles?.borderSide || 'borderAll']}
               items={borderSide}
               getItemLabel={label => label.name}
               name='ChoiceGroupExample'
@@ -174,9 +171,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
               size='xs'
               getItemLabel={label => label.name}
               items={borderStyle}
-              value={borderStyle.find(arr => {
-                if (arr.name === itemsProps.styles?.borderStyle) return arr
-              })}
+              value={borderStyleDict[itemsProps.styles?.borderStyle || 'dotted']}
               onChange={({ value }) => onChangeBorderStyle(value?.name)}
               renderItem={({ item, active, onClick, onMouseEnter }) => (
                 <div
