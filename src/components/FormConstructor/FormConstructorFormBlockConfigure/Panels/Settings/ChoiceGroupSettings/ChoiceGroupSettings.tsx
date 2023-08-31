@@ -4,7 +4,6 @@ import { useItemsHandlers } from './ItemsService'
 import { TextField } from '@consta/uikit/TextField'
 import { Item, formArray, sizeArray, viewArray } from './types'
 import { Switch } from '@consta/uikit/Switch'
-import { Button } from '@consta/uikit/Button'
 import {
   ChoiceGroupPropForm,
   ChoiceGroupPropSize,
@@ -35,8 +34,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
 }) => {
   const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField, onChangeSwitch } =
     useItemsHandlers(selectedElementProps, selectedElement)
-  const [isOpenVariable, setIsOpenVariable] = useState<boolean>(false)
-  const [isDisabledPage, setIsDisabledPage] = useState<boolean>(false)
+  const [isOpenOptions, setIsOpenOptions] = useState<boolean>(false)
+  const [isPageDisabled, setIsPageDisabled] = useState<boolean>(false)
 
   const onLinesLabelEdit = (value: string | null, index: number) => {
     const newLines = [...itemsProps.items]
@@ -51,7 +50,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
       return other
     })
     onChangeItems(newPage)
-    setIsDisabledPage(value)
+    setIsPageDisabled(value)
   }
 
   // TODO убрать когда избавимся от DeepWriteable
@@ -73,8 +72,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
   }
 
   return (
-    <div className={styles.choiceGroupSettings}>
-      <div className={styles.rowSettings}>
+    <div className={styles.settingsBlockChoiceGroup}>
+      <div className={styles.settingsBlockRow}>
         <Select
           label='Размер'
           size='xs'
@@ -125,7 +124,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
       <Switch
         label='Иконки у вариантов'
         size='xs'
-        checked={isDisabledPage}
+        checked={isPageDisabled}
         onChange={e => onDisabledPage(e.checked)}
       />
       <Switch
@@ -158,14 +157,14 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
       <Collapse
         label='Название вариантов'
         size='xs'
-        isOpen={isOpenVariable}
-        onClick={() => setIsOpenVariable(!isOpenVariable)}>
+        isOpen={isOpenOptions}
+        onClick={() => setIsOpenOptions(!isOpenOptions)}>
         {itemsProps.items.map((line, index) => {
           return (
             <>
-              <div className={styles.rowSettingsCollapse}>
+              <div className={styles.settingsBlockRowCollapse}>
                 <TextField
-                  className={styles.widthFlex}
+                  className={styles.elementWidth}
                   size='xs'
                   key={index}
                   label={`Вариант ${index + 1}`}
@@ -173,10 +172,10 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
                   onChange={event => onLinesLabelEdit(event.value, index)}
                 />
                 <Select
-                  className={styles.widthFlex}
+                  className={styles.elementWidth}
                   label='Иконка'
                   size='xs'
-                  disabled={!isDisabledPage}
+                  disabled={!isPageDisabled}
                   getItemKey={key => key}
                   getItemLabel={label => label}
                   value={line.labelIcon}
