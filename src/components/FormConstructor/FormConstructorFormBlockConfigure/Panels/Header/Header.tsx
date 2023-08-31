@@ -12,7 +12,13 @@ import { HotKeyPaneNote } from './Help'
 import { ProjectName } from './ProjectName'
 
 export const Header: React.FC = () => {
-  const { onChangeProjectName, onDownloadProject, onSaveProject, projectName } = useProject()
+  const {
+    onChangeProjectName,
+    onDownloadProject,
+    onDownloadOldProject,
+    onSaveProject,
+    projectName,
+  } = useProject()
   const [showNotes, setShowNotes] = useState<boolean>(false)
   const onNotesOpen = () => {
     setShowNotes(true)
@@ -32,6 +38,18 @@ export const Header: React.FC = () => {
           size='xs'
           onClick={onNotesOpen}
         />
+        <FileField id={'loader_project_old'} onChange={onDownloadOldProject}>
+          {props => (
+            <Button
+              id={'btn'}
+              {...props}
+              label='Импортировать старый json'
+              view='clear'
+              iconLeft={IconDownload}
+              size='xs'
+            />
+          )}
+        </FileField>
         <FileField id={'loader_project'} onChange={onDownloadProject}>
           {props => (
             <Button
