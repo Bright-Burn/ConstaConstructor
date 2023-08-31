@@ -1,6 +1,7 @@
 import { readFile } from '../../../utils'
 import { loadProjectFromStorage, saveProjectToFile, useAppDispatch } from '../../../store'
 import { useState } from 'react'
+import { ConstaColors } from '../../../../ConstaPalette'
 
 export const useProject = () => {
   const dispatch = useAppDispatch()
@@ -27,6 +28,18 @@ export const useProject = () => {
                         ? {
                             ...arr.props,
                             groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
+                          }
+                        : arr.type === 'Layout'
+                        ? {
+                            ...arr.props,
+                            styles: {
+                              ...arr.props.styles,
+                              borderColor:
+                                arr.props.styles &&
+                                ConstaColors.includes(arr.props.styles.borderColor)
+                                  ? arr.props.styles.borderColor
+                                  : 'color-bg-default',
+                            },
                           }
                         : arr.props),
                     },
