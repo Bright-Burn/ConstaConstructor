@@ -1,24 +1,16 @@
-.listSettings {
+.settingsBlockList {
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
 }
 
-.rowSettings {
+.settingsBlockRow {
   display: flex;
   flex-direction: row;
   gap: var(--space-s);
 }
 
-.columnSettings {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2xs);
-  flex: 1;
-  align-self: flex-end;
-}
-
-.widthFlex {
+.elementWidth {
   display: flex;
   padding-top: var(--space-s);
 }

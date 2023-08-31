@@ -21,7 +21,7 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
     selectedElement,
   )
 
-  const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
+  const [isOpenOptions, setOpenOptions] = useState<boolean>(false)
 
   const onTabLabelEdit = (value: string | null, index: number) => {
     const newTabs = [...itemsProps.items]
@@ -31,8 +31,8 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
   }
 
   return (
-    <div className={styles.listSettings}>
-      <div className={styles.rowSettings}>
+    <div className={styles.settingsBlockList}>
+      <div className={styles.settingsBlockRow}>
         <Select
           label='Размер'
           size='xs'
@@ -78,13 +78,13 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
       <Collapse
         label='Название вариантов'
         size='xs'
-        isOpen={isOpenVariable}
-        onClick={() => setOpenVariable(!isOpenVariable)}>
+        isOpen={isOpenOptions}
+        onClick={() => setOpenOptions(!isOpenOptions)}>
         {itemsProps.items.map((line, index) => {
           return (
             <>
               <TextField
-                className={styles.widthFlex}
+                className={styles.elementWidth}
                 size='xs'
                 key={index}
                 label={`Вариант ${index + 1}`}
