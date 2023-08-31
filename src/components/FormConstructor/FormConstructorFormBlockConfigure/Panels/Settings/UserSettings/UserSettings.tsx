@@ -20,8 +20,8 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
   )
 
   return (
-    <div className={styles.userSettings}>
-      <div className={styles.rowSettings}>
+    <div className={styles.settingsBlockUser}>
+      <div className={styles.settingsBlockRow}>
         <Select
           getItemKey={(item: string) => item}
           getItemLabel={(item: string) => item}
@@ -45,14 +45,14 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
           }}
         />
       </div>
-      <div className={styles.rowSettings}>
+      <div className={styles.settingsBlockRow}>
         <FilledSettings
           selectedElement={selectedElement}
           selectedElementProps={selectedElementProps}
           element='User'
         />
         <Select
-          className={styles.widthFlex}
+          className={styles.elementWidth}
           getItemKey={(item: string) => item}
           getItemLabel={(item: string) => item}
           items={status}
