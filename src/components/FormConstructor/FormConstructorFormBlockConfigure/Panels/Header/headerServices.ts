@@ -35,8 +35,9 @@ export const useProject = () => {
                             styles: {
                               ...arr.props.styles,
                               borderColor:
-                                arr.props.styles &&
-                                ConstaColors.includes(arr.props.styles.borderColor)
+                                arr.props.styles && arr.props.styles.borderColor === '#cbd4da'
+                                  ? 'color-bg-system'
+                                  : ConstaColors.includes(arr.props.styles.borderColor)
                                   ? arr.props.styles.borderColor
                                   : 'color-bg-default',
                             },
