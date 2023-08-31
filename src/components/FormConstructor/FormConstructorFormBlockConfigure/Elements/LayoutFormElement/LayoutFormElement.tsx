@@ -36,7 +36,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
       borderStyle: '',
       borderColor: '',
     }
-    if (borderSide === ' ') {
+    if (borderSide === 'borderAll') {
       return undefined
     }
     return sideCss
