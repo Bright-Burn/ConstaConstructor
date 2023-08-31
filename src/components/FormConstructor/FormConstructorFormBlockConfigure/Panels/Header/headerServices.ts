@@ -14,7 +14,29 @@ export const useProject = () => {
         //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
         const parsedFile: any = JSON.parse(json)
 
-        dispatch(loadProjectFromStorage(parsedFile.project))
+        dispatch(
+          loadProjectFromStorage({
+            ...parsedFile.project,
+            allElements: {
+              ...parsedFile.project.allElements.map((arr: any) => {
+                return {
+                  ...arr,
+                  props: {
+                    props: {
+                      ...(arr.type === 'SelectForm'
+                        ? {
+                            ...arr.props,
+                            groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
+                          }
+                        : arr.props),
+                    },
+                    type: arr.type,
+                  },
+                }
+              }),
+            },
+          }),
+        )
       })
     }
   }
