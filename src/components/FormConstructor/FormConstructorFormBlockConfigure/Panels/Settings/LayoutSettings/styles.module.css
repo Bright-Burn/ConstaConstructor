@@ -47,6 +47,6 @@
 .BorderLeftItem {
   color: var(--color-control-typo-secondary);
   border-left-color: var(--color-control-typo-secondary);
-  border-left-width: 2px;
+  border-left-width: 0.125rem;
   border-left-style: solid;
 }

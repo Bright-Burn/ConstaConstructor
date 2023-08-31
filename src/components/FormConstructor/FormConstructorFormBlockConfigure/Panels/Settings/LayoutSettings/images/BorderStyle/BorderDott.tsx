@@ -6,9 +6,9 @@ const BorderDottXs = (props: React.SVGProps<SVGSVGElement>) => {
       <path
         d='M0 6H12'
         stroke='#002033'
-        stroke-width='2'
-        stroke-linejoin='round'
-        stroke-dasharray='2 0'
+        strokeWidth='2'
+        strokeLinejoin='round'
+        strokeDasharray='2 0'
       />
     </svg>
   )

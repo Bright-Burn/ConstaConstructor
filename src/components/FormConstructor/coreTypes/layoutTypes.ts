@@ -13,7 +13,6 @@ export interface LayoutElementProps {
 }
 
 export type BorderStyle =
-  | 'none'
   | 'hidden'
   | 'dotted'
   | 'dashed'
@@ -25,7 +24,13 @@ export type BorderStyle =
   | 'outset'
 
 export type BorderWidth = 'inherit' | 'initial' | 'revert' | 'unset' | 'thin' | 'medium' | 'thick'
-export type BorderSide = ' ' | 'borderLeft' | 'borderRight' | 'borderTop' | 'borderBottom' | '  '
+export type BorderSide =
+  | 'borderAll'
+  | 'borderLeft'
+  | 'borderRight'
+  | 'borderTop'
+  | 'borderBottom'
+  | 'borderNone'
 
 export type LayoutPropDirection = 'row' | 'column'
 
@@ -33,13 +38,11 @@ export type JustifyContentProps =
   | 'start'
   | 'center'
   | 'end'
-  | 'flex-start'
-  | 'flex-end'
   | 'space-between'
   | 'space-around'
   | 'space-evenly'
 
-export type AlignItems = 'normal' | 'start' | 'center' | 'end' | 'flex-start' | 'flex-end'
+export type AlignItems = 'normal' | 'start' | 'center' | 'end'
 
 export interface LayoutElementStyles {
   maxWidth?: string
