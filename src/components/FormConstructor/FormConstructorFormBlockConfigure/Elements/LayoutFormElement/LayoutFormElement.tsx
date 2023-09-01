@@ -31,7 +31,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     const sideCss = {
       [`${borderSide}Width`]: borderWidth,
       [`${borderSide}Style`]: borderStyle,
-      [`${borderSide}Color`]: borderColor,
+      [`${borderSide}Color`]: `var(--${borderColor})`,
       borderWidth: '',
       borderStyle: '',
       borderColor: '',
@@ -44,7 +44,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
 
   let activeSide = layoutProps?.styles?.borderSide && ActiveSide(layoutProps.styles)
 
-  !isGridVisible && (activeSide = undefined)
+  isGridVisible && (activeSide = undefined)
 
   return (
     <Layout
@@ -53,7 +53,8 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
       style={{
         ...layoutProps?.styles,
         backgroundColor: `var(--${layoutProps?.styles?.backgroundColor})`,
-        borderColor: `var(--${layoutProps?.styles?.borderColor})`,
+        borderColor: !isGridVisible ? `var(--${layoutProps?.styles?.borderColor})` : '',
+        borderStyle: !isGridVisible ? layoutProps?.styles?.borderStyle : '',
         overflow: 'hidden',
         transition: 'none',
         ...activeSide,
