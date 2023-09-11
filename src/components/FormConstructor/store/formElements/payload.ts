@@ -21,6 +21,11 @@ export type SetNewSelectedElement = {
   newProps?: UnionProps
 } | null
 
+export type UpdateParentIdElement = {
+  elementId: string
+  parentId: string
+}
+
 export interface ShowGrid {
   isGridVisible: boolean
 }

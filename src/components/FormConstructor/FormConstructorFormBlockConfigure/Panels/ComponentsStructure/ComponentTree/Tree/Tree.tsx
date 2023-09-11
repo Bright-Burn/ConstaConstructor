@@ -7,6 +7,7 @@ import RCTree from 'rc-tree'
 import { Key } from 'rc-tree/lib/interface'
 import { getFormElAsMap } from '../../../../../store'
 import { setSelectedElement, useAppDispatch } from '../../../../../store'
+import { updateParentIdElement } from '../../../../../store/formElements/formElementsActions'
 
 export const Tree: FC<ITree> = ({ data }) => {
   const allElementsMap = useAppSelector(getFormElAsMap)
@@ -35,10 +36,21 @@ export const Tree: FC<ITree> = ({ data }) => {
     })
   }
 
+  const onChangeParentId = (event: any) => {
+    dispatch(
+      updateParentIdElement({
+        elementId: event.dragNode.key,
+        parentId: event.node.key,
+      }),
+    )
+  }
+
   return (
     <RCTree
       {...treeProps}
       treeData={data}
+      draggable
+      onDrop={event => onChangeParentId(event)}
       prefixCls={prefix}
       selectedKeys={[selectedEl?.elementId ?? '']}
       onSelect={onSelect}
