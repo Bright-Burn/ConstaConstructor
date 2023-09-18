@@ -9,14 +9,16 @@ import {
   TextPropCursor,
   TextPropType,
   TextPropTransform,
+  TextPropAlign,
 } from '@consta/uikit/Text'
-import { AlignTextType, TextElementProps, textDecorationType } from '../../../../coreTypes'
+import { TextElementProps } from '../../../../coreTypes'
 import { IconAlignLeft } from '@consta/icons/IconAlignLeft'
 import { IconAlignCenter } from '@consta/icons/IconAlignCenter'
 import { IconAlignRight } from '@consta/icons/IconAlignRight'
 import { IconColorText } from '@consta/icons/IconColorText'
 import { IconItalic } from '@consta/icons/IconItalic'
 import { IconType } from '@consta/icons/IconType'
+import { IconComponent } from '@consta/uikit/Icon'
 
 export const sizes: TextPropSize[] = [
   'm',
@@ -42,13 +44,24 @@ export const views: TextPropView[] = [
   'success',
   'warning',
 ]
-export const textAlign: AlignTextType[] = [
+export const textAlign: TextDecorationType[] = [
   { name: 'left', icon: IconAlignLeft },
   { name: 'center', icon: IconAlignCenter },
   { name: 'right', icon: IconAlignRight },
 ]
 
-export const transformText: textDecorationType[] = [
+export type TextDecorationType = {
+  name: string
+  icon: IconComponent
+}
+
+export const alignDist: Record<TextPropAlign, TextDecorationType> = {
+  left: { name: 'left', icon: IconAlignLeft },
+  center: { name: 'center', icon: IconAlignCenter },
+  right: { name: 'right', icon: IconAlignRight },
+}
+
+export const transformText: TextDecorationType[] = [
   { name: 'underline', icon: IconColorText },
   { name: 'uppercase', icon: IconType },
   { name: 'italic', icon: IconItalic },

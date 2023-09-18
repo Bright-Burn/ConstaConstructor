@@ -16,21 +16,15 @@ import {
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { IconComponent } from '@consta/uikit/Icon'
 
 type TextContent = { content: string }
 
-export type AlignTextType = { name: TextPropAlign; icon: IconComponent }
-
-export type textDecorationType = {
-  name?: 'underline' | 'uppercase' | 'italic'
-  icon?: IconComponent
-}
+export type TransformTextType = 'underline' | 'uppercase' | 'italic'
 
 export type TextElementProps = {
   size?: TextPropSize
   view?: TextPropView
-  align?: AlignTextType
+  align?: TextPropAlign
   cursor?: 'pointer'
   decoration?: 'underline'
   display?: TextPropDisplay
@@ -43,7 +37,7 @@ export type TextElementProps = {
   weight?: TextPropWeight
   width?: 'default'
   truncate?: boolean
-  transformText: textDecorationType
+  transformText?: TransformTextType
 } & BaseProps &
   TextContent
 

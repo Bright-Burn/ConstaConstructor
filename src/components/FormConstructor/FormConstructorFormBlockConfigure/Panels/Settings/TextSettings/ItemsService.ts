@@ -4,9 +4,9 @@ import {
   TextElementProps,
   BrandTextElementProps,
   TextElement,
-  textDecorationType,
 } from '../../../../coreTypes'
 import { ValueTypes } from './types'
+import { TextDecorationType } from './textConstants'
 
 export const useItemsHandlers = (
   selectedElementProps: TextElementProps,
@@ -54,7 +54,7 @@ export const useItemsHandlers = (
       }
     }
 
-  const onChangeItems = (items: textDecorationType[] | undefined) => {
+  const onChangeItems = (items: TextDecorationType[] | undefined) => {
     if (selectedElement) {
       const newProps: BrandTextElementProps = {
         props: {
