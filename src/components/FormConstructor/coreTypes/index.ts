@@ -3,8 +3,7 @@ export type {
   TextElementProps,
   BrandTextElementProps,
   TextElement,
-  AlignTextType,
-  textDecorationType,
+  TransformTextType,
 } from './textTypes'
 export type { IFormElementInformer, InformerElementProps } from './informerTypes'
 export type { IFormElementCheckbox, CheckboxProps } from './checkboxTypes'

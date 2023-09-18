@@ -12,9 +12,11 @@ import {
   spacing,
   transformText,
   views,
+  TextDecorationType,
+  alignDist,
 } from './textConstants'
 import { useItemsHandlers } from './ItemsService'
-import { TextElement, TextElementProps, textDecorationType } from '../../../../coreTypes'
+import { TextElement, TextElementProps } from '../../../../coreTypes'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { useState } from 'react'
 import { Collapse } from '@consta/uikit/Collapse'
@@ -25,13 +27,13 @@ type TextSettingsType = {
 }
 
 export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElement }) => {
-  const [refactorValue, setRefactorValue] = useState<textDecorationType[] | null>([])
+  const [refactorValue, setRefactorValue] = useState<TextDecorationType[] | null>([])
   const [isOpen, setOpen] = useState<boolean>(false)
 
   const { itemsProps, onChangeText, onChangeSwitch, onChangeField, onChangeItems } =
     useItemsHandlers(selectedProps, selectedElement)
 
-  const onRefactorValueLabelEdit = (value: textDecorationType[] | null) => {
+  const onRefactorValueLabelEdit = (value: TextDecorationType[] | null) => {
     setRefactorValue(value)
     if (value) {
       onChangeItems(value)
@@ -67,14 +69,14 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
                 Выравнивание
               </Text>
               <ChoiceGroup
-                value={itemsProps.align}
+                value={alignDist[itemsProps.align || 'left']}
                 items={textAlign}
                 getItemLabel={item => item.name}
                 size='xs'
                 view='ghost'
                 onlyIcon
                 name='ChoiceGroupExample'
-                onChange={({ value }) => onChangeField(value, 'align')}
+                onChange={({ value }) => onChangeField(value.name, 'align')}
               />
             </div>
           </div>

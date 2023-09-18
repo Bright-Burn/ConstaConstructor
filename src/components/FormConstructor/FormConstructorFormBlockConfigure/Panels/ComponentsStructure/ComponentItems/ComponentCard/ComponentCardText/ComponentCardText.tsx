@@ -20,7 +20,6 @@ export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
           size: 's',
           className: '',
           baseProps: {},
-          transformText: {},
         },
         type: 'Text',
       },
