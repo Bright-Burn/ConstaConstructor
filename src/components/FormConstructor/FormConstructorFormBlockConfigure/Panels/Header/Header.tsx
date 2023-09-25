@@ -10,7 +10,9 @@ import { useState } from 'react'
 import { Modal } from '@consta/uikit/Modal'
 import { HotKeyPaneNote } from './Help'
 import { ProjectName } from './ProjectName'
-
+import ReactDOMServer from 'react-dom/server';
+import {FormBlock} from '../FormBlock'
+import App from '../../../../../App'
 export const Header: React.FC = () => {
   const { onChangeProjectName, onDownloadProject, onSaveProject, projectName } = useProject()
   const [showNotes, setShowNotes] = useState<boolean>(false)
@@ -20,6 +22,57 @@ export const Header: React.FC = () => {
 
   const onNotesClose = () => {
     setShowNotes(false)
+  }
+  const onSaveProjectToHtml = async (fileHanler: any) => {
+    const writebleStream = await fileHanler.createWritable()
+    const proj = document.getElementById('formBlock')
+    const header = Array.from(document.getElementsByTagName('style'))
+    //@ts-ignore
+    const styles = header.reduce((acc, curr) =>  curr.innerHTML + acc, '')
+    debugger
+  //  const html =  `
+  //   <!DOCTYPE html>
+  //   <html lang="en">
+  //   <head>
+  //     <meta charset="UTF-8" />
+  //     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  //     <title>Document</title>
+  //     <link rel="stylesheet" href="901a0855826d2cafe0f7.css">
+  //     <link rel="stylesheet" href="e108b8fff8995e8228cb.css">
+  //     <link rel="stylesheet" href="f9df53db335a2191c5fc.css">
+  //     <style>
+  //     ${styles}
+  //     </style>
+  //   </head>
+  //   <body >
+  //    <div class='Theme Theme_color_gpnDefault Theme_control_gpnDefault Theme_font_gpnDefault Theme_size_gpnDefault Theme_space_gpnDefault Theme_shadow_gpnDefault'>
+  //    ${proj?.innerHTML}
+  //    </div>
+  //   </body>
+  //   </html>
+  //   `
+  const html = `
+  <html>
+<head>
+    <title>Template</title>
+</head>
+<body>
+    <h1>Look at this page.</h1>
+    <h1>It's so plain!</h1>
+    <a class="btn btn-primary" href='/' download>Click Here to Download</a>
+</body>
+  `
+   await writebleStream.write(html)
+   await writebleStream.close()
+    
+  }
+  const saveFile = async () => {
+    //@ts-ignore
+    const fileHanler = await window.showSaveFilePicker({
+      types: [{description: 'html', accept: {'text/html': ['.html']}}]
+    })
+    const file = await fileHanler.getFile()
+    onSaveProjectToHtml(fileHanler)
   }
   return (
     <div className={`${style.headerContainer} container-row`}>
@@ -53,9 +106,92 @@ export const Header: React.FC = () => {
         size='xs'
         onClick={onSaveProject}
       />
+      <Button
+        label={'Экспортировать html'}
+        iconLeft={IconUpload}
+        view='primary'
+        size='xs'
+        onClick={saveFile}
+      />
+      <Button label={'a'} onClick={function saveWebPage() {
+        const html = ReactDOMServer.renderToString(<App/>)
+
+    
+      //   var html = `
+      //   <html>
+      // <head>
+      //     <title>Template</title>
+      // </head>
+      // <body>
+      //     <h1>Look at this page.</h1>
+      //     <h1>It's so plain!</h1>
+      //     <a class="btn btn-primary" href='/' download>Click Here to Download</a>
+      // </body>
+      //   `
+      
+   
+        var css = Array.from(document.styleSheets)
+          .map(styleSheet => Array.from(styleSheet.cssRules)                     
+            .map(rule => rule.cssText)
+            .join('\n'))
+          .join('\n');
+        var js = Array.from(document.scripts)
+          .map(script => script.src ? fetch(script.src).then(response => response.text()) : Promise.resolve(script.innerText))
+          .reduce((accumulator, currentValue) => accumulator.then(accumulatorValue => currentValue.then(currentValueValue => accumulatorValue + currentValueValue)), Promise.resolve(''));
+        // js.then(console.log)
+       
+        Promise.all([css, js]).then(([cssText, jsText]) => {
+          var blob = new Blob([`
+          <!DOCTYPE html>
+          <html lang='en'>
+        <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Template</title>
+            <style>${cssText}</style>
+            
+        </head>
+        <body>
+        <div class='Theme Theme_color_gpnDefault Theme_control_gpnDefault Theme_font_gpnDefault Theme_size_gpnDefault Theme_space_gpnDefault Theme_shadow_gpnDefault'>
+            ${html}
+            </div>
+        </body>
+        </html>
+          `, ], { type: 'text/html' });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement("a");
+  a.href = url;
+  a.download = "webpage.html";
+  a.click();
+        });
+  // var url = "/"; // replace with the URL of the web page you want to save
+  // var a = document.createElement("a");
+  // a.href = url;
+  // a.download = "webpage.html";
+  // a.click();
+}}/>
       <Modal isOpen={showNotes} onClickOutside={onNotesClose} onEsc={onNotesClose}>
         <HotKeyPaneNote onClose={onNotesClose} />
       </Modal>
     </div>
   )
 }
+// var html = document.documentElement.outerHTML;
+// var css = Array.from(document.styleSheets)
+//   .map(styleSheet => Array.from(styleSheet.cssRules)
+//     .map(rule => rule.cssText)
+//     .join('\n'))
+//   .join('\n');
+// var js = Array.from(document.scripts)
+//   .map(script => script.src ? fetch(script.src).then(response => response.text()) : Promise.resolve(script.innerText))
+//   .reduce((accumulator, currentValue) => accumulator.then(accumulatorValue => currentValue.then(currentValueValue => accumulatorValue + '\n' + currentValueValue)), Promise.resolve(''));
+
+// Promise.all([css, js]).then(([cssText, jsText]) => {
+//   var blob = new Blob([html, '\n<style>\n', cssText, '\n</style>\n<script>\n', jsText, '\n</script>\n'], { type: 'text/html' });
+//   var url = URL.createObjectURL(blob);
+//   chrome.downloads.download({
+//     url: url,
+//     filename: 'snapshot.html',
+//     saveAs: true
+//   });
+// });
