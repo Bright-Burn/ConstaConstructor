@@ -6,16 +6,26 @@ import { IconQuestion } from '@consta/icons/IconQuestion'
 import { IconDownload } from '@consta/icons/IconDownload'
 import { FileField } from '@consta/uikit/FileField'
 import { useProject } from './headerServices'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Modal } from '@consta/uikit/Modal'
 import { HotKeyPaneNote } from './Help'
 import { ProjectName } from './ProjectName'
-import ReactDOMServer from 'react-dom/server';
-import {FormBlock} from '../FormBlock'
-import App from '../../../../../App'
+
+import { getAllFormElements, useAppSelector } from '../../../store'
 export const Header: React.FC = () => {
-  const { onChangeProjectName, onDownloadProject, onSaveProject, projectName } = useProject()
+  const { onChangeProjectName, onDownloadProject, onSaveProject, projectName,onDownloadProjectFromDiv } = useProject()
+  const formConstructor = useAppSelector(state => state.formConstructor)
+  const allElements = useAppSelector(getAllFormElements)
   const [showNotes, setShowNotes] = useState<boolean>(false)
+  useEffect(() => {
+    const loadedData = document.getElementById('loaded_data')
+    
+    if(loadedData) {
+      //@ts-ignore
+      // onDownloadProject({target: {files: [new File([loadedData.innerHTML], 'new')]}})
+      onDownloadProjectFromDiv(loadedData.innerHTML)
+    }
+  }, [])
   const onNotesOpen = () => {
     setShowNotes(true)
   }
@@ -29,7 +39,6 @@ export const Header: React.FC = () => {
     const header = Array.from(document.getElementsByTagName('style'))
     //@ts-ignore
     const styles = header.reduce((acc, curr) =>  curr.innerHTML + acc, '')
-    debugger
   //  const html =  `
   //   <!DOCTYPE html>
   //   <html lang="en">
@@ -74,7 +83,7 @@ export const Header: React.FC = () => {
     const file = await fileHanler.getFile()
     onSaveProjectToHtml(fileHanler)
   }
-  return (
+    return (
     <div className={`${style.headerContainer} container-row`}>
       <div className='container-row align-center '>
         <MainIcon />
@@ -114,7 +123,7 @@ export const Header: React.FC = () => {
         onClick={saveFile}
       />
       <Button label={'a'} onClick={function saveWebPage() {
-        const html = ReactDOMServer.renderToString(<App/>)
+        // const html = ReactDOMServer.renderToString(<App/>)
 
     
       //   var html = `
@@ -139,25 +148,33 @@ export const Header: React.FC = () => {
           .map(script => script.src ? fetch(script.src).then(response => response.text()) : Promise.resolve(script.innerText))
           .reduce((accumulator, currentValue) => accumulator.then(accumulatorValue => currentValue.then(currentValueValue => accumulatorValue + currentValueValue)), Promise.resolve(''));
         // js.then(console.log)
-       
-        Promise.all([css, js]).then(([cssText, jsText]) => {
-          var blob = new Blob([`
-          <!DOCTYPE html>
-          <html lang='en'>
+        const intent = {
+          description: projectName,
+          name: projectName,
+          saveWay: 'file',
+          project: { ...formConstructor, isGridVisible: false, allElements: allElements
+          },
+        }
+        var html =  `<!DOCTYPE html>
+        <html lang="en">
         <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Template</title>
-            <style>${cssText}</style>
-            
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Document</title>
+          <script async defer src='./main.bundle.js'></script>
         </head>
         <body>
         <div class='Theme Theme_color_gpnDefault Theme_control_gpnDefault Theme_font_gpnDefault Theme_size_gpnDefault Theme_space_gpnDefault Theme_shadow_gpnDefault'>
-            ${html}
-            </div>
+          <div id='root'></div>
+        </div>
+        <div style='display: none' id='loaded_data'>${JSON.stringify(intent)}</div>
         </body>
-        </html>
-          `, ], { type: 'text/html' });
+        </html>`
+        Promise.all([css, js]).then(([cssText, jsText]) => {
+          const script = `<script>${jsText}</script>`
+          var blob = new Blob([
+            html, `<style>${cssText}</style>`
+          ], { type: 'text/html' });
           var url = URL.createObjectURL(blob);
           var a = document.createElement("a");
   a.href = url;

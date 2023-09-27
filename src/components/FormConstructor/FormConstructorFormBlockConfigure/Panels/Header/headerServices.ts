@@ -13,11 +13,14 @@ export const useProject = () => {
       const file = target.files[0]
       readFile(file).then(json => {
         //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-        const parsedFile: any = JsonHelper.parse(json)
-
+        const parsedFile: any = JSON.parse(json)
         dispatch(loadProjectFromStorage(parsedFile.project))
       })
     }
+  }
+  const onDownloadProjectFromDiv = (json: string) => {
+        const parsedFile: any = JSON.parse(json)
+        dispatch(loadProjectFromStorage(parsedFile.project))
   }
   const onSaveProject = () => {
     if (projectName) dispatch(saveProjectToFile({ name: projectName, description: '' }))
@@ -25,5 +28,5 @@ export const useProject = () => {
   const onChangeProjectName = ({ value }: { value: string | null }) => {
     setProjectName(value)
   }
-  return { onDownloadProject, onSaveProject, onChangeProjectName, projectName }
+  return { onDownloadProject, onSaveProject, onChangeProjectName, projectName,onDownloadProjectFromDiv }
 }
