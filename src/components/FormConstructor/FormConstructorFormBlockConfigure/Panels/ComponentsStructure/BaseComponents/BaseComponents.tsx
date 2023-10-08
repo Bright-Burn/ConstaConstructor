@@ -29,6 +29,7 @@ import { BaseComponentCardsList } from './BaseComponentCardsList'
 import { saveModuleToFile, addBaseElement, getAllFormElements } from '../../../../store'
 import { Text } from '@consta/uikit/Text'
 import { IconDownload } from '@consta/icons/IconDownload'
+import { JsonHelper } from '../../../../../../helpers'
 
 export const BaseComponents: FC = () => {
   const { selectedElement } = useAppSelector(state => state.formConstructor)
@@ -70,7 +71,7 @@ export const BaseComponents: FC = () => {
       filesArray.forEach(file => {
         readFile(file).then(json => {
           //TODO сделать проверку типов
-          const baseComponent: IBaseComponent = JSON.parse(json)
+          const baseComponent: IBaseComponent = JsonHelper.parse(json)
           dispatch(addBaseElement({ baseComponent: baseComponent }))
         })
       })

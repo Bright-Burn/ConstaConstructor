@@ -1,6 +1,7 @@
 import { readFile } from '../../../utils'
 import { loadProjectFromStorage, saveProjectToFile, useAppDispatch } from '../../../store'
 import { useState } from 'react'
+import { JsonHelper } from '../../../../../helpers'
 
 export const useProject = () => {
   const dispatch = useAppDispatch()
@@ -12,7 +13,7 @@ export const useProject = () => {
       const file = target.files[0]
       readFile(file).then(json => {
         //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-        const parsedFile: any = JSON.parse(json)
+        const parsedFile: any = JsonHelper.parse(json)
 
         dispatch(loadProjectFromStorage(parsedFile.project))
       })
