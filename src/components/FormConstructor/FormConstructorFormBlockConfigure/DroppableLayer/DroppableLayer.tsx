@@ -11,6 +11,7 @@ import { IDroppableLayer, AddNewElementPayload } from './types'
 import styles from './styles.module.css'
 import { FormGroupsDict } from '../FormGroupDict'
 import { useDropBaseComponent } from './useDropBaseComponent'
+import { DroppableLocalLayer } from '../DroppableLocalLayer'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerParentId }) => {
@@ -51,11 +52,14 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
     <div
       className={styles.droppableContainer}
       onDrop={handleOnDrop}
-      onDragOver={event => event.preventDefault()}
-    >
+      onDragOver={event => event.preventDefault()}>
       {elementsOnLayer.map(el => {
         let Component = FormGroupsDict[el.type]
-        return <Component key={el.id} element={el} />
+        return (
+          <DroppableLocalLayer parentElementId={el.parentId || ''}>
+            <Component key={el.id} element={el} />
+          </DroppableLocalLayer>
+        )
       })}
     </div>
   )
