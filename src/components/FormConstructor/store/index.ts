@@ -33,4 +33,8 @@ export {
   addBaseElement,
   setDraggableBaseComponent,
   getDraggedBaseComponent,
+  baseComponentsReducer,
+  baseComponentsSlice,
+  useBaseComponentsDispatch,
+  useBaseComponentsSelector,
 } from './baseComponentsItems'

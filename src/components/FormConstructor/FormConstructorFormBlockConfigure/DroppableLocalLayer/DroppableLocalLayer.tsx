@@ -1,35 +1,41 @@
 import { FC, useEffect, useState } from 'react'
 import { IDroppableLocalLayer } from './types'
-import { getElementById, useAppSelector } from '../../store'
-import { ILayoutElement, LayoutPropDirection } from '../../coreTypes'
-
-const stylesRow = {
-  paddingRight: ' 1.2rem',
-  backgroundColor: 'aquamarine',
-}
-
-const stylesColumn = {
-  paddingTop: ' 1.2rem',
-  backgroundColor: 'aquamarine',
-}
+import {
+  getDraggedBaseComponent,
+  getElementById,
+  useAppSelector,
+  useBaseComponentsSelector,
+} from '../../store'
+import { ILayoutElement } from '../../coreTypes'
+import css from './styles.module.css'
 
 export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({ children, parentElementId }) => {
+  const [classNameString, setClassNameString] = useState<string>('')
+
   const parentElement = useAppSelector(getElementById(parentElementId))
-  const [parentElementDirection, setParentElementDirection] = useState<LayoutPropDirection>()
+  const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
+  const { draggableElement } = useAppSelector(state => state.formConstructor)
 
   useEffect(() => {
     if (parentElement) {
       const layout = parentElement as ILayoutElement
       const direction = layout.props.props.constaProps.direction
-      setParentElementDirection(direction)
+
+      if (draggableBaseComponent || draggableElement) {
+        direction === 'column'
+          ? setClassNameString(css.stylesColumn)
+          : setClassNameString(css.stylesRow)
+      } else {
+        setClassNameString('')
+      }
     }
-  }, [parentElement])
+  }, [parentElement, draggableBaseComponent, draggableElement])
 
   return (
     <>
-      <div style={parentElementDirection === 'column' ? stylesColumn : stylesRow} />
+      <div className={classNameString} />
       {children}
-      <div style={parentElementDirection === 'column' ? stylesColumn : stylesRow} />
+      <div className={classNameString} />
     </>
   )
 }
