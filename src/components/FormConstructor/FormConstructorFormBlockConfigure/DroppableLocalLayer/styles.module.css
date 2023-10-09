@@ -7,3 +7,17 @@
     padding-right: 1.2rem;
     background-color: aquamarine;
 }
+
+.droppableLocalLayerFormElement {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: inherit;
+}
+
+.droppableLocalLayerLayoutElement {
+    all: inherit;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}

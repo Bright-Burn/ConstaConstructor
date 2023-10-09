@@ -24,7 +24,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   const { handleOnDropBaseComponent } = useDropBaseComponent()
 
   const handleOnDrop = (event: React.DragEvent) => {
-    event.stopPropagation()
+    // event.stopPropagation()
     event.preventDefault()
 
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
@@ -52,11 +52,14 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
     <div
       className={styles.droppableContainer}
       onDrop={handleOnDrop}
-      onDragOver={event => event.preventDefault()}>
+      onDragOver={event => {
+        event.preventDefault()
+        event.stopPropagation()
+      }}>
       {elementsOnLayer.map(el => {
         let Component = FormGroupsDict[el.type]
         return (
-          <DroppableLocalLayer parentElementId={el.parentId || ''}>
+          <DroppableLocalLayer parentElementId={el.parentId || ''} isLayout={el.type === 'Layout'}>
             <Component key={el.id} element={el} />
           </DroppableLocalLayer>
         )
