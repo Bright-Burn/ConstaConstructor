@@ -9,6 +9,7 @@ import { Tabs } from '@consta/uikit/Tabs'
 import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
 import {
+  checkViewMode,
   getComponentsStructurePanelState,
   toggleComponentsStructurePanel,
   useAppDispatch,
@@ -18,6 +19,8 @@ import { ComponentsGrid } from './ComponentGrid/ComponentsGrid'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
+  const isViewMode = useAppSelector(checkViewMode)
+ 
 
   const getTabContentRenderer = () => {
     switch (tabValue) {
@@ -37,6 +40,9 @@ export const ComponentsStructure = () => {
     dispatch(toggleComponentsStructurePanel())
   }
 
+  if(isViewMode) {
+    return null
+  }
   return (
     <>
       {componentsStructurePanelState ? (

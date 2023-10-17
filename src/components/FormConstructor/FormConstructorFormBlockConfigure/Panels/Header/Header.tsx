@@ -10,23 +10,22 @@ import { useEffect, useState } from 'react'
 import { Modal } from '@consta/uikit/Modal'
 import { HotKeyPaneNote } from './Help'
 import { ProjectName } from './ProjectName'
+import { checkViewMode, useAppSelector } from '../../../store'
 
 export const Header: React.FC = () => {
-  const { onChangeProjectName, onDownloadProject, onSaveProject, projectName, onDownloadProjectFromDiv, saveToHtml } = useProject()
+  const { onChangeProjectName, onDownloadProject, projectName, saveToHtml } = useProject()
   const [showNotes, setShowNotes] = useState<boolean>(false)
-  useEffect(() => {
-    const loadedData = document.getElementById('loaded_data')
-    
-    if(loadedData) {
-      onDownloadProjectFromDiv(loadedData.innerHTML)
-    }
-  }, [])
+ 
   const onNotesOpen = () => {
     setShowNotes(true)
   }
 
   const onNotesClose = () => {
     setShowNotes(false)
+  }
+  const isViewMode = useAppSelector(checkViewMode)
+  if(isViewMode) {
+    return null
   }
 
     return (
@@ -54,15 +53,8 @@ export const Header: React.FC = () => {
         </FileField>
       </div>
       <ProjectName onChangeProjectName={onChangeProjectName} projectName={projectName} />
-      <Button
-        label={'Экспортировать'}
-        iconLeft={IconUpload}
-        view='primary'
+      <Button  label={'Экспортировать html'}  view='primary'
         size='xs'
-        onClick={onSaveProject}
-      />
-
-      <Button  label={'Экспортировать html'}
         iconLeft={IconUpload} onClick={saveToHtml}/>
       <Modal isOpen={showNotes} onClickOutside={onNotesClose} onEsc={onNotesClose}>
         <HotKeyPaneNote onClose={onNotesClose} />

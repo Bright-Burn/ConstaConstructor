@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {
   isGridVisible: true,
+  isViewMode: false,
   componentsStructurePanelState: true,
   settingsPanelState: true,
 }
@@ -12,6 +13,9 @@ export const ViewerSlice = createSlice({
   reducers: {
     showGrid: (state, action: PayloadAction<boolean | undefined>) => {
       state.isGridVisible = action.payload !== undefined ? action.payload : !state.isGridVisible
+    },
+    setViewMode: state => {
+      state.isViewMode = true
     },
     togglePanelsByHotkey: state => {
       if (state.componentsStructurePanelState || state.settingsPanelState) {

@@ -8,6 +8,8 @@ export {
   checkIsGridVisible,
   toggleComponentsStructurePanel,
   toggleSettingsPanelState,
+  checkViewMode,
+  onSetViewMode
 } from './Viewer'
 export {
   loadProjectFromStorage,
