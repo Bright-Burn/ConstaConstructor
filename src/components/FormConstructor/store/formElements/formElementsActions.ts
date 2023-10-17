@@ -142,7 +142,7 @@ export const loadProjectFromStorage =
     dispatch(formConstructorSlice.actions.loadProjectFromJson(project))
     dispatch(ViewerSlice.actions.showGrid(project.isGridVisible))
   }
-export const saveProjectToFile =
+  export const saveProjectToFile =
   (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const viewer = state.Viewer
@@ -244,7 +244,7 @@ export const saveProjectToHtml = (projectName: string | null) =>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script async defer src='./main.bundle.js'></script>
+    <script async defer src='${document.scripts[0].src}'></script>
   </head>
   <body>
   <div class='Theme Theme_color_gpnDefault Theme_control_gpnDefault Theme_font_gpnDefault Theme_size_gpnDefault Theme_space_gpnDefault Theme_shadow_gpnDefault'>
@@ -256,7 +256,7 @@ export const saveProjectToHtml = (projectName: string | null) =>
   Promise.all([css, js]).then(([cssText, jsText]) => {
     const script = `<script>${jsText}</script>`
     var blob = new Blob([
-      html, `<style>${cssText}</style>`
+      html, `<style>${cssText}</style> `
     ], { type: 'text/html' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");

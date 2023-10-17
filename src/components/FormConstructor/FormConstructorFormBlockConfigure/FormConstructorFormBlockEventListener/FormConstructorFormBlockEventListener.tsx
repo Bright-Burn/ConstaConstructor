@@ -1,5 +1,5 @@
 import { FC, ReactNode, useEffect } from 'react'
-import { useAppDispatch, useAppSelector, deleteFormElement } from '../../store'
+import { useAppDispatch, useAppSelector, deleteFormElement, checkViewMode, loadProjectFromStorage, onSetViewMode } from '../../store'
 import css from './styles.module.css'
 import { togglePanels } from '../../store'
 import { popHistoryElement } from '../../store/history'
@@ -11,6 +11,17 @@ interface Props {
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch()
   const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const viewMode = useAppSelector(checkViewMode)
+  useEffect(() => {
+    const loadedData = document.getElementById('loaded_data')
+    
+    if(loadedData) {
+        //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
+        const parsedFile: any = JSON.parse(loadedData.innerHTML)
+        dispatch(onSetViewMode())
+        dispatch(loadProjectFromStorage(parsedFile.project))
+  }
+  }, [])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -51,6 +62,6 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [selectedElement])
-
+  console.log(children)
   return <div className={css.formConstructorEventListener}>{children}</div>
 }

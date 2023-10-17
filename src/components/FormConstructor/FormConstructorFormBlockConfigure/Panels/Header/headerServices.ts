@@ -18,10 +18,7 @@ export const useProject = () => {
       })
     }
   }
-  const onDownloadProjectFromDiv = (json: string) => {
-        const parsedFile: any = JSON.parse(json)
-        dispatch(loadProjectFromStorage(parsedFile.project))
-  }
+
   const onSaveProject = () => {
     if (projectName) dispatch(saveProjectToFile({ name: projectName, description: '' }))
   }
@@ -31,5 +28,5 @@ export const useProject = () => {
   const saveToHtml = () => {
     dispatch(saveProjectToHtml(projectName))
   }
-  return { onDownloadProject, onSaveProject, onChangeProjectName, projectName,onDownloadProjectFromDiv, saveToHtml }
+  return { onDownloadProject, onSaveProject, onChangeProjectName, projectName, saveToHtml }
 }

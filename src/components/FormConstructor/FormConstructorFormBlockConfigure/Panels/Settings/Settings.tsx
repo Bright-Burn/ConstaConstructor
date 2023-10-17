@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { saveModuleToFile, useAppDispatch, useAppSelector } from '../../../store'
+import { checkViewMode, saveModuleToFile, useAppDispatch, useAppSelector } from '../../../store'
 
 import styles from './styles.module.css'
 import { Button } from '@consta/uikit/Button'
@@ -17,6 +17,8 @@ export const Settings: FC = () => {
   const settingsPanelState = useAppSelector(getSettingsPanelState)
 
   const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const isViewMode = useAppSelector(checkViewMode)
+
   const dispatch = useAppDispatch()
 
   const changeTextFieldValue = ({ value }: { value: string | null }) => setModuleName(value)
@@ -30,7 +32,10 @@ export const Settings: FC = () => {
   const toggleSettingsPanel = () => {
     dispatch(toggleSettingsPanelState())
   }
-
+  
+  if(isViewMode) {
+    return null
+  }
   return (
     <>
       {settingsPanelState ? (
