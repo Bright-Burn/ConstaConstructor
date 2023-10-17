@@ -51,7 +51,8 @@ export const PagePopover: FC<IPagePopover> = ({
               arrowOffset={0}
               isInteractive={true}
               anchorRef={anchorRef}
-              equalAnchorWidth={false}>
+              equalAnchorWidth={false}
+            >
               {pages.map((page, index) => {
                 if (index < 8) return
                 return (

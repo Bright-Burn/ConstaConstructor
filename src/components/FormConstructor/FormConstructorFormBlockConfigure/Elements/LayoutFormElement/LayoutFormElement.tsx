@@ -57,11 +57,13 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
         overflow: 'hidden',
         transition: 'none',
         ...activeSide,
-      }}>
+      }}
+    >
       <SelectableLayer
         parentElementId={element.id}
         elementType={FormGroupsDictTypes.Layout}
-        elementTypeUsage={ElementTypes.FormGroups}>
+        elementTypeUsage={ElementTypes.FormGroups}
+      >
         <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />
       </SelectableLayer>
     </Layout>

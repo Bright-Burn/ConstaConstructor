@@ -79,7 +79,8 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
         label='Название вариантов'
         size='xs'
         isOpen={isOpenOptions}
-        onClick={() => setOpenOptions(!isOpenOptions)}>
+        onClick={() => setOpenOptions(!isOpenOptions)}
+      >
         {itemsProps.items.map((line, index) => {
           return (
             <>

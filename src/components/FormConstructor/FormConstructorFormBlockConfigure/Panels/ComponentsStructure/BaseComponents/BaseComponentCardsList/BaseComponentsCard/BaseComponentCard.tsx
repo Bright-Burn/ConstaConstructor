@@ -20,7 +20,8 @@ export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
     <div
       className={`${styles.componentCard}`}
       draggable={true}
-      onDragStart={onDragFormElementStart}>
+      onDragStart={onDragFormElementStart}
+    >
       <Text className={styles.text} size='xs'>
         {baseComponent.description}
       </Text>

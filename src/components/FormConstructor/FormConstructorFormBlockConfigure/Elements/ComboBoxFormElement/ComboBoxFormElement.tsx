@@ -41,7 +41,8 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.ComboBox}>
+      elementType={FormElementDictTypes.ComboBox}
+    >
       <Combobox
         {...comboboxProps}
         groups={comboboxProps.groupsActive ? comboboxProps.groups : undefined}

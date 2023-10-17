@@ -189,7 +189,8 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         label='Название вариантов'
         size='xs'
         isOpen={isOpenVariable}
-        onClick={() => setOpenVariable(!isOpenVariable)}>
+        onClick={() => setOpenVariable(!isOpenVariable)}
+      >
         {itemsProps.items.map((line, index) => {
           return (
             <>
@@ -221,7 +222,8 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         label='Настройка выпадающего списка'
         size='xs'
         isOpen={isOpenList}
-        onClick={() => setOpenList(!isOpenList)}>
+        onClick={() => setOpenList(!isOpenList)}
+      >
         <div className={styles.columnSettingsWithoutRow}>
           <Select
             label='Форма'

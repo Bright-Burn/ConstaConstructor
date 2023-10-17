@@ -132,7 +132,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
                       role='option'
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
-                      onClick={onClick}>
+                      onClick={onClick}
+                    >
                       {checkValueIsIconNames(item) &&
                         React.createElement(Icons[item], { size: 'xs' })}
                       <Text size='xs'>{item}</Text>

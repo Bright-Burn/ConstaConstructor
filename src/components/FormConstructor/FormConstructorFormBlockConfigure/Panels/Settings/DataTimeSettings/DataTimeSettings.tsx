@@ -113,7 +113,8 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           label='Настройка мероприятий'
           size='xs'
           isOpen={isOpenEvents}
-          onClick={() => setOpenEvents(!isOpenEvents)}>
+          onClick={() => setOpenEvents(!isOpenEvents)}
+        >
           <div className={styles.collapseSettings}>
             <TextField
               label='Количество мероприятий'

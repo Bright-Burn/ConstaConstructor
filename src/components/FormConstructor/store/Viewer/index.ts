@@ -3,12 +3,12 @@ export {
   toggleGrid,
   toggleComponentsStructurePanel,
   toggleSettingsPanelState,
-  onSetViewMode
+  onSetViewMode,
 } from './viewerActions'
 export { ViewerSlice } from './viewerSlice'
 export {
   getComponentsStructurePanelState,
   getSettingsPanelState,
   checkIsGridVisible,
-  checkViewMode
+  checkViewMode,
 } from './viewerSelectors'

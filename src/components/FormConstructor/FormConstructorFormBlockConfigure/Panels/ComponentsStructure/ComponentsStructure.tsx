@@ -20,7 +20,6 @@ import { ComponentsGrid } from './ComponentGrid/ComponentsGrid'
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
   const isViewMode = useAppSelector(checkViewMode)
- 
 
   const getTabContentRenderer = () => {
     switch (tabValue) {
@@ -40,7 +39,7 @@ export const ComponentsStructure = () => {
     dispatch(toggleComponentsStructurePanel())
   }
 
-  if(isViewMode) {
+  if (isViewMode) {
     return null
   }
   return (

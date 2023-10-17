@@ -142,7 +142,7 @@ export const loadProjectFromStorage =
     dispatch(formConstructorSlice.actions.loadProjectFromJson(project))
     dispatch(ViewerSlice.actions.showGrid(project.isGridVisible))
   }
-  export const saveProjectToFile =
+export const saveProjectToFile =
   (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const viewer = state.Viewer
@@ -219,52 +219,60 @@ export const saveProjectToMemoryStorage =
     //это просто экшн
   }
 
-export const saveProjectToHtml = (projectName: string | null) => 
-  (dispatch: AppDispatch, getState: () => RootState) => {
+export const saveProjectToHtml =
+  (projectName: string | null) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
 
-    var css = Array.from(document.styleSheets)
-    .map(styleSheet => Array.from(styleSheet.cssRules)                     
-      .map(rule => rule.cssText)
-      .join('\n'))
-    .join('\n');
-  var js = Array.from(document.scripts)
-    .map(script => script.src ? fetch(script.src).then(response => response.text()) : Promise.resolve(script.innerText))
-    .reduce((accumulator, currentValue) => accumulator.then(accumulatorValue => currentValue.then(currentValueValue => accumulatorValue + currentValueValue)), Promise.resolve(''));
-  const intent = {
-    description: projectName,
-    name: projectName,
-    saveWay: 'file',
-    project: { ...state.formConstructor, isGridVisible: false, allElements: selectAll(state)
-    },
-  }
-  var html =  `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script async defer src='${document.scripts[0].src}'></script>
-  </head>
-  <body>
-  <div class='Theme Theme_color_gpnDefault Theme_control_gpnDefault Theme_font_gpnDefault Theme_size_gpnDefault Theme_space_gpnDefault Theme_shadow_gpnDefault'>
-    <div id='root'></div>
-  </div>
-  <div style='display: none' id='loaded_data'>${JSON.stringify(intent)}</div>
-  </body>
-  </html>`
-  Promise.all([css, js]).then(([cssText, jsText]) => {
-    const script = `<script>${jsText}</script>`
-    var blob = new Blob([
-      html, `<style>${cssText}</style> `
-    ], { type: 'text/html' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-a.href = url;
-a.download = "webpage.html";
-a.click();
-  });
-
+    let css = Array.from(document.styleSheets)
+      .map(styleSheet =>
+        Array.from(styleSheet.cssRules)
+          .map(rule => rule.cssText)
+          .join('\n'),
+      )
+      .join('\n')
+      let js = Array.from(document.scripts)
+      .map(script =>
+        script.src
+          ? fetch(script.src).then(response => response.text())
+          : Promise.resolve(script.innerText),
+      )
+      .reduce(
+        (accumulator, currentValue) =>
+          accumulator.then(accumulatorValue =>
+            currentValue.then(currentValueValue => accumulatorValue + currentValueValue),
+          ),
+        Promise.resolve(''),
+      )
+    const intent = {
+      description: projectName,
+      name: projectName,
+      saveWay: 'file',
+      project: { ...state.formConstructor, isGridVisible: false, allElements: selectAll(state) },
+    }
+    let html = `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Document</title>
+          <script async defer src='${document.scripts[0].src}'></script>
+        </head>
+        <body>
+        <div class='Theme Theme_color_gpnDefault Theme_control_gpnDefault Theme_font_gpnDefault Theme_size_gpnDefault Theme_space_gpnDefault Theme_shadow_gpnDefault'>
+          <div id='root'></div>
+        </div>
+        <div style='display: none' id='loaded_data'>${JSON.stringify(intent)}</div>
+        </body>
+        </html>`
+    Promise.all([css, js]).then(([cssText, jsText]) => {
+      const script = `<script>${jsText}</script>`
+      var blob = new Blob([html, `<style>${cssText}</style> `], { type: 'text/html' })
+      var url = URL.createObjectURL(blob)
+      var a = document.createElement('a')
+      a.href = url
+      a.download = 'webpage.html'
+      a.click()
+    })
   }
 
 export interface IFormConstructorSerializable {
@@ -277,4 +285,3 @@ export interface IFormConstructorSerializable {
   selectedPageId: string
   numberOfPages: number
 }
-

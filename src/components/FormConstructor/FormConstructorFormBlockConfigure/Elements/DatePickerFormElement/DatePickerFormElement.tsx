@@ -18,7 +18,8 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.DatePicker}>
+      elementType={FormElementDictTypes.DatePicker}
+    >
       <DatePicker
         {...datePickerProps}
         renderAdditionalControls={() =>

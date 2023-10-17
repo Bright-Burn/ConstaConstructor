@@ -158,7 +158,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
         label='Название вариантов'
         size='xs'
         isOpen={isOpenOptions}
-        onClick={() => setIsOpenOptions(!isOpenOptions)}>
+        onClick={() => setIsOpenOptions(!isOpenOptions)}
+      >
         {itemsProps.items.map((line, index) => {
           return (
             <>
@@ -189,7 +190,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
                       role='option'
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
-                      onClick={onClick}>
+                      onClick={onClick}
+                    >
                       {checkValueIsIconNames(item) &&
                         React.createElement(Icons[item], {
                           size: 'xs',

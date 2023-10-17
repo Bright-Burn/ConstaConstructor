@@ -135,7 +135,8 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                         role='option'
                         aria-selected={active}
                         onMouseEnter={onMouseEnter}
-                        onClick={onClick}>
+                        onClick={onClick}
+                      >
                         {React.createElement(Icons[item as IconNames], { size: 'xs' })}
                         <Text size='xs'>{item}</Text>
                       </div>

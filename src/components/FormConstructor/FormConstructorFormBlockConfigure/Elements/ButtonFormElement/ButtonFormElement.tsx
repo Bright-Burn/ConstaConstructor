@@ -44,7 +44,8 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         parentElementId={element.id}
         elementTypeUsage={ElementTypes.FormElement}
         elementType={FormElementDictTypes.Button}
-        className={isFilled ? 'container-row flex-grow-1' : ''}>
+        className={isFilled ? 'container-row flex-grow-1' : ''}
+      >
         <Button
           {...element.props.props}
           onClick={onButtonClick}
