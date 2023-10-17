@@ -10,6 +10,7 @@ import {
 import css from './styles.module.css'
 import { togglePanels } from '../../store'
 import { popHistoryElement } from '../../store/history'
+import { JsonHelper } from '../../../../helpers'
 
 interface Props {
   children?: ReactNode
@@ -24,7 +25,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
 
     if (loadedData) {
       //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-      const parsedFile: any = JSON.parse(loadedData.innerHTML)
+      const parsedFile: any = JsonHelper.parse(loadedData.innerHTML)
       dispatch(onSetViewMode())
       dispatch(loadProjectFromStorage(parsedFile.project))
     }
