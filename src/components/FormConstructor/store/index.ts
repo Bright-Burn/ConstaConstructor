@@ -26,6 +26,7 @@ export {
   saveModuleToFile,
   getElementsOnLayer,
   saveProjectToFile,
+  saveProjectToHtml,
   changePageName,
 } from './formElements'
 export type { IFormConstructorSerializable } from './formElements'
