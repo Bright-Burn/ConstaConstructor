@@ -173,7 +173,8 @@ export const SelectSettings: FC<SelectSettingsType> = ({
         label='Название пунктов в меню'
         size='xs'
         isOpen={isOpenVariable}
-        onClick={() => setOpenVariable(!isOpenVariable)}>
+        onClick={() => setOpenVariable(!isOpenVariable)}
+      >
         {itemsProps.items.map((line, index) => {
           return (
             <div className={styles.rowSettingsCollapse}>
@@ -204,7 +205,8 @@ export const SelectSettings: FC<SelectSettingsType> = ({
         label='Настройка выпадающего списка'
         size='xs'
         isOpen={isOpenList}
-        onClick={() => setOpenList(!isOpenList)}>
+        onClick={() => setOpenList(!isOpenList)}
+      >
         <div className={styles.columnSettingsWithoutRow}>
           <Select
             className={styles.widthTopLeftFlex}

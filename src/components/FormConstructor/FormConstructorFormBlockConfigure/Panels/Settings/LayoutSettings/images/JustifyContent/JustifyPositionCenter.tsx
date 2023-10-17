@@ -9,7 +9,8 @@ const JustifyPositionCenterSizeXs = (props: React.SVGProps<SVGSVGElement>) => {
       viewBox='0 0 12 12'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      {...props}>
+      {...props}
+    >
       <path d='M3 4H5V8H3V4Z' fill='black' />
       <path d='M6 4H8V8H6V4Z' fill='black' />
       <path d='M1 10L1 11H2L2 10H1Z' fill='black' />

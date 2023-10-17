@@ -181,16 +181,19 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                   aria-selected={active}
                   aria-hidden='true'
                   onMouseEnter={onMouseEnter}
-                  onClick={onClick}>
+                  onClick={onClick}
+                >
                   {item.name === 'hidden' ? (
                     <Text
                       className={`${styles.selectElement} ${active ? styles.BorderLeftItem : ''}`}
-                      size='xs'>
+                      size='xs'
+                    >
                       Без стиля (скрытый)
                     </Text>
                   ) : (
                     <div
-                      className={`${styles.selectElement} ${active ? styles.BorderLeftItem : ''}`}>
+                      className={`${styles.selectElement} ${active ? styles.BorderLeftItem : ''}`}
+                    >
                       {item.icon && funcName(item.icon)}
                       <Text className={`${active ? styles.SelectItemActive : ''}`} size='xs'>
                         {item.name}

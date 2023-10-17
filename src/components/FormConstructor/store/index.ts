@@ -9,7 +9,7 @@ export {
   toggleComponentsStructurePanel,
   toggleSettingsPanelState,
   checkViewMode,
-  onSetViewMode
+  onSetViewMode,
 } from './Viewer'
 export {
   loadProjectFromStorage,

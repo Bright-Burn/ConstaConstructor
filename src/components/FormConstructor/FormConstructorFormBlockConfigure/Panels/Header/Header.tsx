@@ -15,7 +15,7 @@ import { checkViewMode, useAppSelector } from '../../../store'
 export const Header: React.FC = () => {
   const { onChangeProjectName, onDownloadProject, projectName, saveToHtml } = useProject()
   const [showNotes, setShowNotes] = useState<boolean>(false)
- 
+
   const onNotesOpen = () => {
     setShowNotes(true)
   }
@@ -24,11 +24,11 @@ export const Header: React.FC = () => {
     setShowNotes(false)
   }
   const isViewMode = useAppSelector(checkViewMode)
-  if(isViewMode) {
+  if (isViewMode) {
     return null
   }
 
-    return (
+  return (
     <div className={`${style.headerContainer} container-row`}>
       <div className='container-row align-center '>
         <MainIcon />
@@ -53,9 +53,13 @@ export const Header: React.FC = () => {
         </FileField>
       </div>
       <ProjectName onChangeProjectName={onChangeProjectName} projectName={projectName} />
-      <Button  label={'Экспортировать html'}  view='primary'
+      <Button
+        label={'Экспортировать html'}
+        view='primary'
         size='xs'
-        iconLeft={IconUpload} onClick={saveToHtml}/>
+        iconLeft={IconUpload}
+        onClick={saveToHtml}
+      />
       <Modal isOpen={showNotes} onClickOutside={onNotesClose} onEsc={onNotesClose}>
         <HotKeyPaneNote onClose={onNotesClose} />
       </Modal>

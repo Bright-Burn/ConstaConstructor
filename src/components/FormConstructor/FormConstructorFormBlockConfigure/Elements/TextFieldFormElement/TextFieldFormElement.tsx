@@ -19,7 +19,8 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.TextField}
-      className={isFilled ? 'container-row flex-grow-1' : ''}>
+      className={isFilled ? 'container-row flex-grow-1' : ''}
+    >
       <TextField style={{ width: '100%' }} {...textFieldProps} />
     </SelectableLayer>
   )

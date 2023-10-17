@@ -8,7 +8,7 @@
   min-width: 35rem;
   max-width: 35rem;
 
-  border-right: 1px solid var(--color-typo-system)
+  border-right: 1px solid var(--color-typo-system);
 }
 
 .tabs :global(.TabsTab:before) {
@@ -18,7 +18,7 @@
 .tabs {
   height: 3.2rem;
   display: flex;
-  border-bottom: 1px solid var(--color-typo-system)
+  border-bottom: 1px solid var(--color-typo-system);
 }
 
 .tabs_margin {

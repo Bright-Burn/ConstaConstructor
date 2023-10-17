@@ -95,7 +95,8 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
                   role='option'
                   aria-selected={active}
                   onMouseEnter={onMouseEnter}
-                  onClick={onClick}>
+                  onClick={onClick}
+                >
                   {React.createElement(Icons[item], { size: 'xs' })}
                   <Text size='xs'>{item}</Text>
                 </div>

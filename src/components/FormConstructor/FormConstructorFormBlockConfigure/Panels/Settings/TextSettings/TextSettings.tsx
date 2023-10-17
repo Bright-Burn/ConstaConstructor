@@ -102,7 +102,8 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
             size='xs'
             label='Кастомные настройки'
             isOpen={isOpen}
-            onClick={() => setOpen(!isOpen)}>
+            onClick={() => setOpen(!isOpen)}
+          >
             <div className={styles.rowSettings}>
               <Select
                 getItemKey={(item: string) => item}
@@ -128,7 +129,8 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
                 className={styles.paddingCollapse}
                 color='color-primary'
                 size='xs'
-                view='secondary'>
+                view='secondary'
+              >
                 Преобразование текста
               </Text>
               <ChoiceGroup

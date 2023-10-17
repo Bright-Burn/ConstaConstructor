@@ -20,7 +20,8 @@ export const UserFormElement: FC<IUserFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.User}
-      className={isFilled ? 'container-row flex-grow-1' : ''}>
+      className={isFilled ? 'container-row flex-grow-1' : ''}
+    >
       <User {...userProps} />
     </SelectableLayer>
   )

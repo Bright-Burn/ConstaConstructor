@@ -3,7 +3,7 @@ import { FormConstructorFormBlockConfigure } from './FormConstructorFormBlockCon
 import css from './styles.module.css'
 
 export const FormConstructor: FC = () => {
-    return (
+  return (
     <div className={css.formConstructor}>
       <FormConstructorFormBlockConfigure>
         <FormConstructorFormBlockConfigure.Header />

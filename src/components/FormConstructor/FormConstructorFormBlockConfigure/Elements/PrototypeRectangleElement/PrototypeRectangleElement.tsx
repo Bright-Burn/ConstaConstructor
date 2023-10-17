@@ -13,7 +13,8 @@ export const PrototypeRectangleElement: FC<IPrototypeRectangleElement> = ({ elem
       <SelectableLayer
         parentElementId={element.id}
         elementType={'PrototypeRectangleElement'}
-        elementTypeUsage={'FormElement'}>
+        elementTypeUsage={'FormElement'}
+      >
         <div style={{ width, height, zIndex, background: '#ccc' }}></div>
       </SelectableLayer>
     </div>

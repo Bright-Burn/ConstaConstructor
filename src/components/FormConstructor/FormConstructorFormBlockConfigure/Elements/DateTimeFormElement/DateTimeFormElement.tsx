@@ -18,7 +18,8 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.DataTime}>
+      elementType={FormElementDictTypes.DataTime}
+    >
       <DateTime
         {...dataTimeProps}
         value={timeValue}

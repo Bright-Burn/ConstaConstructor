@@ -193,7 +193,8 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             label='Настройка выпадающего календаря'
             size='xs'
             isOpen={isOpenDate}
-            onClick={() => setOpenDate(!isOpenDate)}>
+            onClick={() => setOpenDate(!isOpenDate)}
+          >
             <Select
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
@@ -230,7 +231,8 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               label='Настройка мероприятий'
               size='xs'
               isOpen={isOpenEvents}
-              onClick={() => setOpenEvents(!isOpenEvents)}>
+              onClick={() => setOpenEvents(!isOpenEvents)}
+            >
               <div className={styles.collapseSettings}>
                 <TextField
                   label='Количество мероприятий'

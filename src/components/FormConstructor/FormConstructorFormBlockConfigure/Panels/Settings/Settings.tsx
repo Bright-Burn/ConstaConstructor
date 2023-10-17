@@ -32,8 +32,8 @@ export const Settings: FC = () => {
   const toggleSettingsPanel = () => {
     dispatch(toggleSettingsPanelState())
   }
-  
-  if(isViewMode) {
+
+  if (isViewMode) {
     return null
   }
   return (

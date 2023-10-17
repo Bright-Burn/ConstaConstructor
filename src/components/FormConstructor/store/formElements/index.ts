@@ -12,7 +12,7 @@ export {
   deleteFormElement,
   saveModuleToFile,
   changePageName,
-  saveProjectToHtml
+  saveProjectToHtml,
 } from './formElementsActions'
 export type { IFormConstructorSerializable } from './formElementsActions'
 export {
