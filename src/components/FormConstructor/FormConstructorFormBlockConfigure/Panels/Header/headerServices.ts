@@ -1,5 +1,5 @@
 import { readFile } from '../../../utils'
-import { loadProjectFromStorage, saveProjectToFile, useAppDispatch } from '../../../store'
+import { loadProjectFromStorage, saveProjectToFile, saveProjectToHtml, useAppDispatch } from '../../../store'
 import { useState } from 'react'
 import { JsonHelper } from '../../../../../helpers'
 
@@ -28,5 +28,8 @@ export const useProject = () => {
   const onChangeProjectName = ({ value }: { value: string | null }) => {
     setProjectName(value)
   }
-  return { onDownloadProject, onSaveProject, onChangeProjectName, projectName,onDownloadProjectFromDiv }
+  const saveToHtml = () => {
+    dispatch(saveProjectToHtml(projectName))
+  }
+  return { onDownloadProject, onSaveProject, onChangeProjectName, projectName,onDownloadProjectFromDiv, saveToHtml }
 }
