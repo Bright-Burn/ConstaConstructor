@@ -12,6 +12,8 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { ILayoutFormElement } from './types'
 import style from './styles.module.css'
 import { checkIsGridVisible, useAppSelector } from '../../../store'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const [layoutProps, setLayoutProps] = useState<LayoutElementPropsStyles>()
@@ -57,15 +59,15 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
         overflow: 'hidden',
         transition: 'none',
         ...activeSide,
-      }}
-    >
-      <SelectableLayer
-        parentElementId={element.id}
-        elementType={FormGroupsDictTypes.Layout}
-        elementTypeUsage={ElementTypes.FormGroups}
-      >
-        <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />
-      </SelectableLayer>
+      }}>
+      <DroppableLocalLayer parentElementId={element.parentId || rootId} isLayout={true}>
+        <SelectableLayer
+          parentElementId={element.id}
+          elementType={FormGroupsDictTypes.Layout}
+          elementTypeUsage={ElementTypes.FormGroups}>
+          <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />
+        </SelectableLayer>
+      </DroppableLocalLayer>
     </Layout>
   )
 }

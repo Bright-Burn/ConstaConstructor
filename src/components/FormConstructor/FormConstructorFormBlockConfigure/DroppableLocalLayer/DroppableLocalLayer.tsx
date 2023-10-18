@@ -15,8 +15,9 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   isLayout,
 }) => {
   const [classNameString, setClassNameString] = useState<string>('')
-  const [isOnDragOver, setIsOnDragOver] = useState<boolean>(false)
+  const [mainClassNameString, setMainClassNameString] = useState<string>('')
 
+  const [isOnDragOver, setIsOnDragOver] = useState<boolean>(false)
   const parentElement = useAppSelector(getElementById(parentElementId))
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
   const { draggableElement } = useAppSelector(state => state.formConstructor)
@@ -36,22 +37,23 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
     }
   }, [parentElement, draggableBaseComponent, draggableElement, isOnDragOver])
 
+  useEffect(() => {
+    let containerClass = isLayout
+      ? css.droppableLocalLayerLayoutElement
+      : css.droppableLocalLayerFormElement
+    setMainClassNameString(containerClass)
+  }, [isLayout, parentElementId])
+
   const onDargEnter = (e: React.DragEvent) => {
     setIsOnDragOver(true)
-    console.log('here')
+    console.log('On Drag enter', parentElementId)
     e.stopPropagation()
     e.preventDefault()
   }
 
   const onDargLeave = (e: React.DragEvent) => {
+    console.log('Drag leave', parentElementId)
     setIsOnDragOver(false)
-    console.log('Leave cauth')
-    e.stopPropagation()
-    e.preventDefault()
-  }
-
-  const onDragOver = (e: React.DragEvent) => {
-    console.log('Leave cauth')
     e.stopPropagation()
     e.preventDefault()
   }
@@ -63,21 +65,38 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
     e.preventDefault()
   }
 
+  const onDropContainer = (e: React.DragEvent) => {
+    setIsOnDragOver(false)
+    console.log('drop catch')
+  }
+
+  const onDragLeaveChild = (e: React.DragEvent) => {
+    console.log('Drag leave child')
+  }
+
+  const onDragEnterChild = (e: React.DragEvent) => {
+    console.log('Drag enter chiled')
+  }
+
   return (
     <div
-      className={`${
-        isLayout ? css.droppableLocalLayerLayoutElement : css.droppableLocalLayerFormElement
-      }`}
+      className={mainClassNameString}
       onDragEnter={onDargEnter}
       onDragLeave={onDargLeave}
-      onDragOver={onDragOver}
-      onDrop={() => {
-        setIsOnDragOver(false)
-        console.log('drop catch')
-      }}>
-      <div className={classNameString} onDrop={onDrop} />
+      onDrop={onDropContainer}>
+      <div
+        className={classNameString}
+        onDragEnter={onDragEnterChild}
+        onDrop={onDrop}
+        onDragLeave={onDragLeaveChild}
+      />
       {children}
-      <div className={classNameString} onDrop={onDrop} />
+      <div
+        className={classNameString}
+        onDragEnter={onDragEnterChild}
+        onDrop={onDrop}
+        onDragLeave={onDragLeaveChild}
+      />
     </div>
   )
 }

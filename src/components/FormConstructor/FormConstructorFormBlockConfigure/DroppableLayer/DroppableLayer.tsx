@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import {
   useAppSelector,
   useAppDispatch,
@@ -58,8 +58,11 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
       }}>
       {elementsOnLayer.map(el => {
         let Component = FormGroupsDict[el.type]
+        if (el.type === 'Layout') {
+          return <Component key={el.id} element={el} />
+        }
         return (
-          <DroppableLocalLayer parentElementId={el.parentId || ''} isLayout={el.type === 'Layout'}>
+          <DroppableLocalLayer parentElementId={el.parentId || ''} isLayout={false}>
             <Component key={el.id} element={el} />
           </DroppableLocalLayer>
         )
