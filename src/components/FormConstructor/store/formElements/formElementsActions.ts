@@ -227,6 +227,7 @@ export const saveProjectToHtml =
       .map(styleSheet =>
         Array.from(styleSheet.cssRules)
           .map(rule => rule.cssText)
+          .filter(rule => !rule.includes('border-block'))
           .join('\n'),
       )
       .join('\n')
