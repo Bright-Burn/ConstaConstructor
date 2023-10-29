@@ -60,7 +60,10 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
         transition: 'none',
         ...activeSide,
       }}>
-      <DroppableLocalLayer parentElementId={element.parentId || rootId} isLayout={true}>
+      <DroppableLocalLayer
+        parentElementId={element.parentId || rootId}
+        isLayout={true}
+        id={element.id}>
         <SelectableLayer
           parentElementId={element.id}
           elementType={FormGroupsDictTypes.Layout}

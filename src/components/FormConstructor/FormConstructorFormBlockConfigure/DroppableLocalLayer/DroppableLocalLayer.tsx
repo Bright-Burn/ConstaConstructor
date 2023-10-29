@@ -6,36 +6,41 @@ import {
   useAppSelector,
   useBaseComponentsSelector,
 } from '../../store'
-import { ILayoutElement } from '../../coreTypes'
+import { ILayoutElement, LayoutPropDirection } from '../../coreTypes'
 import css from './styles.module.css'
+
+type MousePos = {
+  x: number
+  y: number
+}
+
+const mousePosDefault = { x: 0, y: 0 }
 
 export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   children,
   parentElementId,
+  id,
   isLayout,
 }) => {
-  const [classNameString, setClassNameString] = useState<string>('')
+  const [borderStyle, setBorderStyle] = useState({})
+  const [direction, setDirection] = useState<LayoutPropDirection>()
+  const [mouseStartPos, setMouseStartPos] = useState<MousePos>(mousePosDefault)
   const [mainClassNameString, setMainClassNameString] = useState<string>('')
 
-  const [isOnDragOver, setIsOnDragOver] = useState<boolean>(false)
   const parentElement = useAppSelector(getElementById(parentElementId))
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
   const { draggableElement } = useAppSelector(state => state.formConstructor)
 
   useEffect(() => {
-    if (parentElement && isOnDragOver) {
+    if (parentElement && mouseStartPos) {
       const layout = parentElement as ILayoutElement
       const direction = layout.props.props.constaProps.direction
 
       if (draggableBaseComponent || draggableElement) {
-        direction === 'column'
-          ? setClassNameString(`${css.stylesColumn}`)
-          : setClassNameString(`${css.stylesRow}`)
+        setDirection(direction)
       }
-    } else {
-      setClassNameString('')
     }
-  }, [parentElement, draggableBaseComponent, draggableElement, isOnDragOver])
+  }, [parentElement, draggableBaseComponent, draggableElement, mouseStartPos])
 
   useEffect(() => {
     let containerClass = isLayout
@@ -45,58 +50,83 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   }, [isLayout, parentElementId])
 
   const onDargEnter = (e: React.DragEvent) => {
-    setIsOnDragOver(true)
-    console.log('On Drag enter', parentElementId)
-    e.stopPropagation()
-    e.preventDefault()
+    console.log('On Drag enter', id)
+    stopProp(e)
   }
 
-  const onDargLeave = (e: React.DragEvent) => {
-    console.log('Drag leave', parentElementId)
-    setIsOnDragOver(false)
-    e.stopPropagation()
-    e.preventDefault()
-  }
-
-  const onDrop = (e: React.DragEvent) => {
-    console.log('Drop')
-    setIsOnDragOver(false)
-    e.stopPropagation()
-    e.preventDefault()
+  const onDragLeave = (e: React.DragEvent) => {
+    console.log('Drag leave', id)
+    setMouseStartPos({ ...mousePosDefault })
+    setBorderStyle({})
+    stopProp(e)
   }
 
   const onDropContainer = (e: React.DragEvent) => {
-    setIsOnDragOver(false)
     console.log('drop catch')
+    stopProp(e)
   }
 
-  const onDragLeaveChild = (e: React.DragEvent) => {
-    console.log('Drag leave child')
+  const stopProp = (e: React.DragEvent) => {
+    e.stopPropagation()
+    e.preventDefault()
   }
 
-  const onDragEnterChild = (e: React.DragEvent) => {
-    console.log('Drag enter chiled')
+  const onDragOver = (e: React.DragEvent) => {
+    if (draggableBaseComponent || draggableElement) {
+      const newMousePos = { x: e.clientX, y: e.clientY }
+      switch (direction) {
+        case 'column': {
+          const newDif = newMousePos.y - mouseStartPos.y
+          handleDif(newDif)
+          break
+        }
+        case 'row': {
+          const newDif = newMousePos.x - mouseStartPos.x
+          handleDif(newDif)
+          break
+        }
+      }
+      setMouseStartPos(newMousePos)
+    }
+  }
+
+  const handleDif = (dif: number) => {
+    console.log(dif)
+    switch (direction) {
+      case 'column': {
+        if (dif > 0) {
+          setBorderStyle({ borderTop: '5px solid red' })
+        } else if (dif < 0) {
+          setBorderStyle({ borderBottom: '5px solid red' })
+        } else {
+          setBorderStyle({})
+        }
+        break
+      }
+      case 'row': {
+        if (dif > 0) {
+          setBorderStyle({ borderRight: '5px solid red' })
+        } else if (dif < 0) {
+          setBorderStyle({ borderLeft: '5px solid red' })
+        } else {
+          setBorderStyle({})
+        }
+        break
+      }
+      default:
+        setBorderStyle({})
+    }
   }
 
   return (
     <div
       className={mainClassNameString}
+      style={borderStyle}
       onDragEnter={onDargEnter}
-      onDragLeave={onDargLeave}
-      onDrop={onDropContainer}>
-      <div
-        className={classNameString}
-        onDragEnter={onDragEnterChild}
-        onDrop={onDrop}
-        onDragLeave={onDragLeaveChild}
-      />
+      onDrop={onDropContainer}
+      onDragLeave={onDragLeave}
+      onDragOver={onDragOver}>
       {children}
-      <div
-        className={classNameString}
-        onDragEnter={onDragEnterChild}
-        onDrop={onDrop}
-        onDragLeave={onDragLeaveChild}
-      />
     </div>
   )
 }

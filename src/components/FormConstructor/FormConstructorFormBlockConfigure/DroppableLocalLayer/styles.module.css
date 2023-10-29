@@ -1,13 +1,3 @@
-.stylesColumn {
-    height: 2.4rem;
-    background-color: aquamarine;
-}
-
-.stylesRow {
-    width: 2.4rem;
-    background-color: aquamarine;
-}
-
 .droppableLocalLayerLayoutElement {
     display: inherit;
     flex: inherit;
@@ -18,8 +8,6 @@
 }
 
 .droppableLocalLayerFormElement {
-    width: fit-content;
-    height: fit-content;
     display: flex;
     flex-direction: inherit;
 }
