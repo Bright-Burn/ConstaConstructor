@@ -16,6 +16,52 @@ type MousePos = {
 
 const mousePosDefault = { x: 0, y: 0 }
 
+const calcDiff = (
+  direction: LayoutPropDirection,
+  newMousePos: MousePos,
+  mouseStartPos: MousePos,
+) => {
+  let newDif = 0
+  switch (direction) {
+    case 'column': {
+      newDif = newMousePos.y - mouseStartPos.y
+      break
+    }
+    case 'row': {
+      newDif = newMousePos.x - mouseStartPos.x
+      break
+    }
+  }
+  return newDif
+}
+
+const getBorderStyle = (direction: LayoutPropDirection | undefined, dif: number) => {
+  switch (direction) {
+    case 'column': {
+      if (dif < 0) {
+        return { borderTop: '5px solid red' }
+      } else if (dif > 0) {
+        return { borderBottom: '5px solid red' }
+      } else {
+        return {}
+      }
+      break
+    }
+    case 'row': {
+      if (dif > 0) {
+        return { borderRight: '5px solid red' }
+      } else if (dif < 0) {
+        return { borderLeft: '5px solid red' }
+      } else {
+        return {}
+      }
+      break
+    }
+    default:
+      return {}
+  }
+}
+
 export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   children,
   parentElementId,
@@ -24,7 +70,7 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
 }) => {
   const [borderStyle, setBorderStyle] = useState({})
   const [direction, setDirection] = useState<LayoutPropDirection>()
-  const [mouseStartPos, setMouseStartPos] = useState<MousePos>(mousePosDefault)
+  const [mouseStartPos, setMouseStartPos] = useState<MousePos | null>(null)
   const [mainClassNameString, setMainClassNameString] = useState<string>('')
 
   const parentElement = useAppSelector(getElementById(parentElementId))
@@ -32,15 +78,13 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   const { draggableElement } = useAppSelector(state => state.formConstructor)
 
   useEffect(() => {
-    if (parentElement && mouseStartPos) {
+    if (parentElement) {
       const layout = parentElement as ILayoutElement
       const direction = layout.props.props.constaProps.direction
-
-      if (draggableBaseComponent || draggableElement) {
-        setDirection(direction)
-      }
+      console.log(direction)
+      setDirection(direction)
     }
-  }, [parentElement, draggableBaseComponent, draggableElement, mouseStartPos])
+  }, [parentElement])
 
   useEffect(() => {
     let containerClass = isLayout
@@ -51,19 +95,23 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
 
   const onDargEnter = (e: React.DragEvent) => {
     console.log('On Drag enter', id)
+    setMouseStartPos({ ...mousePosDefault })
     stopProp(e)
   }
 
   const onDragLeave = (e: React.DragEvent) => {
-    console.log('Drag leave', id)
-    setMouseStartPos({ ...mousePosDefault })
-    setBorderStyle({})
+    console.log('On Drag leave', id)
+    setDegault()
     stopProp(e)
   }
 
   const onDropContainer = (e: React.DragEvent) => {
     console.log('drop catch')
-    stopProp(e)
+    if (mouseStartPos && (mouseStartPos.x === 0 || mousePosDefault.y === 0)) {
+      /// Call reorder here
+      stopProp(e)
+    }
+    setDegault()
   }
 
   const stopProp = (e: React.DragEvent) => {
@@ -72,50 +120,25 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   }
 
   const onDragOver = (e: React.DragEvent) => {
-    if (draggableBaseComponent || draggableElement) {
+    const newDif = handleDragOver(e)
+    if (mouseStartPos && newDif != undefined) {
+      setBorderStyle(getBorderStyle(direction, newDif))
+    }
+    stopProp(e)
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    if ((draggableBaseComponent || draggableElement) && mouseStartPos && direction) {
       const newMousePos = { x: e.clientX, y: e.clientY }
-      switch (direction) {
-        case 'column': {
-          const newDif = newMousePos.y - mouseStartPos.y
-          handleDif(newDif)
-          break
-        }
-        case 'row': {
-          const newDif = newMousePos.x - mouseStartPos.x
-          handleDif(newDif)
-          break
-        }
-      }
+      const newDif = calcDiff(direction, newMousePos, mouseStartPos)
       setMouseStartPos(newMousePos)
+      return newDif
     }
   }
 
-  const handleDif = (dif: number) => {
-    console.log(dif)
-    switch (direction) {
-      case 'column': {
-        if (dif > 0) {
-          setBorderStyle({ borderTop: '5px solid red' })
-        } else if (dif < 0) {
-          setBorderStyle({ borderBottom: '5px solid red' })
-        } else {
-          setBorderStyle({})
-        }
-        break
-      }
-      case 'row': {
-        if (dif > 0) {
-          setBorderStyle({ borderRight: '5px solid red' })
-        } else if (dif < 0) {
-          setBorderStyle({ borderLeft: '5px solid red' })
-        } else {
-          setBorderStyle({})
-        }
-        break
-      }
-      default:
-        setBorderStyle({})
-    }
+  const setDegault = () => {
+    setMouseStartPos(null)
+    setBorderStyle({})
   }
 
   return (
@@ -124,8 +147,8 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
       style={borderStyle}
       onDragEnter={onDargEnter}
       onDrop={onDropContainer}
-      onDragLeave={onDragLeave}
-      onDragOver={onDragOver}>
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}>
       {children}
     </div>
   )

@@ -10,6 +10,7 @@ import {
   FormElementDictTypes,
 } from '../../../coreTypes'
 import { Icons } from '../IconFormElement/mocks'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonProps>()
@@ -44,15 +45,19 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         parentElementId={element.id}
         elementTypeUsage={ElementTypes.FormElement}
         elementType={FormElementDictTypes.Button}
-        className={isFilled ? 'container-row flex-grow-1' : ''}
-      >
-        <Button
-          {...element.props.props}
-          onClick={onButtonClick}
-          style={{ flexGrow: isFilled ? 1 : 0 }}
-          iconLeft={element.props.props.icon && Icons[element.props.props.icon]}
-          iconRight={element.props.props.iconR && Icons[element.props.props.iconR]}
-        />
+        className={isFilled ? 'container-row flex-grow-1' : ''}>
+        <DroppableLocalLayer
+          id={element.id}
+          isLayout={false}
+          parentElementId={element.parentId || ''}>
+          <Button
+            {...element.props.props}
+            onClick={onButtonClick}
+            style={{ flexGrow: isFilled ? 1 : 0 }}
+            iconLeft={element.props.props.icon && Icons[element.props.props.icon]}
+            iconRight={element.props.props.iconR && Icons[element.props.props.iconR]}
+          />
+        </DroppableLocalLayer>
       </SelectableLayer>
       {getActionViwer()}
     </>

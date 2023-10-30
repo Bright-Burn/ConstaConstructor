@@ -58,7 +58,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
       }}>
       {elementsOnLayer.map(el => {
         let Component = FormGroupsDict[el.type]
-        if (el.type === 'Layout') {
+        if (el.type === 'Layout' || el.type === 'Button') {
           return <Component key={el.id} element={el} />
         }
         return (
