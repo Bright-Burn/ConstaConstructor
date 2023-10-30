@@ -12,6 +12,7 @@ import styles from './styles.module.css'
 import { FormGroupsDict } from '../FormGroupDict'
 import { useDropBaseComponent } from './useDropBaseComponent'
 import { DroppableLocalLayer } from '../DroppableLocalLayer'
+import { DroppableLocalLayer } from '../DroppableLocalLayer'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerParentId }) => {
