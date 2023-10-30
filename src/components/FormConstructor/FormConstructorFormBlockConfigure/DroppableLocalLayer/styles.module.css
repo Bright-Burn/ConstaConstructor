@@ -1,0 +1,13 @@
+.droppableLocalLayerLayoutElement {
+    display: inherit;
+    flex: inherit;
+    flex-direction: inherit;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.droppableLocalLayerFormElement {
+    display: flex;
+    flex-direction: inherit;
+}

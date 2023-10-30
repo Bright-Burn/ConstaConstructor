@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import {
   useAppSelector,
   useAppDispatch,
@@ -11,6 +11,7 @@ import { IDroppableLayer, AddNewElementPayload } from './types'
 import styles from './styles.module.css'
 import { FormGroupsDict } from '../FormGroupDict'
 import { useDropBaseComponent } from './useDropBaseComponent'
+import { DroppableLocalLayer } from '../DroppableLocalLayer'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerParentId }) => {
@@ -23,7 +24,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   const { handleOnDropBaseComponent } = useDropBaseComponent()
 
   const handleOnDrop = (event: React.DragEvent) => {
-    event.stopPropagation()
+    // event.stopPropagation()
     event.preventDefault()
 
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
@@ -51,11 +52,20 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
     <div
       className={styles.droppableContainer}
       onDrop={handleOnDrop}
-      onDragOver={event => event.preventDefault()}
-    >
+      onDragOver={event => {
+        event.preventDefault()
+        // event.stopPropagation()
+      }}>
       {elementsOnLayer.map(el => {
         let Component = FormGroupsDict[el.type]
-        return <Component key={el.id} element={el} />
+        if (el.type === 'Layout' || el.type === 'Button') {
+          return <Component key={el.id} element={el} />
+        }
+        return (
+          <DroppableLocalLayer parentElementId={el.parentId || ''} isLayout={false} id={el.id}>
+            <Component key={el.id} element={el} />
+          </DroppableLocalLayer>
+        )
       })}
     </div>
   )
