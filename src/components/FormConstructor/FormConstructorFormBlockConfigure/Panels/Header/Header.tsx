@@ -13,7 +13,7 @@ import { ProjectName } from './ProjectName'
 import { checkViewMode, useAppSelector } from '../../../store'
 
 export const Header: React.FC = () => {
-  const { onChangeProjectName, onDownloadProject, projectName, saveToHtml } = useProject()
+  const { onChangeProjectName, onDownloadProject, projectName, saveToHtml, onSaveProject } = useProject()
   const [showNotes, setShowNotes] = useState<boolean>(false)
 
   const onNotesOpen = () => {
@@ -53,13 +53,24 @@ export const Header: React.FC = () => {
         </FileField>
       </div>
       <ProjectName onChangeProjectName={onChangeProjectName} projectName={projectName} />
-      <Button
-        label={'Экспортировать html'}
-        view='primary'
-        size='xs'
-        iconLeft={IconUpload}
-        onClick={saveToHtml}
-      />
+      <div >
+        <Button
+          label={'Экспортировать json'}
+          iconLeft={IconUpload}
+          className='m-r-xs'
+          view='primary'
+          size='xs'
+          onClick={onSaveProject}
+        />
+        <Button
+          label={'Экспортировать html'}
+          view='primary'
+          size='xs'
+          iconLeft={IconUpload}
+          onClick={saveToHtml}
+        />
+      
+      </div>
       <Modal isOpen={showNotes} onClickOutside={onNotesClose} onEsc={onNotesClose}>
         <HotKeyPaneNote onClose={onNotesClose} />
       </Modal>
