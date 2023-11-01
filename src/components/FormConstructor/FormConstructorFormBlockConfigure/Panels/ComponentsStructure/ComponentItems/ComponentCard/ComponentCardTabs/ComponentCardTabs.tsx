@@ -25,7 +25,6 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
           baseProps: {},
           value: items[0],
           items: items,
-          onChange: () => {},
           linePosition: 'top',
           fitMode: 'dropdown',
           size: 'm',

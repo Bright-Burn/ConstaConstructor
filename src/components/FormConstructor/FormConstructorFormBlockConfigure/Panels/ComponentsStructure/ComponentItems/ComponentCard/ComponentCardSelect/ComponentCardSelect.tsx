@@ -46,7 +46,6 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
           items: items,
-          onChange: () => {},
         },
         type: 'SelectForm',
       },

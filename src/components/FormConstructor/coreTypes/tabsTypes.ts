@@ -30,8 +30,6 @@ export type TabsProps = {
   iconSize?: IconPropSize
   items: tabItemType[]
   value?: tabItemType | null
-  getItemLabel?: TabsPropGetItemLabel<tabItemType>
-  onChange: () => void
 } & (
   | {
       linePosition?: Extract<TabsPropLinePosition, 'bottom' | 'top'>

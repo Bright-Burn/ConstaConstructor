@@ -28,7 +28,6 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
         id: 3,
       },
     ],
-    onChange: () => {},
   })
 
   useLayoutEffect(() => {
@@ -41,10 +40,10 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.ComboBox}
-    >
+      elementType={FormElementDictTypes.ComboBox}>
       <Combobox
         {...comboboxProps}
+        onChange={() => {}}
         groups={comboboxProps.groupsActive ? comboboxProps.groups : undefined}
         getItemKey={item => item.label}
         getItemLabel={item => item.label}

@@ -33,7 +33,6 @@ export type ComboboxProps = {
   groups: string[]
   groupsActive?: boolean
   dropdownForm?: DatePickerPropDropdownForm
-  onChange: () => void
 } & BaseProps
 
 export type BrandComboboxProps = BrandProps<ComboboxProps, 'ComboBox'>

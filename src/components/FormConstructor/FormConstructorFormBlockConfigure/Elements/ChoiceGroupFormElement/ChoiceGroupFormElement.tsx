@@ -23,10 +23,9 @@ export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element })
       parentElementId={element.id}
       className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.ChoiceGroup}
-    >
+      elementType={FormElementDictTypes.ChoiceGroup}>
       {checkMultiple(props.props) ? (
-        <ChoiceGroup {...props.props} />
+        <ChoiceGroup {...props.props} getItemLabel={item => item.label} />
       ) : (
         <ChoiceGroup {...props.props} />
       )}
