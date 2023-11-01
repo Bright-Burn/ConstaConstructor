@@ -38,8 +38,6 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
           items: items,
           className: '',
           baseProps: {},
-          onChange: () => {},
-          getItemLabel: (item: DeepWriteable<Item>) => item.label,
         },
         type: 'ChoiceGroup',
       },

@@ -13,7 +13,6 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
       { id: 0, label: 'tab1' },
       { id: 1, label: 'tab2' },
     ],
-    onChange: () => {},
   })
 
   useLayoutEffect(() => {

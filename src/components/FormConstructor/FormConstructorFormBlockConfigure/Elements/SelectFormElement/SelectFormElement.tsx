@@ -27,7 +27,6 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
         id: 3,
       },
     ],
-    onChange: () => {},
     content: 'Text',
   })
 
@@ -41,8 +40,7 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.Select}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Select}
-    >
+      elementType={FormElementDictTypes.Select}>
       <Select
         {...selectProps}
         groups={selectProps.groupsActive ? selectProps.groups : undefined}
@@ -51,6 +49,7 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
         getItemGroupKey={item => item.group}
         getGroupLabel={(group: string) => group}
         getGroupKey={(group: string) => group}
+        onChange={() => {}}
       />
     </SelectableLayer>
   )

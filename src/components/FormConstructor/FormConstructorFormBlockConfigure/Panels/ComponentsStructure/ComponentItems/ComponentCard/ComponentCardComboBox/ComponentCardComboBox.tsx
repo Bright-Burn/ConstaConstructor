@@ -42,7 +42,6 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
           items: items,
-          onChange: () => {},
         },
         type: 'ComboBox',
       },
