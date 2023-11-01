@@ -27,9 +27,8 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Tabs}
-    >
-      <Tabs {...tabsProps} getItemLeftIcon={getItemLeftIcon} />
+      elementType={FormElementDictTypes.Tabs}>
+      <Tabs {...tabsProps} getItemLeftIcon={getItemLeftIcon} onChange={() => {}} />
     </SelectableLayer>
   )
 }
