@@ -4,6 +4,8 @@ import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../
 
 export const useMarginHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const dispatch = useAppDispatch()
+  
   if (!selectedElementProps) {
     return {
       marginProps: null,
@@ -13,7 +15,7 @@ export const useMarginHandlers = () => {
       onChangemarginTop: () => {},
     }
   }
-  const dispatch = useAppDispatch()
+
   const onDispatch = (selectedElement: ISelectedElement, newProps: UnionProps) => {
     dispatch(
       setSelectedElement({
