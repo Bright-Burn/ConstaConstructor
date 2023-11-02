@@ -27,7 +27,7 @@ export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element })
       {checkMultiple(props.props) ? (
         <ChoiceGroup {...props.props} getItemLabel={item => item.label} />
       ) : (
-        <ChoiceGroup {...props.props} />
+        <ChoiceGroup {...props.props} getItemLabel={item => item.label} />
       )}
     </SelectableLayer>
   )
