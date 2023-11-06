@@ -20,7 +20,10 @@ export const SwitchFormElement: FC<ISwitchFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Switch}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <Switch {...switchProps} checked={switchProps?.checked} />
       </DroppableLocalLayer>
     </SelectableLayer>

@@ -20,7 +20,10 @@ export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Icon}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         {iconProps && React.createElement(Icons[iconProps.icons], iconProps)}
       </DroppableLocalLayer>
     </SelectableLayer>

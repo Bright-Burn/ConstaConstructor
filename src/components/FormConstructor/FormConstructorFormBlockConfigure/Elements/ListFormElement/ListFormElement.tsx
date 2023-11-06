@@ -38,7 +38,10 @@ export const ListFormElement: FC<IListFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.List}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         {ListProps?.withListBox === true ? (
           <ListBox form={ListProps.form} shadow border>
             <List {...ListProps} />

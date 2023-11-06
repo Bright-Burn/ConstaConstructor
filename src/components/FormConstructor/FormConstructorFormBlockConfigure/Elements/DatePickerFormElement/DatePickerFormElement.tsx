@@ -21,7 +21,10 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.DatePicker}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <DatePicker
           {...datePickerProps}
           renderAdditionalControls={() =>

@@ -44,7 +44,10 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
       className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ComboBox}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <Combobox
           {...comboboxProps}
           groups={comboboxProps.groupsActive ? comboboxProps.groups : undefined}

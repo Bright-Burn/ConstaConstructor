@@ -21,7 +21,10 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Badge}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <Badge {...badgeProps} icon={badgeProps?.iconLeft && Icons[badgeProps.iconLeft]} />
       </DroppableLocalLayer>
     </SelectableLayer>

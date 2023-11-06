@@ -20,7 +20,10 @@ export const CheckboxFormElement: FC<ICheckboxFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Checkbox}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <Checkbox checked={checkboxProps?.checked} {...checkboxProps} />
       </DroppableLocalLayer>
     </SelectableLayer>

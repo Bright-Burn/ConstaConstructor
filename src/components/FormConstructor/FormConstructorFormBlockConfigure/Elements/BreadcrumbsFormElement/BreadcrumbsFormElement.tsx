@@ -15,7 +15,10 @@ export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element })
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.BreadcrumbsForm}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <Breadcrumbs {...props.props} />
       </DroppableLocalLayer>
     </SelectableLayer>

@@ -13,19 +13,19 @@ export const getBorderPosition = (
 ) => {
   switch (direction) {
     case 'column': {
-      if (pos === 'Next') {
+      if (pos === 1) {
         return { borderBottom: BorderStyle }
       }
-      if (pos === 'Prev') {
+      if (pos === -1) {
         return { borderTop: BorderStyle }
       }
       return {}
     }
     case 'row': {
-      if (pos === 'Next') {
+      if (pos === 1) {
         return { borderRight: BorderStyle }
       }
-      if (pos === 'Prev') {
+      if (pos === -1) {
         return { borderLeft: BorderStyle }
       }
       return {}

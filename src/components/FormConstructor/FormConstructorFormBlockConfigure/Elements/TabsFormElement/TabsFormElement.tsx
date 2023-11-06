@@ -30,7 +30,10 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Tabs}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <Tabs {...tabsProps} getItemLeftIcon={getItemLeftIcon} onChange={() => {}} />
       </DroppableLocalLayer>
     </SelectableLayer>

@@ -19,7 +19,10 @@ export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Informer}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <Informer {...informerProps} />
       </DroppableLocalLayer>
     </SelectableLayer>

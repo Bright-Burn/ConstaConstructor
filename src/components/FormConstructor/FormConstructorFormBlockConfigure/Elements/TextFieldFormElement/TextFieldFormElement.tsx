@@ -22,7 +22,10 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.TextField}
       className={isFilled ? 'container-row flex-grow-1' : ''}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <TextField style={{ width: '100%' }} {...textFieldProps} />
       </DroppableLocalLayer>
     </SelectableLayer>

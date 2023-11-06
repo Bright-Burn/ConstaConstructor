@@ -1,25 +1,32 @@
 import React, { FC, useEffect, useRef, useState } from 'react'
-import { getDraggedBaseComponent, getElementById, useAppSelector } from '../../store'
+import {
+  getDraggedBaseComponent,
+  getElementById,
+  useAppDispatch,
+  useAppSelector,
+} from '../../store'
 import { ILayoutElement, LayoutPropDirection } from '../../coreTypes'
 import css from './styles.module.css'
 import { useBaseComponentsSelector } from '../../store/baseComponentsItems'
 import { ElemPositionToAdd, IDroppableLocalLayer } from './types'
 import { getBoundMetrics } from './getBoundMetrics'
 import { getBorderPosition } from './getBorderPosition'
+import { setDraggableElement } from '../../store/formElements'
 
 export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   children,
   parentElementId,
+  elemId,
   isLayout,
 }) => {
   const [direction, setDirection] = useState<LayoutPropDirection>()
   const [mainClassNameString, setMainClassNameString] = useState<string>('')
-  const [draggableElementPosition, setDragabbleElementPosition] =
-    useState<ElemPositionToAdd>('EndOfContainer')
+  const [draggableElementPosition, setDragabbleElementPosition] = useState<ElemPositionToAdd>(0)
 
   const parentElement = useAppSelector(getElementById(parentElementId))
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
   const { draggableElement } = useAppSelector(state => state.formConstructor)
+  const dispatch = useAppDispatch()
 
   const ref = useRef<HTMLDivElement>(null)
 
@@ -43,16 +50,15 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   }
 
   const onDragLeave = (e: React.DragEvent) => {
-    setDragabbleElementPosition('EndOfContainer')
+    setDragabbleElementPosition(0)
     stopEvent(e)
   }
 
   const onDropContainer = (e: React.DragEvent) => {
-    if (draggableElementPosition != 'EndOfContainer') {
-      console.log('Order logic here')
-      stopEvent(e)
+    if (draggableElementPosition != 0) {
+      dispatch(setDraggableElement({ element: null }))
     }
-    setDragabbleElementPosition('EndOfContainer')
+    setDragabbleElementPosition(0)
   }
 
   const stopEvent = (e: React.DragEvent) => {
@@ -76,11 +82,11 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
         }
       }
       if (newCoord - boundMetrics.centerPoint >= boundMetrics.distance) {
-        setDragabbleElementPosition('Next')
+        setDragabbleElementPosition(1)
       } else if (boundMetrics.centerPoint - newCoord >= boundMetrics.distance) {
-        setDragabbleElementPosition('Prev')
+        setDragabbleElementPosition(-1)
       } else {
-        setDragabbleElementPosition('EndOfContainer')
+        setDragabbleElementPosition(0)
       }
     }
     stopEvent(e)

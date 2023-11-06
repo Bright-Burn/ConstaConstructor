@@ -27,11 +27,17 @@ export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element })
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ChoiceGroup}>
       {checkMultiple(props.props) ? (
-        <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <DroppableLocalLayer
+          isLayout={false}
+          parentElementId={element.parentId || rootId}
+          elemId={element.id}>
           <ChoiceGroup {...props.props} />
         </DroppableLocalLayer>
       ) : (
-        <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <DroppableLocalLayer
+          isLayout={false}
+          parentElementId={element.parentId || rootId}
+          elemId={element.id}>
           <ChoiceGroup {...props.props} />
         </DroppableLocalLayer>
       )}

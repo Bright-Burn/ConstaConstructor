@@ -44,7 +44,10 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
       className={style.Select}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Select}>
-      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+      <DroppableLocalLayer
+        isLayout={false}
+        parentElementId={element.parentId || rootId}
+        elemId={element.id}>
         <Select
           {...selectProps}
           groups={selectProps.groupsActive ? selectProps.groups : undefined}
