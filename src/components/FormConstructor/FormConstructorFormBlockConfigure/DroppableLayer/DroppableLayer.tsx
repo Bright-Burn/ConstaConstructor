@@ -62,7 +62,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
           return <Component key={el.id} element={el} />
         }
         return (
-          <DroppableLocalLayer parentElementId={el.parentId || ''} isLayout={false} id={el.id}>
+          <DroppableLocalLayer parentElementId={el.parentId || ''} isLayout={false}>
             <Component key={el.id} element={el} />
           </DroppableLocalLayer>
         )

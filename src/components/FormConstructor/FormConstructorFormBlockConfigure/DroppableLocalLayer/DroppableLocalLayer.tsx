@@ -1,83 +1,32 @@
-import React, { FC, useEffect, useState } from 'react'
-import { IDroppableLocalLayer } from './types'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { getDraggedBaseComponent, getElementById, useAppSelector } from '../../store'
 import { ILayoutElement, LayoutPropDirection } from '../../coreTypes'
 import css from './styles.module.css'
 import { useBaseComponentsSelector } from '../../store/baseComponentsItems'
-
-type MousePos = {
-  x: number
-  y: number
-}
-
-const mousePosDefault = { x: 0, y: 0 }
-
-const calcDiff = (
-  direction: LayoutPropDirection,
-  newMousePos: MousePos,
-  mouseStartPos: MousePos,
-) => {
-  let newDif = 0
-  switch (direction) {
-    case 'column': {
-      newDif = newMousePos.y - mouseStartPos.y
-      break
-    }
-    case 'row': {
-      newDif = newMousePos.x - mouseStartPos.x
-      break
-    }
-  }
-  return newDif
-}
-
-const getBorderStyle = (direction: LayoutPropDirection | undefined, dif: number) => {
-  switch (direction) {
-    case 'column': {
-      if (dif < 0) {
-        return { borderTop: '5px solid red' }
-      } else if (dif > 0) {
-        return { borderBottom: '5px solid red' }
-      } else {
-        return {}
-      }
-      break
-    }
-    case 'row': {
-      if (dif > 0) {
-        return { borderRight: '5px solid red' }
-      } else if (dif < 0) {
-        return { borderLeft: '5px solid red' }
-      } else {
-        return {}
-      }
-      break
-    }
-    default:
-      return {}
-  }
-}
+import { ElemPositionToAdd, IDroppableLocalLayer } from './types'
+import { getBoundMetrics } from './getBoundMetrics'
+import { getBorderPosition } from './getBorderPosition'
 
 export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   children,
   parentElementId,
-  id,
   isLayout,
 }) => {
-  const [borderStyle, setBorderStyle] = useState({})
   const [direction, setDirection] = useState<LayoutPropDirection>()
-  const [mouseStartPos, setMouseStartPos] = useState<MousePos | null>(null)
   const [mainClassNameString, setMainClassNameString] = useState<string>('')
+  const [draggableElementPosition, setDragabbleElementPosition] =
+    useState<ElemPositionToAdd>('EndOfContainer')
 
   const parentElement = useAppSelector(getElementById(parentElementId))
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
   const { draggableElement } = useAppSelector(state => state.formConstructor)
 
+  const ref = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     if (parentElement) {
       const layout = parentElement as ILayoutElement
       const direction = layout.props.props.constaProps.direction
-      console.log(direction)
       setDirection(direction)
     }
   }, [parentElement])
@@ -90,60 +39,61 @@ export const DroppableLocalLayer: FC<IDroppableLocalLayer> = ({
   }, [isLayout, parentElementId])
 
   const onDargEnter = (e: React.DragEvent) => {
-    console.log('On Drag enter', id)
-    setMouseStartPos({ ...mousePosDefault })
-    stopProp(e)
+    stopEvent(e)
   }
 
   const onDragLeave = (e: React.DragEvent) => {
-    console.log('On Drag leave', id)
-    setDegault()
-    stopProp(e)
+    setDragabbleElementPosition('EndOfContainer')
+    stopEvent(e)
   }
 
   const onDropContainer = (e: React.DragEvent) => {
-    console.log('drop catch')
-    if (mouseStartPos && (mouseStartPos.x === 0 || mousePosDefault.y === 0)) {
-      /// Call reorder here
-      stopProp(e)
+    if (draggableElementPosition != 'EndOfContainer') {
+      console.log('Order logic here')
+      stopEvent(e)
     }
-    setDegault()
+    setDragabbleElementPosition('EndOfContainer')
   }
 
-  const stopProp = (e: React.DragEvent) => {
+  const stopEvent = (e: React.DragEvent) => {
     e.stopPropagation()
     e.preventDefault()
   }
 
   const onDragOver = (e: React.DragEvent) => {
-    const newDif = handleDragOver(e)
-    if (mouseStartPos && newDif != undefined) {
-      setBorderStyle(getBorderStyle(direction, newDif))
-    }
-    stopProp(e)
-  }
+    if (ref.current && direction && (draggableBaseComponent || draggableElement)) {
+      let newCoord = 0
 
-  const handleDragOver = (e: React.DragEvent) => {
-    if ((draggableBaseComponent || draggableElement) && mouseStartPos && direction) {
-      const newMousePos = { x: e.clientX, y: e.clientY }
-      const newDif = calcDiff(direction, newMousePos, mouseStartPos)
-      setMouseStartPos(newMousePos)
-      return newDif
+      const boundMetrics = getBoundMetrics(ref.current, direction)
+      switch (direction) {
+        case 'column': {
+          newCoord = e.clientY
+          break
+        }
+        case 'row': {
+          newCoord = e.clientX
+          break
+        }
+      }
+      if (newCoord - boundMetrics.centerPoint >= boundMetrics.distance) {
+        setDragabbleElementPosition('Next')
+      } else if (boundMetrics.centerPoint - newCoord >= boundMetrics.distance) {
+        setDragabbleElementPosition('Prev')
+      } else {
+        setDragabbleElementPosition('EndOfContainer')
+      }
     }
-  }
-
-  const setDegault = () => {
-    setMouseStartPos(null)
-    setBorderStyle({})
+    stopEvent(e)
   }
 
   return (
     <div
+      ref={ref}
       className={mainClassNameString}
-      style={borderStyle}
       onDragEnter={onDargEnter}
       onDrop={onDropContainer}
       onDragOver={onDragOver}
+      style={getBorderPosition(direction, draggableElementPosition)}
       onDragLeave={onDragLeave}>
       {children}
     </div>

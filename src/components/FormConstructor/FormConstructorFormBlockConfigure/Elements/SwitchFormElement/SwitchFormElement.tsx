@@ -4,6 +4,8 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { ISwitchFormElement } from './types'
 import { Switch } from '@consta/uikit/Switch'
 import { SwitchProps } from '../../../coreTypes'
+import { rootId } from '../../../store/formElements/initialState'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
 
 export const SwitchFormElement: FC<ISwitchFormElement> = ({ element }) => {
   const [switchProps, setSwitchProps] = useState<SwitchProps>()
@@ -17,9 +19,10 @@ export const SwitchFormElement: FC<ISwitchFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Switch}
-    >
-      <Switch {...switchProps} checked={switchProps?.checked} />
+      elementType={FormElementDictTypes.Switch}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <Switch {...switchProps} checked={switchProps?.checked} />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

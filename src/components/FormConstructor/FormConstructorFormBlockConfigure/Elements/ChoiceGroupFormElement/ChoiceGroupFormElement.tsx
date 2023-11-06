@@ -11,6 +11,8 @@ import { IChoiceGroupFormElement } from './types'
 import style from './style.module.css'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { BrandProps } from '../../../coreTypes/types'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element }) => {
   const checkMultiple = (
@@ -23,12 +25,15 @@ export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element })
       parentElementId={element.id}
       className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.ChoiceGroup}
-    >
+      elementType={FormElementDictTypes.ChoiceGroup}>
       {checkMultiple(props.props) ? (
-        <ChoiceGroup {...props.props} />
+        <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+          <ChoiceGroup {...props.props} />
+        </DroppableLocalLayer>
       ) : (
-        <ChoiceGroup {...props.props} />
+        <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+          <ChoiceGroup {...props.props} />
+        </DroppableLocalLayer>
       )}
     </SelectableLayer>
   )

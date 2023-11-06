@@ -3,6 +3,8 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { IInformerFormElement } from './types'
 import { InformerElementProps, ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { Informer } from '@consta/uikit/Informer'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
   const [informerProps, setInformerProps] = useState<InformerElementProps>()
@@ -16,9 +18,10 @@ export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Informer}
-    >
-      <Informer {...informerProps} />
+      elementType={FormElementDictTypes.Informer}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <Informer {...informerProps} />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

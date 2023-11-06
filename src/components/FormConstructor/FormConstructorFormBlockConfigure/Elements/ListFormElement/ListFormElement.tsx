@@ -5,6 +5,8 @@ import { IListFormElement } from './types'
 import { List } from '@consta/uikit/ListCanary'
 import { ItemList, ListProps } from '../../../coreTypes'
 import { ListBox } from '@consta/uikit/ListCanary'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 const items: ItemList[] = [
   {
@@ -35,15 +37,16 @@ export const ListFormElement: FC<IListFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.List}
-    >
-      {ListProps?.withListBox === true ? (
-        <ListBox form={ListProps.form} shadow border>
-          <List {...ListProps} />
-        </ListBox>
-      ) : (
-        <List items={items} {...ListProps} />
-      )}
+      elementType={FormElementDictTypes.List}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        {ListProps?.withListBox === true ? (
+          <ListBox form={ListProps.form} shadow border>
+            <List {...ListProps} />
+          </ListBox>
+        ) : (
+          <List items={items} {...ListProps} />
+        )}
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

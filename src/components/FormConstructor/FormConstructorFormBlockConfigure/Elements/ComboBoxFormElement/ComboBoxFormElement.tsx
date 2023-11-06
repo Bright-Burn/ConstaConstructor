@@ -5,6 +5,8 @@ import { IComboBoxFormElement } from './types'
 import { ComboboxProps } from '../../../coreTypes'
 import { Combobox } from '@consta/uikit/Combobox'
 import style from './style.module.css'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   const [comboboxProps, setComboboxProps] = useState<ComboboxProps>({
@@ -41,17 +43,18 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.ComboBox}
-    >
-      <Combobox
-        {...comboboxProps}
-        groups={comboboxProps.groupsActive ? comboboxProps.groups : undefined}
-        getItemKey={item => item.label}
-        getItemLabel={item => item.label}
-        getItemGroupKey={item => item.group}
-        getGroupLabel={(group: string) => group}
-        getGroupKey={(group: string) => group}
-      />
+      elementType={FormElementDictTypes.ComboBox}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <Combobox
+          {...comboboxProps}
+          groups={comboboxProps.groupsActive ? comboboxProps.groups : undefined}
+          getItemKey={item => item.label}
+          getItemLabel={item => item.label}
+          getItemGroupKey={item => item.group}
+          getGroupLabel={(group: string) => group}
+          getGroupKey={(group: string) => group}
+        />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

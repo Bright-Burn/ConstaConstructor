@@ -6,6 +6,8 @@ import style from './style.module.css'
 import { TagProps } from '../../../coreTypes'
 import { Tag } from '@consta/uikit/Tag'
 import { Icons } from '../IconFormElement/mocks'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
   const [checked, setChecked] = useState<boolean>(false)
@@ -91,9 +93,10 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Tag}
-    >
-      {getTag()}
+      elementType={FormElementDictTypes.Tag}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        {getTag()}
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

@@ -4,6 +4,8 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { ICheckboxFormElement } from './types'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { CheckboxProps } from '../../../coreTypes'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const CheckboxFormElement: FC<ICheckboxFormElement> = ({ element }) => {
   const [checkboxProps, setCheckboxProps] = useState<CheckboxProps>()
@@ -17,9 +19,10 @@ export const CheckboxFormElement: FC<ICheckboxFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Checkbox}
-    >
-      <Checkbox checked={checkboxProps?.checked} {...checkboxProps} />
+      elementType={FormElementDictTypes.Checkbox}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <Checkbox checked={checkboxProps?.checked} {...checkboxProps} />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

@@ -5,6 +5,8 @@ import { IBadgeFormElement } from './types'
 import { Badge } from '@consta/uikit/Badge'
 import { BadgeProps } from '../../../coreTypes/badgeTypes'
 import { Icons } from '../IconFormElement/mocks'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const [badgeProps, setbadgeProps] = useState<BadgeProps>()
@@ -18,9 +20,10 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Badge}
-    >
-      <Badge {...badgeProps} icon={badgeProps?.iconLeft && Icons[badgeProps.iconLeft]} />
+      elementType={FormElementDictTypes.Badge}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <Badge {...badgeProps} icon={badgeProps?.iconLeft && Icons[badgeProps.iconLeft]} />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

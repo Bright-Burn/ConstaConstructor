@@ -4,6 +4,8 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { ITabsFormElement } from './types'
 import { ElementTypes, FormElementDictTypes, tabItemType } from '../../../coreTypes'
 import { TabsElementProps } from '../../../coreTypes'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
   const [tabsProps, setTabsProps] = useState<TabsElementProps>({
@@ -28,7 +30,9 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Tabs}>
-      <Tabs {...tabsProps} getItemLeftIcon={getItemLeftIcon} onChange={() => {}} />
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <Tabs {...tabsProps} getItemLeftIcon={getItemLeftIcon} onChange={() => {}} />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

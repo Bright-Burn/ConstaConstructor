@@ -5,6 +5,8 @@ import { IBreadcrumbsFormElement } from './types'
 
 import { Breadcrumbs } from '@consta/uikit/Breadcrumbs'
 import { BrandProps } from '../../../coreTypes/types'
+import { rootId } from '../../../store/formElements/initialState'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
 
 export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element }) => {
   const props = element.props as BrandProps<BreadcrumbProps, 'BreadcrumbsFormElement'>
@@ -12,9 +14,10 @@ export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element })
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.BreadcrumbsForm}
-    >
-      <Breadcrumbs {...props.props} />
+      elementType={FormElementDictTypes.BreadcrumbsForm}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <Breadcrumbs {...props.props} />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

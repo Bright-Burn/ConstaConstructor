@@ -4,6 +4,8 @@ import { ISelectFormElement } from './types'
 import { ElementTypes, FormElementDictTypes, SelectProps, selectitemType } from '../../../coreTypes'
 import { Select } from '@consta/uikit/Select'
 import style from './style.module.css'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
   const [selectProps, setSelectProps] = useState<SelectProps>({
@@ -41,17 +43,18 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
       parentElementId={element.id}
       className={style.Select}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Select}
-    >
-      <Select
-        {...selectProps}
-        groups={selectProps.groupsActive ? selectProps.groups : undefined}
-        getItemLabel={(item: selectitemType) => item.label}
-        getItemKey={(item: selectitemType) => item.id}
-        getItemGroupKey={item => item.group}
-        getGroupLabel={(group: string) => group}
-        getGroupKey={(group: string) => group}
-      />
+      elementType={FormElementDictTypes.Select}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <Select
+          {...selectProps}
+          groups={selectProps.groupsActive ? selectProps.groups : undefined}
+          getItemLabel={(item: selectitemType) => item.label}
+          getItemKey={(item: selectitemType) => item.id}
+          getItemGroupKey={item => item.group}
+          getGroupLabel={(group: string) => group}
+          getGroupKey={(group: string) => group}
+        />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

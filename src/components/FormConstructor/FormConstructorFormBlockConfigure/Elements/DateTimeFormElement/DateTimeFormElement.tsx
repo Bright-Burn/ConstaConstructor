@@ -4,6 +4,8 @@ import { SelectableLayer } from '../../SelectableLayer'
 import { IDataTimeFormElement } from './types'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { DataTimeProps } from '../../../coreTypes'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
   const [dataTimeProps, setDataTimeProps] = useState<DataTimeProps>()
@@ -18,16 +20,17 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.DataTime}
-    >
-      <DateTime
-        {...dataTimeProps}
-        value={timeValue}
-        onChange={({ value }) => setTimeValue(value)}
-        multiplicityHours={dataTimeProps && Number(dataTimeProps?.multiplicityHours)}
-        multiplicityMinutes={dataTimeProps && Number(dataTimeProps?.multiplicityMinutes)}
-        multiplicitySeconds={dataTimeProps && Number(dataTimeProps?.multiplicitySeconds)}
-      />
+      elementType={FormElementDictTypes.DataTime}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <DateTime
+          {...dataTimeProps}
+          value={timeValue}
+          onChange={({ value }) => setTimeValue(value)}
+          multiplicityHours={dataTimeProps && Number(dataTimeProps?.multiplicityHours)}
+          multiplicityMinutes={dataTimeProps && Number(dataTimeProps?.multiplicityMinutes)}
+          multiplicitySeconds={dataTimeProps && Number(dataTimeProps?.multiplicitySeconds)}
+        />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }

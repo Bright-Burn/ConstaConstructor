@@ -1,9 +1,16 @@
 import { ReactNode } from 'react'
-import { FormElementTypes, FormGroupsTypes } from '../../coreTypes'
 
 export interface IDroppableLocalLayer {
   children?: ReactNode
-  id: string
   parentElementId: string
   isLayout: boolean
 }
+
+export interface BoundMetrics {
+  centerPoint: number
+  distance: number
+}
+
+export type ElemPositionToAdd = 'Prev' | 'Next' | 'EndOfContainer'
+
+export const BorderStyle = '5px solid #8AAAE5'

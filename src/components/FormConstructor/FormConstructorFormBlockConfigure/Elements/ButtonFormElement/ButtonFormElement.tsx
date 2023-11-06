@@ -47,10 +47,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         elementTypeUsage={ElementTypes.FormElement}
         elementType={FormElementDictTypes.Button}
         className={isFilled ? 'container-row flex-grow-1' : ''}>
-        <DroppableLocalLayer
-          id={element.id}
-          isLayout={false}
-          parentElementId={element.parentId || rootId}>
+        <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
           <Button
             {...element.props.props}
             onClick={onButtonClick}

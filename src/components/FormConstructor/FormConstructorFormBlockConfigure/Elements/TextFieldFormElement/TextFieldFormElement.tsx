@@ -3,6 +3,8 @@ import { TextField } from '@consta/uikit/TextField'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ITextFieldFormElement } from './types'
 import { TextFieldProps, ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { DroppableLocalLayer } from '../../DroppableLocalLayer'
+import { rootId } from '../../../store/formElements/initialState'
 
 export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => {
   const [textFieldProps, setTextFieldProps] = useState<TextFieldProps>()
@@ -19,9 +21,10 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.TextField}
-      className={isFilled ? 'container-row flex-grow-1' : ''}
-    >
-      <TextField style={{ width: '100%' }} {...textFieldProps} />
+      className={isFilled ? 'container-row flex-grow-1' : ''}>
+      <DroppableLocalLayer isLayout={false} parentElementId={element.parentId || rootId}>
+        <TextField style={{ width: '100%' }} {...textFieldProps} />
+      </DroppableLocalLayer>
     </SelectableLayer>
   )
 }
