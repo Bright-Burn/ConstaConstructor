@@ -46,7 +46,7 @@ export const BaseSettings = () => {
           getItemKey={key => key}
           getItemLabel={label => label}
           items={paddingsLeft}
-          value={`${paddingProps?.paddingLeft || ''}`}
+          value={`${paddingProps?.paddingLeft || 'Null'}`}
           onChange={onChangePaddingLeft}
           renderValue={({ item }) => (
             <div className={style.arrowAndText}>
@@ -61,7 +61,7 @@ export const BaseSettings = () => {
           getItemKey={key => key}
           getItemLabel={label => label}
           items={paddingsRight}
-          value={`${paddingProps?.paddingRight || ''}`}
+          value={`${paddingProps?.paddingRight || 'Null'}`}
           onChange={onChangePaddingRight}
           renderValue={({ item }) => (
             <div className={style.arrowAndText}>
@@ -76,7 +76,7 @@ export const BaseSettings = () => {
           getItemKey={key => key}
           getItemLabel={label => label}
           items={paddingsTop}
-          value={`${paddingProps?.paddingTop || ''}`}
+          value={`${paddingProps?.paddingTop || 'Null'}`}
           onChange={onChangePaddingTop}
           renderValue={({ item }) => (
             <div className={style.arrowAndText}>
@@ -91,7 +91,7 @@ export const BaseSettings = () => {
           getItemKey={key => key}
           getItemLabel={label => label}
           items={paddingsBottom}
-          value={`${paddingProps?.paddingBottom || ''}`}
+          value={`${paddingProps?.paddingBottom || 'Null'}`}
           onChange={onChangePaddingBottom}
           renderValue={({ item }) => (
             <div className={style.arrowAndText}>
@@ -111,7 +111,7 @@ export const BaseSettings = () => {
           getItemKey={key => key}
           getItemLabel={label => label}
           items={marginLeft}
-          value={`${marginProps?.marginLeft || ''}`}
+          value={`${marginProps?.marginLeft || 'Null'}`}
           onChange={onChangemarginLeft}
           renderValue={({ item }) => (
             <div className={style.arrowAndText}>
@@ -126,7 +126,7 @@ export const BaseSettings = () => {
           getItemKey={key => key}
           getItemLabel={label => label}
           items={marginRight}
-          value={`${marginProps?.marginRight || ''}`}
+          value={`${marginProps?.marginRight || 'Null'}`}
           onChange={onChangemarginRight}
           renderValue={({ item }) => (
             <div className={style.arrowAndText}>
@@ -141,7 +141,7 @@ export const BaseSettings = () => {
           getItemKey={key => key}
           getItemLabel={label => label}
           items={marginTop}
-          value={`${marginProps?.marginTop || ''}`}
+          value={`${marginProps?.marginTop || 'Null'}`}
           onChange={onChangemarginTop}
           renderValue={({ item }) => (
             <div className={style.arrowAndText}>
@@ -156,7 +156,7 @@ export const BaseSettings = () => {
           getItemKey={key => key}
           getItemLabel={label => label}
           items={marginBottom}
-          value={`${marginProps?.marginBottom || ''}`}
+          value={`${marginProps?.marginBottom || 'Null'}`}
           onChange={onChangemarginBottom}
           renderValue={({ item }) => (
             <div className={style.arrowAndText}>
