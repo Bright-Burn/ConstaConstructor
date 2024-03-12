@@ -5,6 +5,8 @@
   align-items: center;
   padding-left: var(--graphics-size-s);
   padding-right: var(--graphics-size-s);
+  padding-top: var(--space-2xs);
+  padding-bottom: var(--space-2xs);
 }
 .projectName {
   justify-content: space-between;

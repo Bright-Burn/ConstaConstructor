@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-  min-width: 35rem;
-  max-width: 35rem;
+  min-width: 350px;
+  max-width: 350px;
 
   border-right: 1px solid var(--color-typo-system);
 }
@@ -16,7 +16,6 @@
 }
 
 .tabs {
-  height: 3.2rem;
   display: flex;
   border-bottom: 1px solid var(--color-typo-system);
 }

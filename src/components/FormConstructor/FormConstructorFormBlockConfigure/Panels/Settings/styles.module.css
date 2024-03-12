@@ -8,8 +8,8 @@
 
 .settingsContainer {
   padding: var(--space-s);
-  min-width: 35rem;
-  max-width: 35rem;
+  min-width: 350px;
+  max-width: 350px;
 
   border-left: 1px solid var(--color-typo-system);
 }
