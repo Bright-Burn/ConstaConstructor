@@ -55,7 +55,7 @@ export const Header: React.FC = () => {
       <ProjectName onChangeProjectName={onChangeProjectName} projectName={projectName} />
       <div >
         <Button
-          label={'Экспортировать json'}
+          label={'json'}
           iconLeft={IconUpload}
           className='m-r-xs'
           view='primary'
@@ -63,7 +63,7 @@ export const Header: React.FC = () => {
           onClick={onSaveProject}
         />
         <Button
-          label={'Экспортировать html'}
+          label={'html'}
           view='primary'
           size='xs'
           iconLeft={IconUpload}
