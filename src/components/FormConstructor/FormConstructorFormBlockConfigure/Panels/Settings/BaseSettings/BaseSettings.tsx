@@ -36,7 +36,7 @@ export const BaseSettings = () => {
   } = useMarginHandlers()
   return (
     <>
-      <Text size='xs' className={style.textDecoration}>
+      <Text size='xs' view='secondary' className={style.textDecoration}>
         Внутренние отступы
       </Text>
       <div className={style.baseSettingsContainer}>
@@ -101,7 +101,7 @@ export const BaseSettings = () => {
           )}
         />
       </div>
-      <Text size='xs' className={style.textDecoration}>
+      <Text size='xs' view='secondary' className={style.textDecoration}>
         Внешние отступы
       </Text>
       <div className={style.baseSettingsContainer}>

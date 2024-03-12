@@ -13,9 +13,10 @@
 .columnSettings {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xs);
   flex: 1;
-  align-self: flex-end;
+}
+.labelMarginBottom {
+  margin-bottom: var(--space-xs);
 }
 
 .widthFlex {
@@ -25,7 +26,6 @@
 .columnSettingsWithoutRow {
   display: flex;
   flex-direction: column;
-  gap: var(--space-s);
   flex: 1;
 }
 
