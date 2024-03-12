@@ -7,7 +7,7 @@
 }
 
 .settingsContainer {
-  padding: 0.5rem;
+  padding: var(--space-s);
   min-width: 35rem;
   max-width: 35rem;
 

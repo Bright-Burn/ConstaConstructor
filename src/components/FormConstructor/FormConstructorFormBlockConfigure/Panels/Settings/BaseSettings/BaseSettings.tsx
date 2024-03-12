@@ -39,7 +39,7 @@ export const BaseSettings = () => {
       <Text size='xs' className={style.textDecoration}>
         Внутренние отступы
       </Text>
-      <div className={style.marginAndPadding}>
+      <div className={style.baseSettingsContainer}>
         <Select
           size='xs'
           form='defaultClear'
@@ -104,7 +104,7 @@ export const BaseSettings = () => {
       <Text size='xs' className={style.textDecoration}>
         Внешние отступы
       </Text>
-      <div className={style.marginAndPadding}>
+      <div className={style.baseSettingsContainer}>
         <Select
           size='xs'
           form='defaultClear'
