@@ -14,7 +14,7 @@
   overflow: hidden;
 
   outline: none;
-  border-width: 0.2rem;
+  border-width: 1px;
   border-style: solid;
   border-color: rgba(39, 50, 245, 0.8);
   border-radius: 0.5rem;

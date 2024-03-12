@@ -1,22 +1,11 @@
-import { Text } from '@consta/uikit/Text'
 import styles from './styles.module.css'
-import {
-  DECLINE_ACTION_MAC,
-  DECLINE_ACTION_WIN,
-  DECLINE_TEXT,
-  DELETE,
-  DELETE_ELEMENT_MAC,
-  DELETE_ELEMENT_WIN,
-  HIDE_SHOW_PANELS,
-  HIDE_SHOW_PANELS_MAC,
-  HIDE_SHOW_PANELS_WIN,
-} from './constants'
+
 import { Table, TableColumn } from '@consta/uikit/Table'
 import { Button } from '@consta/uikit/Button'
-import { IconThumb } from './IconThumb'
-import { IconArrowUp } from '@consta/icons/IconArrowUp'
+import { IconThumbUp } from '@consta/icons/IconThumbUp'
 import { IconCommand } from './IconCommand'
 import { IconDel } from './IconDel'
+import { IconArrowUp } from '@consta/icons/IconArrowUp'
 
 interface IHotkeys {
   onClose: () => void
@@ -96,7 +85,7 @@ export const HotKeyPaneNote: React.FC<IHotkeys> = ({ onClose }) => {
       <div className={styles.hotKeyPane}>
         <Table columns={columns} rows={rows} />
       </div>
-      <Button label={'Круто!'} iconLeft={IconThumb} onClick={onClose} />
+      <Button label={'Круто!'} view='primary' iconLeft={IconThumbUp} onClick={onClose} />
     </div>
   )
 }
