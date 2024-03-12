@@ -102,7 +102,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
               min='1'
             />
             <div className={styles.columnSettings}>
-              <Text size='xs' view='secondary'>
+              <Text size='xs' view='secondary' className={styles.labelMarginBottom}>
                 Направление
               </Text>
               <ChoiceGroup
@@ -119,7 +119,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
           </div>
           <div className={styles.rowSettings}>
             <div className={styles.columnSettings}>
-              <Text size='xs' view='secondary'>
+              <Text size='xs' view='secondary' className={styles.labelMarginBottom}>
                 Распределение
               </Text>
               <ChoiceGroup
@@ -134,7 +134,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
               />
             </div>
             <div className={styles.columnSettings}>
-              <Text size='xs' view='secondary'>
+              <Text size='xs' view='secondary' className={styles.labelMarginBottom}>
                 Привязка
               </Text>
               <ChoiceGroup
@@ -150,7 +150,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
             </div>
           </div>
           <div className={styles.columnSettingsWithoutRow}>
-            <Text size='xs' view='secondary'>
+            <Text size='xs' view='secondary' className={styles.labelMarginBottom}>
               Граница
             </Text>
             <ChoiceGroup
@@ -221,7 +221,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
           </div>
           <div className={styles.rowSettings}>
             <div className={styles.columnSettings}>
-              <Text size='xs' view='secondary'>
+              <Text size='xs' view='secondary' className={styles.labelMarginBottom}>
                 Цвет Фона
               </Text>
               <LayoutPalette
@@ -231,7 +231,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
               />
             </div>
             <div className={styles.columnSettings}>
-              <Text size='xs' view='secondary'>
+              <Text size='xs' view='secondary' className={styles.labelMarginBottom}>
                 Цвет границы
               </Text>
               <LayoutPalette

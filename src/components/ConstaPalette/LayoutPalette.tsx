@@ -3,6 +3,7 @@ import { ConstaPalette } from './ConstaPalette'
 import { IConcreteConstaPalette, ConstaColor } from './types'
 
 const layoutColors: ConstaColor[] = [
+  'Null',
   'color-bg-default',
   'color-bg-secondary',
   'color-bg-brand',

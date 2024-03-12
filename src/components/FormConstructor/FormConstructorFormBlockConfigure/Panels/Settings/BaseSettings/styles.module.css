@@ -9,7 +9,7 @@
 }
 
 .textDecoration {
-  padding-left: var(--space-s);
   padding-right: var(--space-s);
   padding-top: var(--space-s);
+  margin-bottom: var(--space-xs);
 }

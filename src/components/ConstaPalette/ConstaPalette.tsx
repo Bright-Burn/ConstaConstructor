@@ -30,11 +30,10 @@ export const ConstaPalette: FC<IConstaPalette> = ({
     <div className={css.constaPalette}>
       <Select
         getItemKey={getItemKey}
-        label='Color'
         size={size}
         getItemLabel={getItemKey}
         items={colorsToSelect}
-        value={color}
+        value={color || 'Null'}
         renderItem={({ item, active, hovered, onClick, onMouseEnter }) => {
           const onCustomMouseEnter = (e: React.SyntheticEvent) => {
             setColorPreview(item)
@@ -60,7 +59,6 @@ export const ConstaPalette: FC<IConstaPalette> = ({
       <div
         style={{
           borderRadius: '0.5rem',
-          marginTop: `calc(var(--control-height-${size}) - 8px)`,
           marginLeft: `0.4rem`,
           width: `var(--control-height-${size})`,
           height: `var(--control-height-${size})`,

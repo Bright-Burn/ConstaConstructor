@@ -14,6 +14,7 @@ export interface IConcreteConstaPalette {
 }
 
 export const ConstaColors = [
+  'Null',
   'color-bg-default',
   'color-bg-secondary',
   'color-bg-brand',
