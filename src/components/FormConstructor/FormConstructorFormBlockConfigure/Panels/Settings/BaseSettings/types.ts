@@ -1,5 +1,5 @@
 export const paddingsLeft = [
-  '',
+  'Null',
   'p-l-xs',
   'p-l-s',
   'p-l-m',
@@ -12,7 +12,7 @@ export const paddingsLeft = [
   'p-l-6xl',
 ]
 export const paddingsRight = [
-  '',
+  'Null',
   'p-r-xs',
   'p-r-s',
   'p-r-m',
@@ -25,7 +25,7 @@ export const paddingsRight = [
   'p-r-6xl',
 ]
 export const paddingsTop = [
-  '',
+  'Null',
   'p-t-xs',
   'p-t-s',
   'p-t-m',
@@ -38,7 +38,7 @@ export const paddingsTop = [
   'p-t-6xl',
 ]
 export const paddingsBottom = [
-  '',
+  'Null',
   'p-b-xs',
   'p-b-s',
   'p-b-m',
@@ -52,7 +52,7 @@ export const paddingsBottom = [
 ]
 
 export const marginLeft = [
-  '',
+  'Null',
   'm-l-xs',
   'm-l-s',
   'm-l-m',
@@ -65,7 +65,7 @@ export const marginLeft = [
   'm-l-6xl',
 ]
 export const marginRight = [
-  '',
+  'Null',
   'm-r-xs',
   'm-r-s',
   'm-r-m',
@@ -78,7 +78,7 @@ export const marginRight = [
   'm-r-6xl',
 ]
 export const marginTop = [
-  '',
+  'Null',
   'm-t-xs',
   'm-t-s',
   'm-t-m',
@@ -91,7 +91,7 @@ export const marginTop = [
   'm-t-6xl',
 ]
 export const marginBottom = [
-  '',
+  'Null',
   'm-b-xs',
   'm-b-s',
   'm-b-m',
