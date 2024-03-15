@@ -1,11 +1,16 @@
-import {
-  BreadcrumbProps,
-  ISelectedElement,
+import type {
+  BreadcrumbPropFitMode,
+  BreadcrumbPropSize,
+  DefaultItem,
+} from '@consta/uikit/Breadcrumbs'
+
+import type {
   BrandBreadcrumbsProps,
+  BreadcrumbProps,
   BreadcrumbsFormElement,
   DeepWriteable,
+  ISelectedElement,
 } from '../../../../coreTypes'
-import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
@@ -18,7 +23,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -35,7 +40,7 @@ export const useItemsHandlers = (
 
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
-          itemsProps = [...itemsProps, { label: 'Страница ' + (itemsProps.length + 1) }]
+          itemsProps = [...itemsProps, { label: `Страница ${itemsProps.length + 1}` }]
         }
       } else {
         for (let i = 0; i < currentLength - Number(value); i++) {

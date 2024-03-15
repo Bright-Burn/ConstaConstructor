@@ -106,27 +106,19 @@ export const marginBottom = [
 
 export type BaseTypes = {
   padding?: {
-    paddingLeft?: typeof paddingsLeft[number]
-    paddingRight?: typeof paddingsRight[number]
-    paddingBottom?: typeof paddingsBottom[number]
-    paddingTop?: typeof paddingsTop[number]
+    paddingLeft?: (typeof paddingsLeft)[number]
+    paddingRight?: (typeof paddingsRight)[number]
+    paddingBottom?: (typeof paddingsBottom)[number]
+    paddingTop?: (typeof paddingsTop)[number]
   }
   margin?: {
-    marginLeft?: typeof marginLeft[number]
-    marginRight?: typeof marginRight[number]
-    marginBottom?: typeof marginBottom[number]
-    marginTop?: typeof marginTop[number]
+    marginLeft?: (typeof marginLeft)[number]
+    marginRight?: (typeof marginRight)[number]
+    marginBottom?: (typeof marginBottom)[number]
+    marginTop?: (typeof marginTop)[number]
   }
 }
 
-export type unionPaddings =
-  | typeof paddingsLeft[number]
-  | typeof paddingsRight[number]
-  | typeof paddingsBottom[number]
-  | typeof paddingsTop[number]
+export type unionPaddings = (typeof paddingsLeft)[number]
 
-export type unionMargin =
-  | typeof marginLeft[number]
-  | typeof marginRight[number]
-  | typeof marginBottom[number]
-  | typeof marginTop[number]
+export type unionMargin = (typeof marginLeft)[number]

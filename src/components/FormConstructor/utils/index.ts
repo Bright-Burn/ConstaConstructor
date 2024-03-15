@@ -1,6 +1,6 @@
+export { getElementsOnLayer } from './getElementsOnLayer'
 export { getNewGroupParentLevel } from './getNewGroupParentLevel'
 export { readFile } from './readFile'
 export { saveToFile } from './saveFile'
-export { getElementsOnLayer } from './getElementsOnLayer'
 export type { Values } from './types'
 export { isOfType } from './types'

@@ -1,11 +1,12 @@
-import {
+import type { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
 export type SwitchProps = {
   size?: SwitchPropSize

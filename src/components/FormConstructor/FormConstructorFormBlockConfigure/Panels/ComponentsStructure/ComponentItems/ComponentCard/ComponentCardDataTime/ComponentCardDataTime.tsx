@@ -1,11 +1,15 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { IComponetCardElement } from '../types'
-import { IFormElementDataTime, FormElementDictTypes } from '../../../../../../coreTypes'
+import { Text } from '@consta/uikit/Text'
+
+import type { IFormElementDataTime } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import styles from '../styles.module.css'
+import type { IComponetCardElement } from '../types'
+
 import DateTimeImage from './DateTimeImage'
+
+import styles from '../styles.module.css'
 
 export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -20,7 +24,7 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
           view: 'classic',
           className: '',
           baseProps: {},
-          events: events,
+          events,
           multiplicityHours: 1,
           multiplicityMinutes: 1,
           multiplicitySeconds: 1,

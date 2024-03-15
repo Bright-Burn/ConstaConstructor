@@ -1,12 +1,15 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { useAppDispatch } from '../../../../../../store'
-import { IComponetCardElement } from '../types'
-import { IFormElementDatePicker, FormElementDictTypes } from '../../../../../../coreTypes'
-import { setDraggableElement } from '../../../../../../store'
-import styles from '../styles.module.css'
+import { Text } from '@consta/uikit/Text'
+
+import type { IFormElementDatePicker } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
+import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import type { IComponetCardElement } from '../types'
+
 import DatePickerImage from './DatePickerImage'
+
+import styles from '../styles.module.css'
 
 export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -28,7 +31,7 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
           view: 'default',
           dateTimeView: 'classic',
           dropdownForm: 'default',
-          events: events,
+          events,
           className: '',
           baseProps: {},
         },

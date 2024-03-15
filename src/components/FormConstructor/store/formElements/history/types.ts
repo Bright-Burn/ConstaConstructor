@@ -1,9 +1,9 @@
-import {
+import type {
+  IFormElement,
+  IGroupElement,
   IPageOfLayout,
   ISelectedElement,
   UnionProps,
-  IFormElement,
-  IGroupElement,
 } from '../../../coreTypes'
 
 export interface ISavePoint {

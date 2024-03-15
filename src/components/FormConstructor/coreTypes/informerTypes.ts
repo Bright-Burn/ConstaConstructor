@@ -1,12 +1,13 @@
-import { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
-import {
+import type { IconComponent } from '@consta/icons/Icon'
+import type { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { IconComponent } from '@consta/icons/Icon'
 
 export type Props = {
   view?: InformerPropView

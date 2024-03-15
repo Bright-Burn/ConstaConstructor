@@ -1,13 +1,13 @@
-import style from './styles.module.css'
-import { Text } from '@consta/uikit/Text'
 import { Avatar } from '@consta/uikit/Avatar'
 import { Badge } from '@consta/uikit/Badge'
-import { Tag } from '@consta/uikit/Tag'
 import { Card } from '@consta/uikit/Card'
-
-import { IconUser } from '@consta/uikit/IconUser'
-import { IconGeo } from '@consta/uikit/IconGeo'
 import { IconFolders } from '@consta/uikit/IconFolders'
+import { IconGeo } from '@consta/uikit/IconGeo'
+import { IconUser } from '@consta/uikit/IconUser'
+import { Tag } from '@consta/uikit/Tag'
+import { Text } from '@consta/uikit/Text'
+
+import style from './styles.module.css'
 
 interface CustomCardProps {
   title: string
@@ -32,28 +32,28 @@ function CustomCard({
 }: CustomCardProps) {
   return (
     <div className={style.cards}>
-      <Card className={style.card} verticalSpace='l' horizontalSpace='l' form='round'>
+      <Card className={style.card} verticalSpace="l" horizontalSpace="l" form="round">
         <div className={style.card_title}>
-          <Text weight='bold'>{title}</Text>
+          <Text weight="bold">{title}</Text>
         </div>
         <div className={style.card_mid_content}>
           <div className={style.card_row}>
-            <IconGeo size={'m'} view={'ghost'} />
+            <IconGeo size="m" view="ghost" />
             <div className={style.card_inner_row}>
-              <Text weight='thin' className={style.text}>
+              <Text weight="thin" className={style.text}>
                 {contractorCompany} {' > '}
                 {location}
               </Text>
             </div>
           </div>
           <div className={style.card_row}>
-            <IconUser size={'m'} view={'ghost'} />
+            <IconUser size="m" view="ghost" />
             <div className={style.card_inner_row}>
-              <Text weight='thin'>{user}</Text>
+              <Text weight="thin">{user}</Text>
             </div>
           </div>
           <div className={style.card_row}>
-            <IconFolders size={'m'} view={'ghost'} />
+            <IconFolders size="m" view="ghost" />
             <div className={style.card_inner_row}>
               {
                 // попробовать реализовать сокрытие невлезающих элементов с помощью табов
@@ -65,18 +65,18 @@ function CustomCard({
               }
 
               {tags.length <= 3
-                ? tags.map(tag => <Tag mode='info' label={tag} className={style.tags} />)
+                ? tags.map(tag => <Tag mode="info" label={tag} className={style.tags} />)
                 : tags
                     .slice()
                     .splice(0, 3)
-                    .map(tag => <Tag mode='info' label={tag} className={style.tags} />)}
+                    .map(tag => <Tag mode="info" label={tag} className={style.tags} />)}
               {tags.length >= 3 ? (
                 <Tag
                   className={style.tags}
-                  mode='check'
-                  onChange={() => {}}
-                  label={'+' + (tags.length - 3)}
+                  mode="check"
+                  label={`+${tags.length - 3}`}
                   checked={false}
+                  onChange={() => {}}
                 />
               ) : null}
             </div>
@@ -84,8 +84,8 @@ function CustomCard({
         </div>
         <div className={style.card_last_row}>
           <div className={style.card_last_row}>
-            <Badge view='stroked' label={status} className='badge' />
-            <Text view='secondary'>Изменено: {lastEditDate}</Text>
+            <Badge view="stroked" label={status} className="badge" />
+            <Text view="secondary">Изменено: {lastEditDate}</Text>
           </div>
 
           <Avatar url={avatar} />

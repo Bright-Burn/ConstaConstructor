@@ -1,4 +1,4 @@
-import { InformerPropSize, InformerPropView, InformerPropStatus } from '@consta/uikit/Informer'
+import type { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
 
 export const sizes: InformerPropSize[] = ['m', 's']
 export const views: InformerPropView[] = ['filled', 'bordered']

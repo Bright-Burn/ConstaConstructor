@@ -1,16 +1,19 @@
-import { FC, ReactNode, useEffect } from 'react'
+import type { FC, ReactNode } from 'react'
+import { useEffect } from 'react'
+
+import { JsonHelper } from '../../../../helpers'
 import {
-  useAppDispatch,
-  useAppSelector,
-  deleteFormElement,
   checkViewMode,
+  deleteFormElement,
   loadProjectFromStorage,
   onSetViewMode,
+  togglePanels,
+  useAppDispatch,
+  useAppSelector,
 } from '../../store'
-import css from './styles.module.css'
-import { togglePanels } from '../../store'
 import { popHistoryElement } from '../../store/history'
-import { JsonHelper } from '../../../../helpers'
+
+import css from './styles.module.css'
 
 interface Props {
   children?: ReactNode

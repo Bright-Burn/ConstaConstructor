@@ -1,17 +1,18 @@
-import { LayoutPropVerticalAlign, LayoutPropHorizontalAlign } from '@consta/uikit/Layout'
-import {
-  JustifyContentProps,
+import type { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta/uikit/Layout'
+
+import type { ConstaColor } from '../../../../../ConstaPalette'
+import type {
   AlignItems,
-  BorderWidth,
-  BorderStyle,
   BorderSide,
-  LayoutElementPropsStyles,
-  ISelectedElement,
+  BorderStyle,
+  BorderWidth,
   BrandLayoutElementPropsStyles,
+  ISelectedElement,
+  JustifyContentProps,
   LayoutElement,
+  LayoutElementPropsStyles,
   LayoutPropDirection,
 } from '../../../../coreTypes'
-import { ConstaColor } from '../../../../../ConstaPalette'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
@@ -27,7 +28,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

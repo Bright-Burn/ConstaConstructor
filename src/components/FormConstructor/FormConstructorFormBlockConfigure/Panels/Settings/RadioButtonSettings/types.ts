@@ -1,4 +1,4 @@
-import { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
+import type { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 
 export const sizeArray: RadioPropSize[] = ['xs', 's', 'm', 'l']
 

@@ -1,7 +1,8 @@
-import { ISelectedElement } from '../../../../coreTypes'
-import { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
+import type { ISelectedElement } from '../../../../coreTypes'
+import type { UnionProps } from '../../../../coreTypes/types'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
-import { UnionProps } from '../../../../coreTypes/types'
+
+import type { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
 
 export const usePaddingHandlers = () => {
   const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
@@ -17,17 +18,16 @@ export const usePaddingHandlers = () => {
     }
   }
 
-
   const onDispatch = (selectedElement: ISelectedElement, newProps: UnionProps) => {
     dispatch(
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
-  const onChangePaddingLeft = ({ value }: { value: typeof paddingsLeft[number] | null }) => {
+  const onChangePaddingLeft = ({ value }: { value: (typeof paddingsLeft)[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
       if ('constaProps' in newProps.props) {
@@ -35,12 +35,12 @@ export const usePaddingHandlers = () => {
       }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
-        padding: { ...(newProps.props.baseProps?.padding ?? {}), paddingLeft: value },
+        padding: { ...(newProps.props.baseProps.padding ?? {}), paddingLeft: value },
       }
-      const prevMargin = newProps.props.baseProps?.margin
+      const prevMargin = newProps.props.baseProps.margin
         ? Object.values(newProps.props.baseProps.margin).join(' ')
         : ''
-      const prevPadding = newProps.props.baseProps?.padding
+      const prevPadding = newProps.props.baseProps.padding
         ? Object.values({ ...newProps.props.baseProps.padding, paddingLeft: '' }).join(' ')
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
@@ -48,7 +48,7 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingRight = ({ value }: { value: typeof paddingsRight[number] | null }) => {
+  const onChangePaddingRight = ({ value }: { value: (typeof paddingsRight)[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
       if ('constaProps' in newProps.props) {
@@ -56,12 +56,12 @@ export const usePaddingHandlers = () => {
       }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
-        padding: { ...(newProps.props.baseProps?.padding ?? {}), paddingRight: value },
+        padding: { ...(newProps.props.baseProps.padding ?? {}), paddingRight: value },
       }
-      const prevMargin = newProps.props.baseProps?.margin
+      const prevMargin = newProps.props.baseProps.margin
         ? Object.values(newProps.props.baseProps.margin).join(' ')
         : ''
-      const prevPadding = newProps.props.baseProps?.padding
+      const prevPadding = newProps.props.baseProps.padding
         ? Object.values({ ...newProps.props.baseProps.padding, paddingRight: '' }).join(' ')
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
@@ -69,7 +69,7 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingTop = ({ value }: { value: typeof paddingsTop[number] | null }) => {
+  const onChangePaddingTop = ({ value }: { value: (typeof paddingsTop)[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
       if ('constaProps' in newProps.props) {
@@ -77,12 +77,12 @@ export const usePaddingHandlers = () => {
       }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
-        padding: { ...(newProps.props.baseProps?.padding ?? {}), paddingTop: value },
+        padding: { ...(newProps.props.baseProps.padding ?? {}), paddingTop: value },
       }
-      const prevMargin = newProps.props.baseProps?.margin
+      const prevMargin = newProps.props.baseProps.margin
         ? Object.values(newProps.props.baseProps.margin).join(' ')
         : ''
-      const prevPadding = newProps.props.baseProps?.padding
+      const prevPadding = newProps.props.baseProps.padding
         ? Object.values({ ...newProps.props.baseProps.padding, paddingTop: '' }).join(' ')
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
@@ -90,7 +90,7 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingBottom = ({ value }: { value: typeof paddingsBottom[number] | null }) => {
+  const onChangePaddingBottom = ({ value }: { value: (typeof paddingsBottom)[number] | null }) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
       if ('constaProps' in newProps.props) {
@@ -98,12 +98,12 @@ export const usePaddingHandlers = () => {
       }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
-        padding: { ...(newProps.props.baseProps?.padding ?? {}), paddingBottom: value },
+        padding: { ...(newProps.props.baseProps.padding ?? {}), paddingBottom: value },
       }
-      const prevMargin = newProps.props.baseProps?.margin
+      const prevMargin = newProps.props.baseProps.margin
         ? Object.values(newProps.props.baseProps.margin).join(' ')
         : ''
-      const prevPadding = newProps.props.baseProps?.padding
+      const prevPadding = newProps.props.baseProps.padding
         ? Object.values({ ...newProps.props.baseProps.padding, paddingBottom: '' }).join(' ')
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
@@ -115,6 +115,6 @@ export const usePaddingHandlers = () => {
     onChangePaddingLeft,
     onChangePaddingRight,
     onChangePaddingTop,
-    paddingProps: selectedElementProps?.props.baseProps?.padding,
+    paddingProps: selectedElementProps.props.baseProps.padding,
   }
 }

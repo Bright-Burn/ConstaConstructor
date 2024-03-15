@@ -1,14 +1,14 @@
 export {
-  togglePanels,
-  toggleGrid,
-  toggleComponentsStructurePanel,
-  toggleSettingsPanelState,
   onSetViewMode,
+  toggleComponentsStructurePanel,
+  toggleGrid,
+  togglePanels,
+  toggleSettingsPanelState,
 } from './viewerActions'
-export { ViewerSlice } from './viewerSlice'
 export {
-  getComponentsStructurePanelState,
-  getSettingsPanelState,
   checkIsGridVisible,
   checkViewMode,
+  getComponentsStructurePanelState,
+  getSettingsPanelState,
 } from './viewerSelectors'
+export { ViewerSlice } from './viewerSlice'

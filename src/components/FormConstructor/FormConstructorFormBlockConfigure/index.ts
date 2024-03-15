@@ -1,2 +1,2 @@
-export { FormConstructorFormBlockConfigure } from './FormConstructorFormBlockConfigure'
 export { DroppableLayer } from './DroppableLayer'
+export { FormConstructorFormBlockConfigure } from './FormConstructorFormBlockConfigure'

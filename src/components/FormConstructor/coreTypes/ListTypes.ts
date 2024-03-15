@@ -1,11 +1,12 @@
-import {
+import type { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
 
 export type ItemList = {
   label: string

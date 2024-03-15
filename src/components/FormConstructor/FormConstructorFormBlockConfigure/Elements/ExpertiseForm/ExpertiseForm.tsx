@@ -1,22 +1,23 @@
-import { FC, useLayoutEffect, useRef, useState } from 'react'
-import {
-  IExpertiseFormProps,
-  ExpertiseFormProps,
-  ElementTypes,
-  FormElementDictTypes,
-} from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
-import { IExpertiseForm } from './types'
+import type { FC } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { agGridAdapter } from '@consta/ag-grid-adapter/agGridAdapter'
+import { IconClose } from '@consta/uikit/IconClose'
+import type { ColDef } from 'ag-grid-community'
 import { AgGridReact } from 'ag-grid-react'
-import style from './styles.module.css'
-import { ColDef } from 'ag-grid-community'
+
+import type { ExpertiseFormProps, IExpertiseFormProps } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+
+import { defaultColDef, sideBar } from './config'
+import { InfoWindow } from './InfoWindow'
+import type { wellType } from './mocks'
+import { wellInfo } from './mocks'
+import type { IExpertiseForm } from './types'
+
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-alpine.css'
-import { IconClose } from '@consta/uikit/IconClose'
-import { wellInfo, wellType } from './mocks'
-import { InfoWindow } from './InfoWindow'
-import { defaultColDef, sideBar } from './config'
+import style from './styles.module.css'
 
 export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
   const gridRef = useRef<AgGridReact<wellType>>(null)
@@ -55,44 +56,48 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.CardWithBarChart}
-      className={`${style.fullScreen}`}
-    >
+      className={`${style.fullScreen}`}>
       {checkModal ? (
         <>
-          <div style={{ width: '70%' }} className='ag-theme-alpine'>
+          <div style={{ width: '70%' }} className="ag-theme-alpine">
             <AgGridReact<wellType>
               {...styleOptions}
               ref={gridRef}
               rowData={wellInfo}
-              rowSelection={'single'}
+              rowSelection="single"
               columnDefs={columnDefs}
               defaultColDef={defaultColDef}
               sideBar={sideBar}
               onRowClicked={changeActiveRow}
-            ></AgGridReact>
+            />
           </div>
           <div className={`${style.modalOpen}`}>
             <div className={`${style.commonInfo}`}>
               <div>Общая информация</div>
               <div>
-                <IconClose className={`${style.icon}`} onClick={() => setCheckModal(false)} />
+                <IconClose
+                  className={`${style.icon}`}
+                  onClick={() => {
+                    setCheckModal(false)
+                  }}
+                />
               </div>
             </div>
-            {activeRow && <InfoWindow {...activeRow}></InfoWindow>}
+            {!!activeRow && <InfoWindow {...activeRow} />}
           </div>
         </>
       ) : (
-        <div style={{ width: '100%' }} className='ag-theme-alpine'>
+        <div style={{ width: '100%' }} className="ag-theme-alpine">
           <AgGridReact<wellType>
             {...styleOptions}
             ref={gridRef}
             rowData={wellInfo}
-            rowSelection={'single'}
+            rowSelection="single"
             columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             sideBar={sideBar}
             onRowClicked={changeActiveRow}
-          ></AgGridReact>
+          />
         </div>
       )}
     </SelectableLayerFullWidth>

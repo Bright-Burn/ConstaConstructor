@@ -1,12 +1,13 @@
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import {
-  ISelectedElement,
-  TextElementProps,
+import type {
   BrandTextElementProps,
-  TextElement,
+  ISelectedElement,
   textDecorationType,
+  TextElement,
+  TextElementProps,
 } from '../../../../coreTypes'
-import { ValueTypes } from './types'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+
+import type { ValueTypes } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: TextElementProps,
@@ -85,7 +86,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

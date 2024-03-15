@@ -1,12 +1,13 @@
-import {
+import type {
   BrandOwnChoiceGroupProps,
   ChoiceGroupElement,
+  DeepWriteable,
   ISelectedElement,
   OwnChoiceGroupProps,
-  DeepWriteable,
 } from '../../../../coreTypes'
-import { Item, ValueType } from './types'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+
+import type { Item, ValueType } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: DeepWriteable<OwnChoiceGroupProps>,
@@ -19,7 +20,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

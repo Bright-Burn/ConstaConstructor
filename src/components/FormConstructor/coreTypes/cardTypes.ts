@@ -1,5 +1,6 @@
-import { Props } from '@consta/uikit/Card'
-import { BaseProps, BrandProps, ConcreteSelectedElement, FormGroupsDictTypes } from './types'
+import type { Props } from '@consta/uikit/Card'
+
+import type { BaseProps, BrandProps, ConcreteSelectedElement, FormGroupsDictTypes } from './types'
 
 export type CardElementProps = Props
 

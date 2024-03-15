@@ -1,14 +1,17 @@
+import type { FC } from 'react'
 import React from 'react'
-import { useTextSettingsStore } from './PrototypeSettingsService'
-import { TextField, TextFieldPropValue } from '@consta/uikit/TextField'
-import { FC } from 'react'
-import {
+import type { TextFieldPropValue } from '@consta/uikit/TextField'
+import { TextField } from '@consta/uikit/TextField'
+
+import type {
   BrandPrototypeRectangleProps,
   BrandPrototypeTextProps,
   PrototypeProps,
   PrototypeRectangleElement,
   PrototypeTextElement,
 } from '../../../../coreTypes'
+
+import { useTextSettingsStore } from './PrototypeSettingsService'
 
 type PrototypeSettingsType = {
   selectedElementProps: PrototypeProps
@@ -78,58 +81,58 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
   return (
     <>
       <TextField
-        className='m-b-m'
-        label='Ширина'
-        onChange={onWidthChange}
+        className="m-b-m"
+        label="Ширина"
         value={`${width}`}
-        type='number'
-        placeholder='Ширина'
+        type="number"
+        placeholder="Ширина"
+        onChange={onWidthChange}
       />
 
       <TextField
-        className='m-b-m'
-        label='Высота'
-        onChange={onHeightChange}
+        className="m-b-m"
+        label="Высота"
         value={`${height}`}
-        type='number'
-        placeholder='Высота'
+        type="number"
+        placeholder="Высота"
+        onChange={onHeightChange}
       />
 
       <TextField
-        className='m-b-m'
-        label='Верх'
-        onChange={onTopChange}
+        className="m-b-m"
+        label="Верх"
         value={`${top}`}
-        type='number'
-        placeholder='Верх'
+        type="number"
+        placeholder="Верх"
+        onChange={onTopChange}
       />
 
       <TextField
-        className='m-b-m'
-        label='Лево'
-        onChange={onLeftChange}
+        className="m-b-m"
+        label="Лево"
         value={`${left}`}
-        type='number'
-        placeholder='Лево'
+        type="number"
+        placeholder="Лево"
+        onChange={onLeftChange}
       />
 
       <TextField
-        className='m-b-m'
-        label='z-index'
-        onChange={onZIndexChange}
+        className="m-b-m"
+        label="z-index"
         value={`${zIndex}`}
-        type='number'
-        placeholder='z-index'
+        type="number"
+        placeholder="z-index"
+        onChange={onZIndexChange}
       />
 
       {'text' in textProps && (
         <TextField
-          className='m-b-m'
-          label='Текст'
+          className="m-b-m"
+          label="Текст"
+          value={textProps.text || 'Пример текста'}
+          type="text"
+          placeholder="Высота"
           onChange={onTextChange}
-          value={`${textProps.text || 'Пример текста'}`}
-          type='text'
-          placeholder='Высота'
         />
       )}
     </>

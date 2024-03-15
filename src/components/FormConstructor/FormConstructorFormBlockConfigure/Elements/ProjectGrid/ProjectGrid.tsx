@@ -1,20 +1,25 @@
-import { FC, useState } from 'react'
-import { IProjectGrid, ProjectTableView } from './types'
-import { Table, TableColumn } from '@consta/uikit/Table'
-import { Text } from '@consta/uikit/Text'
-import { Pagination } from '@consta/uikit/Pagination'
-import { currentPage, range, rows } from './mocks'
+import type { FC } from 'react'
+import { useState } from 'react'
+import type { IconComponent } from '@consta/icons/Icon'
 import { Badge } from '@consta/uikit/Badge'
-import { IconsCell } from './Icons'
-import style from './styles.module.css'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import { IconBento } from '@consta/uikit/IconBento'
-import { IconAdd } from '@consta/uikit/IconAdd'
-import { IconHamburger } from '@consta/uikit/IconHamburger'
-import { IconComponent } from '@consta/icons/Icon'
-import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
-import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { Button } from '@consta/uikit/Button'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { IconAdd } from '@consta/uikit/IconAdd'
+import { IconBento } from '@consta/uikit/IconBento'
+import { IconHamburger } from '@consta/uikit/IconHamburger'
+import { Pagination } from '@consta/uikit/Pagination'
+import type { TableColumn } from '@consta/uikit/Table'
+import { Table } from '@consta/uikit/Table'
+import { Text } from '@consta/uikit/Text'
+
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
+
+import { IconsCell } from './Icons'
+import { currentPage, range, rows } from './mocks'
+import type { IProjectGrid, ProjectTableView } from './types'
+
+import style from './styles.module.css'
 
 type Item = {
   name: string
@@ -30,13 +35,13 @@ const groupTypes: Item[] = [
 
 export const ProjectGrid: FC<IProjectGrid> = ({ element }) => {
   const renderNameCell = (row: ProjectTableView) => (
-    <Text view='link' cursor='pointer'>
+    <Text view="link" cursor="pointer">
       {row.name}
     </Text>
   )
 
   const renderStatusCell = (row: ProjectTableView) =>
-    row.status ? <Badge view='stroked' label={row.status} /> : null
+    row.status ? <Badge view="stroked" label={row.status} /> : null
 
   const renderIconsCell = () => <IconsCell />
 
@@ -57,44 +62,45 @@ export const ProjectGrid: FC<IProjectGrid> = ({ element }) => {
       className={style.TableView}
       parentElementId={element.id}
       elementType={FormElementDictTypes.ProjectGrid}
-      elementTypeUsage={ElementTypes.FormElement}
-    >
+      elementTypeUsage={ElementTypes.FormElement}>
       <div className={style.HeaderButtons}>
-        <Text size='2xl' as='h1'>
+        <Text size="2xl" as="h1">
           Проекты
         </Text>
-        <Button size='s' iconSize='s' iconLeft={IconAdd} label='Новые проект' />
+        <Button size="s" iconSize="s" iconLeft={IconAdd} label="Новые проект" />
       </div>
       <div className={style.FilterButtons}>
         <ChoiceGroup
-          name='ChoiceGroupType'
+          name="ChoiceGroupType"
           value={choisenSortGroup}
-          onChange={({ value }) => setChoisenSortGroup(value)}
           items={sortGroups}
-          size='s'
+          size="s"
           getItemLabel={item => item}
+          onChange={({ value }) => {
+            setChoisenSortGroup(value)
+          }}
         />
         <ChoiceGroup
-          name='ChoiceGroupGrid'
+          name="ChoiceGroupGrid"
           value={groupTypes[1]}
           items={groupTypes}
           getItemLabel={item => item.name}
           getItemIcon={item => item.icon}
+          size="s"
+          view="secondary"
+          onlyIcon={true}
           onChange={() => {}}
-          size='s'
-          view='secondary'
-          onlyIcon
         />
       </div>
       <div className={style.ProjectGrid}>
         <Table
-          size='m'
+          size="m"
           rows={rows}
           columns={columnDefs}
           emptyRowsPlaceholder={<Text>Пусто</Text>}
           borderBetweenRows={true}
         />
-        <Pagination size='s' totalPages={range} currentPage={currentPage} onChange={() => {}} />
+        <Pagination size="s" totalPages={range} currentPage={currentPage} onChange={() => {}} />
       </div>
     </SelectableLayerFitSpace>
   )

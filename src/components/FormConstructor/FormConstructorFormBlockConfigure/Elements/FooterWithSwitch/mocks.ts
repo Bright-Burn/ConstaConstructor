@@ -1,4 +1,4 @@
-import { IBaseComponent } from '../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../store/baseComponentsItems'
 
 export const footerWithSwitchMockId = '061a1f81-47c2-4cf8-9c0b-1997ade03298'
 export const footerWithSwitchMock = {

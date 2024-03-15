@@ -1,6 +1,8 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
+
+import type { IFormElementPrototype } from '../../../coreTypes/prototypeTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { IFormElementPrototype } from '../../../coreTypes/prototypeTypes'
 
 interface IPrototypeTextElement {
   element: IFormElementPrototype
@@ -29,9 +31,8 @@ export const PrototypeTextElement: FC<IPrototypeTextElement> = ({ element }) => 
     <div style={parentStyle}>
       <SelectableLayer
         parentElementId={element.id}
-        elementType={'PrototypeTextElement'}
-        elementTypeUsage={'FormElement'}
-      >
+        elementType="PrototypeTextElement"
+        elementTypeUsage="FormElement">
         <span title={text} style={style}>
           {text}
         </span>

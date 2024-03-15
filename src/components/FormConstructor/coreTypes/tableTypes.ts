@@ -1,5 +1,6 @@
-import { BadgePropSize } from '@consta/uikit/Badge'
-import {
+import type { BadgePropSize } from '@consta/uikit/Badge'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,

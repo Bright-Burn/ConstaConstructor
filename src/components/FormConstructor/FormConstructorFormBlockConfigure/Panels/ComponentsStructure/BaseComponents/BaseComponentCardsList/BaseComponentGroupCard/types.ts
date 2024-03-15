@@ -1,5 +1,5 @@
-import { IBaseComponent } from '../../../../../../store/baseComponentsItems'
-import { Values } from '../../../../../../utils'
+import type { IBaseComponent } from '../../../../../../store/baseComponentsItems'
+import type { Values } from '../../../../../../utils'
 
 export interface IBaseComponentGroupCard {
   name: string

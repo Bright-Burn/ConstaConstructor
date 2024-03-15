@@ -1,5 +1,7 @@
 import { saveToFile } from '../utils'
-import { ProjectDataSerializable, ProjectSaveWays, SaveProjectIntent } from './types'
+
+import type { ProjectDataSerializable, SaveProjectIntent } from './types'
+import { ProjectSaveWays } from './types'
 
 export const saveProject = (saveIntent: ProjectDataSerializable & SaveProjectIntent) => {
   switch (saveIntent.saveWay) {

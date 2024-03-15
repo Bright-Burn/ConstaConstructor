@@ -1,14 +1,20 @@
-import { FC, useLayoutEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
-import styles from './styles.module.css'
-import { CardElementProps, CardElementPropsStyles } from '../../../../coreTypes'
-import { TextField } from '@consta/uikit/TextField'
-import { ISelectedElement } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BrandCardElementPropsStyles, CardElement } from '../../../../coreTypes/cardTypes'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Text } from '@consta/uikit/Text'
+import { TextField } from '@consta/uikit/TextField'
+
+import type {
+  CardElementProps,
+  CardElementPropsStyles,
+  ISelectedElement,
+} from '../../../../coreTypes'
+import type { BrandCardElementPropsStyles, CardElement } from '../../../../coreTypes/cardTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+
+import styles from './styles.module.css'
 
 type CardSettingsType = {
   selectedElementProps: CardElementPropsStyles
@@ -58,7 +64,7 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
       }
       newProps.props.constaProps = { ...newProps.props.constaProps, [propsName]: checked }
 
-      if (propsName === 'border' && checked === false) {
+      if (propsName === 'border' && !checked) {
         newProps.props.constaProps.status = undefined
       }
 
@@ -100,7 +106,7 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -111,49 +117,53 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
         <>
           <div className={styles.rowSettings}>
             <TextField
-              onChange={({ value }) => onChangeHeight(value)}
               value={heightValue}
-              type='number'
-              size='xs'
-              leftSide='px'
-              label='Высота'
-              min='0'
+              type="number"
+              size="xs"
+              leftSide="px"
+              label="Высота"
+              min="0"
+              onChange={({ value }) => {
+                onChangeHeight(value)
+              }}
             />
             <TextField
-              onChange={({ value }) => onChangeWidth(value)}
               value={widthValue}
-              type='number'
-              size='xs'
-              leftSide='px'
-              label='Ширина'
-              min='0'
+              type="number"
+              size="xs"
+              leftSide="px"
+              label="Ширина"
+              min="0"
+              onChange={({ value }) => {
+                onChangeWidth(value)
+              }}
             />
           </div>
           <div className={styles.rowSettings}>
             <div className={styles.columnSettings}>
-              <Text view='secondary' size='xs'>
+              <Text view="secondary" size="xs">
                 Форма углов
               </Text>
               <ChoiceGroup
                 value={props.constaProps.form}
-                onChange={onChangeCardField('form')}
                 items={form}
-                size='xs'
-                view='ghost'
+                size="xs"
+                view="ghost"
                 getItemLabel={item => item}
-                name='ChoiceGroupExample'
+                name="ChoiceGroupExample"
+                onChange={onChangeCardField('form')}
               />
             </div>
             <div className={styles.columnSettings}>
               <Switch
                 checked={props.constaProps.border}
-                label='Границы'
-                size='xs'
+                label="Границы"
+                size="xs"
                 onChange={onChangeCardSwitch('border')}
               />
               <Select
                 getItemKey={key => key}
-                size='xs'
+                size="xs"
                 disabled={!props.constaProps.border}
                 getItemLabel={label => label}
                 items={status}
@@ -164,8 +174,8 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
           </div>
           <Switch
             checked={props.constaProps.shadow ?? true}
-            label='Тень'
-            size='xs'
+            label="Тень"
+            size="xs"
             onChange={onChangeCardSwitch('shadow')}
           />
         </>

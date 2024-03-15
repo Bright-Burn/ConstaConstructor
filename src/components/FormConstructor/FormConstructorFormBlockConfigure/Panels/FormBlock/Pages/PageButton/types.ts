@@ -1,4 +1,4 @@
-import { PageOfLayout } from '../types'
+import type { PageOfLayout } from '../types'
 
 export type IPageButton = {
   isSelectedPage: boolean

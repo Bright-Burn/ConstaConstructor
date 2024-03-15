@@ -1,19 +1,22 @@
-import styles from './styles.module.css'
-import { FC } from 'react'
-import { Select } from '@consta/uikit/Select'
-import {
-  IconProps,
-  IconNames,
-  ISelectedElement,
-  IconElement,
-  BrandIconProps,
-} from '../../../../coreTypes'
-import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
+import type { FC } from 'react'
 import React from 'react'
-import { Icons } from '../../../Elements/IconFormElement/mocks'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { sizes, icons, views } from './IconsConstants'
+import type { IconPropSize, IconPropView } from '@consta/uikit/Icon'
+import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
+
+import type {
+  BrandIconProps,
+  IconElement,
+  IconNames,
+  IconProps,
+  ISelectedElement,
+} from '../../../../coreTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
+
+import { icons, sizes, views } from './IconsConstants'
+
+import styles from './styles.module.css'
 
 type IconSettingsType = {
   selectedElementProps: IconProps
@@ -63,7 +66,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -77,46 +80,51 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={sizes}
-              label='Размер'
-              size='xs'
+              label="Размер"
+              size="xs"
               value={props.size}
-              onChange={({ value }) => onChangeSize(value)}
+              onChange={({ value }) => {
+                onChangeSize(value)
+              }}
             />
             <Select
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={icons}
-              size='xs'
+              size="xs"
               value={props.icons}
-              onChange={({ value }) => onChangeIcon(value)}
               renderItem={({ item, active, onClick, onMouseEnter }) => (
                 <div
                   className={styles.iconItem}
-                  role='option'
+                  role="option"
                   aria-selected={active}
                   onMouseEnter={onMouseEnter}
-                  onClick={onClick}
-                >
+                  onClick={onClick}>
                   {React.createElement(Icons[item], { size: 'xs' })}
-                  <Text size='xs'>{item}</Text>
+                  <Text size="xs">{item}</Text>
                 </div>
               )}
               renderValue={({ item }) => (
                 <div className={styles.iconItem}>
                   {React.createElement(Icons[item], { size: 'xs' })}
-                  <Text size='xs'>{item}</Text>
+                  <Text size="xs">{item}</Text>
                 </div>
               )}
+              onChange={({ value }) => {
+                onChangeIcon(value)
+              }}
             />
           </div>
           <Select
             getItemKey={(item: string) => item}
             getItemLabel={(item: string) => item}
             items={views}
-            label='Вид'
-            size='xs'
+            label="Вид"
+            size="xs"
             value={props.view}
-            onChange={({ value }) => onChangeView(value)}
+            onChange={({ value }) => {
+              onChangeView(value)
+            }}
           />
         </>
       ) : null}

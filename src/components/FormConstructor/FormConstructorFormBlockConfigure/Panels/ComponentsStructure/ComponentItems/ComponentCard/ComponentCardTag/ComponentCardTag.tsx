@@ -1,12 +1,15 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { useAppDispatch } from '../../../../../../store'
-import { IComponetCardElement } from '../types'
-import { IFormElementTagProps, FormElementDictTypes } from '../../../../../../coreTypes'
-import { setDraggableElement } from '../../../../../../store'
-import styles from '../styles.module.css'
+import { Text } from '@consta/uikit/Text'
+
+import type { IFormElementTagProps } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
+import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import type { IComponetCardElement } from '../types'
+
 import TagImage from './TagImage'
+
+import styles from '../styles.module.css'
 
 export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

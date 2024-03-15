@@ -1,5 +1,6 @@
-import { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../coreTypes'
+import type { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
+
+import type { PropForm } from '../../../../coreTypes'
 
 export const sizeArray: TextFieldPropSize[] = ['xs', 's', 'm', 'l']
 

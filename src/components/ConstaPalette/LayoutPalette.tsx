@@ -1,6 +1,7 @@
-import { FC } from 'react'
+import type { FC } from 'react'
+
 import { ConstaPalette } from './ConstaPalette'
-import { IConcreteConstaPalette, ConstaColor } from './types'
+import type { ConstaColor, IConcreteConstaPalette } from './types'
 
 const layoutColors: ConstaColor[] = [
   'Null',

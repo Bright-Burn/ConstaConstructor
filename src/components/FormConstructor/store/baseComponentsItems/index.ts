@@ -1,19 +1,19 @@
-import { AddBaseComponent, SetDraggableBaseComponent } from './payload'
 import {
-  baseComponentsSlice,
   baseComponentsReducer,
+  baseComponentsSlice,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from './baseComponentsSlices'
-import { IBaseComponent, IBaseComponentsItems } from './types'
+import type { AddBaseComponent, SetDraggableBaseComponent } from './payload'
+import type { IBaseComponent, IBaseComponentsItems } from './types'
 
 export {
-  type SetDraggableBaseComponent,
-  type IBaseComponent,
   type AddBaseComponent,
-  type IBaseComponentsItems,
-  baseComponentsSlice,
   baseComponentsReducer,
+  baseComponentsSlice,
+  type IBaseComponent,
+  type IBaseComponentsItems,
+  type SetDraggableBaseComponent,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 }

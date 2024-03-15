@@ -1,11 +1,17 @@
-import {
-  ISelectedElement,
-  BadgeProps,
-  IconNames,
+import type {
+  BadgePropForm,
+  BadgePropSize,
+  BadgePropStatus,
+  BadgePropView,
+} from '@consta/uikit/Badge'
+
+import type {
   BadgeElement,
+  BadgeProps,
   BrandBadgeProps,
+  IconNames,
+  ISelectedElement,
 } from '../../../../coreTypes'
-import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
@@ -70,7 +76,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

@@ -1,4 +1,4 @@
-import { IBaseComponent } from '../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../store/baseComponentsItems'
 
 export const pieChart1Data = [
   { type: '1', value: 0.33 },

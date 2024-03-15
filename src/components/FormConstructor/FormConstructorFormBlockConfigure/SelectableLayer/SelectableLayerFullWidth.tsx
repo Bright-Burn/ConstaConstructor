@@ -1,6 +1,7 @@
-import { FC } from 'react'
+import type { FC } from 'react'
+
 import { SelectableLayer } from './SelectableLayer'
-import { ISelectableLayer } from './types'
+import type { ISelectableLayer } from './types'
 
 export const SelectableLayerFullWidth: FC<ISelectableLayer> = props => {
   let className = 'container'

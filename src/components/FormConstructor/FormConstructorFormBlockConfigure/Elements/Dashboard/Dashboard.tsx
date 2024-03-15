@@ -1,21 +1,17 @@
-import { FC, useLayoutEffect, useState } from 'react'
-
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
+import { Bar } from '@consta/charts/Bar'
+import { Pie } from '@consta/charts/Pie'
+import { Stats } from '@consta/stats/Stats'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Layout } from '@consta/uikit/Layout'
+import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 
-import { IPlaceholderFormElement } from './types'
-import {
-  IFormElementPlaceholder,
-  PlaceholderProps,
-  ElementTypes,
-  FormElementDictTypes,
-} from '../../../coreTypes'
-
-import style from './styles.module.css'
+import type { IFormElementPlaceholder, PlaceholderProps } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
-import { Layout } from '@consta/uikit/Layout'
-import { Stats } from '@consta/stats/Stats'
-import { Pie } from '@consta/charts/Pie'
-import { Bar } from '@consta/charts/Bar'
+
 import {
   barChart1Data,
   barChart2Data,
@@ -27,8 +23,9 @@ import {
   selectIdleStepData,
   selectIdleTypeData,
 } from './mocks'
-import { Select } from '@consta/uikit/Select'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import type { IPlaceholderFormElement } from './types'
+
+import style from './styles.module.css'
 
 export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
   const [placeholderProps, setPlaceholderProps] = useState<PlaceholderProps | undefined>()
@@ -59,8 +56,8 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
         data={data}
         label={false}
         legend={false}
-        angleField='value'
-        colorField='type'
+        angleField="value"
+        colorField="type"
         color={color || ['#56b9f2', '#eb5757']}
         innerRadius={0.6}
         statistic={{
@@ -70,7 +67,7 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
                 customHtml: (v, v2, v3, v4) => {
                   const sum = (v4 || []).reduce((acc, value) => acc + value.value, 0)
                   return (
-                    <Text size='xl'>
+                    <Text size="xl">
                       {v3?.value || (Math.round(sum * 100) / 100).toLocaleString()}
                     </Text>
                   )
@@ -79,13 +76,12 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
             : false,
         }}
       />
-      {title && (
+      {!!title && (
         <div
           style={{
             height: '42px',
-          }}
-        >
-          <Text size='xs' align='center'>
+          }}>
+          <Text size="xs" align="center">
             {title}
           </Text>
         </div>
@@ -113,8 +109,7 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
         flexBasis: '1px',
         overflow: grow === '0' ? 'visible' : 'hidden',
         ...(css || {}),
-      }}
-    >
+      }}>
       {children}
     </div>
   )
@@ -123,105 +118,103 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
     <SelectableLayerFitSpace
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Placeholder}
-    >
+      elementType={FormElementDictTypes.Placeholder}>
       <div
         style={{
           minWidth: '830px',
           minHeight: '1010px',
           display: 'flex',
-        }}
-      >
-        <Layout direction='column' className={style.root}>
-          <Cell direction='row'>
-            <Cell direction='column'>
+        }}>
+        <Layout direction="column" className={style.root}>
+          <Cell direction="row">
+            <Cell direction="column">
               <div className={style.pane}>
                 <div style={{ marginBottom: '10px' }}>
-                  <Text view='primary' weight='bold' size='2xl'>
+                  <Text view="primary" weight="bold" size="2xl">
                     КПЭ
                   </Text>
                 </div>
-                <Layout direction='column' flex={1}>
-                  <Cell direction='row' grow='1'>
-                    <Cell direction='column' grow='6'>
+                <Layout direction="column" flex={1}>
+                  <Cell direction="row" grow="1">
+                    <Cell direction="column" grow="6">
                       <PieWithLabel
                         data={pieChart1Data}
                         withStatistic={true}
-                        title='Коэф. достижения целевого'
+                        title="Коэф. достижения целевого"
                       />
                     </Cell>
-                    <Cell direction='column' grow='6'>
-                      <PieWithLabel data={pieChart2Data} withStatistic={true} title='Qn т./сут.' />
+                    <Cell direction="column" grow="6">
+                      <PieWithLabel data={pieChart2Data} withStatistic={true} title="Qn т./сут." />
                     </Cell>
-                    <Cell direction='column' grow='5'>
+                    <Cell direction="column" grow="5">
                       <Stats
                         value={-5}
-                        title='Отставание'
-                        unit='т./сут.'
-                        status='error'
-                        layout='reversed'
-                        size='xs'
+                        title="Отставание"
+                        unit="т./сут."
+                        status="error"
+                        layout="reversed"
+                        size="xs"
                       />
                     </Cell>
                   </Cell>
-                  <Cell direction='row' grow='0'>
-                    <Cell direction='column'>
+                  <Cell direction="row" grow="0">
+                    <Cell direction="column">
                       <Stats
                         value={64.1}
-                        rate='71%'
-                        title='ПВ'
-                        unit='сут.'
-                        status='system'
-                        layout='default'
-                        size='xs'
+                        rate="71%"
+                        title="ПВ"
+                        unit="сут."
+                        status="system"
+                        layout="default"
+                        size="xs"
                       />
                     </Cell>
-                    <Cell direction='column'>
+                    <Cell direction="column">
                       <Stats
                         value={12.1}
-                        rate='11%'
-                        title='НПВ'
-                        unit='сут.'
-                        status='system'
-                        layout='default'
-                        size='xs'
+                        rate="11%"
+                        title="НПВ"
+                        unit="сут."
+                        status="system"
+                        layout="default"
+                        size="xs"
                       />
                     </Cell>
-                    <Cell direction='column'>
+                    <Cell direction="column">
                       <Stats
                         value={23.2}
-                        rate='18%'
-                        title='Ожидания'
-                        unit='сут.'
-                        status='system'
-                        layout='default'
-                        size='xs'
+                        rate="18%"
+                        title="Ожидания"
+                        unit="сут."
+                        status="system"
+                        layout="default"
+                        size="xs"
                       />
                     </Cell>
                   </Cell>
-                  <Cell direction='row' grow='1'>
+                  <Cell direction="row" grow="1">
                     <Bar
                       style={{ width: '100%', height: '100%' }}
                       data={barChart1Data}
                       color={['#56b9f2', '#f2c94c', '#eb5757']}
-                      xField='value'
-                      yField='group'
-                      seriesField='name'
+                      xField="value"
+                      yField="group"
+                      seriesField="name"
                       legend={{
                         position: 'bottom',
                       }}
-                      isStack
+                      isStack={true}
                     />
                   </Cell>
                 </Layout>
               </div>
             </Cell>
-            <Cell direction='column'>
+            <Cell direction="column">
               <div className={style.pane}>
-                <Cell direction='column'>
-                  <Cell direction='row' grow='0' css={{ alignItems: 'center' }}>
+                <Cell direction="column">
+                  <Cell direction="row" grow="0" css={{ alignItems: 'center' }}>
                     <div style={{ marginBottom: '10px' }}>
-                      <Text view='primary' weight='bold' size='2xl'>
+                      <Text view="primary" weight="bold" size="2xl">
                         Простои
                       </Text>
                     </div>
@@ -229,88 +222,87 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
                       style={{
                         width: '180px',
                         marginLeft: '20px',
-                      }}
-                    >
+                      }}>
                       <Select
-                        size='xs'
+                        size="xs"
                         items={selectIdleStepData}
                         value={selectIdleStepData[0]}
                         onChange={() => {}}
                       />
                     </div>
                   </Cell>
-                  <Cell direction='row' grow='1'>
-                    <Cell direction='row' grow='1'>
+                  <Cell direction="row" grow="1">
+                    <Cell direction="row" grow="1">
                       <PieWithLabel
                         data={pieChart3Data}
                         withStatistic={false}
                         color={['#56b9f2', '#33b4ff80', '#eb5757']}
                       />
                     </Cell>
-                    <Cell direction='row' grow='2'>
+                    <Cell direction="row" grow="2">
                       <Stats
                         value={1342.5}
-                        rate=' '
-                        unit='часов'
-                        status='system'
-                        layout='default'
-                        size='s'
+                        rate=" "
+                        unit="часов"
+                        status="system"
+                        layout="default"
+                        size="s"
                       />
                     </Cell>
                   </Cell>
                   <div>
-                    <Cell direction='row'>
-                      <Cell direction='column' grow='1'>
+                    <Cell direction="row">
+                      <Cell direction="column" grow="1">
                         <Select
-                          size='xs'
+                          size="xs"
                           items={selectIdleTypeData}
                           value={selectIdleTypeData[0]}
                           onChange={() => {}}
                         />
                       </Cell>
-                      <Cell direction='column' grow='2'>
+                      <Cell direction="column" grow="2">
                         <ChoiceGroup
-                          size='xs'
-                          value='Заказчик'
-                          onChange={() => {}}
+                          size="xs"
+                          value="Заказчик"
                           items={['Заказчик', 'Подрядчик', 'Метео']}
                           getItemLabel={item => item}
                           multiple={false}
-                          name='ChoiceGroup1'
+                          name="ChoiceGroup1"
+                          onChange={() => {}}
                         />
                       </Cell>
                     </Cell>
                   </div>
-                  <Cell direction='row' grow='2'>
+                  <Cell direction="row" grow="2">
                     <Bar
                       style={{ width: '100%', height: '100%' }}
                       data={barChart2Data}
                       color={['#33b4ff', '#eb5757', '#33b4ff80']}
-                      xField='value'
-                      yField='group'
-                      seriesField='name'
+                      xField="value"
+                      yField="group"
+                      seriesField="name"
                       legend={{
                         position: 'bottom',
                       }}
-                      isStack
+                      isStack={true}
                     />
                   </Cell>
                 </Cell>
               </div>
             </Cell>
           </Cell>
-          <Cell direction='row'>
+          <Cell direction="row">
             <div className={style.pane}>
               <div style={{ marginBottom: '10px' }}>
-                <Text view='primary' weight='bold' size='2xl'>
+                <Text view="primary" weight="bold" size="2xl">
                   Затраты
                 </Text>
               </div>
-              <Cell direction='row'>
-                <Cell direction='column' grow='1'>
+              <Cell direction="row">
+                <Cell direction="column" grow="1">
                   <PieWithLabel
                     data={pieChart4Data}
-                    title=''
+                    title=""
                     withStatistic={false}
                     css={{
                       width: '125px',
@@ -319,26 +311,26 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
                   />
                   <Stats
                     value={23.2}
-                    rate='2.1%'
-                    title='Общие'
-                    unit='млн. ₽'
-                    status='error'
-                    layout='default'
-                    size='xs'
+                    rate="2.1%"
+                    title="Общие"
+                    unit="млн. ₽"
+                    status="error"
+                    layout="default"
+                    size="xs"
                   />
                 </Cell>
-                <Cell direction='column' grow='3'>
+                <Cell direction="column" grow="3">
                   <Bar
                     style={{ width: '100%', height: '100%' }}
                     data={barChart3Data}
                     color={['#33b4ff', '#eb5757', '#33b4ff80']}
-                    xField='value'
-                    yField='group'
-                    seriesField='name'
+                    xField="value"
+                    yField="group"
+                    seriesField="name"
                     legend={{
                       position: 'bottom',
                     }}
-                    isStack
+                    isStack={true}
                   />
                 </Cell>
               </Cell>

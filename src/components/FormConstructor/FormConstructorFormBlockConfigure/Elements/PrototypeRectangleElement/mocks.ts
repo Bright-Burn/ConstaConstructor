@@ -1,8 +1,9 @@
-import { IBaseComponent } from '../../../store/baseComponentsItems';
-import uuid from 'react-uuid';
-import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types';
+import uuid from 'react-uuid'
 
-export const rectangleMockId = uuid();
+import type { IBaseComponent } from '../../../store/baseComponentsItems'
+import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types'
+
+export const rectangleMockId = uuid()
 
 export const PrototypeRectangleMock = {
   id: rectangleMockId,
@@ -20,7 +21,7 @@ export const PrototypeRectangleMock = {
         top: 0,
         width: 120,
         zIndex: 1,
-      })
+      }),
     },
   ],
-} satisfies IBaseComponent;
+} satisfies IBaseComponent

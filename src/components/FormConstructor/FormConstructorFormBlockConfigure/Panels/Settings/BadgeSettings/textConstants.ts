@@ -1,4 +1,9 @@
-import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
+import type {
+  BadgePropForm,
+  BadgePropSize,
+  BadgePropStatus,
+  BadgePropView,
+} from '@consta/uikit/Badge'
 
 export const sizes: BadgePropSize[] = ['l', 'm', 's', 'xs']
 export const views: BadgePropView[] = ['filled', 'stroked']

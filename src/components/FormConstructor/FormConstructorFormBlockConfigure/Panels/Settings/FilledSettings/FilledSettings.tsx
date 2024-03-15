@@ -1,20 +1,22 @@
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import {
+import React from 'react'
+import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
+import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import type { IconComponent } from '@consta/uikit/Icon'
+import { Text } from '@consta/uikit/Text'
+
+import type {
   ButtonProps,
   TextFieldProps,
   UnionProps,
   UserElement,
   UserProps,
 } from '../../../../coreTypes'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
-import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
+import type { ButtonElement } from '../../../../coreTypes/buttonTypes'
+import type { TextFieldElement } from '../../../../coreTypes/textFieldTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+
 import style from './styles.module.css'
-import { Text } from '@consta/uikit/Text'
-import { IconComponent } from '@consta/uikit/Icon'
-import { TextFieldElement } from '../../../../coreTypes/textFieldTypes'
-import { ButtonElement } from '../../../../coreTypes/buttonTypes'
-import React from 'react'
 
 type fillType = {
   name: string
@@ -39,41 +41,43 @@ export const FilledSettings: React.FC<IFilledSettings> = ({
 
   function onFilledChange({ value }: { value: fillType | null }): void {
     const newProps = {
-      props: { ...selectedElementProps, filled: value?.name === 'filled' ? true : false },
+      props: { ...selectedElementProps, filled: value?.name === 'filled' },
       type: element,
     }
 
     if (selectedElement) {
       dispatch(
         setSelectedElement({
-          elementType: selectedElement?.elementType,
-          elementId: selectedElement?.elementId,
+          elementType: selectedElement.elementType,
+          elementId: selectedElement.elementId,
           newProps: newProps as UnionProps,
         }),
       )
     }
   }
-  let filled = selectedElementProps?.filled
+  const filled = selectedElementProps.filled
     ? { name: 'filled', icon: IconMaxHeight }
     : { name: 'default', icon: IconMaxWidth }
 
   return (
     <div className={style.choiceGroup}>
-      <Text view='secondary' size='xs'>
+      <Text view="secondary" size="xs">
         Ширина
       </Text>
       <ChoiceGroup
-        size='xs'
-        onlyIcon
-        view='ghost'
-        aria-label='Ширина'
+        size="xs"
+        onlyIcon={true}
+        view="ghost"
+        aria-label="Ширина"
         value={filled}
-        onChange={value => onFilledChange(value)}
         items={fillValues}
         getItemLabel={item => item.name}
         getItemIcon={item => item.icon}
         multiple={false}
-        name='ChoiceGroupExample'
+        name="ChoiceGroupExample"
+        onChange={value => {
+          onFilledChange(value)
+        }}
       />
     </div>
   )

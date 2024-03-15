@@ -1,6 +1,8 @@
+import type { Props } from '@consta/uikit/Button'
 import { IconComponent } from '@consta/uikit/Icon'
-import { IconNames } from './iconTypes'
-import {
+
+import type { IconNames } from './iconTypes'
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
@@ -9,7 +11,6 @@ import {
   IFormElement,
   IGroupElement,
 } from './types'
-import { Props } from '@consta/uikit/Button'
 
 ///  | 'RightSidebar' | 'LeftSidebar'
 export type ButtonAction = 'none' | 'ButtonModal'

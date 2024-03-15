@@ -1,4 +1,4 @@
-import { BaseProps, IFormElement } from './types'
+import type { BaseProps, IFormElement } from './types'
 
 export type CustomCardsProps = {
   children?: never

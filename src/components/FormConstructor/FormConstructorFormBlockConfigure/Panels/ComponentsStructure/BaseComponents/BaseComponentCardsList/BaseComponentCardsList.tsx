@@ -1,9 +1,13 @@
-import { FC, useLayoutEffect, useState } from 'react'
-import { IBaseComponentCardsList } from './types'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
+
+import type { IBaseComponent } from '../../../../../store/baseComponentsItems'
+
+import type { GroupCardsTypes } from './BaseComponentGroupCard/types'
+import { GroupCards } from './BaseComponentGroupCard/types'
 import { BaseComponentGroupCard } from './BaseComponentGroupCard'
-import { IBaseComponent } from '../../../../../store/baseComponentsItems'
-import { GroupCards, GroupCardsTypes } from './BaseComponentGroupCard/types'
 import { componentsDict } from './ComponentsDict'
+import type { IBaseComponentCardsList } from './types'
 
 export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseComponents }) => {
   const [groupComponentsMap, setGroupComponentsMap] = useState<
@@ -52,7 +56,7 @@ export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseCompon
         baseComponents={groupComponentsMap.get(GroupCards.Footers) || []}
       /> */}
       <BaseComponentGroupCard
-        name='Другое'
+        name="Другое"
         baseComponents={groupComponentsMap.get(GroupCards.Others) || []}
       />
     </>

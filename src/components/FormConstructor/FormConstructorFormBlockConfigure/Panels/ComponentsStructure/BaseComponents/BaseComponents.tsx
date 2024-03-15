@@ -1,35 +1,46 @@
+import type { FC } from 'react'
+import React, { useEffect, useState } from 'react'
+import { IconDownload } from '@consta/icons/IconDownload'
 import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
-import React, { FC, useEffect, useState } from 'react'
-import { IBaseComponent, useBaseComponentsSelector } from '../../../../store/baseComponentsItems'
-import { readFile } from '../../../../utils'
-import styles from './styles.module.css'
-import { useBaseComponentsDispatch } from '../../../../store/baseComponentsItems'
-import { useAppSelector } from '../../../../store'
+import { Text } from '@consta/uikit/Text'
+
+import { JsonHelper } from '../../../../../../helpers'
 import { SaveModalCard } from '../../../../SaveModalCard'
-import { customCardsTemplateMock } from '../../../Elements/CustomCardsTemplate/mock'
 import {
-  headerMock,
-  placeholderMock,
-  headerWithStatusMock,
-  headerCognitiveGeologistMock,
-  gridMock,
-  dashboardMock,
-  simpleFormMock,
+  addBaseElement,
+  getAllFormElements,
+  saveModuleToFile,
+  useAppSelector,
+} from '../../../../store'
+import type { IBaseComponent } from '../../../../store/baseComponentsItems'
+import {
+  useBaseComponentsDispatch,
+  useBaseComponentsSelector,
+} from '../../../../store/baseComponentsItems'
+import { readFile } from '../../../../utils'
+import {
   cardMock,
-  wizardFormMock,
+  dashboardMock,
+  ExpertiseFormMock,
   footerWithSwitchMock,
   FormWithTwoColumnsMock,
-  TableMock,
-  ExpertiseFormMock,
-  PrototypeTextMock,
+  gridMock,
+  headerCognitiveGeologistMock,
+  headerMock,
+  headerWithStatusMock,
+  placeholderMock,
   PrototypeRectangleMock,
+  PrototypeTextMock,
+  simpleFormMock,
+  TableMock,
+  wizardFormMock,
 } from '../../../Elements'
+import { customCardsTemplateMock } from '../../../Elements/CustomCardsTemplate/mock'
+
 import { BaseComponentCardsList } from './BaseComponentCardsList'
-import { saveModuleToFile, addBaseElement, getAllFormElements } from '../../../../store'
-import { Text } from '@consta/uikit/Text'
-import { IconDownload } from '@consta/icons/IconDownload'
-import { JsonHelper } from '../../../../../../helpers'
+
+import styles from './styles.module.css'
 
 export const BaseComponents: FC = () => {
   const { selectedElement } = useAppSelector(state => state.formConstructor)
@@ -72,7 +83,7 @@ export const BaseComponents: FC = () => {
         readFile(file).then(json => {
           //TODO сделать проверку типов
           const baseComponent: IBaseComponent = JsonHelper.parse(json)
-          dispatch(addBaseElement({ baseComponent: baseComponent }))
+          dispatch(addBaseElement({ baseComponent }))
         })
       })
     }
@@ -121,17 +132,17 @@ export const BaseComponents: FC = () => {
   return (
     <div className={`${styles.baseComponentsPanel}`}>
       <div className={styles.buttonsSaveLoad}>
-        <Text view='secondary' size='xs'>
+        <Text view="secondary" size="xs">
           Импортировать компонент
         </Text>
-        <FileField id={'loader'} onChange={onChange} multiple={true}>
+        <FileField id="loader" multiple={true} onChange={onChange}>
           {props => (
             <Button
-              id={'btn'}
+              id="btn"
               {...props}
-              size={'xs'}
-              onlyIcon
-              view='ghost'
+              size="xs"
+              onlyIcon={true}
+              view="ghost"
               iconLeft={IconDownload}
             />
           )}

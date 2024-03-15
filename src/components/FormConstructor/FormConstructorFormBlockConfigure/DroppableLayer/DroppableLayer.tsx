@@ -1,16 +1,19 @@
-import React, { FC } from 'react'
-import {
-  useAppSelector,
-  useAppDispatch,
-  getElementsOnLayer,
-  addNewFormElement,
-  setDraggableElement,
-} from '../../store'
+import type { FC } from 'react'
+import React from 'react'
 
-import { IDroppableLayer, AddNewElementPayload } from './types'
-import styles from './styles.module.css'
+import {
+  addNewFormElement,
+  getElementsOnLayer,
+  setDraggableElement,
+  useAppDispatch,
+  useAppSelector,
+} from '../../store'
 import { FormGroupsDict } from '../FormGroupDict'
+
+import type { AddNewElementPayload, IDroppableLayer } from './types'
 import { useDropBaseComponent } from './useDropBaseComponent'
+
+import styles from './styles.module.css'
 
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerParentId }) => {
@@ -51,10 +54,11 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
     <div
       className={styles.droppableContainer}
       onDrop={handleOnDrop}
-      onDragOver={event => event.preventDefault()}
-    >
+      onDragOver={event => {
+        event.preventDefault()
+      }}>
       {elementsOnLayer.map(el => {
-        let Component = FormGroupsDict[el.type]
+        const Component = FormGroupsDict[el.type]
         return <Component key={el.id} element={el} />
       })}
     </div>

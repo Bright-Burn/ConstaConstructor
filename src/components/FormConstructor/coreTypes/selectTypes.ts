@@ -1,11 +1,16 @@
-import {
+import type {
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropView,
+} from '@consta/uikit/TextField'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { TextFieldPropSize, TextFieldPropView, TextFieldPropStatus } from '@consta/uikit/TextField'
 
 export type selectitemType = {
   id: number

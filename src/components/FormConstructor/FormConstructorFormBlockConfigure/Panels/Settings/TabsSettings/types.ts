@@ -1,4 +1,4 @@
-import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
+import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 
 export const linePositionArray: TabsPropLinePosition[] = ['bottom', 'top', 'left', 'right']
 

@@ -1,15 +1,6 @@
-import { ProjectSaveWays, saveProjectData, SaveProjectIntent } from '../../projectSaveLoad'
-import { ViewerSlice } from '../Viewer'
-import { AppDispatch, RootState } from '../setupStore'
-import { initialLayout, layuoutAdapter } from './initialState'
-import {
-  AddNewElementPayload,
-  SaveNewProject,
-  SetNewElementDraggableElem,
-  SetNewSelectedElement,
-} from './payload'
-import { formConstructorSlice } from './formElementsSlice'
-import {
+import uuid from 'react-uuid'
+
+import type {
   FormElementTypes,
   IFormElement,
   IGroupElement,
@@ -18,10 +9,22 @@ import {
   ISelectedElement,
   UnionProps,
 } from '../../coreTypes'
+import type { SaveProjectIntent } from '../../projectSaveLoad'
+import { ProjectSaveWays, saveProjectData } from '../../projectSaveLoad'
 import { saveToFile } from '../../utils'
-import { IBaseComponent } from '../baseComponentsItems'
-import uuid from 'react-uuid'
+import type { IBaseComponent } from '../baseComponentsItems'
 import { pushHistoryElement } from '../history'
+import type { AppDispatch, RootState } from '../setupStore'
+import { ViewerSlice } from '../Viewer'
+
+import { formConstructorSlice } from './formElementsSlice'
+import { initialLayout, layuoutAdapter } from './initialState'
+import type {
+  AddNewElementPayload,
+  SaveNewProject,
+  SetNewElementDraggableElem,
+  SetNewSelectedElement,
+} from './payload'
 
 const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
@@ -46,7 +49,7 @@ export const changeActivePage = (pageId: string) => (dispatch: AppDispatch) => {
 }
 
 export const changePageName = (pageName: string) => (dispatch: AppDispatch) => {
-  dispatch(formConstructorSlice.actions.changePageName({ pageName: pageName }))
+  dispatch(formConstructorSlice.actions.changePageName({ pageName }))
 }
 
 export const setSelectedElement =
@@ -66,7 +69,6 @@ export const setSelectedElement =
         dispatch(
           pushHistoryElement(() =>
             dispatch(
-              //@ts-ignore
               formConstructorSlice.actions.setSelectedElement({ element, newProps: prevProps }),
             ),
           ),
@@ -106,7 +108,7 @@ export const deleteFormElement =
       return elemsForDelete
     }
     const elementsForDelete = [elementForDelete, ...getElementsForDelete(elementForDelete)]
-    let idsForDelete = elementsForDelete.map(el => el.id)
+    const idsForDelete = elementsForDelete.map(el => el.id)
     dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
 
     dispatch(
@@ -223,7 +225,7 @@ export const saveProjectToHtml =
   (projectName: string | null) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
 
-    let css = Array.from(document.styleSheets)
+    const css = Array.from(document.styleSheets)
       .map(styleSheet =>
         Array.from(styleSheet.cssRules)
           .map(rule => rule.cssText)
@@ -231,7 +233,7 @@ export const saveProjectToHtml =
           .join('\n'),
       )
       .join('\n')
-      let js = Array.from(document.scripts)
+    const js = Array.from(document.scripts)
       .map(script =>
         script.src
           ? fetch(script.src).then(response => response.text())
@@ -250,7 +252,7 @@ export const saveProjectToHtml =
       saveWay: 'file',
       project: { ...state.formConstructor, isGridVisible: false, allElements: selectAll(state) },
     }
-    let html = `<!DOCTYPE html>
+    const html = `<!DOCTYPE html>
         <html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -267,9 +269,9 @@ export const saveProjectToHtml =
         </html>`
     Promise.all([css, js]).then(([cssText, jsText]) => {
       const script = `<script>${jsText}</script>`
-      var blob = new Blob([html, `<style>${cssText}</style> `], { type: 'text/html' })
-      var url = URL.createObjectURL(blob)
-      var a = document.createElement('a')
+      const blob = new Blob([html, `<style>${cssText}</style> `], { type: 'text/html' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
       a.href = url
       a.download = 'webpage.html'
       a.click()

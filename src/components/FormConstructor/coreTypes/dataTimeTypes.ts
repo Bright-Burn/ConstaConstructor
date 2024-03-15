@@ -1,5 +1,6 @@
-import { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
-import {
+import type { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,

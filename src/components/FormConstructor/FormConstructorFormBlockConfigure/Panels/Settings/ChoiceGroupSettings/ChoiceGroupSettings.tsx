@@ -1,27 +1,32 @@
-import { Select } from '@consta/uikit/Select'
-import React, { FC, useState } from 'react'
-import { useItemsHandlers } from './ItemsService'
-import { TextField } from '@consta/uikit/TextField'
-import { Item, formArray, sizeArray, viewArray } from './types'
-import { Switch } from '@consta/uikit/Switch'
-import {
+import type { FC } from 'react'
+import React, { useState } from 'react'
+import type {
   ChoiceGroupPropForm,
   ChoiceGroupPropSize,
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
-import { Combobox } from '@consta/uikit/Combobox'
-import { icons } from '../IconSettings/IconsConstants'
-import { Icons } from '../../../Elements/IconFormElement/mocks'
-import {
-  IconNames,
-  ChoiceGroupElement,
-  OwnChoiceGroupProps,
-  DeepWriteable,
-} from '../../../../coreTypes'
-import { IconComponent } from '@consta/uikit/Icon'
-import styles from './styles.module.css'
 import { Collapse } from '@consta/uikit/Collapse'
+import { Combobox } from '@consta/uikit/Combobox'
+import type { IconComponent } from '@consta/uikit/Icon'
+import { Select } from '@consta/uikit/Select'
+import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
+import { TextField } from '@consta/uikit/TextField'
+
+import type {
+  ChoiceGroupElement,
+  DeepWriteable,
+  IconNames,
+  OwnChoiceGroupProps,
+} from '../../../../coreTypes'
+import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { icons } from '../IconSettings/IconsConstants'
+
+import { useItemsHandlers } from './ItemsService'
+import type { Item } from './types'
+import { formArray, sizeArray, viewArray } from './types'
+
+import styles from './styles.module.css'
 
 type ChoiceGroupSettingsType = {
   selectedElementProps: DeepWriteable<OwnChoiceGroupProps>
@@ -39,8 +44,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
 
   const onLinesLabelEdit = (value: string | null, index: number) => {
     const newLines = [...itemsProps.items]
-    if (!value) newLines[index] = { ...newLines[index], label: `` }
-    else newLines[index] = { ...newLines[index], label: `${value}` }
+    if (!value) newLines[index] = { ...newLines[index], label: '' }
+    else newLines[index] = { ...newLines[index], label: value }
     onChangeItems([...newLines])
   }
 
@@ -75,141 +80,155 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
     <div className={styles.settingsBlockChoiceGroup}>
       <div className={styles.settingsBlockRow}>
         <Select
-          label='Размер'
-          size='xs'
+          label="Размер"
+          size="xs"
           getItemKey={(key: ChoiceGroupPropSize) => key}
           getItemLabel={(label: ChoiceGroupPropSize) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => onChangeField(value, 'size')}
+          onChange={({ value }) => {
+            onChangeField(value, 'size')
+          }}
         />
         <Select
-          label='Вид'
-          size='xs'
+          label="Вид"
+          size="xs"
           getItemKey={(key: ChoiceGroupPropView) => key}
           getItemLabel={(label: ChoiceGroupPropView) => label}
           value={itemsProps.view}
           items={viewArray}
-          onChange={({ value }) => onChangeField(value, 'view')}
+          onChange={({ value }) => {
+            onChangeField(value, 'view')
+          }}
         />
       </div>
       <Select
-        label='Форма'
-        size='xs'
+        label="Форма"
+        size="xs"
         getItemKey={(key: ChoiceGroupPropForm) => key}
         getItemLabel={(label: ChoiceGroupPropForm) => label}
         value={itemsProps.form}
         items={formArray}
-        onChange={({ value }) => onChangeField(value, 'form')}
+        onChange={({ value }) => {
+          onChangeField(value, 'form')
+        }}
       />
       <Switch
-        onChange={onChangeSwitch('onlyIcon')}
-        label='Только инконки'
-        size='xs'
+        label="Только инконки"
+        size="xs"
         checked={itemsProps.onlyIcon}
+        onChange={onChangeSwitch('onlyIcon')}
       />
       <Switch
-        onChange={onChangeSwitch('disabled')}
-        label='Состояние блокировки'
-        size='xs'
+        label="Состояние блокировки"
+        size="xs"
         checked={itemsProps.disabled}
+        onChange={onChangeSwitch('disabled')}
       />
       <TextField
-        label='Количество вариантов'
-        size='xs'
-        type='number'
+        label="Количество вариантов"
+        size="xs"
+        type="number"
         value={`${itemsProps.items.length}`}
         onChange={onChangeItemsCount}
       />
       <Switch
-        label='Иконки у вариантов'
-        size='xs'
+        label="Иконки у вариантов"
+        size="xs"
         checked={isPageDisabled}
-        onChange={e => onDisabledPage(e.checked)}
+        onChange={e => {
+          onDisabledPage(e.checked)
+        }}
       />
       <Switch
-        onChange={onChangeSwitch('multiple')}
-        label='Мультивыбор'
-        size='xs'
+        label="Мультивыбор"
+        size="xs"
         checked={itemsProps.multiple}
+        onChange={onChangeSwitch('multiple')}
       />
       {itemsProps.multiple ? (
         <Combobox
-          label='Выберите активные элементы'
-          size='xs'
-          placeholder='Выберите вариант'
+          label="Выберите активные элементы"
+          size="xs"
+          placeholder="Выберите вариант"
           items={itemsProps.items as Item[]}
           value={itemsProps.value as Item[]}
           getItemKey={(key: Item) => key.label}
-          onChange={({ value }) => onChangeField(value, 'value')}
-          multiple
+          multiple={true}
+          onChange={({ value }) => {
+            onChangeField(value, 'value')
+          }}
         />
       ) : (
         <Select
-          label='Активный элемент'
-          size='xs'
+          label="Активный элемент"
+          size="xs"
           items={itemsProps.items}
           value={itemsProps.value as DeepWriteable<Item>}
           getItemKey={(key: DeepWriteable<Item>) => key.label}
-          onChange={({ value }) => onChangeField(value, 'value')}
+          onChange={({ value }) => {
+            onChangeField(value, 'value')
+          }}
         />
       )}
       <Collapse
-        label='Название вариантов'
-        size='xs'
+        label="Название вариантов"
+        size="xs"
         isOpen={isOpenOptions}
-        onClick={() => setIsOpenOptions(!isOpenOptions)}
-      >
+        onClick={() => {
+          setIsOpenOptions(!isOpenOptions)
+        }}>
         {itemsProps.items.map((line, index) => {
           return (
-            <>
-              <div className={styles.settingsBlockRowCollapse}>
-                <TextField
-                  className={styles.elementWidth}
-                  size='xs'
-                  key={index}
-                  label={`Вариант ${index + 1}`}
-                  value={`${line.label}`}
-                  onChange={event => onLinesLabelEdit(event.value, index)}
-                />
-                <Select
-                  className={styles.elementWidth}
-                  label='Иконка'
-                  size='xs'
-                  disabled={!isPageDisabled}
-                  getItemKey={key => key}
-                  getItemLabel={label => label}
-                  value={line.labelIcon}
-                  items={icons}
-                  onChange={event => onLinesIconEdit(event.value, index)}
-                  renderItem={({ item, active, onClick, onMouseEnter }) => (
-                    <div
-                      className={`${styles.selectElement} ${styles.SelectItem} ${
-                        active ? styles.SelectItemActive : ''
-                      }`}
-                      role='option'
-                      aria-selected={active}
-                      onMouseEnter={onMouseEnter}
-                      onClick={onClick}
-                    >
-                      {checkValueIsIconNames(item) &&
-                        React.createElement(Icons[item], {
-                          size: 'xs',
-                          className: `${active && styles.BorderLeftItem}`,
-                        })}
-                      <Text size='xs'>{item}</Text>
-                    </div>
-                  )}
-                  renderValue={({ item }) => (
-                    <div className={styles.selectElement}>
-                      {checkValueIsIconNames(item) &&
-                        React.createElement(Icons[item], { size: 'xs' })}
-                      <Text size='xs'>{item}</Text>
-                    </div>
-                  )}
-                />
-              </div>
-            </>
+            <div className={styles.settingsBlockRowCollapse}>
+              <TextField
+                key={index}
+                className={styles.elementWidth}
+                size="xs"
+                label={`Вариант ${index + 1}`}
+                value={line.label}
+                onChange={event => {
+                  onLinesLabelEdit(event.value, index)
+                }}
+              />
+              <Select
+                className={styles.elementWidth}
+                label="Иконка"
+                size="xs"
+                disabled={!isPageDisabled}
+                getItemKey={key => key}
+                getItemLabel={label => label}
+                value={line.labelIcon}
+                items={icons}
+                renderItem={({ item, active, onClick, onMouseEnter }) => (
+                  <div
+                    className={`${styles.selectElement} ${styles.SelectItem} ${
+                      active ? styles.SelectItemActive : ''
+                    }`}
+                    role="option"
+                    aria-selected={active}
+                    onMouseEnter={onMouseEnter}
+                    onClick={onClick}>
+                    {checkValueIsIconNames(item) &&
+                      React.createElement(Icons[item], {
+                        size: 'xs',
+                        className: `${active && styles.BorderLeftItem}`,
+                      })}
+                    <Text size="xs">{item}</Text>
+                  </div>
+                )}
+                renderValue={({ item }) => (
+                  <div className={styles.selectElement}>
+                    {checkValueIsIconNames(item) &&
+                      React.createElement(Icons[item], { size: 'xs' })}
+                    <Text size="xs">{item}</Text>
+                  </div>
+                )}
+                onChange={event => {
+                  onLinesIconEdit(event.value, index)
+                }}
+              />
+            </div>
           )
         })}
       </Collapse>

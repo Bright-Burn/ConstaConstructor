@@ -1,9 +1,12 @@
+import type { FC } from 'react'
+import React, { useState } from 'react'
 import { Button } from '@consta/uikit/Button'
 import { Modal } from '@consta/uikit/Modal'
 import { TextField } from '@consta/uikit/TextField'
-import React, { FC, useState } from 'react'
+
+import type { ISaveModalCard } from './types'
+
 import styles from './styles.module.css'
-import { ISaveModalCard } from './types'
 
 export const SaveModalCard: FC<ISaveModalCard> = ({ showSaveModal, onCloseModalCard, onSave }) => {
   const [name, setName] = useState<string>('')
@@ -14,9 +17,12 @@ export const SaveModalCard: FC<ISaveModalCard> = ({ showSaveModal, onCloseModalC
     onCloseModalCard()
   }
 
-  const handleChangeName = ({ value }: { value: string | null }) => setName(value || '')
-  const handleChangeDescription = ({ value }: { value: string | null }) =>
+  const handleChangeName = ({ value }: { value: string | null }) => {
+    setName(value || '')
+  }
+  const handleChangeDescription = ({ value }: { value: string | null }) => {
     setDescription(value || '')
+  }
 
   return (
     <Modal isOpen={showSaveModal} onClickOutside={onCloseModalCard}>
@@ -28,8 +34,8 @@ export const SaveModalCard: FC<ISaveModalCard> = ({ showSaveModal, onCloseModalC
           onChange={handleChangeDescription}
         />
         <div className={styles.saveCardButtons}>
-          <Button label={'Закрыть'} size={'s'} view={'ghost'} onClick={onCloseModalCard} />
-          <Button label={'Сохранить'} size={'s'} view={'secondary'} onClick={onSaveClick} />
+          <Button label="Закрыть" size="s" view="ghost" onClick={onCloseModalCard} />
+          <Button label="Сохранить" size="s" view="secondary" onClick={onSaveClick} />
         </div>
       </div>
     </Modal>

@@ -1,12 +1,13 @@
-import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
-import {
+import type { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
+
+import type { IconNames } from './iconTypes'
+import type {
   BaseProps,
-  IFormElement,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
+  IFormElement,
 } from './types'
-import { IconNames } from './iconTypes'
 
 export declare const tagBasePropGroupStringValue: readonly [
   '1',
@@ -19,7 +20,7 @@ export declare const tagBasePropGroupStringValue: readonly [
   '8',
   '9',
 ]
-export declare type TagBasePropGroup = typeof tagBasePropGroupStringValue[number]
+export declare type TagBasePropGroup = (typeof tagBasePropGroupStringValue)[number]
 
 export type TagProps = {
   label: string

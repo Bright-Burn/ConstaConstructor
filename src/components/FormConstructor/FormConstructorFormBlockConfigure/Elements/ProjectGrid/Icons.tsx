@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import { Button } from '@consta/uikit/Button'
 import { IconInfo } from '@consta/uikit/IconInfo'
 import { IconKebab } from '@consta/uikit/IconKebab'
 
-export const IconsCell: FC<{}> = () => {
+export const IconsCell: FC = () => {
   const buttonSettings = {
     size: 's',
     view: 'clear',

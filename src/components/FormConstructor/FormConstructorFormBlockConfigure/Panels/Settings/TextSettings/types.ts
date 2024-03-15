@@ -1,13 +1,14 @@
-import {
-  TextPropSize,
-  TextPropView,
+import type {
   TextPropAlign,
-  TextPropWeight,
   TextPropDisplay,
   TextPropFont,
+  TextPropSize,
   TextPropType,
+  TextPropView,
+  TextPropWeight,
 } from '@consta/uikit/Text'
-import { AlignTextType } from '../../../../coreTypes'
+
+import type { AlignTextType } from '../../../../coreTypes'
 
 export type ValueTypes =
   | TextPropSize
@@ -18,6 +19,5 @@ export type ValueTypes =
   | TextPropFont
   | TextPropType
   | string
-  | TextPropType
   | null
   | AlignTextType

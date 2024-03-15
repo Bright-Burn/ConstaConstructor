@@ -1,5 +1,6 @@
-import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/uikit/Checkbox'
-import {
+import type { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@consta/uikit/Checkbox'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,

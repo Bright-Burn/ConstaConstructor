@@ -1,25 +1,25 @@
-export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
-export {
-  addNewFormElement,
-  setDraggableElement,
-  loadProjectFromStorage,
-  saveProjectToFile,
-  saveProjectToMemoryStorage,
-  setSelectedElement,
-  changeActivePage,
-  addNewPage,
-  deletePage,
-  deleteFormElement,
-  saveModuleToFile,
-  changePageName,
-  saveProjectToHtml,
-} from './formElementsActions'
 export type { IFormConstructorSerializable } from './formElementsActions'
 export {
-  getFormConstructor,
-  getElementById,
-  getFormElAsMap,
+  addNewFormElement,
+  addNewPage,
+  changeActivePage,
+  changePageName,
+  deleteFormElement,
+  deletePage,
+  loadProjectFromStorage,
+  saveModuleToFile,
+  saveProjectToFile,
+  saveProjectToHtml,
+  saveProjectToMemoryStorage,
+  setDraggableElement,
+  setSelectedElement,
+} from './formElementsActions'
+export {
   getAllFormElements,
-  getSelectedPageId,
+  getElementById,
   getElementsOnLayer,
+  getFormConstructor,
+  getFormElAsMap,
+  getSelectedPageId,
 } from './formElementsSelectors'
+export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'

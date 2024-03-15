@@ -1,3 +1,2 @@
-export { PrototypeTextElement } from './PrototypeTextElement'
-
 export { PrototypeTextMock } from './mocks'
+export { PrototypeTextElement } from './PrototypeTextElement'

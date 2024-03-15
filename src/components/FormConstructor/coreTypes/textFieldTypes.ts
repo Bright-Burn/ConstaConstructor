@@ -1,19 +1,20 @@
-import {
+import type {
+  TextFieldPropForm,
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropsTextareaType,
+  TextFieldPropValue,
+  TextFieldPropView,
+  TextFieldPropWidth,
+} from '@consta/uikit/TextField'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import {
-  TextFieldPropForm,
-  TextFieldPropSize,
-  TextFieldPropStatus,
-  TextFieldPropValue,
-  TextFieldPropView,
-  TextFieldPropWidth,
-} from '@consta/uikit/TextField'
-import { TextFieldPropsTextareaType } from '@consta/uikit/TextField/'
 
 export type TextFieldProps = {
   type?: string

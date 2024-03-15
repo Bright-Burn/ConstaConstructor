@@ -1,11 +1,15 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { IComponetCardElement } from '../types'
-import { IFormElementSelect, FormElementDictTypes } from '../../../../../../coreTypes'
+import { Text } from '@consta/uikit/Text'
+
+import type { IFormElementSelect } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import styles from '../styles.module.css'
+import type { IComponetCardElement } from '../types'
+
 import SelectImage from './SelectImage'
+
+import styles from '../styles.module.css'
 
 export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -45,7 +49,7 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
           groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
           className: '',
           baseProps: {},
-          items: items,
+          items,
         },
         type: 'SelectForm',
       },

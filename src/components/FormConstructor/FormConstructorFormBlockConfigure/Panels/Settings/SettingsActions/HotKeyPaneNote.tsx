@@ -1,5 +1,5 @@
 import { Text } from '@consta/uikit/Text'
-import styles from './styles.module.css'
+
 import {
   DECLINE_ACTION_MAC,
   DECLINE_ACTION_WIN,
@@ -12,11 +12,13 @@ import {
   HIDE_SHOW_PANELS_WIN,
 } from './constants'
 
+import styles from './styles.module.css'
+
 export const HotKeyPaneNote = () => {
   return (
     <div className={styles.hotKeyPane}>
       <div className={styles.hotKeyPaneMac}>
-        <Text size={'l'}>Mac</Text>
+        <Text size="l">Mac</Text>
         <Text>
           {DECLINE_TEXT} - {DECLINE_ACTION_MAC}
         </Text>
@@ -28,7 +30,7 @@ export const HotKeyPaneNote = () => {
         </Text>
       </div>
       <div className={styles.hotKeyPaneWin}>
-        <Text size={'l'}>Windows/Linux</Text>
+        <Text size="l">Windows/Linux</Text>
         <Text>
           {DECLINE_TEXT} - {DECLINE_ACTION_WIN}
         </Text>

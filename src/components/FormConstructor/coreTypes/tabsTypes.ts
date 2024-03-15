@@ -1,17 +1,18 @@
-import {
+import type {
+  TabsPropSize,
+  TabsPropView,
+} from '@consta/uikit/__internal__/src/components/Tabs/types'
+import { TabsPropGetItemLabel } from '@consta/uikit/__internal__/src/components/Tabs/types'
+import type { IconComponent, IconPropSize } from '@consta/uikit/Icon'
+import type { TabsPropLinePosition } from '@consta/uikit/TabsDeprecated'
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import {
-  TabsPropGetItemLabel,
-  TabsPropSize,
-  TabsPropView,
-} from '@consta/uikit/__internal__/src/components/Tabs/types'
-import { IconComponent, IconPropSize } from '@consta/uikit/Icon'
-import { TabsPropLinePosition } from '@consta/uikit/TabsDeprecated'
 
 export type FitMode = 'dropdown' | 'scroll'
 

@@ -1,12 +1,8 @@
 import uuid from 'react-uuid'
-import {
-  IFormElement,
-  IGroupElement,
-  FormGroupsDictTypes,
-  IFormConstructor,
-  ILayoutElement,
-} from '../../coreTypes'
 import { createEntityAdapter } from '@reduxjs/toolkit'
+
+import type { IFormConstructor, IFormElement, IGroupElement, ILayoutElement } from '../../coreTypes'
+import { FormGroupsDictTypes } from '../../coreTypes'
 
 export const rootId = uuid()
 const initialLayoutId = uuid()

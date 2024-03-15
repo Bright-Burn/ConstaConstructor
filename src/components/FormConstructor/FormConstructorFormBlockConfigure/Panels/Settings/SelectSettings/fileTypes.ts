@@ -1,5 +1,10 @@
-import { TextFieldPropStatus, TextFieldPropView, TextFieldPropSize } from '@consta/uikit/TextField'
-import { PropForm, selectitemType } from '../../../../coreTypes'
+import type {
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropView,
+} from '@consta/uikit/TextField'
+
+import type { PropForm, selectitemType } from '../../../../coreTypes'
 
 export type ValueType =
   | TextFieldPropStatus

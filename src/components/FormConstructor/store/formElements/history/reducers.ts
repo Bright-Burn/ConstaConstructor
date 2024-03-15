@@ -1,4 +1,4 @@
-import { IFormConstructor } from '../../../coreTypes'
+import type { IFormConstructor } from '../../../coreTypes'
 
 export const HISTORY_LIMIT = 64
 

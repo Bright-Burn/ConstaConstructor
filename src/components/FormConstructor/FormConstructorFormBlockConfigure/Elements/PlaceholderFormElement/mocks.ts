@@ -1,8 +1,8 @@
-import uuid from 'react-uuid';
-import { IBaseComponent } from '../../../store/baseComponentsItems'
+import uuid from 'react-uuid'
 
-export const placeholderMockId = uuid();
+import type { IBaseComponent } from '../../../store/baseComponentsItems'
 
+export const placeholderMockId = uuid()
 
 export const placeholderMock: IBaseComponent = {
   id: placeholderMockId,

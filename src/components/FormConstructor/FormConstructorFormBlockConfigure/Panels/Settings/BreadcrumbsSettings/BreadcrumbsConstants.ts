@@ -1,6 +1,6 @@
-import { DefaultItem } from '@consta/uikit/Breadcrumbs'
-import { IconPropSize } from '@consta/uikit/Icon'
-import { TabsPropFitMode } from '@consta/uikit/Tabs'
+import type { DefaultItem } from '@consta/uikit/Breadcrumbs'
+import type { IconPropSize } from '@consta/uikit/Icon'
+import type { TabsPropFitMode } from '@consta/uikit/Tabs'
 
 export const sizes: IconPropSize[] = ['m', 'xs', 's', 'l']
 export const fitMode: TabsPropFitMode[] = ['dropdown', 'scroll']

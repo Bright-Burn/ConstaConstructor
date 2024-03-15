@@ -1,4 +1,4 @@
-import { IFormConstructor } from '../../../coreTypes'
+import type { IFormConstructor } from '../../../coreTypes'
 
 export const pushHistory = (state: IFormConstructor) => {
   // const savePoint: ISavePoint = {

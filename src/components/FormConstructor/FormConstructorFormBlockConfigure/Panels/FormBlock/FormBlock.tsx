@@ -1,9 +1,12 @@
-import { FC, useEffect } from 'react'
-import { useAppSelector } from '../../../store'
-import { setSelectedElement, useAppDispatch } from '../../../store'
+import type { FC } from 'react'
+import { useEffect } from 'react'
+
+import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../store'
 import { DroppableLayer } from '../../DroppableLayer'
-import styles from './styles.module.css'
+
 import { Pages } from './Pages/Pages'
+
+import styles from './styles.module.css'
 
 export const FormBlock: FC = () => {
   const pages = useAppSelector(state => state.formConstructor.pages)
@@ -17,7 +20,9 @@ export const FormBlock: FC = () => {
       }
     }
     document.body.addEventListener('keydown', escHandler)
-    return () => document.body.removeEventListener('keydown', escHandler)
+    return () => {
+      document.body.removeEventListener('keydown', escHandler)
+    }
   }, [selectedElement])
 
   return (
@@ -26,7 +31,7 @@ export const FormBlock: FC = () => {
       <div className={`${styles.formBlock}`}>
         {pages.map(page =>
           page && page.id === selectedPageId ? (
-            <div className={`${styles.formBlockContent}`} id='formBlock'>
+            <div className={`${styles.formBlockContent}`} id="formBlock">
               <DroppableLayer parentElementId={page.id} />
             </div>
           ) : (

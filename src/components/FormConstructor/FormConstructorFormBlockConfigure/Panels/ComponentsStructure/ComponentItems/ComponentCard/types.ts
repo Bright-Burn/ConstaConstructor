@@ -1,4 +1,4 @@
-import { FormElementTypes, FormGroupsTypes } from '../../../../../coreTypes'
+import type { FormElementTypes, FormGroupsTypes } from '../../../../../coreTypes'
 
 export interface IComponentCard {
   id: string

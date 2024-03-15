@@ -1,18 +1,23 @@
-import {
+import type {
+  DatePickerPropDateTimeView,
+  DatePickerPropDropdownForm,
+  DatePickerPropType,
+} from '@consta/uikit/DatePicker'
+import type {
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropsTextareaType,
+  TextFieldPropView,
+} from '@consta/uikit/TextField'
+
+import type { PropForm } from './selectTypes'
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { TextFieldPropsTextareaType } from '@consta/uikit/TextField/'
-import {
-  DatePickerPropDateTimeView,
-  DatePickerPropDropdownForm,
-  DatePickerPropType,
-} from '@consta/uikit/DatePicker'
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from './selectTypes'
 
 export type DatePickerProps = {
   type?: DatePickerPropType

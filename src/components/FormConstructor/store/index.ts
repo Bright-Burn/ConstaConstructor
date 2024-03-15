@@ -1,39 +1,39 @@
+export {
+  addBaseElement,
+  getDraggedBaseComponent,
+  setDraggableBaseComponent,
+} from './baseComponentsItems'
+export type { IFormConstructorSerializable } from './formElements'
+export {
+  addNewFormElement,
+  addNewPage,
+  changeActivePage,
+  changePageName,
+  deleteFormElement,
+  deletePage,
+  getAllFormElements,
+  getElementById,
+  getElementsOnLayer,
+  getFormConstructor,
+  getFormElAsMap,
+  getSelectedPageId,
+  loadProjectFromStorage,
+  saveModuleToFile,
+  saveProjectToFile,
+  saveProjectToHtml,
+  setDraggableElement,
+  setSelectedElement,
+} from './formElements'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'
 export { useAppDispatch, useAppSelector } from './setupStore'
 export {
-  togglePanels,
-  toggleGrid,
+  checkIsGridVisible,
+  checkViewMode,
   getComponentsStructurePanelState,
   getSettingsPanelState,
-  checkIsGridVisible,
-  toggleComponentsStructurePanel,
-  toggleSettingsPanelState,
-  checkViewMode,
   onSetViewMode,
+  toggleComponentsStructurePanel,
+  toggleGrid,
+  togglePanels,
+  toggleSettingsPanelState,
 } from './Viewer'
-export {
-  loadProjectFromStorage,
-  getFormConstructor,
-  addNewFormElement,
-  setDraggableElement,
-  setSelectedElement,
-  changeActivePage,
-  addNewPage,
-  deletePage,
-  getElementById,
-  deleteFormElement,
-  getFormElAsMap,
-  getAllFormElements,
-  getSelectedPageId,
-  saveModuleToFile,
-  getElementsOnLayer,
-  saveProjectToFile,
-  saveProjectToHtml,
-  changePageName,
-} from './formElements'
-export type { IFormConstructorSerializable } from './formElements'
-export {
-  addBaseElement,
-  setDraggableBaseComponent,
-  getDraggedBaseComponent,
-} from './baseComponentsItems'

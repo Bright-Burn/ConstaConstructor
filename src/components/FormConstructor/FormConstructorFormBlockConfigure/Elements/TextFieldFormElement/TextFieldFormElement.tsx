@@ -1,8 +1,12 @@
-import { FC, useLayoutEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
+
+import type { TextFieldProps } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { ITextFieldFormElement } from './types'
-import { TextFieldProps, ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+
+import type { ITextFieldFormElement } from './types'
 
 export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => {
   const [textFieldProps, setTextFieldProps] = useState<TextFieldProps>()
@@ -19,8 +23,7 @@ export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => 
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.TextField}
-      className={isFilled ? 'container-row flex-grow-1' : ''}
-    >
+      className={isFilled ? 'container-row flex-grow-1' : ''}>
       <TextField style={{ width: '100%' }} {...textFieldProps} />
     </SelectableLayer>
   )

@@ -1,4 +1,5 @@
-import { AppDispatch, RootState } from '../setupStore'
+import type { AppDispatch, RootState } from '../setupStore'
+
 import { historySlice } from './historySlice'
 
 export const pushHistoryElement =

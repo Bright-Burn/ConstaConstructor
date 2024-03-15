@@ -1,8 +1,13 @@
-import React, { FC, useLayoutEffect, useState } from 'react'
-import { SelectableLayer } from '../../SelectableLayer'
-import { ISelectFormElement } from './types'
-import { ElementTypes, FormElementDictTypes, SelectProps, selectitemType } from '../../../coreTypes'
+import type { FC } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { Select } from '@consta/uikit/Select'
+
+import type { selectitemType, SelectProps } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { SelectableLayer } from '../../SelectableLayer'
+
+import type { ISelectFormElement } from './types'
+
 import style from './style.module.css'
 
 export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {

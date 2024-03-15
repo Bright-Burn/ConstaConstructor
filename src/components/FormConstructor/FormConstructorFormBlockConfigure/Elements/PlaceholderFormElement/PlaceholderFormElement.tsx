@@ -1,15 +1,16 @@
-import { FC, useLayoutEffect, useState } from 'react'
-
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
+import { Button } from '@consta/uikit/Button'
 import { Text } from '@consta/uikit/Text'
 
+import type { IFormElementPlaceholder, PlaceholderProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { IPlaceholderFormElement } from './types'
-import { IFormElementPlaceholder, PlaceholderProps } from '../../../coreTypes'
+import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
+
+import ImageSvg from './image.svg'
+import type { IPlaceholderFormElement } from './types'
 
 import style from './styles.module.css'
-import ImageSvg from './image.svg'
-import { Button } from '@consta/uikit/Button'
-import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
 
 export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({ element }) => {
   const [placeholderProps, setPlaceholderProps] = useState<PlaceholderProps>()
@@ -23,31 +24,28 @@ export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({ element })
     <SelectableLayerFitSpace
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Placeholder}
-    >
+      elementType={FormElementDictTypes.Placeholder}>
       <div className={style.container}>
         <img src={ImageSvg} />
 
         <Text
-          view='primary'
-          weight='semibold'
-          size='2xl'
-          align='center'
-          className={style.primaryText}
-        >
+          view="primary"
+          weight="semibold"
+          size="2xl"
+          align="center"
+          className={style.primaryText}>
           Здесь пока ничего нет
         </Text>
         <Text
-          view='secondary'
-          weight='regular'
-          size='m'
-          align='center'
-          className={style.secondaryText}
-        >
+          view="secondary"
+          weight="regular"
+          size="m"
+          align="center"
+          className={style.secondaryText}>
           Создайте проект для начала работ
         </Text>
 
-        <Button view='primary' size='m' label='Создать проект' className={style.button} />
+        <Button view="primary" size="m" label="Создать проект" className={style.button} />
       </div>
     </SelectableLayerFitSpace>
   )

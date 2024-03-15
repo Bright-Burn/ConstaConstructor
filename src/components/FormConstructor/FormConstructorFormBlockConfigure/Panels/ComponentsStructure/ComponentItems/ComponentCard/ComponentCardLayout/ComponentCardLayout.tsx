@@ -1,10 +1,13 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { FormGroupsDictTypes, ILayoutElement } from '../../../../../../coreTypes'
-import { IComponetCardElement } from '../types'
-import styles from './styles.module.css'
+import { Text } from '@consta/uikit/Text'
+
+import type { ILayoutElement } from '../../../../../../coreTypes'
+import { FormGroupsDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import type { IComponetCardElement } from '../types'
+
+import styles from './styles.module.css'
 
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter }) => {
   const dispatch = useAppDispatch()
@@ -44,9 +47,9 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
         <Text className={styles.marginText}>{name}</Text>
         <div className={styles.borderFlex}>
           <div className={isOuter ? styles.borderOut : styles.borderIn}>
-            {!isOuter && <div className={styles.borderInIn}></div>}
+            {!isOuter && <div className={styles.borderInIn} />}
           </div>
-          {isOuter && <div className={styles.borderOut}></div>}
+          {!!isOuter && <div className={styles.borderOut} />}
         </div>
       </div>
     </div>

@@ -1,13 +1,17 @@
-import { Select } from '@consta/uikit/Select'
-import { useItemsHandlers } from './ItemsService'
-import { TextField } from '@consta/uikit/TextField'
-import { alignArray, sizeArray, viewArray } from './types'
-import { SwitchProps } from '../../../../coreTypes'
-import { SwitchElement } from '../../../../coreTypes/SwitchTypes'
-import { FC } from 'react'
-import { Switch, SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
-import { Text } from '@consta/uikit/Text'
+import type { FC } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Select } from '@consta/uikit/Select'
+import type { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
+import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
+import { TextField } from '@consta/uikit/TextField'
+
+import type { SwitchProps } from '../../../../coreTypes'
+import type { SwitchElement } from '../../../../coreTypes/SwitchTypes'
+
+import { useItemsHandlers } from './ItemsService'
+import { alignArray, sizeArray, viewArray } from './types'
+
 import styles from './styles.module.css'
 
 type SwitchSettingsType = {
@@ -25,61 +29,67 @@ export const SwitchSettings: FC<SwitchSettingsType> = ({
   return (
     <div className={styles.switchSettings}>
       <TextField
-        size='xs'
-        label='Текст'
+        size="xs"
+        label="Текст"
         value={itemsProps.label}
         onChange={onChangeField('label')}
       />
       <div className={styles.rowSettings}>
         <Select
           className={styles.widthFlex}
-          label='Размер'
-          size='xs'
+          label="Размер"
+          size="xs"
           getItemKey={(key: SwitchPropSize) => key}
           getItemLabel={(label: SwitchPropSize) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => onChangeSize(value)}
+          onChange={({ value }) => {
+            onChangeSize(value)
+          }}
         />
         <div className={styles.columnInRowSettings}>
-          <Text size='xs' view='secondary'>
+          <Text size="xs" view="secondary">
             Вид
           </Text>
           <ChoiceGroup
             value={itemsProps.view}
             items={viewArray}
-            size='xs'
-            view='ghost'
+            size="xs"
+            view="ghost"
             getItemLabel={(label: SwitchPropView) => label}
-            name='ChoiceGroupExample'
-            onChange={({ value }) => onChangeView(value)}
+            name="ChoiceGroupExample"
+            onChange={({ value }) => {
+              onChangeView(value)
+            }}
           />
         </div>
       </div>
       <div className={styles.columnSettings}>
-        <Text size='xs' view='secondary'>
+        <Text size="xs" view="secondary">
           Выравнивание
         </Text>
         <ChoiceGroup
           value={itemsProps.align}
           items={alignArray}
-          size='xs'
-          view='ghost'
+          size="xs"
+          view="ghost"
           getItemLabel={(label: SwitchPropAlign) => label}
-          name='ChoiceGroupExample'
-          onChange={({ value }) => onChangeAlign(value)}
+          name="ChoiceGroupExample"
+          onChange={({ value }) => {
+            onChangeAlign(value)
+          }}
         />
       </div>
       <Switch
         checked={itemsProps.checked}
-        label='Активен'
-        size='xs'
+        label="Активен"
+        size="xs"
         onChange={onChangeSwitch('checked')}
       />
       <Switch
         checked={itemsProps.disabled}
-        label='Состояние блокировки'
-        size='xs'
+        label="Состояние блокировки"
+        size="xs"
         onChange={onChangeSwitch('disabled')}
       />
     </div>

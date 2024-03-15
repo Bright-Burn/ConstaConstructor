@@ -1,5 +1,5 @@
-import { BaseProps } from '../../../../coreTypes'
-import { BaseTypes } from '../BaseSettings/types'
+import type { BaseProps } from '../../../../coreTypes'
+import type { BaseTypes } from '../BaseSettings/types'
 
 export type PrototypePropsType = {
   top: number
