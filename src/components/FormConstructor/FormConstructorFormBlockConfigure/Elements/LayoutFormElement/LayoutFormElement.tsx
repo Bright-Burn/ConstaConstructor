@@ -10,12 +10,9 @@ import {
 import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
 import { ILayoutFormElement } from './types'
-import style from './styles.module.css'
-import { checkIsGridVisible, useAppSelector } from '../../../store'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const [layoutProps, setLayoutProps] = useState<LayoutElementPropsStyles>()
-  const isGridVisible = useAppSelector(checkIsGridVisible)
 
   useLayoutEffect(() => {
     const layoutElementWithProps = element
@@ -44,11 +41,9 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
 
   let activeSide = layoutProps?.styles?.borderSide && ActiveSide(layoutProps.styles)
 
-  !isGridVisible && (activeSide = undefined)
-
   return (
     <Layout
-      className={`${isGridVisible ? style.gridLayout : ''} ${layoutProps?.className}`}
+      className={layoutProps?.className}
       {...layoutProps?.constaProps}
       style={{
         ...layoutProps?.styles,

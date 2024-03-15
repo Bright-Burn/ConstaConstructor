@@ -6,18 +6,21 @@ import {
   useAppDispatch,
   useAppSelector,
   toggleGrid,
-  changePageName,
+  changePageName, checkIsGridVisible,
 } from '../../../../store'
 import { useState } from 'react'
 import { IconShape } from '@consta/icons/IconShape'
 import { PageButton } from './PageButton'
 import { PagePopover } from './PagePopover'
 import { PageEdit } from './PageEdit'
+import { IconTable2 } from '@consta/icons/IconTable2'
 
 export const Pages = ({ pages }: PagesProps) => {
   const [isNameEdited, setIsNameEdited] = useState<boolean>(false)
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
+  const isGridVisible = useAppSelector(checkIsGridVisible)
+
 
   const changePage = (pageId: string) => {
     dispatch(changeActivePage(pageId))
@@ -72,7 +75,10 @@ export const Pages = ({ pages }: PagesProps) => {
           changeIsNameEdited={changeIsNameEdited}
         />
       </div>
-      <IconShape className={styles.iconGrid} onClick={onClickShowGrid} />
+      { isGridVisible ?
+        <IconTable2 className={styles.iconGrid} onClick={onClickShowGrid} /> :
+        <IconShape className={styles.iconGrid} onClick={onClickShowGrid} />}
+
     </div>
   )
 }
