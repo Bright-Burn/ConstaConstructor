@@ -4,6 +4,9 @@
 }
 
 .selectableLayerLayoutElement {
+  flex-direction: inherit;
+  justify-content: inherit;
+  align-items: inherit;
   display: flex;
   flex-grow: 1;
   border: 0;
