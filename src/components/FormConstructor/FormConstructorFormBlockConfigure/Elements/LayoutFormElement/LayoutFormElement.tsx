@@ -19,40 +19,14 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     setLayoutProps(layoutElementWithProps.props.props)
   }, [element])
 
-  const ActiveSide = ({
-    borderColor,
-    borderSide,
-    borderStyle,
-    borderWidth,
-  }: LayoutElementStyles) => {
-    const sideCss = {
-      [`${borderSide}Width`]: borderWidth,
-      [`${borderSide}Style`]: borderStyle,
-      [`${borderSide}Color`]: borderColor,
-      borderWidth: '',
-      borderStyle: '',
-      borderColor: '',
-    }
-    if (borderSide === 'borderAll') {
-      return undefined
-    }
-    return sideCss
-  }
 
-  let activeSide = layoutProps?.styles?.borderSide && ActiveSide(layoutProps.styles)
+  const style = getStyles(layoutProps?.styles)
 
   return (
     <Layout
       className={layoutProps?.className}
       {...layoutProps?.constaProps}
-      style={{
-        ...layoutProps?.styles,
-        backgroundColor: `var(--${layoutProps?.styles?.backgroundColor})`,
-        borderColor: `var(--${layoutProps?.styles?.borderColor})`,
-        overflow: 'hidden',
-        transition: 'none',
-        ...activeSide,
-      }}
+      style={style}
     >
       <SelectableLayer
         parentElementId={element.id}
@@ -63,4 +37,44 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
       </SelectableLayer>
     </Layout>
   )
+}
+
+const getStyles = (styles: LayoutElementStyles | undefined) => {
+
+
+  let activeSide = styles?.borderSide && getActiveBorder(styles)
+  const style = {
+    maxWidth: styles?.maxWidth,
+    minWidth: styles?.minWidth,
+    maxHeight: styles?.maxHeight,
+    minHeight: styles?.minHeight,
+    justifyContent: styles?.justifyContent,
+    alignItems: styles?.alignItems,
+    borderSide: styles?.borderSide,
+    backgroundColor: `var(--${styles?.backgroundColor})`,
+    overflow: 'hidden',
+    transition: 'none',
+    ...activeSide,
+  }
+  return style
+}
+const getActiveBorder = ({
+                      borderColor,
+                      borderSide,
+                      borderStyle,
+                      borderWidth,
+                    }: LayoutElementStyles) => {
+  const sideCss = {
+    [`${borderSide}Width`]: borderWidth,
+    [`${borderSide}Style`]: borderStyle,
+    [`${borderSide}Color`]:  `var(--${borderColor})`,
+  }
+  if (borderSide === 'borderAll') {
+    return {
+      borderWidth: borderWidth,
+      borderStyle: borderStyle,
+      borderColor: `var(--${borderColor})`,
+    }
+  }
+  return sideCss
 }
