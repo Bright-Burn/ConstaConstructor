@@ -15,18 +15,23 @@
 }
 
 .selectedElement {
-  overflow: hidden;
+  /*overflow: hidden;*/
 
-  outline: none;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgba(39, 50, 245, 0.8);
+  outline: 1px solid rgba(39, 50, 245, 0.8);
+  outline-offset: -1px;
+  /*border-width: 1px;*/
+  /*border-style: solid;*/
+  /*border-color: rgba(39, 50, 245, 0.8);*/
 }
 
 .fitSpace {
   flex-grow: 1;
 }
 .focused:hover:not(:has(.focused:hover)){
+  outline: 1px dashed #41a3ff;
+  outline-offset: -2px;
+}
+.focused:hover:not(:has(.selectedElement)){
   outline: 1px dashed #41a3ff;
   outline-offset: -2px;
 }

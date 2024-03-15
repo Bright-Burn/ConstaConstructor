@@ -47,7 +47,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
         elementTypeUsage === ElementTypes.FormElement
           ? styles.selectableLayerFormElement
           : styles.selectableLayerLayoutElement
-      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''} ${isGridVisible ? styles.focused : ''}`}
+      } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`}
       onClick={onClickElement}
       tabIndex={0}
     >
