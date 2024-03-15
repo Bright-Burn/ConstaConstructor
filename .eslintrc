@@ -1,0 +1,248 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest/globals": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:react-hooks-configurable/recommended",
+    "plugin:jest/recommended",
+    "plugin:@conarti/feature-sliced/rules",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": [
+      "./tsconfig.eslint.json"
+    ]
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "react-hooks-configurable",
+    "prettier"
+  ],
+  "rules": {
+    "array-callback-return": [
+      "error",
+      {
+        "checkForEach": true
+      }
+    ],
+    "eqeqeq": [
+      "error",
+      "always",
+      {
+        "null": "ignore"
+      }
+    ],
+    "id-length": [
+      "error",
+      {
+        "min": 2,
+        "properties": "never",
+        "exceptionPatterns": [
+          "_|e|i|j|x|y|z"
+        ]
+      }
+    ],
+    "linebreak-style": "off",
+    "no-else-return": "error",
+    "no-loop-func": "error",
+    "no-multi-assign": "error",
+    "no-nested-ternary": "error",
+    "no-new-func": "error",
+    "no-new-object": "error",
+    "no-new-wrappers": "error",
+    "no-param-reassign": "error",
+    "no-restricted-globals": "error",
+    "no-return-await": "error",
+    "no-underscore-dangle": "error",
+    "no-unneeded-ternary": "error",
+    "nonblock-statement-body-position": "error",
+    "object-shorthand": "error",
+    "one-var": [
+      "error",
+      "never"
+    ],
+    "prefer-arrow-callback": [
+      "error",
+      {
+        "allowNamedFunctions": true
+      }
+    ],
+    "prefer-object-spread": "error",
+    "prefer-template": "error",
+    "prettier/prettier": "error",
+    "quote-props": [
+      "error",
+      "as-needed"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "template-curly-spacing": "error",
+    "radix": "error",
+    "wrap-iife": "error",
+    "react/prop-types": "off",
+    "react/button-has-type": "warn",
+    "react/jsx-boolean-value": [
+      "error",
+      "always"
+    ],
+    "react/jsx-curly-brace-presence": [
+      "error",
+      "never"
+    ],
+    "react/jsx-fragments": "error",
+    "react/jsx-no-constructed-context-values": "warn",
+    "react/jsx-no-leaked-render": [
+      "error",
+      {
+        "validStrategies": [
+          "coerce",
+          "ternary"
+        ]
+      }
+    ],
+    "react/jsx-no-useless-fragment": "error",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "reservedFirst": true,
+        "noSortAlphabetically": true
+      }
+    ],
+    "react/self-closing-comp": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          // Packages `react` related packages come first.
+          [
+            "^react",
+            "^@?\\w"
+          ],
+          [
+            "^(@|@app|@pages|@features|@widgets|@shared|@entities)(/.*|$)"
+          ],
+          // Internal packages.
+          [
+            "^(@|components)(/.*|$)"
+          ],
+          // Side effect imports.
+          [
+            "^\\u0000"
+          ],
+          // Parent imports. Put `..` last.
+          [
+            "^\\.\\.(?!/?$)",
+            "^\\.\\./?$"
+          ],
+          // Other relative imports. Put same-folder imports and `.` last.
+          [
+            "^\\./(?=.*/)(?!/?$)",
+            "^\\.(?!/?$)",
+            "^\\./?$"
+          ],
+          // Style imports.
+          [
+            "^.+\\.?(css)$"
+          ]
+        ]
+      }
+    ],
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "never"
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/prefer-regexp-exec": "warn",
+    "@typescript-eslint/require-array-sort-compare": "warn",
+    "@typescript-eslint/switch-exhaustiveness-check": "warn",
+    "react-hooks-configurable/exhaustive-deps": [
+      "warn",
+      {
+        "additionalStableHooks": {
+          "useAppDispatch": true
+        }
+      }
+    ],
+    "import/consistent-type-specifier-style": [
+      "error",
+      "prefer-top-level"
+    ],
+    "import/extensions": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-webpack-loader-syntax": "error",
+    "import/no-internal-modules": [
+      "error",
+      {
+        "allow": [
+          "@/*",
+          "@app/*",
+          "@(widgets|features|entities|shared|pages)/*",
+          "@consta/uikit/[a-zA-Z]*",
+          "@consta/icons/[a-zA-Z]*",
+          "@consta/gpn-responses/[a-zA-Z]*",
+          "@consta/rc-tree-adapter/rcTreeAdapter",
+          "react-dom/*",
+          "@reduxjs/toolkit/*",
+          "*/styles/*.css"
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "__webpack__/*.js",
+        "__tests__/**/*"
+      ],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "@conarti/feature-sliced/absolute-relative": "off"
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/extensions": [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx"
+    ],
+    "import/resolver": {
+      "node": true,
+      "typescript": true
+    }
+  }
+}

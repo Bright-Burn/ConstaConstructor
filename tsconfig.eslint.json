@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src",
+    "__tests__",
+    "__webpack__",
+    "__jest__",
+    ".eslintrc",
+    "*.ts",
+    "*.tsx",
+    "*.js",
+    "*.jsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "coverage",
+    "__scripts__",
+    "__nginx__"
+  ]
+}
