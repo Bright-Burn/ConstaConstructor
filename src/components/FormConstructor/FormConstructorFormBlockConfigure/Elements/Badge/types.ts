@@ -1,4 +1,4 @@
-import { IFormElement } from '../../../coreTypes'
+import type { IFormElement } from '../../../coreTypes'
 
 export interface IBadgeFormElement {
   element: IFormElement<'Badge'>

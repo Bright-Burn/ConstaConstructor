@@ -1,9 +1,12 @@
-import { FC, useEffect, useState } from 'react'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import styles from './styles.module.css'
+import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
-import { ISelectedElement, ButtonGroupProps } from '../../../../coreTypes'
-import { BrandButtonGroupProps, ButtonGroupElement } from '../../../../coreTypes/buttonTypes'
+
+import type { ButtonGroupProps, ISelectedElement } from '../../../../coreTypes'
+import type { BrandButtonGroupProps, ButtonGroupElement } from '../../../../coreTypes/buttonTypes'
+import { setSelectedElement, useAppDispatch } from '../../../../store'
+
+import styles from './styles.module.css'
 
 type ButtonModuleSettingsType = {
   selectedElementProps: ButtonGroupProps
@@ -51,7 +54,7 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -59,18 +62,22 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({
   return (
     <div className={styles.buttonModuleSettings}>
       <TextField
-        onChange={({ value }: { value: string | null }) => onChangeWidth(value)}
         value={props?.props.width.replaceAll('px', '')}
-        type='number'
-        label='Width'
-        min='0'
+        type="number"
+        label="Width"
+        min="0"
+        onChange={({ value }: { value: string | null }) => {
+          onChangeWidth(value)
+        }}
       />
       <TextField
-        onChange={({ value }: { value: string | null }) => onChangeHeight(value)}
         value={props?.props.height.replaceAll('px', '')}
-        type='number'
-        label='Height'
-        min='0'
+        type="number"
+        label="Height"
+        min="0"
+        onChange={({ value }: { value: string | null }) => {
+          onChangeHeight(value)
+        }}
       />
     </div>
   )

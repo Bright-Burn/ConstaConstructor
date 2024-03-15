@@ -1,4 +1,4 @@
-import { IFormElementTabs } from '../../../coreTypes'
+import type { IFormElementTabs } from '../../../coreTypes'
 
 export interface ITabsFormElement {
   element: IFormElementTabs

@@ -1,5 +1,5 @@
-export { BorderDott } from './BorderDott'
 export { BorderDashed } from './BorderDashed'
+export { BorderDott } from './BorderDott'
 export { BorderDouble } from './BorderDouble'
 export { BorderGroove } from './BorderGroove'
 export { BorderInset } from './BorderInset'

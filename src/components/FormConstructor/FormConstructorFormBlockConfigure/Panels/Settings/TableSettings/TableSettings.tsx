@@ -1,9 +1,12 @@
-import styles from './styles.module.css'
-import { FC, useLayoutEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
-import { TableProps, ISelectedElement } from '../../../../coreTypes'
+
+import type { ISelectedElement, TableProps } from '../../../../coreTypes'
+import type { BrandTableProps, TableElement } from '../../../../coreTypes/tableTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BrandTableProps, TableElement } from '../../../../coreTypes/tableTypes'
+
+import styles from './styles.module.css'
 
 type TableSettingsType = {
   selectedElementProps: TableProps
@@ -42,7 +45,7 @@ export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, sel
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -58,19 +61,19 @@ export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, sel
       {props ? (
         <>
           <TextField
-            type='number'
-            step='1'
-            label='Row'
-            min='0'
-            value={props && `${props.row}`}
+            type="number"
+            step="1"
+            label="Row"
+            min="0"
+            value={!!props && `${props.row}`}
             onChange={handleOnChangeLabelRow}
           />
           <TextField
-            type='number'
-            step='1'
-            min='0'
-            label='Column'
-            value={props && `${props.column}`}
+            type="number"
+            step="1"
+            min="0"
+            label="Column"
+            value={!!props && `${props.column}`}
             onChange={handleOnChangeLabelColumn}
           />
         </>

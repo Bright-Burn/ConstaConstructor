@@ -1,5 +1,6 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import { IFormConstructor } from '../../../coreTypes'
+import type { PayloadAction } from '@reduxjs/toolkit'
+
+import type { IFormConstructor } from '../../../coreTypes'
 import { pushHistory } from '../history'
 import { layuoutAdapter } from '../initialState'
 

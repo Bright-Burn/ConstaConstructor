@@ -1,9 +1,11 @@
+import type { FC } from 'react'
 import { IconClose } from '@consta/icons/IconClose'
 import { IconEdit } from '@consta/icons/IconEdit'
 import { Button } from '@consta/uikit/Button'
-import { FC } from 'react'
-import { IPageButton } from './types'
-import { useAppDispatch, deletePage as deletePageAction } from '../../../../../store'
+
+import { deletePage as deletePageAction, useAppDispatch } from '../../../../../store'
+
+import type { IPageButton } from './types'
 
 export const PageButton: FC<IPageButton> = ({
   isSelectedPage,
@@ -27,27 +29,33 @@ export const PageButton: FC<IPageButton> = ({
       <Button
         view={isSelectedPage ? 'ghost' : 'clear'}
         label={page.name}
-        size='xs'
-        form='brick'
-        onClick={() => changePage(pageId)}
+        size="xs"
+        form="brick"
+        onClick={() => {
+          changePage(pageId)
+        }}
       />
-      {isSelectedPage && (
+      {!!isSelectedPage && (
         <>
           <Button
             iconLeft={IconEdit}
             view={isSelectedPage ? 'ghost' : 'clear'}
-            size='xs'
-            form='brick'
-            onlyIcon
-            onClick={() => changeValueName()}
+            size="xs"
+            form="brick"
+            onlyIcon={true}
+            onClick={() => {
+              changeValueName()
+            }}
           />
           <Button
             iconLeft={IconClose}
             view={isSelectedPage ? 'ghost' : 'clear'}
-            size='xs'
-            form='brick'
-            onlyIcon
-            onClick={() => deletePage(pageId)}
+            size="xs"
+            form="brick"
+            onlyIcon={true}
+            onClick={() => {
+              deletePage(pageId)
+            }}
           />
         </>
       )}

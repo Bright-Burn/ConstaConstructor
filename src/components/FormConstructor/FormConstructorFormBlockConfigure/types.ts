@@ -1,5 +1,6 @@
-import { FC } from 'react'
-import { IFormConstructorFormBlock } from '../types'
+import type { FC } from 'react'
+
+import type { IFormConstructorFormBlock } from '../types'
 
 export interface IFormConstructorFormBlockConfigure extends IFormConstructorFormBlock {
   Settings: FC

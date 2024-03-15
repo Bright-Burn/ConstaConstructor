@@ -1,7 +1,8 @@
-import { AppDispatch } from '../setupStore'
-import { AddBaseComponent } from './payload'
+import type { AppDispatch } from '../setupStore'
+
 import { baseComponentsSlice } from './baseComponentsSlices'
-import { IBaseComponent } from './types'
+import type { AddBaseComponent } from './payload'
+import type { IBaseComponent } from './types'
 
 export const addBaseElement = (el: AddBaseComponent) => (dispatch: AppDispatch) => {
   dispatch(baseComponentsSlice.actions.addNewBaseElement(el))

@@ -1,11 +1,13 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { useAppDispatch } from '../../../../../../store'
-import { IComponetCardElement } from '../types'
-import { IFormElementRadioButton, FormElementDictTypes } from '../../../../../../coreTypes'
-import { setDraggableElement } from '../../../../../../store'
 import RadioImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/RadioImage'
+import { Text } from '@consta/uikit/Text'
+
+import type { IFormElementRadioButton } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
+import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import type { IComponetCardElement } from '../types'
+
 import styles from '../styles.module.css'
 
 export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => {

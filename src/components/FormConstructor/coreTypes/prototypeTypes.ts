@@ -1,5 +1,5 @@
-import { BaseTypes } from './basePropsTypes'
-import {
+import type { BaseTypes } from './basePropsTypes'
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,

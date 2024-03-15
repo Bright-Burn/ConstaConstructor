@@ -1,26 +1,29 @@
-import styles from './styles.module.css'
-import { PagesProps } from './types'
-import { Card } from '@consta/uikit/Card'
-import {
-  changeActivePage,
-  useAppDispatch,
-  useAppSelector,
-  toggleGrid,
-  changePageName, checkIsGridVisible,
-} from '../../../../store'
 import { useState } from 'react'
 import { IconShape } from '@consta/icons/IconShape'
-import { PageButton } from './PageButton'
-import { PagePopover } from './PagePopover'
-import { PageEdit } from './PageEdit'
 import { IconTable2 } from '@consta/icons/IconTable2'
+import { Card } from '@consta/uikit/Card'
+
+import {
+  changeActivePage,
+  changePageName,
+  checkIsGridVisible,
+  toggleGrid,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../store'
+
+import { PageButton } from './PageButton'
+import { PageEdit } from './PageEdit'
+import { PagePopover } from './PagePopover'
+import type { PagesProps } from './types'
+
+import styles from './styles.module.css'
 
 export const Pages = ({ pages }: PagesProps) => {
   const [isNameEdited, setIsNameEdited] = useState<boolean>(false)
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
   const isGridVisible = useAppSelector(checkIsGridVisible)
-
 
   const changePage = (pageId: string) => {
     dispatch(changeActivePage(pageId))
@@ -45,7 +48,7 @@ export const Pages = ({ pages }: PagesProps) => {
         {pages.map((page, index) => {
           if (index > 7) return
           return (
-            <Card shadow={false} className={`${styles.pageBlock}`} form='round'>
+            <Card shadow={false} className={`${styles.pageBlock}`} form="round">
               {selectedPageId === page.id && isNameEdited ? (
                 <PageEdit
                   isSelectedPage={selectedPageId === page.id}
@@ -75,10 +78,11 @@ export const Pages = ({ pages }: PagesProps) => {
           changeIsNameEdited={changeIsNameEdited}
         />
       </div>
-      { isGridVisible ?
-        <IconTable2 className={styles.iconGrid} onClick={onClickShowGrid} /> :
-        <IconShape className={styles.iconGrid} onClick={onClickShowGrid} />}
-
+      {isGridVisible ? (
+        <IconTable2 className={styles.iconGrid} onClick={onClickShowGrid} />
+      ) : (
+        <IconShape className={styles.iconGrid} onClick={onClickShowGrid} />
+      )}
     </div>
   )
 }

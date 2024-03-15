@@ -1,22 +1,22 @@
-import { FC, useLayoutEffect, useState } from 'react'
-import {
-  IFormElementWizardForm,
-  wizardFormProps,
-  ElementTypes,
-  FormElementDictTypes,
-} from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
-import { IWizardForm } from './types'
-import css from './styles.module.css'
-import { Button } from '@consta/uikit/Button'
-import { Text } from '@consta/uikit/Text'
-import { ProgressStepBar } from '@consta/uikit/ProgressStepBar'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { IconForward } from '@consta/icons/IconForward'
 import { Badge } from '@consta/uikit/Badge'
-import { steps, wizardFromCompanyBlock } from './mocks'
+import { Button } from '@consta/uikit/Button'
+import { ProgressStepBar } from '@consta/uikit/ProgressStepBar'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
+
+import type { IFormElementWizardForm, wizardFormProps } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+
+import { steps, wizardFromCompanyBlock } from './mocks'
+import type { IWizardForm } from './types'
+
+import css from './styles.module.css'
 
 export const WizardForm: FC<IWizardForm> = ({ element }) => {
   const [formProps, setFormProps] = useState<wizardFormProps>()
@@ -31,56 +31,55 @@ export const WizardForm: FC<IWizardForm> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.CardWithBarChart}
-      className={`${css.fullScreen}`}
-    >
+      className={`${css.fullScreen}`}>
       <div className={`${css.wizardFomr__Screen} m-t-m m-l-2xl m-r-2xl m-b-2xl`}>
-        <div className='m-b-6xl'>
-          <div className='container-row space-center m-b-2xl'>
-            <Text size='l' className='m-r-m'>
+        <div className="m-b-6xl">
+          <div className="container-row space-center m-b-2xl">
+            <Text size="l" className="m-r-m">
               Акт нарушения №22 от 19.02.2023
             </Text>
-            <Badge size='s' status='system' label='черновик' />
+            <Badge size="s" status="system" label="черновик" />
           </div>
           <div className={`${css.flexCenter} m-b-2xl`}>
             <ProgressStepBar
               steps={steps}
               getItemLabel={step => step.label}
               activeStepIndex={0}
-              size='s'
+              size="s"
             />
           </div>
           <div className={css.wizardForm__Info}>
             {wizardFromCompanyBlock.map(field => (
-              <div className='container-row space-center space-between m-b-xs'>
-                <Text size='s'>{field.label}</Text>
+              <div className="container-row space-center space-between m-b-xs">
+                <Text size="s">{field.label}</Text>
                 <Select
                   className={css.selectWidth}
                   items={field.items}
                   value={field.items[0]}
+                  size="s"
                   onChange={() => null}
-                  size='s'
                 />
               </div>
             ))}
-            <div className='container-row space-center m-b-xs'>
-              <Text size='s' className={`${css.textWidth} m-r-xs`}>
+            <div className="container-row space-center m-b-xs">
+              <Text size="s" className={`${css.textWidth} m-r-xs`}>
                 Подрядная организация
               </Text>
               <Switch checked={true} />
             </div>
-            <div className='container-row space-center space-between m-b-xs'>
-              <Text size='s'>Компания</Text>
+            <div className="container-row space-center space-between m-b-xs">
+              <Text size="s">Компания</Text>
               <TextField
                 className={css.selectWidth}
-                value='ООО «Нефть-Ямал»'
-                width='full'
-                size='s'
+                value="ООО «Нефть-Ямал»"
+                width="full"
+                size="s"
               />
             </div>
           </div>
         </div>
         <div className={css.buttonPosition}>
-          <Button label='Далее' iconRight={IconForward} />
+          <Button label="Далее" iconRight={IconForward} />
         </div>
       </div>
     </SelectableLayerFullWidth>

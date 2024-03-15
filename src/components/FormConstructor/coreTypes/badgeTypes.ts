@@ -1,12 +1,18 @@
-import { BadgePropForm, BadgePropSize, BadgePropStatus, BadgePropView } from '@consta/uikit/Badge'
-import {
+import type {
+  BadgePropForm,
+  BadgePropSize,
+  BadgePropStatus,
+  BadgePropView,
+} from '@consta/uikit/Badge'
+
+import type { IconNames } from './iconTypes'
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { IconNames } from './iconTypes'
 
 export type BadgeProps = {
   size?: BadgePropSize

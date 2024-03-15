@@ -1,5 +1,10 @@
-import { BreadcrumbsProps } from '@consta/uikit/Breadcrumbs'
-import { BaseProps, BrandBreadcrumbsProps, FormElementTypes } from '../../../../../../coreTypes'
+import type { BreadcrumbsProps } from '@consta/uikit/Breadcrumbs'
+
+import type {
+  BaseProps,
+  BrandBreadcrumbsProps,
+  FormElementTypes,
+} from '../../../../../../coreTypes'
 
 export type BreadcrumbProps = BreadcrumbsProps & BaseProps
 

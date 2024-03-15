@@ -1,5 +1,6 @@
-import { IBaseComponent } from '../../../store/baseComponentsItems'
-import { ProjectTableView } from './types'
+import type { IBaseComponent } from '../../../store/baseComponentsItems'
+
+import type { ProjectTableView } from './types'
 
 export const rows = [
   {

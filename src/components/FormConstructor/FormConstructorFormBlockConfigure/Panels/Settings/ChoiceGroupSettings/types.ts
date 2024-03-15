@@ -1,11 +1,12 @@
-import {
+import type {
   ChoiceGroupPropForm,
   ChoiceGroupPropSize,
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
-import { UserPropWidth } from '@consta/uikit/User'
-import { IconComponent } from '@consta/uikit/Icon'
-import { DeepWriteable } from '../../../../coreTypes'
+import type { IconComponent } from '@consta/uikit/Icon'
+import type { UserPropWidth } from '@consta/uikit/User'
+
+import type { DeepWriteable } from '../../../../coreTypes'
 
 export type Item = {
   label: string

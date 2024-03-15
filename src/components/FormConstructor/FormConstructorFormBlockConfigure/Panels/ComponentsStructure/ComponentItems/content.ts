@@ -1,5 +1,6 @@
-import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../coreTypes'
 import uuid from 'react-uuid'
+
+import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../coreTypes'
 
 export const constaCards = [
   {

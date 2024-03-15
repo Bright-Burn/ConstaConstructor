@@ -1,6 +1,7 @@
-import { FC } from 'react'
+import type { FC } from 'react'
+
+import type { IFormElementPrototype } from '../../../coreTypes/prototypeTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { IFormElementPrototype } from '../../../coreTypes/prototypeTypes'
 
 interface IPrototypeRectangleElement {
   element: IFormElementPrototype
@@ -12,10 +13,9 @@ export const PrototypeRectangleElement: FC<IPrototypeRectangleElement> = ({ elem
     <div style={{ top, left, position: 'absolute' }}>
       <SelectableLayer
         parentElementId={element.id}
-        elementType={'PrototypeRectangleElement'}
-        elementTypeUsage={'FormElement'}
-      >
-        <div style={{ width, height, zIndex, background: '#ccc' }}></div>
+        elementType="PrototypeRectangleElement"
+        elementTypeUsage="FormElement">
+        <div style={{ width, height, zIndex, background: '#ccc' }} />
       </SelectableLayer>
     </div>
   )

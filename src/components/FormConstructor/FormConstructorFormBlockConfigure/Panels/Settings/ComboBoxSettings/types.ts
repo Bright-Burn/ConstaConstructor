@@ -1,6 +1,11 @@
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm, comboboxItemType } from '../../../../coreTypes'
-import { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
+import type { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
+import type {
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropView,
+} from '@consta/uikit/TextField'
+
+import type { comboboxItemType, PropForm } from '../../../../coreTypes'
 
 export type ValueType =
   | TextFieldPropStatus

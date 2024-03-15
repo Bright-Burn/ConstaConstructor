@@ -1,4 +1,4 @@
-import {
+import type {
   BrandPrototypeRectangleProps,
   BrandPrototypeTextProps,
   PrototypeProps,
@@ -14,12 +14,12 @@ export const useTextSettingsStore = (
   const dispatch = useAppDispatch()
 
   const onDispatch = (newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps) => {
-    if (selectedElement?.elementType) {
+    if (selectedElement.elementType) {
       dispatch(
         setSelectedElement({
-          elementType: selectedElement?.elementType,
-          elementId: selectedElement?.elementId,
-          newProps: newProps,
+          elementType: selectedElement.elementType,
+          elementId: selectedElement.elementId,
+          newProps,
         }),
       )
     }

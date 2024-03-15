@@ -1,8 +1,8 @@
-import { PayloadAction } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
 
-import { IFormConstructor } from '../../../coreTypes'
-import { DeletePage } from '../payload'
+import type { IFormConstructor } from '../../../coreTypes'
 import { pushHistory } from '../history'
+import type { DeletePage } from '../payload'
 
 export const deletePage = (state: IFormConstructor, { payload }: PayloadAction<DeletePage>) => {
   const pageIdToDelete = payload.id

@@ -1,8 +1,11 @@
-import { FC, useEffect, useState } from 'react'
-import { ConstaColor, IConstaPalette } from './types'
-import css from './styles.module.css'
-import { Select } from '@consta/uikit/Select'
+import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 import { cn } from '@bem-react/classname'
+import { Select } from '@consta/uikit/Select'
+
+import type { ConstaColor, IConstaPalette } from './types'
+
+import css from './styles.module.css'
 
 export const ConstaPalette: FC<IConstaPalette> = ({
   color,
@@ -37,17 +40,16 @@ export const ConstaPalette: FC<IConstaPalette> = ({
         renderItem={({ item, active, hovered, onClick, onMouseEnter }) => {
           const onCustomMouseEnter = (e: React.SyntheticEvent) => {
             setColorPreview(item)
-            return onMouseEnter(e)
+            onMouseEnter(e)
           }
           return (
             <div
               className={cnSelectExampleRenderItem('', { active, hovered })}
-              role='option'
+              role="option"
               aria-selected={active}
               onMouseEnter={onCustomMouseEnter}
               onMouseLeave={onMouseLeave}
-              onClick={onClick}
-            >
+              onClick={onClick}>
               {item}
             </div>
           )
@@ -59,7 +61,7 @@ export const ConstaPalette: FC<IConstaPalette> = ({
       <div
         style={{
           borderRadius: '0.5rem',
-          marginLeft: `0.4rem`,
+          marginLeft: '0.4rem',
           width: `var(--control-height-${size})`,
           height: `var(--control-height-${size})`,
           background: `var(--${colorPreview})`,

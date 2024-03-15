@@ -1,11 +1,15 @@
-import { FC, useEffect, useState } from 'react'
-import { IButtonActionViewer } from './types'
-import { Modal } from '@consta/uikit/Modal'
-import { ButtonGroupProps } from '../../../../coreTypes'
-import { Button } from '@consta/uikit/Button'
-import styles from './styles.module.css'
+import type { FC } from 'react'
+import { useEffect, useState } from 'react'
 import { IconClose } from '@consta/icons/IconClose'
+import { Button } from '@consta/uikit/Button'
+import { Modal } from '@consta/uikit/Modal'
+
+import type { ButtonGroupProps } from '../../../../coreTypes'
 import { DroppableLayer } from '../../../DroppableLayer'
+
+import type { IButtonActionViewer } from './types'
+
+import styles from './styles.module.css'
 
 export const ButtonActionModal: FC<IButtonActionViewer> = ({
   buttonGroup,
@@ -34,10 +38,9 @@ export const ButtonActionModal: FC<IButtonActionViewer> = ({
       isOpen={openViewer}
       hasOverlay={false}
       onClick={onModalClick}
-      onDrop={onDrop}
-    >
+      onDrop={onDrop}>
       <div className={styles.modalClose}>
-        <Button size='s' onlyIcon={true} iconRight={IconClose} onClick={onCloseViewer} />
+        <Button size="s" onlyIcon={true} iconRight={IconClose} onClick={onCloseViewer} />
       </div>
       <div className={styles.modalContent}>
         <div className={styles.configPane}>

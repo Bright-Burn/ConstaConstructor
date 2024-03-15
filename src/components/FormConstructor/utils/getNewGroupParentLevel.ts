@@ -1,4 +1,4 @@
-import { IFormElement, IGroupElement } from '../coreTypes'
+import type { IFormElement, IGroupElement } from '../coreTypes'
 
 export const getNewGroupParentLevel = (
   currentParentId: string,
@@ -9,7 +9,7 @@ export const getNewGroupParentLevel = (
     const groupElement = allElementsMap.get(currentParentId) as IGroupElement
     let prevParent: string | undefined = undefined
 
-    for (let [parentId, childrenIds] of allElementsTree) {
+    for (const [parentId, childrenIds] of allElementsTree) {
       if (childrenIds.includes(groupElement.id)) {
         prevParent = parentId
         break

@@ -1,9 +1,17 @@
-import { FC, useState } from 'react'
-import { Select } from '@consta/uikit/Select'
-import { TextField } from '@consta/uikit/TextField'
-import { Switch } from '@consta/uikit/Switch'
-import { useItemsHandlers } from './ItemsService'
+import type { FC } from 'react'
+import { useState } from 'react'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Collapse } from '@consta/uikit/Collapse'
 import { DatePicker } from '@consta/uikit/DatePicker'
+import { FieldGroup } from '@consta/uikit/FieldGroup'
+import { Select } from '@consta/uikit/Select'
+import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
+import { TextField } from '@consta/uikit/TextField'
+
+import type { DatePickerElement, DatePickerProps } from '../../../../coreTypes'
+
+import { useItemsHandlers } from './ItemsService'
 import {
   dateTimeViewArray,
   dropdownFormArray,
@@ -14,12 +22,8 @@ import {
   typeArray,
   viewArray,
 } from './types'
-import { DatePickerElement, DatePickerProps } from '../../../../coreTypes'
+
 import styles from './styles.module.css'
-import { Text } from '@consta/uikit/Text'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import { FieldGroup } from '@consta/uikit/FieldGroup'
-import { Collapse } from '@consta/uikit/Collapse'
 
 type DatePickerSettingsType = {
   selectedElementProps: DatePickerProps
@@ -59,19 +63,23 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={typeArray}
-              label='Тип'
-              size='xs'
+              label="Тип"
+              size="xs"
               value={itemsProps.type}
-              onChange={({ value }) => onChangeField(value, 'type')}
+              onChange={({ value }) => {
+                onChangeField(value, 'type')
+              }}
             />
             <Select
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={sizeArray}
-              label='Размер'
-              size='xs'
+              label="Размер"
+              size="xs"
               value={itemsProps.size}
-              onChange={({ value }) => onChangeField(value, 'size')}
+              onChange={({ value }) => {
+                onChangeField(value, 'size')
+              }}
             />
           </div>
           <div className={styles.rowSettings}>
@@ -80,21 +88,25 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={formArray}
-              label='Форма'
-              size='xs'
+              label="Форма"
+              size="xs"
               value={itemsProps.form}
-              onChange={({ value }) => onChangeField(value, 'form')}
+              onChange={({ value }) => {
+                onChangeField(value, 'form')
+              }}
             />
             <div className={styles.columnSettings}>
-              <Text size='xs' view='secondary'></Text>
+              <Text size="xs" view="secondary" />
               <ChoiceGroup
                 value={itemsProps.view}
                 items={viewArray}
                 getItemLabel={(label: string) => label}
-                view='ghost'
-                size='xs'
-                name='ChoiceGroupExample'
-                onChange={({ value }) => onChangeField(value, 'view')}
+                view="ghost"
+                size="xs"
+                name="ChoiceGroupExample"
+                onChange={({ value }) => {
+                  onChangeField(value, 'view')
+                }}
               />
             </div>
           </div>
@@ -104,154 +116,190 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={statusArray}
-              label='Статус'
-              size='xs'
+              label="Статус"
+              size="xs"
               value={itemsProps.status}
-              onChange={({ value }) => onChangeField(value, 'status')}
+              onChange={({ value }) => {
+                onChangeField(value, 'status')
+              }}
             />
             <DatePicker
               className={styles.widthFlex}
-              size='xs'
-              label='Активный выбор'
+              size="xs"
+              label="Активный выбор"
               value={itemsProps.value}
-              onChange={({ value }) => onChangeField(value, 'value')}
+              onChange={({ value }) => {
+                onChangeField(value, 'value')
+              }}
             />
           </div>
           <Switch
             checked={itemsProps.disabled}
-            label='Состояние блокировки'
-            size='xs'
-            onChange={({ checked }) => onChangeField(checked, 'disabled')}
+            label="Состояние блокировки"
+            size="xs"
+            onChange={({ checked }) => {
+              onChangeField(checked, 'disabled')
+            }}
           />
           <Switch
-            onChange={({ checked }) => onChangeField(checked, 'label')}
-            label='Текст заголовка'
-            size='xs'
+            label="Текст заголовка"
+            size="xs"
             checked={!!itemsProps.label}
+            onChange={({ checked }) => {
+              onChangeField(checked, 'label')
+            }}
           />
           <div className={styles.rowSettingsWithoutGap}>
             <Select
               className={styles.widthTopLeftFlex}
-              size='xs'
+              size="xs"
               disabled={!itemsProps.label}
               getItemKey={(key: string) => key}
               getItemLabel={(label: string) => label}
               value={itemsProps.labelPosition || 'top'}
               items={labelPositionArray}
-              onChange={({ value }) => onChangeField(value, 'labelPosition')}
+              onChange={({ value }) => {
+                onChangeField(value, 'labelPosition')
+              }}
             />
             <TextField
               className={styles.widthFlex}
-              width='full'
+              width="full"
               disabled={!itemsProps.label}
               value={itemsProps.label}
-              onChange={({ value }) => onChangeField(value, 'label')}
-              size='xs'
+              size="xs"
+              onChange={({ value }) => {
+                onChangeField(value, 'label')
+              }}
             />
           </div>
           <Switch
             checked={itemsProps.required}
-            label='Обязательно для заполнения'
-            size='xs'
-            onChange={({ checked }) => onChangeField(checked, 'required')}
+            label="Обязательно для заполнения"
+            size="xs"
+            onChange={({ checked }) => {
+              onChangeField(checked, 'required')
+            }}
           />
           <div className={styles.columnSettingsWithoutRow}>
             <Switch
-              onChange={({ checked }) => onChangeField(checked, 'caption')}
-              label='Текст подписи'
-              size='xs'
+              label="Текст подписи"
+              size="xs"
               checked={!!itemsProps.caption}
+              onChange={({ checked }) => {
+                onChangeField(checked, 'caption')
+              }}
             />
             <TextField
-              size='xs'
+              size="xs"
               disabled={!itemsProps.caption}
               value={itemsProps.caption}
-              onChange={({ value }) => onChangeField(value, 'caption')}
+              onChange={({ value }) => {
+                onChangeField(value, 'caption')
+              }}
             />
           </div>
           <Switch
             checked={itemsProps.withClearButton}
-            label='Кнопка очистки поля ввода'
-            size='xs'
-            onChange={({ checked }) => onChangeField(checked, 'withClearButton')}
+            label="Кнопка очистки поля ввода"
+            size="xs"
+            onChange={({ checked }) => {
+              onChangeField(checked, 'withClearButton')
+            }}
           />
-          <FieldGroup size='xs'>
+          <FieldGroup size="xs">
             <DatePicker
-              leftSide='min'
-              size='xs'
+              leftSide="min"
+              size="xs"
               value={itemsProps.minDate}
-              onChange={({ value }) => onChangeField(value, 'minDate')}
+              onChange={({ value }) => {
+                onChangeField(value, 'minDate')
+              }}
             />
             <DatePicker
-              size='xs'
-              leftSide='max'
+              size="xs"
+              leftSide="max"
               value={itemsProps.maxDate}
-              onChange={({ value }) => onChangeField(value, 'maxDate')}
+              onChange={({ value }) => {
+                onChangeField(value, 'maxDate')
+              }}
             />
           </FieldGroup>
           <Collapse
-            label='Настройка выпадающего календаря'
-            size='xs'
+            label="Настройка выпадающего календаря"
+            size="xs"
             isOpen={isOpenDate}
-            onClick={() => setOpenDate(!isOpenDate)}
-          >
+            onClick={() => {
+              setOpenDate(!isOpenDate)
+            }}>
             <Select
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={dropdownFormArray}
-              label='Форма'
-              size='xs'
+              label="Форма"
+              size="xs"
               value={itemsProps.dropdownForm}
-              onChange={({ value }) => onChangeField(value, 'dropdownForm')}
+              onChange={({ value }) => {
+                onChangeField(value, 'dropdownForm')
+              }}
             />
             <Select
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={dateTimeViewArray}
-              label='Вид'
-              size='xs'
+              label="Вид"
+              size="xs"
               value={itemsProps.dateTimeView}
-              onChange={({ value }) => onChangeField(value, 'dateTimeView')}
+              onChange={({ value }) => {
+                onChangeField(value, 'dateTimeView')
+              }}
             />
             <Switch
               checked={itemsProps.withAdditionalControls}
-              label='Кнопки действия'
-              size='xs'
-              onChange={({ checked }) => onChangeField(checked, 'withAdditionalControls')}
+              label="Кнопки действия"
+              size="xs"
+              onChange={({ checked }) => {
+                onChangeField(checked, 'withAdditionalControls')
+              }}
             />
           </Collapse>
           <Switch
             checked={withEvents}
-            label='Мероприятия'
-            size='xs'
-            onChange={({ checked }) => clearEvents(checked)}
+            label="Мероприятия"
+            size="xs"
+            onChange={({ checked }) => {
+              clearEvents(checked)
+            }}
           />
-          {withEvents && (
+          {!!withEvents && (
             <Collapse
-              label='Настройка мероприятий'
-              size='xs'
+              label="Настройка мероприятий"
+              size="xs"
               isOpen={isOpenEvents}
-              onClick={() => setOpenEvents(!isOpenEvents)}
-            >
+              onClick={() => {
+                setOpenEvents(!isOpenEvents)
+              }}>
               <div className={styles.collapseSettings}>
                 <TextField
-                  label='Количество мероприятий'
-                  type='number'
-                  size='xs'
-                  width='full'
+                  label="Количество мероприятий"
+                  type="number"
+                  size="xs"
+                  width="full"
                   value={`${itemsProps.events.length}`}
                   onChange={onChangeItemsCount}
                 />
                 {itemsProps.events.map((dat, index) => {
                   return (
                     <DatePicker
-                      size='xs'
-                      labelPosition='top'
+                      key={index}
+                      size="xs"
+                      labelPosition="top"
                       label={`Мероприятия ${index + 1}`}
                       className={styles.rowSettingsCollapse}
-                      key={index}
                       value={dat}
-                      onChange={event => onDateLabelEdit(event.value as Date, index)}
+                      onChange={event => {
+                        onDateLabelEdit(event.value as Date, index)
+                      }}
                     />
                   )
                 })}

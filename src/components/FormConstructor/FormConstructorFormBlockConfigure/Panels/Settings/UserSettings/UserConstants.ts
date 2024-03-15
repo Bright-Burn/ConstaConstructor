@@ -1,4 +1,4 @@
-import { UserPropView, UserPropWidth, UserPropSize, UserPropStatus } from '@consta/uikit/User'
+import type { UserPropSize, UserPropStatus, UserPropView, UserPropWidth } from '@consta/uikit/User'
 
 export type ValueType = UserPropView | UserPropWidth | UserPropSize | UserPropStatus | string | null
 

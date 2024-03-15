@@ -1,14 +1,15 @@
-import {
-  ISelectedElement,
-  TagProps,
-  IconNames,
-  TagElement,
+import type { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
+
+import type {
   BrandTagProps,
+  IconNames,
+  ISelectedElement,
+  TagElement,
+  TagProps,
 } from '../../../../coreTypes'
-import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
-import { TagBasePropGroup, TagBasePropMode } from './types'
-import {} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+
+import type { TagBasePropGroup, TagBasePropMode } from './types'
 
 export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement: TagElement) => {
   const dispatch = useAppDispatch()
@@ -18,7 +19,7 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

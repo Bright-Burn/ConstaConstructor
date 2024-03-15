@@ -1,11 +1,16 @@
-import { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import type { FC } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import { TableProps, ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+
+import type { TableProps } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
-import { ITable } from './types'
-import style from './styles.module.css'
+
+import type { ITable } from './types'
+
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-material.css'
+import style from './styles.module.css'
 
 export const Table: FC<ITable> = ({ element }) => {
   const gridRef = useRef()
@@ -26,7 +31,7 @@ export const Table: FC<ITable> = ({ element }) => {
 
   const updateRow = (columnDefs: { field: string }[]) => {
     if (tableProps?.row) {
-      let someName: Record<string, string> = {}
+      const someName: Record<string, string> = {}
       columnDefs.forEach(cd => {
         someName[cd.field] = 'Item'
       })
@@ -37,7 +42,7 @@ export const Table: FC<ITable> = ({ element }) => {
 
   const sizeToFit = () => {
     if (gridRef.current)
-      // @ts-ignore
+      // @ts-expect-error
       gridRef.current.api?.sizeColumnsToFit()
   }
 
@@ -70,17 +75,18 @@ export const Table: FC<ITable> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Table}
-      className={`${style.fullScreen}`}
-    >
-      <div className='ag-theme-material' style={{ width: '100%' }}>
+      className={`${style.fullScreen}`}>
+      <div className="ag-theme-material" style={{ width: '100%' }}>
         <AgGridReact
-          // @ts-ignore
+          // @ts-expect-error
           ref={gridRef}
-          onFirstDataRendered={() => sizeToFit()}
           rowData={rowData}
           columnDefs={columnDefs}
+          onFirstDataRendered={() => {
+            sizeToFit()
+          }}
           {...tableProps}
-        ></AgGridReact>
+        />
       </div>
     </SelectableLayerFullWidth>
   )

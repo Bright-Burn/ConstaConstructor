@@ -1,9 +1,13 @@
-import { FC, useLayoutEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
+import { Combobox } from '@consta/uikit/Combobox'
+
+import type { ComboboxProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { IComboBoxFormElement } from './types'
-import { ComboboxProps } from '../../../coreTypes'
-import { Combobox } from '@consta/uikit/Combobox'
+
+import type { IComboBoxFormElement } from './types'
+
 import style from './style.module.css'
 
 export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
@@ -43,13 +47,13 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
       elementType={FormElementDictTypes.ComboBox}>
       <Combobox
         {...comboboxProps}
-        onChange={() => {}}
         groups={comboboxProps.groupsActive ? comboboxProps.groups : undefined}
         getItemKey={item => item.label}
         getItemLabel={item => item.label}
         getItemGroupKey={item => item.group}
         getGroupLabel={(group: string) => group}
         getGroupKey={(group: string) => group}
+        onChange={() => {}}
       />
     </SelectableLayer>
   )

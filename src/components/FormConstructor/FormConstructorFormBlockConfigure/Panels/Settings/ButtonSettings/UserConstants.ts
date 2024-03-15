@@ -1,4 +1,4 @@
-import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
+import type { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
 
 export const sizes: ButtonPropSize[] = ['m', 's', 'l', 'xs']
 export const views: ButtonPropView[] = ['ghost', 'clear', 'primary', 'secondary']

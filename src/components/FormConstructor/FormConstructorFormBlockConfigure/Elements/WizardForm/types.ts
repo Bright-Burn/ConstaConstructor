@@ -1,5 +1,6 @@
-import { IconComponent } from '@consta/uikit/Icon'
-import { IFormElement } from '../../../coreTypes'
+import type { IconComponent } from '@consta/uikit/Icon'
+
+import type { IFormElement } from '../../../coreTypes'
 
 export interface IWizardForm {
   element: IFormElement
@@ -10,7 +11,7 @@ declare const pointNumbersMap: readonly [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 export type progressStepBarItem = {
   label: string
   tooltipContent?: string
-  point?: typeof pointNumbersMap[number] | IconComponent
+  point?: (typeof pointNumbersMap)[number] | IconComponent
   progress?: boolean
   status?: 'normal' | 'success' | 'alert' | 'warning'
   lineStatus?: 'normal' | 'success' | 'alert' | 'warning'

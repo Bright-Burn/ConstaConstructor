@@ -1,17 +1,22 @@
-import { buttonActions, ButtonProps } from '../../../../coreTypes'
-import React, { FC } from 'react'
-import styles from './styles.module.css'
-import { Select } from '@consta/uikit/Select'
+import type { FC } from 'react'
+import React from 'react'
 import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
-import { forms, sizes, views } from './UserConstants'
+import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
-import { useItemsHandlers } from './ItemsService'
-import { icons } from '../IconSettings/IconsConstants'
+
+import type { ButtonProps } from '../../../../coreTypes'
+import { buttonActions } from '../../../../coreTypes'
+import type { ButtonElement } from '../../../../coreTypes/buttonTypes'
 import { Icons } from '../../../Elements/IconFormElement/mocks'
 import { FilledSettings } from '../FilledSettings'
-import { Text } from '@consta/uikit/Text'
-import { ButtonElement } from '../../../../coreTypes/buttonTypes'
+import { icons } from '../IconSettings/IconsConstants'
+
+import { useItemsHandlers } from './ItemsService'
+import { forms, sizes, views } from './UserConstants'
+
+import styles from './styles.module.css'
 
 type ButtonSettingsType = {
   selectedElementProps: ButtonProps
@@ -37,11 +42,13 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
         <>
           <div className={styles.blockIcon}>
             <TextField
-              label='Текст'
-              type='text'
-              size='xs'
+              label="Текст"
+              type="text"
+              size="xs"
               value={`${itemsProps.label}`}
-              onChange={({ value }) => onChangeField(value, 'label')}
+              onChange={({ value }) => {
+                onChangeField(value, 'label')
+              }}
             />
             <div className={styles.rowSettings}>
               <Select
@@ -49,8 +56,8 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                 getItemKey={(item: string) => item}
                 getItemLabel={(item: string) => item}
                 items={sizes}
-                label='Размер'
-                size='xs'
+                label="Размер"
+                size="xs"
                 value={itemsProps.size || 's'}
                 onChange={({ value }) => {
                   onChangeField(value, 'size')
@@ -59,7 +66,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
               <FilledSettings
                 selectedElement={selectedElement}
                 selectedElementProps={selectedElementProps}
-                element='Button'
+                element="Button"
               />
             </div>
             <div className={styles.rowSettings}>
@@ -67,8 +74,8 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                 getItemKey={(item: string) => item}
                 getItemLabel={(item: string) => item}
                 items={views}
-                label='Вид'
-                size='xs'
+                label="Вид"
+                size="xs"
                 value={itemsProps.view}
                 onChange={({ value }) => {
                   onChangeField(value, 'view')
@@ -78,8 +85,8 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                 getItemKey={(item: string) => item}
                 getItemLabel={(item: string) => item}
                 items={forms}
-                label='Форма'
-                size='xs'
+                label="Форма"
+                size="xs"
                 value={itemsProps.form}
                 onChange={({ value }) => {
                   onChangeField(value, 'form')
@@ -88,14 +95,14 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
             </div>
             <Switch
               checked={itemsProps.loading ?? false}
-              label='Состояние загрузки'
-              size='xs'
+              label="Состояние загрузки"
+              size="xs"
               onChange={onChangeSwitch('loading')}
             />
             <Switch
               checked={itemsProps.disabled ?? false}
-              label='Состояние блокировки'
-              size='xs'
+              label="Состояние блокировки"
+              size="xs"
               onChange={onChangeSwitch('disabled')}
             />
           </div>
@@ -104,103 +111,100 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
               <div className={styles.columnSettings}>
                 <Switch
                   checked={!!itemsProps.icon}
-                  label='Иконка слева'
-                  size='xs'
+                  label="Иконка слева"
+                  size="xs"
                   onChange={onChangeSwitch('icon')}
                 />
                 <Select
                   getItemKey={(item: string) => item}
                   getItemLabel={(item: string) => item}
                   items={icons}
-                  size='xs'
-                  disabled={!!itemsProps.icon ? false : true}
+                  size="xs"
+                  disabled={!itemsProps.icon}
                   value={itemsProps.icon}
-                  onChange={({ value }) => {
-                    onChangeIcon(value)
-                  }}
                   renderItem={({ item, active, onClick, onMouseEnter }) => (
                     <div
                       className={styles.renderIcon}
-                      role='option'
+                      role="option"
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
-                      onClick={onClick}
-                    >
+                      onClick={onClick}>
                       {React.createElement(Icons[item], { size: 'xs' })}
-                      <Text size='xs'>{item}</Text>
+                      <Text size="xs">{item}</Text>
                     </div>
                   )}
+                  onChange={({ value }) => {
+                    onChangeIcon(value)
+                  }}
                 />
               </div>
               <div className={styles.columnSettings}>
                 <Switch
                   checked={!!itemsProps.iconR}
-                  label='Иконка справа'
-                  size='xs'
+                  label="Иконка справа"
+                  size="xs"
                   onChange={onChangeSwitch('iconR')}
                 />
                 <Select
                   getItemKey={(item: string) => item}
                   getItemLabel={(item: string) => item}
                   items={icons}
-                  size='xs'
-                  disabled={!!itemsProps.iconR ? false : true}
+                  size="xs"
+                  disabled={!itemsProps.iconR}
                   value={itemsProps.iconR}
-                  onChange={({ value }) => {
-                    onChangeIconR(value)
-                  }}
                   renderItem={({ item, active, onClick, onMouseEnter }) => (
                     <div
                       className={styles.renderIcon}
-                      role='option'
+                      role="option"
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
-                      onClick={onClick}
-                    >
+                      onClick={onClick}>
                       {React.createElement(Icons[item], { size: 'xs' })}
-                      <Text size='xs'>{item}</Text>
+                      <Text size="xs">{item}</Text>
                     </div>
                   )}
+                  onChange={({ value }) => {
+                    onChangeIconR(value)
+                  }}
                 />
               </div>
             </div>
             <div>
               <Switch
                 checked={itemsProps.onlyIcon}
-                label='Только иконка'
-                size='xs'
+                label="Только иконка"
+                size="xs"
                 onChange={onChangeSwitch('onlyIcon')}
               />
               <Select
                 getItemKey={(item: string) => item}
                 getItemLabel={(item: string) => item}
                 items={icons}
-                size='xs'
+                size="xs"
                 disabled={!itemsProps.onlyIcon}
                 value={itemsProps.icon}
-                onChange={({ value }) => {
-                  onChangeIcon(value)
-                }}
                 renderItem={({ item, active, onClick, onMouseEnter }) => (
                   <div
                     className={styles.renderIcon}
-                    role='option'
+                    role="option"
                     aria-selected={active}
                     onMouseEnter={onMouseEnter}
-                    onClick={onClick}
-                  >
+                    onClick={onClick}>
                     {React.createElement(Icons[item], { size: 'xs' })}
-                    <Text size='xs'>{item}</Text>
+                    <Text size="xs">{item}</Text>
                   </div>
                 )}
+                onChange={({ value }) => {
+                  onChangeIcon(value)
+                }}
               />
             </div>
           </div>
           <Switch
             className={styles.modalPadding}
             checked={itemsProps.activeAction}
-            label='Модальное окно при нажатии'
-            size='xs'
+            label="Модальное окно при нажатии"
+            size="xs"
             onChange={onChangeSwitch('activeAction')}
           />
         </>

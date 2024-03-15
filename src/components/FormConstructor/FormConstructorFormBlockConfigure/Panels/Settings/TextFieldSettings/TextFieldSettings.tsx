@@ -1,15 +1,18 @@
+import type { FC } from 'react'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { FieldGroup } from '@consta/uikit/FieldGroup'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
-import styles from './styles.module.css'
-import { TextField } from '@consta/uikit/TextField'
-import { status, types, forms, sizes, view, labelPosition } from './TextFieldConstants'
-import { useItemsHandlers } from './ItemsService'
-import { TextFieldProps, TextFieldElement } from '../../../../coreTypes'
-import { FC } from 'react'
 import { Text } from '@consta/uikit/Text'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { TextField } from '@consta/uikit/TextField'
+
+import type { TextFieldElement, TextFieldProps } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
-import { FieldGroup } from '@consta/uikit/FieldGroup'
+
+import { useItemsHandlers } from './ItemsService'
+import { forms, labelPosition, sizes, status, types, view } from './TextFieldConstants'
+
+import styles from './styles.module.css'
 
 type TextFieldSettingsType = {
   selectedElementProps: TextFieldProps
@@ -34,23 +37,23 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
               className={styles.widthFlex}
               getItemKey={key => key}
               getItemLabel={label => label}
-              label='Тип'
-              size='xs'
+              label="Тип"
+              size="xs"
               items={types}
               value={`${itemsProps.type}`}
               onChange={onChangeTextField('type')}
             />
             <div className={styles.columnSettings}>
-              <Text view='secondary' size='xs'>
+              <Text view="secondary" size="xs">
                 Вид
               </Text>
               <ChoiceGroup
                 value={itemsProps.view}
                 items={view}
                 getItemLabel={label => label}
-                view='ghost'
-                size='xs'
-                name='ChoiceGroupExample'
+                view="ghost"
+                size="xs"
+                name="ChoiceGroupExample"
                 onChange={onChangeTextField('view')}
               />
             </div>
@@ -61,22 +64,22 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
               getItemKey={key => key}
               getItemLabel={label => label}
               items={sizes}
-              label='Размер'
-              size='xs'
-              value={`${itemsProps.size || 's'}`}
+              label="Размер"
+              size="xs"
+              value={itemsProps.size || 's'}
               onChange={onChangeTextField('size')}
             />
             <FilledSettings
               selectedElement={selectedElement}
               selectedElementProps={selectedElementProps}
-              element='TextField'
+              element="TextField"
             />
           </div>
           <div className={styles.rowSettings}>
             <Select
               getItemKey={key => key}
-              label='Форма'
-              size='xs'
+              label="Форма"
+              size="xs"
               getItemLabel={label => label}
               items={forms}
               value={`${itemsProps.form}`}
@@ -84,8 +87,8 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             />
             <Select
               getItemKey={key => key}
-              label='Статус'
-              size='xs'
+              label="Статус"
+              size="xs"
               getItemLabel={label => label}
               items={status}
               value={`${itemsProps.status}`}
@@ -93,15 +96,15 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             />
           </div>
           <Switch
-            onChange={onChangeSwitch('label')}
-            label='Текст заголовка'
-            size='xs'
+            label="Текст заголовка"
+            size="xs"
             checked={!!itemsProps.label}
+            onChange={onChangeSwitch('label')}
           />
           <div className={styles.rowSettingsWithoutGap}>
             <Select
               className={styles.widthTopLeftFlex}
-              size='xs'
+              size="xs"
               disabled={!itemsProps.label}
               getItemKey={key => key}
               getItemLabel={label => label}
@@ -111,122 +114,120 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
             />
             <TextField
               className={styles.widthFlex}
-              width='full'
+              width="full"
               disabled={!itemsProps.label}
               value={itemsProps.label}
+              size="xs"
               onChange={onChangeTextField('label')}
-              size='xs'
             />
           </div>
           <Switch
             checked={itemsProps.required ?? false}
-            label='Обязательно для заполнения'
-            size='xs'
+            label="Обязательно для заполнения"
+            size="xs"
             onChange={onChangeSwitch('required')}
           />
           <div className={styles.columnSettingsWithoutRow}>
             <Switch
-              onChange={onChangeSwitch('caption')}
-              label='Текст подписи'
-              size='xs'
+              label="Текст подписи"
+              size="xs"
               checked={!!itemsProps.caption}
+              onChange={onChangeSwitch('caption')}
             />
             <TextField
-              size='xs'
+              size="xs"
               disabled={!itemsProps.caption}
               value={itemsProps.caption}
               onChange={onChangeTextField('caption')}
             />
           </div>
           <TextField
-            label='Текст placeholder'
-            size='xs'
-            value={`${itemsProps.placeholder || ''}`}
+            label="Текст placeholder"
+            size="xs"
+            value={itemsProps.placeholder || ''}
             onChange={onChangeTextField('placeholder')}
           />
           <div className={styles.columnSettingsWithoutRow}>
             <Switch
-              onChange={onChangeSwitch('maxLength')}
-              label='Макс длина вводимого значения'
-              size='xs'
+              label="Макс длина вводимого значения"
+              size="xs"
               checked={!!itemsProps.maxLength}
+              onChange={onChangeSwitch('maxLength')}
             />
             <TextField
-              onChange={onChangeTextField('maxLength')}
               value={`${itemsProps.maxLength}`}
-              type='number'
-              size='xs'
+              type="number"
+              size="xs"
               disabled={!itemsProps.maxLength}
-              min='0'
+              min="0"
+              onChange={onChangeTextField('maxLength')}
             />
           </div>
 
           {itemsProps.type === 'textarea' ? (
-            <>
-              <div className={styles.columnSettingsWithoutRow}>
-                <Text size='xs' view='secondary'>
-                  Количество строк
-                </Text>
-                <FieldGroup size='xs'>
-                  <TextField
-                    onChange={onChangeTextField('minRows')}
-                    value={`${itemsProps.minRows}`}
-                    type='number'
-                    leftSide='min'
-                    size='xs'
-                    min='0'
-                  />
-                  <TextField
-                    onChange={onChangeTextField('maxRows')}
-                    value={`${itemsProps.maxRows}`}
-                    type='number'
-                    leftSide='max'
-                    size='xs'
-                    min='0'
-                  />
-                </FieldGroup>
-              </div>
-            </>
+            <div className={styles.columnSettingsWithoutRow}>
+              <Text size="xs" view="secondary">
+                Количество строк
+              </Text>
+              <FieldGroup size="xs">
+                <TextField
+                  value={`${itemsProps.minRows}`}
+                  type="number"
+                  leftSide="min"
+                  size="xs"
+                  min="0"
+                  onChange={onChangeTextField('minRows')}
+                />
+                <TextField
+                  value={`${itemsProps.maxRows}`}
+                  type="number"
+                  leftSide="max"
+                  size="xs"
+                  min="0"
+                  onChange={onChangeTextField('maxRows')}
+                />
+              </FieldGroup>
+            </div>
           ) : (
             <></>
           )}
           <Switch
             checked={itemsProps.withClearButton ?? false}
-            label='Кнопка очистки поля ввода'
-            size='xs'
+            label="Кнопка очистки поля ввода"
+            size="xs"
             onChange={onChangeSwitch('withClearButton')}
           />
           {itemsProps.type === 'number' ? (
             <>
               <TextField
-                onChange={onChangeTextField('step')}
                 value={`${itemsProps.step}`}
-                type='number'
-                size='xs'
-                label='Шаг'
-                min='1'
+                type="number"
+                size="xs"
+                label="Шаг"
+                min="1"
+                onChange={onChangeTextField('step')}
               />
               <Switch
                 checked={itemsProps.incrementButtons ?? false}
-                label='Изменение значения'
-                size='xs'
+                label="Изменение значения"
+                size="xs"
                 onChange={onChangeSwitch('incrementButtons')}
               />
-              {itemsProps.incrementButtons && (
-                <FieldGroup size='xs'>
+              {!!itemsProps.incrementButtons && (
+                <FieldGroup size="xs">
                   <TextField
-                    onChange={onChangeTextField('min')}
                     value={`${itemsProps.min}`}
-                    type='number'
-                    leftSide='min'
-                    min='0'
+                    type="number"
+                    leftSide="min"
+                    min="0"
+                    onChange={onChangeTextField('min')}
                   />
                   <TextField
-                    onChange={onChangeTextField('max')}
                     value={`${itemsProps.max}`}
-                    type='number'
-                    leftSide='max'
-                    min='0'
+                    type="number"
+                    leftSide="max"
+                    min="0"
+                    onChange={onChangeTextField('max')}
                   />
                 </FieldGroup>
               )}

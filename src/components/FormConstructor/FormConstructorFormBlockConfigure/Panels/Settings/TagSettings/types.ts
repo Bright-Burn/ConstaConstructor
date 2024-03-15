@@ -1,7 +1,7 @@
-import { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
+import type { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 
 export declare const tagPropMode: readonly ['button', 'check', 'cancel', 'link', 'info']
-export declare type TagBasePropMode = typeof tagPropMode[number]
+export declare type TagBasePropMode = (typeof tagPropMode)[number]
 
 export declare const tagBasePropGroupStringValue: readonly [
   '1',
@@ -14,7 +14,7 @@ export declare const tagBasePropGroupStringValue: readonly [
   '8',
   '9',
 ]
-export declare type TagBasePropGroup = typeof tagBasePropGroupStringValue[number]
+export declare type TagBasePropGroup = (typeof tagBasePropGroupStringValue)[number]
 
 export const sizeArray: TagBasePropSize[] = ['xs', 's', 'm', 'l']
 

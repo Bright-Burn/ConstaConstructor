@@ -1,13 +1,15 @@
-import styles from './styles.module.css'
-import { ITreeItem } from './Tree'
-import { IFormElement, IGroupElement } from '../../../../coreTypes'
-import { Tree } from './Tree'
+import type { IFormElement, IGroupElement } from '../../../../coreTypes'
 import {
   getAllFormElements,
-  getSelectedPageId,
   getFormElAsMap,
+  getSelectedPageId,
   useAppSelector,
 } from '../../../../store'
+
+import type { ITreeItem } from './Tree'
+import { Tree } from './Tree'
+
+import styles from './styles.module.css'
 
 export const ComponentTree = () => {
   const allElements = useAppSelector(getAllFormElements)
@@ -38,7 +40,7 @@ const getTree = (
         children: getTree(allElementsMap, allElements, childId.id),
         visible: true,
         disableCheckbox: true,
-        title: title,
+        title,
       }
 
       childrenItems.push(treeItem)

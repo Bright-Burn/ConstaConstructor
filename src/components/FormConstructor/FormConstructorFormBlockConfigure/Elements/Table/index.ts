@@ -1,2 +1,2 @@
-export { Table } from './Table'
 export { TableMock, TableMockId } from './mocks'
+export { Table } from './Table'

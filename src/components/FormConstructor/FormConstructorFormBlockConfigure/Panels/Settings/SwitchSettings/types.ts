@@ -1,4 +1,4 @@
-import { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
+import type { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
 export const sizeArray: SwitchPropSize[] = ['xs', 's', 'm', 'l']
 

@@ -1,5 +1,6 @@
-import { IconPropSize, IconPropView } from '@consta/uikit/Icon'
-import { IconNames } from '../../../../coreTypes'
+import type { IconPropSize, IconPropView } from '@consta/uikit/Icon'
+
+import type { IconNames } from '../../../../coreTypes'
 
 export const sizes: IconPropSize[] = ['m', 's', 'l', 'xs']
 export const views: IconPropView[] = [

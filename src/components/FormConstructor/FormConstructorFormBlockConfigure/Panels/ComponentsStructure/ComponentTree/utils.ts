@@ -1,6 +1,7 @@
-import { IFormElement, IGroupElement } from '../../../../coreTypes'
+import type { IFormElement, IGroupElement } from '../../../../coreTypes'
 import { getElementsOnLayer } from '../../../../utils'
-import { ITreeItem } from './Tree'
+
+import type { ITreeItem } from './Tree'
 
 export const formToTreeData: (
   pageId: string,
@@ -30,7 +31,7 @@ export const formToTreeData: (
           children: getChidlrenItemsByKey(childId),
           visible: true,
           disableCheckbox: true,
-          title: title,
+          title,
         }
         visited.set(childId, true)
         childrenItems.push(treeItem)

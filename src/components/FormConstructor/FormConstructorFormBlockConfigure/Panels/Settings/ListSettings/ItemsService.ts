@@ -1,8 +1,8 @@
-import { ISelectedElement } from '../../../../coreTypes'
-import { ListProps } from '../../../../coreTypes'
+import type { ISelectedElement, ListProps } from '../../../../coreTypes'
+import type { BrandListProps, ListElement } from '../../../../coreTypes/ListTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BrandListProps, ListElement } from '../../../../coreTypes/ListTypes'
-import { ValueType } from './types'
+
+import type { ValueType } from './types'
 
 export const useItemsHandlers = (selectedElementProps: ListProps, selectedElement: ListElement) => {
   const dispatch = useAppDispatch()
@@ -19,7 +19,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
         for (let i = currentLength; i < Number(value); i++) {
           itemsProps = [
             ...itemsProps,
-            { id: i, label: '' + (itemsProps.length + 1), disabled: false },
+            { id: i, label: `${itemsProps.length + 1}`, disabled: false },
           ]
         }
       } else {
@@ -59,7 +59,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

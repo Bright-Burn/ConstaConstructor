@@ -1,4 +1,4 @@
-import { IBaseComponent } from './types'
+import type { IBaseComponent } from './types'
 
 export interface AddBaseComponent {
   baseComponent: IBaseComponent

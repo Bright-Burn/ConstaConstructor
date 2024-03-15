@@ -1,13 +1,8 @@
 import { useState } from 'react'
-import styles from './styles.module.css'
-import { ComponentsTabItem } from './types'
-import { BaseComponents } from './BaseComponents'
-import { ComponentItems } from './ComponentItems'
-import { ComponentTree } from './ComponentTree'
-import { componentsTabItems } from './content'
-import { Tabs } from '@consta/uikit/Tabs'
-import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
+import { IconArrowRight } from '@consta/uikit/IconArrowRight'
+import { Tabs } from '@consta/uikit/Tabs'
+
 import {
   checkViewMode,
   getComponentsStructurePanelState,
@@ -15,7 +10,15 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../store'
+
 import { ComponentsGrid } from './ComponentGrid/ComponentsGrid'
+import { BaseComponents } from './BaseComponents'
+import { ComponentItems } from './ComponentItems'
+import { ComponentTree } from './ComponentTree'
+import { componentsTabItems } from './content'
+import type { ComponentsTabItem } from './types'
+
+import styles from './styles.module.css'
 
 export const ComponentsStructure = () => {
   const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
@@ -50,10 +53,12 @@ export const ComponentsStructure = () => {
             <Tabs
               className={styles.tabs_margin}
               value={tabValue}
-              onChange={({ value }) => setTabValue(value)}
               items={componentsTabItems}
-              size='s'
-              view='clear'
+              size="s"
+              view="clear"
+              onChange={({ value }) => {
+                setTabValue(value)
+              }}
             />
           </div>
           {getTabContentRenderer()}
@@ -61,7 +66,7 @@ export const ComponentsStructure = () => {
         </div>
       ) : (
         <div className={styles.toggleButton}>
-          <Button onlyIcon iconLeft={IconArrowRight} onClick={togglePanel} size='s' />
+          <Button onlyIcon={true} iconLeft={IconArrowRight} size="s" onClick={togglePanel} />
         </div>
       )}
     </>

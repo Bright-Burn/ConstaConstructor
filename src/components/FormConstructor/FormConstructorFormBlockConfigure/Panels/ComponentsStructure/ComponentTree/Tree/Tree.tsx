@@ -1,12 +1,17 @@
-import { FC } from 'react'
-import { ITree } from './types'
-import { useAppSelector } from '../../../../../store'
-import { rcTreeAdapter } from '@consta/rc-tree-adapter/rcTreeAdapter'
+import type { FC } from 'react'
 import { cnRcTree } from '@consta/rc-tree-adapter/RcTree'
+import { rcTreeAdapter } from '@consta/rc-tree-adapter/rcTreeAdapter'
 import RCTree from 'rc-tree'
-import { Key } from 'rc-tree/lib/interface'
-import { getFormElAsMap } from '../../../../../store'
-import { setSelectedElement, useAppDispatch } from '../../../../../store'
+import type { Key } from 'rc-tree/lib/interface'
+
+import {
+  getFormElAsMap,
+  setSelectedElement,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../store'
+
+import type { ITree } from './types'
 
 export const Tree: FC<ITree> = ({ data }) => {
   const allElementsMap = useAppSelector(getFormElAsMap)
@@ -41,8 +46,8 @@ export const Tree: FC<ITree> = ({ data }) => {
       treeData={data}
       prefixCls={prefix}
       selectedKeys={[selectedEl?.elementId ?? '']}
+      defaultExpandAll={true}
       onSelect={onSelect}
-      defaultExpandAll
     />
   )
 }

@@ -1,4 +1,4 @@
-import { ColDef, SideBarDef } from 'ag-grid-community'
+import type { ColDef, SideBarDef } from 'ag-grid-community'
 
 export const defaultColDef: ColDef = {
   flex: 1,

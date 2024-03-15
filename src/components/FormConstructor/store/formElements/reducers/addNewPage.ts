@@ -1,7 +1,8 @@
-import { IFormConstructor, ILayoutElement } from '../../../coreTypes'
-import { layuoutAdapter } from '../initialState'
+import type { PayloadAction } from '@reduxjs/toolkit'
+
+import type { IFormConstructor, ILayoutElement } from '../../../coreTypes'
 import { pushHistory } from '../history'
-import { PayloadAction } from '@reduxjs/toolkit'
+import { layuoutAdapter } from '../initialState'
 
 export const addNewPage = (state: IFormConstructor, { payload }: PayloadAction<newPagePayload>) => {
   const { newPageId, pageLayout } = payload

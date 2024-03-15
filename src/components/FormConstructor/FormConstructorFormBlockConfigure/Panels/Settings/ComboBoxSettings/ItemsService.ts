@@ -1,12 +1,13 @@
-import {
-  comboboxItemType,
-  ISelectedElement,
-  ComboboxProps,
+import type {
   BrandComboboxProps,
   ComboBoxElement,
+  comboboxItemType,
+  ComboboxProps,
+  ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ValueType } from './types'
+
+import type { ValueType } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: ComboboxProps,
@@ -18,7 +19,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -32,7 +33,7 @@ export const useItemsHandlers = (
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
-          itemsProps = [...itemsProps, { id: i, label: '' + (itemsProps.length + 1) }]
+          itemsProps = [...itemsProps, { id: i, label: `${itemsProps.length + 1}` }]
         }
       } else {
         for (let i = 0; i < currentLength - Number(value); i++) {

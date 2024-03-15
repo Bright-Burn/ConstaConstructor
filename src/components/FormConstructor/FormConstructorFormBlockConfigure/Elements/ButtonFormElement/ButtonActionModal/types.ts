@@ -1,4 +1,4 @@
-import { IButtonModalElement } from '../../../../coreTypes'
+import type { IButtonModalElement } from '../../../../coreTypes'
 
 export interface IButtonActionViewer {
   onCloseViewer: () => void

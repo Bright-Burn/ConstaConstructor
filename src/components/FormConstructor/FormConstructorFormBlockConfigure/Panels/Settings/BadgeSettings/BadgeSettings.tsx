@@ -1,15 +1,19 @@
-import styles from './styles.module.css'
+import type { FC } from 'react'
 import React from 'react'
-import { Select } from '@consta/uikit/Select'
-import { TextField } from '@consta/uikit/TextField'
-import { sizes, views, statuses, forms } from './textConstants'
-import { useItemsHandlers } from './ItemsService'
-import { FC } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import { Text } from '@consta/uikit/Text'
+import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
+import { TextField } from '@consta/uikit/TextField'
+
+import type { BadgeElement, BadgeProps } from '../../../../coreTypes'
+import { Icons } from '../../../../coreTypes'
 import { icons } from '../IconSettings/IconsConstants'
-import { Icons, BadgeElement, BadgeProps } from '../../../../coreTypes'
+
+import { useItemsHandlers } from './ItemsService'
+import { forms, sizes, statuses, views } from './textConstants'
+
+import styles from './styles.module.css'
 
 type BadgeSettingsType = {
   selectedElementProps: BadgeProps
@@ -25,8 +29,8 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
       {itemsProps ? (
         <>
           <TextField
-            size='xs'
-            label='Текст'
+            size="xs"
+            label="Текст"
             value={itemsProps.label}
             onChange={handleOnChangeLabel}
           />
@@ -36,39 +40,45 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={sizes}
-              label='Размер'
-              size='xs'
+              label="Размер"
+              size="xs"
               value={itemsProps.size || 's'}
-              onChange={({ value }) => onChangeField(value, 'size')}
+              onChange={({ value }) => {
+                onChangeField(value, 'size')
+              }}
             />
             <div className={styles.columnSettings}>
-              <Text view='secondary' size='xs'>
+              <Text view="secondary" size="xs">
                 Вид
               </Text>
               <ChoiceGroup
                 value={itemsProps.view}
                 items={views}
-                size='xs'
-                view='ghost'
+                size="xs"
+                view="ghost"
                 getItemLabel={(item: string) => item}
-                name='ChoiceGroupExample'
-                onChange={({ value }) => onChangeField(value, 'view')}
+                name="ChoiceGroupExample"
+                onChange={({ value }) => {
+                  onChangeField(value, 'view')
+                }}
               />
             </div>
           </div>
           <div className={styles.rowSettings}>
             <div className={styles.columnSettings}>
-              <Text view='secondary' size='xs'>
+              <Text view="secondary" size="xs">
                 Форма углов
               </Text>
               <ChoiceGroup
                 value={itemsProps.form}
-                onChange={({ value }) => onChangeField(value, 'form')}
                 items={forms}
-                size='xs'
-                view='ghost'
+                size="xs"
+                view="ghost"
                 getItemLabel={(item: string) => item}
-                name='ChoiceGroupExample'
+                name="ChoiceGroupExample"
+                onChange={({ value }) => {
+                  onChangeField(value, 'form')
+                }}
               />
             </div>
             <Select
@@ -76,16 +86,18 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={statuses}
-              label='Статус'
-              size='xs'
+              label="Статус"
+              size="xs"
               value={itemsProps.status || 'success'}
-              onChange={({ value }) => onChangeField(value, 'status')}
+              onChange={({ value }) => {
+                onChangeField(value, 'status')
+              }}
             />
           </div>
           <Switch
             checked={!!itemsProps.iconLeft}
-            label='Икона слева'
-            size='xs'
+            label="Икона слева"
+            size="xs"
             onChange={onChangeSwitch('iconLeft')}
           />
           <Select
@@ -93,27 +105,26 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
             getItemLabel={(item: string) => item}
             items={icons}
             disabled={!itemsProps.iconLeft}
-            size='xs'
+            size="xs"
             value={itemsProps.iconLeft}
-            onChange={({ value }) => {
-              onChangeIconLeft(value)
-            }}
             renderItem={({ item, active, onClick, onMouseEnter }) => (
               <div
                 className={styles.icon}
-                role='option'
+                role="option"
                 aria-selected={active}
                 onMouseEnter={onMouseEnter}
-                onClick={onClick}
-              >
+                onClick={onClick}>
                 {React.createElement(Icons[item], { size: 'xs' })}
-                <Text size='xs'>{item}</Text>
+                <Text size="xs">{item}</Text>
               </div>
             )}
+            onChange={({ value }) => {
+              onChangeIconLeft(value)
+            }}
           />
           <Switch
-            label='Minified'
-            size='xs'
+            label="Minified"
+            size="xs"
             checked={itemsProps.minified}
             onChange={onChangeSwitch('minified')}
           />

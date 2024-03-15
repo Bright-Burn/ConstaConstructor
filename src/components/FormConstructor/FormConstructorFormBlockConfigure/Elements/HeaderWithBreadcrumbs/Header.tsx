@@ -1,19 +1,22 @@
-import { FC, useLayoutEffect, useState } from 'react'
-import { IHeaderWithBreadcrumbs } from './types'
-import { Text } from '@consta/uikit/Text'
-import { IconRing } from '@consta/uikit/IconRing'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Breadcrumbs } from '@consta/uikit/Breadcrumbs'
-import {
+import { Header } from '@consta/uikit/Header'
+import { IconRing } from '@consta/uikit/IconRing'
+import { Text } from '@consta/uikit/Text'
+import { User } from '@consta/uikit/User'
+
+import type {
   headerWithBreadcrumbsProps,
   IFormElementHeaderWithBreadcrumbs,
-  ElementTypes,
-  FormElementDictTypes,
 } from '../../../coreTypes'
-import { Header } from '@consta/uikit/Header'
-import { User } from '@consta/uikit/User'
-import style from './styles.module.css'
-import { pages } from './mocks'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+
+import { pages } from './mocks'
+import type { IHeaderWithBreadcrumbs } from './types'
+
+import style from './styles.module.css'
 
 export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) => {
   const [headerProps, setHeaderProps] = useState<headerWithBreadcrumbsProps>()
@@ -27,14 +30,13 @@ export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) =
     <SelectableLayerFullWidth
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Badge}
-    >
+      elementType={FormElementDictTypes.Badge}>
       <Header
         className={`container-row flex-grow-1 ${style.container}`}
         leftSide={
           <>
             <div className={`container-row delimeter ${style.delimeter}`}>
-              <Text size='l' weight='bold'>
+              <Text size="l" weight="bold">
                 Литология
               </Text>
             </div>
@@ -42,17 +44,15 @@ export const HeaderWithBreadcrumbs: FC<IHeaderWithBreadcrumbs> = ({ element }) =
           </>
         }
         rightSide={
-          <>
-            <div className='container-row align-center'>
-              <IconRing size='m' />
-              <User
-                name='Михаил Петров'
-                info='Главный специалист'
-                view='clear'
-                className={style.userContainer}
-              />
-            </div>
-          </>
+          <div className="container-row align-center">
+            <IconRing size="m" />
+            <User
+              name="Михаил Петров"
+              info="Главный специалист"
+              view="clear"
+              className={style.userContainer}
+            />
+          </div>
         }
       />
     </SelectableLayerFullWidth>

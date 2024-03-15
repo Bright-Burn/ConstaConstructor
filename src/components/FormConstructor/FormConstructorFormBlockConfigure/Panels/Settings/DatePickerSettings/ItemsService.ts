@@ -1,11 +1,12 @@
-import {
+import type {
   BrandDatePickerProps,
   DatePickerElement,
   DatePickerProps,
   ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ValueType } from './fileTypes'
+
+import type { ValueType } from './fileTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: DatePickerProps,
@@ -17,7 +18,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

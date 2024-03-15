@@ -1,9 +1,11 @@
-import { FC, ReactNode } from 'react'
-import { IFormConstructorFormBlockConfigure } from './types'
-import { ComponentsStructure, FormBlock, Settings, Header } from './Panels'
+import type { FC, ReactNode } from 'react'
 import { Provider } from 'react-redux'
+
 import { store } from '../store'
+
 import { FormConstructorFormBlockEventListener } from './FormConstructorFormBlockEventListener/FormConstructorFormBlockEventListener'
+import { ComponentsStructure, FormBlock, Header, Settings } from './Panels'
+import type { IFormConstructorFormBlockConfigure } from './types'
 
 interface Props {
   children?: ReactNode

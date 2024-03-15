@@ -1,14 +1,18 @@
-import { Select } from '@consta/uikit/Select'
-import { FC, useLayoutEffect, useState } from 'react'
-import { useItemsHandlers } from './ItemsService'
-import { TextField } from '@consta/uikit/TextField'
-import { FormArray, sizeArray, innerOffsetArray } from './types'
-import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
-import { ListProps } from '../../../../coreTypes'
-import styles from './styles.module.css'
-import { Switch } from '@consta/uikit/Switch'
-import { ListElement } from '../../../../coreTypes/ListTypes'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Collapse } from '@consta/uikit/Collapse'
+import type { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
+import { Select } from '@consta/uikit/Select'
+import { Switch } from '@consta/uikit/Switch'
+import { TextField } from '@consta/uikit/TextField'
+
+import type { ListProps } from '../../../../coreTypes'
+import type { ListElement } from '../../../../coreTypes/ListTypes'
+
+import { useItemsHandlers } from './ItemsService'
+import { FormArray, innerOffsetArray, sizeArray } from './types'
+
+import styles from './styles.module.css'
 
 type ListSettingsType = {
   selectedElementProps: ListProps
@@ -25,8 +29,8 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
 
   const onTabLabelEdit = (value: string | null, index: number) => {
     const newTabs = [...itemsProps.items]
-    if (!value) newTabs[index] = { ...newTabs[index], label: `` }
-    else newTabs[index] = { ...newTabs[index], label: `${value}` }
+    if (!value) newTabs[index] = { ...newTabs[index], label: '' }
+    else newTabs[index] = { ...newTabs[index], label: value }
     onChangeField([...newTabs], 'items')
   }
 
@@ -34,65 +38,72 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
     <div className={styles.settingsBlockList}>
       <div className={styles.settingsBlockRow}>
         <Select
-          label='Размер'
-          size='xs'
+          label="Размер"
+          size="xs"
           getItemKey={(key: ListPropSize) => key}
           getItemLabel={(label: ListPropSize) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => onChangeField(value, 'size')}
+          onChange={({ value }) => {
+            onChangeField(value, 'size')
+          }}
         />
         <Select
-          label='Отступы'
-          size='xs'
+          label="Отступы"
+          size="xs"
           getItemKey={(key: ListPropInnerOffset) => key}
           getItemLabel={(label: ListPropInnerOffset) => label}
           value={itemsProps.innerOffset}
           items={innerOffsetArray}
-          onChange={({ value }) => onChangeField(value, 'innerOffset')}
+          onChange={({ value }) => {
+            onChangeField(value, 'innerOffset')
+          }}
         />
       </div>
       <Switch
         checked={itemsProps.withListBox ?? false}
-        label='Оборачивание списка'
-        size='xs'
+        label="Оборачивание списка"
+        size="xs"
         onChange={onChangeSwitch('withListBox')}
       />
       <Select
-        label='Форма'
-        size='xs'
-        disabled={!itemsProps?.withListBox}
+        label="Форма"
+        size="xs"
+        disabled={!itemsProps.withListBox}
         getItemKey={(key: ListPropForm) => key}
         getItemLabel={(label: ListPropForm) => label}
         value={itemsProps.form || 'default'}
         items={FormArray}
-        onChange={({ value }) => onChangeField(value, 'form')}
+        onChange={({ value }) => {
+          onChangeField(value, 'form')
+        }}
       />
       <TextField
-        label='Количество вариантов'
-        type='number'
-        size='xs'
+        label="Количество вариантов"
+        type="number"
+        size="xs"
         value={`${itemsProps.items.length}`}
         onChange={onChangeItemsCount}
       />
       <Collapse
-        label='Название вариантов'
-        size='xs'
+        label="Название вариантов"
+        size="xs"
         isOpen={isOpenOptions}
-        onClick={() => setOpenOptions(!isOpenOptions)}
-      >
+        onClick={() => {
+          setOpenOptions(!isOpenOptions)
+        }}>
         {itemsProps.items.map((line, index) => {
           return (
-            <>
-              <TextField
-                className={styles.elementWidth}
-                size='xs'
-                key={index}
-                label={`Вариант ${index + 1}`}
-                value={`${line.label}`}
-                onChange={event => onTabLabelEdit(event.value, index)}
-              />
-            </>
+            <TextField
+              key={index}
+              className={styles.elementWidth}
+              size="xs"
+              label={`Вариант ${index + 1}`}
+              value={line.label}
+              onChange={event => {
+                onTabLabelEdit(event.value, index)
+              }}
+            />
           )
         })}
       </Collapse>

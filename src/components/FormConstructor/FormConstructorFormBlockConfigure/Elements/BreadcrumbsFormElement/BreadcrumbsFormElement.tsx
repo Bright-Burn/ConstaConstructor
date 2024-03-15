@@ -1,10 +1,12 @@
-import { FC } from 'react'
-import { BreadcrumbProps, ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayer } from '../../SelectableLayer'
-import { IBreadcrumbsFormElement } from './types'
-
+import type { FC } from 'react'
 import { Breadcrumbs } from '@consta/uikit/Breadcrumbs'
-import { BrandProps } from '../../../coreTypes/types'
+
+import type { BreadcrumbProps } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import type { BrandProps } from '../../../coreTypes/types'
+import { SelectableLayer } from '../../SelectableLayer'
+
+import type { IBreadcrumbsFormElement } from './types'
 
 export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element }) => {
   const props = element.props as BrandProps<BreadcrumbProps, 'BreadcrumbsFormElement'>
@@ -12,8 +14,7 @@ export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element })
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.BreadcrumbsForm}
-    >
+      elementType={FormElementDictTypes.BreadcrumbsForm}>
       <Breadcrumbs {...props.props} />
     </SelectableLayer>
   )

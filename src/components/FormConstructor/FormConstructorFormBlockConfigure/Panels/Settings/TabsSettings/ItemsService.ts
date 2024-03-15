@@ -1,8 +1,10 @@
-import { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
-import { FitMode } from './types'
-import { tabItemType, TabsElementProps, ISelectedElement } from '../../../../coreTypes'
+import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
+
+import type { ISelectedElement, tabItemType, TabsElementProps } from '../../../../coreTypes'
+import type { BrandTabsElementProps, TabsElement } from '../../../../coreTypes/tabsTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BrandTabsElementProps, TabsElement } from '../../../../coreTypes/tabsTypes'
+
+import type { FitMode } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: TabsElementProps,
@@ -14,7 +16,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -29,7 +31,7 @@ export const useItemsHandlers = (
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
-          itemsProps = [...itemsProps, { id: i, label: 'tab' + (itemsProps.length + 1) }]
+          itemsProps = [...itemsProps, { id: i, label: `tab${itemsProps.length + 1}` }]
         }
       } else {
         for (let i = 0; i < currentLength - Number(value); i++) {
@@ -110,10 +112,10 @@ export const useItemsHandlers = (
           props: { ...selectedElementProps, [propsName]: checked },
           type: 'Tabs',
         }
-        if (propsName === 'view' && checked === true) {
+        if (propsName === 'view' && checked) {
           onChangeView('bordered')
         }
-        if (propsName === 'view' && checked === false) {
+        if (propsName === 'view' && !checked) {
           onChangeView(null)
         }
         onDispatch(selectedElement, newProps)

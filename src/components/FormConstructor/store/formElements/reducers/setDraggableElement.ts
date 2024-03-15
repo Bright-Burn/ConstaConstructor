@@ -1,6 +1,7 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import { SetNewElementDraggableElem } from '../payload'
-import { IFormConstructor } from '../../../coreTypes'
+import type { PayloadAction } from '@reduxjs/toolkit'
+
+import type { IFormConstructor } from '../../../coreTypes'
+import type { SetNewElementDraggableElem } from '../payload'
 
 export const setDraggableElement = (
   state: IFormConstructor,

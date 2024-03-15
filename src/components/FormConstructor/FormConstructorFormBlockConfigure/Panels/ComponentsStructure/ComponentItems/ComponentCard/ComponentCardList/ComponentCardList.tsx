@@ -1,10 +1,14 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { useAppDispatch, setDraggableElement } from '../../../../../../store'
-import { IFormElementList, FormElementDictTypes } from '../../../../../../coreTypes'
-import { IComponetCardElement } from '../types'
+import { Text } from '@consta/uikit/Text'
+
+import type { IFormElementList } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
+import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import type { IComponetCardElement } from '../types'
+
 import ListImage from './ListImage'
+
 import styles from '../styles.module.css'
 
 export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
@@ -37,7 +41,7 @@ export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
           innerOffset: 'normal',
           className: '',
           baseProps: {},
-          items: items,
+          items,
         },
         type: 'List',
       },

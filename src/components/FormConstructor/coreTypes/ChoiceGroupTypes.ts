@@ -1,15 +1,16 @@
-import {
+import type { ChoiceGroupProps } from '@consta/uikit/ChoiceGroup'
+import type { IconComponent } from '@consta/uikit/Icon'
+
+import type {
   BaseProps,
-  IFormElement,
   BrandProps,
   ConcreteSelectedElement,
-  FormElementDictTypes,
   DeepWriteable,
+  FormElementDictTypes,
+  IFormElement,
 } from './types'
-import { ChoiceGroupProps } from '@consta/uikit/ChoiceGroup'
-import { IconComponent } from '@consta/uikit/Icon'
 
-export type SingleChoiceGroupProps = ChoiceGroupProps<Item, false> & BaseProps
+export type SingleChoiceGroupProps = ChoiceGroupProps<Item> & BaseProps
 
 export type MultipleChoiceGroupProps = ChoiceGroupProps<Item, true> & BaseProps
 

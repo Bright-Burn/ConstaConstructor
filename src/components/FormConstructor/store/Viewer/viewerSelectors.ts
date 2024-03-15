@@ -1,4 +1,4 @@
-import { RootState } from '../setupStore'
+import type { RootState } from '../setupStore'
 
 const getViewer = (state: RootState) => state.Viewer
 

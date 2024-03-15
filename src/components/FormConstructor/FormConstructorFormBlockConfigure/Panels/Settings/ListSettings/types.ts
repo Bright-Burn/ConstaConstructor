@@ -1,5 +1,6 @@
-import { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
-import { ItemList } from '../../../../coreTypes'
+import type { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
+
+import type { ItemList } from '../../../../coreTypes'
 
 export type ValueType =
   | ListPropSize

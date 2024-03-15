@@ -1,9 +1,12 @@
-import { FC, useLayoutEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
+import { Switch } from '@consta/uikit/Switch'
+
+import type { SwitchProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { ISwitchFormElement } from './types'
-import { Switch } from '@consta/uikit/Switch'
-import { SwitchProps } from '../../../coreTypes'
+
+import type { ISwitchFormElement } from './types'
 
 export const SwitchFormElement: FC<ISwitchFormElement> = ({ element }) => {
   const [switchProps, setSwitchProps] = useState<SwitchProps>()
@@ -17,8 +20,7 @@ export const SwitchFormElement: FC<ISwitchFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Switch}
-    >
+      elementType={FormElementDictTypes.Switch}>
       <Switch {...switchProps} checked={switchProps?.checked} />
     </SelectableLayer>
   )

@@ -1,11 +1,15 @@
-import { FC, useLayoutEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
+import { Tag } from '@consta/uikit/Tag'
+
+import type { TagProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { ITagFormElement } from './types'
-import style from './style.module.css'
-import { TagProps } from '../../../coreTypes'
-import { Tag } from '@consta/uikit/Tag'
 import { Icons } from '../IconFormElement/mocks'
+
+import type { ITagFormElement } from './types'
+
+import style from './style.module.css'
 
 export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
   const [checked, setChecked] = useState<boolean>(false)
@@ -31,10 +35,12 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             checked={checked}
-            onChange={({ checked }) => setChecked(checked)}
             group={tagProps.group}
-            icon={tagProps.icon && Icons[tagProps.icon]}
+            icon={!!tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
+            onChange={({ checked }) => {
+              setChecked(checked)
+            }}
           />
         )
       case 'cancel':
@@ -43,10 +49,10 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             mode={tagProps.mode}
             label={tagProps.label || ''}
             size={tagProps.size}
-            onCancel={() => null}
             group={tagProps.group}
-            icon={tagProps.icon && Icons[tagProps.icon]}
+            icon={!!tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
+            onCancel={() => null}
           />
         )
       case 'button':
@@ -55,21 +61,21 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             mode={tagProps.mode}
             label={tagProps.label || ''}
             size={tagProps.size}
-            onClick={() => null}
             group={tagProps.group}
-            icon={tagProps.icon && Icons[tagProps.icon]}
+            icon={!!tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
+            onClick={() => null}
           />
         )
       case 'link':
         return (
           <Tag
             mode={tagProps.mode}
-            href='#'
+            href="#"
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={tagProps.icon && Icons[tagProps.icon]}
+            icon={!!tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
           />
         )
@@ -80,7 +86,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={tagProps.icon && Icons[tagProps.icon]}
+            icon={!!tagProps.icon && Icons[tagProps.icon]}
             className={tagProps.className}
           />
         )
@@ -91,8 +97,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Tag}
-    >
+      elementType={FormElementDictTypes.Tag}>
       {getTag()}
     </SelectableLayer>
   )

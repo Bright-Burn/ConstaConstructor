@@ -1,6 +1,8 @@
-import { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta/uikit/Layout'
-import { BaseProps, BrandProps, ConcreteSelectedElement, FormGroupsDictTypes } from './types'
-import { ConstaColor } from '../../ConstaPalette'
+import type { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta/uikit/Layout'
+
+import type { ConstaColor } from '../../ConstaPalette'
+
+import type { BaseProps, BrandProps, ConcreteSelectedElement, FormGroupsDictTypes } from './types'
 
 // Нет возможности использовать тип импортированный из консты, как это сделано с типом ButtonElementProps, так как нет возможности создать State, содержащий поле типа HTMLElement
 // В будущем решим эту проблему, пока что описал вручную

@@ -1,17 +1,17 @@
-import { ICardWithBarChart } from './types'
-import { FC, useLayoutEffect, useState } from 'react'
-import {
-  cardWithChartProps,
-  IFormElementCardWithChart,
-  ElementTypes,
-  FormElementDictTypes,
-} from '../../../coreTypes'
-import { Card } from '@consta/uikit/Card'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Bar } from '@consta/charts/Bar'
-import { barDataMocks, choiceGroupMocks } from './mocks'
+import { Card } from '@consta/uikit/Card'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import css from './styles.module.css'
+
+import type { cardWithChartProps, IFormElementCardWithChart } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+
+import { barDataMocks, choiceGroupMocks } from './mocks'
+import type { ICardWithBarChart } from './types'
+
+import css from './styles.module.css'
 
 export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
   const [cardProps, setCardProps] = useState<cardWithChartProps>()
@@ -101,23 +101,22 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.CardWithBarChart}
-      className={`${css.fullScreen}`}
-    >
+      className={`${css.fullScreen}`}>
       <Card className={css.cardStyle}>
-        <div className={'m-b-l'}>Детализация ввода в эксплуатацию</div>
+        <div className="m-b-l">Детализация ввода в эксплуатацию</div>
         <ChoiceGroup
           items={choiceGroupMocks}
-          name='ChoiceGroup'
+          name="ChoiceGroup"
           getItemLabel={item => item}
-          size='xs'
-          className={'m-b-l'}
+          size="xs"
+          className="m-b-l"
         />
         <Bar
           data={barDataMocks}
-          xField='number'
-          yField='parameter'
-          seriesField='action'
-          isStack
+          xField="number"
+          yField="parameter"
+          seriesField="action"
+          isStack={true}
           legend={{
             layout: 'horizontal',
             position: 'bottom',

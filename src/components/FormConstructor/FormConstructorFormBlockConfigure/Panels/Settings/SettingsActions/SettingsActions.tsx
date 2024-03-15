@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import { Button } from '@consta/uikit/Button'
 import { Checkbox } from '@consta/uikit/Checkbox'
-import { useState } from 'react'
-import { useAppDispatch, useAppSelector, checkIsGridVisible, toggleGrid } from '../../../../store'
-import styles from './styles.module.css'
 import { Modal } from '@consta/uikit/Modal'
+
+import { checkIsGridVisible, toggleGrid, useAppDispatch, useAppSelector } from '../../../../store'
+
 import { HotKeyPaneNote } from './HotKeyPaneNote'
+
+import styles from './styles.module.css'
 
 export const SettingsActions = () => {
   const isGridVisible = useAppSelector(checkIsGridVisible)
@@ -25,8 +28,8 @@ export const SettingsActions = () => {
 
   return (
     <div className={styles.buttonSettings}>
-      <Checkbox checked={isGridVisible} label={'Показать сетку'} onClick={onClickShowGrid} />
-      <Button label={'Справка'} onClick={onNotesOpen} size={'xs'} view={'secondary'} />
+      <Checkbox checked={isGridVisible} label="Показать сетку" onClick={onClickShowGrid} />
+      <Button label="Справка" size="xs" view="secondary" onClick={onNotesOpen} />
       <Modal isOpen={showNotes} onClickOutside={onNotesClose} onEsc={onNotesClose}>
         <HotKeyPaneNote />
       </Modal>

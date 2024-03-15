@@ -1,4 +1,4 @@
-import { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+import type { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
 
 export interface IConstaPalette {
   onChangeColor: (color: ConstaColor) => void
@@ -84,4 +84,4 @@ export const ConstaColors = [
   'color-shadow-modal-2',
 ] as const
 
-export type ConstaColor = typeof ConstaColors[number]
+export type ConstaColor = (typeof ConstaColors)[number]

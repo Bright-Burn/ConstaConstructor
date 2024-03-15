@@ -1,22 +1,23 @@
-import {
-  TextPropView,
-  TextPropSize,
-  TextPropLineHeight,
-  TextPropDecoration,
-  TextPropDisplay,
-  TextPropFontStyle,
-  TextPropFont,
-  TextPropCursor,
-  TextPropType,
-  TextPropTransform,
-} from '@consta/uikit/Text'
-import { AlignTextType, TextElementProps, textDecorationType } from '../../../../coreTypes'
-import { IconAlignLeft } from '@consta/icons/IconAlignLeft'
 import { IconAlignCenter } from '@consta/icons/IconAlignCenter'
+import { IconAlignLeft } from '@consta/icons/IconAlignLeft'
 import { IconAlignRight } from '@consta/icons/IconAlignRight'
 import { IconColorText } from '@consta/icons/IconColorText'
 import { IconItalic } from '@consta/icons/IconItalic'
 import { IconType } from '@consta/icons/IconType'
+import type {
+  TextPropCursor,
+  TextPropDecoration,
+  TextPropDisplay,
+  TextPropFont,
+  TextPropFontStyle,
+  TextPropLineHeight,
+  TextPropSize,
+  TextPropTransform,
+  TextPropType,
+  TextPropView,
+} from '@consta/uikit/Text'
+
+import type { AlignTextType, textDecorationType, TextElementProps } from '../../../../coreTypes'
 
 export const sizes: TextPropSize[] = [
   'm',

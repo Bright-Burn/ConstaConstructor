@@ -1,4 +1,4 @@
-import { IBaseComponent } from '../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../store/baseComponentsItems'
 
 export const TableMockId = 'f54f44ce-27e4-4f8d-4fd5-faa976accccc'
 export const TableMock = {
@@ -13,4 +13,3 @@ export const TableMock = {
     },
   ],
 } satisfies IBaseComponent
-

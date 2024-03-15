@@ -1,4 +1,4 @@
-import { IBaseComponent } from '../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../store/baseComponentsItems'
 
 export const FormWithTwoColumnsMockId = 'f49f44ce-27e4-4f8d-4fd5-faa976accccc'
 export const FormWithTwoColumnsMock = {
@@ -13,4 +13,3 @@ export const FormWithTwoColumnsMock = {
     },
   ],
 } satisfies IBaseComponent
-

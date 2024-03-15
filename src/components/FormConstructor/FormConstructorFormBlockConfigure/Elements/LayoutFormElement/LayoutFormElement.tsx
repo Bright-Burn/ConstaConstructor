@@ -1,15 +1,13 @@
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Layout } from '@consta/uikit/Layout'
-import { FC, useLayoutEffect, useState } from 'react'
 
-import {
-  ElementTypes,
-  FormGroupsDictTypes,
-  LayoutElementPropsStyles,
-  LayoutElementStyles,
-} from '../../../coreTypes'
+import type { LayoutElementPropsStyles, LayoutElementStyles } from '../../../coreTypes'
+import { ElementTypes, FormGroupsDictTypes } from '../../../coreTypes'
 import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
-import { ILayoutFormElement } from './types'
+
+import type { ILayoutFormElement } from './types'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const [layoutProps, setLayoutProps] = useState<LayoutElementPropsStyles>()
@@ -19,20 +17,14 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
     setLayoutProps(layoutElementWithProps.props.props)
   }, [element])
 
-
   const style = getStyles(layoutProps?.styles)
 
   return (
-    <Layout
-      className={layoutProps?.className}
-      {...layoutProps?.constaProps}
-      style={style}
-    >
+    <Layout className={layoutProps?.className} {...layoutProps?.constaProps} style={style}>
       <SelectableLayer
         parentElementId={element.id}
         elementType={FormGroupsDictTypes.Layout}
-        elementTypeUsage={ElementTypes.FormGroups}
-      >
+        elementTypeUsage={ElementTypes.FormGroups}>
         <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />
       </SelectableLayer>
     </Layout>
@@ -40,9 +32,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
 }
 
 const getStyles = (styles: LayoutElementStyles | undefined) => {
-
-
-  let activeSide = styles?.borderSide && getActiveBorder(styles)
+  const activeSide = styles?.borderSide && getActiveBorder(styles)
   const style = {
     maxWidth: styles?.maxWidth,
     minWidth: styles?.minWidth,
@@ -59,20 +49,20 @@ const getStyles = (styles: LayoutElementStyles | undefined) => {
   return style
 }
 const getActiveBorder = ({
-                      borderColor,
-                      borderSide,
-                      borderStyle,
-                      borderWidth,
-                    }: LayoutElementStyles) => {
+  borderColor,
+  borderSide,
+  borderStyle,
+  borderWidth,
+}: LayoutElementStyles) => {
   const sideCss = {
     [`${borderSide}Width`]: borderWidth,
     [`${borderSide}Style`]: borderStyle,
-    [`${borderSide}Color`]:  `var(--${borderColor})`,
+    [`${borderSide}Color`]: `var(--${borderColor})`,
   }
   if (borderSide === 'borderAll') {
     return {
-      borderWidth: borderWidth,
-      borderStyle: borderStyle,
+      borderWidth,
+      borderStyle,
       borderColor: `var(--${borderColor})`,
     }
   }

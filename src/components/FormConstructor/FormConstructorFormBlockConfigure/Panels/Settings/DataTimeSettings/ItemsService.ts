@@ -1,5 +1,6 @@
-import { DataTimeProps, BrandDataTimeProps, DataTimeElement } from '../../../../coreTypes'
-import { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
+import type { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
+
+import type { BrandDataTimeProps, DataTimeElement, DataTimeProps } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
@@ -12,7 +13,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

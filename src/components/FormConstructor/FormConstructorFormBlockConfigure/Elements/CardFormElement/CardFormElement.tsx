@@ -1,10 +1,14 @@
-import { FC, useLayoutEffect, useState } from 'react'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Card } from '@consta/uikit/Card'
-import { SelectableLayer } from '../../SelectableLayer'
-import { ICardFormElement } from './types'
+
+import type { CardElementPropsStyles } from '../../../coreTypes'
 import { ElementTypes, FormGroupsDictTypes } from '../../../coreTypes'
 import { DroppableLayer } from '../../DroppableLayer'
-import { CardElementPropsStyles } from '../../../coreTypes'
+import { SelectableLayer } from '../../SelectableLayer'
+
+import type { ICardFormElement } from './types'
+
 import styles from './styles.module.css'
 export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
   const [cardProps, setCardProps] = useState<CardElementPropsStyles>()
@@ -18,13 +22,11 @@ export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormGroupsDictTypes.Card}
-    >
+      elementType={FormGroupsDictTypes.Card}>
       <Card
         {...cardProps?.constaProps}
         className={`${cardProps?.className} ${styles.body}`}
-        style={{ ...cardProps?.styles, display: 'flex' }}
-      >
+        style={{ ...cardProps?.styles, display: 'flex' }}>
         <div className={styles.cardContent}>
           <DroppableLayer parentElementId={element.id} />
         </div>

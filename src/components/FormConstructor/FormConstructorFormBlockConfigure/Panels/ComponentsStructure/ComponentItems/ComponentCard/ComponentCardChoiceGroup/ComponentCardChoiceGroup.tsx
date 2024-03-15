@@ -1,17 +1,16 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { useAppDispatch } from '../../../../../../store'
-import { IComponetCardElement } from '../types'
-import {
-  IFormElementChoiceGroup,
-  FormElementDictTypes,
-  DeepWriteable,
-} from '../../../../../../coreTypes'
-import { Item } from '../../../../Settings/ChoiceGroupSettings/types'
-import { setDraggableElement } from '../../../../../../store'
-import styles from '../styles.module.css'
+import { Text } from '@consta/uikit/Text'
+
+import type { DeepWriteable, IFormElementChoiceGroup } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
+import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import type { Item } from '../../../../Settings/ChoiceGroupSettings/types'
+import type { IComponetCardElement } from '../types'
+
 import ChoiceGroupImage from './ChoiceGroupImage'
+
+import styles from '../styles.module.css'
 
 export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -35,7 +34,7 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
         props: {
           size: 'm',
           name: 'ChoiceGroupExample',
-          items: items,
+          items,
           className: '',
           baseProps: {},
         },

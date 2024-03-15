@@ -1,4 +1,5 @@
-import {
+import type { IconComponent } from '@consta/uikit/Icon'
+import type {
   TextPropAlign,
   TextPropDisplay,
   TextPropFont,
@@ -9,14 +10,14 @@ import {
   TextPropView,
   TextPropWeight,
 } from '@consta/uikit/Text'
-import {
+
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { IconComponent } from '@consta/uikit/Icon'
 
 type TextContent = { content: string }
 

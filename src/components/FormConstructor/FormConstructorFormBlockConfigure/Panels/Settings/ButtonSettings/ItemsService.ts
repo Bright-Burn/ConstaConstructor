@@ -1,13 +1,9 @@
-import {
-  ButtonAction,
-  ButtonProps,
-  buttonActionsActive,
-  ISelectedElement,
-  IconNames,
-} from '../../../../coreTypes'
-import { ButtonPropSize, ButtonPropForm, ButtonPropView } from '@consta/uikit/Button'
+import type { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
+
+import type { ButtonAction, ButtonProps, IconNames, ISelectedElement } from '../../../../coreTypes'
+import { buttonActionsActive } from '../../../../coreTypes'
+import type { BrandButtonProps, ButtonElement } from '../../../../coreTypes/buttonTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BrandButtonProps, ButtonElement } from '../../../../coreTypes/buttonTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: ButtonProps,
@@ -23,7 +19,7 @@ export const useItemsHandlers = (
       props: { ...selectedElementProps },
       type: 'Button',
     }
-    // @ts-ignore
+    // @ts-expect-error
     newProps.props[field] = value
     onDispatch(selectedElement, newProps)
   }
@@ -39,10 +35,10 @@ export const useItemsHandlers = (
         type: 'Button',
       }
       selectedElement && onDispatch(selectedElement, newProps)
-      if (propsName === 'action' && checked === true) {
+      if (propsName === 'action' && checked) {
         onChangeButtonAction('ButtonModal')
       }
-      if (propsName === 'action' && checked === false) {
+      if (propsName === 'action' && !checked) {
         onChangeButtonAction('none')
       }
     }
@@ -158,7 +154,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -182,7 +178,7 @@ export const useItemsHandlers = (
       onlyIcon: selectedElementProps.onlyIcon,
       icon: selectedElementProps.icon,
       iconR: selectedElementProps.iconR,
-      activeAction: (selectedElementProps as ButtonProps).activeAction,
+      activeAction: selectedElementProps.activeAction,
     },
   }
 }

@@ -1,7 +1,11 @@
-import { ISelectedElement, InformerElementProps } from '../../../../coreTypes'
-import { InformerPropSize, InformerPropView, InformerPropStatus } from '@consta/uikit/Informer'
+import type { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
+
+import type { InformerElementProps, ISelectedElement } from '../../../../coreTypes'
+import type {
+  BrandInformerElementProps,
+  InformerElement,
+} from '../../../../coreTypes/informerTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BrandInformerElementProps, InformerElement } from '../../../../coreTypes/informerTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: InformerElementProps,
@@ -30,7 +34,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

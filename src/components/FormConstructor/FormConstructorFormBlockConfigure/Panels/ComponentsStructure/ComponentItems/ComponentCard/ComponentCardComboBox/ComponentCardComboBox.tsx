@@ -1,11 +1,15 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { IComponetCardElement } from '../types'
-import { IFormElementComboBox, FormElementDictTypes } from '../../../../../../coreTypes'
+import { Text } from '@consta/uikit/Text'
+
+import type { IFormElementComboBox } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import styles from '../styles.module.css'
+import type { IComponetCardElement } from '../types'
+
 import ComboboxImage from './ComboboxImage'
+
+import styles from '../styles.module.css'
 
 export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
@@ -41,7 +45,7 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
           groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
           className: '',
           baseProps: {},
-          items: items,
+          items,
         },
         type: 'ComboBox',
       },

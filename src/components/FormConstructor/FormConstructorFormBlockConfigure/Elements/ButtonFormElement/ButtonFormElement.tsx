@@ -1,15 +1,14 @@
-import { FC, useState } from 'react'
+import type { FC } from 'react'
+import { useState } from 'react'
 import { Button } from '@consta/uikit/Button'
-import { SelectableLayer } from '../../SelectableLayer'
-import { IButtonFormElement } from './types'
+
+import type { ButtonProps, IButtonActionElement } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { FormGroupsDict } from '../../FormGroupDict'
-import {
-  ButtonProps,
-  IButtonActionElement,
-  ElementTypes,
-  FormElementDictTypes,
-} from '../../../coreTypes'
+import { SelectableLayer } from '../../SelectableLayer'
 import { Icons } from '../IconFormElement/mocks'
+
+import type { IButtonFormElement } from './types'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps, setButtonProps] = useState<ButtonProps>()
@@ -29,7 +28,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const isFilled = element.props.props.filled
   //
   const getActionViwer = () => {
-    if (buttonGroup && buttonProps && buttonProps?.action !== 'none') {
+    if (buttonGroup && buttonProps && buttonProps.action !== 'none') {
       const Viewer = FormGroupsDict[buttonProps.action]
       return (
         <Viewer buttonGroup={buttonGroup} openViewer={openViewer} onCloseViewer={onCloseViewer} />
@@ -44,14 +43,13 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         parentElementId={element.id}
         elementTypeUsage={ElementTypes.FormElement}
         elementType={FormElementDictTypes.Button}
-        className={isFilled ? 'container-row flex-grow-1' : ''}
-      >
+        className={isFilled ? 'container-row flex-grow-1' : ''}>
         <Button
           {...element.props.props}
-          onClick={onButtonClick}
           style={{ flexGrow: isFilled ? 1 : 0 }}
-          iconLeft={element.props.props.icon && Icons[element.props.props.icon]}
-          iconRight={element.props.props.iconR && Icons[element.props.props.iconR]}
+          iconLeft={!!element.props.props.icon && Icons[element.props.props.icon]}
+          iconRight={!!element.props.props.iconR && Icons[element.props.props.iconR]}
+          onClick={onButtonClick}
         />
       </SelectableLayer>
       {getActionViwer()}

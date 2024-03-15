@@ -1,7 +1,8 @@
-import { ISelectedElement, CheckboxProps } from '../../../../coreTypes'
-import { CheckboxPropSize, CheckboxPropView, CheckboxPropAlign } from '@consta/uikit/Checkbox'
+import type { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@consta/uikit/Checkbox'
+
+import type { CheckboxProps, ISelectedElement } from '../../../../coreTypes'
+import type { BrandCheckboxProps, CheckboxElement } from '../../../../coreTypes/checkboxTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { BrandCheckboxProps, CheckboxElement } from '../../../../coreTypes/checkboxTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: CheckboxProps,
@@ -40,7 +41,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

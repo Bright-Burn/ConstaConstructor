@@ -1,10 +1,12 @@
-import {
+import type {
   DatePickerPropDateTimeView,
   DatePickerPropDropdownForm,
   DatePickerPropType,
 } from '@consta/uikit/DatePicker'
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
-import { PropForm } from '../../../../coreTypes'
+import type { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
+import { TextFieldPropStatus } from '@consta/uikit/TextField'
+
+import type { PropForm } from '../../../../coreTypes'
 
 export const typeArray: DatePickerPropType[] = [
   'date',

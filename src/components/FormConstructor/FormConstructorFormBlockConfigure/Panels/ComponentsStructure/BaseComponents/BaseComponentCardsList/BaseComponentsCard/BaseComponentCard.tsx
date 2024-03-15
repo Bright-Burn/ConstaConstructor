@@ -1,10 +1,14 @@
-import React, { FC } from 'react'
-import { IBaseComponentCard } from './types'
-import styles from './styles.module.css'
-import { Text } from '@consta/uikit/Text'
-import { useBaseComponentsDispatch } from '../../../../../../store/baseComponentsItems'
-import { setDraggableBaseComponent } from '../../../../../../store'
+import type { FC } from 'react'
+import React from 'react'
 import { IconPicture } from '@consta/icons/IconPicture'
+import { Text } from '@consta/uikit/Text'
+
+import { setDraggableBaseComponent } from '../../../../../../store'
+import { useBaseComponentsDispatch } from '../../../../../../store/baseComponentsItems'
+
+import type { IBaseComponentCard } from './types'
+
+import styles from './styles.module.css'
 
 export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
   const dispatch = useBaseComponentsDispatch()
@@ -20,13 +24,12 @@ export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
     <div
       className={`${styles.componentCard}`}
       draggable={true}
-      onDragStart={onDragFormElementStart}
-    >
-      <Text className={styles.text} size='xs'>
+      onDragStart={onDragFormElementStart}>
+      <Text className={styles.text} size="xs">
         {baseComponent.description}
       </Text>
       <div className={styles.imgBox}>
-        <IconPicture view='ghost' className={styles.img} />
+        <IconPicture view="ghost" className={styles.img} />
       </div>
     </div>
   )

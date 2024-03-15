@@ -1,8 +1,12 @@
-import { FC, useLayoutEffect, useState } from 'react'
-import { SelectableLayer } from '../../SelectableLayer'
-import { IInformerFormElement } from './types'
-import { InformerElementProps, ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import type { FC } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Informer } from '@consta/uikit/Informer'
+
+import type { InformerElementProps } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { SelectableLayer } from '../../SelectableLayer'
+
+import type { IInformerFormElement } from './types'
 
 export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
   const [informerProps, setInformerProps] = useState<InformerElementProps>()
@@ -16,8 +20,7 @@ export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Informer}
-    >
+      elementType={FormElementDictTypes.Informer}>
       <Informer {...informerProps} />
     </SelectableLayer>
   )

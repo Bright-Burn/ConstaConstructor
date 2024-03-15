@@ -1,9 +1,31 @@
-import { AlignItems, JustifyContentProps } from '../../../../coreTypes'
-import { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta/uikit/Layout'
-import { BorderSide, BorderStyle, BorderWidth, LayoutPropDirection } from '../../../../coreTypes'
-import { IconColumns } from '@consta/uikit/IconColumns'
+import type { IconComponent } from '@consta/uikit/Icon'
 import { IconAlignJustify } from '@consta/uikit/IconAlignJustify'
+import { IconColumns } from '@consta/uikit/IconColumns'
+import type { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta/uikit/Layout'
 
+import type {
+  AlignItems,
+  BorderSide,
+  BorderStyle,
+  BorderWidth,
+  JustifyContentProps,
+  LayoutPropDirection,
+} from '../../../../coreTypes'
+
+import {
+  AlignPositionCenter,
+  AlignPositionEnd,
+  AlignPositionNormal,
+  AlignPositionStart,
+} from './images/AlignItems'
+import {
+  BorderAll,
+  BorderBottom,
+  BorderLeft,
+  BorderNone,
+  BorderRight,
+  BorderTop,
+} from './images/Border'
 import {
   BorderDashed,
   BorderDott,
@@ -15,28 +37,13 @@ import {
   BorderSolid,
 } from './images/BorderStyle'
 import {
-  BorderAll,
-  BorderNone,
-  BorderLeft,
-  BorderRight,
-  BorderTop,
-  BorderBottom,
-} from './images/Border'
-import {
-  JustifyPositionStart,
   JustifyPositionCenter,
   JustifyPositionEnd,
-  JustifyPositionSpaceBetween,
   JustifyPositionSpaceAround,
+  JustifyPositionSpaceBetween,
   JustifyPositionSpaceEvenly,
+  JustifyPositionStart,
 } from './images/JustifyContent'
-import {
-  AlignPositionStart,
-  AlignPositionCenter,
-  AlignPositionEnd,
-  AlignPositionNormal,
-} from './images/AlignItems'
-import { IconComponent } from '@consta/uikit/Icon'
 
 type directionType = { name: LayoutPropDirection; icon: IconComponent }
 type borderStyleType = { name: BorderStyle; icon: IconComponent }

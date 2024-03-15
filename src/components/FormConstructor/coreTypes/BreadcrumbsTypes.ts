@@ -1,12 +1,17 @@
-import {
+import type {
+  BreadcrumbPropFitMode,
+  BreadcrumbPropSize,
+  DefaultItem,
+} from '@consta/uikit/Breadcrumbs'
+
+import type {
   BaseProps,
-  IFormElement,
   BrandProps,
-  FormElementDictTypes,
   ConcreteSelectedElement,
   DeepWriteable,
+  FormElementDictTypes,
+  IFormElement,
 } from './types'
-import { BreadcrumbPropFitMode, BreadcrumbPropSize, DefaultItem } from '@consta/uikit/Breadcrumbs'
 
 export type DefaultItemBreadcrumbsType = DefaultItem & { labelIcon?: string }
 

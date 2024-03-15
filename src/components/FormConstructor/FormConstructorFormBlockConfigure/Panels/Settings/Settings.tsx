@@ -1,14 +1,22 @@
-import { FC, useState } from 'react'
-import { checkViewMode, saveModuleToFile, useAppDispatch, useAppSelector } from '../../../store'
-
-import styles from './styles.module.css'
+import type { FC } from 'react'
+import { useState } from 'react'
+import { IconUpload } from '@consta/icons/IconUpload'
 import { Button } from '@consta/uikit/Button'
 import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
-import { getSettingsPanelState, toggleSettingsPanelState } from '../../../store'
 import { TextField } from '@consta/uikit/TextField'
-import { IconUpload } from '@consta/icons/IconUpload'
+
+import {
+  checkViewMode,
+  getSettingsPanelState,
+  saveModuleToFile,
+  toggleSettingsPanelState,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../store'
 
 import { SettingPanelQualifier } from './SettingsPanelQualifier'
+
+import styles from './styles.module.css'
 // import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
@@ -21,7 +29,9 @@ export const Settings: FC = () => {
 
   const dispatch = useAppDispatch()
 
-  const changeTextFieldValue = ({ value }: { value: string | null }) => setModuleName(value)
+  const changeTextFieldValue = ({ value }: { value: string | null }) => {
+    setModuleName(value)
+  }
 
   const onSaveModule = () => {
     if (selectedElement && moduleName) {
@@ -43,18 +53,18 @@ export const Settings: FC = () => {
           <SettingPanelQualifier />
           <div className={styles.exportText}>
             <TextField
-              width='full'
+              width="full"
               value={moduleName}
+              type="text"
+              size="xs"
+              label="Экспортировать компонент"
+              placeholder="Введите название компонента"
               onChange={changeTextFieldValue}
-              type='text'
-              size='xs'
-              label='Экспортировать компонент'
-              placeholder='Введите название компонента'
             />
             <Button
               className={styles.exportButton}
-              view='clear'
-              size='xs'
+              view="clear"
+              size="xs"
               iconLeft={IconUpload}
               onClick={onSaveModule}
             />
@@ -62,7 +72,7 @@ export const Settings: FC = () => {
         </div>
       ) : (
         <div className={styles.toggleButton}>
-          <Button onlyIcon iconLeft={IconArrowLeft} onClick={toggleSettingsPanel} size='s' />
+          <Button onlyIcon={true} iconLeft={IconArrowLeft} size="s" onClick={toggleSettingsPanel} />
         </div>
       )}
     </>

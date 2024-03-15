@@ -1,11 +1,15 @@
-import { Text } from '@consta/uikit/Text'
-import { FC } from 'react'
+import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { FormElementDictTypes, IFormElementBadge } from '../../../../../../coreTypes'
+import { Text } from '@consta/uikit/Text'
+
+import type { IFormElementBadge } from '../../../../../../coreTypes'
+import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import { IComponetCardElement } from '../types'
-import styles from '../styles.module.css'
+import type { IComponetCardElement } from '../types'
+
 import BadgeImage from './BadgeImage'
+
+import styles from '../styles.module.css'
 
 export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import style from './styles.module.css'
+import { Button } from '@consta/uikit/Button'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import type { IconComponent } from '@consta/uikit/Icon'
+import { IconAdd } from '@consta/uikit/IconAdd'
+import { IconCards } from '@consta/uikit/IconCards'
+import { IconHamburger } from '@consta/uikit/IconHamburger'
+import { Text } from '@consta/uikit/Text'
+
 import CustomCard from './CustomCard'
 import { mockData } from './mockData'
 
-import { Text } from '@consta/uikit/Text'
-import { Button } from '@consta/uikit/Button'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import { IconAdd } from '@consta/uikit/IconAdd'
-import { IconHamburger } from '@consta/uikit/IconHamburger'
-import { IconCards } from '@consta/uikit/IconCards'
-import { IconComponent } from '@consta/uikit/Icon'
+import style from './styles.module.css'
 
 function CustomCardsTemplate() {
   type choiceGroupValueType = {
@@ -74,32 +75,34 @@ function CustomCardsTemplate() {
   const onButtonClick = () => {}
 
   return (
-    <div className='container-column align-center m-l-xl m-r-xl'>
+    <div className="container-column align-center m-l-xl m-r-xl">
       <div className={style.content}>
         <div className={style.topElement}>
-          <Text weight='bold'>Проекты</Text>
-          <Button label='Новый проект' size='s' onClick={onButtonClick} iconLeft={IconAdd} />
+          <Text weight="bold">Проекты</Text>
+          <Button label="Новый проект" size="s" iconLeft={IconAdd} onClick={onButtonClick} />
         </div>
         <div className={style.middleElement}>
           <ChoiceGroup
             items={leftChoiceGroupItems}
             multiple={false}
-            size={'s'}
-            view={'ghost'}
+            size="s"
+            view="ghost"
             getItemLabel={item => item.name}
-            name={'WorkOrderAttachments__choiceGroup'}
+            name="WorkOrderAttachments__choiceGroup"
             value={leftChoiceGroupValue}
-            onChange={({ value }) => value && onChangeLeftSelectValue(value)}
+            onChange={({ value }) => {
+              value && onChangeLeftSelectValue(value)
+            }}
           />
           <ChoiceGroup
             items={rightChoiceGroupItems}
             multiple={false}
-            size={'s'}
-            view={'ghost'}
+            size="s"
+            view="ghost"
             getItemLabel={item => item.name}
             getItemIcon={item => item.icon}
-            onlyIcon
-            name={'WorkOrderAttachments__choiceGroup'}
+            onlyIcon={true}
+            name="WorkOrderAttachments__choiceGroup"
             value={rightChoiceGroupValue}
             onChange={({ value }) => {
               value && onChangeRightSelectValue(value)
@@ -109,7 +112,7 @@ function CustomCardsTemplate() {
         </div>
 
         <div className={style.bottomElement}>
-          {showBlocks &&
+          {!!showBlocks &&
             mockData.map(element => (
               <CustomCard
                 title={element.title}

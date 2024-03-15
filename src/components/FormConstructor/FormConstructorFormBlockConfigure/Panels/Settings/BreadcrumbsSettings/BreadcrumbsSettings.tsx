@@ -1,21 +1,25 @@
-import styles from './styles.module.css'
-import React, { FC, useState } from 'react'
+import type { FC } from 'react'
+import React, { useState } from 'react'
+import { Collapse } from '@consta/uikit/Collapse'
+import type { IconComponent } from '@consta/uikit/Icon'
 import { Select } from '@consta/uikit/Select'
-import { fitMode, sizes } from './BreadcrumbsConstants'
-import { useItemsHandlers } from './ItemsService'
+import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
-import {
+
+import type {
   BreadcrumbProps,
   BreadcrumbsFormElement,
   DeepWriteable,
-  Icons,
   IconNames,
 } from '../../../../coreTypes'
-import { Collapse } from '@consta/uikit/Collapse'
-import { Switch } from '@consta/uikit/Switch'
+import { Icons } from '../../../../coreTypes'
 import { icons } from '../IconSettings/IconsConstants'
-import { Text } from '@consta/uikit/Text'
-import { IconComponent } from '@consta/uikit/Icon'
+
+import { fitMode, sizes } from './BreadcrumbsConstants'
+import { useItemsHandlers } from './ItemsService'
+
+import styles from './styles.module.css'
 
 type BreadcrumbSettingsType = {
   selectedElementProps: DeepWriteable<BreadcrumbProps>
@@ -34,8 +38,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
 
   const onPageLabelEdit = (value: string | null, index: number) => {
     const newPage = [...itemsProps.items]
-    if (!value) newPage[index] = { ...newPage[index], label: `` }
-    else newPage[index] = { ...newPage[index], label: `${value}` }
+    if (!value) newPage[index] = { ...newPage[index], label: '' }
+    else newPage[index] = { ...newPage[index], label: value }
     onChangeItems(newPage)
   }
 
@@ -74,48 +78,60 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
           getItemKey={(item: string) => item}
           getItemLabel={(item: string) => item}
           items={sizes}
-          label='size'
-          size='xs'
+          label="size"
+          size="xs"
           value={itemsProps.size}
-          onChange={({ value }) => onChangeSize(value)}
+          onChange={({ value }) => {
+            onChangeSize(value)
+          }}
         />
         <Select
           getItemKey={(item: string) => item}
           getItemLabel={(item: string) => item}
           items={fitMode}
-          label='fitMode'
-          size='xs'
+          label="fitMode"
+          size="xs"
           value={itemsProps.fitMode}
-          onChange={({ value }) => onChangeFitMode(value)}
+          onChange={({ value }) => {
+            onChangeFitMode(value)
+          }}
         />
       </div>
-      <>
-        <TextField
-          label='Количество страниц'
-          type='number'
-          size='xs'
-          value={`${itemsProps.items.length}`}
-          onChange={onChangeItemsCount}
-        />
-        <Switch
-          label='Иконки страниц'
-          size='xs'
-          checked={disabledPage}
-          onChange={e => onDisabledPage(e.checked)}
-        />
-      </>
-      <Collapse size='xs' label='Название страниц' isOpen={isOpen} onClick={() => setOpen(!isOpen)}>
+      <TextField
+        label="Количество страниц"
+        type="number"
+        size="xs"
+        value={`${itemsProps.items.length}`}
+        onChange={onChangeItemsCount}
+      />
+      <Switch
+        label="Иконки страниц"
+        size="xs"
+        checked={disabledPage}
+        onChange={e => {
+          onDisabledPage(e.checked)
+        }}
+      />
+      <Collapse
+        size="xs"
+        label="Название страниц"
+        isOpen={isOpen}
+        onClick={() => {
+          setOpen(!isOpen)
+        }}>
         {itemsProps.items.map((page, index) => {
           return (
             <div className={styles.pagePadding}>
               <div className={styles.rowSettings}>
                 <TextField
-                  className={styles.flexWidth}
-                  size='xs'
                   key={index}
+                  className={styles.flexWidth}
+                  size="xs"
                   label={`Страница ${index + 1}`}
-                  value={`${page.label}`}
-                  onChange={event => onPageLabelEdit(event.value, index)}
+                  value={page.label}
+                  onChange={event => {
+                    onPageLabelEdit(event.value, index)
+                  }}
                 />
                 <Select
                   className={styles.iconAlign}
@@ -123,22 +139,23 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
                   getItemLabel={(item: string) => item}
                   items={icons}
                   disabled={!disabledPage}
-                  size='xs'
+                  size="xs"
                   value={page.labelIcon}
-                  onChange={event => onPageIconEditLeft(event.value, index)}
                   renderItem={({ item, active, onClick, onMouseEnter }) => (
                     <div
                       className={styles.icon}
-                      role='option'
+                      role="option"
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
-                      onClick={onClick}
-                    >
+                      onClick={onClick}>
                       {checkValueIsIconNames(item) &&
                         React.createElement(Icons[item], { size: 'xs' })}
-                      <Text size='xs'>{item}</Text>
+                      <Text size="xs">{item}</Text>
                     </div>
                   )}
+                  onChange={event => {
+                    onPageIconEditLeft(event.value, index)
+                  }}
                 />
               </div>
             </div>

@@ -1,9 +1,11 @@
+import type { TypedUseSelectorHook } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { formConstructorReducer } from './formElements'
+
 import { baseComponentsReducer } from './baseComponentsItems'
-import { ViewerSlice } from './Viewer'
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { formConstructorReducer } from './formElements'
 import { historySlice } from './history'
+import { ViewerSlice } from './Viewer'
 
 const rootReducer = combineReducers({
   formConstructor: formConstructorReducer,

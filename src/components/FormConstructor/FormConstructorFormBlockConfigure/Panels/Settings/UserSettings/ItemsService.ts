@@ -1,6 +1,12 @@
-import { UserProps, ISelectedElement, UserElement, BrandUserProps } from '../../../../coreTypes'
+import type {
+  BrandUserProps,
+  ISelectedElement,
+  UserElement,
+  UserProps,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ValueType } from './UserConstants'
+
+import type { ValueType } from './UserConstants'
 
 export const useItemsHandlers = (selectedElementProps: UserProps, selectedElement: UserElement) => {
   const dispatch = useAppDispatch()
@@ -32,7 +38,7 @@ export const useItemsHandlers = (selectedElementProps: UserProps, selectedElemen
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

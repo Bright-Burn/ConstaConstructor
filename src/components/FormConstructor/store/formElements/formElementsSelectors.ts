@@ -1,7 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { RootState } from '../setupStore'
+
+import type { IFormConstructor, IFormElement, IGroupElement } from '../../coreTypes'
+import type { RootState } from '../setupStore'
+
 import { layuoutAdapter } from './initialState'
-import { IFormConstructor, IFormElement, IGroupElement } from '../../coreTypes'
 
 const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,

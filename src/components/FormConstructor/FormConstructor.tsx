@@ -1,5 +1,7 @@
-import { FC } from 'react'
+import type { FC } from 'react'
+
 import { FormConstructorFormBlockConfigure } from './FormConstructorFormBlockConfigure'
+
 import css from './styles.module.css'
 
 export const FormConstructor: FC = () => {

@@ -1,4 +1,5 @@
-import { AppDispatch } from '../setupStore'
+import type { AppDispatch } from '../setupStore'
+
 import { ViewerSlice } from './viewerSlice'
 
 const {

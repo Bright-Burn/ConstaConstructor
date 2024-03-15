@@ -1,34 +1,36 @@
-import { BaseTypes } from './basePropsTypes'
-import { BrandCardElementPropsStyles } from './cardTypes'
-import { BrandBadgeProps, IFormElementBadge } from './badgeTypes'
-import { BrandTableProps, IFormElementTable } from './tableTypes'
-import { BrandLayoutElementPropsStyles } from './layoutTypes'
-import { BrandTabsElementProps, IFormElementTabs } from './tabsTypes'
-import { BrandInformerElementProps, IFormElementInformer } from './informerTypes'
-import { BrandCheckboxProps, IFormElementCheckbox } from './checkboxTypes'
-import { BrandTextElementProps, IFormElementText } from './textTypes'
-import { BrandTextFieldProps, IFormElementTextField } from './textFieldTypes'
-import { Values } from '../utils'
-import { BrandListProps, IFormElementList } from './ListTypes'
-import { BrandRadioButtonProps, IFormElementRadioButton } from './radioButtonTypes'
-import { BrandSwitchProps, IFormElementSwitch } from './SwitchTypes'
-import { BrandDatePickerProps, IFormElementDatePicker } from './datePickerTypes'
-import { BrandComboboxProps, IFormElementComboBox } from './comboBoxTypes'
-import { BrandSelectProps, IFormElementSelect } from './selectTypes'
-import { BrandDataTimeProps, IFormElementDataTime } from './dataTimeTypes'
-import { BrandPrototypeRectangleProps, BrandPrototypeTextProps } from './prototypeTypes'
-import { IFormElementBreadcrumbs, BrandBreadcrumbsProps } from './BreadcrumbsTypes'
-import { IFormElementUser, BrandUserProps } from './userTypes'
-import { IFormElementIcon, BrandIconProps } from './iconTypes'
-import {
+import type { EntityState } from '@reduxjs/toolkit'
+
+import type { Values } from '../utils'
+
+import type { BrandBadgeProps, IFormElementBadge } from './badgeTypes'
+import type { BaseTypes } from './basePropsTypes'
+import type { BrandBreadcrumbsProps, IFormElementBreadcrumbs } from './BreadcrumbsTypes'
+import type {
   BrandButtonGroupProps,
   BrandButtonProps,
   IButtonActionElement,
   IFormElementButton,
 } from './buttonTypes'
-import { BrandTagProps, IFormElementTagProps } from './tagTypes'
-import { IFormElementChoiceGroup, BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
-import { EntityState } from '@reduxjs/toolkit'
+import type { BrandCardElementPropsStyles } from './cardTypes'
+import type { BrandCheckboxProps, IFormElementCheckbox } from './checkboxTypes'
+import type { BrandOwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
+import type { BrandComboboxProps, IFormElementComboBox } from './comboBoxTypes'
+import type { BrandDataTimeProps, IFormElementDataTime } from './dataTimeTypes'
+import type { BrandDatePickerProps, IFormElementDatePicker } from './datePickerTypes'
+import type { BrandIconProps, IFormElementIcon } from './iconTypes'
+import type { BrandInformerElementProps, IFormElementInformer } from './informerTypes'
+import type { BrandLayoutElementPropsStyles } from './layoutTypes'
+import type { BrandListProps, IFormElementList } from './ListTypes'
+import type { BrandPrototypeRectangleProps, BrandPrototypeTextProps } from './prototypeTypes'
+import type { BrandRadioButtonProps, IFormElementRadioButton } from './radioButtonTypes'
+import type { BrandSelectProps, IFormElementSelect } from './selectTypes'
+import type { BrandSwitchProps, IFormElementSwitch } from './SwitchTypes'
+import type { BrandTableProps, IFormElementTable } from './tableTypes'
+import type { BrandTabsElementProps, IFormElementTabs } from './tabsTypes'
+import type { BrandTagProps, IFormElementTagProps } from './tagTypes'
+import type { BrandTextFieldProps, IFormElementTextField } from './textFieldTypes'
+import type { BrandTextElementProps, IFormElementText } from './textTypes'
+import type { BrandUserProps, IFormElementUser } from './userTypes'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -111,74 +113,74 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
   props: T extends 'Button'
     ? BrandButtonProps
     : {} & T extends 'Badge'
-    ? BrandBadgeProps
-    : {} & T extends 'Tabs'
-    ? BrandTabsElementProps
-    : {} & T extends 'Informer'
-    ? BrandInformerElementProps
-    : {} & T extends 'Checkbox'
-    ? BrandCheckboxProps
-    : {} & T extends 'Text'
-    ? BrandTextElementProps
-    : {} & T extends 'TextField'
-    ? BrandTextFieldProps
-    : {} & T extends 'Table'
-    ? BrandTableProps
-    : {} & T extends 'List'
-    ? BrandListProps
-    : {} & T extends 'RadioButton'
-    ? BrandRadioButtonProps
-    : {} & T extends 'Switch'
-    ? BrandSwitchProps
-    : {} & T extends 'DatePicker'
-    ? BrandDatePickerProps
-    : {} & T extends 'ComboBox'
-    ? BrandComboboxProps
-    : {} & T extends 'Select'
-    ? BrandSelectProps
-    : {} & T extends 'DataTime'
-    ? BrandDataTimeProps
-    : {} & T extends 'User'
-    ? BrandUserProps
-    : {} & T extends 'Icon'
-    ? BrandIconProps
-    : {} & T extends 'Tag'
-    ? BrandTagProps
-    : {} & T extends 'BreadcrumbsFormElement'
-    ? BrandBreadcrumbsProps
-    : {} & T extends 'ChoiceGroup'
-    ? BrandOwnChoiceGroupProps
-    : {} & T extends 'ProjectGrid'
-    ? {}
-    : {} & T extends 'HeaderWithBreadcrumbs'
-    ? {}
-    : {} & T extends 'HeaderCognitiveGeologist'
-    ? {}
-    : {} & T extends 'Placeholder'
-    ? {}
-    : {} & T extends 'HeaderWithStatus'
-    ? {}
-    : {} & T extends 'CardWithBarChart'
-    ? {}
-    : {} & T extends 'CustomCards'
-    ? {}
-    : {} & T extends 'Dashboard'
-    ? {}
-    : {} & T extends 'SimpleForm'
-    ? {}
-    : {} & T extends 'WizardForm'
-    ? {}
-    : {} & T extends 'FooterWithSwitch'
-    ? {}
-    : {} & T extends 'FormWithTwoColumns'
-    ? {}
-    : {} & T extends 'ExpertiseForm'
-    ? {}
-    : {} & T extends 'PrototypeTextElement'
-    ? {}
-    : {} & T extends 'PrototypeRectangleElement'
-    ? {}
-    : {}
+      ? BrandBadgeProps
+      : {} & T extends 'Tabs'
+        ? BrandTabsElementProps
+        : {} & T extends 'Informer'
+          ? BrandInformerElementProps
+          : {} & T extends 'Checkbox'
+            ? BrandCheckboxProps
+            : {} & T extends 'Text'
+              ? BrandTextElementProps
+              : {} & T extends 'TextField'
+                ? BrandTextFieldProps
+                : {} & T extends 'Table'
+                  ? BrandTableProps
+                  : {} & T extends 'List'
+                    ? BrandListProps
+                    : {} & T extends 'RadioButton'
+                      ? BrandRadioButtonProps
+                      : {} & T extends 'Switch'
+                        ? BrandSwitchProps
+                        : {} & T extends 'DatePicker'
+                          ? BrandDatePickerProps
+                          : {} & T extends 'ComboBox'
+                            ? BrandComboboxProps
+                            : {} & T extends 'Select'
+                              ? BrandSelectProps
+                              : {} & T extends 'DataTime'
+                                ? BrandDataTimeProps
+                                : {} & T extends 'User'
+                                  ? BrandUserProps
+                                  : {} & T extends 'Icon'
+                                    ? BrandIconProps
+                                    : {} & T extends 'Tag'
+                                      ? BrandTagProps
+                                      : {} & T extends 'BreadcrumbsFormElement'
+                                        ? BrandBreadcrumbsProps
+                                        : {} & T extends 'ChoiceGroup'
+                                          ? BrandOwnChoiceGroupProps
+                                          : {} & T extends 'ProjectGrid'
+                                            ? {}
+                                            : {} & T extends 'HeaderWithBreadcrumbs'
+                                              ? {}
+                                              : {} & T extends 'HeaderCognitiveGeologist'
+                                                ? {}
+                                                : {} & T extends 'Placeholder'
+                                                  ? {}
+                                                  : {} & T extends 'HeaderWithStatus'
+                                                    ? {}
+                                                    : {} & T extends 'CardWithBarChart'
+                                                      ? {}
+                                                      : {} & T extends 'CustomCards'
+                                                        ? {}
+                                                        : {} & T extends 'Dashboard'
+                                                          ? {}
+                                                          : {} & T extends 'SimpleForm'
+                                                            ? {}
+                                                            : {} & T extends 'WizardForm'
+                                                              ? {}
+                                                              : {} & T extends 'FooterWithSwitch'
+                                                                ? {}
+                                                                : {} & T extends 'FormWithTwoColumns'
+                                                                  ? {}
+                                                                  : {} & T extends 'ExpertiseForm'
+                                                                    ? {}
+                                                                    : {} & T extends 'PrototypeTextElement'
+                                                                      ? {}
+                                                                      : {} & T extends 'PrototypeRectangleElement'
+                                                                        ? {}
+                                                                        : {}
 }
 
 export interface IUnion {

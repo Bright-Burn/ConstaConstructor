@@ -1,10 +1,12 @@
-import { FC, useLayoutEffect, useState } from 'react'
+import type { FC } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
+
+import type { IconProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { IIconFormElement } from './types'
-import { IconProps } from '../../../coreTypes'
+
 import { Icons } from './mocks'
-import React from 'react'
+import type { IIconFormElement } from './types'
 export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
   const [iconProps, setIconProps] = useState<IconProps>()
 
@@ -17,9 +19,8 @@ export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
-      elementType={FormElementDictTypes.Icon}
-    >
-      {iconProps && React.createElement(Icons[iconProps.icons], iconProps)}
+      elementType={FormElementDictTypes.Icon}>
+      {!!iconProps && React.createElement(Icons[iconProps.icons], iconProps)}
     </SelectableLayer>
   )
 }

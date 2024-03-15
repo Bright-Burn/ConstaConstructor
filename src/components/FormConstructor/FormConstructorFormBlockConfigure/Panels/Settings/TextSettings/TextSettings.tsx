@@ -1,23 +1,26 @@
-import styles from './styles.module.css'
-import { FC } from 'react'
+import type { FC } from 'react'
+import { useState } from 'react'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
-import { TextField } from '@consta/uikit/TextField'
-import { Text } from '@consta/uikit/Text'
 import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
+import { TextField } from '@consta/uikit/TextField'
+
+import type { textDecorationType, TextElement, TextElementProps } from '../../../../coreTypes'
+
+import { useItemsHandlers } from './ItemsService'
 import {
-  textAlign,
-  weight,
   lineHeight,
   sizes,
   spacing,
+  textAlign,
   transformText,
   views,
+  weight,
 } from './textConstants'
-import { useItemsHandlers } from './ItemsService'
-import { TextElement, TextElementProps, textDecorationType } from '../../../../coreTypes'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import { useState } from 'react'
-import { Collapse } from '@consta/uikit/Collapse'
+
+import styles from './styles.module.css'
 
 type TextSettingsType = {
   selectedProps: TextElementProps
@@ -45,9 +48,9 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
       {itemsProps ? (
         <>
           <TextField
-            type='textarea'
-            label='Текст'
-            size='xs'
+            type="textarea"
+            label="Текст"
+            size="xs"
             value={itemsProps.content}
             onChange={onChangeText('content')}
           />
@@ -57,24 +60,28 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
               getItemLabel={(item: string) => item}
               items={sizes}
               className={styles.widthFlex}
-              label='Размер'
-              size='xs'
+              label="Размер"
+              size="xs"
               value={itemsProps.size || 's'}
-              onChange={({ value }) => onChangeField(value, 'size')}
+              onChange={({ value }) => {
+                onChangeField(value, 'size')
+              }}
             />
             <div className={styles.columnSettings}>
-              <Text size='xs' view='secondary'>
+              <Text size="xs" view="secondary">
                 Выравнивание
               </Text>
               <ChoiceGroup
                 value={itemsProps.align}
                 items={textAlign}
                 getItemLabel={item => item.name}
-                size='xs'
-                view='ghost'
-                onlyIcon
-                name='ChoiceGroupExample'
-                onChange={({ value }) => onChangeField(value, 'align')}
+                size="xs"
+                view="ghost"
+                onlyIcon={true}
+                name="ChoiceGroupExample"
+                onChange={({ value }) => {
+                  onChangeField(value, 'align')
+                }}
               />
             </div>
           </div>
@@ -83,54 +90,62 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
               getItemKey={item => item}
               getItemLabel={item => item}
               items={weight}
-              label='Толщина'
-              size='xs'
+              label="Толщина"
+              size="xs"
               value={itemsProps.weight}
-              onChange={({ value }) => onChangeField(value, 'weight')}
+              onChange={({ value }) => {
+                onChangeField(value, 'weight')
+              }}
             />
             <Select
               getItemKey={(item: string) => item}
               getItemLabel={(item: string) => item}
               items={views}
-              label='Вид'
-              size='xs'
+              label="Вид"
+              size="xs"
               value={itemsProps.view}
-              onChange={({ value }) => onChangeField(value, 'view')}
+              onChange={({ value }) => {
+                onChangeField(value, 'view')
+              }}
             />
           </div>
           <Collapse
-            size='xs'
-            label='Кастомные настройки'
+            size="xs"
+            label="Кастомные настройки"
             isOpen={isOpen}
-            onClick={() => setOpen(!isOpen)}
-          >
+            onClick={() => {
+              setOpen(!isOpen)
+            }}>
             <div className={styles.rowSettings}>
               <Select
                 getItemKey={(item: string) => item}
                 getItemLabel={(item: string) => item}
                 items={lineHeight}
-                label='Высота строки'
-                size='xs'
+                label="Высота строки"
+                size="xs"
                 value={itemsProps.lineHeight}
-                onChange={({ value }) => onChangeField(value, 'lineHeight')}
+                onChange={({ value }) => {
+                  onChangeField(value, 'lineHeight')
+                }}
               />
               <Select
                 getItemKey={item => item}
                 getItemLabel={item => item}
                 items={spacing}
-                label='Отступ между буквами'
-                size='xs'
+                label="Отступ между буквами"
+                size="xs"
                 value={itemsProps.spacing}
-                onChange={({ value }) => onChangeField(value, 'spacing')}
+                onChange={({ value }) => {
+                  onChangeField(value, 'spacing')
+                }}
               />
             </div>
             <div className={`${styles.columnSettings} paddingCollapse`}>
               <Text
                 className={styles.paddingCollapse}
-                color='color-primary'
-                size='xs'
-                view='secondary'
-              >
+                color="color-primary"
+                size="xs"
+                view="secondary">
                 Преобразование текста
               </Text>
               <ChoiceGroup
@@ -138,34 +153,36 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
                 items={transformText}
                 getItemLabel={item => item.name || ''}
                 getItemIcon={item => item.icon}
-                multiple
-                onlyIcon
-                name='ChoiceGroupExampleIcon'
-                size='xs'
-                view='ghost'
-                onChange={({ value }) => onRefactorValueLabelEdit(value)}
+                multiple={true}
+                onlyIcon={true}
+                name="ChoiceGroupExampleIcon"
+                size="xs"
+                view="ghost"
+                onChange={({ value }) => {
+                  onRefactorValueLabelEdit(value)
+                }}
               />
             </div>
             <div className={styles.columnSettings}>
               <Switch
                 checked={itemsProps.font === 'mono'}
                 className={styles.paddingCollapse}
-                label='Моно шрифт'
-                size='xs'
+                label="Моно шрифт"
+                size="xs"
                 onChange={onChangeSwitch('font')}
               />
               <Switch
                 checked={!!itemsProps.cursor}
                 className={styles.paddingCollapse}
-                label='Курсор при наведении'
-                size='xs'
+                label="Курсор при наведении"
+                size="xs"
                 onChange={onChangeSwitch('cursor')}
               />
               <Switch
                 checked={itemsProps.truncate ?? false}
                 className={styles.paddingCollapse}
-                label='В одну строчку (многоточие)'
-                size='xs'
+                label="В одну строчку (многоточие)"
+                size="xs"
                 onChange={onChangeSwitch('truncate')}
               />
             </div>

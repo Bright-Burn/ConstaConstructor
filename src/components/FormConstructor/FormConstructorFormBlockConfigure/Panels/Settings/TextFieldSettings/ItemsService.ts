@@ -1,8 +1,8 @@
-import {
-  TextFieldProps,
-  ISelectedElement,
+import type {
   BrandTextFieldProps,
+  ISelectedElement,
   TextFieldElement,
+  TextFieldProps,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
@@ -51,7 +51,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }

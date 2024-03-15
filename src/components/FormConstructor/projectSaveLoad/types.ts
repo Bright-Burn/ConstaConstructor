@@ -1,11 +1,11 @@
-import {
+import type {
   IFormElement,
   IGroupElement,
   IPageOfLayout,
   ISelectedElement,
   UnionProps,
 } from '../coreTypes'
-import { Values } from '../utils'
+import type { Values } from '../utils'
 
 /// По мере расширения сопсобов сохранения, будет дополнять объект
 

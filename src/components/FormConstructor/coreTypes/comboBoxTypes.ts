@@ -1,13 +1,18 @@
-import { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
-import { PropForm } from './selectTypes'
-import {
+import type { DatePickerPropDropdownForm } from '@consta/uikit/DatePicker'
+import type {
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropView,
+} from '@consta/uikit/TextField'
+
+import type { PropForm } from './selectTypes'
+import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
   FormElementDictTypes,
   IFormElement,
 } from './types'
-import { TextFieldPropSize, TextFieldPropStatus, TextFieldPropView } from '@consta/uikit/TextField'
 
 export type comboboxItemType = {
   label: string

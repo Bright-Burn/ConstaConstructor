@@ -1,5 +1,6 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import {
+import type { PayloadAction } from '@reduxjs/toolkit'
+
+import type {
   IFormConstructor,
   IFormElement,
   IGroupElement,

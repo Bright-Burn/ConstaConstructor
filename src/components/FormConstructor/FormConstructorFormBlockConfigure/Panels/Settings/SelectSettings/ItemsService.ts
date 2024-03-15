@@ -1,6 +1,12 @@
-import { SelectProps, selectitemType, BrandSelectProps, SelectElement } from '../../../../coreTypes'
+import type {
+  BrandSelectProps,
+  SelectElement,
+  selectitemType,
+  SelectProps,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { ValueType } from './fileTypes'
+
+import type { ValueType } from './fileTypes'
 
 export const useItemsHandlers = (
   selectedElementProps: SelectProps,
@@ -12,7 +18,7 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: newProps,
+        newProps,
       }),
     )
   }
@@ -28,7 +34,7 @@ export const useItemsHandlers = (
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
-          itemsProps = [...itemsProps, { id: i + 1, label: '' + (itemsProps.length + 1) }]
+          itemsProps = [...itemsProps, { id: i + 1, label: `${itemsProps.length + 1}` }]
         }
       } else {
         for (let i = 0; i < currentLength - Number(value); i++) {

@@ -1,8 +1,18 @@
-import React, { FC, useLayoutEffect, useState } from 'react'
-import { ISelectableLayer } from './types'
-import styles from './styles.module.css'
-import { getElementById, useAppSelector, setSelectedElement, useAppDispatch, checkIsGridVisible } from '../../store'
+import type { FC } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
+
 import { ElementTypes } from '../../coreTypes'
+import {
+  checkIsGridVisible,
+  getElementById,
+  setSelectedElement,
+  useAppDispatch,
+  useAppSelector,
+} from '../../store'
+
+import type { ISelectableLayer } from './types'
+
+import styles from './styles.module.css'
 
 /// Уровень содержащий логику по выделению родительского комопнента
 export const SelectableLayer: FC<ISelectableLayer> = ({
@@ -37,7 +47,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
     dispatch(
       setSelectedElement({
         elementId: parentElementId,
-        elementType: elementType,
+        elementType,
       }),
     )
   }
@@ -48,9 +58,8 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
           ? styles.selectableLayerFormElement
           : styles.selectableLayerLayoutElement
       } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`}
-      onClick={onClickElement}
       tabIndex={0}
-    >
+      onClick={onClickElement}>
       {children}
     </div>
   )
