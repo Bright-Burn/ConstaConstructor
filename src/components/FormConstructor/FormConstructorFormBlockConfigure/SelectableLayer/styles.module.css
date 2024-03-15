@@ -26,3 +26,7 @@
 .fitSpace {
   flex-grow: 1;
 }
+.focused:hover:not(:has(.focused:hover)){
+  outline: 1px dashed #41a3ff;
+  outline-offset: -2px;
+}

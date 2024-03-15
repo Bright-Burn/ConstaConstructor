@@ -1,7 +1,7 @@
 import React, { FC, useLayoutEffect, useState } from 'react'
 import { ISelectableLayer } from './types'
 import styles from './styles.module.css'
-import { getElementById, useAppSelector, setSelectedElement, useAppDispatch } from '../../store'
+import { getElementById, useAppSelector, setSelectedElement, useAppDispatch, checkIsGridVisible } from '../../store'
 import { ElementTypes } from '../../coreTypes'
 
 /// Уровень содержащий логику по выделению родительского комопнента
@@ -14,6 +14,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const isGridVisible = useAppSelector(checkIsGridVisible)
 
   const element = useAppSelector(getElementById(selectedElement?.elementId))
 
@@ -46,7 +47,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
         elementTypeUsage === ElementTypes.FormElement
           ? styles.selectableLayerFormElement
           : styles.selectableLayerLayoutElement
-      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''}`}
+      } ${isSelected ? styles.selectedElement : ''} ${className ?? ''} ${isGridVisible ? styles.focused : ''}`}
       onClick={onClickElement}
       tabIndex={0}
     >
