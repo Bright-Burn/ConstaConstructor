@@ -52,7 +52,7 @@ export const changePageName = (pageName: string) => (dispatch: AppDispatch) => {
 export const setSelectedElement =
   (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
     if (!payload) {
-      dispatch(formConstructorSlice.actions.deselectElement())
+      dispatch(formConstructorSlice.actions.deselectElement(getState()))
       return
     }
 

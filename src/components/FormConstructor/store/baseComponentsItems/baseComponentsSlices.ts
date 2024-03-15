@@ -13,10 +13,10 @@ export const baseComponentsSlice = createSlice({
   name: 'baseComponentsSlice',
   initialState: InitialState,
   reducers: {
-    setDraggableBaseComponent: (state, action: PayloadAction<SetDraggableBaseComponent>) => {
+    setDraggableBaseComponent: (state, action) => {
       state.draggableBaseComponent = action.payload.baseComponent
     },
-    addNewBaseElement: (state, action: PayloadAction<AddBaseComponent>) => {
+    addNewBaseElement: (state, action) => {
       state.baseComponents = [...state.baseComponents, action.payload.baseComponent]
     },
   },
