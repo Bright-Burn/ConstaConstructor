@@ -10,7 +10,15 @@ module.exports = merge(common, {
     publicPath: './',
     path: resolve(__dirname, '../build'),
   },
-
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
 
   // optimization: {
   //   minimize: true,

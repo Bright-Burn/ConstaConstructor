@@ -10,7 +10,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     publicPath: '/',
-    path: resolve(__dirname, '../build'),
+    path: paths.build
   },
 
   plugins: [
@@ -30,9 +30,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'webpack Boilerplate',
-      template: './src/index.html',
+      template: paths.src + '/index.html',
       filename: 'index.html',
-    }),
+    })
   ],
 
   module: {
@@ -54,11 +54,6 @@ module.exports = {
           },
           { loader: 'postcss-loader' },
         ],
-      },
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
       },
       {
         test: /\.css$/i,
