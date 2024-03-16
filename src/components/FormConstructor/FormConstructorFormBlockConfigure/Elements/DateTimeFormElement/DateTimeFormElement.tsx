@@ -25,9 +25,9 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
       <DateTime
         {...dataTimeProps}
         value={timeValue}
-        multiplicityHours={!!dataTimeProps && Number(dataTimeProps.multiplicityHours)}
-        multiplicityMinutes={!!dataTimeProps && Number(dataTimeProps.multiplicityMinutes)}
-        multiplicitySeconds={!!dataTimeProps && Number(dataTimeProps.multiplicitySeconds)}
+        multiplicityHours={dataTimeProps ? Number(dataTimeProps.multiplicityHours) : undefined}
+        multiplicityMinutes={dataTimeProps ? Number(dataTimeProps.multiplicityMinutes) : undefined}
+        multiplicitySeconds={dataTimeProps ? Number(dataTimeProps.multiplicitySeconds) : undefined}
         onChange={({ value }) => {
           setTimeValue(value)
         }}

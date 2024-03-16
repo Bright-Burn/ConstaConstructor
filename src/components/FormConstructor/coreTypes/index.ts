@@ -118,8 +118,13 @@ export type {
   TextElementProps,
 } from './textTypes'
 export type {
+  AllElementProps,
+  AllElementTypes,
   BaseProps,
+  DeepWriteable,
+  FormElementTypes,
   FormElementUnion,
+  FormGroupsTypes,
   GroupElementUnion,
   ICardElement,
   IFormConstructor,
@@ -130,7 +135,6 @@ export type {
   ISelectedElement,
   UnionProps,
 } from './types'
-export type { DeepWriteable, FormElementTypes, FormGroupsTypes } from './types'
 export { ElementTypes, FormElementDictTypes, FormGroupsDictTypes } from './types'
 export type { BrandUserProps, IFormElementUser, UserElement, UserProps } from './userTypes'
 export type { IFormElementWizardForm, wizardFormProps } from './wizardFormTypes'

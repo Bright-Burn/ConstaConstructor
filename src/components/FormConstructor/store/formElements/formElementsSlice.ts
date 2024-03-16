@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { popHistory } from './history/reducers'
 import { deselectElement } from './reducers/setSelectedElement'
 import { initialState } from './initialState'
 import {
@@ -17,6 +16,7 @@ import {
 
 //TODO необходимо логику из редьюсеров перенести в экшены, а редьюсеры в слайсы
 // иначе не может привести к типу WriteableDraft<IFormConstructor>
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 export const formConstructorSlice = createSlice({
   name: 'formConstructor',
@@ -42,8 +42,6 @@ export const formConstructorSlice = createSlice({
     changePageName,
     // @ts-expect-error
     deletePage,
-    // @ts-expect-error
-    popHistory,
   },
 })
 

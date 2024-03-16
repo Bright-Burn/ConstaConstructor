@@ -5,11 +5,9 @@ import { Tag } from '@consta/uikit/Tag'
 import type { TagProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { Icons } from '../IconFormElement/mocks'
+import { Icons } from '../IconFormElement'
 
 import type { ITagFormElement } from './types'
-
-import style from './style.module.css'
 
 export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
   const [checked, setChecked] = useState<boolean>(false)
@@ -25,7 +23,6 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
     const tagFormElement = element
     setTagPropsProps(tagFormElement.props.props)
   }, [element])
-
   function getTag() {
     switch (tagProps.mode) {
       case 'check':
@@ -36,7 +33,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             size={tagProps.size}
             checked={checked}
             group={tagProps.group}
-            icon={!!tagProps.icon && Icons[tagProps.icon]}
+            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
             className={tagProps.className}
             onChange={({ checked }) => {
               setChecked(checked)
@@ -50,7 +47,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={!!tagProps.icon && Icons[tagProps.icon]}
+            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
             className={tagProps.className}
             onCancel={() => null}
           />
@@ -62,7 +59,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={!!tagProps.icon && Icons[tagProps.icon]}
+            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
             className={tagProps.className}
             onClick={() => null}
           />
@@ -75,7 +72,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={!!tagProps.icon && Icons[tagProps.icon]}
+            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
             className={tagProps.className}
           />
         )
@@ -86,7 +83,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             label={tagProps.label || ''}
             size={tagProps.size}
             group={tagProps.group}
-            icon={!!tagProps.icon && Icons[tagProps.icon]}
+            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
             className={tagProps.className}
           />
         )

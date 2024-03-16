@@ -1,7 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 import type { IFormConstructor } from '../../../coreTypes'
-import { pushHistory } from '../history'
 import type { DeletePage } from '../payload'
 
 export const deletePage = (state: IFormConstructor, { payload }: PayloadAction<DeletePage>) => {
@@ -15,7 +14,6 @@ export const deletePage = (state: IFormConstructor, { payload }: PayloadAction<D
     }
     return page.id !== pageIdToDelete
   })
-
   if (pageToOpenIndex != null) {
     state.selectedPageId = pageToOpenIndex
   }
@@ -23,6 +21,4 @@ export const deletePage = (state: IFormConstructor, { payload }: PayloadAction<D
   // processDelete(pageIdToDelete, allElementsTree, allElementsMap)
 
   state.pages = newPages
-
-  pushHistory(state)
 }

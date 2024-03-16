@@ -6,7 +6,7 @@ import type { ButtonProps, IButtonActionElement } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { FormGroupsDict } from '../../FormGroupDict'
 import { SelectableLayer } from '../../SelectableLayer'
-import { Icons } from '../IconFormElement/mocks'
+import { Icons } from '../IconFormElement'
 
 import type { IButtonFormElement } from './types'
 
@@ -47,8 +47,8 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         <Button
           {...element.props.props}
           style={{ flexGrow: isFilled ? 1 : 0 }}
-          iconLeft={!!element.props.props.icon && Icons[element.props.props.icon]}
-          iconRight={!!element.props.props.iconR && Icons[element.props.props.iconR]}
+          iconLeft={element.props.props.icon ? Icons[element.props.props.icon] : undefined}
+          iconRight={element.props.props.iconR ? Icons[element.props.props.iconR] : undefined}
           onClick={onButtonClick}
         />
       </SelectableLayer>

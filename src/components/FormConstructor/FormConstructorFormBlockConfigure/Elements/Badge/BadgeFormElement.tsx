@@ -5,7 +5,7 @@ import { Badge } from '@consta/uikit/Badge'
 import type { BadgeProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { Icons } from '../IconFormElement/mocks'
+import { Icons } from '../IconFormElement'
 
 import type { IBadgeFormElement } from './types'
 
@@ -22,7 +22,7 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Badge}>
-      <Badge {...badgeProps} icon={!!badgeProps?.iconLeft && Icons[badgeProps.iconLeft]} />
+      <Badge {...badgeProps} icon={badgeProps?.iconLeft ? Icons[badgeProps.iconLeft] : undefined} />
     </SelectableLayer>
   )
 }
