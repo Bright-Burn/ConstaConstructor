@@ -1,9 +1,5 @@
-import type {
-  TabsPropSize,
-  TabsPropView,
-} from '@consta/uikit/__internal__/src/components/Tabs/types'
-import { TabsPropGetItemLabel } from '@consta/uikit/__internal__/src/components/Tabs/types'
 import type { IconComponent, IconPropSize } from '@consta/uikit/Icon'
+import type { TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 import type { TabsPropLinePosition } from '@consta/uikit/TabsDeprecated'
 
 import type {

@@ -1,4 +1,4 @@
-import { FormConstructor } from '../../components/FormConstructor'
+import { FormConstructor } from '../../components'
 
 import styles from './styles.module.css'
 

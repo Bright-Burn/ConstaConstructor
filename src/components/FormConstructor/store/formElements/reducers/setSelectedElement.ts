@@ -1,7 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 import type { IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../../../coreTypes'
-import { pushHistory } from '../history'
 import { layuoutAdapter } from '../initialState'
 
 export const deselectElement = (state: IFormConstructor) => {
@@ -25,8 +24,6 @@ export const setSelectedElement = (
     elementType: element.type,
   }
   layuoutAdapter.updateOne(state.allElements, { id: element.id, changes: { props } })
-
-  pushHistory(state)
 }
 type SetNewSelectedElement = {
   element: IFormElement | IGroupElement

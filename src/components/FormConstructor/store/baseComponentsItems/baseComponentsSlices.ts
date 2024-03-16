@@ -1,10 +1,9 @@
 import type { TypedUseSelectorHook } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 import type { AppDispatch, RootState } from '../setupStore'
 
-import { AddBaseComponent, SetDraggableBaseComponent } from './payload'
 import type { IBaseComponentsItems } from './types'
 
 const InitialState: IBaseComponentsItems = {

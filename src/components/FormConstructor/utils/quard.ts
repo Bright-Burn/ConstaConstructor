@@ -1,9 +1,4 @@
-import type {
-  AllElementProps,
-  AllElementTypes,
-  ISelectedElement,
-  UnionProps,
-} from '../coreTypes/types'
+import type { AllElementProps, AllElementTypes, ISelectedElement, UnionProps } from '../coreTypes'
 
 export function isElementProps<T extends AllElementProps>(
   element: UnionProps | null,

@@ -8,7 +8,7 @@ export const changeActivePage = (
   { payload: { id: selectedPageId } }: PayloadAction<ChangeActivePage>,
 ) => {
   state.selectedPageId = selectedPageId
-  state.pages = state.pages.map((page, i) => {
+  state.pages = state.pages.map(page => {
     return {
       id: page.id,
       name: page.name,
