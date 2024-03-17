@@ -1,4 +1,4 @@
-import type { IBaseComponent } from '../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../store'
 
 export const choiceGroupMocks = ['Без сравнения', 'Целевая', 'Средняя']
 

@@ -48,7 +48,7 @@ export const Pages = ({ pages }: PagesProps) => {
         {pages.map((page, index) => {
           if (index > 7) return
           return (
-            <Card shadow={false} className={`${styles.pageBlock}`} form="round">
+            <Card shadow={false} className={styles.pageBlock} form="round">
               {selectedPageId === page.id && isNameEdited ? (
                 <PageEdit
                   isSelectedPage={selectedPageId === page.id}

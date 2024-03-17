@@ -1,5 +1,4 @@
 import type { Props } from '@consta/uikit/Button'
-import { IconComponent } from '@consta/uikit/Icon'
 
 import type { IconNames } from './iconTypes'
 import type {

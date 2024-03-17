@@ -75,7 +75,7 @@ export const Table: FC<ITable> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Table}
-      className={`${style.fullScreen}`}>
+      className={style.fullScreen}>
       <div className="ag-theme-material" style={{ width: '100%' }}>
         <AgGridReact
           // @ts-expect-error

@@ -113,8 +113,9 @@ function CustomCardsTemplate() {
 
         <div className={style.bottomElement}>
           {!!showBlocks &&
-            mockData.map(element => (
+            mockData.map((element, index) => (
               <CustomCard
+                key={index}
                 title={element.title}
                 contractorCompany={element.contractorCompany}
                 location={element.location}

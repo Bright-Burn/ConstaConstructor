@@ -130,7 +130,7 @@ export const BaseComponents: FC = () => {
   }
 
   return (
-    <div className={`${styles.baseComponentsPanel}`}>
+    <div className={styles.baseComponentsPanel}>
       <div className={styles.buttonsSaveLoad}>
         <Text view="secondary" size="xs">
           Импортировать компонент

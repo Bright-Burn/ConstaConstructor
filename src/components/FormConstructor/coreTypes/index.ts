@@ -121,6 +121,7 @@ export type {
   AllElementProps,
   AllElementTypes,
   BaseProps,
+  BrandProps,
   DeepWriteable,
   FormElementTypes,
   FormElementUnion,

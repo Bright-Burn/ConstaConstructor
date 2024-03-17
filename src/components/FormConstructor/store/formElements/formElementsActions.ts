@@ -268,7 +268,6 @@ export const saveProjectToHtml =
         </body>
         </html>`
     Promise.all([css, js]).then(([cssText, jsText]) => {
-      const script = `<script>${jsText}</script>`
       const blob = new Blob([html, `<style>${cssText}</style> `], { type: 'text/html' })
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')

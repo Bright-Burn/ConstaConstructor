@@ -1,4 +1,4 @@
-import type { PropSize } from '@consta/uikit/__internal__/src/components/SelectComponents/types'
+type PropSize = 'm' | 'xs' | 's' | 'l'
 
 export interface IConstaPalette {
   onChangeColor: (color: ConstaColor) => void

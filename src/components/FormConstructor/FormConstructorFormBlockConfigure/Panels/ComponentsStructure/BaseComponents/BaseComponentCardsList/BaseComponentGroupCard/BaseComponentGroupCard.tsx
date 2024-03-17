@@ -9,7 +9,7 @@ import styles from './styles.module.css'
 
 export const BaseComponentGroupCard: FC<IBaseComponentGroupCard> = ({ name, baseComponents }) => {
   return (
-    <div className={`${styles.componentGroupCard}`}>
+    <div className={styles.componentGroupCard}>
       {baseComponents.map(bc => {
         return <BaseComponentsCard key={bc.id} {...bc} />
       })}

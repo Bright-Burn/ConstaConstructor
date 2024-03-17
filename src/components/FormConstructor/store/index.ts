@@ -1,7 +1,10 @@
+export type { IBaseComponent } from './baseComponentsItems'
 export {
   addBaseElement,
   getDraggedBaseComponent,
   setDraggableBaseComponent,
+  useBaseComponentsDispatch,
+  useBaseComponentsSelector,
 } from './baseComponentsItems'
 export type { IFormConstructorSerializable } from './formElements'
 export {

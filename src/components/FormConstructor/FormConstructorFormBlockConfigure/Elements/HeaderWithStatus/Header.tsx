@@ -12,7 +12,7 @@ import { User } from '@consta/uikit/User'
 
 import type { headerWithStatusProps, IFormElementHeaderWithStatus } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import type { IHeaderWithStatus } from './types'
 
@@ -22,8 +22,7 @@ export const HeaderWithStatus: FC<IHeaderWithStatus> = ({ element }) => {
   const [headerProps, setHeaderProps] = useState<headerWithStatusProps>()
 
   useLayoutEffect(() => {
-    const badgeFormElement = element as IFormElementHeaderWithStatus
-    setHeaderProps(badgeFormElement.props)
+    setHeaderProps(element.props)
   }, [element])
 
   return (

@@ -4,7 +4,7 @@ import { useLayoutEffect, useState } from 'react'
 import type { CustomCardsProps, IFormElementCustomCards } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { DroppableLayer } from '../../DroppableLayer'
-import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
+import { SelectableLayerFitSpace } from '../../SelectableLayer'
 
 import CustomCardsTemplate from './CustomCardsTemplate'
 import type { ICustomCardFormElement } from './types'

@@ -6,7 +6,7 @@ import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 
 import type { cardWithChartProps, IFormElementCardWithChart } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer/'
 
 import { barDataMocks, choiceGroupMocks } from './mocks'
 import type { ICardWithBarChart } from './types'
@@ -21,7 +21,7 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
     setCardProps(cardFormElement.props)
   }, [element])
 
-  const PATTERN_MAP: any = {
+  const PATTERN_MAP = {
     ПВ: {
       type: 'line',
       cfg: {
@@ -60,7 +60,7 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
     },
   }
 
-  const DISABLED_PATTERN_MAP: any = {
+  const DISABLED_PATTERN_MAP = {
     ПВ: {
       type: 'line',
       cfg: {
@@ -101,7 +101,7 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.CardWithBarChart}
-      className={`${css.fullScreen}`}>
+      className={css.fullScreen}>
       <Card className={css.cardStyle}>
         <div className="m-b-l">Детализация ввода в эксплуатацию</div>
         <ChoiceGroup

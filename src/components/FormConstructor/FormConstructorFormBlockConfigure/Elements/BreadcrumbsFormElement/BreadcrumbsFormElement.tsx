@@ -1,9 +1,8 @@
 import type { FC } from 'react'
 import { Breadcrumbs } from '@consta/uikit/Breadcrumbs'
 
-import type { BreadcrumbProps } from '../../../coreTypes'
+import type { BrandProps, BreadcrumbProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import type { BrandProps } from '../../../coreTypes/types'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IBreadcrumbsFormElement } from './types'
