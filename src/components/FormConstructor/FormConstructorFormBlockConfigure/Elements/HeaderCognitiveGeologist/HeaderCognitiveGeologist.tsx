@@ -8,7 +8,7 @@ import { Text } from '@consta/uikit/Text'
 import { User } from '@consta/uikit/User'
 
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import type { IHeaderCognitiveGeologist } from './types'
 

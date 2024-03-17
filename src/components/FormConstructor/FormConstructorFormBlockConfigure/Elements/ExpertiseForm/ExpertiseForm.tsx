@@ -2,12 +2,12 @@ import type { FC } from 'react'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { agGridAdapter } from '@consta/ag-grid-adapter/agGridAdapter'
 import { IconClose } from '@consta/uikit/IconClose'
-import type { ColDef } from 'ag-grid-community'
+import type { ColDef, RowClickedEvent } from 'ag-grid-community'
 import { AgGridReact } from 'ag-grid-react'
 
 import type { ExpertiseFormProps, IExpertiseFormProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import { defaultColDef, sideBar } from './config'
 import { InfoWindow } from './InfoWindow'
@@ -41,7 +41,7 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
     { field: 'oilField', headerName: 'Месторождение', minWidth: 150 },
   ])
 
-  const changeActiveRow = (event: any) => {
+  const changeActiveRow = (event: RowClickedEvent<typeof wellInfo>) => {
     setActiveRow(event.data)
     setCheckModal(true)
   }
@@ -56,7 +56,7 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.CardWithBarChart}
-      className={`${style.fullScreen}`}>
+      className={style.fullScreen}>
       {checkModal ? (
         <>
           <div style={{ width: '70%' }} className="ag-theme-alpine">
@@ -71,12 +71,12 @@ export const ExpertiseForm: FC<IExpertiseForm> = ({ element }) => {
               onRowClicked={changeActiveRow}
             />
           </div>
-          <div className={`${style.modalOpen}`}>
-            <div className={`${style.commonInfo}`}>
+          <div className={style.modalOpen}>
+            <div className={style.commonInfo}>
               <div>Общая информация</div>
               <div>
                 <IconClose
-                  className={`${style.icon}`}
+                  className={style.icon}
                   onClick={() => {
                     setCheckModal(false)
                   }}

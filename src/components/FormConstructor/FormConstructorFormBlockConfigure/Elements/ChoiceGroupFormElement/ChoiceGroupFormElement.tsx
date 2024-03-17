@@ -2,12 +2,12 @@ import type { FC } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 
 import type {
+  BrandProps,
   MultipleChoiceGroupProps,
   OwnChoiceGroupProps,
   SingleChoiceGroupProps,
 } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import type { BrandProps } from '../../../coreTypes/types'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IChoiceGroupFormElement } from './types'

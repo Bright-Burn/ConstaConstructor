@@ -1,11 +1,12 @@
 import uuid from 'react-uuid'
 
 import type { IFormElement, IGroupElement } from '../../coreTypes'
-import { getDraggedBaseComponent, setDraggableBaseComponent } from '../../store'
 import {
+  getDraggedBaseComponent,
+  setDraggableBaseComponent,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
-} from '../../store/baseComponentsItems'
+} from '../../store'
 
 export const useDropBaseComponent = () => {
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
@@ -27,7 +28,7 @@ export const useDropBaseComponent = () => {
         allElementsMap.set(el.id, el)
       })
 
-      allElements.map(el => {
+      allElements.forEach(el => {
         const parentEl = map.get(el.id)
         const currElement = allElementsMap.get(el.id)
 
@@ -42,7 +43,7 @@ export const useDropBaseComponent = () => {
           }
         }
       })
-      const action = [...allElementsMap].map(([name, value]) => ({
+      const action = [...allElementsMap].map(([_, value]) => ({
         element: value,
         parent: value.parentId ?? parentElementId,
       }))

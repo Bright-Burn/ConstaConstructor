@@ -17,7 +17,7 @@ export const ComponentTree = () => {
   const selectedPageId = useAppSelector(getSelectedPageId)
 
   return (
-    <div className={`${styles.commentTree}`}>
+    <div className={styles.commentTree}>
       <Tree data={getTree(allElementsMap, allElements, selectedPageId)} />
     </div>
   )

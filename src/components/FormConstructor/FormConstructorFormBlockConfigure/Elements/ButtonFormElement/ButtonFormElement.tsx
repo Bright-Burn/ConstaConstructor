@@ -11,10 +11,11 @@ import { Icons } from '../IconFormElement'
 import type { IButtonFormElement } from './types'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
-  const [buttonProps, setButtonProps] = useState<ButtonProps>()
+  const [buttonProps] = useState<ButtonProps>()
   const [openViewer, setOpenViewer] = useState<boolean>(false)
-  const [buttonGroup, setButtonGroup] = useState<IButtonActionElement>()
-
+  const [buttonGroup] = useState<IButtonActionElement>()
+  console.log('L17 buttonProps ===', buttonProps)
+  console.log('L18 buttonGroup ===', buttonGroup)
   const onButtonClick = () => {
     if (buttonProps && buttonProps.action !== 'none') {
       setOpenViewer(!openViewer)
@@ -34,7 +35,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         <Viewer buttonGroup={buttonGroup} openViewer={openViewer} onCloseViewer={onCloseViewer} />
       )
     }
-    return <></>
+    return null
   }
 
   return (

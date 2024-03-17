@@ -30,7 +30,7 @@ import styles from './styles.module.css'
 
 export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
   return (
-    <div className={`${styles.componentCard}`}>
+    <div className={styles.componentCard}>
       <SwitchComponent testValue={formElementType || groupElementType || ''}>
         <ComponentCardBadge name={name} value={FormElementDictTypes.Badge} />
         <ComponentCardCheckbox name={name} value={FormElementDictTypes.Checkbox} />

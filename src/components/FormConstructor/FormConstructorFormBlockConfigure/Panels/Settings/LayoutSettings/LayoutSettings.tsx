@@ -207,7 +207,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
                     <div
                       className={`${styles.selectElement} ${active ? styles.BorderLeftItem : ''}`}>
                       {!!item.icon && funcName(item.icon)}
-                      <Text className={`${active ? styles.SelectItemActive : ''}`} size="xs">
+                      <Text className={active ? styles.SelectItemActive : ''} size="xs">
                         {item.name}
                       </Text>
                     </div>

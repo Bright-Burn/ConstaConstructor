@@ -65,11 +65,15 @@ function CustomCard({
               }
 
               {tags.length <= 3
-                ? tags.map(tag => <Tag mode="info" label={tag} className={style.tags} />)
+                ? tags.map((tag, i) => (
+                    <Tag key={i} mode="info" label={tag} className={style.tags} />
+                  ))
                 : tags
                     .slice()
                     .splice(0, 3)
-                    .map(tag => <Tag mode="info" label={tag} className={style.tags} />)}
+                    .map((tag, i) => (
+                      <Tag key={i} mode="info" label={tag} className={style.tags} />
+                    ))}
               {tags.length >= 3 ? (
                 <Tag
                   className={style.tags}

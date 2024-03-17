@@ -6,7 +6,7 @@ import { Text } from '@consta/uikit/Text'
 
 import type { FormWithTwoColumnsProps, IFormFormWithTwoColumns } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import type { IFormWithTwoColumns } from './types'
 
@@ -46,45 +46,43 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.CardWithBarChart}
-      className={`${css.fullScreen}`}>
+      className={css.fullScreen}>
       <div className={`${css.formFullWidth} m-t-2xl`}>
-        <div className={`${css.simpleForm}`}>
-          <div className={`${css.infoPlaceCrush}`}>
+        <div className={css.simpleForm}>
+          <div className={css.infoPlaceCrush}>
             <Text transform="uppercase" weight="bold">
               Данные о месте нарушения
             </Text>
             <div>
               <div>
-                <Text className={`${css.textDecoration}`}>
-                  Работы на месте нарушения остановлены
-                </Text>
+                <Text className={css.textDecoration}>Работы на месте нарушения остановлены</Text>
               </div>
             </div>
-            <Switch view="ghost" className={`${css.switchDecoration}`} checked={false} size="m" />
+            <Switch view="ghost" className={css.switchDecoration} checked={false} size="m" />
           </div>
-          <div className={`${css.titleText}`}>
+          <div className={css.titleText}>
             <Combobox
               required={true}
               items={items}
               value={value}
               placeholder="Введите последовательность для поиска..."
               size="s"
-              className={`${css.borderBottomForText}`}
+              className={css.borderBottomForText}
               label="Компания"
               onChange={({ value }) => {
                 setValue(value)
               }}
             />
           </div>
-          <div className={`${css.flexParent}`}>
-            <div className={`${css.flexChild}`}>
+          <div className={css.flexParent}>
+            <div className={css.flexChild}>
               <Combobox
                 placeholder="Введите последовательность для поиска..."
                 required={true}
                 items={items}
                 value={value}
                 size="s"
-                className={`${css.borderBottomForText}`}
+                className={css.borderBottomForText}
                 label="Месторождение"
                 onChange={({ value }) => {
                   setValue(value)
@@ -102,7 +100,7 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
                 }}
               />
             </div>
-            <div className={`${css.flexChild}`}>
+            <div className={css.flexChild}>
               <Combobox
                 required={true}
                 items={items}
@@ -127,17 +125,17 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
               />
             </div>
           </div>
-          <div className={`${css.textSwitch}`}>
+          <div className={css.textSwitch}>
             <div>
               <div>
-                <Text className={`${css.textDecoration}`}>Указать подрядную организацию</Text>
+                <Text className={css.textDecoration}>Указать подрядную организацию</Text>
               </div>
             </div>
-            <Switch className={`${css.switchDecoration}`} checked={true} size="m" />
+            <Switch className={css.switchDecoration} checked={true} size="m" />
           </div>
 
-          <div className={`${css.flexParent}`}>
-            <div className={`${css.flexChild}`}>
+          <div className={css.flexParent}>
+            <div className={css.flexChild}>
               <Combobox
                 required={true}
                 items={items}
@@ -150,7 +148,7 @@ export const FormWithTwoColumns: FC<IFormWithTwoColumns> = ({ element }) => {
                 }}
               />
             </div>
-            <div className={`${css.flexChild}`}>
+            <div className={css.flexChild}>
               <Combobox
                 required={true}
                 items={items}

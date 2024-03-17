@@ -18,6 +18,5 @@ export type ValueTypes =
   | TextPropDisplay
   | TextPropFont
   | TextPropType
-  | string
   | null
   | AlignTextType

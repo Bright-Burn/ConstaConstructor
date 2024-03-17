@@ -32,7 +32,7 @@ export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
       elementType={FormElementDictTypes.CardWithBarChart}
       className="container-row">
       <div className={`${css.flexCenter} m-t-2xl`}>
-        <div className={`${css.simpleForm}`}>
+        <div className={css.simpleForm}>
           <TextField
             placeholder="НСИ"
             label="Система"

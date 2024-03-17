@@ -11,7 +11,7 @@ import type {
   IFormElementHeaderWithBreadcrumbs,
 } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import { pages } from './mocks'
 import type { IHeaderWithBreadcrumbs } from './types'

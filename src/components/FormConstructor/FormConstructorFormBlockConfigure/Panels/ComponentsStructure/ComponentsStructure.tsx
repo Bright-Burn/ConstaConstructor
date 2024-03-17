@@ -48,7 +48,7 @@ export const ComponentsStructure = () => {
   return (
     <>
       {componentsStructurePanelState ? (
-        <div className={`${styles.componentStructure}`}>
+        <div className={styles.componentStructure}>
           <div className={styles.tabs}>
             <Tabs
               className={styles.tabs_margin}
