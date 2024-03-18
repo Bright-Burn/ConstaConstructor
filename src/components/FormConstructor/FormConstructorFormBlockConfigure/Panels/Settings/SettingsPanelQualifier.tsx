@@ -1,43 +1,43 @@
 import type { FC } from 'react'
 
 import type {
+  BrandBadgeProps,
   BrandBreadcrumbsProps,
+  BrandButtonGroupProps,
+  BrandButtonProps,
+  BrandCardElementPropsStyles,
+  BrandCheckboxProps,
+  BrandComboboxProps,
   BrandDataTimeProps,
   BrandDatePickerProps,
   BrandIconProps,
+  BrandInformerElementProps,
+  BrandLayoutElementPropsStyles,
   BrandOwnChoiceGroupProps,
   BrandPrototypeRectangleProps,
   BrandPrototypeTextProps,
+  BrandRadioButtonProps,
   BrandSelectProps,
+  BrandSwitchProps,
+  BrandTableProps,
+  BrandTabsElementProps,
   BrandTagProps,
   BrandTextElementProps,
+  BrandTextFieldProps,
   BrandUserProps,
+  ISelectedElement,
+  UnionProps,
 } from '../../../coreTypes'
-import { FormElementDictTypes } from '../../../coreTypes'
-import type { BrandBadgeProps } from '../../../coreTypes/badgeTypes'
-import type { BrandButtonGroupProps, BrandButtonProps } from '../../../coreTypes/buttonTypes'
-import type { BrandCardElementPropsStyles } from '../../../coreTypes/cardTypes'
-import type { BrandCheckboxProps } from '../../../coreTypes/checkboxTypes'
-import type { BrandComboboxProps } from '../../../coreTypes/comboBoxTypes'
-import type { BrandInformerElementProps } from '../../../coreTypes/informerTypes'
-import type { BrandLayoutElementPropsStyles } from '../../../coreTypes/layoutTypes'
+import { FormElementDictTypes, FormGroupsDictTypes } from '../../../coreTypes'
 import type { BrandListProps } from '../../../coreTypes/ListTypes'
-import type { BrandRadioButtonProps } from '../../../coreTypes/radioButtonTypes'
-import type { BrandSwitchProps } from '../../../coreTypes/SwitchTypes'
-import type { BrandTableProps } from '../../../coreTypes/tableTypes'
-import type { BrandTabsElementProps } from '../../../coreTypes/tabsTypes'
-import type { BrandTextFieldProps } from '../../../coreTypes/textFieldTypes'
-import type { ISelectedElement, UnionProps } from '../../../coreTypes/types'
-import { FormGroupsDictTypes } from '../../../coreTypes/types'
 import { useAppSelector } from '../../../store'
 import { isElementProps } from '../../../utils/quard'
 
-import { ButtonSettings } from './ButtonSettings/ButtonSettings'
-import { FilledSettings } from './FilledSettings/FilledSettings'
 import { BadgeSettings } from './BadgeSettings'
 import { BaseSettings } from './BaseSettings'
 import { BreadcrumbsSettings } from './BreadcrumbsSettings'
 import { ButtonModuleSettings } from './ButtonModalSettings'
+import { ButtonSettings } from './ButtonSettings'
 import { CardSettings } from './CardSettings'
 import { CheckboxSettings } from './CheckboxSettings'
 import { ChoiceGroupSettings } from './ChoiceGroupSettings'
@@ -62,10 +62,7 @@ import { UserSettings } from './UserSettings'
 
 import styles from './styles.module.css'
 
-const getSettingsPanel = (
-  selectedElementProps: UnionProps | null,
-  selectedElement: ISelectedElement | null,
-) => {
+const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISelectedElement) => {
   if (selectedElement) {
     switch (selectedElement.elementType) {
       case FormElementDictTypes.Text: {
@@ -532,7 +529,7 @@ const getSettingsPanel = (
         )
       }
       default:
-        return <></>
+        return null
     }
   }
 }
@@ -540,7 +537,7 @@ const getSettingsPanel = (
 export const SettingPanelQualifier: FC = () => {
   const { selectedElement, selectedElementProps } = useAppSelector(state => state.formConstructor)
 
-  return selectedElement ? (
+  return selectedElement && selectedElementProps ? (
     <div className={`${styles.elementSettings} m-t-s`}>
       {getSettingsPanel(selectedElementProps, selectedElement)}
     </div>

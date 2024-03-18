@@ -1,8 +1,14 @@
 import type { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
 
-import type { ButtonAction, ButtonProps, IconNames, ISelectedElement } from '../../../../coreTypes'
+import type {
+  BrandButtonProps,
+  ButtonAction,
+  ButtonElement,
+  ButtonProps,
+  IconNames,
+  ISelectedElement,
+} from '../../../../coreTypes'
 import { buttonActionsActive } from '../../../../coreTypes'
-import type { BrandButtonProps, ButtonElement } from '../../../../coreTypes/buttonTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (

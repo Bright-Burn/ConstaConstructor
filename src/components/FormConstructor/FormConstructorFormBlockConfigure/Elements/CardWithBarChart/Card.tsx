@@ -129,6 +129,7 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
               case 'Ожидание ВНР':
               case 'ВНР':
                 return (
+                  // @ts-expect-error
                   DISABLED_PATTERN_MAP[action] || {
                     type: 'line',
                     cfg: {
@@ -144,6 +145,7 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
                 )
               default:
                 return (
+                  // @ts-expect-error
                   PATTERN_MAP[action] || {
                     type: 'line',
                     cfg: {

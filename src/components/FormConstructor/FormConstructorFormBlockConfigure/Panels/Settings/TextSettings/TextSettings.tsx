@@ -87,8 +87,8 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
           </div>
           <div className={styles.rowSettings}>
             <Select
-              getItemKey={item => item}
-              getItemLabel={item => item}
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
               items={weight}
               label="Толщина"
               size="xs"
@@ -129,8 +129,8 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
                 }}
               />
               <Select
-                getItemKey={item => item}
-                getItemLabel={item => item}
+                getItemKey={(item: string) => item}
+                getItemLabel={(item: string) => item}
                 items={spacing}
                 label="Отступ между буквами"
                 size="xs"

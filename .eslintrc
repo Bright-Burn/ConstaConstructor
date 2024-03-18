@@ -207,6 +207,8 @@
           "@/*",
           "@app/*",
           "@(widgets|features|entities|shared|pages)/*",
+          "@consta/stats/[a-zA-Z]*",
+          "@consta/charts/[a-zA-Z]*",
           "@consta/uikit/[a-zA-Z]*",
           "@consta/icons/[a-zA-Z]*",
           "@consta/gpn-responses/[a-zA-Z]*",
