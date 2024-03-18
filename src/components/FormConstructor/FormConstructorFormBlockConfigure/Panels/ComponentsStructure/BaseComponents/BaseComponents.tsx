@@ -9,8 +9,6 @@ import { JsonHelper } from '../../../../../../helpers'
 import type { IBaseComponent } from '../../../../store'
 import {
   addBaseElement,
-  saveModuleToFile,
-  useAppSelector,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../../../store'
@@ -34,7 +32,6 @@ import { BaseComponentCardsList } from './BaseComponentCardsList'
 import styles from './styles.module.css'
 
 export const BaseComponents: FC = () => {
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
   const baseComponentMocks = [
     customCardsTemplateMock,
@@ -54,12 +51,12 @@ export const BaseComponents: FC = () => {
   useEffect(() => {
     //Инициализация дефолтных компонент
     baseComponentMocks.forEach(mock => {
-      if (!baseComponents.some(component => component.id === mock.id))
+      if (!baseComponents.some(component => component.id === mock.id)) {
         dispatch(addBaseElement({ baseComponent: mock }))
+      }
     })
   }, [baseComponentMocks, baseComponents])
-  console.log('L61 baseComponentMocks ===', baseComponentMocks)
-  console.log('L62 baseComponents ===', baseComponents)
+
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const target = e.target as EventTarget & HTMLInputElement
 
@@ -73,46 +70,6 @@ export const BaseComponents: FC = () => {
           dispatch(addBaseElement({ baseComponent }))
         })
       })
-    }
-  }
-
-  const onSaveComponent = (name: string, description: string) => {
-    if (selectedElement) {
-      dispatch(saveModuleToFile(selectedElement.elementId, name))
-      // const elementsList: (IFormElement | IGroupElement)[] = []
-      // const childParentMap: Map<string, string> = new Map<string, string>([])
-
-      // const prepareDataLayer = (currentId: string) => {
-      //   // const elem = allElementsMap.get(currentId)
-      //   // let childrenElemsIds: string[] = []
-      //   // if (elem) {
-      //   //   elementsList.push(elem)
-      //   //   childrenElemsIds = allElementsTree.get(elem.id) || []
-      //   //   // childrenComponentsTree.set(elem.id, childrenElemsIds)
-      //   //   childrenElemsIds.forEach(childId => {
-      //   //     childParentMap.set(childId, elem.id)
-      //   //   })
-      //   // }
-      //   // if (childrenElemsIds.length) {
-      //   //   childrenElemsIds.forEach(elemId => {
-      //   //     prepareDataLayer(elemId)
-      //   //   })
-      //   // }
-      // }
-
-      // const id = selectedElement.elementId
-      // prepareDataLayer(id)
-
-      // const baseComponent: IBaseComponent = {
-      //   id: uuid(),
-      //   name: name,
-      //   description: description,
-      //   childrenElementList: elementsList,
-      //   childParentMap: Array.from(childParentMap.entries()),
-      // }
-
-      // const fileData = JSON.stringify(baseComponent)
-      // saveToFile(fileData, `${name}_BaseComponent.json`)
     }
   }
 

@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const items = [
       { id: 0, label: 'tab1' },
       { id: 1, label: 'tab2' },

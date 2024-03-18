@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newCard: ICardElement = {
       id: uuid(),
       type: FormGroupsDictTypes.Card,

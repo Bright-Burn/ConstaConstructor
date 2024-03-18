@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newInformer: IFormElementInformer = {
       id: uuid(),
       type: FormElementDictTypes.Informer,

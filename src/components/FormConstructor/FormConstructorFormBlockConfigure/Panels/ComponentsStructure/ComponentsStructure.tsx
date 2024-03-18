@@ -11,8 +11,8 @@ import {
   useAppSelector,
 } from '../../../store'
 
-import { ComponentsGrid } from './ComponentGrid/ComponentsGrid'
 import { BaseComponents } from './BaseComponents'
+import { ComponentsGrid } from './ComponentGrid'
 import { ComponentItems } from './ComponentItems'
 import { ComponentTree } from './ComponentTree'
 import { componentsTabItems } from './content'
@@ -45,30 +45,26 @@ export const ComponentsStructure = () => {
   if (isViewMode) {
     return null
   }
-  return (
-    <>
-      {componentsStructurePanelState ? (
-        <div className={styles.componentStructure}>
-          <div className={styles.tabs}>
-            <Tabs
-              className={styles.tabs_margin}
-              value={tabValue}
-              items={componentsTabItems}
-              size="s"
-              view="clear"
-              onChange={({ value }) => {
-                setTabValue(value)
-              }}
-            />
-          </div>
-          {getTabContentRenderer()}
-          <ComponentTree />
-        </div>
-      ) : (
-        <div className={styles.toggleButton}>
-          <Button onlyIcon={true} iconLeft={IconArrowRight} size="s" onClick={togglePanel} />
-        </div>
-      )}
-    </>
+  return componentsStructurePanelState ? (
+    <div className={styles.componentStructure}>
+      <div className={styles.tabs}>
+        <Tabs
+          className={styles.tabs_margin}
+          value={tabValue}
+          items={componentsTabItems}
+          size="s"
+          view="clear"
+          onChange={({ value }) => {
+            setTabValue(value)
+          }}
+        />
+      </div>
+      {getTabContentRenderer()}
+      <ComponentTree />
+    </div>
+  ) : (
+    <div className={styles.toggleButton}>
+      <Button onlyIcon={true} iconLeft={IconArrowRight} size="s" onClick={togglePanel} />
+    </div>
   )
 }

@@ -1,13 +1,14 @@
 import type {
   BrandOwnChoiceGroupProps,
   ChoiceGroupElement,
+  ChoiceGroupItem,
   DeepWriteable,
   ISelectedElement,
   OwnChoiceGroupProps,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-import type { Item, ValueType } from './types'
+import type { ValueType } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: DeepWriteable<OwnChoiceGroupProps>,
@@ -39,7 +40,7 @@ export const useItemsHandlers = (
             ...itemsProps,
             {
               label: `Вариант ${i + 1}`,
-            } as DeepWriteable<Item>,
+            } as DeepWriteable<ChoiceGroupItem>,
           ]
         }
       } else {
@@ -52,7 +53,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeItems = (items: DeepWriteable<Item[]>) => {
+  const onChangeItems = (items: DeepWriteable<ChoiceGroupItem[]>) => {
     if (items) {
       const newProps: BrandOwnChoiceGroupProps = {
         props: { ...selectedElementProps },

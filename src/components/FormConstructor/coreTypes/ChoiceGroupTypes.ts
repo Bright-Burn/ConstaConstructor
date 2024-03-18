@@ -10,9 +10,9 @@ import type {
   IFormElement,
 } from './types'
 
-export type SingleChoiceGroupProps = ChoiceGroupProps<Item> & BaseProps
+export type SingleChoiceGroupProps = ChoiceGroupProps<ChoiceGroupItem> & BaseProps
 
-export type MultipleChoiceGroupProps = ChoiceGroupProps<Item, true> & BaseProps
+export type MultipleChoiceGroupProps = ChoiceGroupProps<ChoiceGroupItem, true> & BaseProps
 
 export type OwnChoiceGroupProps = SingleChoiceGroupProps | MultipleChoiceGroupProps
 
@@ -24,7 +24,7 @@ export type ChoiceGroupElement = ConcreteSelectedElement<typeof FormElementDictT
 
 export type BrandOwnChoiceGroupProps = BrandProps<DeepWriteable<OwnChoiceGroupProps>, 'ChoiceGroup'>
 
-export type Item = {
+export type ChoiceGroupItem = {
   label: string
   icon?: IconComponent
   labelIcon?: string

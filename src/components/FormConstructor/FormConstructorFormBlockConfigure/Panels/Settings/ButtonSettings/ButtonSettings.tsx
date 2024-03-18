@@ -6,9 +6,8 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { ButtonElement, ButtonProps } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
+import { Icons, icons } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
-import { icons } from '../IconSettings/IconsConstants'
 
 import { useItemsHandlers } from './ItemsService'
 import { forms, sizes, views } from './UserConstants'
@@ -199,9 +198,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
             onChange={onChangeSwitch('activeAction')}
           />
         </>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   )
 }

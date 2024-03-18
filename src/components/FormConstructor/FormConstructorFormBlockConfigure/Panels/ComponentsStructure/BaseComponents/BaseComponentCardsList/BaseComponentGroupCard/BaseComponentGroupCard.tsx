@@ -7,7 +7,7 @@ import type { IBaseComponentGroupCard } from './types'
 
 import styles from './styles.module.css'
 
-export const BaseComponentGroupCard: FC<IBaseComponentGroupCard> = ({ name, baseComponents }) => {
+export const BaseComponentGroupCard: FC<IBaseComponentGroupCard> = ({ baseComponents }) => {
   return (
     <div className={styles.componentGroupCard}>
       {baseComponents.map(bc => {

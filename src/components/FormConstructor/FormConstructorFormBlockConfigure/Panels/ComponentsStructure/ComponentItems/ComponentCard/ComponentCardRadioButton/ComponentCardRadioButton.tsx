@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import uuid from 'react-uuid'
-import RadioImage from '@consta/uikit/__internal__/src/uiKit/components/ComponentsGridWithData/data/images/RadioImage'
 import { Text } from '@consta/uikit/Text'
 
 import type { IFormElementRadioButton } from '../../../../../../coreTypes'
@@ -8,12 +7,14 @@ import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import type { IComponetCardElement } from '../types'
 
+import RadioImage from './RadioImage'
+
 import styles from '../styles.module.css'
 
 export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newRadioButton: IFormElementRadioButton = {
       id: uuid(),
       type: FormElementDictTypes.RadioButton,

@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 
 import { store } from '../store'
 
-import { FormConstructorFormBlockEventListener } from './FormConstructorFormBlockEventListener/FormConstructorFormBlockEventListener'
+import { FormConstructorFormBlockEventListener } from './FormConstructorFormBlockEventListener'
 import { ComponentsStructure, FormBlock, Header, Settings } from './Panels'
 import type { IFormConstructorFormBlockConfigure } from './types'
 

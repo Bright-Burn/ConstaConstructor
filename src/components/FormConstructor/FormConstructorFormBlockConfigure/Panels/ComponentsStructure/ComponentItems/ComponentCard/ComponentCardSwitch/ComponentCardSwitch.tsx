@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newSwitch: IFormElementSwitch = {
       id: uuid(),
       type: FormElementDictTypes.Switch,

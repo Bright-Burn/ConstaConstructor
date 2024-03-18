@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newIcon: IFormElementIcon = {
       id: uuid(),
       type: FormElementDictTypes.Icon,

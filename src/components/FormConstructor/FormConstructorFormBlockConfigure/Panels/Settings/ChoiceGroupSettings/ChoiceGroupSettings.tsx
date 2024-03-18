@@ -15,6 +15,7 @@ import { TextField } from '@consta/uikit/TextField'
 
 import type {
   ChoiceGroupElement,
+  ChoiceGroupItem,
   DeepWriteable,
   IconNames,
   OwnChoiceGroupProps,
@@ -23,7 +24,6 @@ import { Icons } from '../../../../coreTypes'
 import { icons } from '../IconSettings/IconsConstants'
 
 import { useItemsHandlers } from './ItemsService'
-import type { Item } from './types'
 import { formArray, sizeArray, viewArray } from './types'
 
 import styles from './styles.module.css'
@@ -67,13 +67,14 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
 
   const onLinesIconEdit = (value: string | null, index: number) => {
     const newLines = [...itemsProps.items]
-    if (value !== null && checkValueIsIconNames(value))
-      (newLines[index] = {
+    if (value !== null && checkValueIsIconNames(value)) {
+      newLines[index] = {
         ...newLines[index],
         icon: iconComponentToDeepWriteable(Icons[value]),
         labelIcon: value,
-      }),
-        onChangeItems([...newLines])
+      }
+    }
+    onChangeItems([...newLines])
   }
 
   return (
@@ -151,9 +152,9 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
           label="Выберите активные элементы"
           size="xs"
           placeholder="Выберите вариант"
-          items={itemsProps.items as Item[]}
-          value={itemsProps.value as Item[]}
-          getItemKey={(key: Item) => key.label}
+          items={itemsProps.items as ChoiceGroupItem[]}
+          value={itemsProps.value as ChoiceGroupItem[]}
+          getItemKey={(key: ChoiceGroupItem) => key.label}
           multiple={true}
           onChange={({ value }) => {
             onChangeField(value, 'value')
@@ -164,8 +165,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
           label="Активный элемент"
           size="xs"
           items={itemsProps.items}
-          value={itemsProps.value as DeepWriteable<Item>}
-          getItemKey={(key: DeepWriteable<Item>) => key.label}
+          value={itemsProps.value as DeepWriteable<ChoiceGroupItem>}
+          getItemKey={(key: DeepWriteable<ChoiceGroupItem>) => key.label}
           onChange={({ value }) => {
             onChangeField(value, 'value')
           }}

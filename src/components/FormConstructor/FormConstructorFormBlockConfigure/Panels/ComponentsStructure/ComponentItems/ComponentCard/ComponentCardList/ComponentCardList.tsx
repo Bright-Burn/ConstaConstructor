@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const items = [
       {
         label: 'Первый — этот вариант не выбрать',

@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../store'
 import { DroppableLayer } from '../../DroppableLayer'
 
-import { Pages } from './Pages/Pages'
+import { Pages } from './Pages'
 
 import styles from './styles.module.css'
 
@@ -31,12 +31,10 @@ export const FormBlock: FC = () => {
       <div className={styles.formBlock}>
         {pages.map(page =>
           page && page.id === selectedPageId ? (
-            <div className={styles.formBlockContent} id="formBlock">
+            <div key={page.id} className={styles.formBlockContent} id="formBlock">
               <DroppableLayer parentElementId={page.id} />
             </div>
-          ) : (
-            <></>
-          ),
+          ) : null,
         )}
       </div>
     </div>

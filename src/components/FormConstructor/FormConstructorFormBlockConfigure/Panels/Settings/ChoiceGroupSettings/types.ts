@@ -3,17 +3,8 @@ import type {
   ChoiceGroupPropSize,
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
-import type { IconComponent } from '@consta/uikit/Icon'
-import type { UserPropWidth } from '@consta/uikit/User'
 
-import type { DeepWriteable } from '../../../../coreTypes'
-
-export type Item = {
-  label: string
-  icon?: IconComponent
-  labelIcon?: string
-  disabled?: boolean
-}
+import type { ChoiceGroupItem, DeepWriteable } from '../../../../coreTypes'
 
 export type ValueType =
   | ChoiceGroupPropForm
@@ -21,14 +12,12 @@ export type ValueType =
   | ChoiceGroupPropSize
   | null
   | string
-  | DeepWriteable<Item>
-  | Item[]
-  | Item
+  | DeepWriteable<ChoiceGroupItem>
+  | ChoiceGroupItem[]
+  | ChoiceGroupItem
 
 export const viewArray: ChoiceGroupPropView[] = ['ghost', 'primary', 'secondary']
 
 export const sizeArray: ChoiceGroupPropSize[] = ['xs', 's', 'm', 'l']
-
-export const widthArray: UserPropWidth[] = ['default', 'full']
 
 export const formArray: ChoiceGroupPropForm[] = ['default', 'brick', 'round']

@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newText: IFormElementText = {
       id: uuid(),
       type: FormElementDictTypes.Text,

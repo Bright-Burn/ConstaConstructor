@@ -3,15 +3,14 @@ import { useEffect } from 'react'
 
 import { JsonHelper } from '../../../../helpers'
 import {
-  checkViewMode,
   deleteFormElement,
   loadProjectFromStorage,
   onSetViewMode,
+  popHistoryElement,
   togglePanels,
   useAppDispatch,
   useAppSelector,
 } from '../../store'
-import { popHistoryElement } from '../../store/history'
 
 import css from './styles.module.css'
 
@@ -22,7 +21,7 @@ interface Props {
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch()
   const { selectedElement } = useAppSelector(state => state.formConstructor)
-  const viewMode = useAppSelector(checkViewMode)
+
   useEffect(() => {
     const loadedData = document.getElementById('loaded_data')
 
@@ -73,6 +72,6 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [selectedElement])
-  console.log(children)
+
   return <div className={css.formConstructorEventListener}>{children}</div>
 }

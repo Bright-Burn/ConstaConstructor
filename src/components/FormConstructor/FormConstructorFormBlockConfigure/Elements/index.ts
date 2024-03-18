@@ -1,6 +1,6 @@
 export { BadgeFormElement } from './Badge'
 export { BreadcrumbsFormElement, pagesSubMenu } from './BreadcrumbsFormElement'
-export { ButtonFormElement } from './ButtonFormElement'
+export { ButtonActionModal, ButtonFormElement } from './ButtonFormElement'
 export { CardFormElement } from './CardFormElement'
 export { cardMock, cardMockId, CardWithBarChart } from './CardWithBarChart'
 export { CheckboxFormElement } from './CheckboxFormElement'
