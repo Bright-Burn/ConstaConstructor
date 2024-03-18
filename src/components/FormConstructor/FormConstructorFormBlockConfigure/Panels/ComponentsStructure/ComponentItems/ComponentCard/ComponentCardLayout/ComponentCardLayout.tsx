@@ -12,7 +12,7 @@ import styles from './styles.module.css'
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const layoutElement: ILayoutElement = {
       id: uuid(),
       type: FormGroupsDictTypes.Layout,

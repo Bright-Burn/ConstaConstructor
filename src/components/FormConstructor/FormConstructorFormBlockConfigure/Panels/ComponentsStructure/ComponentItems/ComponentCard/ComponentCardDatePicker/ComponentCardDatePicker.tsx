@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const events = [new Date()]
     const newDatePicker: IFormElementDatePicker = {
       id: uuid(),

@@ -11,7 +11,7 @@ import { TextField } from '@consta/uikit/TextField'
 
 import type { IFormElementWizardForm, wizardFormProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import { steps, wizardFromCompanyBlock } from './mocks'
 import type { IWizardForm } from './types'
@@ -49,8 +49,8 @@ export const WizardForm: FC<IWizardForm> = ({ element }) => {
             />
           </div>
           <div className={css.wizardForm__Info}>
-            {wizardFromCompanyBlock.map(field => (
-              <div className="container-row space-center space-between m-b-xs">
+            {wizardFromCompanyBlock.map((field, index) => (
+              <div key={index} className="container-row space-center space-between m-b-xs">
                 <Text size="s">{field.label}</Text>
                 <Select
                   className={css.selectWidth}

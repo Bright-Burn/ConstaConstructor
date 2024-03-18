@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const IconImage = (props: React.SVGProps<SVGSVGElement>) => {
+const IconImage = () => {
   return (
     <svg width="96" height="71" viewBox="0 0 96 71" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_1051_3809)">

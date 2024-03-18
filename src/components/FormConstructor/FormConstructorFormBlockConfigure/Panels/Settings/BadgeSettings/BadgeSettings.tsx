@@ -7,8 +7,7 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { BadgeElement, BadgeProps } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
-import { icons } from '../IconSettings/IconsConstants'
+import { Icons, icons } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
 import { forms, sizes, statuses, views } from './textConstants'

@@ -2,7 +2,6 @@ import type { FC } from 'react'
 import { cnRcTree } from '@consta/rc-tree-adapter/RcTree'
 import { rcTreeAdapter } from '@consta/rc-tree-adapter/rcTreeAdapter'
 import RCTree from 'rc-tree'
-import type { Key } from 'rc-tree/lib/interface'
 
 import {
   getFormElAsMap,
@@ -26,7 +25,7 @@ export const Tree: FC<ITree> = ({ data }) => {
     ['CustomTree'],
   )
 
-  const onSelect = (selectedKeys: Key[]) => {
+  const onSelect = (selectedKeys: (string | number)[]) => {
     selectedKeys.forEach(key => {
       const element = allElementsMap.get(`${key}`)
       if (element) {

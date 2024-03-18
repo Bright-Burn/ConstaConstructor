@@ -2,8 +2,12 @@ import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { ButtonGroupProps, ISelectedElement } from '../../../../coreTypes'
-import type { BrandButtonGroupProps, ButtonGroupElement } from '../../../../coreTypes/buttonTypes'
+import type {
+  BrandButtonGroupProps,
+  ButtonGroupElement,
+  ButtonGroupProps,
+  ISelectedElement,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import styles from './styles.module.css'

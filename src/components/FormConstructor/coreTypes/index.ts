@@ -15,7 +15,7 @@ export type {
   IButtonModalElement,
   IFormElementButton,
 } from './buttonTypes'
-export type { BrandButtonGroupProps, BrandButtonProps } from './buttonTypes'
+export type { BrandButtonGroupProps, BrandButtonProps, ButtonGroupElement } from './buttonTypes'
 export { buttonActions, buttonActionsActive } from './buttonTypes'
 export type { CardElementProps, CardElementPropsStyles, CardElementStyles } from './cardTypes'
 export type { BrandCardElementPropsStyles, CardElement } from './cardTypes'
@@ -30,6 +30,7 @@ export type {
   OwnChoiceGroupProps,
   SingleChoiceGroupProps,
 } from './ChoiceGroupTypes'
+export type { ChoiceGroupItem } from './ChoiceGroupTypes'
 export type {
   BrandComboboxProps,
   ComboBoxElement,
@@ -58,7 +59,7 @@ export type {
   IconProps,
   IFormElementIcon,
 } from './iconTypes'
-export { Icons } from './iconTypes'
+export { Icons, icons } from './iconTypes'
 export type { IFormElementInformer, InformerElementProps } from './informerTypes'
 export type { BrandInformerElementProps } from './informerTypes'
 export type {

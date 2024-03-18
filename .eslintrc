@@ -14,7 +14,6 @@
     "plugin:@typescript-eslint/strict-type-checked",
     "plugin:react-hooks-configurable/recommended",
     "plugin:jest/recommended",
-    "plugin:@conarti/feature-sliced/rules",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -209,6 +208,7 @@
           "@(widgets|features|entities|shared|pages)/*",
           "@consta/stats/[a-zA-Z]*",
           "@consta/charts/[a-zA-Z]*",
+          "@consta/rc-tree-adapter/[a-zA-Z]*",
           "@consta/uikit/[a-zA-Z]*",
           "@consta/icons/[a-zA-Z]*",
           "@consta/gpn-responses/[a-zA-Z]*",

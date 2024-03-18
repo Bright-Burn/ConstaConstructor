@@ -60,7 +60,7 @@ export const PagePopover: FC<IPagePopover> = ({
             {pages.map((page, index) => {
               if (index < 8) return
               return (
-                <Card shadow={false} className={styles.popoverPageBlock} form="round">
+                <Card key={page.id} shadow={false} className={styles.popoverPageBlock} form="round">
                   {selectedPageId === page.id && isNameEdited ? (
                     <PageEdit
                       defaultPageName={page.name}

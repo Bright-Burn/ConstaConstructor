@@ -13,7 +13,7 @@ import styles from '../styles.module.css'
 
 export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const events = [new Date()]
     const newDataTime: IFormElementDataTime = {
       id: uuid(),

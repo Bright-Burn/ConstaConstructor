@@ -1,4 +1,4 @@
-import type { IBaseComponent } from '../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../store'
 
 import type { progressStepBarItem, selectItem } from './types'
 

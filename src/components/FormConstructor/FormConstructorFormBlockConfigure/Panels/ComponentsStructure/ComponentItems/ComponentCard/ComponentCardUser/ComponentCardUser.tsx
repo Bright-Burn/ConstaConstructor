@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newUser: IFormElementUser = {
       id: uuid(),
       type: FormElementDictTypes.User,

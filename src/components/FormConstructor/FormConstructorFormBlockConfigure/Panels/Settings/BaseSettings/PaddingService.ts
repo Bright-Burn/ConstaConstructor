@@ -1,5 +1,4 @@
-import type { ISelectedElement } from '../../../../coreTypes'
-import type { UnionProps } from '../../../../coreTypes/types'
+import type { ISelectedElement, UnionProps } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
 
 import type { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'

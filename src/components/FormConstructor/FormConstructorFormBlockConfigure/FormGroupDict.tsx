@@ -2,10 +2,10 @@ import type { FC } from 'react'
 
 import type { FormElementTypes, FormGroupsTypes } from '../coreTypes'
 
-import { ButtonActionModal } from './Elements/ButtonFormElement/ButtonActionModal'
 import {
   BadgeFormElement,
   BreadcrumbsFormElement,
+  ButtonActionModal,
   ButtonFormElement,
   CardFormElement,
   CardWithBarChart,

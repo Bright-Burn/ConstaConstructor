@@ -125,7 +125,6 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
               <div className={styles.rowSettings}>
                 <TextField
                   key={index}
-                  className={styles.flexWidth}
                   size="xs"
                   label={`Страница ${index + 1}`}
                   value={page.label}

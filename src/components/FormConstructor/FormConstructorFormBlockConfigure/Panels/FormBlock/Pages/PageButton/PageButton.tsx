@@ -39,7 +39,7 @@ export const PageButton: FC<IPageButton> = ({
         <>
           <Button
             iconLeft={IconEdit}
-            view={isSelectedPage ? 'ghost' : 'clear'}
+            view="ghost"
             size="xs"
             form="brick"
             onlyIcon={true}
@@ -49,7 +49,7 @@ export const PageButton: FC<IPageButton> = ({
           />
           <Button
             iconLeft={IconClose}
-            view={isSelectedPage ? 'ghost' : 'clear'}
+            view="ghost"
             size="xs"
             form="brick"
             onlyIcon={true}
