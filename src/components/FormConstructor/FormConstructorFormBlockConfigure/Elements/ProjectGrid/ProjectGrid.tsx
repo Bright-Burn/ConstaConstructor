@@ -13,7 +13,7 @@ import { Table } from '@consta/uikit/Table'
 import { Text } from '@consta/uikit/Text'
 
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
+import { SelectableLayerFitSpace } from '../../SelectableLayer'
 
 import { IconsCell } from './Icons'
 import { currentPage, range, rows } from './mocks'

@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newBadge: IFormElementBadge = {
       id: uuid(),
       type: FormElementDictTypes.Badge,

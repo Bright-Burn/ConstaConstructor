@@ -3,9 +3,8 @@ import { useLayoutEffect, useState } from 'react'
 import { Tag } from '@consta/uikit/Tag'
 
 import type { TagProps } from '../../../coreTypes'
-import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
-import { Icons } from '../IconFormElement'
 
 import type { ITagFormElement } from './types'
 

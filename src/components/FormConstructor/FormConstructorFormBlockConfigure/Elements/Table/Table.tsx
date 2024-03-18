@@ -1,10 +1,11 @@
 import type { FC } from 'react'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import type { GridApi } from 'ag-grid-community'
 import { AgGridReact } from 'ag-grid-react'
 
 import type { TableProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import type { ITable } from './types'
 
@@ -13,7 +14,7 @@ import 'ag-grid-community/styles/ag-theme-material.css'
 import style from './styles.module.css'
 
 export const Table: FC<ITable> = ({ element }) => {
-  const gridRef = useRef()
+  const gridRef = useRef<GridApi | null>(null)
   const [tableProps, setTableProps] = useState<TableProps>()
   const result: { field: string }[] = []
 
@@ -41,14 +42,11 @@ export const Table: FC<ITable> = ({ element }) => {
   }
 
   const sizeToFit = () => {
-    if (gridRef.current)
-      // @ts-expect-error
-      gridRef.current.api?.sizeColumnsToFit()
+    if (gridRef.current) gridRef.current.sizeColumnsToFit()
   }
 
   useLayoutEffect(() => {
-    const tableElement = element
-    setTableProps(tableElement.props.props)
+    setTableProps(element.props.props)
   }, [element])
 
   useEffect(() => {
@@ -78,10 +76,11 @@ export const Table: FC<ITable> = ({ element }) => {
       className={style.fullScreen}>
       <div className="ag-theme-material" style={{ width: '100%' }}>
         <AgGridReact
-          // @ts-expect-error
-          ref={gridRef}
           rowData={rowData}
           columnDefs={columnDefs}
+          onGridReady={event => {
+            gridRef.current = event.api
+          }}
           onFirstDataRendered={() => {
             sizeToFit()
           }}

@@ -3,8 +3,7 @@ import React from 'react'
 import { IconPicture } from '@consta/icons/IconPicture'
 import { Text } from '@consta/uikit/Text'
 
-import { setDraggableBaseComponent } from '../../../../../../store'
-import { useBaseComponentsDispatch } from '../../../../../../store/baseComponentsItems'
+import { setDraggableBaseComponent, useBaseComponentsDispatch } from '../../../../../../store'
 
 import type { IBaseComponentCard } from './types'
 

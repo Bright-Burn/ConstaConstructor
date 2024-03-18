@@ -1,2 +1,2 @@
-export { wizardFormMock } from './mocks'
+export { wizardFormMock, wizardFormMockId } from './mocks'
 export { WizardForm } from './WizardForm'

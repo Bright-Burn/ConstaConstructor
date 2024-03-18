@@ -1,6 +1,6 @@
 import { createIcon } from '@consta/icons/Icon'
 
-const JustifyPositionSpaceEvenlyXs = (props: React.SVGProps<SVGSVGElement>) => {
+const JustifyPositionSpaceEvenlyXs = () => {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M3 4H5V8H3V4Z" fill="black" />

@@ -5,7 +5,7 @@ import { Text } from '@consta/uikit/Text'
 
 import type { IFormElementPlaceholder, PlaceholderProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFitSpace } from '../../SelectableLayer/SelectableLayerFitSpace'
+import { SelectableLayerFitSpace } from '../../SelectableLayer'
 
 import ImageSvg from './image.svg'
 import type { IPlaceholderFormElement } from './types'

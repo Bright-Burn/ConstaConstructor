@@ -1,7 +1,7 @@
 import uuid from 'react-uuid'
 
-import type { IBaseComponent } from '../../../store/baseComponentsItems'
-import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types'
+import { PrototypeProps } from '../../../coreTypes'
+import type { IBaseComponent } from '../../../store'
 
 export const rectangleMockId = uuid()
 

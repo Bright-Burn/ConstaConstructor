@@ -11,7 +11,7 @@ import { TextField } from '@consta/uikit/TextField'
 
 import type { IFormElementSimpleForm, simpleFormProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import type { ISimpleForm } from './types'
 

@@ -1,15 +1,12 @@
 import type { FC } from 'react'
 import React from 'react'
-import { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { ButtonProps } from '../../../../coreTypes'
-import { buttonActions } from '../../../../coreTypes'
-import type { ButtonElement } from '../../../../coreTypes/buttonTypes'
-import { Icons } from '../../../Elements/IconFormElement/mocks'
+import type { ButtonElement, ButtonProps } from '../../../../coreTypes'
+import { Icons } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
 import { icons } from '../IconSettings/IconsConstants'
 
@@ -27,14 +24,8 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const {
-    itemsProps,
-    onChangeField,
-    onChangeSwitch,
-    onChangeButtonAction,
-    onChangeIcon,
-    onChangeIconR,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  const { itemsProps, onChangeField, onChangeSwitch, onChangeIcon, onChangeIconR } =
+    useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <div className={styles.buttonPropsSettings}>

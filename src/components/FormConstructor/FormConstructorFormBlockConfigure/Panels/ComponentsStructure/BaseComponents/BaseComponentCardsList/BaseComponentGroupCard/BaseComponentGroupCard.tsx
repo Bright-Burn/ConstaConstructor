@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import { NotFound } from '../../../../Settings/NotFound'
+import { NotFound } from '../../../../Settings'
 import { BaseComponentsCard } from '../BaseComponentsCard'
 
 import type { IBaseComponentGroupCard } from './types'

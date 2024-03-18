@@ -1,11 +1,10 @@
 import type { FC } from 'react'
 import { useLayoutEffect, useState } from 'react'
 
-import type { IBaseComponent } from '../../../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../../../store'
 
-import type { GroupCardsTypes } from './BaseComponentGroupCard/types'
-import { GroupCards } from './BaseComponentGroupCard/types'
-import { BaseComponentGroupCard } from './BaseComponentGroupCard'
+import type { GroupCardsTypes } from './BaseComponentGroupCard'
+import { BaseComponentGroupCard, GroupCards } from './BaseComponentGroupCard'
 import { componentsDict } from './ComponentsDict'
 import type { IBaseComponentCardsList } from './types'
 

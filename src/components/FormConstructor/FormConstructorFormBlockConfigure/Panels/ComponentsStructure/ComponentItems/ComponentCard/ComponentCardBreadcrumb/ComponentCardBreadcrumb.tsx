@@ -4,7 +4,7 @@ import { Text } from '@consta/uikit/Text'
 
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
-import { pagesSubMenu } from '../../../../../Elements/BreadcrumbsFormElement/mocks'
+import { pagesSubMenu } from '../../../../../Elements'
 import type { IComponetCardElement } from '../types'
 
 import BreadcrumbsImage from './BreadcrumbsImage'
@@ -15,7 +15,7 @@ import styles from '../styles.module.css'
 export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newBreadcrumb: IFormElementBreadcrumbs = {
       id: uuid(),
       type: FormElementDictTypes.BreadcrumbsForm,
