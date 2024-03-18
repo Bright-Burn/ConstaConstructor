@@ -1,34 +1,27 @@
 import type { FC } from 'react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { IconDownload } from '@consta/icons/IconDownload'
 import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
 import { Text } from '@consta/uikit/Text'
 
 import { JsonHelper } from '../../../../../../helpers'
-import { SaveModalCard } from '../../../../SaveModalCard'
+import type { IBaseComponent } from '../../../../store'
 import {
   addBaseElement,
-  getAllFormElements,
   saveModuleToFile,
   useAppSelector,
-} from '../../../../store'
-import type { IBaseComponent } from '../../../../store/baseComponentsItems'
-import {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
-} from '../../../../store/baseComponentsItems'
+} from '../../../../store'
 import { readFile } from '../../../../utils'
 import {
   cardMock,
+  customCardsTemplateMock,
   dashboardMock,
-  ExpertiseFormMock,
   footerWithSwitchMock,
   FormWithTwoColumnsMock,
   gridMock,
-  headerCognitiveGeologistMock,
-  headerMock,
-  headerWithStatusMock,
   placeholderMock,
   PrototypeRectangleMock,
   PrototypeTextMock,
@@ -36,7 +29,6 @@ import {
   TableMock,
   wizardFormMock,
 } from '../../../Elements'
-import { customCardsTemplateMock } from '../../../Elements/CustomCardsTemplate/mock'
 
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 
@@ -47,10 +39,7 @@ export const BaseComponents: FC = () => {
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
   const baseComponentMocks = [
     customCardsTemplateMock,
-    headerMock,
     placeholderMock,
-    headerWithStatusMock,
-    headerCognitiveGeologistMock,
     cardMock,
     gridMock,
     dashboardMock,
@@ -59,7 +48,6 @@ export const BaseComponents: FC = () => {
     footerWithSwitchMock,
     FormWithTwoColumnsMock,
     TableMock,
-    ExpertiseFormMock,
     PrototypeTextMock,
     PrototypeRectangleMock,
   ]

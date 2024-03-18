@@ -8,7 +8,7 @@ import { Layout } from '@consta/uikit/Layout'
 import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 
-import type { PlaceholderProps } from '../../../coreTypes'
+import type { IFormElementPlaceholder, PlaceholderProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFitSpace } from '../../SelectableLayer'
 
@@ -31,7 +31,8 @@ export const Dashboard: FC<IPlaceholderFormElement> = ({ element }) => {
   const [placeholderProps, setPlaceholderProps] = useState<PlaceholderProps | undefined>()
 
   useLayoutEffect(() => {
-    setPlaceholderProps(element.props)
+    const placeholderFormElement = element as IFormElementPlaceholder
+    setPlaceholderProps(placeholderFormElement.props)
   }, [element])
 
   type IPieItem = { type: string; value: number }

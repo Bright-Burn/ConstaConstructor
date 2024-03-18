@@ -7,11 +7,12 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type {
+  BrandCardElementPropsStyles,
+  CardElement,
   CardElementProps,
   CardElementPropsStyles,
   ISelectedElement,
 } from '../../../../coreTypes'
-import type { BrandCardElementPropsStyles, CardElement } from '../../../../coreTypes/cardTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import styles from './styles.module.css'

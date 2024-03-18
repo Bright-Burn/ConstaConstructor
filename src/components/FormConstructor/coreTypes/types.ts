@@ -62,17 +62,13 @@ export const FormElementDictTypes = {
   Text: 'Text',
   TextField: 'TextField',
   ProjectGrid: 'ProjectGrid',
-  HeaderWithBreadcrumbs: 'HeaderWithBreadcrumbs',
-  HeaderCognitiveGeologist: 'HeaderCognitiveGeologist',
   Placeholder: 'Placeholder',
-  HeaderWithStatus: 'HeaderWithStatus',
   CardWithBarChart: 'CardWithBarChart',
   CustomCards: 'CustomCards',
   Dashboard: 'Dashboard',
   SimpleForm: 'SimpleForm',
   WizardForm: 'WizardForm',
   FooterWithSwitch: 'FooterWithSwitch',
-  FormWithTwoColumns: 'FormWithTwoColumns',
   Table: 'Table',
   List: 'List',
   RadioButton: 'RadioButton',
@@ -81,7 +77,6 @@ export const FormElementDictTypes = {
   ComboBox: 'ComboBox',
   Select: 'SelectForm',
   DataTime: 'DataTime',
-  ExpertiseForm: 'ExpertiseForm',
   PrototypeTextElement: 'PrototypeTextElement',
   PrototypeRectangleElement: 'PrototypeRectangleElement',
   BreadcrumbsForm: 'BreadcrumbsFormElement',
@@ -152,35 +147,25 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
                                           ? BrandOwnChoiceGroupProps
                                           : {} & T extends 'ProjectGrid'
                                             ? {}
-                                            : {} & T extends 'HeaderWithBreadcrumbs'
+                                            : {} & T extends 'Placeholder'
                                               ? {}
-                                              : {} & T extends 'HeaderCognitiveGeologist'
+                                              : {} & T extends 'CardWithBarChart'
                                                 ? {}
-                                                : {} & T extends 'Placeholder'
+                                                : {} & T extends 'CustomCards'
                                                   ? {}
-                                                  : {} & T extends 'HeaderWithStatus'
+                                                  : {} & T extends 'Dashboard'
                                                     ? {}
-                                                    : {} & T extends 'CardWithBarChart'
+                                                    : {} & T extends 'SimpleForm'
                                                       ? {}
-                                                      : {} & T extends 'CustomCards'
+                                                      : {} & T extends 'WizardForm'
                                                         ? {}
-                                                        : {} & T extends 'Dashboard'
+                                                        : {} & T extends 'FooterWithSwitch'
                                                           ? {}
-                                                          : {} & T extends 'SimpleForm'
+                                                          : {} & T extends 'PrototypeTextElement'
                                                             ? {}
-                                                            : {} & T extends 'WizardForm'
+                                                            : {} & T extends 'PrototypeRectangleElement'
                                                               ? {}
-                                                              : {} & T extends 'FooterWithSwitch'
-                                                                ? {}
-                                                                : {} & T extends 'FormWithTwoColumns'
-                                                                  ? {}
-                                                                  : {} & T extends 'ExpertiseForm'
-                                                                    ? {}
-                                                                    : {} & T extends 'PrototypeTextElement'
-                                                                      ? {}
-                                                                      : {} & T extends 'PrototypeRectangleElement'
-                                                                        ? {}
-                                                                        : {}
+                                                              : {}
 }
 
 export interface IUnion {

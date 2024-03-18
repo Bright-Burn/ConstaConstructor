@@ -5,19 +5,13 @@ import { IconColorText } from '@consta/icons/IconColorText'
 import { IconItalic } from '@consta/icons/IconItalic'
 import { IconType } from '@consta/icons/IconType'
 import type {
-  TextPropCursor,
-  TextPropDecoration,
-  TextPropDisplay,
-  TextPropFont,
-  TextPropFontStyle,
   TextPropLineHeight,
   TextPropSize,
-  TextPropTransform,
   TextPropType,
   TextPropView,
 } from '@consta/uikit/Text'
 
-import type { AlignTextType, textDecorationType, TextElementProps } from '../../../../coreTypes'
+import type { AlignTextType, textDecorationType } from '../../../../coreTypes'
 
 export const sizes: TextPropSize[] = [
   'm',
@@ -54,27 +48,15 @@ export const transformText: textDecorationType[] = [
   { name: 'uppercase', icon: IconType },
   { name: 'italic', icon: IconItalic },
 ]
-export const weight = ['', 'thin', 'light', 'regular', 'medium', 'semibold', 'bold', 'black']
+export const weight: ('thin' | 'light' | 'regular' | 'medium' | 'semibold' | 'bold' | 'black')[] = [
+  'thin',
+  'light',
+  'regular',
+  'medium',
+  'semibold',
+  'bold',
+  'black',
+]
 export const lineHeight: TextPropLineHeight[] = ['2xs', 'xs', 's', 'm', 'l']
-export const spacing = ['', 'xs', 's', 'm', 'l']
-export const display: TextPropDisplay[] = ['block', 'inlineBlock', 'inline']
-export const font: TextPropFont[] = ['primary', 'mono']
+export const spacing: ('xs' | 's' | 'm' | 'l')[] = ['xs', 's', 'm', 'l']
 export const type: TextPropType[] = ['blockquote', 'p', 'h3', 'h2', 'h1']
-
-const decoration: TextPropDecoration = 'underline'
-const fontStyle: TextPropFontStyle = 'italic'
-const cursor: TextPropCursor = 'pointer'
-const transform: TextPropTransform = 'uppercase'
-
-export const getPropsValue = (field: keyof TextElementProps) => {
-  switch (field) {
-    case 'decoration':
-      return decoration
-    case 'fontStyle':
-      return fontStyle
-    case 'cursor':
-      return cursor
-    case 'transform':
-      return transform
-  }
-}
