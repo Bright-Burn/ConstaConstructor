@@ -82,11 +82,12 @@ export type { IFormElementPlaceholder, PlaceholderProps } from './placeholderTyp
 export type {
   BrandPrototypeRectangleProps,
   BrandPrototypeTextProps,
-  PrototypeProps,
+  IFormElementPrototype,
   PrototypePropsType,
   PrototypeRectangleElement,
   PrototypeTextElement,
 } from './prototypeTypes'
+export { PrototypeProps } from './prototypeTypes'
 export type { IFormElementRadioButton, RadioButtonProps } from './radioButtonTypes'
 export type { BrandRadioButtonProps } from './radioButtonTypes'
 export type {

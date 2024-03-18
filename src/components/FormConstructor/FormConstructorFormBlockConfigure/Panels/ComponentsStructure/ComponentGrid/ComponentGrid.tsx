@@ -10,7 +10,7 @@ import styles from './styles.module.css'
 
 export const ComponentGrid: FC<IComponentCard> = ({ name, groupElementType, isOuter }) => {
   return (
-    <div className={styles.componentGrid}>
+    <div>
       <SwitchComponent testValue={groupElementType || ''}>
         <ComponentCardLayout name={name} value={FormGroupsDictTypes.Layout} isOuter={isOuter} />
         <></>

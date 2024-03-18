@@ -19,7 +19,7 @@ import type {
   IconNames,
   OwnChoiceGroupProps,
 } from '../../../../coreTypes'
-import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { Icons } from '../../../../coreTypes'
 import { icons } from '../IconSettings/IconsConstants'
 
 import { useItemsHandlers } from './ItemsService'

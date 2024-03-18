@@ -6,7 +6,7 @@ import { Text } from '@consta/uikit/Text'
 
 import type { footerWithSwitchProps, IFormElementFooterWithSwitch } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
-import { SelectableLayerFullWidth } from '../../SelectableLayer/SelectableLayerFullWidth'
+import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import type { IFooterWithSwitch } from './types'
 

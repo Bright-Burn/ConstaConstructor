@@ -1,6 +1,6 @@
 import { createIcon } from '@consta/icons/Icon'
 
-const BorderTopXs = (props: React.SVGProps<SVGSVGElement>) => {
+const BorderTopXs = () => {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M1 11L1 9H2L2 11H1Z" fill="black" />

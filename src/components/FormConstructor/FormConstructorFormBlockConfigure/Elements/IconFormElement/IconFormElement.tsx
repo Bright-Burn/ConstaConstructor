@@ -2,17 +2,16 @@ import type { FC } from 'react'
 import React, { useLayoutEffect, useState } from 'react'
 
 import type { IconProps } from '../../../coreTypes'
-import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 
-import { Icons } from './mocks'
 import type { IIconFormElement } from './types'
+
 export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
   const [iconProps, setIconProps] = useState<IconProps>()
 
   useLayoutEffect(() => {
-    const iconFormElement = element
-    setIconProps(iconFormElement.props.props)
+    setIconProps(element.props.props)
   }, [element])
 
   return (

@@ -3,7 +3,7 @@ import { useLayoutEffect, useState } from 'react'
 import { Radio } from '@consta/uikit/Radio'
 
 import type { RadioButtonProps } from '../../../coreTypes'
-import { ElementTypes, FormElementDictTypes, IFormElementRadioButton } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IRadioButtonFormElement } from './types'

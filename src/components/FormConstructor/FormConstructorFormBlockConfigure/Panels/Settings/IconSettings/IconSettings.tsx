@@ -11,8 +11,8 @@ import type {
   IconProps,
   ISelectedElement,
 } from '../../../../coreTypes'
+import { Icons } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { Icons } from '../../../Elements/IconFormElement/mocks'
 
 import { icons, sizes, views } from './IconsConstants'
 

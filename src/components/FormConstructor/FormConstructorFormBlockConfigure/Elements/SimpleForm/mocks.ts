@@ -1,4 +1,4 @@
-import type { IBaseComponent } from '../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../store'
 
 export const simpleFormMockId = 'f49f44ce-27e4-458d-4fd5-faa976accccc'
 export const simpleFormMock = {

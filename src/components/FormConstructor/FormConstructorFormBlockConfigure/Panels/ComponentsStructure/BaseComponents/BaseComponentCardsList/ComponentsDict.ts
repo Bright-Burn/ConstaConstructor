@@ -1,16 +1,18 @@
-import { cardMockId } from '../../../../Elements/CardWithBarChart'
-import { customCardsTemplateMockId } from '../../../../Elements/CustomCardsTemplate'
-import { dashboardMockId } from '../../../../Elements/Dashboard'
-import { footerWithSwitchMockId } from '../../../../Elements/FooterWithSwitch/mocks'
-import { placeholderMockId } from '../../../../Elements/PlaceholderFormElement/mocks'
-import { gridMockId } from '../../../../Elements/ProjectGrid'
-import { rectangleMockId } from '../../../../Elements/PrototypeRectangleElement/mocks'
-import { textMockId } from '../../../../Elements/PrototypeTextElement/mocks'
-import { simpleFormMockId } from '../../../../Elements/SimpleForm'
-import { TableMockId } from '../../../../Elements/Table'
-import { wizardFormMockId } from '../../../../Elements/WizardForm/mocks'
+import {
+  cardMockId,
+  customCardsTemplateMockId,
+  dashboardMockId,
+  footerWithSwitchMockId,
+  gridMockId,
+  placeholderMockId,
+  rectangleMockId,
+  simpleFormMockId,
+  TableMockId,
+  textMockId,
+  wizardFormMockId,
+} from '../../../../Elements'
 
-import type { GroupCardsTypes } from './BaseComponentGroupCard/types'
+import type { GroupCardsTypes } from './BaseComponentGroupCard'
 
 export const componentsDict: Record<string, GroupCardsTypes> = {
   [simpleFormMockId]: 'Forms',

@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 
-import type { IFormElementPrototype } from '../../../coreTypes/prototypeTypes'
+import type { IFormElementPrototype } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 
 interface IPrototypeRectangleElement {

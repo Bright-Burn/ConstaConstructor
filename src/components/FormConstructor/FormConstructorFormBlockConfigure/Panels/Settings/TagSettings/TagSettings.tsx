@@ -7,7 +7,7 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { TagElement, TagProps } from '../../../../coreTypes'
-import { Icons } from '../../../Elements/IconFormElement/mocks'
+import { Icons } from '../../../../coreTypes'
 import { icons } from '../IconSettings/IconsConstants'
 
 import { useItemsHandlers } from './ItemsService'

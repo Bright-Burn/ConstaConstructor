@@ -1,7 +1,7 @@
 import uuid from 'react-uuid'
 
+import { PrototypeProps } from '../../../coreTypes'
 import type { IBaseComponent } from '../../../store'
-import { PrototypeProps } from '../../Panels/Settings/PrototypeSettings/types'
 
 export const textMockId = uuid()
 

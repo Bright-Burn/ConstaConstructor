@@ -3,10 +3,9 @@ import { useState } from 'react'
 import { Button } from '@consta/uikit/Button'
 
 import type { ButtonProps, IButtonActionElement } from '../../../coreTypes'
-import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { FormGroupsDict } from '../../FormGroupDict'
 import { SelectableLayer } from '../../SelectableLayer'
-import { Icons } from '../IconFormElement'
 
 import type { IButtonFormElement } from './types'
 

@@ -1,4 +1,2 @@
-import { FooterWithSwitch } from './FooterWithSwitch'
-import { footerWithSwitchMock } from './mocks'
-
-export { FooterWithSwitch, footerWithSwitchMock }
+export { FooterWithSwitch } from './FooterWithSwitch'
+export { footerWithSwitchMock, footerWithSwitchMockId } from './mocks'

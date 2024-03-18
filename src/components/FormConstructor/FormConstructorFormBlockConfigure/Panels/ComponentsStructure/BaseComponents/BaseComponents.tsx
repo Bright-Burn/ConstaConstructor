@@ -20,7 +20,6 @@ import {
   customCardsTemplateMock,
   dashboardMock,
   footerWithSwitchMock,
-  FormWithTwoColumnsMock,
   gridMock,
   placeholderMock,
   PrototypeRectangleMock,
@@ -46,7 +45,6 @@ export const BaseComponents: FC = () => {
     simpleFormMock,
     wizardFormMock,
     footerWithSwitchMock,
-    FormWithTwoColumnsMock,
     TableMock,
     PrototypeTextMock,
     PrototypeRectangleMock,
@@ -60,7 +58,8 @@ export const BaseComponents: FC = () => {
         dispatch(addBaseElement({ baseComponent: mock }))
     })
   }, [baseComponentMocks, baseComponents])
-
+  console.log('L61 baseComponentMocks ===', baseComponentMocks)
+  console.log('L62 baseComponents ===', baseComponents)
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const target = e.target as EventTarget & HTMLInputElement
 

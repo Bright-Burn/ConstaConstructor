@@ -1,3 +1,3 @@
-import type { IBaseComponent } from '../../../../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../../../../store'
 
 export type IBaseComponentCard = IBaseComponent

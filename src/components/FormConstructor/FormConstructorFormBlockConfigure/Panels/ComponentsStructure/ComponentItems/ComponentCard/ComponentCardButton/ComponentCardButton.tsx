@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newButton: IFormElementButton = {
       id: uuid(),
       type: FormElementDictTypes.Button,

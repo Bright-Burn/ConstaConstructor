@@ -14,7 +14,7 @@ import styles from '../styles.module.css'
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
-  const onStartDragComponentCard = (event: React.DragEvent) => {
+  const onStartDragComponentCard = () => {
     const newCheckbox: IFormElementCheckbox = {
       id: uuid(),
       type: FormElementDictTypes.Checkbox,

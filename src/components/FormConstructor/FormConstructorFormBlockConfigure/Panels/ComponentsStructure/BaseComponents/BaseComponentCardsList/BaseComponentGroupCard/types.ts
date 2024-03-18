@@ -1,4 +1,4 @@
-import type { IBaseComponent } from '../../../../../../store/baseComponentsItems'
+import type { IBaseComponent } from '../../../../../../store'
 import type { Values } from '../../../../../../utils'
 
 export interface IBaseComponentGroupCard {
