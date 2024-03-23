@@ -128,9 +128,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
             onChange={onChangeSwitch('minified')}
           />
         </>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   )
 }
