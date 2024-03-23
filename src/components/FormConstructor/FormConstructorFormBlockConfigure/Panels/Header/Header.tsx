@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { IconDownload } from '@consta/icons/IconDownload'
 import { IconQuestion } from '@consta/icons/IconQuestion'
 import { IconUpload } from '@consta/icons/IconUpload'

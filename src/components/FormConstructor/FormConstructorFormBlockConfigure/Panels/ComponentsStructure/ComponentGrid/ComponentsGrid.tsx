@@ -1,4 +1,4 @@
-import { groupElement } from '../ComponentItems/content'
+import { groupElement } from '../ComponentItems'
 
 import { ComponentGrid } from './ComponentGrid'
 

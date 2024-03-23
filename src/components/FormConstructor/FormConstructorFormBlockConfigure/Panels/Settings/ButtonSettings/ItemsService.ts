@@ -18,14 +18,13 @@ export const useItemsHandlers = (
   const dispatch = useAppDispatch()
 
   const onChangeField = (
-    value: ButtonPropSize | ButtonPropForm | ButtonPropView | string | null,
+    value: ButtonPropSize | ButtonPropForm | ButtonPropView | null,
     field: keyof ButtonProps,
   ) => {
     const newProps: BrandButtonProps = {
       props: { ...selectedElementProps },
       type: 'Button',
     }
-    // @ts-expect-error
     newProps.props[field] = value
     onDispatch(selectedElement, newProps)
   }
