@@ -15,7 +15,6 @@ import {
 import { readFile } from '../../../../utils'
 import {
   cardMock,
-  customCardsTemplateMock,
   dashboardMock,
   footerWithSwitchMock,
   gridMock,
@@ -34,7 +33,6 @@ import styles from './styles.module.css'
 export const BaseComponents: FC = () => {
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
   const baseComponentMocks = [
-    customCardsTemplateMock,
     placeholderMock,
     cardMock,
     gridMock,

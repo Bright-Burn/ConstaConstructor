@@ -6,11 +6,6 @@ export { cardMock, cardMockId, CardWithBarChart } from './CardWithBarChart'
 export { CheckboxFormElement } from './CheckboxFormElement'
 export { ChoiceGroupFormElement } from './ChoiceGroupFormElement'
 export { ComboBoxFormElement } from './ComboBoxFormElement'
-export {
-  CustomCards,
-  customCardsTemplateMock,
-  customCardsTemplateMockId,
-} from './CustomCardsTemplate'
 export { Dashboard, dashboardMock, dashboardMockId } from './Dashboard'
 export { DatePickerFormElement } from './DatePickerFormElement'
 export { DataTimeFormElement } from './DateTimeFormElement'

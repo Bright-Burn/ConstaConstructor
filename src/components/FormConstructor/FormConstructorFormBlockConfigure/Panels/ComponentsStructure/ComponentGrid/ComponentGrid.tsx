@@ -9,10 +9,12 @@ import { ComponentCardLayout } from '../ComponentItems'
 export const ComponentGrid: FC<IComponentCard> = ({ name, groupElementType, isOuter }) => {
   return (
     <div>
-      <SwitchComponent testValue={groupElementType || ''}>
-        <ComponentCardLayout name={name} value={FormGroupsDictTypes.Layout} isOuter={isOuter} />
-        <></>
-      </SwitchComponent>
+      {groupElementType ? (
+        <SwitchComponent testValue={groupElementType}>
+          <ComponentCardLayout name={name} value={FormGroupsDictTypes.Layout} isOuter={isOuter} />
+          <></>
+        </SwitchComponent>
+      ) : null}
     </div>
   )
 }

@@ -38,7 +38,6 @@ export type {
   ComboboxProps,
   IFormElementComboBox,
 } from './comboBoxTypes'
-export type { CustomCardsProps, IFormElementCustomCards } from './customCardsTypes'
 export type {
   BrandDataTimeProps,
   DataTimeElement,

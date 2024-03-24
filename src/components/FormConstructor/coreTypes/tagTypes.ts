@@ -1,4 +1,4 @@
-import type { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
+import type { TagBasePropSize } from '@consta/uikit/TagBase'
 
 import type { IconNames } from './iconTypes'
 import type {

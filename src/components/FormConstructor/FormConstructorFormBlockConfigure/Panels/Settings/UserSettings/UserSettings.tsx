@@ -17,10 +17,16 @@ type UserSettingsType = {
 }
 
 export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selectedElement }) => {
-  const { itemsProps, onChangeSwitch, onChangeField } = useItemsHandlers(
-    selectedElementProps,
-    selectedElement,
-  )
+  const {
+    itemsProps,
+    onChangeSwitch,
+    onChangeInfo,
+    onChangeName,
+    onChangeAvatarUrl,
+    onChangeStatus,
+    onChangeView,
+    onChangeSize,
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <div className={styles.settingsBlockUser}>
@@ -33,7 +39,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
           size="xs"
           value={itemsProps.size}
           onChange={({ value }) => {
-            onChangeField(value, 'size')
+            value && onChangeSize(value)
           }}
         />
         <Select
@@ -44,7 +50,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
           size="xs"
           value={itemsProps.view}
           onChange={({ value }) => {
-            onChangeField(value, 'view')
+            value && onChangeView(value)
           }}
         />
       </div>
@@ -63,7 +69,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
           size="xs"
           value={itemsProps.status}
           onChange={({ value }) => {
-            onChangeField(value, 'status')
+            value && onChangeStatus(value)
           }}
         />
       </div>
@@ -72,7 +78,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
         size="xs"
         value={itemsProps.avatarUrl}
         onChange={({ value }) => {
-          onChangeField(value, 'avatarUrl')
+          value && onChangeAvatarUrl(value)
         }}
       />
       <TextField
@@ -80,7 +86,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
         size="xs"
         value={itemsProps.name}
         onChange={({ value }) => {
-          onChangeField(value, 'name')
+          value && onChangeName(value)
         }}
       />
       <TextField
@@ -88,7 +94,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
         size="xs"
         value={itemsProps.info}
         onChange={({ value }) => {
-          onChangeField(value, 'info')
+          value && onChangeInfo(value)
         }}
       />
       <Switch

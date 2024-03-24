@@ -26,10 +26,6 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   const { selectedElement } = useAppSelector(state => state.formConstructor)
   const isGridVisible = useAppSelector(checkIsGridVisible)
 
-  const element = useAppSelector(getElementById(selectedElement?.elementId))
-
-  const props = element?.props
-
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
