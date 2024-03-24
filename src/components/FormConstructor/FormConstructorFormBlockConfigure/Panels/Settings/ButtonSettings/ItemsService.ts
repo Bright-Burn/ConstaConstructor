@@ -16,16 +16,36 @@ export const useItemsHandlers = (
   selectedElement: ButtonElement,
 ) => {
   const dispatch = useAppDispatch()
-
-  const onChangeField = (
-    value: ButtonPropSize | ButtonPropForm | ButtonPropView | null,
-    field: keyof ButtonProps,
-  ) => {
+  const onChangeLabel = (value: string) => {
     const newProps: BrandButtonProps = {
       props: { ...selectedElementProps },
       type: 'Button',
     }
-    newProps.props[field] = value
+    newProps.props.label = value
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeSize = (value: ButtonPropSize) => {
+    const newProps: BrandButtonProps = {
+      props: { ...selectedElementProps },
+      type: 'Button',
+    }
+    newProps.props.size = value
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeView = (value: ButtonPropView) => {
+    const newProps: BrandButtonProps = {
+      props: { ...selectedElementProps },
+      type: 'Button',
+    }
+    newProps.props.view = value
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeForm = (value: ButtonPropForm) => {
+    const newProps: BrandButtonProps = {
+      props: { ...selectedElementProps },
+      type: 'Button',
+    }
+    newProps.props.form = value
     onDispatch(selectedElement, newProps)
   }
 
@@ -39,7 +59,7 @@ export const useItemsHandlers = (
         },
         type: 'Button',
       }
-      selectedElement && onDispatch(selectedElement, newProps)
+      onDispatch(selectedElement, newProps)
       if (propsName === 'action' && checked) {
         onChangeButtonAction('ButtonModal')
       }
@@ -110,16 +130,16 @@ export const useItemsHandlers = (
   }
 
   const removeConnectedElement = () => {
-    if (selectedElement) {
-      // const connectedElementIds = allElementsTree.get(selectedElement.elementId)
-      // connectedElementIds?.forEach((id: any) => {
-      //   dispatch(
-      //     formConstructorSlice.actions.deleteFormElement({
-      //       elementId: id,
-      //     }),
-      //   )
-      // })
-    }
+    // if (selectedElement) {
+    //   // const connectedElementIds = allElementsTree.get(selectedElement.elementId)
+    //   // connectedElementIds?.forEach((id: any) => {
+    //   //   dispatch(
+    //   //     formConstructorSlice.actions.deleteFormElement({
+    //   //       elementId: id,
+    //   //     }),
+    //   //   )
+    //   // })
+    // }
   }
 
   const onUpdateSelected = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
@@ -165,11 +185,14 @@ export const useItemsHandlers = (
   }
 
   return {
-    onChangeField,
     onChangeSwitch,
     onChangeButtonAction,
     onChangeIcon,
     onChangeIconR,
+    onChangeLabel,
+    onChangeSize,
+    onChangeView,
+    onChangeForm,
     itemsProps: {
       size: selectedElementProps.size,
       view: selectedElementProps.view,

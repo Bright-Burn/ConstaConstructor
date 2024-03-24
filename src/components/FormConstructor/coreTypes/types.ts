@@ -64,7 +64,6 @@ export const FormElementDictTypes = {
   ProjectGrid: 'ProjectGrid',
   Placeholder: 'Placeholder',
   CardWithBarChart: 'CardWithBarChart',
-  CustomCards: 'CustomCards',
   Dashboard: 'Dashboard',
   SimpleForm: 'SimpleForm',
   WizardForm: 'WizardForm',
@@ -151,21 +150,19 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
                                               ? {}
                                               : {} & T extends 'CardWithBarChart'
                                                 ? {}
-                                                : {} & T extends 'CustomCards'
+                                                : {} & T extends 'Dashboard'
                                                   ? {}
-                                                  : {} & T extends 'Dashboard'
+                                                  : {} & T extends 'SimpleForm'
                                                     ? {}
-                                                    : {} & T extends 'SimpleForm'
+                                                    : {} & T extends 'WizardForm'
                                                       ? {}
-                                                      : {} & T extends 'WizardForm'
+                                                      : {} & T extends 'FooterWithSwitch'
                                                         ? {}
-                                                        : {} & T extends 'FooterWithSwitch'
+                                                        : {} & T extends 'PrototypeTextElement'
                                                           ? {}
-                                                          : {} & T extends 'PrototypeTextElement'
+                                                          : {} & T extends 'PrototypeRectangleElement'
                                                             ? {}
-                                                            : {} & T extends 'PrototypeRectangleElement'
-                                                              ? {}
-                                                              : {}
+                                                            : {}
 }
 
 export interface IUnion {

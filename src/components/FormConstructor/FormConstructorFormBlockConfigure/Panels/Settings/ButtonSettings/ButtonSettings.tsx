@@ -23,8 +23,16 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const { itemsProps, onChangeField, onChangeSwitch, onChangeIcon, onChangeIconR } =
-    useItemsHandlers(selectedElementProps, selectedElement)
+  const {
+    itemsProps,
+    onChangeSwitch,
+    onChangeIcon,
+    onChangeIconR,
+    onChangeLabel,
+    onChangeSize,
+    onChangeView,
+    onChangeForm,
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   return (
     <div className={styles.buttonPropsSettings}>
@@ -37,7 +45,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
               size="xs"
               value={`${itemsProps.label}`}
               onChange={({ value }) => {
-                onChangeField(value, 'label')
+                value && onChangeLabel(value)
               }}
             />
             <div className={styles.rowSettings}>
@@ -50,7 +58,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                 size="xs"
                 value={itemsProps.size || 's'}
                 onChange={({ value }) => {
-                  onChangeField(value, 'size')
+                  value && onChangeSize(value)
                 }}
               />
               <FilledSettings
@@ -68,7 +76,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                 size="xs"
                 value={itemsProps.view}
                 onChange={({ value }) => {
-                  onChangeField(value, 'view')
+                  value && onChangeView(value)
                 }}
               />
               <Select
@@ -79,7 +87,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                 size="xs"
                 value={itemsProps.form}
                 onChange={({ value }) => {
-                  onChangeField(value, 'form')
+                  value && onChangeForm(value)
                 }}
               />
             </div>

@@ -1,6 +1,5 @@
 import {
   cardMockId,
-  customCardsTemplateMockId,
   dashboardMockId,
   footerWithSwitchMockId,
   gridMockId,
@@ -19,7 +18,6 @@ export const componentsDict: Record<string, GroupCardsTypes> = {
   [wizardFormMockId]: 'Forms',
   [dashboardMockId]: 'Dashboards',
   [cardMockId]: 'Dashboards',
-  [customCardsTemplateMockId]: 'Cards',
   [gridMockId]: 'Tables',
   [footerWithSwitchMockId]: 'Footers',
   [TableMockId]: 'Tables',

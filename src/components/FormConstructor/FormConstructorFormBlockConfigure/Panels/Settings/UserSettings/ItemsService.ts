@@ -6,31 +6,61 @@ import type {
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-import type { ValueType } from './UserConstants'
-
+import type { sizeType, statusType, viewsType } from './UserConstants'
 export const useItemsHandlers = (selectedElementProps: UserProps, selectedElement: UserElement) => {
   const dispatch = useAppDispatch()
 
-  const onChangeField = (value: ValueType, field: keyof UserProps) => {
-    if (selectedElement) {
-      const newProps: BrandUserProps = {
-        props: { ...selectedElementProps, [field]: value },
-        type: 'User',
-      }
-
-      onDispatch(selectedElement, newProps)
+  const onChangeSize = (value: sizeType) => {
+    const newProps: BrandUserProps = {
+      props: { ...selectedElementProps, size: value },
+      type: 'User',
     }
+    onDispatch(selectedElement, newProps)
   }
+  const onChangeView = (value: viewsType) => {
+    const newProps: BrandUserProps = {
+      props: { ...selectedElementProps, view: value },
+      type: 'User',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeStatus = (value: statusType) => {
+    const newProps: BrandUserProps = {
+      props: { ...selectedElementProps, status: value },
+      type: 'User',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeAvatarUrl = (value: string) => {
+    const newProps: BrandUserProps = {
+      props: { ...selectedElementProps, avatarUrl: value },
+      type: 'User',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeName = (value: string) => {
+    const newProps: BrandUserProps = {
+      props: { ...selectedElementProps, name: value },
+      type: 'User',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeInfo = (value: string) => {
+    const newProps: BrandUserProps = {
+      props: { ...selectedElementProps, info: value },
+      type: 'User',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+
   const onChangeSwitch =
     (propsName: keyof UserProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: BrandUserProps = {
-          props: { ...selectedElementProps, [propsName]: checked },
-          type: 'User',
-        }
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandUserProps = {
+        props: { ...selectedElementProps, [propsName]: checked },
+        type: 'User',
       }
+      onDispatch(selectedElement, newProps)
     }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandUserProps) => {
@@ -43,7 +73,12 @@ export const useItemsHandlers = (selectedElementProps: UserProps, selectedElemen
     )
   }
   return {
-    onChangeField,
+    onChangeAvatarUrl,
+    onChangeName,
+    onChangeInfo,
+    onChangeStatus,
+    onChangeSize,
+    onChangeView,
     onChangeSwitch,
     itemsProps: {
       avatarUrl: selectedElementProps.avatarUrl,
