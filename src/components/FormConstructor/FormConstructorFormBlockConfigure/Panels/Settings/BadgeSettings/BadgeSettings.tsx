@@ -25,110 +25,101 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
 
   return (
     <div className={styles.badgeSettings}>
-      {itemsProps ? (
-        <>
-          <TextField
+      <TextField size="xs" label="Текст" value={itemsProps.label} onChange={handleOnChangeLabel} />
+      <div className={styles.rowSettings}>
+        <Select
+          className={styles.widthFlex}
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
+          items={sizes}
+          label="Размер"
+          size="xs"
+          value={itemsProps.size || 's'}
+          onChange={({ value }) => {
+            onChangeField(value, 'size')
+          }}
+        />
+        <div className={styles.columnSettings}>
+          <Text view="secondary" size="xs">
+            Вид
+          </Text>
+          <ChoiceGroup
+            value={itemsProps.view}
+            items={views}
             size="xs"
-            label="Текст"
-            value={itemsProps.label}
-            onChange={handleOnChangeLabel}
-          />
-          <div className={styles.rowSettings}>
-            <Select
-              className={styles.widthFlex}
-              getItemKey={(item: string) => item}
-              getItemLabel={(item: string) => item}
-              items={sizes}
-              label="Размер"
-              size="xs"
-              value={itemsProps.size || 's'}
-              onChange={({ value }) => {
-                onChangeField(value, 'size')
-              }}
-            />
-            <div className={styles.columnSettings}>
-              <Text view="secondary" size="xs">
-                Вид
-              </Text>
-              <ChoiceGroup
-                value={itemsProps.view}
-                items={views}
-                size="xs"
-                view="ghost"
-                getItemLabel={(item: string) => item}
-                name="ChoiceGroupExample"
-                onChange={({ value }) => {
-                  onChangeField(value, 'view')
-                }}
-              />
-            </div>
-          </div>
-          <div className={styles.rowSettings}>
-            <div className={styles.columnSettings}>
-              <Text view="secondary" size="xs">
-                Форма углов
-              </Text>
-              <ChoiceGroup
-                value={itemsProps.form}
-                items={forms}
-                size="xs"
-                view="ghost"
-                getItemLabel={(item: string) => item}
-                name="ChoiceGroupExample"
-                onChange={({ value }) => {
-                  onChangeField(value, 'form')
-                }}
-              />
-            </div>
-            <Select
-              className={styles.widthFlex}
-              getItemKey={(item: string) => item}
-              getItemLabel={(item: string) => item}
-              items={statuses}
-              label="Статус"
-              size="xs"
-              value={itemsProps.status || 'success'}
-              onChange={({ value }) => {
-                onChangeField(value, 'status')
-              }}
-            />
-          </div>
-          <Switch
-            checked={!!itemsProps.iconLeft}
-            label="Икона слева"
-            size="xs"
-            onChange={onChangeSwitch('iconLeft')}
-          />
-          <Select
-            getItemKey={(item: string) => item}
+            view="ghost"
             getItemLabel={(item: string) => item}
-            items={icons}
-            disabled={!itemsProps.iconLeft}
-            size="xs"
-            value={itemsProps.iconLeft}
-            renderItem={({ item, active, onClick, onMouseEnter }) => (
-              <div
-                className={styles.icon}
-                role="option"
-                aria-selected={active}
-                onMouseEnter={onMouseEnter}
-                onClick={onClick}>
-                {React.createElement(Icons[item], { size: 'xs' })}
-                <Text size="xs">{item}</Text>
-              </div>
-            )}
+            name="ChoiceGroupExample"
             onChange={({ value }) => {
-              onChangeIconLeft(value)
+              onChangeField(value, 'view')
             }}
           />
-          <Switch
-            label="Minified"
+        </div>
+      </div>
+      <div className={styles.rowSettings}>
+        <div className={styles.columnSettings}>
+          <Text view="secondary" size="xs">
+            Форма углов
+          </Text>
+          <ChoiceGroup
+            value={itemsProps.form}
+            items={forms}
             size="xs"
-            checked={itemsProps.minified}
-            onChange={onChangeSwitch('minified')}
+            view="ghost"
+            getItemLabel={(item: string) => item}
+            name="ChoiceGroupExample"
+            onChange={({ value }) => {
+              onChangeField(value, 'form')
+            }}
           />
-        </>
-      ) : null}
+        </div>
+        <Select
+          className={styles.widthFlex}
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
+          items={statuses}
+          label="Статус"
+          size="xs"
+          value={itemsProps.status || 'success'}
+          onChange={({ value }) => {
+            onChangeField(value, 'status')
+          }}
+        />
+      </div>
+      <Switch
+        checked={!!itemsProps.iconLeft}
+        label="Икона слева"
+        size="xs"
+        onChange={onChangeSwitch('iconLeft')}
+      />
+      <Select
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        items={icons}
+        disabled={!itemsProps.iconLeft}
+        size="xs"
+        value={itemsProps.iconLeft}
+        renderItem={({ item, active, onClick, onMouseEnter }) => (
+          <div
+            className={styles.icon}
+            role="option"
+            aria-selected={active}
+            onMouseEnter={onMouseEnter}
+            onClick={onClick}>
+            {React.createElement(Icons[item], { size: 'xs' })}
+            <Text size="xs">{item}</Text>
+          </div>
+        )}
+        onChange={({ value }) => {
+          onChangeIconLeft(value)
+        }}
+      />
+      <Switch
+        label="Minified"
+        size="xs"
+        checked={itemsProps.minified}
+        onChange={onChangeSwitch('minified')}
+      />
     </div>
   )
 }

@@ -36,177 +36,173 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
 
   return (
     <div className={styles.buttonPropsSettings}>
-      {itemsProps ? (
-        <>
-          <div className={styles.blockIcon}>
-            <TextField
-              label="Текст"
-              type="text"
+      <div className={styles.blockIcon}>
+        <TextField
+          label="Текст"
+          type="text"
+          size="xs"
+          value={`${itemsProps.label}`}
+          onChange={({ value }) => {
+            value && onChangeLabel(value)
+          }}
+        />
+        <div className={styles.rowSettings}>
+          <Select
+            className={styles.sizeFlex}
+            getItemKey={(item: string) => item}
+            getItemLabel={(item: string) => item}
+            items={sizes}
+            label="Размер"
+            size="xs"
+            value={itemsProps.size || 's'}
+            onChange={({ value }) => {
+              value && onChangeSize(value)
+            }}
+          />
+          <FilledSettings
+            selectedElement={selectedElement}
+            selectedElementProps={selectedElementProps}
+            element="Button"
+          />
+        </div>
+        <div className={styles.rowSettings}>
+          <Select
+            getItemKey={(item: string) => item}
+            getItemLabel={(item: string) => item}
+            items={views}
+            label="Вид"
+            size="xs"
+            value={itemsProps.view}
+            onChange={({ value }) => {
+              value && onChangeView(value)
+            }}
+          />
+          <Select
+            getItemKey={(item: string) => item}
+            getItemLabel={(item: string) => item}
+            items={forms}
+            label="Форма"
+            size="xs"
+            value={itemsProps.form}
+            onChange={({ value }) => {
+              value && onChangeForm(value)
+            }}
+          />
+        </div>
+        <Switch
+          checked={itemsProps.loading ?? false}
+          label="Состояние загрузки"
+          size="xs"
+          onChange={onChangeSwitch('loading')}
+        />
+        <Switch
+          checked={itemsProps.disabled ?? false}
+          label="Состояние блокировки"
+          size="xs"
+          onChange={onChangeSwitch('disabled')}
+        />
+      </div>
+      <div className={styles.blockIcon}>
+        <div className={styles.rowSettings}>
+          <div className={styles.columnSettings}>
+            <Switch
+              checked={!!itemsProps.icon}
+              label="Иконка слева"
               size="xs"
-              value={`${itemsProps.label}`}
+              onChange={onChangeSwitch('icon')}
+            />
+            <Select
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
+              items={icons}
+              size="xs"
+              disabled={!itemsProps.icon}
+              value={itemsProps.icon}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  className={styles.renderIcon}
+                  role="option"
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item], { size: 'xs' })}
+                  <Text size="xs">{item}</Text>
+                </div>
+              )}
               onChange={({ value }) => {
-                value && onChangeLabel(value)
+                onChangeIcon(value)
               }}
             />
-            <div className={styles.rowSettings}>
-              <Select
-                className={styles.sizeFlex}
-                getItemKey={(item: string) => item}
-                getItemLabel={(item: string) => item}
-                items={sizes}
-                label="Размер"
-                size="xs"
-                value={itemsProps.size || 's'}
-                onChange={({ value }) => {
-                  value && onChangeSize(value)
-                }}
-              />
-              <FilledSettings
-                selectedElement={selectedElement}
-                selectedElementProps={selectedElementProps}
-                element="Button"
-              />
-            </div>
-            <div className={styles.rowSettings}>
-              <Select
-                getItemKey={(item: string) => item}
-                getItemLabel={(item: string) => item}
-                items={views}
-                label="Вид"
-                size="xs"
-                value={itemsProps.view}
-                onChange={({ value }) => {
-                  value && onChangeView(value)
-                }}
-              />
-              <Select
-                getItemKey={(item: string) => item}
-                getItemLabel={(item: string) => item}
-                items={forms}
-                label="Форма"
-                size="xs"
-                value={itemsProps.form}
-                onChange={({ value }) => {
-                  value && onChangeForm(value)
-                }}
-              />
-            </div>
+          </div>
+          <div className={styles.columnSettings}>
             <Switch
-              checked={itemsProps.loading ?? false}
-              label="Состояние загрузки"
+              checked={!!itemsProps.iconR}
+              label="Иконка справа"
               size="xs"
-              onChange={onChangeSwitch('loading')}
+              onChange={onChangeSwitch('iconR')}
             />
-            <Switch
-              checked={itemsProps.disabled ?? false}
-              label="Состояние блокировки"
+            <Select
+              getItemKey={(item: string) => item}
+              getItemLabel={(item: string) => item}
+              items={icons}
               size="xs"
-              onChange={onChangeSwitch('disabled')}
+              disabled={!itemsProps.iconR}
+              value={itemsProps.iconR}
+              renderItem={({ item, active, onClick, onMouseEnter }) => (
+                <div
+                  className={styles.renderIcon}
+                  role="option"
+                  aria-selected={active}
+                  onMouseEnter={onMouseEnter}
+                  onClick={onClick}>
+                  {React.createElement(Icons[item], { size: 'xs' })}
+                  <Text size="xs">{item}</Text>
+                </div>
+              )}
+              onChange={({ value }) => {
+                onChangeIconR(value)
+              }}
             />
           </div>
-          <div className={styles.blockIcon}>
-            <div className={styles.rowSettings}>
-              <div className={styles.columnSettings}>
-                <Switch
-                  checked={!!itemsProps.icon}
-                  label="Иконка слева"
-                  size="xs"
-                  onChange={onChangeSwitch('icon')}
-                />
-                <Select
-                  getItemKey={(item: string) => item}
-                  getItemLabel={(item: string) => item}
-                  items={icons}
-                  size="xs"
-                  disabled={!itemsProps.icon}
-                  value={itemsProps.icon}
-                  renderItem={({ item, active, onClick, onMouseEnter }) => (
-                    <div
-                      className={styles.renderIcon}
-                      role="option"
-                      aria-selected={active}
-                      onMouseEnter={onMouseEnter}
-                      onClick={onClick}>
-                      {React.createElement(Icons[item], { size: 'xs' })}
-                      <Text size="xs">{item}</Text>
-                    </div>
-                  )}
-                  onChange={({ value }) => {
-                    onChangeIcon(value)
-                  }}
-                />
-              </div>
-              <div className={styles.columnSettings}>
-                <Switch
-                  checked={!!itemsProps.iconR}
-                  label="Иконка справа"
-                  size="xs"
-                  onChange={onChangeSwitch('iconR')}
-                />
-                <Select
-                  getItemKey={(item: string) => item}
-                  getItemLabel={(item: string) => item}
-                  items={icons}
-                  size="xs"
-                  disabled={!itemsProps.iconR}
-                  value={itemsProps.iconR}
-                  renderItem={({ item, active, onClick, onMouseEnter }) => (
-                    <div
-                      className={styles.renderIcon}
-                      role="option"
-                      aria-selected={active}
-                      onMouseEnter={onMouseEnter}
-                      onClick={onClick}>
-                      {React.createElement(Icons[item], { size: 'xs' })}
-                      <Text size="xs">{item}</Text>
-                    </div>
-                  )}
-                  onChange={({ value }) => {
-                    onChangeIconR(value)
-                  }}
-                />
-              </div>
-            </div>
-            <div>
-              <Switch
-                checked={itemsProps.onlyIcon}
-                label="Только иконка"
-                size="xs"
-                onChange={onChangeSwitch('onlyIcon')}
-              />
-              <Select
-                getItemKey={(item: string) => item}
-                getItemLabel={(item: string) => item}
-                items={icons}
-                size="xs"
-                disabled={!itemsProps.onlyIcon}
-                value={itemsProps.icon}
-                renderItem={({ item, active, onClick, onMouseEnter }) => (
-                  <div
-                    className={styles.renderIcon}
-                    role="option"
-                    aria-selected={active}
-                    onMouseEnter={onMouseEnter}
-                    onClick={onClick}>
-                    {React.createElement(Icons[item], { size: 'xs' })}
-                    <Text size="xs">{item}</Text>
-                  </div>
-                )}
-                onChange={({ value }) => {
-                  onChangeIcon(value)
-                }}
-              />
-            </div>
-          </div>
+        </div>
+        <div>
           <Switch
-            className={styles.modalPadding}
-            checked={itemsProps.activeAction}
-            label="Модальное окно при нажатии"
+            checked={itemsProps.onlyIcon}
+            label="Только иконка"
             size="xs"
-            onChange={onChangeSwitch('activeAction')}
+            onChange={onChangeSwitch('onlyIcon')}
           />
-        </>
-      ) : null}
+          <Select
+            getItemKey={(item: string) => item}
+            getItemLabel={(item: string) => item}
+            items={icons}
+            size="xs"
+            disabled={!itemsProps.onlyIcon}
+            value={itemsProps.icon}
+            renderItem={({ item, active, onClick, onMouseEnter }) => (
+              <div
+                className={styles.renderIcon}
+                role="option"
+                aria-selected={active}
+                onMouseEnter={onMouseEnter}
+                onClick={onClick}>
+                {React.createElement(Icons[item], { size: 'xs' })}
+                <Text size="xs">{item}</Text>
+              </div>
+            )}
+            onChange={({ value }) => {
+              onChangeIcon(value)
+            }}
+          />
+        </div>
+      </div>
+      <Switch
+        className={styles.modalPadding}
+        checked={itemsProps.activeAction}
+        label="Модальное окно при нажатии"
+        size="xs"
+        onChange={onChangeSwitch('activeAction')}
+      />
     </div>
   )
 }

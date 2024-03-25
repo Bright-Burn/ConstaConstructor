@@ -30,19 +30,15 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
   const [heightValue, setHeightValue] = useState<string>('227')
 
   useLayoutEffect(() => {
-    if (selectedElementProps) {
-      setHeightValue(selectedElementProps.styles?.height?.replaceAll('px', '') || '')
-      setWidthValue(selectedElementProps.styles?.width?.replaceAll('px', '') || '')
-      setProps(selectedElementProps)
-    }
+    setHeightValue(selectedElementProps.styles?.height?.replaceAll('px', '') || '')
+    setWidthValue(selectedElementProps.styles?.width?.replaceAll('px', '') || '')
+    setProps(selectedElementProps)
   }, [selectedElementProps])
 
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
-    if (selectedElementProps) {
-      setProps(selectedElementProps)
-    }
+    setProps(selectedElementProps)
   }, [selectedElementProps])
 
   const onChangeCardField =
@@ -180,9 +176,7 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
             onChange={onChangeCardSwitch('shadow')}
           />
         </>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   )
 }
