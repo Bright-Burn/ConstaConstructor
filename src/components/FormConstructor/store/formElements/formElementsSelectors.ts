@@ -24,7 +24,9 @@ export const getElementsOnLayer = (parentId: string) =>
   })
 export const getFormElAsMap = (state: RootState): Map<string, IFormElement | IGroupElement> => {
   const map = new Map<string, IFormElement | IGroupElement>()
-  selectAll(state).forEach(el => map.set(el.id, el))
+  selectAll(state).forEach(el => {
+    map.set(el.id, el)
+  })
   return map
 }
 export const getElementById = (id?: string) => (state: RootState) =>

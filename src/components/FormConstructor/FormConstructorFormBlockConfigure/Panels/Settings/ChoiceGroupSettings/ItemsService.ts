@@ -40,7 +40,7 @@ export const useItemsHandlers = (
             ...itemsProps,
             {
               label: `Вариант ${i + 1}`,
-            } as DeepWriteable<ChoiceGroupItem>,
+            } satisfies DeepWriteable<ChoiceGroupItem>,
           ]
         }
       } else {
@@ -54,25 +54,21 @@ export const useItemsHandlers = (
   }
 
   const onChangeItems = (items: DeepWriteable<ChoiceGroupItem[]>) => {
-    if (items) {
-      const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps },
-        type: 'ChoiceGroup',
-      }
-      newProps.props.items = [...items]
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandOwnChoiceGroupProps = {
+      props: { ...selectedElementProps },
+      type: 'ChoiceGroup',
     }
+    newProps.props.items = [...items]
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeField = (value: ValueType, field: keyof DeepWriteable<OwnChoiceGroupProps>) => {
-    if (selectedElement) {
-      const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps, [field]: value },
-        type: 'ChoiceGroup',
-      }
-
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandOwnChoiceGroupProps = {
+      props: { ...selectedElementProps, [field]: value },
+      type: 'ChoiceGroup',
     }
+
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeSwitch =

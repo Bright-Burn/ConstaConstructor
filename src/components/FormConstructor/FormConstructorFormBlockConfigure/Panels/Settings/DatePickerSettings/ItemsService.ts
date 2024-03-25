@@ -7,6 +7,7 @@ import type {
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './fileTypes'
+import type { statusType } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: DatePickerProps,
@@ -24,48 +25,67 @@ export const useItemsHandlers = (
   }
 
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps },
-        type: 'DatePicker',
-      }
-      let itemsProps: Date[] = newProps.props.events
-      const currentLength = itemsProps.length
-      if (currentLength && Number(value) > currentLength) {
-        for (let i = currentLength; i < Number(value); i++) {
-          itemsProps = [...itemsProps, new Date()]
-        }
-      } else {
-        for (let i = 0; i < currentLength - Number(value); i++) {
-          itemsProps = [...itemsProps.slice(0, Number(value))]
-        }
-      }
-      if (Number(value) === 1 && itemsProps.length === 0) {
+    const newProps: BrandDatePickerProps = {
+      props: { ...selectedElementProps },
+      type: 'DatePicker',
+    }
+    let itemsProps: Date[] = newProps.props.events
+    const currentLength = itemsProps.length
+    if (currentLength && Number(value) > currentLength) {
+      for (let i = currentLength; i < Number(value); i++) {
         itemsProps = [...itemsProps, new Date()]
       }
-      newProps.props.events = itemsProps
-      onDispatch(selectedElement, newProps)
+    } else {
+      for (let i = 0; i < currentLength - Number(value); i++) {
+        itemsProps = [...itemsProps.slice(0, Number(value))]
+      }
     }
+    if (Number(value) === 1 && itemsProps.length === 0) {
+      itemsProps = [...itemsProps, new Date()]
+    }
+    newProps.props.events = itemsProps
+    onDispatch(selectedElement, newProps)
   }
-
-  const onChangeField = (value: ValueType, field: keyof DatePickerProps) => {
-    if (selectedElement) {
-      const newProps: BrandDatePickerProps = {
-        props: { ...selectedElementProps, [field]: value },
-        type: 'DatePicker',
-      }
-      if (field === 'label' && value === true) {
-        newProps.props.label = 'Заголовок'
-      }
-      if (field === 'caption' && value === true) {
-        newProps.props.caption = 'Подпись'
-      }
-      onDispatch(selectedElement, newProps)
+  const onChangeCaption = (caption: string) => {
+    const newProps: BrandDatePickerProps = {
+      props: { ...selectedElementProps, caption },
+      type: 'DatePicker',
     }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeLabel = (label: string) => {
+    const newProps: BrandDatePickerProps = {
+      props: { ...selectedElementProps, label },
+      type: 'DatePicker',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeStatus = (status: statusType) => {
+    const newProps: BrandDatePickerProps = {
+      props: { ...selectedElementProps, status: status === '' ? undefined : status },
+      type: 'DatePicker',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeField = (value: ValueType, field: keyof DatePickerProps) => {
+    const newProps: BrandDatePickerProps = {
+      props: { ...selectedElementProps, [field]: value },
+      type: 'DatePicker',
+    }
+    if (field === 'label' && value === true) {
+      newProps.props.label = 'Заголовок'
+    }
+    if (field === 'caption' && value === true) {
+      newProps.props.caption = 'Подпись'
+    }
+    onDispatch(selectedElement, newProps)
   }
   return {
     onChangeField,
     onChangeItemsCount,
+    onChangeCaption,
+    onChangeLabel,
+    onChangeStatus,
     itemsProps: {
       type: selectedElementProps.type,
       form: selectedElementProps.form,

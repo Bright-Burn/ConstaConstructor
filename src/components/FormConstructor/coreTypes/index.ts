@@ -20,7 +20,7 @@ export { buttonActions, buttonActionsActive } from './buttonTypes'
 export type { CardElementProps, CardElementPropsStyles, CardElementStyles } from './cardTypes'
 export type { BrandCardElementPropsStyles, CardElement } from './cardTypes'
 export type { cardWithChartProps, IFormElementCardWithChart } from './cardWithBarChartTypes'
-export type { CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
+export type { CheckboxElement, CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 export type { BrandCheckboxProps } from './checkboxTypes'
 export type {
   BrandOwnChoiceGroupProps,

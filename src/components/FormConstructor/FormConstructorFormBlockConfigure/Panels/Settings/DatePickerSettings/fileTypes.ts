@@ -24,5 +24,4 @@ export type ValueType =
   | 'top'
   | 'left'
   | boolean
-  | string
   | Date[]

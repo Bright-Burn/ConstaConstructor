@@ -29,7 +29,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
   const props = { ...selectedElementProps }
 
   const onChangeSize = (value: IconPropSize | null) => {
-    if (selectedElement && value) {
+    if (value) {
       const newProps: BrandIconProps = {
         props: { ...selectedElementProps },
         type: 'Icon',
@@ -40,7 +40,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
   }
 
   const onChangeView = (value: IconPropView | null) => {
-    if (selectedElement && value) {
+    if (value) {
       const newProps: BrandIconProps = {
         props: { ...selectedElementProps },
         type: 'Icon',
@@ -51,7 +51,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
   }
 
   const onChangeIcon = (value: IconNames | null) => {
-    if (selectedElement && value) {
+    if (value) {
       const newProps: BrandIconProps = {
         props: { ...selectedElementProps },
         type: 'Icon',
@@ -73,61 +73,57 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
 
   return (
     <div className={styles.iconSettings}>
-      {props ? (
-        <>
-          <div className={styles.rowSettings}>
-            <Select
-              getItemKey={(item: string) => item}
-              getItemLabel={(item: string) => item}
-              items={sizes}
-              label="Размер"
-              size="xs"
-              value={props.size}
-              onChange={({ value }) => {
-                onChangeSize(value)
-              }}
-            />
-            <Select
-              getItemKey={(item: string) => item}
-              getItemLabel={(item: string) => item}
-              items={icons}
-              size="xs"
-              value={props.icons}
-              renderItem={({ item, active, onClick, onMouseEnter }) => (
-                <div
-                  className={styles.iconItem}
-                  role="option"
-                  aria-selected={active}
-                  onMouseEnter={onMouseEnter}
-                  onClick={onClick}>
-                  {React.createElement(Icons[item], { size: 'xs' })}
-                  <Text size="xs">{item}</Text>
-                </div>
-              )}
-              renderValue={({ item }) => (
-                <div className={styles.iconItem}>
-                  {React.createElement(Icons[item], { size: 'xs' })}
-                  <Text size="xs">{item}</Text>
-                </div>
-              )}
-              onChange={({ value }) => {
-                onChangeIcon(value)
-              }}
-            />
-          </div>
-          <Select
-            getItemKey={(item: string) => item}
-            getItemLabel={(item: string) => item}
-            items={views}
-            label="Вид"
-            size="xs"
-            value={props.view}
-            onChange={({ value }) => {
-              onChangeView(value)
-            }}
-          />
-        </>
-      ) : null}
+      <div className={styles.rowSettings}>
+        <Select
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
+          items={sizes}
+          label="Размер"
+          size="xs"
+          value={props.size}
+          onChange={({ value }) => {
+            onChangeSize(value)
+          }}
+        />
+        <Select
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
+          items={icons}
+          size="xs"
+          value={props.icons}
+          renderItem={({ item, active, onClick, onMouseEnter }) => (
+            <div
+              className={styles.iconItem}
+              role="option"
+              aria-selected={active}
+              onMouseEnter={onMouseEnter}
+              onClick={onClick}>
+              {React.createElement(Icons[item], { size: 'xs' })}
+              <Text size="xs">{item}</Text>
+            </div>
+          )}
+          renderValue={({ item }) => (
+            <div className={styles.iconItem}>
+              {React.createElement(Icons[item], { size: 'xs' })}
+              <Text size="xs">{item}</Text>
+            </div>
+          )}
+          onChange={({ value }) => {
+            onChangeIcon(value)
+          }}
+        />
+      </div>
+      <Select
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        items={views}
+        label="Вид"
+        size="xs"
+        value={props.view}
+        onChange={({ value }) => {
+          onChangeView(value)
+        }}
+      />
     </div>
   )
 }
