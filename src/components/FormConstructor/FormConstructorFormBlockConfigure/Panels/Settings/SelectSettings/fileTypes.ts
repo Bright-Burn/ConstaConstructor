@@ -6,6 +6,8 @@ import type {
 
 import type { PropForm, selectitemType } from '../../../../coreTypes'
 
+import type { dropdownFormType } from './types'
+
 export type ValueType =
   | TextFieldPropStatus
   | PropForm
@@ -16,4 +18,4 @@ export type ValueType =
   | boolean
   | null
   | selectitemType
-  | string
+  | dropdownFormType

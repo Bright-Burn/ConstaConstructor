@@ -1,6 +1,6 @@
 import type { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
 
-import type { PropForm } from '../../../../coreTypes'
+import type { PropForm, selectStatus } from '../../../../coreTypes'
 
 export const sizeArray: TextFieldPropSize[] = ['xs', 's', 'm', 'l']
 
@@ -20,8 +20,10 @@ export const formArray: PropForm[] = [
   'round',
   'roundClear',
 ]
-export const statusArray = ['', 'alert', 'success', 'warning']
+export const statusArray: selectStatus[] = ['', 'alert', 'success', 'warning']
+export type StatusType = (typeof statusArray)[number]
 
 export const labelPositionArray: ['top', 'left'] = ['top', 'left']
 
-export const dropdownFormArray = ['default', 'round', 'brick']
+export type dropdownFormType = 'default' | 'round' | 'brick'
+export const dropdownFormArray: dropdownFormType[] = ['default', 'round', 'brick']

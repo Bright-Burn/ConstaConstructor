@@ -14,15 +14,13 @@ export const useTextSettingsStore = (
   const dispatch = useAppDispatch()
 
   const onDispatch = (newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps) => {
-    if (selectedElement.elementType) {
-      dispatch(
-        setSelectedElement({
-          elementType: selectedElement.elementType,
-          elementId: selectedElement.elementId,
-          newProps,
-        }),
-      )
-    }
+    dispatch(
+      setSelectedElement({
+        elementType: selectedElement.elementType,
+        elementId: selectedElement.elementId,
+        newProps,
+      }),
+    )
   }
 
   return {

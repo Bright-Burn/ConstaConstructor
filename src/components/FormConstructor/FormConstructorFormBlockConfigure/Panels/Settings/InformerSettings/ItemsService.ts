@@ -1,10 +1,11 @@
 import type { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
 
-import type { InformerElementProps, ISelectedElement } from '../../../../coreTypes'
 import type {
   BrandInformerElementProps,
   InformerElement,
-} from '../../../../coreTypes/informerTypes'
+  InformerElementProps,
+  ISelectedElement,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
@@ -12,21 +13,38 @@ export const useItemsHandlers = (
   selectedElement: InformerElement,
 ) => {
   const dispatch = useAppDispatch()
-
+  const onChangeTitle = (value: string) => {
+    const newProps: BrandInformerElementProps = {
+      props: {
+        ...selectedElementProps,
+        title: value,
+      },
+      type: 'Informer',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeLabel = (value: string) => {
+    const newProps: BrandInformerElementProps = {
+      props: {
+        ...selectedElementProps,
+        label: value,
+      },
+      type: 'Informer',
+    }
+    onDispatch(selectedElement, newProps)
+  }
   const onChangeField = (
-    value: InformerPropSize | InformerPropView | InformerPropStatus | string | null,
+    value: InformerPropSize | InformerPropView | InformerPropStatus | null,
     field: keyof InformerElementProps,
   ) => {
-    if (selectedElement) {
-      const newProps: BrandInformerElementProps = {
-        props: {
-          ...selectedElementProps,
-          [field]: value,
-        },
-        type: 'Informer',
-      }
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandInformerElementProps = {
+      props: {
+        ...selectedElementProps,
+        [field]: value,
+      },
+      type: 'Informer',
     }
+    onDispatch(selectedElement, newProps)
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandInformerElementProps) => {
@@ -41,6 +59,8 @@ export const useItemsHandlers = (
 
   return {
     onChangeField,
+    onChangeTitle,
+    onChangeLabel,
     itemsProps: {
       size: selectedElementProps.size,
       view: selectedElementProps.view,

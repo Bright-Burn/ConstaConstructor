@@ -6,8 +6,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { RadioButtonProps } from '../../../../coreTypes'
-import type { RadioButtonElement } from '../../../../coreTypes/radioButtonTypes'
+import type { RadioButtonElement, RadioButtonProps } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
 import { alignArray, sizeArray, viewArray } from './types'

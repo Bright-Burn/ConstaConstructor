@@ -1,13 +1,12 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import { Collapse } from '@consta/uikit/Collapse'
 import type { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { ListProps } from '../../../../coreTypes'
-import type { ListElement } from '../../../../coreTypes/ListTypes'
+import type { ListElement, ListProps } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
 import { FormArray, innerOffsetArray, sizeArray } from './types'

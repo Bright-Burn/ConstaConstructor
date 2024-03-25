@@ -2,13 +2,7 @@ import type { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/ui
 
 import type { ItemList } from '../../../../coreTypes'
 
-export type ValueType =
-  | ListPropSize
-  | ItemList[]
-  | ListPropInnerOffset
-  | ListPropForm
-  | string
-  | null
+export type ValueType = ListPropSize | ItemList[] | ListPropInnerOffset | ListPropForm | null
 
 export const FormArray: ListPropForm[] = ['default', 'brick', 'round']
 
