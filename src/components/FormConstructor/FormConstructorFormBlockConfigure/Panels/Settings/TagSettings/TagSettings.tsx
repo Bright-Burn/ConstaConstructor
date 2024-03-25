@@ -1,14 +1,13 @@
 import type { FC } from 'react'
 import React from 'react'
-import type { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
+import type { TagBasePropSize } from '@consta/uikit/TagBase'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { TagElement, TagProps } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
-import { icons } from '../IconSettings/IconsConstants'
+import { Icons, icons } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
 import type { TagBasePropGroup, TagBasePropMode } from './types'

@@ -1,7 +1,5 @@
 import type { IconPropSize, IconPropView } from '@consta/uikit/Icon'
 
-import type { IconNames } from '../../../../coreTypes'
-
 export const sizes: IconPropSize[] = ['m', 's', 'l', 'xs']
 export const views: IconPropView[] = [
   'primary',
@@ -13,48 +11,4 @@ export const views: IconPropView[] = [
   'success',
   'warning',
   'disabled',
-]
-
-export const icons: IconNames[] = [
-  'IconAlert',
-  'IconHealth',
-  'IconInfo',
-  'IconQuestion',
-  'IconRouble',
-  'IconWarning',
-  'IconAdd',
-  'IconAddToComparison',
-  'IconAllDone',
-  'IconArrowLast',
-  'IconArrowFirst',
-  'IconArrowNext',
-  'IconArrowPrevious',
-  'IconArrowRedone',
-  'IconArrowUndone',
-  'IconCancel',
-  'IconCheck',
-  'IconClose',
-  'IconCopy',
-  'IconDownload',
-  'IconDraggable',
-  'IconEdit',
-  'IconExit',
-  'IconEye',
-  'IconEyeClose',
-  'IconInComparison',
-  'IconIntroduction',
-  'IconLoading',
-  'IconOpenInNew',
-  'IconPaste',
-  'IconRemove',
-  'IconRemoveFromComparison',
-  'IconReply',
-  'IconResize',
-  'IconRestart',
-  'IconRevert',
-  'IconRoute',
-  'IconShuffle',
-  'IconSlide',
-  'IconTrash',
-  'IconUpload',
 ]

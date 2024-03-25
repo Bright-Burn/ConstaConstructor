@@ -30,7 +30,7 @@ export const FormBlock: FC = () => {
       <Pages pages={pages} />
       <div className={styles.formBlock}>
         {pages.map(page =>
-          page && page.id === selectedPageId ? (
+          page.id === selectedPageId ? (
             <div key={page.id} className={styles.formBlockContent} id="formBlock">
               <DroppableLayer parentElementId={page.id} />
             </div>

@@ -1,7 +1,11 @@
 import type { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
-import type { ISelectedElement, SwitchProps } from '../../../../coreTypes'
-import type { BrandSwitchProps, SwitchElement } from '../../../../coreTypes/SwitchTypes'
+import type {
+  BrandSwitchProps,
+  ISelectedElement,
+  SwitchElement,
+  SwitchProps,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
@@ -65,13 +69,11 @@ export const useItemsHandlers = (
   const onChangeSwitch =
     (propsName: keyof SwitchProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: BrandSwitchProps = {
-          props: { ...selectedElementProps, [propsName]: checked },
-          type: 'Switch',
-        }
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandSwitchProps = {
+        props: { ...selectedElementProps, [propsName]: checked },
+        type: 'Switch',
       }
+      onDispatch(selectedElement, newProps)
     }
 
   return {

@@ -24,31 +24,27 @@ export const useItemsHandlers = (
     value: BadgePropSize | BadgePropView | BadgePropStatus | BadgePropForm | null,
     field: keyof BadgeProps,
   ) => {
-    if (selectedElement) {
-      const newProps: BrandBadgeProps = {
-        props: { ...selectedElementProps, [field]: value },
-        type: 'Badge',
-      }
-
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandBadgeProps = {
+      props: { ...selectedElementProps, [field]: value },
+      type: 'Badge',
     }
+
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof BadgeProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElementProps) {
-        const newProps: BrandBadgeProps = {
-          props: { ...selectedElementProps, [propsName]: checked },
-          type: 'Badge',
-        }
-
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandBadgeProps = {
+        props: { ...selectedElementProps, [propsName]: checked },
+        type: 'Badge',
       }
+
+      onDispatch(selectedElement, newProps)
     }
 
   const onChangeIconLeft = (value: IconNames | null) => {
-    if (selectedElement && value) {
+    if (value) {
       const newProps: BrandBadgeProps = {
         props: { ...selectedElementProps },
         type: 'Badge',
@@ -60,15 +56,13 @@ export const useItemsHandlers = (
   }
 
   const handleOnChangeLabel = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: BrandBadgeProps = {
-        props: { ...selectedElementProps },
-        type: 'Badge',
-      }
-      newProps.props.label = value || undefined
-
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandBadgeProps = {
+      props: { ...selectedElementProps },
+      type: 'Badge',
     }
+    newProps.props.label = value || undefined
+
+    onDispatch(selectedElement, newProps)
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandBadgeProps) => {

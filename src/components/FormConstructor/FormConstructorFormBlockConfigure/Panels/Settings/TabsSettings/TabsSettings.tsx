@@ -6,10 +6,8 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { IconNames, TabsElementProps } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
-import type { TabsElement } from '../../../../coreTypes/tabsTypes'
-import { icons } from '../IconSettings/IconsConstants'
+import type { IconNames, TabsElement, TabsElementProps } from '../../../../coreTypes'
+import { Icons, icons } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
 import { linePositionArray, sizeArray } from './types'
@@ -48,13 +46,14 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
 
   const onTabIconEditLeft = (value: string | null, index: number) => {
     const newTabs = [...itemsProps.items]
-    if (value !== null)
-      (newTabs[index] = {
+    if (value !== null) {
+      newTabs[index] = {
         ...newTabs[index],
         iconLeft: Icons[value as IconNames],
         labelIconLeft: value,
-      }),
-        onChangeItems(newTabs)
+      }
+    }
+    onChangeItems(newTabs)
   }
 
   return (
@@ -118,7 +117,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
         }}>
         {itemsProps.items.map((tab, index) => {
           return (
-            <div className={style.rowSettings}>
+            <div key={tab.id} className={style.rowSettings}>
               <TextField
                 key={index}
                 className={style.flexWidth}

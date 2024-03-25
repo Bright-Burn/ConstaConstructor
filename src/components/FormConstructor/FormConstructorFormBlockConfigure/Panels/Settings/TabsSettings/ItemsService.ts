@@ -1,7 +1,12 @@
 import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 
-import type { ISelectedElement, tabItemType, TabsElementProps } from '../../../../coreTypes'
-import type { BrandTabsElementProps, TabsElement } from '../../../../coreTypes/tabsTypes'
+import type {
+  BrandTabsElementProps,
+  ISelectedElement,
+  tabItemType,
+  TabsElement,
+  TabsElementProps,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { FitMode } from './types'
@@ -53,15 +58,13 @@ export const useItemsHandlers = (
     }
   }
   const onChangeItems = (items: tabItemType[]) => {
-    if (items) {
-      const newProps: BrandTabsElementProps = {
-        props: { ...selectedElementProps },
-        type: 'Tabs',
-      }
-      newProps.props.items = [...items]
-      newProps.props.value = items[0]
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandTabsElementProps = {
+      props: { ...selectedElementProps },
+      type: 'Tabs',
     }
+    newProps.props.items = [...items]
+    newProps.props.value = items[0]
+    onDispatch(selectedElement, newProps)
   }
   const onChangeLinePosition = (value: TabsPropLinePosition | null) => {
     if (value) {
@@ -107,19 +110,17 @@ export const useItemsHandlers = (
   const onChangeSwitch =
     (propsName: keyof TabsElementProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: BrandTabsElementProps = {
-          props: { ...selectedElementProps, [propsName]: checked },
-          type: 'Tabs',
-        }
-        if (propsName === 'view' && checked) {
-          onChangeView('bordered')
-        }
-        if (propsName === 'view' && !checked) {
-          onChangeView(null)
-        }
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandTabsElementProps = {
+        props: { ...selectedElementProps, [propsName]: checked },
+        type: 'Tabs',
       }
+      if (propsName === 'view' && checked) {
+        onChangeView('bordered')
+      }
+      if (propsName === 'view' && !checked) {
+        onChangeView(null)
+      }
+      onDispatch(selectedElement, newProps)
     }
 
   return {

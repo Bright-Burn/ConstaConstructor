@@ -20,8 +20,7 @@ import type {
   IconNames,
   OwnChoiceGroupProps,
 } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
-import { icons } from '../IconSettings/IconsConstants'
+import { Icons, icons } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
 import { formArray, sizeArray, viewArray } from './types'
