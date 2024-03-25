@@ -46,35 +46,31 @@ export const Settings: FC = () => {
   if (isViewMode) {
     return null
   }
-  return (
-    <>
-      {settingsPanelState ? (
-        <div className={`${styles.settingsBlock} ${styles.settingsContainer} `}>
-          <SettingPanelQualifier />
-          <div className={styles.exportText}>
-            <TextField
-              width="full"
-              value={moduleName}
-              type="text"
-              size="xs"
-              label="Экспортировать компонент"
-              placeholder="Введите название компонента"
-              onChange={changeTextFieldValue}
-            />
-            <Button
-              className={styles.exportButton}
-              view="clear"
-              size="xs"
-              iconLeft={IconUpload}
-              onClick={onSaveModule}
-            />
-          </div>
-        </div>
-      ) : (
-        <div className={styles.toggleButton}>
-          <Button onlyIcon={true} iconLeft={IconArrowLeft} size="s" onClick={toggleSettingsPanel} />
-        </div>
-      )}
-    </>
+  return settingsPanelState ? (
+    <div className={`${styles.settingsBlock} ${styles.settingsContainer} `}>
+      <SettingPanelQualifier />
+      <div className={styles.exportText}>
+        <TextField
+          width="full"
+          value={moduleName}
+          type="text"
+          size="xs"
+          label="Экспортировать компонент"
+          placeholder="Введите название компонента"
+          onChange={changeTextFieldValue}
+        />
+        <Button
+          className={styles.exportButton}
+          view="clear"
+          size="xs"
+          iconLeft={IconUpload}
+          onClick={onSaveModule}
+        />
+      </div>
+    </div>
+  ) : (
+    <div className={styles.toggleButton}>
+      <Button onlyIcon={true} iconLeft={IconArrowLeft} size="s" onClick={toggleSettingsPanel} />
+    </div>
   )
 }

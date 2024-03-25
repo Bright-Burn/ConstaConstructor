@@ -7,6 +7,7 @@ import type {
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './fileTypes'
+import type { StatusType } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: SelectProps,
@@ -24,7 +25,7 @@ export const useItemsHandlers = (
   }
 
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
-    if (selectedElement && value) {
+    if (value) {
       const newProps: BrandSelectProps = {
         props: { ...selectedElementProps },
         type: 'SelectForm',
@@ -47,36 +48,63 @@ export const useItemsHandlers = (
   }
 
   const onChangeItems = (items: selectitemType[]) => {
-    if (selectedElement && items) {
-      const newProps: BrandSelectProps = {
-        props: { ...selectedElementProps },
-        type: 'SelectForm',
-      }
-      newProps.props.items = [...items]
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandSelectProps = {
+      props: { ...selectedElementProps },
+      type: 'SelectForm',
     }
+    newProps.props.items = [...items]
+    onDispatch(selectedElement, newProps)
   }
-
-  const onChangeField = (value: ValueType, field: keyof SelectProps) => {
-    if (selectedElement) {
-      const newProps: BrandSelectProps = {
-        props: { ...selectedElementProps, [field]: value },
-        type: 'SelectForm',
-      }
-      if (field === 'label' && value === true) {
-        newProps.props.label = 'Заголовок'
-      }
-      if (field === 'caption' && value === true) {
-        newProps.props.caption = 'Подпись'
-      }
-      onDispatch(selectedElement, newProps)
+  const onChangeStatus = (value: StatusType) => {
+    const newProps: BrandSelectProps = {
+      props: { ...selectedElementProps, status: value === '' ? undefined : value },
+      type: 'SelectForm',
     }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeLabel = (value: string) => {
+    const newProps: BrandSelectProps = {
+      props: { ...selectedElementProps, label: value },
+      type: 'SelectForm',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeCaption = (value: string) => {
+    const newProps: BrandSelectProps = {
+      props: { ...selectedElementProps, caption: value },
+      type: 'SelectForm',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangePlaceholder = (value: string) => {
+    const newProps: BrandSelectProps = {
+      props: { ...selectedElementProps, placeholder: value },
+      type: 'SelectForm',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeField = (value: ValueType, field: keyof SelectProps) => {
+    const newProps: BrandSelectProps = {
+      props: { ...selectedElementProps, [field]: value },
+      type: 'SelectForm',
+    }
+    if (field === 'label' && value === true) {
+      newProps.props.label = 'Заголовок'
+    }
+    if (field === 'caption' && value === true) {
+      newProps.props.caption = 'Подпись'
+    }
+    onDispatch(selectedElement, newProps)
   }
 
   return {
     onChangeItemsCount,
     onChangeItems,
     onChangeField,
+    onChangeStatus,
+    onChangeLabel,
+    onChangeCaption,
+    onChangePlaceholder,
     itemsProps: {
       disabled: selectedElementProps.disabled,
       size: selectedElementProps.size,

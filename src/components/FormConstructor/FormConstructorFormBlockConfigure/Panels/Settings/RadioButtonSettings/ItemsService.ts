@@ -1,10 +1,11 @@
 import type { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 
-import type { ISelectedElement, RadioButtonProps } from '../../../../coreTypes'
 import type {
   BrandRadioButtonProps,
+  ISelectedElement,
   RadioButtonElement,
-} from '../../../../coreTypes/radioButtonTypes'
+  RadioButtonProps,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (

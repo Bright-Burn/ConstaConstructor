@@ -9,7 +9,6 @@ export const NotFound = ({ title, description }: { title: string; description: s
       className={style.notFound}
       title={title}
       description={description}
-      actions={<></>}
       size="m"
     />
   )

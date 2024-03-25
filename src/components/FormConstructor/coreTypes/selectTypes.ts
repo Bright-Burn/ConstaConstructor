@@ -17,7 +17,7 @@ export type selectitemType = {
   label: string
   group?: string
 }
-
+export type selectStatus = 'alert' | 'success' | 'warning' | ''
 export type PropForm =
   | 'default'
   | 'round'

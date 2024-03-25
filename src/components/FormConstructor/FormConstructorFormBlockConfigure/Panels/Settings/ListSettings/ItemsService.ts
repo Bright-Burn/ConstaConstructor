@@ -1,5 +1,9 @@
-import type { ISelectedElement, ListProps } from '../../../../coreTypes'
-import type { BrandListProps, ListElement } from '../../../../coreTypes/ListTypes'
+import type {
+  BrandListProps,
+  ISelectedElement,
+  ListElement,
+  ListProps,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './types'
@@ -33,14 +37,12 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
   }
 
   const onChangeField = (value: ValueType, field: keyof ListProps) => {
-    if (selectedElement) {
-      const newProps: BrandListProps = {
-        props: { ...selectedElementProps, [field]: value },
-        type: 'List',
-      }
-
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandListProps = {
+      props: { ...selectedElementProps, [field]: value },
+      type: 'List',
     }
+
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeSwitch =

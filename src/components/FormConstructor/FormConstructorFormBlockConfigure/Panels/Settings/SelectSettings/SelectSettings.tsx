@@ -30,10 +30,16 @@ export const SelectSettings: FC<SelectSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField } = useItemsHandlers(
-    selectedElementProps,
-    selectedElement,
-  )
+  const {
+    itemsProps,
+    onChangeItemsCount,
+    onChangeItems,
+    onChangeField,
+    onChangeStatus,
+    onChangeLabel,
+    onChangeCaption,
+    onChangePlaceholder,
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
   const [isOpenList, setOpenList] = useState<boolean>(false)
@@ -102,7 +108,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
           value={itemsProps.status}
           items={statusArray}
           onChange={({ value }) => {
-            onChangeField(value, 'status')
+            value && onChangeStatus(value)
           }}
         />
       </div>
@@ -142,7 +148,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
           value={itemsProps.label}
           size="xs"
           onChange={({ value }) => {
-            onChangeField(value, 'label')
+            value !== null ? onChangeLabel(value) : onChangeLabel('')
           }}
         />
       </div>
@@ -168,7 +174,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
           disabled={!itemsProps.caption}
           value={itemsProps.caption}
           onChange={({ value }) => {
-            onChangeField(value, 'caption')
+            value ? onChangeCaption(value) : onChangeCaption('')
           }}
         />
       </div>
@@ -177,7 +183,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
         size="xs"
         label="Текст placeholder"
         onChange={({ value }) => {
-          onChangeField(value, 'placeholder')
+          value ? onChangePlaceholder(value) : onChangePlaceholder('')
         }}
       />
       <TextField
@@ -206,7 +212,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
         }}>
         {itemsProps.items.map((line, index) => {
           return (
-            <div className={styles.rowSettingsCollapse}>
+            <div key={line.id} className={styles.rowSettingsCollapse}>
               <TextField
                 key={index}
                 className={styles.widthFlex}

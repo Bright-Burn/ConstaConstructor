@@ -1,7 +1,6 @@
 import type { IconComponent } from '@consta/uikit/Icon'
 import { IconAlignJustify } from '@consta/uikit/IconAlignJustify'
 import { IconColumns } from '@consta/uikit/IconColumns'
-import type { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta/uikit/Layout'
 
 import type {
   AlignItems,
@@ -17,33 +16,27 @@ import {
   AlignPositionEnd,
   AlignPositionNormal,
   AlignPositionStart,
-} from './images/AlignItems'
-import {
   BorderAll,
   BorderBottom,
-  BorderLeft,
-  BorderNone,
-  BorderRight,
-  BorderTop,
-} from './images/Border'
-import {
   BorderDashed,
   BorderDott,
   BorderDouble,
   BorderGroove,
   BorderInset,
+  BorderLeft,
+  BorderNone,
   BorderOutset,
   BorderRidge,
+  BorderRight,
   BorderSolid,
-} from './images/BorderStyle'
-import {
+  BorderTop,
   JustifyPositionCenter,
   JustifyPositionEnd,
   JustifyPositionSpaceAround,
   JustifyPositionSpaceBetween,
   JustifyPositionSpaceEvenly,
   JustifyPositionStart,
-} from './images/JustifyContent'
+} from './images'
 
 type directionType = { name: LayoutPropDirection; icon: IconComponent }
 type borderStyleType = { name: BorderStyle; icon: IconComponent }
@@ -119,9 +112,6 @@ export const borderStyle: borderStyleType[] = [
   { name: 'outset', icon: BorderOutset },
   { name: 'ridge', icon: BorderRidge },
 ]
-
-export const verticalAligns: LayoutPropVerticalAlign[] = ['top', 'bottom']
-export const horizontalAligns: LayoutPropHorizontalAlign[] = ['left', 'right']
 
 export const justifyContentProps: justifyContentType[] = [
   { name: 'start', icon: JustifyPositionStart },
