@@ -41,12 +41,13 @@ export const Pages = ({ pages }: PagesProps) => {
   const onClickShowGrid = () => {
     dispatch(toggleGrid())
   }
+  const visiblePages = pages.slice(0, 7)
+  const pagesUnderPopover = pages.slice(7)
 
   return (
     <div className={`container-row space-center ${styles.pagesBlock}`}>
       <div className={styles.pages}>
-        {pages.map((page, index) => {
-          if (index > 7) return
+        {visiblePages.map((page, index) => {
           return (
             <Card key={page.id} shadow={false} className={styles.pageBlock} form="round">
               {selectedPageId === page.id && isNameEdited ? (
@@ -72,7 +73,7 @@ export const Pages = ({ pages }: PagesProps) => {
         <PagePopover
           isNameEdited={isNameEdited}
           selectedPageId={selectedPageId}
-          pages={pages}
+          pages={pagesUnderPopover}
           setNewPageName={setNewPageName}
           changePage={changePage}
           changeIsNameEdited={changeIsNameEdited}

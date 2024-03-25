@@ -76,7 +76,7 @@ export type {
   LayoutElement,
   LayoutPropDirection,
 } from './layoutTypes'
-export type { IFormElementList } from './ListTypes'
+export type { BrandListProps, IFormElementList } from './ListTypes'
 export type { ItemList, ListProps } from './ListTypes'
 export type { IFormElementPlaceholder, PlaceholderProps } from './placeholderTypes'
 export type {
@@ -99,11 +99,17 @@ export type {
   SelectProps,
 } from './selectTypes'
 export type { IFormElementSimpleForm, simpleFormProps } from './simpleFormTypes'
-export type { IFormElementSwitch, SwitchProps } from './SwitchTypes'
+export type { IFormElementSwitch, SwitchElement, SwitchProps } from './SwitchTypes'
 export type { BrandSwitchProps } from './SwitchTypes'
-export type { IFormElementTable, TableProps } from './tableTypes'
+export type { IFormElementTable, TableElement, TableProps } from './tableTypes'
 export type { BrandTableProps } from './tableTypes'
-export type { IFormElementTabs, tabItemType, TabsElementProps, TabsProps } from './tabsTypes'
+export type {
+  IFormElementTabs,
+  tabItemType,
+  TabsElement,
+  TabsElementProps,
+  TabsProps,
+} from './tabsTypes'
 export type { BrandTabsElementProps } from './tabsTypes'
 export type { BrandTagProps, IFormElementTagProps, TagElement, TagProps } from './tagTypes'
 export type {

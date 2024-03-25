@@ -29,7 +29,7 @@ export const useItemsHandlers = (
   }
 
   const onChangeItemsCount = ({ value }: { value: string | null }) => {
-    if (selectedElement && value) {
+    if (value) {
       const newProps: BrandBreadcrumbsProps = {
         props: { ...selectedElementProps },
         type: 'BreadcrumbsFormElement',
@@ -54,19 +54,17 @@ export const useItemsHandlers = (
   }
 
   const onChangeItems = (items: DeepWriteable<DefaultItem[]>) => {
-    if (selectedElement && items) {
-      const newProps: BrandBreadcrumbsProps = {
-        props: { ...selectedElementProps },
-        type: 'BreadcrumbsFormElement',
-      }
-
-      newProps.props.items = [...items]
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandBreadcrumbsProps = {
+      props: { ...selectedElementProps },
+      type: 'BreadcrumbsFormElement',
     }
+
+    newProps.props.items = [...items]
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeSize = (value: BreadcrumbPropSize | null) => {
-    if (selectedElement && value) {
+    if (value) {
       const newProps: BrandBreadcrumbsProps = {
         props: { ...selectedElementProps },
         type: 'BreadcrumbsFormElement',
@@ -78,7 +76,7 @@ export const useItemsHandlers = (
   }
 
   const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
-    if (selectedElement && value) {
+    if (value) {
       const newProps: BrandBreadcrumbsProps = {
         props: { ...selectedElementProps },
         type: 'BreadcrumbsFormElement',

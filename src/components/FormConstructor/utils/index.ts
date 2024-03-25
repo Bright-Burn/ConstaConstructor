@@ -1,5 +1,6 @@
 export { getElementsOnLayer } from './getElementsOnLayer'
 export { getNewGroupParentLevel } from './getNewGroupParentLevel'
+export { isElementProps } from './quard'
 export { readFile } from './readFile'
 export { saveToFile } from './saveFile'
 export type { Values } from './types'

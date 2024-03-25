@@ -1,4 +1,4 @@
-import type { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
+import type { TagBasePropSize } from '@consta/uikit/TagBase'
 
 export declare const tagPropMode: readonly ['button', 'check', 'cancel', 'link', 'info']
 export declare type TagBasePropMode = (typeof tagPropMode)[number]

@@ -15,36 +15,32 @@ export const useItemsHandlers = (
   const onChangeTextField =
     (propsName: keyof TextFieldProps) =>
     ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: BrandTextFieldProps = {
-          props: { ...selectedElementProps, [propsName]: value },
-          type: 'TextField',
-        }
-
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandTextFieldProps = {
+        props: { ...selectedElementProps, [propsName]: value },
+        type: 'TextField',
       }
+
+      onDispatch(selectedElement, newProps)
     }
 
   const onChangeSwitch =
     (propsName: keyof TextFieldProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: BrandTextFieldProps = {
-          props: { ...selectedElementProps, [propsName]: checked },
-          type: 'TextField',
-        }
-        if (propsName === 'label' && checked) {
-          newProps.props.label = 'Заголовок'
-        }
-        if (propsName === 'caption' && checked) {
-          newProps.props.caption = 'Подпись'
-        }
-        if (propsName === 'maxLength' && checked) {
-          newProps.props.maxLength = 1
-        }
-
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandTextFieldProps = {
+        props: { ...selectedElementProps, [propsName]: checked },
+        type: 'TextField',
       }
+      if (propsName === 'label' && checked) {
+        newProps.props.label = 'Заголовок'
+      }
+      if (propsName === 'caption' && checked) {
+        newProps.props.caption = 'Подпись'
+      }
+      if (propsName === 'maxLength' && checked) {
+        newProps.props.maxLength = 1
+      }
+
+      onDispatch(selectedElement, newProps)
     }
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTextFieldProps) => {
     dispatch(

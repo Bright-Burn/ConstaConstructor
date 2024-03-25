@@ -13,8 +13,7 @@ import type {
   DeepWriteable,
   IconNames,
 } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
-import { icons } from '../IconSettings/IconsConstants'
+import { Icons, icons } from '../../../../coreTypes'
 
 import { fitMode, sizes } from './BreadcrumbsConstants'
 import { useItemsHandlers } from './ItemsService'
@@ -45,7 +44,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
 
   const onDisabledPage = (value: boolean) => {
     const newPage = [...itemsProps.items].map(page => {
-      const { icon, labelIcon, ...other } = page
+      const { ...other } = page
       return other
     })
 

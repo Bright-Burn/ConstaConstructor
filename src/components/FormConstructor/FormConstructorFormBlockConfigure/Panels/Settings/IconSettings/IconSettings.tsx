@@ -11,10 +11,10 @@ import type {
   IconProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
+import { Icons, icons } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-import { icons, sizes, views } from './IconsConstants'
+import { sizes, views } from './IconsConstants'
 
 import styles from './styles.module.css'
 

@@ -2,13 +2,7 @@ import type { FC } from 'react'
 import React, { useLayoutEffect, useState } from 'react'
 
 import { ElementTypes } from '../../coreTypes'
-import {
-  checkIsGridVisible,
-  getElementById,
-  setSelectedElement,
-  useAppDispatch,
-  useAppSelector,
-} from '../../store'
+import { checkIsGridVisible, setSelectedElement, useAppDispatch, useAppSelector } from '../../store'
 
 import type { ISelectableLayer } from './types'
 

@@ -32,7 +32,7 @@ export const PagePopover: FC<IPagePopover> = ({
 
   return (
     <>
-      {pages.length >= 9 && (
+      {pages.length >= 1 && (
         <Button
           ref={anchorRef}
           size="xs"
@@ -45,7 +45,7 @@ export const PagePopover: FC<IPagePopover> = ({
         />
       )}
 
-      {pages.length < 9 ? (
+      {pages.length < 1 ? (
         <Button label="+" view="clear" size="xs" onClick={addPage} />
       ) : (
         isPopoverOpened && (
@@ -58,7 +58,6 @@ export const PagePopover: FC<IPagePopover> = ({
             anchorRef={anchorRef}
             equalAnchorWidth={false}>
             {pages.map((page, index) => {
-              if (index < 8) return
               return (
                 <Card key={page.id} shadow={false} className={styles.popoverPageBlock} form="round">
                   {selectedPageId === page.id && isNameEdited ? (

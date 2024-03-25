@@ -2,8 +2,12 @@ import type { FC } from 'react'
 import { useLayoutEffect, useState } from 'react'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { ISelectedElement, TableProps } from '../../../../coreTypes'
-import type { BrandTableProps, TableElement } from '../../../../coreTypes/tableTypes'
+import type {
+  BrandTableProps,
+  ISelectedElement,
+  TableElement,
+  TableProps,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import styles from './styles.module.css'
@@ -16,28 +20,23 @@ type TableSettingsType = {
 export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, selectedElement }) => {
   const [props, setProps] = useState<TableProps>()
   const dispatch = useAppDispatch()
-  console.log(selectedElementProps)
 
   const handleOnChangeLabelRow = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: BrandTableProps = {
-        props: { ...selectedElementProps },
-        type: 'Table',
-      }
-      newProps.props.row = value === null ? undefined : +value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandTableProps = {
+      props: { ...selectedElementProps },
+      type: 'Table',
     }
+    newProps.props.row = value === null ? undefined : +value
+    onDispatch(selectedElement, newProps)
   }
 
   const handleOnChangeLabelColumn = ({ value }: { value: string | null }) => {
-    if (selectedElement) {
-      const newProps: BrandTableProps = {
-        props: { ...selectedElementProps },
-        type: 'Table',
-      }
-      newProps.props.column = value === null ? undefined : +value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandTableProps = {
+      props: { ...selectedElementProps },
+      type: 'Table',
     }
+    newProps.props.column = value === null ? undefined : +value
+    onDispatch(selectedElement, newProps)
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTableProps) => {
@@ -51,9 +50,7 @@ export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, sel
   }
 
   useLayoutEffect(() => {
-    if (selectedElement) {
-      setProps(selectedElementProps)
-    }
+    setProps(selectedElementProps)
   }, [selectedElementProps, selectedElement])
 
   return (
@@ -65,7 +62,7 @@ export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, sel
             step="1"
             label="Row"
             min="0"
-            value={!!props && `${props.row}`}
+            value={`${props.row}`}
             onChange={handleOnChangeLabelRow}
           />
           <TextField
@@ -73,13 +70,11 @@ export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, sel
             step="1"
             min="0"
             label="Column"
-            value={!!props && `${props.column}`}
+            value={`${props.column}`}
             onChange={handleOnChangeLabelColumn}
           />
         </>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   )
 }

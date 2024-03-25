@@ -1,4 +1,4 @@
-import type { TagBasePropSize } from '@consta/uikit/__internal__/src/components/TagBase/TagBase'
+import type { TagBasePropSize } from '@consta/uikit/TagBase'
 
 import type {
   BrandTagProps,
@@ -25,77 +25,65 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
   }
 
   const onChangeSize = (value: TagBasePropSize | null) => {
-    if (selectedElement && value) {
-      const newProps: BrandTagProps = {
-        props: { ...selectedElementProps },
-        type: 'Tag',
-      }
-      newProps.props.size = value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandTagProps = {
+      props: { ...selectedElementProps },
+      type: 'Tag',
     }
+    newProps.props.size = value ? value : undefined
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeMode = (value: TagBasePropMode | null) => {
-    if (selectedElement && value) {
-      const newProps: BrandTagProps = {
-        props: { ...selectedElementProps },
-        type: 'Tag',
-      }
-      newProps.props.mode = value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandTagProps = {
+      props: { ...selectedElementProps },
+      type: 'Tag',
     }
+    newProps.props.mode = value ? value : 'info'
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeField =
     (propsName: keyof TagProps) =>
     ({ value }: { value: string | null }) => {
-      if (selectedElement) {
-        const newProps: BrandTagProps = {
-          props: {
-            ...selectedElementProps,
-            [propsName]: value,
-          },
-          type: 'Tag',
-        }
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandTagProps = {
+        props: {
+          ...selectedElementProps,
+          [propsName]: value,
+        },
+        type: 'Tag',
       }
+      onDispatch(selectedElement, newProps)
     }
 
   const onChangeGroup = (value: TagBasePropGroup | null) => {
-    if (selectedElement && value) {
-      const newProps: BrandTagProps = {
-        props: { ...selectedElementProps },
-        type: 'Tag',
-      }
-      newProps.props.group = value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandTagProps = {
+      props: { ...selectedElementProps },
+      type: 'Tag',
     }
+    newProps.props.group = value ? value : undefined
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof TagProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElement) {
-        const newProps: BrandTagProps = {
-          props: {
-            ...selectedElementProps,
-            [propsName]: checked,
-          },
-          type: 'Tag',
-        }
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandTagProps = {
+        props: {
+          ...selectedElementProps,
+          [propsName]: checked,
+        },
+        type: 'Tag',
       }
+      onDispatch(selectedElement, newProps)
     }
 
   const onChangeIcon = (value: IconNames | null) => {
-    if (selectedElement && value) {
-      const newProps: BrandTagProps = {
-        props: { ...selectedElementProps },
-        type: 'Tag',
-      }
-      newProps.props.icon = value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandTagProps = {
+      props: { ...selectedElementProps },
+      type: 'Tag',
     }
+    newProps.props.icon = value ? value : undefined
+    onDispatch(selectedElement, newProps)
   }
 
   return {
