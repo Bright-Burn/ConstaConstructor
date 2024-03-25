@@ -120,7 +120,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
         }}>
         {itemsProps.items.map((page, index) => {
           return (
-            <div className={styles.pagePadding}>
+            <div key={index} className={styles.pagePadding}>
               <div className={styles.rowSettings}>
                 <TextField
                   key={index}
