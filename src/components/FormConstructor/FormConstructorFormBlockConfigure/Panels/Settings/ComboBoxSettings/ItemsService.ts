@@ -7,7 +7,7 @@ import type {
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
-import type { ValueType } from './types'
+import type { statusType, ValueType } from './types'
 
 export const useItemsHandlers = (
   selectedElementProps: ComboboxProps,
@@ -45,35 +45,62 @@ export const useItemsHandlers = (
     }
   }
   const onChangeItems = (items: comboboxItemType[]) => {
-    if (items) {
-      const newProps: BrandComboboxProps = {
-        props: { ...selectedElementProps },
-        type: 'ComboBox',
-      }
-      newProps.props.items = [...items]
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandComboboxProps = {
+      props: { ...selectedElementProps },
+      type: 'ComboBox',
     }
+    newProps.props.items = [...items]
+    onDispatch(selectedElement, newProps)
   }
-
-  const onChangeField = (value: ValueType, field: keyof ComboboxProps) => {
-    if (selectedElement) {
-      const newProps: BrandComboboxProps = {
-        props: { ...selectedElementProps, [field]: value },
-        type: 'ComboBox',
-      }
-      if (field === 'label' && value === true) {
-        newProps.props.label = 'Заголовок'
-      }
-      if (field === 'caption' && value === true) {
-        newProps.props.caption = 'Подпись'
-      }
-      onDispatch(selectedElement, newProps)
+  const onChangeStatus = (status: statusType) => {
+    const newProps: BrandComboboxProps = {
+      props: { ...selectedElementProps, status: status === '' ? undefined : status },
+      type: 'ComboBox',
     }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeLabel = (label: string) => {
+    const newProps: BrandComboboxProps = {
+      props: { ...selectedElementProps, label },
+      type: 'ComboBox',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangePlaceholder = (placeholder: string) => {
+    const newProps: BrandComboboxProps = {
+      props: { ...selectedElementProps, placeholder },
+      type: 'ComboBox',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeCaption = (caption: string) => {
+    const newProps: BrandComboboxProps = {
+      props: { ...selectedElementProps, caption },
+      type: 'ComboBox',
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeField = (value: ValueType, field: keyof ComboboxProps) => {
+    const newProps: BrandComboboxProps = {
+      props: { ...selectedElementProps, [field]: value },
+      type: 'ComboBox',
+    }
+    if (field === 'label' && value === true) {
+      newProps.props.label = 'Заголовок'
+    }
+    if (field === 'caption' && value === true) {
+      newProps.props.caption = 'Подпись'
+    }
+    onDispatch(selectedElement, newProps)
   }
   return {
     onChangeItemsCount,
     onChangeItems,
     onChangeField,
+    onChangeStatus,
+    onChangeLabel,
+    onChangeCaption,
+    onChangePlaceholder,
     itemsProps: {
       items: selectedElementProps.items,
       value: selectedElementProps.value,

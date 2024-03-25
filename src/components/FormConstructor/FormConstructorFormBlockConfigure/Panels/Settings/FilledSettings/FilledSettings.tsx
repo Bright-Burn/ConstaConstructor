@@ -6,14 +6,14 @@ import type { IconComponent } from '@consta/uikit/Icon'
 import { Text } from '@consta/uikit/Text'
 
 import type {
+  ButtonElement,
   ButtonProps,
+  TextFieldElement,
   TextFieldProps,
   UnionProps,
   UserElement,
   UserProps,
 } from '../../../../coreTypes'
-import type { ButtonElement } from '../../../../coreTypes/buttonTypes'
-import type { TextFieldElement } from '../../../../coreTypes/textFieldTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import style from './styles.module.css'
@@ -45,15 +45,13 @@ export const FilledSettings: React.FC<IFilledSettings> = ({
       type: element,
     }
 
-    if (selectedElement) {
-      dispatch(
-        setSelectedElement({
-          elementType: selectedElement.elementType,
-          elementId: selectedElement.elementId,
-          newProps: newProps as UnionProps,
-        }),
-      )
-    }
+    dispatch(
+      setSelectedElement({
+        elementType: selectedElement.elementType,
+        elementId: selectedElement.elementId,
+        newProps: newProps as UnionProps,
+      }),
+    )
   }
   const filled = selectedElementProps.filled
     ? { name: 'filled', icon: IconMaxHeight }

@@ -18,7 +18,6 @@ export type ValueType =
   | null
   | comboboxItemType
   | comboboxItemType[]
-  | string
 
 export const viewArray: TextFieldPropView[] = ['default', 'clear']
 
@@ -39,8 +38,8 @@ export const formArray: PropForm[] = [
   'roundClear',
 ]
 
-export const statusArray = ['', 'alert', 'success', 'warning']
-
+export const statusArray: (TextFieldPropStatus | '')[] = ['', 'alert', 'success', 'warning']
+export type statusType = (typeof statusArray)[number]
 export const labelPositionArray: ['top', 'left'] = ['top', 'left']
 
 export const dropDownArray: DatePickerPropDropdownForm[] = ['default', 'brick', 'round']

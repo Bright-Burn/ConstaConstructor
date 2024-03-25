@@ -1,7 +1,11 @@
 import type { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@consta/uikit/Checkbox'
 
-import type { CheckboxProps, ISelectedElement } from '../../../../coreTypes'
-import type { BrandCheckboxProps, CheckboxElement } from '../../../../coreTypes/checkboxTypes'
+import type {
+  BrandCheckboxProps,
+  CheckboxElement,
+  CheckboxProps,
+  ISelectedElement,
+} from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
@@ -9,31 +13,33 @@ export const useItemsHandlers = (
   selectedElement: CheckboxElement,
 ) => {
   const dispatch = useAppDispatch()
-
+  const onChangeLabel = (value: string) => {
+    const newProps: BrandCheckboxProps = {
+      props: { ...selectedElementProps, label: value },
+      type: 'Checkbox',
+    }
+    onDispatch(selectedElement, newProps)
+  }
   const onChangeField = (
-    value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | string | boolean | null,
+    value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | boolean | null,
     field: keyof CheckboxProps,
   ) => {
-    if (selectedElement) {
-      const newProps: BrandCheckboxProps = {
-        props: { ...selectedElementProps, [field]: value },
-        type: 'Checkbox',
-      }
-
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandCheckboxProps = {
+      props: { ...selectedElementProps, [field]: value },
+      type: 'Checkbox',
     }
+
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof CheckboxProps) =>
     ({ checked }: { checked: boolean }) => {
-      if (selectedElementProps) {
-        const newProps: BrandCheckboxProps = {
-          props: { ...selectedElementProps, [propsName]: checked },
-          type: 'Checkbox',
-        }
-        onDispatch(selectedElement, newProps)
+      const newProps: BrandCheckboxProps = {
+        props: { ...selectedElementProps, [propsName]: checked },
+        type: 'Checkbox',
       }
+      onDispatch(selectedElement, newProps)
     }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandCheckboxProps) => {
@@ -49,6 +55,7 @@ export const useItemsHandlers = (
   return {
     onChangeField,
     onChangeSwitch,
+    onChangeLabel,
     itemsProps: {
       align: selectedElementProps.align,
       view: selectedElementProps.view,

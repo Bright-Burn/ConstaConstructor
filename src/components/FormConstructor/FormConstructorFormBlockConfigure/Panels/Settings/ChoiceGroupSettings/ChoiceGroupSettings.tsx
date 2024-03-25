@@ -50,7 +50,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
 
   const onDisabledPage = (value: boolean) => {
     const newPage = [...itemsProps.items].map(page => {
-      const { icon, labelIcon, ...other } = page
+      const { ...other } = page
       return other
     })
     onChangeItems(newPage)
@@ -180,7 +180,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
         }}>
         {itemsProps.items.map((line, index) => {
           return (
-            <div className={styles.settingsBlockRowCollapse}>
+            <div key={index} className={styles.settingsBlockRowCollapse}>
               <TextField
                 key={index}
                 className={styles.elementWidth}

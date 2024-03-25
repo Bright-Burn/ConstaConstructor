@@ -31,10 +31,16 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField } = useItemsHandlers(
-    selectedElementProps,
-    selectedElement,
-  )
+  const {
+    itemsProps,
+    onChangeItemsCount,
+    onChangeItems,
+    onChangeField,
+    onChangeStatus,
+    onChangeLabel,
+    onChangePlaceholder,
+    onChangeCaption,
+  } = useItemsHandlers(selectedElementProps, selectedElement)
   const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
   const [isOpenList, setOpenList] = useState<boolean>(false)
 
@@ -102,7 +108,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           value={itemsProps.status}
           items={statusArray}
           onChange={({ value }) => {
-            onChangeField(value, 'status')
+            value !== null ? onChangeStatus(value) : onChangeStatus('')
           }}
         />
       </div>
@@ -142,7 +148,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           value={itemsProps.label}
           size="xs"
           onChange={({ value }) => {
-            onChangeField(value, 'label')
+            value !== null ? onChangeLabel(value) : onChangeLabel('')
           }}
         />
       </div>
@@ -168,7 +174,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           disabled={!itemsProps.caption}
           value={itemsProps.caption}
           onChange={({ value }) => {
-            onChangeField(value, 'caption')
+            value !== null ? onChangeCaption(value) : onChangeCaption('')
           }}
         />
       </div>
@@ -177,7 +183,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         size="xs"
         label="Текст placeholder"
         onChange={({ value }) => {
-          onChangeField(value, 'placeholder')
+          value !== null ? onChangePlaceholder(value) : onChangePlaceholder('')
         }}
       />
       <TextField
@@ -228,7 +234,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         }}>
         {itemsProps.items.map((line, index) => {
           return (
-            <div className={styles.rowSettingsCollapse}>
+            <div key={line.id} className={styles.rowSettingsCollapse}>
               <TextField
                 key={index}
                 className={styles.widthFlex}

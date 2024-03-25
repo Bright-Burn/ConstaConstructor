@@ -11,7 +11,6 @@ export type ValueType =
   | ChoiceGroupPropView
   | ChoiceGroupPropSize
   | null
-  | string
   | DeepWriteable<ChoiceGroupItem>
   | ChoiceGroupItem[]
   | ChoiceGroupItem

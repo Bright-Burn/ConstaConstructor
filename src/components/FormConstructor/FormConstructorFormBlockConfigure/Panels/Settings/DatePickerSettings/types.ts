@@ -3,8 +3,11 @@ import type {
   DatePickerPropDropdownForm,
   DatePickerPropType,
 } from '@consta/uikit/DatePicker'
-import type { TextFieldPropSize, TextFieldPropView } from '@consta/uikit/TextField'
-import { TextFieldPropStatus } from '@consta/uikit/TextField'
+import type {
+  TextFieldPropSize,
+  TextFieldPropStatus,
+  TextFieldPropView,
+} from '@consta/uikit/TextField'
 
 import type { PropForm } from '../../../../coreTypes'
 
@@ -33,7 +36,8 @@ export const formArray: PropForm[] = [
   'clearBrick',
   'clearClear',
 ]
-export const statusArray = ['', 'alert', 'success', 'warning']
+export const statusArray: (TextFieldPropStatus | '')[] = ['', 'alert', 'success', 'warning']
+export type statusType = (typeof statusArray)[number]
 export const labelPositionArray: ['top', 'left'] = ['top', 'left']
 export const sizeArray: TextFieldPropSize[] = ['xs', 's', 'm', 'l']
 export const viewArray: TextFieldPropView[] = ['default', 'clear']
