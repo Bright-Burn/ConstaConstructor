@@ -54,7 +54,7 @@ export type SelectProps = {
 } & BaseProps &
   TextContent
 
-export type BrandSelectProps = BrandProps<SelectProps, 'Select'>
+export type BrandSelectProps = BrandProps<SelectProps, 'SelectForm'>
 
 export type SelectElement = ConcreteSelectedElement<typeof FormElementDictTypes.Select>
 
