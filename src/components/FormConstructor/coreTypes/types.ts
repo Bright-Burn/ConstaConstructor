@@ -82,7 +82,7 @@ export const FormElementDictTypes = {
   Switch: 'Switch',
   DatePicker: 'DatePicker',
   ComboBox: 'ComboBox',
-  Select: 'Select',
+  Select: 'SelectForm',
   DataTime: 'DataTime',
   PrototypeTextElement: 'PrototypeTextElement',
   PrototypeRectangleElement: 'PrototypeRectangleElement',
@@ -152,7 +152,7 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
                           ? BrandDatePickerProps
                           : emptyObj & T extends 'ComboBox'
                             ? BrandComboboxProps
-                            : emptyObj & T extends 'Select'
+                            : emptyObj & T extends 'SelectForm'
                               ? BrandSelectProps
                               : emptyObj & T extends 'DataTime'
                                 ? BrandDataTimeProps
