@@ -21,7 +21,7 @@ export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
   const [, setFormProps] = useState<simpleFormProps>()
 
   useLayoutEffect(() => {
-    const simpleFormElement = element as IFormElementSimpleForm
+    const simpleFormElement = element.props
     setFormProps(simpleFormElement.props)
   }, [element])
 

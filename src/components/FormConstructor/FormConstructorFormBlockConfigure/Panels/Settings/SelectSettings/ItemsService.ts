@@ -28,7 +28,7 @@ export const useItemsHandlers = (
     if (value) {
       const newProps: BrandSelectProps = {
         props: { ...selectedElementProps },
-        type: 'SelectForm',
+        type: 'Select',
       }
 
       let itemsProps = [...newProps.props.items]
@@ -50,7 +50,7 @@ export const useItemsHandlers = (
   const onChangeItems = (items: selectitemType[]) => {
     const newProps: BrandSelectProps = {
       props: { ...selectedElementProps },
-      type: 'SelectForm',
+      type: 'Select',
     }
     newProps.props.items = [...items]
     onDispatch(selectedElement, newProps)
@@ -58,35 +58,35 @@ export const useItemsHandlers = (
   const onChangeStatus = (value: StatusType) => {
     const newProps: BrandSelectProps = {
       props: { ...selectedElementProps, status: value === '' ? undefined : value },
-      type: 'SelectForm',
+      type: 'Select',
     }
     onDispatch(selectedElement, newProps)
   }
   const onChangeLabel = (value: string) => {
     const newProps: BrandSelectProps = {
       props: { ...selectedElementProps, label: value },
-      type: 'SelectForm',
+      type: 'Select',
     }
     onDispatch(selectedElement, newProps)
   }
   const onChangeCaption = (value: string) => {
     const newProps: BrandSelectProps = {
       props: { ...selectedElementProps, caption: value },
-      type: 'SelectForm',
+      type: 'Select',
     }
     onDispatch(selectedElement, newProps)
   }
   const onChangePlaceholder = (value: string) => {
     const newProps: BrandSelectProps = {
       props: { ...selectedElementProps, placeholder: value },
-      type: 'SelectForm',
+      type: 'Select',
     }
     onDispatch(selectedElement, newProps)
   }
   const onChangeField = (value: ValueType, field: keyof SelectProps) => {
     const newProps: BrandSelectProps = {
       props: { ...selectedElementProps, [field]: value },
-      type: 'SelectForm',
+      type: 'Select',
     }
     if (field === 'label' && value === true) {
       newProps.props.label = 'Заголовок'

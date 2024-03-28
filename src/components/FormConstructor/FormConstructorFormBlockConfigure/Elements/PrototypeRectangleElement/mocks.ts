@@ -13,15 +13,18 @@ export const PrototypeRectangleMock = {
     {
       id: 'd333d332-d8c2-4280-a8cd-e90b2faa860e',
       type: 'PrototypeRectangleElement',
-      props: new PrototypeProps({
-        baseProps: {},
-        className: '',
-        height: 20,
-        left: 0,
-        top: 0,
-        width: 120,
-        zIndex: 1,
-      }),
+      props: {
+        props: new PrototypeProps({
+          baseProps: {},
+          className: '',
+          height: 20,
+          left: 0,
+          top: 0,
+          width: 120,
+          zIndex: 1,
+        }),
+        type: 'PrototypeRectangleElement',
+      },
     },
   ],
 } satisfies IBaseComponent

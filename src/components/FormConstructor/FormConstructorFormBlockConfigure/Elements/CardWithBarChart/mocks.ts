@@ -53,7 +53,7 @@ export const cardMock = {
     {
       id: '1657c7e0-9f56-a296-526e-af516ab09f10',
       type: 'CardWithBarChart',
-      props: { className: '', baseProps: {} },
+      props: { props: { className: '', baseProps: {} }, type: 'CardWithBarChart' },
     },
   ],
 } satisfies IBaseComponent

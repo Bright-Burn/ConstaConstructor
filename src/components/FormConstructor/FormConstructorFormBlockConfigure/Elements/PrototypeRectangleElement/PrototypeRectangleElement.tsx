@@ -1,14 +1,14 @@
 import type { FC } from 'react'
 
-import type { IFormElementPrototype } from '../../../coreTypes'
+import type { IFormElementPrototypeRectangle } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 
 interface IPrototypeRectangleElement {
-  element: IFormElementPrototype
+  element: IFormElementPrototypeRectangle
 }
 
 export const PrototypeRectangleElement: FC<IPrototypeRectangleElement> = ({ element }) => {
-  const { width, height, top, left, zIndex } = element.props
+  const { width, height, top, left, zIndex } = element.props.props
   return (
     <div style={{ top, left, position: 'absolute' }}>
       <SelectableLayer

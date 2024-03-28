@@ -1,5 +1,5 @@
 import type { IFormElement } from '../../../coreTypes'
 
-export interface IPlaceholderFormElement {
+export interface IDashboardFormElement {
   element: IFormElement
 }

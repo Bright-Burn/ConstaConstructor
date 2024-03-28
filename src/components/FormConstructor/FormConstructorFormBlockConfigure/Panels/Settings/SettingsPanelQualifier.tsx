@@ -362,7 +362,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
       )
     }
     case FormElementDictTypes.Select: {
-      if (!isElementProps<BrandSelectProps>(selectedElementProps, 'SelectForm')) {
+      if (!isElementProps<BrandSelectProps>(selectedElementProps, 'Select')) {
         return
       }
       const element = {

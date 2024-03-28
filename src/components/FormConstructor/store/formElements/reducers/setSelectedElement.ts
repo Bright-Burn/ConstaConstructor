@@ -11,19 +11,22 @@ export const setSelectedElement = (
   state: IFormConstructor,
   action: PayloadAction<SetNewSelectedElement>,
 ) => {
-  const element = action.payload.element
-
-  let props = { ...(element.props as UnionProps) }
+  const element = { ...action.payload.element }
+  let props = element.props
 
   if (action.payload.newProps) {
     props = action.payload.newProps
   }
-  state.selectedElementProps = { ...props }
+  state.selectedElementProps = props
   state.selectedElement = {
     elementId: element.id,
     elementType: element.type,
   }
-  layuoutAdapter.updateOne(state.allElements, { id: element.id, changes: { props } })
+  element.props = props
+  layuoutAdapter.updateOne(state.allElements, {
+    id: element.id,
+    changes: element,
+  })
 }
 type SetNewSelectedElement = {
   element: IFormElement | IGroupElement
