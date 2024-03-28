@@ -11,7 +11,7 @@ export const wizardFormMock = {
     {
       id: '1657c7e0-9f56-a296-526e-af516abccccc',
       type: 'WizardForm',
-      props: { className: '', baseProps: {} },
+      props: { props: { className: '', baseProps: {} }, type: 'WizardForm' },
     },
   ],
 } satisfies IBaseComponent

@@ -22,7 +22,7 @@ export const WizardForm: FC<IWizardForm> = ({ element }) => {
   const [formProps, setFormProps] = useState<wizardFormProps>()
 
   useLayoutEffect(() => {
-    const simpleFormElement = element as IFormElementWizardForm
+    const simpleFormElement = element.props
     setFormProps(simpleFormElement.props)
   }, [element])
 

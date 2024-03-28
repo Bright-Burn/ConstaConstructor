@@ -59,7 +59,7 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   RadioButton: RadioButtonFormElement,
   Switch: SwitchFormElement,
   DatePicker: DatePickerFormElement,
-  SelectForm: SelectFormElement,
+  Select: SelectFormElement,
   ComboBox: ComboBoxFormElement,
   DataTime: DataTimeFormElement,
   PrototypeTextElement,

@@ -15,7 +15,7 @@ export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
   const [, setFooterProps] = useState<footerWithSwitchProps>()
 
   useLayoutEffect(() => {
-    const badgeFormElement = element as IFormElementFooterWithSwitch
+    const badgeFormElement = element.props
     setFooterProps(badgeFormElement.props)
   }, [element])
 

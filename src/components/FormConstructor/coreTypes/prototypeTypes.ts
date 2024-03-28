@@ -17,7 +17,7 @@ export type PrototypePropsType = {
   text?: string
 } & BaseProps
 
-export class PrototypeProps {
+export class PrototypeProps implements PrototypePropsType {
   public baseProps: BaseTypes
   public className: string
   public top: number
@@ -57,6 +57,9 @@ export type PrototypeTextElement = ConcreteSelectedElement<
   typeof FormElementDictTypes.PrototypeTextElement
 >
 
-export interface IFormElementPrototype extends IFormElement {
-  props: PrototypeProps
+export interface IFormElementPrototypeText extends IFormElement {
+  props: BrandPrototypeRectangleProps
+}
+export interface IFormElementPrototypeRectangle extends IFormElement {
+  props: BrandPrototypeTextProps
 }

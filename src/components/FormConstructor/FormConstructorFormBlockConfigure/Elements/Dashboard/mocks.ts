@@ -188,7 +188,10 @@ export const dashboardMock: IBaseComponent = {
     {
       id: 'dd228573-1f12-82ed-f48a-fb34a7ff99ea',
       type: 'Dashboard',
-      props: { className: '', baseProps: {} },
+      props: {
+        props: { className: '', baseProps: {} },
+        type: 'Dashboard',
+      },
     },
   ],
-}
+} satisfies IBaseComponent

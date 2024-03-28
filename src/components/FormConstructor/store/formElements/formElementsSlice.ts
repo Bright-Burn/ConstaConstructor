@@ -1,7 +1,10 @@
+import type { PayloadAction, Update } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
+import type { AllElementProps } from '../../coreTypes'
+
 import { deselectElement } from './reducers/setSelectedElement'
-import { initialState } from './initialState'
+import { initialState, layuoutAdapter } from './initialState'
 import {
   addNewFormElement,
   addNewPage,
@@ -28,6 +31,12 @@ export const formConstructorSlice = createSlice({
     loadProjectFromJson,
     // @ts-expect-error
     setSelectedElement,
+    // setSelectedElement: (state, action: PayloadAction<Update<AllElementProps>>) => {
+    //   layuoutAdapter.updateOne(state.allElements, {
+    //     id: action.payload.id,
+    //     changes: action.payload.changes,
+    //   })
+    // },
     // @ts-expect-error
     deselectElement,
     // @ts-expect-error

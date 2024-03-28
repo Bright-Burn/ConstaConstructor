@@ -9,7 +9,7 @@ export const footerWithSwitchMock = {
     {
       id: '1b714252-a7cf-48e0-8c15-9889fe04928b',
       type: 'FooterWithSwitch',
-      props: { className: '', baseProps: {} },
+      props: { type: 'FooterWithSwitch', props: { className: '', baseProps: {} } },
     },
   ],
 } satisfies IBaseComponent

@@ -17,7 +17,7 @@ export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
   const [cardProps, setCardProps] = useState<cardWithChartProps>()
 
   useLayoutEffect(() => {
-    const cardFormElement = element as IFormElementCardWithChart
+    const cardFormElement = element.props
     setCardProps(cardFormElement.props)
   }, [element])
 

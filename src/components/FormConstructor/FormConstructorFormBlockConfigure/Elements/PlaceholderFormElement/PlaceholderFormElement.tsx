@@ -16,7 +16,7 @@ export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({ element })
   const [placeholderProps, setPlaceholderProps] = useState<PlaceholderProps>()
 
   useLayoutEffect(() => {
-    const placeholderFormElement = element as IFormElementPlaceholder
+    const placeholderFormElement = element.props
     setPlaceholderProps(placeholderFormElement.props)
   }, [element])
 

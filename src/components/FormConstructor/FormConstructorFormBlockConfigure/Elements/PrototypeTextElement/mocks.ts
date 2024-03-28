@@ -13,16 +13,19 @@ export const PrototypeTextMock = {
     {
       id: 'd333d332-d8c2-4280-a8cd-e90b2faa860e',
       type: 'PrototypeTextElement',
-      props: new PrototypeProps({
-        baseProps: {},
-        className: '',
-        height: 20,
-        left: 0,
-        top: 0,
-        width: 120,
-        zIndex: 1,
-        text: 'Пример текста',
-      }),
+      props: {
+        props: new PrototypeProps({
+          baseProps: {},
+          className: '',
+          height: 20,
+          left: 0,
+          top: 0,
+          width: 120,
+          zIndex: 1,
+          text: 'Пример текста',
+        }),
+        type: 'PrototypeTextElement',
+      },
     },
   ],
 } satisfies IBaseComponent

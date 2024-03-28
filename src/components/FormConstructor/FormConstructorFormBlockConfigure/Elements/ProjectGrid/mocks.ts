@@ -1,5 +1,6 @@
 import type { IBaseComponent } from '../../../store'
 
+import { ProjectGrid } from './ProjectGrid'
 import type { ProjectTableView } from './types'
 
 export const rows = [
@@ -44,7 +45,7 @@ export const gridMock = {
     {
       id: '1657c7e0-9f56-a296-526e-af516ab09f33',
       type: 'ProjectGrid',
-      props: { className: '', baseProps: {} },
+      props: {},
     },
   ],
 } satisfies IBaseComponent

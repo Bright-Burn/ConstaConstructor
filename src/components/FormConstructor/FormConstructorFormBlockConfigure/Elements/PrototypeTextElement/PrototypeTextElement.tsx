@@ -1,15 +1,15 @@
 import type { FC } from 'react'
 import React from 'react'
 
-import type { IFormElementPrototype } from '../../../coreTypes'
+import type { IFormElementPrototypeText } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 
 interface IPrototypeTextElement {
-  element: IFormElementPrototype
+  element: IFormElementPrototypeText
 }
 
 export const PrototypeTextElement: FC<IPrototypeTextElement> = ({ element }) => {
-  const { width, height, top, left, text, zIndex } = element.props
+  const { width, height, top, left, text, zIndex } = element.props.props
 
   const style: React.CSSProperties = {
     width,

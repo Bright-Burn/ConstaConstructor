@@ -51,7 +51,7 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
           baseProps: {},
           items,
         },
-        type: 'SelectForm',
+        type: 'Select',
       },
     }
     dispatch(setDraggableElement({ element: newSelect }))
