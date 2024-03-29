@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { IconShape } from '@consta/icons/IconShape'
-import { IconTable2 } from '@consta/icons/IconTable2'
 import { Card } from '@consta/uikit/Card'
+import { Switch } from '@consta/uikit/Switch'
 
 import {
   changeActivePage,
@@ -79,11 +78,10 @@ export const Pages = ({ pages }: PagesProps) => {
           changeIsNameEdited={changeIsNameEdited}
         />
       </div>
-      {isGridVisible ? (
-        <IconTable2 className={styles.iconGrid} onClick={onClickShowGrid} />
-      ) : (
-        <IconShape className={styles.iconGrid} onClick={onClickShowGrid} />
-      )}
+      <div className="container-row align-center ">
+        <span className="m-r-s">Сетка</span>
+        <Switch checked={isGridVisible} size="s" onChange={onClickShowGrid} />
+      </div>
     </div>
   )
 }

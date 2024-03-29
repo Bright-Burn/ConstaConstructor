@@ -1,6 +1,7 @@
 .pagesBlock {
-  overflow: auto;
   height: 33px;
+  padding: var(--space-xs);
+  overflow: hidden;
 
   border-bottom: 1px solid var(--color-typo-system);
 }
