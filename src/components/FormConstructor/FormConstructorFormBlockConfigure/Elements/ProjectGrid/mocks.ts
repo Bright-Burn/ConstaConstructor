@@ -1,6 +1,5 @@
 import type { IBaseComponent } from '../../../store'
 
-import { ProjectGrid } from './ProjectGrid'
 import type { ProjectTableView } from './types'
 
 export const rows = [

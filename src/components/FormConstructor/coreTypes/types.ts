@@ -8,29 +8,27 @@ import type { BrandBreadcrumbsProps, IFormElementBreadcrumbs } from './Breadcrum
 import type {
   BrandButtonGroupProps,
   BrandButtonProps,
-  ButtonGroupProps,
   IButtonActionElement,
   IFormElementButton,
 } from './buttonTypes'
 import type { BrandCardElementPropsStyles } from './cardTypes'
-import type { BrandCardWithChartProps, cardWithChartProps } from './cardWithBarChartTypes'
+import type { BrandCardWithChartProps } from './cardWithBarChartTypes'
 import type { BrandCheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 import type { BrandOwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
 import type { BrandComboboxProps, IFormElementComboBox } from './comboBoxTypes'
-import type { BrandDashboardProps, DashboardProps } from './dashboardTypes'
+import type { BrandDashboardProps } from './dashboardTypes'
 import type { BrandDataTimeProps, IFormElementDataTime } from './dataTimeTypes'
 import type { BrandDatePickerProps, IFormElementDatePicker } from './datePickerTypes'
-import type { BrandFooterWithSwitchProps, footerWithSwitchProps } from './footerWithSwitchTypes'
+import type { BrandFooterWithSwitchProps } from './footerWithSwitchTypes'
 import type { BrandIconProps, IFormElementIcon } from './iconTypes'
 import type { BrandInformerElementProps, IFormElementInformer } from './informerTypes'
 import type { BrandLayoutElementPropsStyles } from './layoutTypes'
 import type { BrandListProps, IFormElementList } from './ListTypes'
-import type { BrandPlaceholderProps, PlaceholderProps } from './placeholderTypes'
+import type { BrandPlaceholderProps } from './placeholderTypes'
 import type { BrandPrototypeRectangleProps, BrandPrototypeTextProps } from './prototypeTypes'
 import type { BrandRadioButtonProps, IFormElementRadioButton } from './radioButtonTypes'
 import type { BrandSelectProps, IFormElementSelect } from './selectTypes'
 import type { BrandSimpleFormProps } from './simpleFormTypes'
-import { simpleFormProps } from './simpleFormTypes'
 import type { BrandSwitchProps, IFormElementSwitch } from './SwitchTypes'
 import type { BrandTableProps, IFormElementTable } from './tableTypes'
 import type { BrandTabsElementProps, IFormElementTabs } from './tabsTypes'
@@ -38,7 +36,7 @@ import type { BrandTagProps, IFormElementTagProps } from './tagTypes'
 import type { BrandTextFieldProps, IFormElementTextField } from './textFieldTypes'
 import type { BrandTextElementProps, IFormElementText } from './textTypes'
 import type { BrandUserProps, IFormElementUser } from './userTypes'
-import type { BrandWizardFromProps, wizardFormProps } from './wizardFormTypes'
+import type { BrandWizardFromProps } from './wizardFormTypes'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType

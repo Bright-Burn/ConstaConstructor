@@ -3,7 +3,7 @@ import { useLayoutEffect, useState } from 'react'
 import { Button } from '@consta/uikit/Button'
 import { Text } from '@consta/uikit/Text'
 
-import type { IFormElementPlaceholder, PlaceholderProps } from '../../../coreTypes'
+import type { PlaceholderProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFitSpace } from '../../SelectableLayer'
 

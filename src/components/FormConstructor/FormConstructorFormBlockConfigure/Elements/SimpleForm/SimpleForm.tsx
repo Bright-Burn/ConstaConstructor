@@ -9,7 +9,7 @@ import { DragNDropField } from '@consta/uikit/DragNDropField'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { IFormElementSimpleForm, simpleFormProps } from '../../../coreTypes'
+import type { simpleFormProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer'
 

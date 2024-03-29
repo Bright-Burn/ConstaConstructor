@@ -23,7 +23,6 @@ export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element })
   return (
     <SelectableLayer
       parentElementId={element.id}
-      className={style.ComboBox}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ChoiceGroup}>
       {checkMultiple(props.props) ? (

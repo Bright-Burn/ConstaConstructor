@@ -4,7 +4,7 @@ import { Button } from '@consta/uikit/Button'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 
-import type { footerWithSwitchProps, IFormElementFooterWithSwitch } from '../../../coreTypes'
+import type { footerWithSwitchProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer'
 

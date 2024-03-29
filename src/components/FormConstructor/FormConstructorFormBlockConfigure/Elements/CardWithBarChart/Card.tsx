@@ -4,7 +4,7 @@ import { Bar } from '@consta/charts/Bar'
 import { Card } from '@consta/uikit/Card'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 
-import type { cardWithChartProps, IFormElementCardWithChart } from '../../../coreTypes'
+import type { cardWithChartProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/'
 
