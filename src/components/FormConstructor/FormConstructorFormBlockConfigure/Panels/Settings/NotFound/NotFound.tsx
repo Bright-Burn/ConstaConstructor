@@ -10,6 +10,7 @@ export const NotFound = ({ title, description }: { title: string; description: s
       title={title}
       description={description}
       size="m"
+      actions={<div />}
     />
   )
 }
