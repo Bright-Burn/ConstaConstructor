@@ -26,7 +26,7 @@ export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({ element })
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Placeholder}>
       <div className={style.container}>
-        <img src={ImageSvg} />
+        <img src={ImageSvg} alt="img" />
 
         <Text
           view="primary"

@@ -12,8 +12,6 @@ import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IChoiceGroupFormElement } from './types'
 
-import style from './style.module.css'
-
 export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element }) => {
   const checkMultiple = (
     props: SingleChoiceGroupProps | MultipleChoiceGroupProps,
