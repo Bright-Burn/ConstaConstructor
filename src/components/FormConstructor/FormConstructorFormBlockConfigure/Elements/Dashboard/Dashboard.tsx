@@ -8,7 +8,7 @@ import { Layout } from '@consta/uikit/Layout'
 import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 
-import type { DashboardProps, IFormElementDashboard } from '../../../coreTypes'
+import type { DashboardProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFitSpace } from '../../SelectableLayer'
 
