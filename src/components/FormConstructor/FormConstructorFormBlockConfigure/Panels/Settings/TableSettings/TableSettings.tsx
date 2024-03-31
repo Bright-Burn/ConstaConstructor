@@ -21,7 +21,7 @@ export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, sel
   const [props, setProps] = useState<TableProps>()
   const dispatch = useAppDispatch()
 
-  const handleOnChangeLabelRow = ({ value }: { value: string | null }) => {
+  const handleOnChangeLabelRow = (value: string | null) => {
     const newProps: BrandTableProps = {
       props: { ...selectedElementProps },
       type: 'Table',
@@ -30,7 +30,7 @@ export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, sel
     onDispatch(selectedElement, newProps)
   }
 
-  const handleOnChangeLabelColumn = ({ value }: { value: string | null }) => {
+  const handleOnChangeLabelColumn = (value: string | null) => {
     const newProps: BrandTableProps = {
       props: { ...selectedElementProps },
       type: 'Table',

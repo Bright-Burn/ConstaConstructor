@@ -1,6 +1,6 @@
-import type { IconComponent } from '@consta/uikit/Icon'
-import { IconAlignJustify } from '@consta/uikit/IconAlignJustify'
-import { IconColumns } from '@consta/uikit/IconColumns'
+import type { IconComponent } from '@consta/icons/Icon'
+import { IconAlignJustify } from '@consta/icons/IconAlignJustify'
+import { IconColumns } from '@consta/icons/IconColumns'
 
 import type {
   AlignItems,

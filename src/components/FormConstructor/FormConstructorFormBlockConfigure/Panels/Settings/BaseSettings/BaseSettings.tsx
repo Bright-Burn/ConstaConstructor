@@ -1,8 +1,8 @@
 import React from 'react'
-import { IconBackward } from '@consta/uikit/IconBackward'
-import { IconDown } from '@consta/uikit/IconDown'
-import { IconForward } from '@consta/uikit/IconForward'
-import { IconTop } from '@consta/uikit/IconTop'
+import { IconBackward } from '@consta/icons/IconBackward'
+import { IconDown } from '@consta/icons/IconDown'
+import { IconForward } from '@consta/icons/IconForward'
+import { IconTop } from '@consta/icons/IconTop'
 import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 

@@ -61,7 +61,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
           label="Размер"
           size="xs"
           value={itemsProps.size || 's'}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'size')
           }}
         />
@@ -77,7 +77,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
             view="ghost"
             onlyIcon={true}
             name="ChoiceGroupExample"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'align')
             }}
           />
@@ -91,7 +91,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
           label="Толщина"
           size="xs"
           value={itemsProps.weight}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'weight')
           }}
         />
@@ -102,7 +102,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
           label="Вид"
           size="xs"
           value={itemsProps.view}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'view')
           }}
         />
@@ -122,7 +122,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
             label="Высота строки"
             size="xs"
             value={itemsProps.lineHeight}
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'lineHeight')
             }}
           />
@@ -133,7 +133,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
             label="Отступ между буквами"
             size="xs"
             value={itemsProps.spacing}
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'spacing')
             }}
           />
@@ -146,13 +146,13 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
             value={refactorValue}
             items={transformText}
             getItemLabel={item => item.name || ''}
-            getItemIcon={item => item.icon}
+            getItemIcon={item => item.icon || undefined}
             multiple={true}
             onlyIcon={true}
             name="ChoiceGroupExampleIcon"
             size="xs"
             view="ghost"
-            onChange={({ value }) => {
+            onChange={value => {
               onRefactorValueLabelEdit(value)
             }}
           />

@@ -40,7 +40,7 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
 
   const clearEvents = (checked: boolean) => {
     setWithEvents(checked)
-    onChangeItemsCount({ value: '0' })
+    onChangeItemsCount('0')
   }
 
   return (
@@ -53,7 +53,7 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           items={typeArray}
           getItemLabel={(label: DateTimePropType) => label}
           getItemKey={(key: DateTimePropType) => key}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'type')
           }}
         />
@@ -64,7 +64,7 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           items={viewArray}
           getItemLabel={(label: DateTimePropView) => label}
           getItemKey={(key: DateTimePropView) => key}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'view')
           }}
         />
@@ -74,7 +74,7 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           leftSide="min"
           size="xs"
           value={itemsProps.minDate}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'minDate')
           }}
         />
@@ -82,7 +82,7 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           size="xs"
           leftSide="max"
           value={itemsProps.maxDate}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'maxDate')
           }}
         />
@@ -94,7 +94,7 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           size="xs"
           disabled={!(itemsProps.type === 'time' || itemsProps.type === 'date-time')}
           value={`${itemsProps.multiplicityHours}`}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(Number(value), 'multiplicityHours')
           }}
         />
@@ -104,7 +104,7 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           size="xs"
           disabled={!(itemsProps.type === 'time' || itemsProps.type === 'date-time')}
           value={`${itemsProps.multiplicityMinutes}`}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(Number(value), 'multiplicityMinutes')
           }}
         />
@@ -114,7 +114,7 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           size="xs"
           disabled={!(itemsProps.type === 'time' || itemsProps.type === 'date-time')}
           value={`${itemsProps.multiplicitySeconds}`}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(Number(value), 'multiplicitySeconds')
           }}
         />
@@ -123,8 +123,8 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
         checked={withEvents}
         label="Мероприятия"
         size="xs"
-        onChange={({ checked }) => {
-          clearEvents(checked)
+        onChange={event => {
+          clearEvents(event.target.checked)
         }}
       />
       {!!withEvents && (
@@ -135,12 +135,11 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
           onClick={() => {
             setOpenEvents(!isOpenEvents)
           }}>
-          <div className={styles.collapseSettings}>
+          <div>
             <TextField
               label="Количество мероприятий"
               type="number"
               size="xs"
-              width="full"
               value={`${itemsProps.events.length}`}
               onChange={onChangeItemsCount}
             />
@@ -153,8 +152,8 @@ export const DataTimeSettings: FC<DataTimeSettingsType> = ({
                   label={`Мероприятия ${index + 1}`}
                   className={styles.rowSettingsCollapse}
                   value={dat}
-                  onChange={event => {
-                    onDateLabelEdit(event.value as Date, index)
+                  onChange={value => {
+                    value && onDateLabelEdit(value, index)
                   }}
                 />
               )

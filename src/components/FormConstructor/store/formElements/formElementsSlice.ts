@@ -1,10 +1,6 @@
-import type { PayloadAction, Update } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-import type { AllElementProps } from '../../coreTypes'
-
-import { deselectElement } from './reducers/setSelectedElement'
-import { initialState, layuoutAdapter } from './initialState'
+import { initialState } from './initialState'
 import {
   addNewFormElement,
   addNewPage,
@@ -12,6 +8,7 @@ import {
   changePageName,
   deleteFormElement,
   deletePage,
+  deselectElement,
   loadProjectFromJson,
   setDraggableElement,
   setSelectedElement,
@@ -20,7 +17,7 @@ import {
 //TODO необходимо логику из редьюсеров перенести в экшены, а редьюсеры в слайсы
 // иначе не может привести к типу WriteableDraft<IFormConstructor>
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
+// ts-expect-error
 export const formConstructorSlice = createSlice({
   name: 'formConstructor',
   initialState,
@@ -31,12 +28,7 @@ export const formConstructorSlice = createSlice({
     loadProjectFromJson,
     // @ts-expect-error
     setSelectedElement,
-    // setSelectedElement: (state, action: PayloadAction<Update<AllElementProps>>) => {
-    //   layuoutAdapter.updateOne(state.allElements, {
-    //     id: action.payload.id,
-    //     changes: action.payload.changes,
-    //   })
-    // },
+
     // @ts-expect-error
     deselectElement,
     // @ts-expect-error

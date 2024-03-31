@@ -24,7 +24,7 @@ export const useItemsHandlers = (
     )
   }
 
-  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+  const onChangeItemsCount = (value: string | null) => {
     const newProps: BrandDatePickerProps = {
       props: { ...selectedElementProps },
       type: 'DatePicker',
@@ -67,6 +67,17 @@ export const useItemsHandlers = (
     }
     onDispatch(selectedElement, newProps)
   }
+  const onChangeSwitch =
+    (propsName: keyof DatePickerProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+      const newProps: BrandDatePickerProps = {
+        props: {
+          ...selectedElementProps,
+          [propsName]: checked.target.checked,
+        },
+        type: 'DatePicker',
+      }
+      onDispatch(selectedElement, newProps)
+    }
   const onChangeField = (value: ValueType, field: keyof DatePickerProps) => {
     const newProps: BrandDatePickerProps = {
       props: { ...selectedElementProps, [field]: value },
@@ -85,6 +96,7 @@ export const useItemsHandlers = (
     onChangeItemsCount,
     onChangeCaption,
     onChangeLabel,
+    onChangeSwitch,
     onChangeStatus,
     itemsProps: {
       type: selectedElementProps.type,

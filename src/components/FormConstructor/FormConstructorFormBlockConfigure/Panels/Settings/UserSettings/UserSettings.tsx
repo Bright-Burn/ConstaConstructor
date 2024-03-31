@@ -38,7 +38,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
           label="Размер"
           size="xs"
           value={itemsProps.size}
-          onChange={({ value }) => {
+          onChange={value => {
             value && onChangeSize(value)
           }}
         />
@@ -49,7 +49,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
           label="Вид"
           size="xs"
           value={itemsProps.view}
-          onChange={({ value }) => {
+          onChange={value => {
             value && onChangeView(value)
           }}
         />
@@ -68,7 +68,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
           label="Статус"
           size="xs"
           value={itemsProps.status}
-          onChange={({ value }) => {
+          onChange={value => {
             value && onChangeStatus(value)
           }}
         />
@@ -77,24 +77,24 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
         label="Ссылка на аватарку"
         size="xs"
         value={itemsProps.avatarUrl}
-        onChange={({ value }) => {
-          value && onChangeAvatarUrl(value)
+        onChange={value => {
+          value !== null ? onChangeAvatarUrl(value) : onChangeAvatarUrl('')
         }}
       />
       <TextField
         label="Имя"
         size="xs"
         value={itemsProps.name}
-        onChange={({ value }) => {
-          value && onChangeName(value)
+        onChange={value => {
+          value !== null ? onChangeName(value) : onChangeName('')
         }}
       />
       <TextField
         label="Доп. информация"
         size="xs"
         value={itemsProps.info}
-        onChange={({ value }) => {
-          value && onChangeInfo(value)
+        onChange={value => {
+          value !== null ? onChangeInfo(value) : onChangeInfo('')
         }}
       />
       <Switch

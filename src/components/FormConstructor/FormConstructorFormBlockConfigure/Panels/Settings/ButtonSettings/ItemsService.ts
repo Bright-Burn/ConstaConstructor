@@ -50,8 +50,8 @@ export const useItemsHandlers = (
   }
 
   const onChangeSwitch =
-    (propsName: keyof ButtonProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof ButtonProps) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = event.target.checked
       const newProps: BrandButtonProps = {
         props: {
           ...selectedElementProps,

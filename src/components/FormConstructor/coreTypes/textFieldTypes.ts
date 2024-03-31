@@ -5,7 +5,6 @@ import type {
   TextFieldPropsTextareaType,
   TextFieldPropValue,
   TextFieldPropView,
-  TextFieldPropWidth,
 } from '@consta/uikit/TextField'
 
 import type {
@@ -18,7 +17,6 @@ import type {
 
 export type TextFieldProps = {
   type?: string
-  width?: TextFieldPropWidth
   form?: TextFieldPropForm
   status?: TextFieldPropStatus
   size?: TextFieldPropSize

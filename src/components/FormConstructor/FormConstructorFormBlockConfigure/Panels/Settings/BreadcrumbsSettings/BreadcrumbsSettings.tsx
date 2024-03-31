@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
+import type { IconComponent } from '@consta/icons/Icon'
 import { Collapse } from '@consta/uikit/Collapse'
-import type { IconComponent } from '@consta/uikit/Icon'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
@@ -80,7 +80,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
           label="size"
           size="xs"
           value={itemsProps.size}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeSize(value)
           }}
         />
@@ -91,7 +91,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
           label="fitMode"
           size="xs"
           value={itemsProps.fitMode}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeFitMode(value)
           }}
         />
@@ -107,8 +107,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
         label="Иконки страниц"
         size="xs"
         checked={disabledPage}
-        onChange={e => {
-          onDisabledPage(e.checked)
+        onChange={event => {
+          onDisabledPage(event.target.checked)
         }}
       />
       <Collapse
@@ -127,8 +127,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
                   size="xs"
                   label={`Страница ${index + 1}`}
                   value={page.label}
-                  onChange={event => {
-                    onPageLabelEdit(event.value, index)
+                  onChange={value => {
+                    onPageLabelEdit(value, index)
                   }}
                 />
                 <Select
@@ -151,8 +151,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
                       <Text size="xs">{item}</Text>
                     </div>
                   )}
-                  onChange={event => {
-                    onPageIconEditLeft(event.value, index)
+                  onChange={value => {
+                    onPageIconEditLeft(value, index)
                   }}
                 />
               </div>

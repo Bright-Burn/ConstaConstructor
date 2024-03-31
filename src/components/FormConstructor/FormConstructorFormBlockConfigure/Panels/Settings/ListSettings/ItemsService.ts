@@ -11,7 +11,7 @@ import type { ValueType } from './types'
 export const useItemsHandlers = (selectedElementProps: ListProps, selectedElement: ListElement) => {
   const dispatch = useAppDispatch()
 
-  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+  const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandListProps = {
         props: { ...selectedElementProps },
@@ -46,8 +46,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
   }
 
   const onChangeSwitch =
-    (propsName: keyof ListProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof ListProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandListProps = {
         props: { ...selectedElementProps, [propsName]: checked },
         type: 'List',

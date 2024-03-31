@@ -41,20 +41,18 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
     setProps(selectedElementProps)
   }, [selectedElementProps])
 
-  const onChangeCardField =
-    (propsName: keyof CardElementProps) =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandCardElementPropsStyles = {
-        props: { ...selectedElementProps },
-        type: 'Card',
-      }
-      newProps.props.constaProps = { ...newProps.props.constaProps, [propsName]: value }
-      onDispatch(selectedElement, newProps)
+  const onChangeCardField = (propsName: keyof CardElementProps) => (value: string | null) => {
+    const newProps: BrandCardElementPropsStyles = {
+      props: { ...selectedElementProps },
+      type: 'Card',
     }
+    newProps.props.constaProps = { ...newProps.props.constaProps, [propsName]: value }
+    onDispatch(selectedElement, newProps)
+  }
 
   const onChangeCardSwitch =
-    (propsName: keyof CardElementProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof CardElementProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = check.target.checked
       const newProps: BrandCardElementPropsStyles = {
         props: { ...selectedElementProps },
         type: 'Card',
@@ -120,7 +118,7 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
               leftSide="px"
               label="Высота"
               min="0"
-              onChange={({ value }) => {
+              onChange={value => {
                 onChangeHeight(value)
               }}
             />
@@ -131,7 +129,7 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
               leftSide="px"
               label="Ширина"
               min="0"
-              onChange={({ value }) => {
+              onChange={value => {
                 onChangeWidth(value)
               }}
             />

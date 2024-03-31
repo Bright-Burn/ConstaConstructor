@@ -21,7 +21,6 @@ export const ComponentCardTextField: FC<IComponetCardElement> = ({ name }) => {
       props: {
         props: {
           type: 'text',
-          width: 'default',
           form: 'default',
           size: 'm',
           view: 'default',

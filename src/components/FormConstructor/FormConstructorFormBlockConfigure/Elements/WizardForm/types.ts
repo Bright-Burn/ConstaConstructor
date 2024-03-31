@@ -1,4 +1,4 @@
-import type { IconComponent } from '@consta/uikit/Icon'
+import type { IconComponent } from '@consta/icons/Icon'
 
 import type { IFormElement } from '../../../coreTypes'
 

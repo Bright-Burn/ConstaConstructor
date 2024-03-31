@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import { useState } from 'react'
+import { IconArrowLeft } from '@consta/icons/IconArrowLeft'
 import { IconUpload } from '@consta/icons/IconUpload'
 import { Button } from '@consta/uikit/Button'
-import { IconArrowLeft } from '@consta/uikit/IconArrowLeft'
 import { TextField } from '@consta/uikit/TextField'
 
 import {
@@ -29,7 +29,7 @@ export const Settings: FC = () => {
 
   const dispatch = useAppDispatch()
 
-  const changeTextFieldValue = ({ value }: { value: string | null }) => {
+  const changeTextFieldValue = (value: string | null) => {
     setModuleName(value)
   }
 
@@ -51,7 +51,6 @@ export const Settings: FC = () => {
       <SettingPanelQualifier />
       <div className={styles.exportText}>
         <TextField
-          width="full"
           value={moduleName}
           type="text"
           size="xs"

@@ -1,6 +1,5 @@
-import type { IconComponent, IconPropSize } from '@consta/uikit/Icon'
-import type { TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
-import type { TabsPropLinePosition } from '@consta/uikit/TabsDeprecated'
+import type { IconComponent, IconPropSize } from '@consta/icons/Icon'
+import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 
 import type {
   BaseProps,

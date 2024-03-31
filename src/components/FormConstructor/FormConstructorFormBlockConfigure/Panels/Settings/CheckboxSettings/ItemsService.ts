@@ -33,10 +33,9 @@ export const useItemsHandlers = (
   }
 
   const onChangeSwitch =
-    (propsName: keyof CheckboxProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof CheckboxProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandCheckboxProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedElementProps, [propsName]: checked.target.checked },
         type: 'Checkbox',
       }
       onDispatch(selectedElement, newProps)

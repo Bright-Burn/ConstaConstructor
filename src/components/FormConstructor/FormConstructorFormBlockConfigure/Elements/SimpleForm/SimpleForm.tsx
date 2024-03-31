@@ -39,7 +39,6 @@ export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
             labelPosition="top"
             size="m"
             disabled={true}
-            width="full"
           />
           <TextField
             placeholder="Ivanov.AI"
@@ -47,7 +46,6 @@ export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
             labelPosition="top"
             size="m"
             disabled={true}
-            width="full"
             className="m-t-xl"
           />
           <TextField
@@ -57,7 +55,6 @@ export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
             type="password"
             size="m"
             leftSide={IconLock}
-            width="full"
             className="m-t-s"
           />
           <TextField
@@ -65,7 +62,6 @@ export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
             label="Фамилия"
             labelPosition="top"
             size="m"
-            width="full"
             className="m-t-xl"
           />
           <div className="m-t-s">
@@ -89,7 +85,6 @@ export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
             labelPosition="top"
             size="m"
             required={true}
-            width="full"
             className="m-t-xl"
           />
           <div className="m-t-s">

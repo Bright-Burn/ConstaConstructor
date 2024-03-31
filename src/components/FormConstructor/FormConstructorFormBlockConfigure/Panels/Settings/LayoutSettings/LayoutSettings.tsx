@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import React, { useLayoutEffect, useState } from 'react'
+import type { IconComponent } from '@consta/icons/Icon'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import type { IconComponent } from '@consta/uikit/Icon'
 import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
@@ -78,7 +78,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
           leftSide="px"
           size="xs"
           min="0"
-          onChange={({ value }: { value: string | null }) => {
+          onChange={value => {
             onChangeHeight(value)
           }}
         />
@@ -89,7 +89,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
           leftSide="px"
           size="xs"
           min="0"
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeWidth(value)
           }}
         />
@@ -103,7 +103,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
           label="Заполнение"
           size="xs"
           min="1"
-          onChange={onChangeFlex()}
+          onChange={onChangeFlex}
         />
         <div className={styles.columnSettings}>
           <Text size="xs" view="secondary" className={styles.labelMarginBottom}>
@@ -117,7 +117,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
             size="xs"
             onlyIcon={true}
             view="ghost"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeDirection(value.name)
             }}
           />
@@ -136,7 +136,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
             size="xs"
             onlyIcon={true}
             view="ghost"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeJustifyContent(value.name)
             }}
           />
@@ -153,7 +153,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
             size="xs"
             onlyIcon={true}
             view="ghost"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeAlignItems(value.name)
             }}
           />
@@ -171,7 +171,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
           size="xs"
           onlyIcon={true}
           view="ghost"
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeBorderSide(value.name)
           }}
         />
@@ -217,7 +217,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
               <Text size="xs">{item.name}</Text>
             </div>
           )}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeBorderStyle(value?.name)
           }}
         />
@@ -228,7 +228,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
           getItemLabel={(label: BorderWidth) => label}
           items={borderWidths}
           value={itemsProps.styles?.borderWidth}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeBorderWidth(value)
           }}
         />

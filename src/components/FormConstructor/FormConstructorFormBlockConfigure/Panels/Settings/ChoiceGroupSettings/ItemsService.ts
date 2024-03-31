@@ -2,7 +2,6 @@ import type {
   BrandOwnChoiceGroupProps,
   ChoiceGroupElement,
   ChoiceGroupItem,
-  DeepWriteable,
   ISelectedElement,
   OwnChoiceGroupProps,
 } from '../../../../coreTypes'
@@ -11,7 +10,7 @@ import { setSelectedElement, useAppDispatch } from '../../../../store'
 import type { ValueType } from './types'
 
 export const useItemsHandlers = (
-  selectedElementProps: DeepWriteable<OwnChoiceGroupProps>,
+  selectedElementProps: OwnChoiceGroupProps,
   selectedElement: ChoiceGroupElement,
 ) => {
   const dispatch = useAppDispatch()
@@ -26,7 +25,7 @@ export const useItemsHandlers = (
     )
   }
 
-  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+  const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandOwnChoiceGroupProps = {
         props: { ...selectedElementProps },
@@ -40,7 +39,7 @@ export const useItemsHandlers = (
             ...itemsProps,
             {
               label: `Вариант ${i + 1}`,
-            } satisfies DeepWriteable<ChoiceGroupItem>,
+            } satisfies ChoiceGroupItem,
           ]
         }
       } else {
@@ -53,7 +52,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeItems = (items: DeepWriteable<ChoiceGroupItem[]>) => {
+  const onChangeItems = (items: ChoiceGroupItem[]) => {
     const newProps: BrandOwnChoiceGroupProps = {
       props: { ...selectedElementProps },
       type: 'ChoiceGroup',
@@ -62,7 +61,7 @@ export const useItemsHandlers = (
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeField = (value: ValueType, field: keyof DeepWriteable<OwnChoiceGroupProps>) => {
+  const onChangeField = (value: ValueType, field: keyof OwnChoiceGroupProps) => {
     const newProps: BrandOwnChoiceGroupProps = {
       props: { ...selectedElementProps, [field]: value },
       type: 'ChoiceGroup',
@@ -72,10 +71,9 @@ export const useItemsHandlers = (
   }
 
   const onChangeSwitch =
-    (propsName: keyof OwnChoiceGroupProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof OwnChoiceGroupProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedElementProps, [propsName]: checked.target.checked },
         type: 'ChoiceGroup',
       }
       onDispatch(selectedElement, newProps)

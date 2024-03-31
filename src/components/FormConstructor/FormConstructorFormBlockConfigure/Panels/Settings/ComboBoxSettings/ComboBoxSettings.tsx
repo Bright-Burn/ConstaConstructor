@@ -40,6 +40,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
     onChangeLabel,
     onChangePlaceholder,
     onChangeCaption,
+    onChangeSwitch,
   } = useItemsHandlers(selectedElementProps, selectedElement)
   const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
   const [isOpenList, setOpenList] = useState<boolean>(false)
@@ -67,7 +68,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           getItemLabel={(label: string) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'size')
           }}
         />
@@ -82,7 +83,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
             view="ghost"
             size="xs"
             name="ChoiceGroupExample"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'view')
             }}
           />
@@ -96,7 +97,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           getItemLabel={(label: string) => label}
           value={itemsProps.form || 'default'}
           items={formArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'form')
           }}
         />
@@ -107,7 +108,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           getItemLabel={(label: string) => label}
           value={itemsProps.status}
           items={statusArray}
-          onChange={({ value }) => {
+          onChange={value => {
             value !== null ? onChangeStatus(value) : onChangeStatus('')
           }}
         />
@@ -116,17 +117,13 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         label="Состояние блокировки"
         size="xs"
         checked={itemsProps.disabled}
-        onChange={({ checked }) => {
-          onChangeField(checked, 'disabled')
-        }}
+        onChange={onChangeSwitch('disabled')}
       />
       <Switch
         label="Текст заголовка"
         size="xs"
         checked={!!itemsProps.label}
-        onChange={({ checked }) => {
-          onChangeField(checked, 'label')
-        }}
+        onChange={onChangeSwitch('label')}
       />
       <div className={styles.rowSettingsWithoutGap}>
         <Select
@@ -137,17 +134,16 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           getItemLabel={(label: string) => label}
           value={itemsProps.labelPosition || 'top'}
           items={labelPositionArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'labelPosition')
           }}
         />
         <TextField
           className={styles.widthFlex}
-          width="full"
           disabled={!itemsProps.label}
           value={itemsProps.label}
           size="xs"
-          onChange={({ value }) => {
+          onChange={value => {
             value !== null ? onChangeLabel(value) : onChangeLabel('')
           }}
         />
@@ -156,24 +152,20 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         label="Обязательное заполнение"
         size="xs"
         checked={itemsProps.required}
-        onChange={({ checked }) => {
-          onChangeField(checked, 'required')
-        }}
+        onChange={onChangeSwitch('required')}
       />
       <div className={styles.columnSettingsWithoutRow}>
         <Switch
           label="Текст подписи"
           size="xs"
           checked={!!itemsProps.caption}
-          onChange={({ checked }) => {
-            onChangeField(checked, 'caption')
-          }}
+          onChange={onChangeSwitch('caption')}
         />
         <TextField
           size="xs"
           disabled={!itemsProps.caption}
           value={itemsProps.caption}
-          onChange={({ value }) => {
+          onChange={value => {
             value !== null ? onChangeCaption(value) : onChangeCaption('')
           }}
         />
@@ -182,7 +174,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         value={itemsProps.placeholder}
         size="xs"
         label="Текст placeholder"
-        onChange={({ value }) => {
+        onChange={value => {
           value !== null ? onChangePlaceholder(value) : onChangePlaceholder('')
         }}
       />
@@ -197,9 +189,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
         label="Мультивыбор"
         size="xs"
         checked={itemsProps.multiple}
-        onChange={({ checked }) => {
-          onChangeField(checked, 'multiple')
-        }}
+        onChange={onChangeSwitch('multiple')}
       />
       {itemsProps.multiple ? (
         <Combobox
@@ -209,7 +199,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           getItemKey={(key: comboboxItemType) => key.id}
           value={Array.isArray(itemsProps.value) ? itemsProps.value : undefined}
           items={itemsProps.items}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'value')
           }}
         />
@@ -220,7 +210,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
           getItemKey={(key: comboboxItemType) => key.id}
           value={Array.isArray(itemsProps.value) ? undefined : itemsProps.value}
           items={itemsProps.items}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'value')
           }}
         />
@@ -241,8 +231,8 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
                 size="xs"
                 label={`Вариант ${index + 1}`}
                 value={line.label}
-                onChange={event => {
-                  onLinesLabelEdit(event.value, index)
+                onChange={value => {
+                  onLinesLabelEdit(value, index)
                 }}
               />
               <Select
@@ -253,8 +243,8 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
                 getItemLabel={(label: string) => label}
                 value={line.group}
                 items={itemsProps.groups}
-                onChange={event => {
-                  onLinesGroupEdit(event.value, index)
+                onChange={value => {
+                  onLinesGroupEdit(value, index)
                 }}
               />
             </div>
@@ -276,7 +266,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
             getItemLabel={(label: string) => label}
             value={itemsProps.dropdownForm || 'default'}
             items={dropDownArray}
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'dropdownForm')
             }}
           />
@@ -284,17 +274,13 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
             label="Состояние загрузки"
             size="xs"
             checked={itemsProps.isLoading}
-            onChange={({ checked }) => {
-              onChangeField(checked, 'isLoading')
-            }}
+            onChange={onChangeSwitch('isLoading')}
           />
           <Switch
             label="Группировка пунктов"
             size="xs"
             checked={itemsProps.groupsActive}
-            onChange={({ checked }) => {
-              onChangeField(checked, 'groupsActive')
-            }}
+            onChange={onChangeSwitch('groupsActive')}
           />
         </div>
       </Collapse>

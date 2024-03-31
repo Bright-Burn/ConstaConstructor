@@ -55,7 +55,7 @@ export const changePageName = (pageName: string) => (dispatch: AppDispatch) => {
 export const setSelectedElement =
   (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
     if (!payload) {
-      dispatch(formConstructorSlice.actions.deselectElement(getState()))
+      dispatch(formConstructorSlice.actions.deselectElement())
       return
     }
 
@@ -113,9 +113,9 @@ export const deleteFormElement =
 
     dispatch(
       pushHistoryElement(() => {
-        elementsForDelete.forEach(el =>
-          dispatch(formConstructorSlice.actions.addNewFormElement(el)),
-        )
+        elementsForDelete.forEach(el => {
+          dispatch(formConstructorSlice.actions.addNewFormElement(el))
+        })
       }),
     )
   }
@@ -270,10 +270,10 @@ export const saveProjectToHtml =
     Promise.all([css, js]).then(([cssText, jsText]) => {
       const blob = new Blob([html, `<style>${cssText}</style> `], { type: 'text/html' })
       const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = 'webpage.html'
-      a.click()
+      const tagA = document.createElement('a')
+      tagA.href = url
+      tagA.download = 'webpage.html'
+      tagA.click()
     })
   }
 

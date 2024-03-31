@@ -54,7 +54,7 @@ export const ConstaPalette: FC<IConstaPalette> = ({
             </div>
           )
         }}
-        onChange={({ value }) => {
+        onChange={value => {
           value && onChangeColor(value)
         }}
       />

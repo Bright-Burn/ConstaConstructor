@@ -1,8 +1,10 @@
 import type {
   BrandComboboxProps,
+  BrandDatePickerProps,
   ComboBoxElement,
   comboboxItemType,
   ComboboxProps,
+  DatePickerProps,
   ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
@@ -23,7 +25,7 @@ export const useItemsHandlers = (
       }),
     )
   }
-  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+  const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandComboboxProps = {
         props: { ...selectedElementProps },
@@ -80,6 +82,17 @@ export const useItemsHandlers = (
     }
     onDispatch(selectedElement, newProps)
   }
+  const onChangeSwitch =
+    (propsName: keyof ComboboxProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+      const newProps: BrandComboboxProps = {
+        props: {
+          ...selectedElementProps,
+          [propsName]: checked.target.checked,
+        },
+        type: 'ComboBox',
+      }
+      onDispatch(selectedElement, newProps)
+    }
   const onChangeField = (value: ValueType, field: keyof ComboboxProps) => {
     const newProps: BrandComboboxProps = {
       props: { ...selectedElementProps, [field]: value },
@@ -101,6 +114,7 @@ export const useItemsHandlers = (
     onChangeLabel,
     onChangeCaption,
     onChangePlaceholder,
+    onChangeSwitch,
     itemsProps: {
       items: selectedElementProps.items,
       value: selectedElementProps.value,

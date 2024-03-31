@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
+import type { IconComponent } from '@consta/icons/Icon'
 import type {
   ChoiceGroupPropForm,
   ChoiceGroupPropSize,
@@ -7,7 +8,6 @@ import type {
 } from '@consta/uikit/ChoiceGroup'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Combobox } from '@consta/uikit/Combobox'
-import type { IconComponent } from '@consta/uikit/Icon'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
@@ -16,7 +16,6 @@ import { TextField } from '@consta/uikit/TextField'
 import type {
   ChoiceGroupElement,
   ChoiceGroupItem,
-  DeepWriteable,
   IconNames,
   OwnChoiceGroupProps,
 } from '../../../../coreTypes'
@@ -28,7 +27,7 @@ import { formArray, sizeArray, viewArray } from './types'
 import styles from './styles.module.css'
 
 type ChoiceGroupSettingsType = {
-  selectedElementProps: DeepWriteable<OwnChoiceGroupProps>
+  selectedElementProps: OwnChoiceGroupProps
   selectedElement: ChoiceGroupElement
 }
 
@@ -58,7 +57,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
   }
 
   // TODO убрать когда избавимся от DeepWriteable
-  const iconComponentToDeepWriteable = (x: IconComponent) => x as DeepWriteable<IconComponent>
+  const iconComponentToDeepWriteable = (x: IconComponent) => x
 
   const checkValueIsIconNames = (value: string): value is IconNames => {
     return value in Icons
@@ -86,7 +85,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
           getItemLabel={(label: ChoiceGroupPropSize) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'size')
           }}
         />
@@ -97,7 +96,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
           getItemLabel={(label: ChoiceGroupPropView) => label}
           value={itemsProps.view}
           items={viewArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'view')
           }}
         />
@@ -109,7 +108,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
         getItemLabel={(label: ChoiceGroupPropForm) => label}
         value={itemsProps.form}
         items={formArray}
-        onChange={({ value }) => {
+        onChange={value => {
           onChangeField(value, 'form')
         }}
       />
@@ -136,8 +135,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
         label="Иконки у вариантов"
         size="xs"
         checked={isPageDisabled}
-        onChange={e => {
-          onDisabledPage(e.checked)
+        onChange={event => {
+          onDisabledPage(event.target.checked)
         }}
       />
       <Switch
@@ -151,11 +150,11 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
           label="Выберите активные элементы"
           size="xs"
           placeholder="Выберите вариант"
-          items={itemsProps.items as ChoiceGroupItem[]}
+          items={itemsProps.items}
           value={itemsProps.value as ChoiceGroupItem[]}
           getItemKey={(key: ChoiceGroupItem) => key.label}
           multiple={true}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'value')
           }}
         />
@@ -164,9 +163,14 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
           label="Активный элемент"
           size="xs"
           items={itemsProps.items}
-          value={itemsProps.value as DeepWriteable<ChoiceGroupItem>}
-          getItemKey={(key: DeepWriteable<ChoiceGroupItem>) => key.label}
-          onChange={({ value }) => {
+          value={itemsProps.value}
+          getItemKey={(item: ChoiceGroupItem | ChoiceGroupItem[] | null) => {
+            if (item) {
+              return Array.isArray(item) ? item[0].label : item.label
+            }
+            return 0
+          }}
+          onChange={value => {
             onChangeField(value, 'value')
           }}
         />
@@ -187,8 +191,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
                 size="xs"
                 label={`Вариант ${index + 1}`}
                 value={line.label}
-                onChange={event => {
-                  onLinesLabelEdit(event.value, index)
+                onChange={value => {
+                  onLinesLabelEdit(value, index)
                 }}
               />
               <Select
@@ -224,8 +228,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
                     <Text size="xs">{item}</Text>
                   </div>
                 )}
-                onChange={event => {
-                  onLinesIconEdit(event.value, index)
+                onChange={value => {
+                  onLinesIconEdit(value, index)
                 }}
               />
             </div>

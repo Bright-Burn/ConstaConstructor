@@ -25,7 +25,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
   const { textProps, onDispatch } = useTextSettingsStore(selectedElementProps, selectedElement)
 
   const { width, height, left, top, zIndex } = textProps
-  const onWidthChange = ({ value }: { value: TextFieldPropValue }) => {
+  const onWidthChange = (value: TextFieldPropValue) => {
     const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
@@ -34,7 +34,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
     onDispatch(newProps)
   }
 
-  const onHeightChange = ({ value }: { value: TextFieldPropValue }) => {
+  const onHeightChange = (value: TextFieldPropValue) => {
     const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
@@ -42,7 +42,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
     newProps.props.height = Number(value)
     onDispatch(newProps)
   }
-  const onTopChange = ({ value }: { value: TextFieldPropValue }) => {
+  const onTopChange = (value: TextFieldPropValue) => {
     const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
@@ -51,7 +51,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
     onDispatch(newProps)
   }
 
-  const onLeftChange = ({ value }: { value: TextFieldPropValue }) => {
+  const onLeftChange = (value: TextFieldPropValue) => {
     const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
@@ -60,7 +60,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
     onDispatch(newProps)
   }
 
-  const onZIndexChange = ({ value }: { value: TextFieldPropValue }) => {
+  const onZIndexChange = (value: TextFieldPropValue) => {
     const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,
@@ -69,7 +69,7 @@ export const PrototypeSettings: FC<PrototypeSettingsType> = ({
     onDispatch(newProps)
   }
 
-  const onTextChange = ({ value }: { value: TextFieldPropValue }) => {
+  const onTextChange = (value: TextFieldPropValue) => {
     const newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps = {
       props: { ...textProps },
       type: selectedElement.elementType,

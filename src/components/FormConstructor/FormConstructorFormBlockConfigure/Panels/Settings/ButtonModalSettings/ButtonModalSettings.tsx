@@ -70,7 +70,7 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({
         type="number"
         label="Width"
         min="0"
-        onChange={({ value }: { value: string | null }) => {
+        onChange={(value: string | null) => {
           onChangeWidth(value)
         }}
       />
@@ -79,7 +79,7 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({
         type="number"
         label="Height"
         min="0"
-        onChange={({ value }: { value: string | null }) => {
+        onChange={(value: string | null) => {
           onChangeHeight(value)
         }}
       />

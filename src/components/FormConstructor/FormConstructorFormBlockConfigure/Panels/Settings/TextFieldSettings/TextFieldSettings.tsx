@@ -112,7 +112,6 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
         />
         <TextField
           className={styles.widthFlex}
-          width="full"
           disabled={!itemsProps.label}
           value={itemsProps.label}
           size="xs"

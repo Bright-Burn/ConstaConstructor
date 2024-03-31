@@ -1,6 +1,6 @@
 import { useState } from 'react'
+import { IconArrowRight } from '@consta/icons/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
-import { IconArrowRight } from '@consta/uikit/IconArrowRight'
 import { Tabs } from '@consta/uikit/Tabs'
 
 import {
@@ -54,7 +54,7 @@ export const ComponentsStructure = () => {
           items={componentsTabItems}
           size="s"
           view="clear"
-          onChange={({ value }) => {
+          onChange={value => {
             setTabValue(value)
           }}
         />

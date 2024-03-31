@@ -26,7 +26,7 @@ export const usePaddingHandlers = () => {
       }),
     )
   }
-  const onChangePaddingLeft = ({ value }: { value: (typeof paddingsLeft)[number] | null }) => {
+  const onChangePaddingLeft = (value: (typeof paddingsLeft)[number] | null) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
       if ('constaProps' in newProps.props) {
@@ -47,7 +47,7 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingRight = ({ value }: { value: (typeof paddingsRight)[number] | null }) => {
+  const onChangePaddingRight = (value: (typeof paddingsRight)[number] | null) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
       if ('constaProps' in newProps.props) {
@@ -68,7 +68,7 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingTop = ({ value }: { value: (typeof paddingsTop)[number] | null }) => {
+  const onChangePaddingTop = (value: (typeof paddingsTop)[number] | null) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
       if ('constaProps' in newProps.props) {
@@ -89,7 +89,7 @@ export const usePaddingHandlers = () => {
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangePaddingBottom = ({ value }: { value: (typeof paddingsBottom)[number] | null }) => {
+  const onChangePaddingBottom = (value: (typeof paddingsBottom)[number] | null) => {
     if (selectedElement && value != null) {
       const newProps: UnionProps = structuredClone(selectedElementProps)
       if ('constaProps' in newProps.props) {

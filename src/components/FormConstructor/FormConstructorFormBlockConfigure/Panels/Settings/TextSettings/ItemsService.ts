@@ -1,3 +1,5 @@
+import type React from 'react'
+
 import type {
   BrandTextElementProps,
   ISelectedElement,
@@ -22,19 +24,17 @@ export const useItemsHandlers = (
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeText =
-    (propsName: keyof TextElementProps) =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandTextElementProps = {
-        props: { ...selectedElementProps, [propsName]: value },
-        type: 'Text',
-      }
-      onDispatch(selectedElement, newProps)
+  const onChangeText = (propsName: keyof TextElementProps) => (value: string | null) => {
+    const newProps: BrandTextElementProps = {
+      props: { ...selectedElementProps, [propsName]: value },
+      type: 'Text',
     }
+    onDispatch(selectedElement, newProps)
+  }
 
   const onChangeSwitch =
-    (propsName: keyof TextElementProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof TextElementProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = check.target.checked
       const newProps: BrandTextElementProps = {
         props: { ...selectedElementProps, [propsName]: checked },
         type: 'Text',
@@ -97,7 +97,6 @@ export const useItemsHandlers = (
       spacing: selectedElementProps.spacing,
       display: selectedElementProps.display,
       font: selectedElementProps.font,
-      type: selectedElementProps.type,
       decoration: selectedElementProps.decoration,
       fontStyle: selectedElementProps.fontStyle,
       cursor: selectedElementProps.cursor,
