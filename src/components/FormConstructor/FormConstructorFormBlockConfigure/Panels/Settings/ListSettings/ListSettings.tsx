@@ -43,7 +43,7 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
           getItemLabel={(label: ListPropSize) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'size')
           }}
         />
@@ -54,7 +54,7 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
           getItemLabel={(label: ListPropInnerOffset) => label}
           value={itemsProps.innerOffset}
           items={innerOffsetArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'innerOffset')
           }}
         />
@@ -73,7 +73,7 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
         getItemLabel={(label: ListPropForm) => label}
         value={itemsProps.form || 'default'}
         items={FormArray}
-        onChange={({ value }) => {
+        onChange={value => {
           onChangeField(value, 'form')
         }}
       />
@@ -99,8 +99,8 @@ export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selec
               size="xs"
               label={`Вариант ${index + 1}`}
               value={line.label}
-              onChange={event => {
-                onTabLabelEdit(event.value, index)
+              onChange={value => {
+                onTabLabelEdit(value, index)
               }}
             />
           )

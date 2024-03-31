@@ -2,11 +2,7 @@ import type { FC } from 'react'
 import uuid from 'react-uuid'
 import { Text } from '@consta/uikit/Text'
 
-import type {
-  ChoiceGroupItem,
-  DeepWriteable,
-  IFormElementChoiceGroup,
-} from '../../../../../../coreTypes'
+import type { ChoiceGroupItem, IFormElementChoiceGroup } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import type { IComponetCardElement } from '../types'
@@ -19,7 +15,7 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = () => {
-    const items: DeepWriteable<ChoiceGroupItem[]> = [
+    const items: ChoiceGroupItem[] = [
       {
         label: 'Первый',
       },

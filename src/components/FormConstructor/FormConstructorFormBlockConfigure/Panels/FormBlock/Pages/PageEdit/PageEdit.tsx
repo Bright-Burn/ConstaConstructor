@@ -9,7 +9,7 @@ import type { IPageEdit } from './types'
 export const PageEdit: FC<IPageEdit> = ({ setNewPageName, isSelectedPage, defaultPageName }) => {
   const [pageName, setPageName] = useState<string | null>(defaultPageName)
 
-  const changePageName = ({ value }: { value: string | null }) => {
+  const changePageName = (value: string | null) => {
     setPageName(value)
   }
 

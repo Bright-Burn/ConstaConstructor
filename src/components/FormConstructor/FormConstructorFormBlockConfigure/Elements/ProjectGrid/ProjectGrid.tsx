@@ -1,12 +1,12 @@
 import type { FC } from 'react'
 import { useState } from 'react'
 import type { IconComponent } from '@consta/icons/Icon'
+import { IconAdd } from '@consta/icons/IconAdd'
+import { IconBento } from '@consta/icons/IconBento'
+import { IconHamburger } from '@consta/icons/IconHamburger'
 import { Badge } from '@consta/uikit/Badge'
 import { Button } from '@consta/uikit/Button'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import { IconAdd } from '@consta/uikit/IconAdd'
-import { IconBento } from '@consta/uikit/IconBento'
-import { IconHamburger } from '@consta/uikit/IconHamburger'
 import { Pagination } from '@consta/uikit/Pagination'
 import type { TableColumn } from '@consta/uikit/Table'
 import { Table } from '@consta/uikit/Table'
@@ -76,7 +76,7 @@ export const ProjectGrid: FC<IProjectGrid> = ({ element }) => {
           items={sortGroups}
           size="s"
           getItemLabel={item => item}
-          onChange={({ value }) => {
+          onChange={value => {
             setChoisenSortGroup(value)
           }}
         />
@@ -100,7 +100,7 @@ export const ProjectGrid: FC<IProjectGrid> = ({ element }) => {
           emptyRowsPlaceholder={<Text>Пусто</Text>}
           borderBetweenRows={true}
         />
-        <Pagination size="s" totalPages={range} currentPage={currentPage} onChange={() => {}} />
+        <Pagination size="s" value={currentPage} items={range} onChange={() => {}} />
       </div>
     </SelectableLayerFitSpace>
   )

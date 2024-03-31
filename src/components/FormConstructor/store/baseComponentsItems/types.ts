@@ -1,4 +1,4 @@
-import type { IFormElement, IGroupElement } from '../../coreTypes'
+import type { FormElementTypes, IFormElement, IGroupElement } from '../../coreTypes'
 
 export interface IBaseComponent {
   id: string

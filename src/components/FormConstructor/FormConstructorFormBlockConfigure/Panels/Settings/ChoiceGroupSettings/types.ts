@@ -4,14 +4,13 @@ import type {
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
 
-import type { ChoiceGroupItem, DeepWriteable } from '../../../../coreTypes'
+import type { ChoiceGroupItem } from '../../../../coreTypes'
 
 export type ValueType =
   | ChoiceGroupPropForm
   | ChoiceGroupPropView
   | ChoiceGroupPropSize
   | null
-  | DeepWriteable<ChoiceGroupItem>
   | ChoiceGroupItem[]
   | ChoiceGroupItem
 

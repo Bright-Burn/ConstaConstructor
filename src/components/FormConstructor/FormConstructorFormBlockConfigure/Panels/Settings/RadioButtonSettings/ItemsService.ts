@@ -57,22 +57,19 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeField =
-    (propsName: keyof RadioButtonProps) =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandRadioButtonProps = {
-        props: {
-          ...selectedElementProps,
-          [propsName]: value,
-        },
-        type: 'RadioButton',
-      }
-      onDispatch(selectedElement, newProps)
+  const onChangeField = (propsName: keyof RadioButtonProps) => (value: string | null) => {
+    const newProps: BrandRadioButtonProps = {
+      props: {
+        ...selectedElementProps,
+        [propsName]: value,
+      },
+      type: 'RadioButton',
     }
+    onDispatch(selectedElement, newProps)
+  }
 
   const onChangeSwitch =
-    (propsName: keyof RadioButtonProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof RadioButtonProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandRadioButtonProps = {
         props: {
           ...selectedElementProps,

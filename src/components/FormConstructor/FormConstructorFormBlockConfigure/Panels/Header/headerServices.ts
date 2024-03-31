@@ -28,7 +28,7 @@ export const useProject = () => {
   const onSaveProject = () => {
     if (projectName) dispatch(saveProjectToFile({ name: projectName, description: '' }))
   }
-  const onChangeProjectName = ({ value }: { value: string | null }) => {
+  const onChangeProjectName = (value: string | null) => {
     setProjectName(value)
   }
   const saveToHtml = () => {

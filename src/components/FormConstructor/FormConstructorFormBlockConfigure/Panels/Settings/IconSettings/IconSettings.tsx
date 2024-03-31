@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import React from 'react'
-import type { IconPropSize, IconPropView } from '@consta/uikit/Icon'
+import type { IconPropSize, IconPropView } from '@consta/icons/Icon'
 import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 
@@ -81,7 +81,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
           label="Размер"
           size="xs"
           value={props.size}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeSize(value)
           }}
         />
@@ -108,7 +108,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
               <Text size="xs">{item}</Text>
             </div>
           )}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeIcon(value)
           }}
         />
@@ -120,7 +120,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
         label="Вид"
         size="xs"
         value={props.view}
-        onChange={({ value }) => {
+        onChange={value => {
           onChangeView(value)
         }}
       />

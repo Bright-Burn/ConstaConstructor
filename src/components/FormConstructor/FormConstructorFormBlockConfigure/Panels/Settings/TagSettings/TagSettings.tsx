@@ -47,7 +47,7 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
           getItemLabel={(label: TagBasePropSize) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeSize(value)
           }}
         />
@@ -58,7 +58,7 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
           getItemLabel={(label: TagBasePropMode) => label}
           value={itemsProps.mode}
           items={modeArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeMode(value)
           }}
         />
@@ -89,7 +89,7 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
                 <Text size="xs">{item}</Text>
               </div>
             )}
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeIcon(value)
             }}
           />
@@ -108,7 +108,7 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
             getItemLabel={(label: TagBasePropGroup) => label}
             value={itemsProps.group}
             items={groupArray}
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeGroup(value)
             }}
           />

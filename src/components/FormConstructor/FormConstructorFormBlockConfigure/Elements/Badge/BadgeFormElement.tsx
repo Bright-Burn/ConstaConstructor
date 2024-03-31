@@ -20,7 +20,10 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Badge}>
-      <Badge {...badgeProps} icon={badgeProps?.iconLeft ? Icons[badgeProps.iconLeft] : undefined} />
+      <Badge
+        {...badgeProps}
+        iconLeft={badgeProps?.iconLeft ? Icons[badgeProps.iconLeft] : undefined}
+      />
     </SelectableLayer>
   )
 }

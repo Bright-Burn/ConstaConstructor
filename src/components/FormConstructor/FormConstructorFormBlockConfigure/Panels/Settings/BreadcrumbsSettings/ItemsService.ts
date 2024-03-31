@@ -28,7 +28,7 @@ export const useItemsHandlers = (
     )
   }
 
-  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+  const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandBreadcrumbsProps = {
         props: { ...selectedElementProps },

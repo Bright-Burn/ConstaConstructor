@@ -32,7 +32,7 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
         label="Текст"
         size="xs"
         value={itemsProps.label}
-        onChange={({ value }) => {
+        onChange={value => {
           value !== null ? onChangeLabel(value) : onChangeLabel('')
         }}
       />
@@ -45,7 +45,7 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
           label="Размер"
           size="xs"
           value={itemsProps.size || 's'}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'size')
           }}
         />
@@ -60,7 +60,7 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
             name="ChoiceGroupExample"
             size="xs"
             view="ghost"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'view')
             }}
           />
@@ -77,7 +77,7 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
           name="ChoiceGroupExample"
           size="xs"
           view="ghost"
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'align')
           }}
         />

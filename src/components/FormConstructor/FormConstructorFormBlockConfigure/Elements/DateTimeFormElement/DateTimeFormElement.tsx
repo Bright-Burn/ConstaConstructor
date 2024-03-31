@@ -28,9 +28,7 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
         multiplicityHours={dataTimeProps ? Number(dataTimeProps.multiplicityHours) : undefined}
         multiplicityMinutes={dataTimeProps ? Number(dataTimeProps.multiplicityMinutes) : undefined}
         multiplicitySeconds={dataTimeProps ? Number(dataTimeProps.multiplicitySeconds) : undefined}
-        onChange={({ value }) => {
-          setTimeValue(value)
-        }}
+        onChange={setTimeValue}
       />
     </SelectableLayer>
   )

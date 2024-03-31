@@ -54,10 +54,9 @@ export const useItemsHandlers = (selectedElementProps: UserProps, selectedElemen
   }
 
   const onChangeSwitch =
-    (propsName: keyof UserProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof UserProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandUserProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedElementProps, [propsName]: checked.target.checked },
         type: 'User',
       }
       onDispatch(selectedElement, newProps)

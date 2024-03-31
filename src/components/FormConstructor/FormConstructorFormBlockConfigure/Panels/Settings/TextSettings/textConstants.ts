@@ -4,12 +4,7 @@ import { IconAlignRight } from '@consta/icons/IconAlignRight'
 import { IconColorText } from '@consta/icons/IconColorText'
 import { IconItalic } from '@consta/icons/IconItalic'
 import { IconType } from '@consta/icons/IconType'
-import type {
-  TextPropLineHeight,
-  TextPropSize,
-  TextPropType,
-  TextPropView,
-} from '@consta/uikit/Text'
+import type { TextPropLineHeight, TextPropSize, TextPropView } from '@consta/uikit/Text'
 
 import type { AlignTextType, textDecorationType } from '../../../../coreTypes'
 
@@ -59,4 +54,3 @@ export const weight: ('thin' | 'light' | 'regular' | 'medium' | 'semibold' | 'bo
 ]
 export const lineHeight: TextPropLineHeight[] = ['2xs', 'xs', 's', 'm', 'l']
 export const spacing: ('xs' | 's' | 'm' | 'l')[] = ['xs', 's', 'm', 'l']
-export const type: TextPropType[] = ['blockquote', 'p', 'h3', 'h2', 'h1']

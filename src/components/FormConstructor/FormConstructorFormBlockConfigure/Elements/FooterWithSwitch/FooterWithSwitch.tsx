@@ -36,8 +36,8 @@ export const FooterWithSwitch: FC<IFooterWithSwitch> = ({ element }) => {
             disabled={false}
             checked={checked}
             align="center"
-            onChange={({ checked }) => {
-              setChecked(checked)
+            onChange={event => {
+              setChecked(event.target.checked)
             }}
           />
           <Button view="primary" label="Сохранить" className="m-l-xs" />

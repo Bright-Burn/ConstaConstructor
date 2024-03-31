@@ -26,7 +26,7 @@ export const useItemsHandlers = (
     )
   }
 
-  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+  const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
         props: { ...selectedElementProps },
@@ -47,7 +47,7 @@ export const useItemsHandlers = (
       onDispatch(selectedElement, newProps)
     }
   }
-  const onChangeActiveItem = ({ value }: { value: tabItemType | null }) => {
+  const onChangeActiveItem = (value: tabItemType | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
         props: { ...selectedElementProps },
@@ -108,8 +108,8 @@ export const useItemsHandlers = (
   }
 
   const onChangeSwitch =
-    (propsName: keyof TabsElementProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof TabsElementProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = check.target.checked
       const newProps: BrandTabsElementProps = {
         props: { ...selectedElementProps, [propsName]: checked },
         type: 'Tabs',

@@ -42,7 +42,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
           type="text"
           size="xs"
           value={`${itemsProps.label}`}
-          onChange={({ value }) => {
+          onChange={value => {
             value && onChangeLabel(value)
           }}
         />
@@ -55,7 +55,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
             label="Размер"
             size="xs"
             value={itemsProps.size || 's'}
-            onChange={({ value }) => {
+            onChange={value => {
               value && onChangeSize(value)
             }}
           />
@@ -73,7 +73,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
             label="Вид"
             size="xs"
             value={itemsProps.view}
-            onChange={({ value }) => {
+            onChange={value => {
               value && onChangeView(value)
             }}
           />
@@ -84,7 +84,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
             label="Форма"
             size="xs"
             value={itemsProps.form}
-            onChange={({ value }) => {
+            onChange={value => {
               value && onChangeForm(value)
             }}
           />
@@ -129,7 +129,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                   <Text size="xs">{item}</Text>
                 </div>
               )}
-              onChange={({ value }) => {
+              onChange={value => {
                 onChangeIcon(value)
               }}
             />
@@ -159,7 +159,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                   <Text size="xs">{item}</Text>
                 </div>
               )}
-              onChange={({ value }) => {
+              onChange={value => {
                 onChangeIconR(value)
               }}
             />
@@ -190,7 +190,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
                 <Text size="xs">{item}</Text>
               </div>
             )}
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeIcon(value)
             }}
           />

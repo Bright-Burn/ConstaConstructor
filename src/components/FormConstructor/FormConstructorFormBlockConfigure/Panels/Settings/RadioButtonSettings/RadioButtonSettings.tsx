@@ -42,7 +42,7 @@ export const RadioButtonSettings: FC<RadioButtonSettingsType> = ({
           getItemLabel={(label: RadioPropSize) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeSize(value)
           }}
         />
@@ -57,7 +57,7 @@ export const RadioButtonSettings: FC<RadioButtonSettingsType> = ({
             view="ghost"
             getItemLabel={(label: RadioPropView) => label}
             name="ChoiceGroupExample"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeView(value)
             }}
           />
@@ -74,7 +74,7 @@ export const RadioButtonSettings: FC<RadioButtonSettingsType> = ({
           view="ghost"
           getItemLabel={(label: RadioPropAlign) => label}
           name="ChoiceGroupExample"
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeAlign(value)
           }}
         />

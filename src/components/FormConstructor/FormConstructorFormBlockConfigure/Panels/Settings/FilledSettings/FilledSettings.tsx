@@ -1,8 +1,8 @@
 import React from 'react'
+import type { IconComponent } from '@consta/icons/Icon'
 import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
 import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import type { IconComponent } from '@consta/uikit/Icon'
 import { Text } from '@consta/uikit/Text'
 
 import type {
@@ -39,7 +39,7 @@ export const FilledSettings: React.FC<IFilledSettings> = ({
 }) => {
   const dispatch = useAppDispatch()
 
-  function onFilledChange({ value }: { value: fillType | null }): void {
+  function onFilledChange(value: fillType | null): void {
     const newProps = {
       props: { ...selectedElementProps, filled: value?.name === 'filled' },
       type: element,

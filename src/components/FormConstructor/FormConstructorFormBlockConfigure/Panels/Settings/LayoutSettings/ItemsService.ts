@@ -33,20 +33,18 @@ export const useItemsHandlers = (
     )
   }
 
-  const onChangeFlex =
-    () =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandLayoutElementPropsStyles = {
-        props: { ...selectedElementProps },
-        type: 'Layout',
-      }
-      newProps.props.constaProps = { ...newProps.props.constaProps }
-
-      const newValue = Number(value)
-
-      newProps.props.constaProps['flex'] = value != null ? newValue : 1
-      onDispatch(selectedElement, newProps)
+  const onChangeFlex = (value: string | null) => {
+    const newProps: BrandLayoutElementPropsStyles = {
+      props: { ...selectedElementProps },
+      type: 'Layout',
     }
+    newProps.props.constaProps = { ...newProps.props.constaProps }
+
+    const newValue = Number(value)
+
+    newProps.props.constaProps['flex'] = value != null ? newValue : 1
+    onDispatch(selectedElement, newProps)
+  }
 
   const onChangeDirection = (value: LayoutPropDirection) => {
     const newProps: BrandLayoutElementPropsStyles = {

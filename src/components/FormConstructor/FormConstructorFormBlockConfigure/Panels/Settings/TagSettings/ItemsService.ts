@@ -42,18 +42,16 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeField =
-    (propsName: keyof TagProps) =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandTagProps = {
-        props: {
-          ...selectedElementProps,
-          [propsName]: value,
-        },
-        type: 'Tag',
-      }
-      onDispatch(selectedElement, newProps)
+  const onChangeField = (propsName: keyof TagProps) => (value: string | null) => {
+    const newProps: BrandTagProps = {
+      props: {
+        ...selectedElementProps,
+        [propsName]: value,
+      },
+      type: 'Tag',
     }
+    onDispatch(selectedElement, newProps)
+  }
 
   const onChangeGroup = (value: TagBasePropGroup | null) => {
     const newProps: BrandTagProps = {
@@ -65,12 +63,11 @@ export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement
   }
 
   const onChangeSwitch =
-    (propsName: keyof TagProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof TagProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandTagProps = {
         props: {
           ...selectedElementProps,
-          [propsName]: checked,
+          [propsName]: checked.target.checked,
         },
         type: 'Tag',
       }

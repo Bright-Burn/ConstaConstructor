@@ -1,3 +1,4 @@
+import type { IconComponent, IconPropSize, IconPropView } from '@consta/icons/Icon'
 import { IconAdd } from '@consta/icons/IconAdd'
 import { IconAddToComparison } from '@consta/icons/IconAddToComparison'
 import { IconAlert } from '@consta/icons/IconAlert'
@@ -39,7 +40,6 @@ import { IconSlide } from '@consta/icons/IconSlide'
 import { IconTrash } from '@consta/icons/IconTrash'
 import { IconUpload } from '@consta/icons/IconUpload'
 import { IconWarning } from '@consta/icons/IconWarning'
-import type { IconPropSize, IconPropView } from '@consta/uikit/Icon'
 
 import type {
   BaseProps,
@@ -65,7 +65,7 @@ export type BrandIconProps = BrandProps<IconProps, 'Icon'>
 
 export type IconElement = ConcreteSelectedElement<typeof FormElementDictTypes.Icon>
 
-export const Icons = {
+export const Icons: Record<string, IconComponent> = {
   IconAlert,
   IconHealth,
   IconInfo,

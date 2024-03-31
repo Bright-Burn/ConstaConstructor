@@ -34,9 +34,7 @@ export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
             group={tagProps.group}
             icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
             className={tagProps.className}
-            onChange={({ checked }) => {
-              setChecked(checked)
-            }}
+            onChange={setChecked}
           />
         )
       case 'cancel':

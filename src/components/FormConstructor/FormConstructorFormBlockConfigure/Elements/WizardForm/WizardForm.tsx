@@ -9,7 +9,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { IFormElementWizardForm, wizardFormProps } from '../../../coreTypes'
+import type { wizardFormProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
@@ -69,12 +69,7 @@ export const WizardForm: FC<IWizardForm> = ({ element }) => {
             </div>
             <div className="container-row space-center space-between m-b-xs">
               <Text size="s">Компания</Text>
-              <TextField
-                className={css.selectWidth}
-                value="ООО «Нефть-Ямал»"
-                width="full"
-                size="s"
-              />
+              <TextField className={css.selectWidth} value="ООО «Нефть-Ямал»" size="s" />
             </div>
           </div>
         </div>

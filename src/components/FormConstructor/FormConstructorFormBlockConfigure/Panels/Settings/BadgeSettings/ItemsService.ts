@@ -1,3 +1,4 @@
+import type React from 'react'
 import type {
   BadgePropForm,
   BadgePropSize,
@@ -33,10 +34,9 @@ export const useItemsHandlers = (
   }
 
   const onChangeSwitch =
-    (propsName: keyof BadgeProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof BadgeProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandBadgeProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedElementProps, [propsName]: checked.target.checked },
         type: 'Badge',
       }
 
@@ -55,7 +55,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const handleOnChangeLabel = ({ value }: { value: string | null }) => {
+  const handleOnChangeLabel = (value: string | null) => {
     const newProps: BrandBadgeProps = {
       props: { ...selectedElementProps },
       type: 'Badge',

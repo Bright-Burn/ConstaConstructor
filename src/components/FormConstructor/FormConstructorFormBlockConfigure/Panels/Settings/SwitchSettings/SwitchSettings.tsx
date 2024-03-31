@@ -42,7 +42,7 @@ export const SwitchSettings: FC<SwitchSettingsType> = ({
           getItemLabel={(label: SwitchPropSize) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeSize(value)
           }}
         />
@@ -57,7 +57,7 @@ export const SwitchSettings: FC<SwitchSettingsType> = ({
             view="ghost"
             getItemLabel={(label: SwitchPropView) => label}
             name="ChoiceGroupExample"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeView(value)
             }}
           />
@@ -74,7 +74,7 @@ export const SwitchSettings: FC<SwitchSettingsType> = ({
           view="ghost"
           getItemLabel={(label: SwitchPropAlign) => label}
           name="ChoiceGroupExample"
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeAlign(value)
           }}
         />

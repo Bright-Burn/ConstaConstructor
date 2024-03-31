@@ -1,4 +1,8 @@
+import type React from 'react'
+
 import type {
+  BadgeProps,
+  BrandBadgeProps,
   BrandSelectProps,
   SelectElement,
   selectitemType,
@@ -24,7 +28,7 @@ export const useItemsHandlers = (
     )
   }
 
-  const onChangeItemsCount = ({ value }: { value: string | null }) => {
+  const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandSelectProps = {
         props: { ...selectedElementProps },
@@ -83,6 +87,16 @@ export const useItemsHandlers = (
     }
     onDispatch(selectedElement, newProps)
   }
+  const onChangeSwitch =
+    (propsName: keyof SelectProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+      const newProps: BrandSelectProps = {
+        props: { ...selectedElementProps, [propsName]: checked.target.checked },
+        type: 'SelectForm',
+      }
+
+      onDispatch(selectedElement, newProps)
+    }
+
   const onChangeField = (value: ValueType, field: keyof SelectProps) => {
     const newProps: BrandSelectProps = {
       props: { ...selectedElementProps, [field]: value },
@@ -105,6 +119,7 @@ export const useItemsHandlers = (
     onChangeLabel,
     onChangeCaption,
     onChangePlaceholder,
+    onChangeSwitch,
     itemsProps: {
       disabled: selectedElementProps.disabled,
       size: selectedElementProps.size,

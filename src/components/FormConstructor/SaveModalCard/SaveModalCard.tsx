@@ -17,10 +17,10 @@ export const SaveModalCard: FC<ISaveModalCard> = ({ showSaveModal, onCloseModalC
     onCloseModalCard()
   }
 
-  const handleChangeName = ({ value }: { value: string | null }) => {
+  const handleChangeName = (value: string | null) => {
     setName(value || '')
   }
-  const handleChangeDescription = ({ value }: { value: string | null }) => {
+  const handleChangeDescription = (value: string | null) => {
     setDescription(value || '')
   }
 

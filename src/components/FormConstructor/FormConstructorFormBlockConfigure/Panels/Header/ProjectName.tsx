@@ -9,7 +9,7 @@ import style from './Header.module.css'
 
 interface IProjectName {
   projectName: string | null
-  onChangeProjectName: ({ value }: { value: string | null }) => void
+  onChangeProjectName: (value: string | null) => void
 }
 export const ProjectName: React.FC<IProjectName> = ({ onChangeProjectName, projectName }) => {
   const [isEditingProjectName, setIsEditingProjectName] = useState(false)

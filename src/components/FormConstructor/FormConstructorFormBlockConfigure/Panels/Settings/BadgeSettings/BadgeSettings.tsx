@@ -35,7 +35,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
           label="Размер"
           size="xs"
           value={itemsProps.size || 's'}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'size')
           }}
         />
@@ -50,7 +50,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
             view="ghost"
             getItemLabel={(item: string) => item}
             name="ChoiceGroupExample"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'view')
             }}
           />
@@ -68,7 +68,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
             view="ghost"
             getItemLabel={(item: string) => item}
             name="ChoiceGroupExample"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'form')
             }}
           />
@@ -81,7 +81,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
           label="Статус"
           size="xs"
           value={itemsProps.status || 'success'}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'status')
           }}
         />
@@ -110,7 +110,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
             <Text size="xs">{item}</Text>
           </div>
         )}
-        onChange={({ value }) => {
+        onChange={value => {
           onChangeIconLeft(value)
         }}
       />

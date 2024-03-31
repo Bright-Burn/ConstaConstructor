@@ -36,7 +36,7 @@ export const InformerSettings: FC<InformerSettingsType> = ({
           size="xs"
           label="Размер"
           value={itemsProps.size || 's'}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'size')
           }}
         />
@@ -52,7 +52,7 @@ export const InformerSettings: FC<InformerSettingsType> = ({
             width="full"
             view="ghost"
             value={itemsProps.view}
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'view')
             }}
           />
@@ -70,7 +70,7 @@ export const InformerSettings: FC<InformerSettingsType> = ({
           width="full"
           view="ghost"
           value={itemsProps.status}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'status')
           }}
         />
@@ -79,7 +79,7 @@ export const InformerSettings: FC<InformerSettingsType> = ({
         value={itemsProps.label}
         label="Текст заголовка"
         size="xs"
-        onChange={({ value }) => {
+        onChange={value => {
           value !== null ? onChangeLabel(value) : onChangeLabel('')
         }}
       />
@@ -89,7 +89,7 @@ export const InformerSettings: FC<InformerSettingsType> = ({
         label="Текст контента"
         size="xs"
         minRows={4}
-        onChange={({ value }) => {
+        onChange={value => {
           value !== null ? onChangeTitle(value) : onChangeTitle('')
         }}
       />

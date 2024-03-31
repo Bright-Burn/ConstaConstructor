@@ -1,4 +1,4 @@
-import type { IconComponent } from '@consta/uikit/Icon'
+import type { IconComponent } from '@consta/icons/Icon'
 import type {
   TextPropAlign,
   TextPropDisplay,
@@ -6,7 +6,6 @@ import type {
   TextPropLineHeight,
   TextPropSize,
   TextPropSpacing,
-  TextPropType,
   TextPropView,
   TextPropWeight,
 } from '@consta/uikit/Text'
@@ -40,7 +39,6 @@ export type TextElementProps = {
   spacing?: TextPropSpacing
   fontStyle?: 'italic'
   transform?: 'uppercase'
-  type?: TextPropType
   weight?: TextPropWeight
   width?: 'default'
   truncate?: boolean

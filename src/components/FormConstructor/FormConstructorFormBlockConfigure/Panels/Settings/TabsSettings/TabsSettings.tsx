@@ -6,7 +6,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { IconNames, TabsElement, TabsElementProps } from '../../../../coreTypes'
+import type { TabsElement, TabsElementProps } from '../../../../coreTypes'
 import { Icons, icons } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
@@ -49,7 +49,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
     if (value !== null) {
       newTabs[index] = {
         ...newTabs[index],
-        iconLeft: Icons[value as IconNames],
+        iconLeft: Icons[value],
         labelIconLeft: value,
       }
     }
@@ -66,7 +66,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
           getItemLabel={(label: string) => label}
           value={itemsProps.size}
           items={sizeArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeSize(value)
           }}
         />
@@ -77,7 +77,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
           getItemLabel={(label: string) => label}
           value={itemsProps.linePosition}
           items={linePositionArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeLinePosition(value)
           }}
         />
@@ -124,8 +124,8 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                 size="xs"
                 label={`Таб ${index + 1}`}
                 value={tab.label}
-                onChange={event => {
-                  onTabLabelEdit(event.value, index)
+                onChange={value => {
+                  onTabLabelEdit(value, index)
                 }}
               />
               <div className={style.columnSettings}>
@@ -134,7 +134,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                   label="Иконка"
                   checked={tab.disabledIcon}
                   onChange={event => {
-                    onTabDisabledEdit(event.checked, index)
+                    onTabDisabledEdit(event.target.checked, index)
                   }}
                 />
                 <Select
@@ -151,12 +151,12 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                       aria-selected={active}
                       onMouseEnter={onMouseEnter}
                       onClick={onClick}>
-                      {React.createElement(Icons[item as IconNames], { size: 'xs' })}
+                      {React.createElement(Icons[item], { size: 'xs' })}
                       <Text size="xs">{item}</Text>
                     </div>
                   )}
-                  onChange={event => {
-                    onTabIconEditLeft(event.value, index)
+                  onChange={value => {
+                    onTabIconEditLeft(value, index)
                   }}
                 />
               </div>

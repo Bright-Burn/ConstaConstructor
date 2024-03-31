@@ -41,6 +41,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
     onChangeCaption,
     onChangeLabel,
     onChangeStatus,
+    onChangeSwitch,
   } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [isOpenDate, setOpenDate] = useState<boolean>(false)
@@ -53,9 +54,9 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
     onChangeField(newDate, 'events')
   }
 
-  const clearEvents = (checked: boolean) => {
-    setWithEvents(checked)
-    onChangeItemsCount({ value: '0' })
+  const clearEvents = (checked: React.ChangeEvent<HTMLInputElement>) => {
+    setWithEvents(checked.target.checked)
+    onChangeItemsCount('0')
   }
 
   return (
@@ -68,7 +69,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           label="Тип"
           size="xs"
           value={itemsProps.type}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'type')
           }}
         />
@@ -79,7 +80,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           label="Размер"
           size="xs"
           value={itemsProps.size}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'size')
           }}
         />
@@ -93,7 +94,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           label="Форма"
           size="xs"
           value={itemsProps.form}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'form')
           }}
         />
@@ -106,7 +107,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
             view="ghost"
             size="xs"
             name="ChoiceGroupExample"
-            onChange={({ value }) => {
+            onChange={value => {
               onChangeField(value, 'view')
             }}
           />
@@ -121,7 +122,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           label="Статус"
           size="xs"
           value={itemsProps.status}
-          onChange={({ value }) => {
+          onChange={value => {
             value !== null ? onChangeStatus(value) : onChangeStatus('')
           }}
         />
@@ -130,7 +131,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           size="xs"
           label="Активный выбор"
           value={itemsProps.value}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'value')
           }}
         />
@@ -139,17 +140,13 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
         checked={itemsProps.disabled}
         label="Состояние блокировки"
         size="xs"
-        onChange={({ checked }) => {
-          onChangeField(checked, 'disabled')
-        }}
+        onChange={onChangeSwitch('disabled')}
       />
       <Switch
         label="Текст заголовка"
         size="xs"
         checked={!!itemsProps.label}
-        onChange={({ checked }) => {
-          onChangeField(checked, 'label')
-        }}
+        onChange={onChangeSwitch('label')}
       />
       <div className={styles.rowSettingsWithoutGap}>
         <Select
@@ -160,17 +157,16 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           getItemLabel={(label: string) => label}
           value={itemsProps.labelPosition || 'top'}
           items={labelPositionArray}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'labelPosition')
           }}
         />
         <TextField
           className={styles.widthFlex}
-          width="full"
           disabled={!itemsProps.label}
           value={itemsProps.label}
           size="xs"
-          onChange={({ value }) => {
+          onChange={value => {
             value ? onChangeLabel(value) : onChangeLabel('')
           }}
         />
@@ -179,24 +175,20 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
         checked={itemsProps.required}
         label="Обязательно для заполнения"
         size="xs"
-        onChange={({ checked }) => {
-          onChangeField(checked, 'required')
-        }}
+        onChange={onChangeSwitch('required')}
       />
       <div className={styles.columnSettingsWithoutRow}>
         <Switch
           label="Текст подписи"
           size="xs"
           checked={!!itemsProps.caption}
-          onChange={({ checked }) => {
-            onChangeField(checked, 'caption')
-          }}
+          onChange={onChangeSwitch('caption')}
         />
         <TextField
           size="xs"
           disabled={!itemsProps.caption}
           value={itemsProps.caption}
-          onChange={({ value }) => {
+          onChange={value => {
             value !== null ? onChangeCaption(value) : onChangeCaption('')
           }}
         />
@@ -205,16 +197,14 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
         checked={itemsProps.withClearButton}
         label="Кнопка очистки поля ввода"
         size="xs"
-        onChange={({ checked }) => {
-          onChangeField(checked, 'withClearButton')
-        }}
+        onChange={onChangeSwitch('withClearButton')}
       />
       <FieldGroup size="xs">
         <DatePicker
           leftSide="min"
           size="xs"
           value={itemsProps.minDate}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'minDate')
           }}
         />
@@ -222,7 +212,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           size="xs"
           leftSide="max"
           value={itemsProps.maxDate}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'maxDate')
           }}
         />
@@ -241,7 +231,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           label="Форма"
           size="xs"
           value={itemsProps.dropdownForm}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'dropdownForm')
           }}
         />
@@ -252,7 +242,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           label="Вид"
           size="xs"
           value={itemsProps.dateTimeView}
-          onChange={({ value }) => {
+          onChange={value => {
             onChangeField(value, 'dateTimeView')
           }}
         />
@@ -260,16 +250,14 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
           checked={itemsProps.withAdditionalControls}
           label="Кнопки действия"
           size="xs"
-          onChange={({ checked }) => {
-            onChangeField(checked, 'withAdditionalControls')
-          }}
+          onChange={onChangeSwitch('withAdditionalControls')}
         />
       </Collapse>
       <Switch
         checked={withEvents}
         label="Мероприятия"
         size="xs"
-        onChange={({ checked }) => {
+        onChange={checked => {
           clearEvents(checked)
         }}
       />
@@ -286,7 +274,6 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
               label="Количество мероприятий"
               type="number"
               size="xs"
-              width="full"
               value={`${itemsProps.events.length}`}
               onChange={onChangeItemsCount}
             />
@@ -300,7 +287,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
                   className={styles.rowSettingsCollapse}
                   value={dat}
                   onChange={event => {
-                    onDateLabelEdit(event.value as Date, index)
+                    onDateLabelEdit(event as Date, index)
                   }}
                 />
               )

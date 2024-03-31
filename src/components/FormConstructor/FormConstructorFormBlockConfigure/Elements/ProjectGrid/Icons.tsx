@@ -1,7 +1,7 @@
 import type { FC } from 'react'
+import { IconInfo } from '@consta/icons/IconInfo'
+import { IconKebab } from '@consta/icons/IconKebab'
 import { Button } from '@consta/uikit/Button'
-import { IconInfo } from '@consta/uikit/IconInfo'
-import { IconKebab } from '@consta/uikit/IconKebab'
 
 export const IconsCell: FC = () => {
   const buttonSettings = {

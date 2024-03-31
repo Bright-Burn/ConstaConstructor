@@ -12,20 +12,18 @@ export const useItemsHandlers = (
 ) => {
   const dispatch = useAppDispatch()
 
-  const onChangeTextField =
-    (propsName: keyof TextFieldProps) =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandTextFieldProps = {
-        props: { ...selectedElementProps, [propsName]: value },
-        type: 'TextField',
-      }
-
-      onDispatch(selectedElement, newProps)
+  const onChangeTextField = (propsName: keyof TextFieldProps) => (value: string | null) => {
+    const newProps: BrandTextFieldProps = {
+      props: { ...selectedElementProps, [propsName]: value },
+      type: 'TextField',
     }
 
+    onDispatch(selectedElement, newProps)
+  }
+
   const onChangeSwitch =
-    (propsName: keyof TextFieldProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof TextFieldProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = check.target.checked
       const newProps: BrandTextFieldProps = {
         props: { ...selectedElementProps, [propsName]: checked },
         type: 'TextField',
@@ -75,7 +73,6 @@ export const useItemsHandlers = (
       type: selectedElementProps.type,
       value: selectedElementProps.value,
       view: selectedElementProps.view,
-      width: selectedElementProps.width,
       withClearButton: selectedElementProps.withClearButton,
     },
   }

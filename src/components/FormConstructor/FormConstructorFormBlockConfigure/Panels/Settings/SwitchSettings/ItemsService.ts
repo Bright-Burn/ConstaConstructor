@@ -56,21 +56,18 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeField =
-    (propsName: keyof SwitchProps) =>
-    ({ value }: { value: string | null }) => {
-      const newProps: BrandSwitchProps = {
-        props: { ...selectedElementProps, [propsName]: value },
-        type: 'Switch',
-      }
-      onDispatch(selectedElement, newProps)
+  const onChangeField = (propsName: keyof SwitchProps) => (value: string | null) => {
+    const newProps: BrandSwitchProps = {
+      props: { ...selectedElementProps, [propsName]: value },
+      type: 'Switch',
     }
+    onDispatch(selectedElement, newProps)
+  }
 
   const onChangeSwitch =
-    (propsName: keyof SwitchProps) =>
-    ({ checked }: { checked: boolean }) => {
+    (propsName: keyof SwitchProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandSwitchProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedElementProps, [propsName]: checked.target.checked },
         type: 'Switch',
       }
       onDispatch(selectedElement, newProps)

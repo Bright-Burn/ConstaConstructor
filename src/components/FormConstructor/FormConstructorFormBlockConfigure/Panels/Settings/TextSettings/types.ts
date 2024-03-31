@@ -3,7 +3,6 @@ import type {
   TextPropDisplay,
   TextPropFont,
   TextPropSize,
-  TextPropType,
   TextPropView,
   TextPropWeight,
 } from '@consta/uikit/Text'
@@ -17,6 +16,5 @@ export type ValueTypes =
   | TextPropWeight
   | TextPropDisplay
   | TextPropFont
-  | TextPropType
   | null
   | AlignTextType
