@@ -4,7 +4,7 @@ export function readFile(file: File) {
     fr.onload = e => {
       if (typeof e.target?.result === 'string') resolve(e.target.result)
       else {
-        reject('при чтении файла ожидается получение строки')
+        reject(new Error('при чтении файла ожидается получение строки'))
       }
     }
     fr.readAsText(file)

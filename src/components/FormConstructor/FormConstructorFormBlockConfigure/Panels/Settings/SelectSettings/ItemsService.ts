@@ -1,8 +1,6 @@
 import type React from 'react'
 
 import type {
-  BadgeProps,
-  BrandBadgeProps,
   BrandSelectProps,
   SelectElement,
   selectitemType,
