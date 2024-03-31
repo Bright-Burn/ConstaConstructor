@@ -267,7 +267,7 @@ export const saveProjectToHtml =
         <div style='display: none' id='loaded_data'>${JSON.stringify(intent)}</div>
         </body>
         </html>`
-    Promise.all([css, js]).then(([cssText, jsText]) => {
+    Promise.all([css, js]).then(([cssText]) => {
       const blob = new Blob([html, `<style>${cssText}</style> `], { type: 'text/html' })
       const url = URL.createObjectURL(blob)
       const tagA = document.createElement('a')

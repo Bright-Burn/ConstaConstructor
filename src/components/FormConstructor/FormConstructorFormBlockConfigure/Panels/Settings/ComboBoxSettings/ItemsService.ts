@@ -1,10 +1,8 @@
 import type {
   BrandComboboxProps,
-  BrandDatePickerProps,
   ComboBoxElement,
   comboboxItemType,
   ComboboxProps,
-  DatePickerProps,
   ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
