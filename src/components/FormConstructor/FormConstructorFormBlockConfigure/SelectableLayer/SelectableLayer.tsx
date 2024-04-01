@@ -3,6 +3,7 @@ import React, { useLayoutEffect, useState } from 'react'
 
 import { ElementTypes } from '../../coreTypes'
 import { checkIsGridVisible, setSelectedElement, useAppDispatch, useAppSelector } from '../../store'
+import { DragbleLayer } from '../DragbleLayer'
 
 import type { ISelectableLayer } from './types'
 
@@ -41,16 +42,23 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
       }),
     )
   }
+  const className2 = `${
+    elementTypeUsage === ElementTypes.FormElement
+      ? styles.selectableLayerFormElement
+      : styles.selectableLayerLayoutElement
+  } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`
   return (
-    <div
-      className={`${
-        elementTypeUsage === ElementTypes.FormElement
-          ? styles.selectableLayerFormElement
-          : styles.selectableLayerLayoutElement
-      } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`}
-      tabIndex={0}
-      onClick={onClickElement}>
-      {children}
-    </div>
+    <DragbleLayer className={className2} elId={parentElementId}>
+      <div
+        className={`${
+          elementTypeUsage === ElementTypes.FormElement
+            ? styles.selectableLayerFormElement
+            : styles.selectableLayerLayoutElement
+        } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`}
+        tabIndex={0}
+        onClick={onClickElement}>
+        {children}
+      </div>
+    </DragbleLayer>
   )
 }
