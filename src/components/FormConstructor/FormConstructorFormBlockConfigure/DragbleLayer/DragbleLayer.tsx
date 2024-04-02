@@ -56,6 +56,13 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
   return (
     <div className={`${className} ${css.dragbleContainer}`} draggable={true}>
       <div
+        className={`${css.right} ${isDragging ? css.dragging : ''} `}
+        onDrop={onDrop}
+        onDragEnd={onDragEnd}
+        onDragLeave={onDragLeave}
+        onDragEnter={onDragEnter}
+      />
+      <div
         ref={ref}
         className={`${css.left} ${isDragging ? css.dragging : ''} `}
         onDragEnd={onDragEnd}
@@ -64,13 +71,6 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
         onDrop={onDrop}
       />{' '}
       {children}{' '}
-      <div
-        className={`${css.right} ${isDragging ? css.dragging : ''} `}
-        onDrop={onDrop}
-        onDragEnd={onDragEnd}
-        onDragLeave={onDragLeave}
-        onDragEnter={onDragEnter}
-      />
     </div>
   )
 }
