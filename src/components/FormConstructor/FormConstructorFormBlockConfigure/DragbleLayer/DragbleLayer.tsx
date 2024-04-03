@@ -1,10 +1,7 @@
 import type { FC } from 'react'
 import { useRef, useState } from 'react'
-import uuid from 'react-uuid'
 
-import type { IFormElementBadge } from '../../coreTypes'
-import { FormElementDictTypes } from '../../coreTypes'
-import { setDraggableElement, useAppDispatch } from '../../store'
+import { reorderingFormElement, useAppDispatch } from '../../store'
 
 import type { IDragbleleLayer } from './types'
 
@@ -14,30 +11,14 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
   const ref = useRef<HTMLDivElement | null>(null)
   const dispatch = useAppDispatch()
 
-  const onDragStart = () => {
-    const newBadge: IFormElementBadge = {
-      id: uuid(),
-      type: FormElementDictTypes.Badge,
-      props: {
-        props: {
-          label: 'Badge',
-          form: 'default',
-          size: 's',
-          status: 'success',
-          view: 'filled',
-          className: '',
-          baseProps: {},
-        },
-        type: 'Badge',
-      },
-    }
-
-    dispatch(setDraggableElement({ element: newBadge }))
+  const onDragStart = (event: React.DragEvent) => {
+    event.stopPropagation()
+    console.log('L18 dragStart ===', elId)
+    event.dataTransfer.setData('BaseComponent', elId)
   }
   const onDragEnter = (event: React.DragEvent) => {
-    event.stopPropagation()
-    event.preventDefault()
     setIsDragging(true)
+    event.stopPropagation()
     console.log('L14 enter ===', 'enter')
   }
   const onDragEnd = () => {
@@ -48,13 +29,25 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
     console.log('L17 leave ===', 'leave')
     setIsDragging(false)
   }
-  const onDrop = () => {
-    console.log('L25 drop ===', 'drop')
+  const onDrop = (event: React.DragEvent) => {
+    console.log('L25 drop ===', event.dataTransfer.getData('BaseComponent'))
     setIsDragging(false)
+    const draggedELId = event.dataTransfer.getData('BaseComponent')
+    event.stopPropagation()
+
+    dispatch(
+      reorderingFormElement({
+        elementId: draggedELId,
+        parentId: elId,
+      }),
+    )
   }
 
   return (
-    <div className={`${className} ${css.dragbleContainer}`} draggable={true}>
+    <div
+      className={`${className} ${css.dragbleContainer}`}
+      draggable={true}
+      onDragStart={onDragStart}>
       <div
         className={`${css.right} ${isDragging ? css.dragging : ''} `}
         onDrop={onDrop}

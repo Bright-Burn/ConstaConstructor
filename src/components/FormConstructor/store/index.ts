@@ -21,6 +21,7 @@ export {
   getFormElAsMap,
   getSelectedPageId,
   loadProjectFromStorage,
+  reorderingFormElement,
   saveModuleToFile,
   saveProjectToFile,
   saveProjectToHtml,
