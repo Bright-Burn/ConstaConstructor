@@ -10,6 +10,7 @@ import {
   deletePage,
   deselectElement,
   loadProjectFromJson,
+  reorderFormElements,
   setDraggableElement,
   setSelectedElement,
 } from './reducers'
@@ -18,6 +19,7 @@ export const formConstructorSlice = createSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
+    reorderFormElements,
     setDraggableElement,
     loadProjectFromJson,
     setSelectedElement,
