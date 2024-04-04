@@ -30,7 +30,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
     console.log('L17 leave ===', 'leave')
     setIsDragging(false)
   }
-  const onDrop = (event: React.DragEvent) => {
+  const onDrop = (event: React.DragEvent, left: boolean) => {
     console.log('L25 drop Target===', event.dataTransfer.getData('BaseComponent'))
     console.log('L25 drop Parent ===', elId)
     setIsDragging(false)
@@ -42,10 +42,16 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
         elementId: draggedELId,
         parentId: elId,
         selectedElId: selectedEl ? selectedEl.elementId : undefined,
+        left,
       }),
     )
   }
-
+  const onDropLeft = (event: React.DragEvent) => {
+    onDrop(event, true)
+  }
+  const onDropRight = (event: React.DragEvent) => {
+    onDrop(event, false)
+  }
   return (
     <div
       className={`${className} ${css.dragbleContainer}`}
@@ -53,7 +59,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
       onDragStart={onDragStart}>
       <div
         className={`${css.right} ${isDragging ? css.dragging : ''} `}
-        onDrop={onDrop}
+        onDrop={onDropRight}
         onDragEnd={onDragEnd}
         onDragLeave={onDragLeave}
         onDragEnter={onDragEnter}
@@ -64,7 +70,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
         onDragEnd={onDragEnd}
         onDragLeave={onDragLeave}
         onDragEnter={onDragEnter}
-        onDrop={onDrop}
+        onDrop={onDropLeft}
       />{' '}
       {children}{' '}
     </div>

@@ -18,9 +18,11 @@ export const getSelectedPageId = (state: RootState): string => state.formConstru
 
 export const getElementsOnLayer = (parentId: string) =>
   createSelector([selectAll], element => {
-    return element.filter(el => {
-      return el.parentId === parentId
-    })
+    return element
+      .filter(el => {
+        return el.parentId === parentId
+      })
+      .sort((el1, el2) => el1.order - el2.order)
   })
 export const getFormElAsMap = (state: RootState): Map<string, IFormElement | IGroupElement> => {
   const map = new Map<string, IFormElement | IGroupElement>()
