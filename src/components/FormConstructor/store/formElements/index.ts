@@ -1,4 +1,4 @@
-export { reorderFormElement } from './actions'
+export { reorderFormElement, updateOrders } from './actions'
 export type { IFormConstructorSerializable } from './formElementsActions'
 export {
   addNewFormElement,

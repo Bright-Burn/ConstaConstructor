@@ -1,10 +1,12 @@
 import type { FC } from 'react'
-import React from 'react'
+import React, { useEffect } from 'react'
 
+import type { IFormElement, IGroupElement } from '../../coreTypes'
 import {
   addNewFormElement,
   getElementsOnLayer,
   setDraggableElement,
+  updateOrders,
   useAppDispatch,
   useAppSelector,
 } from '../../store'
@@ -21,6 +23,19 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   const { draggableElement } = useAppSelector(state => state.formConstructor)
 
   const elementsOnLayer = useAppSelector(getElementsOnLayer(parentElementId))
+  //TODO Удалить как во все старые макеты добавится свойство order/
+  //Удалить со стора экшен updateOrders и его редьюсер
+  useEffect(() => {
+    const newElemArr: (IFormElement | IGroupElement)[] = []
+    elementsOnLayer.forEach((elem, index) => {
+      const newElem = { ...elem }
+      if (!newElem.order) {
+        newElem.order = index + 1
+        newElemArr.push(newElem)
+      }
+    })
+    if (newElemArr.length > 0) dispatch(updateOrders(newElemArr))
+  }, [])
 
   const dispatch = useAppDispatch()
   const { handleOnDropBaseComponent } = useDropBaseComponent()
