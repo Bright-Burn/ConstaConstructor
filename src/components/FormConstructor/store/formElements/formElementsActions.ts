@@ -126,10 +126,25 @@ export const setDraggableElement =
     dispatch(formConstructorSlice.actions.setDraggableElement(el))
   }
 
+const getSiblingsCount = (state: RootState, parentId: string) => {
+  const allElements: (IFormElement | IGroupElement)[] = selectAll(state)
+  let elements = 0
+  allElements.forEach(element => {
+    if (element.parentId === parentId) {
+      elements++
+    }
+  })
+  return elements
+}
 export const addNewFormElement =
-  (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch) => {
+  (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch, getState: () => RootState) => {
     addPayloads.forEach(payload => {
-      const element = { ...payload.element, parentId: payload.parent }
+      const siblingsCount = getSiblingsCount(getState(), payload.parent)
+      const element = {
+        ...payload.element,
+        parentId: payload.parent,
+        order: siblingsCount + 1,
+      }
       dispatch(formConstructorSlice.actions.addNewFormElement(element))
 
       dispatch(

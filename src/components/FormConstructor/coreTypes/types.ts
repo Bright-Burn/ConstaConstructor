@@ -190,6 +190,7 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
 export interface IUnion {
   id: string
   type: FormElementTypes | FormGroupsTypes
+  order: number
 }
 
 export interface ICardElement extends IGroupElement {
