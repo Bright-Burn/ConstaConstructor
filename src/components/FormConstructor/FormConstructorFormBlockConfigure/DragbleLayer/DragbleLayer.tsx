@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { useRef, useState } from 'react'
 
-import { reorderingFormElement, useAppDispatch } from '../../store'
+import { reorderingFormElement, useAppDispatch, useAppSelector } from '../../store'
 
 import type { IDragbleleLayer } from './types'
 
@@ -10,6 +10,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
   const [isDragging, setIsDragging] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
   const dispatch = useAppDispatch()
+  const selectedEl = useAppSelector(state => state.formConstructor.selectedElement)
 
   const onDragStart = (event: React.DragEvent) => {
     event.stopPropagation()
@@ -30,7 +31,8 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
     setIsDragging(false)
   }
   const onDrop = (event: React.DragEvent) => {
-    console.log('L25 drop ===', event.dataTransfer.getData('BaseComponent'))
+    console.log('L25 drop Target===', event.dataTransfer.getData('BaseComponent'))
+    console.log('L25 drop Parent ===', elId)
     setIsDragging(false)
     const draggedELId = event.dataTransfer.getData('BaseComponent')
     event.stopPropagation()
@@ -39,6 +41,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
       reorderingFormElement({
         elementId: draggedELId,
         parentId: elId,
+        selectedElId: selectedEl ? selectedEl.elementId : undefined,
       }),
     )
   }
