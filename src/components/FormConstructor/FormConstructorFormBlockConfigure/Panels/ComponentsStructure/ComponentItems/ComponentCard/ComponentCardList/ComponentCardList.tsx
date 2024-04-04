@@ -35,6 +35,7 @@ export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
     const newList: IFormElementList = {
       id: uuid(),
       type: FormElementDictTypes.List,
+      order: 1,
       props: {
         props: {
           size: 's',

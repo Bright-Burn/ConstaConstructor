@@ -9,6 +9,7 @@ export const TableMock = {
     {
       id: '1657c7e0-9f56-a296-526e-af516abccccc5',
       type: 'Table',
+      order: 1,
       props: {
         props: { className: '', baseProps: {}, column: 3, row: 3 },
         type: 'Table',

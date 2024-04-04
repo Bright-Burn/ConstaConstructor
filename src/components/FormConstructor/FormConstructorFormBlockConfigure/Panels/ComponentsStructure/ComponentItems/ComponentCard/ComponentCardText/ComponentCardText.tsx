@@ -18,6 +18,7 @@ export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
     const newText: IFormElementText = {
       id: uuid(),
       type: FormElementDictTypes.Text,
+      order: 1,
       props: {
         props: {
           content: 'Text',

@@ -18,6 +18,7 @@ export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
     const newTag: IFormElementTagProps = {
       id: uuid(),
       type: FormElementDictTypes.Tag,
+      order: 1,
       props: {
         props: {
           size: 'm',

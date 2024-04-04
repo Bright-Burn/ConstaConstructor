@@ -35,6 +35,7 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
     const newTabs: IFormElementComboBox = {
       id: uuid(),
       type: FormElementDictTypes.ComboBox,
+      order: 1,
       props: {
         props: {
           size: 'm',

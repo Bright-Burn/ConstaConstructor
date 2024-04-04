@@ -29,6 +29,7 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
     const newChoiceGroup: IFormElementChoiceGroup = {
       id: uuid(),
       type: FormElementDictTypes.ChoiceGroup,
+      order: 1,
       props: {
         props: {
           size: 'm',

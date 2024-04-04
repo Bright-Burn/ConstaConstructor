@@ -19,6 +19,7 @@ export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
     const newBreadcrumb: IFormElementBreadcrumbs = {
       id: uuid(),
       type: FormElementDictTypes.BreadcrumbsForm,
+      order: 1,
       props: {
         props: {
           items: pagesSubMenu,

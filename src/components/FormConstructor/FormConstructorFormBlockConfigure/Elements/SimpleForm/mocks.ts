@@ -8,6 +8,7 @@ export const simpleFormMock = {
   childrenElementList: [
     {
       id: '1657c7e0-9f56-a296-526e-af516abccccc',
+      order: 1,
       type: 'SimpleForm',
       props: { props: { className: '', baseProps: {} }, type: 'SimpleForm' },
     },

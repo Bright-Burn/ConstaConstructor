@@ -10,6 +10,7 @@ export const wizardFormMock = {
   childrenElementList: [
     {
       id: '1657c7e0-9f56-a296-526e-af516abccccc',
+      order: 1,
       type: 'WizardForm',
       props: { props: { className: '', baseProps: {} }, type: 'WizardForm' },
     },

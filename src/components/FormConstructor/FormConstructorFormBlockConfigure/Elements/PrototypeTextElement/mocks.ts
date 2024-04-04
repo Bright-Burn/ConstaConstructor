@@ -13,6 +13,7 @@ export const PrototypeTextMock = {
     {
       id: 'd333d332-d8c2-4280-a8cd-e90b2faa860e',
       type: 'PrototypeTextElement',
+      order: 1,
       props: {
         props: new PrototypeProps({
           baseProps: {},

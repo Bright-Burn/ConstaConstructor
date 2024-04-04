@@ -12,6 +12,7 @@ export const initialLayout: ILayoutElement = {
   type: FormGroupsDictTypes.Layout,
   parentId: 'null',
   isOuter: false,
+  order: 1,
   props: {
     props: {
       constaProps: {

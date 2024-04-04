@@ -1,15 +1,9 @@
 import type { BreadcrumbsProps } from '@consta/uikit/Breadcrumbs'
 
-import type {
-  BaseProps,
-  BrandBreadcrumbsProps,
-  FormElementTypes,
-} from '../../../../../../coreTypes'
+import type { BaseProps, BrandBreadcrumbsProps, IFormElement } from '../../../../../../coreTypes'
 
 export type BreadcrumbProps = BreadcrumbsProps & BaseProps
 
-export interface IFormElementBreadcrumbs {
-  id: string
-  type: FormElementTypes
+export interface IFormElementBreadcrumbs extends IFormElement {
   props: BrandBreadcrumbsProps
 }

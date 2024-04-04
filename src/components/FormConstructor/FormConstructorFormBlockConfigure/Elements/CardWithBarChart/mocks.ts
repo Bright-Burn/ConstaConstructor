@@ -52,6 +52,7 @@ export const cardMock = {
   childrenElementList: [
     {
       id: '1657c7e0-9f56-a296-526e-af516ab09f10',
+      order: 1,
       type: 'CardWithBarChart',
       props: { props: { className: '', baseProps: {} }, type: 'CardWithBarChart' },
     },

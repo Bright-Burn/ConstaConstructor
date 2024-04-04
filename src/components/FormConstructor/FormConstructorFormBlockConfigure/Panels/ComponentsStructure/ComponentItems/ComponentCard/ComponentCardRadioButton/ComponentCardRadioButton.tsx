@@ -18,6 +18,7 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
     const newRadioButton: IFormElementRadioButton = {
       id: uuid(),
       type: FormElementDictTypes.RadioButton,
+      order: 1,
       props: {
         props: {
           checked: false,
