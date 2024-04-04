@@ -1,1 +1,1 @@
-export { reorderingFormElement } from './reorderingAction'
+export { reorderFormElement } from './reorderingAction'

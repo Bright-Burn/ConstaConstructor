@@ -12,10 +12,13 @@ type orderingType = {
 const { selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
 )
-export const reorderingFormElement =
+export const reorderFormElement =
   (payload: orderingType) => (dispatch: AppDispatch, getState: () => RootState) => {
+    // Элемент, который перетаскивают
     const element = selectById(getState(), payload.elementId)
+    // Элемент на который дропнули
     const targeElement = selectById(getState(), payload.parentId)
+    // Выбранный элемент (если есть)
     const selectedElId = payload.selectedElId
 
     if (element && targeElement) {
@@ -23,6 +26,8 @@ export const reorderingFormElement =
       const order = payload.left
         ? (targeElement.order + targeElement.order - 1) / 2
         : (targeElement.order + targeElement.order + 1) / 2
+      // Если мы перетаскиваем в выбранный элемент и он является лэйаутом то parentId = выбранному элементу
+      // т.е. мы сбрасываем перетаскиваемый элемент внутрь выбранного
       if (selectedElId === targeElement.id && targeElement.type === 'Layout') {
         parentId = payload.selectedElId
       }
