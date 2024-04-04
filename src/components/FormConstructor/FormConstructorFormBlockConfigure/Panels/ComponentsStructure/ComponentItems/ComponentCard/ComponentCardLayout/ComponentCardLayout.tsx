@@ -17,6 +17,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
       id: uuid(),
       type: FormGroupsDictTypes.Layout,
       isOuter: isOuter || false,
+      order: 1,
       props: {
         props: {
           constaProps: {

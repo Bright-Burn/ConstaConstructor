@@ -11,6 +11,7 @@ export const placeholderMock: IBaseComponent = {
   childrenElementList: [
     {
       id: '79e26ce6-d61d-24f1-f76c-925009ae12c1',
+      order: 1,
       type: 'Placeholder',
       props: { type: 'Placeholder', props: { className: '', baseProps: {} } },
     },

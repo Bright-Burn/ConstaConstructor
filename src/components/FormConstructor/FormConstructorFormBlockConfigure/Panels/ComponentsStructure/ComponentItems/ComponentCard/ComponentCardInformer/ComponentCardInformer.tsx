@@ -18,6 +18,7 @@ export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
     const newInformer: IFormElementInformer = {
       id: uuid(),
       type: FormElementDictTypes.Informer,
+      order: 1,
       props: {
         props: {
           label: 'Informer',

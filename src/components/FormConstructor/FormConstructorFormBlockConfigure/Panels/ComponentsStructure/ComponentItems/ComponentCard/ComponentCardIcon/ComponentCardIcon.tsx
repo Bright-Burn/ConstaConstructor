@@ -18,6 +18,7 @@ export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
     const newIcon: IFormElementIcon = {
       id: uuid(),
       type: FormElementDictTypes.Icon,
+      order: 1,
       props: {
         props: {
           view: 'primary',

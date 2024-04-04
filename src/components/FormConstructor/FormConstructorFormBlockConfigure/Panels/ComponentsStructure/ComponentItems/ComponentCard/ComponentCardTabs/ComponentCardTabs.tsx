@@ -22,6 +22,7 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
     const newTabs: IFormElementTabs = {
       id: uuid(),
       type: FormElementDictTypes.Tabs,
+      order: 1,
       props: {
         props: {
           view: 'clear',

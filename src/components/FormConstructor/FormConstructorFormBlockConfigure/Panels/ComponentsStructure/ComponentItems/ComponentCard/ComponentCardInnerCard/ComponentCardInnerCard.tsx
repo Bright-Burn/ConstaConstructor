@@ -19,6 +19,7 @@ export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
       id: uuid(),
       type: FormGroupsDictTypes.Card,
       isOuter: false,
+      order: 1,
       props: {
         props: {
           constaProps: {

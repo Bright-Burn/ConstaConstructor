@@ -44,6 +44,7 @@ export const gridMock = {
     {
       id: '1657c7e0-9f56-a296-526e-af516ab09f33',
       type: 'ProjectGrid',
+      order: 1,
       props: {},
     },
   ],

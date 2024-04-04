@@ -18,6 +18,7 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
     const newCheckbox: IFormElementCheckbox = {
       id: uuid(),
       type: FormElementDictTypes.Checkbox,
+      order: 1,
       props: {
         props: {
           checked: false,

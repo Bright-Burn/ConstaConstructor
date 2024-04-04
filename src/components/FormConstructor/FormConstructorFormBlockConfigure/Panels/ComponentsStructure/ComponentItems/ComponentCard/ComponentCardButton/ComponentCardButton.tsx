@@ -18,6 +18,7 @@ export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
     const newButton: IFormElementButton = {
       id: uuid(),
       type: FormElementDictTypes.Button,
+      order: 1,
       props: {
         props: {
           size: 'm',

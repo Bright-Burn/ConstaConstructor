@@ -35,6 +35,7 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
     const newSelect: IFormElementSelect = {
       id: uuid(),
       type: FormElementDictTypes.Select,
+      order: 1,
       props: {
         props: {
           content: 'Text',

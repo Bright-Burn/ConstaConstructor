@@ -18,6 +18,7 @@ export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
     const newBadge: IFormElementBadge = {
       id: uuid(),
       type: FormElementDictTypes.Badge,
+      order: 1,
       props: {
         props: {
           label: 'Badge',

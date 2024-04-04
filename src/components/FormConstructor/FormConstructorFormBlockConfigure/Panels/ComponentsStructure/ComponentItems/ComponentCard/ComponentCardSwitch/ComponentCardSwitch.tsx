@@ -18,6 +18,7 @@ export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
     const newSwitch: IFormElementSwitch = {
       id: uuid(),
       type: FormElementDictTypes.Switch,
+      order: 1,
       props: {
         props: {
           size: 'm',

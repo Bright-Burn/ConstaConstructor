@@ -8,6 +8,7 @@ export const footerWithSwitchMock = {
   childrenElementList: [
     {
       id: '1b714252-a7cf-48e0-8c15-9889fe04928b',
+      order: 1,
       type: 'FooterWithSwitch',
       props: { type: 'FooterWithSwitch', props: { className: '', baseProps: {} } },
     },

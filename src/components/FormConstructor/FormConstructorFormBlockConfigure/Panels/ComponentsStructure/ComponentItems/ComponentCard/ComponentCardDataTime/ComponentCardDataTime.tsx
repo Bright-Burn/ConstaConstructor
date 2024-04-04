@@ -18,6 +18,7 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
     const newDataTime: IFormElementDataTime = {
       id: uuid(),
       type: FormElementDictTypes.DataTime,
+      order: 1,
       props: {
         props: {
           type: 'date',

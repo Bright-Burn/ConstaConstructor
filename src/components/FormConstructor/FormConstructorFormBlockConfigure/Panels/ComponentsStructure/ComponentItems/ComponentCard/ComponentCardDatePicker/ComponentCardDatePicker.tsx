@@ -19,6 +19,7 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
     const newDatePicker: IFormElementDatePicker = {
       id: uuid(),
       type: FormElementDictTypes.DatePicker,
+      order: 1,
       props: {
         props: {
           type: 'date',

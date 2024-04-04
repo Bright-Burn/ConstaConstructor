@@ -13,6 +13,7 @@ export const PrototypeRectangleMock = {
     {
       id: 'd333d332-d8c2-4280-a8cd-e90b2faa860e',
       type: 'PrototypeRectangleElement',
+      order: 1,
       props: {
         props: new PrototypeProps({
           baseProps: {},

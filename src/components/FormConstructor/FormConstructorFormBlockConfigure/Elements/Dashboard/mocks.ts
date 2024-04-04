@@ -187,6 +187,7 @@ export const dashboardMock: IBaseComponent = {
   childrenElementList: [
     {
       id: 'dd228573-1f12-82ed-f48a-fb34a7ff99ea',
+      order: 1,
       type: 'Dashboard',
       props: {
         props: { className: '', baseProps: {} },

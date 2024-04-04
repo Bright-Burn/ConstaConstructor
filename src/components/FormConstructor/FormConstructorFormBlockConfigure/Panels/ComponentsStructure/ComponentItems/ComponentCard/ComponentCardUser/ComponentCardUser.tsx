@@ -18,6 +18,7 @@ export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
     const newUser: IFormElementUser = {
       id: uuid(),
       type: FormElementDictTypes.User,
+      order: 1,
       props: {
         props: {
           view: 'clear',
