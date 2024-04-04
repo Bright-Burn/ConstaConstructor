@@ -1,4 +1,5 @@
 import type { IFormElement, IGroupElement } from '../../../coreTypes'
+import { pushHistoryElement } from '../../history'
 import type { AppDispatch, RootState } from '../../setupStore'
 import { formConstructorSlice } from '../formElementsSlice'
 import { layuoutAdapter } from '../initialState'
@@ -34,5 +35,11 @@ export const reorderFormElement =
 
       const newEl: IFormElement | IGroupElement = { ...element, parentId, order }
       dispatch(formConstructorSlice.actions.reorderFormElements(newEl))
+
+      dispatch(
+        pushHistoryElement(() =>
+          dispatch(formConstructorSlice.actions.reorderFormElements(element)),
+        ),
+      )
     }
   }
