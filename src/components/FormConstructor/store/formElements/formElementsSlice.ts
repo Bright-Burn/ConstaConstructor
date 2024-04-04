@@ -13,6 +13,7 @@ import {
   reorderFormElements,
   setDraggableElement,
   setSelectedElement,
+  updateOrders,
 } from './reducers'
 
 export const formConstructorSlice = createSlice({
@@ -30,6 +31,7 @@ export const formConstructorSlice = createSlice({
     changeActivePage,
     changePageName,
     deletePage,
+    updateOrders,
   },
 })
 
