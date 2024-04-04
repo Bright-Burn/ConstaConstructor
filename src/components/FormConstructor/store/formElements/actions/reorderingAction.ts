@@ -6,6 +6,7 @@ import { layuoutAdapter } from '../initialState'
 type orderingType = {
   elementId: string
   parentId: string
+  selectedElId?: string
 }
 const { selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
@@ -13,15 +14,15 @@ const { selectById } = layuoutAdapter.getSelectors<RootState>(
 export const reorderingFormElement =
   (payload: orderingType) => (dispatch: AppDispatch, getState: () => RootState) => {
     const element = selectById(getState(), payload.elementId)
-    const parentElement = selectById(getState(), payload.parentId)
-    console.log('L14 element ===', element)
-    if (element && parentElement) {
-      let parentId = parentElement.id
-      if (parentElement.type !== 'Layout') {
-        parentId = element.parentId ?? ''
+    const targeElement = selectById(getState(), payload.parentId)
+    const selectedElId = payload.selectedElId
+
+    if (element && targeElement) {
+      let parentId = targeElement.parentId
+      if (selectedElId === targeElement.id && targeElement.type === 'Layout') {
+        parentId = payload.selectedElId
       }
       const newEl: IFormElement | IGroupElement = { ...element, parentId }
-      console.log('L16 newEl ===', newEl)
       dispatch(formConstructorSlice.actions.reorderFormElements(newEl))
     }
   }
