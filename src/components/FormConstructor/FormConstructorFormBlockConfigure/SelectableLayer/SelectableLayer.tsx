@@ -42,21 +42,14 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
       }),
     )
   }
-  const className2 = `${
+  const containerClass = `${
     elementTypeUsage === ElementTypes.FormElement
       ? styles.selectableLayerFormElement
       : styles.selectableLayerLayoutElement
   } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`
   return (
-    <DragbleLayer className={className2} elId={parentElementId}>
-      <div
-        className={`${
-          elementTypeUsage === ElementTypes.FormElement
-            ? styles.selectableLayerFormElement
-            : styles.selectableLayerLayoutElement
-        } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`}
-        tabIndex={0}
-        onClick={onClickElement}>
+    <DragbleLayer className={containerClass} elId={parentElementId}>
+      <div className={containerClass} tabIndex={0} onClick={onClickElement}>
         {children}
       </div>
     </DragbleLayer>

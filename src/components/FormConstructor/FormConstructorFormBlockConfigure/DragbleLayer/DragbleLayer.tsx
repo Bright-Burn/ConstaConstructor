@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import { reorderFormElement, useAppDispatch, useAppSelector } from '../../store'
 
@@ -8,13 +8,12 @@ import type { IDragbleleLayer } from './types'
 import css from './styles.module.css'
 export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId }) => {
   const [isDragging, setIsDragging] = useState(false)
-  const ref = useRef<HTMLDivElement | null>(null)
   const dispatch = useAppDispatch()
   const selectedEl = useAppSelector(state => state.formConstructor.selectedElement)
 
   const onDragStart = (event: React.DragEvent) => {
     event.stopPropagation()
-    event.dataTransfer.setData('BaseComponent', elId)
+    event.dataTransfer.setData('draggedElId', elId)
   }
   const onDragEnter = (event: React.DragEvent) => {
     setIsDragging(true)
@@ -28,7 +27,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
   }
   const onDrop = (event: React.DragEvent, left: boolean) => {
     setIsDragging(false)
-    const draggedELId = event.dataTransfer.getData('BaseComponent')
+    const draggedELId = event.dataTransfer.getData('draggedElId')
     event.stopPropagation()
 
     dispatch(
@@ -59,7 +58,6 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
         onDragEnter={onDragEnter}
       />
       <div
-        ref={ref}
         className={`${css.left} ${isDragging ? css.dragging : ''} `}
         onDragEnd={onDragEnd}
         onDragLeave={onDragLeave}
