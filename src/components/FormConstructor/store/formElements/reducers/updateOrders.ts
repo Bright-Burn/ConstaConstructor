@@ -1,6 +1,6 @@
 import type { PayloadAction, Update } from '@reduxjs/toolkit'
 
-import type { IFormConstructor, IFormElement, IGroupElement, UnionProps } from '../../../coreTypes'
+import type { IFormConstructor, IFormElement, IGroupElement } from '../../../coreTypes'
 import { layuoutAdapter } from '../initialState'
 
 export const updateOrders = (
