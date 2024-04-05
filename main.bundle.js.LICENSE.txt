@@ -4,16 +4,6 @@
 	http://jedwatson.github.io/classnames
 */
 
-/*!
-* focus-trap 6.9.4
-* @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
-*/
-
-/*!
-* tabbable 5.3.3
-* @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
-*/
-
 /**
           * @ag-grid-community/all-modules - Advanced Data Grid / Data Table supporting Javascript / Typescript / React / Angular / Vue * @version v29.3.5
           * @link https://www.ag-grid.com/
