@@ -56,9 +56,6 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
     setIsPageDisabled(value)
   }
 
-  // TODO убрать когда избавимся от DeepWriteable
-  const iconComponentToDeepWriteable = (x: IconComponent) => x
-
   const checkValueIsIconNames = (value: string): value is IconNames => {
     return value in Icons
   }
@@ -68,7 +65,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
     if (value !== null && checkValueIsIconNames(value)) {
       newLines[index] = {
         ...newLines[index],
-        icon: iconComponentToDeepWriteable(Icons[value]),
+        icon: Icons[value],
         labelIcon: value,
       }
     }
@@ -200,8 +197,8 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
                 label="Иконка"
                 size="xs"
                 disabled={!isPageDisabled}
-                getItemKey={key => key}
-                getItemLabel={label => label}
+                getItemKey={(key: string | number) => key}
+                getItemLabel={(label: string) => label}
                 value={line.labelIcon}
                 items={icons}
                 renderItem={({ item, active, onClick, onMouseEnter }) => (

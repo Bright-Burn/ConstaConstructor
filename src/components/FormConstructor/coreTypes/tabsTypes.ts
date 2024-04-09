@@ -1,6 +1,7 @@
 import type { IconComponent, IconPropSize } from '@consta/icons/Icon'
 import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 
+import type { IconNames } from './iconTypes'
 import type {
   BaseProps,
   BrandProps,
@@ -15,7 +16,7 @@ export type tabItemType = {
   id: number
   label: string
   disabledIcon?: boolean
-  labelIconLeft?: string
+  labelIconLeft?: IconNames
   iconLeft?: IconComponent
 }
 

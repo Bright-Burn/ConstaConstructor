@@ -6,7 +6,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { TabsElement, TabsElementProps } from '../../../../coreTypes'
+import type { IconNames, TabsElement, TabsElementProps } from '../../../../coreTypes'
 import { Icons, icons } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
@@ -44,7 +44,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
     onChangeItems(newTabs)
   }
 
-  const onTabIconEditLeft = (value: string | null, index: number) => {
+  const onTabIconEditLeft = (value: IconNames | null, index: number) => {
     const newTabs = [...itemsProps.items]
     if (value !== null) {
       newTabs[index] = {
@@ -139,7 +139,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                 />
                 <Select
                   size="xs"
-                  getItemKey={(item: string) => item}
+                  getItemKey={(item: string | number) => item}
                   getItemLabel={(item: string) => item}
                   items={icons}
                   disabled={!tab.disabledIcon}
