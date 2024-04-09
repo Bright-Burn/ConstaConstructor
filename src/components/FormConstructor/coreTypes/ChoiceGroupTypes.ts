@@ -5,6 +5,7 @@ import type {
   ChoiceGroupPropView,
 } from '@consta/uikit/ChoiceGroup'
 
+import type { IconNames } from './iconTypes'
 import type {
   BaseProps,
   BrandProps,
@@ -44,6 +45,6 @@ export type BrandOwnChoiceGroupProps = BrandProps<OwnChoiceGroupProps, 'ChoiceGr
 export type ChoiceGroupItem = {
   label: string
   icon?: IconComponent
-  labelIcon?: string
+  labelIcon?: IconNames
   disabled?: boolean
 }

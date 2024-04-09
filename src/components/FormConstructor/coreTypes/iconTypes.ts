@@ -65,7 +65,7 @@ export type BrandIconProps = BrandProps<IconProps, 'Icon'>
 
 export type IconElement = ConcreteSelectedElement<typeof FormElementDictTypes.Icon>
 
-export const Icons: Record<string, IconComponent> = {
+export const Icons = {
   IconAlert,
   IconHealth,
   IconInfo,
@@ -107,7 +107,7 @@ export const Icons: Record<string, IconComponent> = {
   IconSlide,
   IconTrash,
   IconUpload,
-}
+} as const
 export const icons: IconNames[] = [
   'IconAlert',
   'IconHealth',

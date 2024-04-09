@@ -13,8 +13,6 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const [buttonProps] = useState<ButtonProps>()
   const [openViewer, setOpenViewer] = useState<boolean>(false)
   const [buttonGroup] = useState<IButtonActionElement>()
-  console.log('L17 buttonProps ===', buttonProps)
-  console.log('L18 buttonGroup ===', buttonGroup)
   const onButtonClick = () => {
     if (buttonProps && buttonProps.action !== 'none') {
       setOpenViewer(!openViewer)
