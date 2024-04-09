@@ -48,10 +48,10 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
       : styles.selectableLayerLayoutElement
   } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`
   return (
-    <DragbleLayer className={containerClass} elId={parentElementId}>
-      <div className={containerClass} tabIndex={0} onClick={onClickElement}>
+    <div className={containerClass} tabIndex={0} onClick={onClickElement}>
+      <DragbleLayer className={containerClass} elId={parentElementId}>
         {children}
-      </div>
-    </DragbleLayer>
+      </DragbleLayer>
+    </div>
   )
 }
