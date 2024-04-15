@@ -28,8 +28,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
   const onDrop = (event: React.DragEvent, left: boolean) => {
     setIsDragging(false)
     const draggedELId = event.dataTransfer.getData('draggedElId')
-    event.stopPropagation()
-
+    console.log('L31 drop ===', 'drop')
     dispatch(
       reorderFormElement({
         elementId: draggedELId,
