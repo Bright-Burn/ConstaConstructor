@@ -3,6 +3,7 @@ import uuid from 'react-uuid'
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../coreTypes'
 
 export const constaCards = [
+  { id: uuid(), name: 'Avatar', formElementType: FormElementDictTypes.Avatar },
   {
     id: uuid(),
     name: 'Badge',

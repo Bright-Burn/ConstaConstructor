@@ -3,6 +3,7 @@ import type { FC } from 'react'
 import type { FormElementTypes, FormGroupsTypes } from '../coreTypes'
 
 import {
+  AvatarFormElement,
   BadgeFormElement,
   BreadcrumbsFormElement,
   ButtonActionModal,
@@ -38,6 +39,7 @@ import {
 } from './Elements'
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
+  Avatar: AvatarFormElement,
   Layout: LayoutFormElement,
   Button: ButtonFormElement,
   Badge: BadgeFormElement,

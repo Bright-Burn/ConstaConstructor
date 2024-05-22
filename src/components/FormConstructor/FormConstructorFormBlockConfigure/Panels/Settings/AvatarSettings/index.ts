@@ -1,0 +1,1 @@
+export { AvatarSettings } from './AvatarSettings'

@@ -1,0 +1,1 @@
+export { ComponentCardAvatar } from './ComponentCardAvatar'

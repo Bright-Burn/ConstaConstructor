@@ -1,3 +1,9 @@
+export type {
+  AvatarElement,
+  AvatarProps,
+  BrandAvatarProps,
+  IFormElementAvatar,
+} from './avatartTypes'
 export type { BadgeElement, BadgeProps, BrandBadgeProps, IFormElementBadge } from './badgeTypes'
 export type { BaseTypes } from './basePropsTypes'
 export type {
