@@ -7,3 +7,6 @@
 .paddingText {
   padding-left: var(--space-2xs);
 }
+.cardHeight {
+  height: 100%;
+}
