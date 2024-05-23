@@ -8,6 +8,7 @@
 
 .settingsContainer {
   padding: var(--space-s);
+  padding-top: 0px;
   min-width: 350px;
   max-width: 350px;
 
@@ -44,11 +45,13 @@
   opacity: 1;
 }
 .settingsTitle {
-  height: 40px;
+  height: 34px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid var(--color-bg-system);
   padding-bottom: var(--space-xs);
+  padding-top: var(--space-xs);
 
 }
 .exportText {

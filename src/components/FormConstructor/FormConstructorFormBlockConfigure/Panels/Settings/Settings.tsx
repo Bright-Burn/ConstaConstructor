@@ -4,6 +4,7 @@ import { IconArrowLeft } from '@consta/icons/IconArrowLeft'
 import { IconClose } from '@consta/icons/IconClose'
 import { IconUpload } from '@consta/icons/IconUpload'
 import { Button } from '@consta/uikit/Button'
+import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import {
@@ -49,7 +50,7 @@ export const Settings: FC = () => {
   return settingsPanelState ? (
     <div className={`${styles.settingsBlock} ${styles.settingsContainer} `}>
       <div className={styles.settingsTitle}>
-        Настройки{' '}
+        <Text size="xs">Настройки </Text>
         <Button
           onlyIcon={true}
           iconLeft={IconClose}
