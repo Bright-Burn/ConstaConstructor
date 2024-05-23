@@ -153,25 +153,21 @@ export const useItemsHandlers = (
   }
 
   const onChangeIcon = (value: IconNames | null) => {
-    if (value) {
-      const newProps: BrandButtonProps = {
-        props: { ...selectedElementProps },
-        type: 'Button',
-      }
-      newProps.props.icon = value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandButtonProps = {
+      props: { ...selectedElementProps },
+      type: 'Button',
     }
+    newProps.props.icon = value ? value : undefined
+    onDispatch(selectedElement, newProps)
   }
 
   const onChangeIconR = (value: IconNames | null) => {
-    if (value) {
-      const newProps: BrandButtonProps = {
-        props: { ...selectedElementProps },
-        type: 'Button',
-      }
-      newProps.props.iconR = value
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandButtonProps = {
+      props: { ...selectedElementProps },
+      type: 'Button',
     }
+    newProps.props.iconR = value ? value : undefined
+    onDispatch(selectedElement, newProps)
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
