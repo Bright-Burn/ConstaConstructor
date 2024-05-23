@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import { useLayoutEffect, useState } from 'react'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
@@ -14,6 +13,7 @@ import type {
   ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { getValueForSelect } from '../LabelForSelectComponent'
 
 import styles from './styles.module.css'
 
@@ -109,71 +109,59 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
   return (
     <div className={styles.cardSettings}>
       {props ? (
-        <>
+        <div className={styles.cardSettings}>
           <div className={styles.rowSettings}>
             <TextField
               value={heightValue}
               type="number"
               size="xs"
-              leftSide="px"
-              label="Высота"
+              leftSide="Height"
               min="0"
               onChange={value => {
                 onChangeHeight(value)
               }}
             />
+            <Text size="xs">px </Text>
+          </div>
+          <div className={styles.rowSettings}>
             <TextField
               value={widthValue}
               type="number"
               size="xs"
-              leftSide="px"
-              label="Ширина"
+              leftSide="Width"
               min="0"
               onChange={value => {
                 onChangeWidth(value)
               }}
             />
+            <Text size="xs">px </Text>
           </div>
-          <div className={styles.rowSettings}>
-            <div className={styles.columnSettings}>
-              <Text view="secondary" size="xs">
-                Форма углов
-              </Text>
-              <ChoiceGroup
-                value={props.constaProps.form}
-                items={form}
-                size="xs"
-                view="ghost"
-                getItemLabel={item => item}
-                name="ChoiceGroupExample"
-                onChange={onChangeCardField('form')}
-              />
-            </div>
-            <div className={styles.columnSettings}>
-              <Switch
-                checked={props.constaProps.border}
-                label="Границы"
-                size="xs"
-                onChange={onChangeCardSwitch('border')}
-              />
-              <Select
-                getItemKey={key => key}
-                size="xs"
-                disabled={!props.constaProps.border}
-                getItemLabel={label => label}
-                items={status}
-                value={`${props.constaProps.status}`}
-                onChange={onChangeCardField('status')}
-              />
-            </div>
-          </div>
+
+          <Select
+            getItemKey={key => key}
+            size="xs"
+            getItemLabel={label => label}
+            items={form}
+            value={props.constaProps.form}
+            renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
+            onChange={onChangeCardField('form')}
+          />
+          <Select
+            getItemKey={key => key}
+            size="xs"
+            getItemLabel={label => label}
+            items={status}
+            value={`${props.constaProps.status}`}
+            renderValue={({ item }) => getValueForSelect({ item, label: 'border' })}
+            onChange={onChangeCardField('status')}
+          />
           <Switch
             checked={props.constaProps.shadow ?? true}
-            label="Тень"
+            label="shadow"
             size="xs"
             onChange={onChangeCardSwitch('shadow')}
           />
-        </>
+        </div>
       ) : null}
     </div>
   )
