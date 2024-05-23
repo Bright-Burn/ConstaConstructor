@@ -8,9 +8,9 @@
 
 .settingsContainer {
   padding: var(--space-s);
-  padding-top: 0px;
-  min-width: 350px;
-  max-width: 350px;
+  padding-top: 0;
+  min-width: 240px;
+  max-width: 240px;
 
   border-left: 1px solid var(--color-typo-system);
 }
@@ -36,8 +36,8 @@
   opacity: 0;
   display: flex;
   align-items: center;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   height: 100%;
 }
 

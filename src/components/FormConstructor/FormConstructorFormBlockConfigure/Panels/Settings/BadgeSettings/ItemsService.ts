@@ -44,15 +44,21 @@ export const useItemsHandlers = (
     }
 
   const onChangeIconLeft = (value: IconNames | null) => {
-    if (value) {
-      const newProps: BrandBadgeProps = {
-        props: { ...selectedElementProps },
-        type: 'Badge',
-      }
-      newProps.props.iconLeft = value
-
-      onDispatch(selectedElement, newProps)
+    const newProps: BrandBadgeProps = {
+      props: { ...selectedElementProps },
+      type: 'Badge',
     }
+    newProps.props.iconLeft = value ? value : undefined
+
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeIconRight = (value: IconNames | null) => {
+    const newProps: BrandBadgeProps = {
+      props: { ...selectedElementProps },
+      type: 'Badge',
+    }
+    newProps.props.iconRight = value ? value : undefined
+    onDispatch(selectedElement, newProps)
   }
 
   const handleOnChangeLabel = (value: string | null) => {
@@ -80,6 +86,7 @@ export const useItemsHandlers = (
     onChangeIconLeft,
     handleOnChangeLabel,
     onChangeField,
+    onChangeIconRight,
     itemsProps: {
       size: selectedElementProps.size,
       view: selectedElementProps.view,

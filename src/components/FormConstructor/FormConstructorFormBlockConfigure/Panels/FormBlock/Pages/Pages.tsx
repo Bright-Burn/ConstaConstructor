@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Card } from '@consta/uikit/Card'
 import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
 
 import {
   changeActivePage,
@@ -79,7 +80,9 @@ export const Pages = ({ pages }: PagesProps) => {
         />
       </div>
       <div className="container-row align-center ">
-        <span className="m-r-s">Сетка</span>
+        <Text className="m-r-s" size="s">
+          Сетка
+        </Text>
         <Switch checked={isGridVisible} size="s" onChange={onClickShowGrid} />
       </div>
     </div>

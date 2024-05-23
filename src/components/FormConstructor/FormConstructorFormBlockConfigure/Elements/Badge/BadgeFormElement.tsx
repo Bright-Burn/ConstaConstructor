@@ -23,6 +23,7 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
       <Badge
         {...badgeProps}
         iconLeft={badgeProps?.iconLeft ? Icons[badgeProps.iconLeft] : undefined}
+        iconRight={badgeProps?.iconRight ? Icons[badgeProps.iconRight] : undefined}
       />
     </SelectableLayer>
   )
