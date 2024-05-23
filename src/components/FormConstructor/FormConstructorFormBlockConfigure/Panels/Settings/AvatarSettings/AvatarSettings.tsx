@@ -9,6 +9,7 @@ import type { AvatarElement, AvatarProps } from '../../../../coreTypes'
 import { form, sizes } from './constants'
 import { useItemsHandlers } from './itemsService'
 
+import styles from './styles.module.css'
 type AvatarSettingsType = {
   selectedElementProps: AvatarProps
   selectedElement: AvatarElement
@@ -20,7 +21,7 @@ export const AvatarSettings: FC<AvatarSettingsType> = ({
   const { onChangeName, onChangeSize, onChangeForm, onChangeMonochrome, onChangeImage } =
     useItemsHandlers(selectedElementProps, selectedElement)
   return (
-    <>
+    <div className={styles.settingsContainer}>
       <TextField
         size="xs"
         leftSide="Name"
@@ -61,6 +62,6 @@ export const AvatarSettings: FC<AvatarSettingsType> = ({
         label="Monochrome"
         onChange={onChangeMonochrome}
       />
-    </>
+    </div>
   )
 }

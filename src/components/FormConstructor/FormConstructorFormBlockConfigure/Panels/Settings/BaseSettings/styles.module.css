@@ -1,5 +1,19 @@
 .baseSettingsContainer {
   display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+.baseContainer{
+  display: flex;
+  gap: var(--space-m);
+  border-top: 1px solid var(--color-bg-system);
+  margin-top: var(--space-xs);
+}
+.baseContainerCol{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
 }
 
 .arrowAndText {

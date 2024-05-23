@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 import { useState } from 'react'
 import { IconArrowLeft } from '@consta/icons/IconArrowLeft'
+import { IconClose } from '@consta/icons/IconClose'
 import { IconUpload } from '@consta/icons/IconUpload'
 import { Button } from '@consta/uikit/Button'
 import { TextField } from '@consta/uikit/TextField'
@@ -17,7 +18,6 @@ import {
 import { SettingPanelQualifier } from './SettingsPanelQualifier'
 
 import styles from './styles.module.css'
-// import { projectFromSerilizable } from '../../../projectSaveLoad'
 
 export const Settings: FC = () => {
   const [moduleName, setModuleName] = useState<string | null>(null)
@@ -48,6 +48,16 @@ export const Settings: FC = () => {
   }
   return settingsPanelState ? (
     <div className={`${styles.settingsBlock} ${styles.settingsContainer} `}>
+      <div className={styles.settingsTitle}>
+        Настройки{' '}
+        <Button
+          onlyIcon={true}
+          iconLeft={IconClose}
+          size="xs"
+          view="ghost"
+          onClick={toggleSettingsPanel}
+        />
+      </div>
       <SettingPanelQualifier />
       <div className={styles.exportText}>
         <TextField
