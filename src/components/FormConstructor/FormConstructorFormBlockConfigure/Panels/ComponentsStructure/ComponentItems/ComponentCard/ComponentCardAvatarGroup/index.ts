@@ -1,0 +1,1 @@
+export { ComponentCardAvatarGroup } from './ComponentCardAvatarGroup'

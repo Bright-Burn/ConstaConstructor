@@ -4,6 +4,7 @@ import type { FormElementTypes, FormGroupsTypes } from '../coreTypes'
 
 import {
   AvatarFormElement,
+  AvatarGroupFormElement,
   BadgeFormElement,
   BreadcrumbsFormElement,
   ButtonActionModal,
@@ -40,6 +41,7 @@ import {
 
 export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>> = {
   Avatar: AvatarFormElement,
+  AvatarGroup: AvatarGroupFormElement,
   Layout: LayoutFormElement,
   Button: ButtonFormElement,
   Badge: BadgeFormElement,

@@ -4,6 +4,7 @@ import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../../coreTy
 import { SwitchComponent } from '../../../../SwitchComponent'
 
 import { ComponentCardAvatar } from './ComponentCardAvatar'
+import { ComponentCardAvatarGroup } from './ComponentCardAvatarGroup'
 import { ComponentCardBadge } from './ComponentCardBadge'
 import { ComponentCardBreadcrumb } from './ComponentCardBreadcrumb'
 import { ComponentCardButton } from './ComponentCardButton'
@@ -36,6 +37,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
       {testValue ? (
         <SwitchComponent testValue={testValue}>
           <ComponentCardAvatar name={name} value={FormElementDictTypes.Avatar} />
+          <ComponentCardAvatarGroup name={name} value={FormElementDictTypes.AvatarGroup} />
           <ComponentCardBadge name={name} value={FormElementDictTypes.Badge} />
           <ComponentCardCheckbox name={name} value={FormElementDictTypes.Checkbox} />
           <ComponentCardLayout name={name} value={FormGroupsDictTypes.Layout} />

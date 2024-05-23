@@ -13,7 +13,6 @@ export const ComponentCardAvatar: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = () => {
-    console.log(1)
     const newAvatar: IFormElementAvatar = {
       id: uuid(),
       type: FormElementDictTypes.Avatar,
