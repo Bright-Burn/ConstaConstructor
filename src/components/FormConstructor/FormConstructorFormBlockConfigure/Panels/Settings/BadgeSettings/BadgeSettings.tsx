@@ -8,6 +8,7 @@ import { TextField } from '@consta/uikit/TextField'
 
 import type { BadgeElement, BadgeProps } from '../../../../coreTypes'
 import { Icons, icons } from '../../../../coreTypes'
+import { getValueForSelect } from '../LabelForSelectComponent'
 
 import { useItemsHandlers } from './ItemsService'
 import { forms, sizes, statuses, views } from './textConstants'
@@ -44,14 +45,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
         placeholder="size"
         size="xs"
         value={itemsProps.size}
-        renderValue={({ item }) => (
-          <div className={styles.rowSettings}>
-            <Text size="xs" view="secondary">
-              size
-            </Text>{' '}
-            <Text size="xs">{item}</Text>
-          </div>
-        )}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'size' })}
         onChange={value => {
           onChangeField(value, 'size')
         }}
@@ -63,14 +57,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
         items={views}
         value={selectedElementProps.view}
         size="xs"
-        renderValue={({ item }) => (
-          <div className={styles.rowSettings}>
-            <Text size="xs" view="secondary">
-              view
-            </Text>{' '}
-            <Text size="xs">{item}</Text>
-          </div>
-        )}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'view' })}
         onChange={value => {
           onChangeField(value, 'view')
         }}
@@ -83,14 +70,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
         placeholder="forms"
         size="xs"
         value={selectedElementProps.form}
-        renderValue={({ item }) => (
-          <div className={styles.rowSettings}>
-            <Text size="xs" view="secondary">
-              forms
-            </Text>{' '}
-            <Text size="xs">{item}</Text>
-          </div>
-        )}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeField(value, 'form')
         }}
@@ -103,14 +83,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
         size="xs"
         placeholder="status"
         value={itemsProps.status}
-        renderValue={({ item }) => (
-          <div className={styles.rowSettings}>
-            <Text size="xs" view="secondary">
-              status
-            </Text>{' '}
-            <Text size="xs">{item}</Text>
-          </div>
-        )}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'status' })}
         onChange={value => {
           onChangeField(value, 'status')
         }}
@@ -124,14 +97,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
           items={icons}
           size="xs"
           value={itemsProps.iconLeft}
-          renderValue={({ item }) => (
-            <div className={styles.rowSettings}>
-              <Text size="xs" view="secondary">
-                iconLeft
-              </Text>{' '}
-              <Text size="xs">{item}</Text>
-            </div>
-          )}
+          renderValue={({ item }) => getValueForSelect({ item, label: 'iconLeft' })}
           renderItem={({ item, active, onClick, onMouseEnter }) => (
             <div
               className={styles.icon}
@@ -174,16 +140,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
               <Text size="xs">{item}</Text>
             </div>
           )}
-          renderValue={({ item }) => {
-            return (
-              <div className={styles.rowSettings}>
-                <Text size="xs" view="secondary">
-                  iconRight
-                </Text>{' '}
-                <Text size="xs">{item}</Text>
-              </div>
-            )
-          }}
+          renderValue={({ item }) => getValueForSelect({ item, label: 'iconRight' })}
           onChange={value => {
             onChangeIconRight(value)
           }}
