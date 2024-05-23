@@ -27,10 +27,13 @@
   align-items: center;
 }
 
-.modalPadding {
-  padding-top: var(--space-s);
-}
 
 .sizeFlex {
   flex: 1;
+}
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: var(--space-xs);
 }
