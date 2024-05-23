@@ -5,6 +5,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { AvatarElement, AvatarProps } from '../../../../coreTypes'
+import { getValueForSelect } from '../LabelForSelectComponent'
 
 import { form, sizes } from './constants'
 import { useItemsHandlers } from './itemsService'
@@ -35,6 +36,7 @@ export const AvatarSettings: FC<AvatarSettingsType> = ({
         placeholder="Size"
         size="xs"
         value={selectedElementProps.size}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'size' })}
         onChange={value => {
           onChangeSize(value)
         }}
@@ -46,6 +48,7 @@ export const AvatarSettings: FC<AvatarSettingsType> = ({
         placeholder="Form"
         size="xs"
         value={selectedElementProps.form}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeForm(value)
         }}
