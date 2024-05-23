@@ -2,6 +2,7 @@ import type { EntityState } from '@reduxjs/toolkit'
 
 import type { Values } from '../utils'
 
+import type { BrandAvatarGroupProps } from './avatarGroupTypes'
 import type { BrandAvatarProps, IFormElementAvatar } from './avatartTypes'
 import type { BrandBadgeProps, IFormElementBadge } from './badgeTypes'
 import type { BaseTypes } from './basePropsTypes'
@@ -62,6 +63,7 @@ export type FormGroupsTypes = Values<typeof FormGroupsDictTypes>
 // Виды обычных элементов формы ввода
 export const FormElementDictTypes = {
   Avatar: 'Avatar',
+  AvatarGroup: 'AvatarGroup',
   Button: 'Button',
   Badge: 'Badge',
   Tabs: 'Tabs',
@@ -188,7 +190,9 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
                                                             : emptyObj &
                                                                   T extends 'PrototypeRectangleElement'
                                                               ? BrandPrototypeRectangleProps
-                                                              : never
+                                                              : emptyObj & T extends 'AvatarGroup'
+                                                                ? BrandAvatarGroupProps
+                                                                : never
 }
 
 export interface IUnion {

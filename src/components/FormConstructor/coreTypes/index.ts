@@ -1,4 +1,10 @@
 export type {
+  AvatarGroupElement,
+  AvatarGroupProps,
+  BrandAvatarGroupProps,
+  IFormElementAvatarGroup,
+} from './avatarGroupTypes'
+export type {
   AvatarElement,
   AvatarProps,
   BrandAvatarProps,

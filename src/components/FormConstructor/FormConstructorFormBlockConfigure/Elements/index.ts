@@ -1,4 +1,5 @@
 export { AvatarFormElement } from './Avatar'
+export { AvatarGroupFormElement } from './AvatarGroup'
 export { BadgeFormElement } from './Badge'
 export { BreadcrumbsFormElement, pagesSubMenu } from './BreadcrumbsFormElement'
 export { ButtonActionModal, ButtonFormElement } from './ButtonFormElement'
