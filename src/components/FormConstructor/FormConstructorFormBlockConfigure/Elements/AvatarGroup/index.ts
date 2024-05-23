@@ -1,0 +1,1 @@
+export { AvatarGroupFormElement } from './AvatarGroupFormElement'

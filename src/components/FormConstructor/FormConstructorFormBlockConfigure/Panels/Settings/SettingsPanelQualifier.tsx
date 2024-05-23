@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 
 import type {
+  BrandAvatarGroupProps,
   BrandAvatarProps,
   BrandBadgeProps,
   BrandBreadcrumbsProps,
@@ -34,6 +35,7 @@ import { FormElementDictTypes, FormGroupsDictTypes } from '../../../coreTypes'
 import { useAppSelector } from '../../../store'
 import { isElementProps } from '../../../utils'
 
+import { AvatarGroupSettings } from './AvatarGroupSettings'
 import { AvatarSettings } from './AvatarSettings'
 import { BadgeSettings } from './BadgeSettings'
 import { BaseSettings } from './BaseSettings'
@@ -66,6 +68,24 @@ import styles from './styles.module.css'
 
 const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISelectedElement) => {
   switch (selectedElement.elementType) {
+    case FormElementDictTypes.AvatarGroup: {
+      if (!isElementProps<BrandAvatarGroupProps>(selectedElementProps, 'AvatarGroup')) {
+        return
+      }
+      const element = {
+        elementId: selectedElement.elementId,
+        elementType: selectedElement.elementType,
+      }
+      return (
+        <>
+          <AvatarGroupSettings
+            selectedElementProps={selectedElementProps.props}
+            selectedElement={element}
+          />{' '}
+          <BaseSettings />
+        </>
+      )
+    }
     case FormElementDictTypes.Avatar: {
       if (!isElementProps<BrandAvatarProps>(selectedElementProps, 'Avatar')) {
         return

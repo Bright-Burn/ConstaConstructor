@@ -4,6 +4,8 @@ import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../coreTypes
 
 export const constaCards = [
   { id: uuid(), name: 'Avatar', formElementType: FormElementDictTypes.Avatar },
+  { id: uuid(), name: 'AvatarGroup', formElementType: FormElementDictTypes.AvatarGroup },
+
   {
     id: uuid(),
     name: 'Badge',
