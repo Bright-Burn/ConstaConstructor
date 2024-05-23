@@ -23,6 +23,7 @@ export type BadgeProps = {
   label?: string
   children?: never
   iconLeft?: IconNames
+  iconRight?: IconNames
 } & BaseProps
 
 export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>
