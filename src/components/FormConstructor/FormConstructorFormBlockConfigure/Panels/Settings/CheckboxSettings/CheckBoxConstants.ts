@@ -2,4 +2,4 @@ import type { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@con
 
 export const sizes: CheckboxPropSize[] = ['l', 'm', 's', 'xs']
 export const views: CheckboxPropView[] = ['primary', 'ghost']
-export const statuses: CheckboxPropAlign[] = ['center', 'top']
+export const align: CheckboxPropAlign[] = ['center', 'top']

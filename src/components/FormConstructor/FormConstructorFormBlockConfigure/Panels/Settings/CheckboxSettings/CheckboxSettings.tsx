@@ -1,13 +1,12 @@
 import type { FC } from 'react'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
-import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { CheckboxElement, CheckboxProps } from '../../../../coreTypes'
+import { getValueForSelect } from '../LabelForSelectComponent'
 
-import { sizes, statuses, views } from './CheckBoxConstants'
+import { align, sizes, views } from './CheckBoxConstants'
 import { useItemsHandlers } from './ItemsService'
 
 import styles from './styles.module.css'
@@ -29,62 +28,52 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
   return (
     <div className={styles.checkboxSettings}>
       <TextField
-        label="Текст"
         size="xs"
+        leftSide="label"
         value={itemsProps.label}
         onChange={value => {
           value !== null ? onChangeLabel(value) : onChangeLabel('')
         }}
       />
-      <div className={styles.rowSettings}>
-        <Select
-          className={styles.widthFlex}
-          getItemKey={(item: string) => item}
-          getItemLabel={(item: string) => item}
-          items={sizes}
-          label="Размер"
-          size="xs"
-          value={itemsProps.size || 's'}
-          onChange={value => {
-            onChangeField(value, 'size')
-          }}
-        />
-        <div className={styles.columnInRowSettings}>
-          <Text size="xs" view="secondary">
-            Вид
-          </Text>
-          <ChoiceGroup
-            items={views}
-            value={itemsProps.view}
-            getItemLabel={(item: string) => item}
-            name="ChoiceGroupExample"
-            size="xs"
-            view="ghost"
-            onChange={value => {
-              onChangeField(value, 'view')
-            }}
-          />
-        </div>
-      </div>
-      <div className={styles.columnSettings}>
-        <Text size="xs" view="secondary">
-          Выравнивание
-        </Text>
-        <ChoiceGroup
-          items={statuses}
-          value={itemsProps.align}
-          getItemLabel={(item: string) => item}
-          name="ChoiceGroupExample"
-          size="xs"
-          view="ghost"
-          onChange={value => {
-            onChangeField(value, 'align')
-          }}
-        />
-      </div>
+      <Select
+        className={styles.widthFlex}
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        items={sizes}
+        size="xs"
+        value={itemsProps.size}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'size' })}
+        onChange={value => {
+          onChangeField(value, 'size')
+        }}
+      />
+      <Select
+        className={styles.widthFlex}
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        items={views}
+        size="xs"
+        value={itemsProps.view}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'view' })}
+        onChange={value => {
+          onChangeField(value, 'view')
+        }}
+      />
+      <Select
+        className={styles.widthFlex}
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        items={align}
+        size="xs"
+        value={itemsProps.align}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'align' })}
+        onChange={value => {
+          onChangeField(value, 'align')
+        }}
+      />
       <Switch
         checked={itemsProps.checked}
-        label="Активен"
+        label="checked"
         size="xs"
         onChange={onChangeSwitch('checked')}
       />
@@ -96,7 +85,7 @@ export const CheckboxSettings: FC<CheckboxSettingsType> = ({
       />
       <Switch
         checked={itemsProps.disabled}
-        label="Состояние блокировки"
+        label="disabled"
         size="xs"
         onChange={onChangeSwitch('disabled')}
       />
