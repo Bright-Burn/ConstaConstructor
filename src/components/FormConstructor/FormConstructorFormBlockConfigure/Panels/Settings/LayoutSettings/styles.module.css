@@ -1,22 +1,26 @@
 .layoutSettings {
   display: flex;
   flex-direction: column;
-  gap: var(--space-s);
+  gap: var(--space-xs);
 }
 
 .rowSettings {
   display: flex;
   flex-direction: row;
-  gap: var(--space-s);
+  align-items: center;
+}
+.settingCaption {
+  padding: var(--space-2xs) var(--space-xs);
 }
 
 .columnSettings {
   display: flex;
   flex-direction: column;
   flex: 1;
+  gap: var(--space-xs);
 }
-.labelMarginBottom {
-  margin-bottom: var(--space-xs);
+.labelMarginTop {
+  margin-top: var(--space-xs);
 }
 
 .widthFlex {
@@ -34,6 +38,11 @@
   align-items: center;
   gap: var(--space-s);
   padding-left: var(--space-2xs);
+}
+.icon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
 }
 
 .SelectItemActive {

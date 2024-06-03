@@ -1,28 +1,26 @@
 import type { FC } from 'react'
 import React, { useLayoutEffect, useState } from 'react'
-import type { IconComponent } from '@consta/icons/Icon'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import { LayoutPalette } from '../../../../../ConstaPalette'
-import type { BorderWidth, LayoutElement, LayoutElementPropsStyles } from '../../../../coreTypes'
+import type { LayoutElement, LayoutElementPropsStyles } from '../../../../coreTypes'
+import { getValueForSelect } from '../LabelForSelectComponent'
 
 import { useItemsHandlers } from './ItemsService'
+import { LayoutBorderSettings } from './LayoutBorderSettings'
 import {
   alignItems,
   alignItemsDict,
-  borderSide,
-  borderSideDict,
-  borderStyle,
-  borderStyleDict,
-  borderWidths,
   directionDict,
   directions,
   justifyContentDict,
   justifyContentProps,
+  overflow,
 } from './LayoutConstants'
+import { LayoutRadiusSettings } from './LayoutRadiusSettings'
 
 import styles from './styles.module.css'
 
@@ -42,12 +40,10 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
     onChangeJustifyContent,
     onChangeAlignItems,
     onChangeHeight,
-    onChangeBorderWidth,
-    onChangeBorderStyle,
-    onChangeBorderColor,
-    onChangeBorderSide,
+    onChangeRotate,
     onChangeDirection,
     onChangeBackroundColor,
+    onChangeOverflow,
   } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [widthValue, setWidthValue] = useState<string>('0')
@@ -60,201 +56,139 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
     setWidthValue(layoutProps.styles?.maxWidth?.replaceAll('px', '') || '0')
   }, [itemsProps.selectedElementProps])
 
-  const funcName = (Icon: IconComponent) => {
-    return (
-      <div>
-        <Icon />
-      </div>
-    )
-  }
-
   return (
     <div className={styles.layoutSettings}>
+      <Text size="xs" view="secondary">
+        Base
+      </Text>
       <div className={styles.rowSettings}>
         <TextField
           value={heightValue}
           type="number"
-          label="Высота"
-          leftSide="px"
+          leftSide="H"
           size="xs"
           min="0"
           onChange={value => {
             onChangeHeight(value)
           }}
         />
+        <Text view="secondary" size="xs" className={styles.settingCaption}>
+          {' '}
+          px
+        </Text>
+      </div>
+      <div className={styles.rowSettings}>
         <TextField
           value={widthValue}
           type="number"
-          label="Ширина"
-          leftSide="px"
+          leftSide="W"
           size="xs"
           min="0"
           onChange={value => {
             onChangeWidth(value)
           }}
         />
+        <Text view="secondary" size="xs" className={styles.settingCaption}>
+          {' '}
+          px
+        </Text>
       </div>
-
       <div className={styles.rowSettings}>
         <TextField
-          className={styles.widthFlex}
-          value={`${itemsProps.constaProps.flex}`}
+          value={itemsProps.styles?.transform}
           type="number"
-          label="Заполнение"
+          leftSide="Rotate"
           size="xs"
-          min="1"
-          onChange={onChangeFlex}
-        />
-        <div className={styles.columnSettings}>
-          <Text size="xs" view="secondary" className={styles.labelMarginBottom}>
-            Направление
-          </Text>
-          <ChoiceGroup
-            value={directionDict[itemsProps.constaProps.direction || 'row']}
-            items={directions}
-            getItemLabel={label => label.name}
-            name="ChoiceGroupExample"
-            size="xs"
-            onlyIcon={true}
-            view="ghost"
-            onChange={value => {
-              onChangeDirection(value.name)
-            }}
-          />
-        </div>
-      </div>
-      <div className={styles.rowSettings}>
-        <div className={styles.columnSettings}>
-          <Text size="xs" view="secondary" className={styles.labelMarginBottom}>
-            Распределение
-          </Text>
-          <ChoiceGroup
-            value={justifyContentDict[itemsProps.styles?.justifyContent || 'start']}
-            items={justifyContentProps}
-            getItemLabel={label => label.name}
-            name="ChoiceGroupExample"
-            size="xs"
-            onlyIcon={true}
-            view="ghost"
-            onChange={value => {
-              onChangeJustifyContent(value.name)
-            }}
-          />
-        </div>
-        <div className={styles.columnSettings}>
-          <Text size="xs" view="secondary" className={styles.labelMarginBottom}>
-            Привязка
-          </Text>
-          <ChoiceGroup
-            value={alignItemsDict[itemsProps.styles?.alignItems || 'normal']}
-            items={alignItems}
-            getItemLabel={label => label.name}
-            name="ChoiceGroupExample"
-            size="xs"
-            onlyIcon={true}
-            view="ghost"
-            onChange={value => {
-              onChangeAlignItems(value.name)
-            }}
-          />
-        </div>
-      </div>
-      <div className={styles.columnSettingsWithoutRow}>
-        <Text size="xs" view="secondary" className={styles.labelMarginBottom}>
-          Граница
+          min="0"
+          onChange={value => {
+            onChangeRotate(value)
+          }}
+        />{' '}
+        <Text view="secondary" size="xs" className={styles.settingCaption}>
+          {' '}
+          deg
         </Text>
-        <ChoiceGroup
-          value={borderSideDict[itemsProps.styles?.borderSide || 'borderAll']}
-          items={borderSide}
-          getItemLabel={label => label.name}
-          name="ChoiceGroupExample"
-          size="xs"
-          onlyIcon={true}
-          view="ghost"
-          onChange={value => {
-            onChangeBorderSide(value.name)
-          }}
-        />
       </div>
-      <div className={styles.rowSettings}>
-        <Select
-          getItemKey={key => key.name}
-          label="Стиль"
-          size="xs"
-          getItemLabel={label => label.name}
-          items={borderStyle}
-          value={borderStyleDict[itemsProps.styles?.borderStyle || 'dotted']}
-          renderItem={({ item, active, onClick, onMouseEnter }) => {
-            return (
-              <div
-                className={`${styles.SelectItem} ${active ? styles.SelectItemActive : ''}`}
-                role="option"
-                tabIndex={0}
-                aria-selected={active}
-                aria-hidden="true"
-                onMouseEnter={onMouseEnter}
-                onClick={onClick}>
-                {item.name === 'hidden' ? (
-                  <Text
-                    className={`${styles.selectElement} ${active ? styles.BorderLeftItem : ''}`}
-                    size="xs">
-                    Без стиля (скрытый)
-                  </Text>
-                ) : (
-                  <div className={`${styles.selectElement} ${active ? styles.BorderLeftItem : ''}`}>
-                    {funcName(item.icon)}
-                    <Text className={active ? styles.SelectItemActive : ''} size="xs">
-                      {item.name}
-                    </Text>
-                  </div>
-                )}
-              </div>
-            )
-          }}
-          renderValue={({ item }) => (
-            <div className={styles.selectElement}>
-              {funcName(item.icon)}
-              <Text size="xs">{item.name}</Text>
-            </div>
-          )}
-          onChange={value => {
-            onChangeBorderStyle(value?.name)
-          }}
-        />
-        <Select
-          getItemKey={(key: BorderWidth) => key}
-          label="Толщина"
-          size="xs"
-          getItemLabel={(label: BorderWidth) => label}
-          items={borderWidths}
-          value={itemsProps.styles?.borderWidth}
-          onChange={value => {
-            onChangeBorderWidth(value)
-          }}
-        />
-      </div>
-      <div className={styles.rowSettings}>
-        <div className={styles.columnSettings}>
-          <Text size="xs" view="secondary" className={styles.labelMarginBottom}>
-            Цвет Фона
-          </Text>
-          <LayoutPalette
-            color={itemsProps.styles?.backgroundColor}
-            size="xs"
-            onChangeColor={onChangeBackroundColor}
-          />
-        </div>
-        <div className={styles.columnSettings}>
-          <Text size="xs" view="secondary" className={styles.labelMarginBottom}>
-            Цвет границы
-          </Text>
-          <LayoutPalette
-            color={itemsProps.styles?.borderColor}
-            size="xs"
-            onChangeColor={onChangeBorderColor}
-          />
-        </div>
-      </div>
+      <ChoiceGroup
+        value={directionDict[itemsProps.constaProps.direction || 'row']}
+        items={directions}
+        getItemLabel={label => label.name}
+        name="ChoiceGroupExample"
+        size="xs"
+        view="ghost"
+        onChange={value => {
+          onChangeDirection(value.name)
+        }}
+      />
+      <TextField
+        className={styles.widthFlex}
+        value={`${itemsProps.constaProps.flex}`}
+        type="number"
+        leftSide="flex"
+        size="xs"
+        min="1"
+        onChange={onChangeFlex}
+      />
+      <Select
+        getItemKey={key => key.name}
+        size="xs"
+        getItemLabel={label => label.name}
+        items={justifyContentProps}
+        renderValue={({ item }) => getValueForSelect({ item: item.name, label: 'J-C' })}
+        value={justifyContentDict[itemsProps.styles?.justifyContent || 'start']}
+        onChange={value => {
+          onChangeJustifyContent(value?.name)
+        }}
+      />
+      <Select
+        getItemKey={key => key.name}
+        size="xs"
+        getItemLabel={label => label.name}
+        items={alignItems}
+        renderValue={({ item }) => getValueForSelect({ item: item.name, label: 'Align' })}
+        value={alignItemsDict[itemsProps.styles?.alignItems || 'start']}
+        onChange={value => {
+          onChangeAlignItems(value?.name)
+        }}
+      />
+      <Select
+        getItemKey={(key: string) => key}
+        size="xs"
+        getItemLabel={(label: string) => label}
+        items={overflow}
+        placeholder="OverflowY"
+        renderValue={({ item }) => getValueForSelect({ item, label: 'OverflowY' })}
+        value={itemsProps.styles?.overflowY}
+        onChange={value => {
+          onChangeOverflow(value, 'Y')
+        }}
+      />
+      <Select
+        getItemKey={(key: string) => key}
+        size="xs"
+        getItemLabel={(label: string) => label}
+        items={overflow}
+        placeholder="OverflowX"
+        renderValue={({ item }) => getValueForSelect({ item, label: 'OverflowX' })}
+        value={itemsProps.styles?.overflowX}
+        onChange={value => {
+          onChangeOverflow(value, 'X')
+        }}
+      />
+      <LayoutPalette
+        color={itemsProps.styles?.backgroundColor}
+        size="xs"
+        onChangeColor={onChangeBackroundColor}
+      />
+      <LayoutBorderSettings
+        selectedElementProps={selectedElementProps}
+        selectedElement={selectedElement}
+      />
+
+      <LayoutRadiusSettings
+        selectedElementProps={selectedElementProps}
+        selectedElement={selectedElement}
+      />
     </div>
   )
 }

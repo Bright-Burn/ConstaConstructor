@@ -1,6 +1,5 @@
 import type { IconComponent } from '@consta/icons/Icon'
-import { IconAlignJustify } from '@consta/icons/IconAlignJustify'
-import { IconColumns } from '@consta/icons/IconColumns'
+import { IconEyeClose } from '@consta/icons/IconEyeClose'
 
 import type {
   AlignItems,
@@ -38,15 +37,15 @@ import {
   JustifyPositionStart,
 } from './images'
 
-type directionType = { name: LayoutPropDirection; icon: IconComponent }
+type directionType = { name: LayoutPropDirection }
 type borderStyleType = { name: BorderStyle; icon: IconComponent }
 type justifyContentType = { name: JustifyContentProps; icon: IconComponent }
 type alignItemsType = { name: AlignItems; icon: IconComponent }
 type borderSideType = { name: BorderSide; icon: IconComponent }
 
 export const directionDict: Record<LayoutPropDirection, directionType> = {
-  column: { name: 'column', icon: IconColumns },
-  row: { name: 'row', icon: IconAlignJustify },
+  column: { name: 'column' },
+  row: { name: 'row' },
 }
 
 export const borderStyleDict: Record<BorderStyle, borderStyleType> = {
@@ -86,10 +85,7 @@ export const borderSideDict: Record<BorderSide, borderSideType> = {
   borderAll: { name: 'borderAll', icon: BorderAll },
 }
 
-export const directions: directionType[] = [
-  { name: 'column', icon: IconColumns },
-  { name: 'row', icon: IconAlignJustify },
-]
+export const directions: directionType[] = [{ name: 'column' }, { name: 'row' }]
 
 export const borderWidths: BorderWidth[] = [
   'inherit',
@@ -102,7 +98,7 @@ export const borderWidths: BorderWidth[] = [
 ]
 
 export const borderStyle: borderStyleType[] = [
-  { name: 'hidden', icon: BorderSolid },
+  { name: 'hidden', icon: IconEyeClose },
   { name: 'solid', icon: BorderSolid },
   { name: 'dotted', icon: BorderDott },
   { name: 'dashed', icon: BorderDashed },
@@ -137,3 +133,5 @@ export const borderSide: borderSideType[] = [
   { name: 'borderBottom', icon: BorderBottom },
   { name: 'borderAll', icon: BorderAll },
 ]
+export type overflowType = 'inherit' | 'scroll' | 'hidden' | 'auto'
+export const overflow: overflowType[] = ['inherit', 'scroll', 'hidden', 'auto']

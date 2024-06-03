@@ -18,7 +18,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   }, [element])
 
   const style = getStyles(layoutProps?.styles)
-
+  console.log('L22 style ===', style)
   return (
     <Layout className={layoutProps?.className} {...layoutProps?.constaProps} style={style}>
       <SelectableLayer
@@ -32,7 +32,6 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
 }
 
 const getStyles = (styles: LayoutElementStyles | undefined) => {
-  const activeSide = styles?.borderSide && getActiveBorder(styles)
   const style = {
     maxWidth: styles?.maxWidth,
     minWidth: styles?.minWidth,
@@ -42,29 +41,20 @@ const getStyles = (styles: LayoutElementStyles | undefined) => {
     alignItems: styles?.alignItems,
     borderSide: styles?.borderSide,
     backgroundColor: `var(--${styles?.backgroundColor})`,
-    overflow: 'hidden',
+    overflowX: styles?.overflowX,
+    overflowY: styles?.overflowY,
     transition: 'none',
-    ...activeSide,
+    borderTopWidth: `${styles?.borderTopWidth ?? 0}px`,
+    borderRightWidth: `${styles?.borderRightWidth ?? 0}px`,
+    borderBottomWidth: `${styles?.borderBottomWidth ?? 0}px`,
+    borderLeftWidth: `${styles?.borderLeftWidth ?? 0}px`,
+    borderColor: `var(--${styles?.borderColor})`,
+    borderStyle: styles?.borderStyle,
+    borderTopLeftRadius: `${styles?.borderTopLeftRadius}px`,
+    borderTopRightRadius: `${styles?.borderTopRightRadius}px`,
+    borderBottomLeftRadius: `${styles?.borderBottomLeftRadius}px`,
+    borderBottomRightRadius: `${styles?.borderBottomRightRadius}px`,
+    transform: `rotateX(${styles?.transform ?? 0}deg)`,
   }
   return style
-}
-const getActiveBorder = ({
-  borderColor,
-  borderSide,
-  borderStyle,
-  borderWidth,
-}: LayoutElementStyles) => {
-  const sideCss = {
-    [`${borderSide}Width`]: borderWidth,
-    [`${borderSide}Style`]: borderStyle,
-    [`${borderSide}Color`]: `var(--${borderColor})`,
-  }
-  if (borderSide === 'borderAll') {
-    return {
-      borderWidth,
-      borderStyle,
-      borderColor: `var(--${borderColor})`,
-    }
-  }
-  return sideCss
 }
