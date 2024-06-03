@@ -5,7 +5,6 @@ import type {
   AlignItems,
   BorderSide,
   BorderStyle,
-  BorderWidth,
   BrandLayoutElementPropsStyles,
   ISelectedElement,
   JustifyContentProps,
@@ -14,6 +13,8 @@ import type {
   LayoutPropDirection,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+
+import type { overflowType } from './LayoutConstants'
 
 export const useItemsHandlers = (
   selectedElementProps: LayoutElementPropsStyles,
@@ -81,7 +82,7 @@ export const useItemsHandlers = (
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeJustifyContent = (value: JustifyContentProps) => {
+  const onChangeJustifyContent = (value: JustifyContentProps | undefined) => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedElementProps },
       type: 'Layout',
@@ -94,7 +95,7 @@ export const useItemsHandlers = (
     onDispatch(selectedElement, newProps)
   }
 
-  const onChangeAlignItems = (value: AlignItems) => {
+  const onChangeAlignItems = (value: AlignItems | undefined) => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedElementProps },
       type: 'Layout',
@@ -150,14 +151,22 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeBorderWidth = (value: BorderWidth | null) => {
+  const onChangeBorderWidth = (value: string | null, direction: 'T' | 'R' | 'B' | 'L') => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedElementProps },
       type: 'Layout',
     }
 
     newProps.props.styles = { ...newProps.props.styles }
-    newProps.props.styles.borderWidth = value ? value : undefined
+    if (direction === 'T') {
+      newProps.props.styles.borderTopWidth = value ? value : undefined
+    } else if (direction === 'R') {
+      newProps.props.styles.borderRightWidth = value ? value : undefined
+    } else if (direction === 'B') {
+      newProps.props.styles.borderBottomWidth = value ? value : undefined
+    } else {
+      newProps.props.styles.borderLeftWidth = value ? value : undefined
+    }
     onDispatch(selectedElement, newProps)
   }
 
@@ -208,6 +217,46 @@ export const useItemsHandlers = (
 
     onDispatch(selectedElement, newProps)
   }
+  const onChangeOverflow = (overflow: overflowType | null, type: 'X' | 'Y') => {
+    const newProps: BrandLayoutElementPropsStyles = {
+      props: { ...selectedElementProps },
+      type: 'Layout',
+    }
+
+    newProps.props.styles = { ...newProps.props.styles }
+    if (type === 'X') {
+      newProps.props.styles.overflowX = overflow ?? undefined
+    } else {
+      newProps.props.styles.overflowY = overflow ?? undefined
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeBorderRadius = (value: string | null, direction: 'TL' | 'TR' | 'BR' | 'BL') => {
+    const newProps: BrandLayoutElementPropsStyles = {
+      props: { ...selectedElementProps },
+      type: 'Layout',
+    }
+    newProps.props.styles = { ...newProps.props.styles }
+    if (direction === 'TL') {
+      newProps.props.styles.borderTopLeftRadius = value ? value : undefined
+    } else if (direction === 'TR') {
+      newProps.props.styles.borderTopRightRadius = value ? value : undefined
+    } else if (direction === 'BR') {
+      newProps.props.styles.borderBottomRightRadius = value ? value : undefined
+    } else {
+      newProps.props.styles.borderBottomLeftRadius = value ? value : undefined
+    }
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeRotate = (value: string | null) => {
+    const newProps: BrandLayoutElementPropsStyles = {
+      props: { ...selectedElementProps },
+      type: 'Layout',
+    }
+    newProps.props.styles = { ...newProps.props.styles }
+    newProps.props.styles.transform = value ? value : undefined
+    onDispatch(selectedElement, newProps)
+  }
 
   return {
     onChangeFlex,
@@ -223,6 +272,9 @@ export const useItemsHandlers = (
     onChangeVerticalAligment,
     onChangeDirection,
     onChangeBackroundColor,
+    onChangeOverflow,
+    onChangeBorderRadius,
+    onChangeRotate,
     itemsProps: {
       constaProps: selectedElementProps.constaProps,
       styles: selectedElementProps.styles,

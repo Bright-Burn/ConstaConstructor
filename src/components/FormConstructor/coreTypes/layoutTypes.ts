@@ -45,7 +45,8 @@ export type JustifyContentProps =
   | 'space-evenly'
 
 export type AlignItems = 'normal' | 'start' | 'center' | 'end'
-
+export const overflowX = ['inherit', 'scroll', 'hidden', 'auto'] as const
+export const overflowY = ['inherit', 'scroll', 'hidden', 'auto'] as const
 export interface LayoutElementStyles {
   maxWidth?: string
   minWidth?: string
@@ -58,6 +59,17 @@ export interface LayoutElementStyles {
   borderColor?: ConstaColor
   alignItems?: AlignItems
   borderSide?: BorderSide
+  overflowX?: (typeof overflowX)[number]
+  overflowY?: (typeof overflowY)[number]
+  borderLeftWidth?: string
+  borderRightWidth?: string
+  borderTopWidth?: string
+  borderBottomWidth?: string
+  borderTopLeftRadius?: string
+  borderTopRightRadius?: string
+  borderBottomLeftRadius?: string
+  borderBottomRightRadius?: string
+  transform?: string
 }
 
 export interface LayoutElementPropsStyles extends BaseProps {
