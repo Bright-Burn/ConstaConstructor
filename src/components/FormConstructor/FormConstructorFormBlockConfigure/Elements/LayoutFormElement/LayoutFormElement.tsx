@@ -18,7 +18,6 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   }, [element])
 
   const style = getStyles(layoutProps?.styles)
-  console.log('L22 style ===', style)
   return (
     <Layout className={layoutProps?.className} {...layoutProps?.constaProps} style={style}>
       <SelectableLayer
@@ -54,7 +53,7 @@ const getStyles = (styles: LayoutElementStyles | undefined) => {
     borderTopRightRadius: `${styles?.borderTopRightRadius}px`,
     borderBottomLeftRadius: `${styles?.borderBottomLeftRadius}px`,
     borderBottomRightRadius: `${styles?.borderBottomRightRadius}px`,
-    transform: `rotateX(${styles?.transform ?? 0}deg)`,
+    transform: `rotateY(${styles?.transform ?? 0}deg)`,
   }
   return style
 }

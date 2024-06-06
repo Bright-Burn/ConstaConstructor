@@ -102,11 +102,6 @@ export const borderStyle: borderStyleType[] = [
   { name: 'solid', icon: BorderSolid },
   { name: 'dotted', icon: BorderDott },
   { name: 'dashed', icon: BorderDashed },
-  { name: 'double', icon: BorderDouble },
-  { name: 'groove', icon: BorderGroove },
-  { name: 'inset', icon: BorderInset },
-  { name: 'outset', icon: BorderOutset },
-  { name: 'ridge', icon: BorderRidge },
 ]
 
 export const justifyContentProps: justifyContentType[] = [
