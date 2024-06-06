@@ -53,7 +53,7 @@ const getStyles = (styles: LayoutElementStyles | undefined) => {
     borderTopRightRadius: `${styles?.borderTopRightRadius}px`,
     borderBottomLeftRadius: `${styles?.borderBottomLeftRadius}px`,
     borderBottomRightRadius: `${styles?.borderBottomRightRadius}px`,
-    transform: `rotateY(${styles?.transform ?? 0}deg)`,
+    transform: `rotateZ(${styles?.transform ?? 0}deg)`,
   }
   return style
 }
