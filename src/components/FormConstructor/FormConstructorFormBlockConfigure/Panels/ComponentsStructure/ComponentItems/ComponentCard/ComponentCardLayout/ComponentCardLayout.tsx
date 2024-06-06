@@ -32,6 +32,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
             borderSide: 'borderAll',
             borderStyle: 'hidden',
             borderWidth: 'thin',
+            borderColor: 'color-bg-secondary',
           },
           className: '',
           baseProps: {},

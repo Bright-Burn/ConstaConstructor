@@ -27,3 +27,21 @@
   padding-top: var(--space-s);
   margin-bottom: var(--space-xs);
 }
+.saveModal {
+  width: 600px;
+  height: 104px;
+  padding: var(--space-xs);
+
+  min-height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.saveModalContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+.saveModalButton{
+  width: 58px;
+}
