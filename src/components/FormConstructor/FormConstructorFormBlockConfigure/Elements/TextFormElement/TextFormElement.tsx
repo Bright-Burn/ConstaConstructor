@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import { useLayoutEffect, useState } from 'react'
 import { Text } from '@consta/uikit/Text'
 
-import type { IFormElementText, TextElementProps } from '../../../coreTypes'
+import type { TextElementProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayer } from '../../SelectableLayer'
 
@@ -12,7 +12,7 @@ export const TextFormElement: FC<ITextFormElement> = ({ element }) => {
   const [textProps, setTextProps] = useState<TextElementProps>()
 
   useLayoutEffect(() => {
-    const textFormElement = element as IFormElementText
+    const textFormElement = element
     setTextProps(textFormElement.props.props)
   }, [element])
 
