@@ -7,7 +7,6 @@
 .baseContainer{
   display: flex;
   gap: var(--space-m);
-  border-top: 1px solid var(--color-bg-system);
   margin-top: var(--space-xs);
 }
 .baseContainerCol{
@@ -23,8 +22,7 @@
 }
 
 .textDecoration {
-  padding-right: var(--space-s);
-  padding-top: var(--space-s);
+  padding-top: var(--space-xs);
   margin-bottom: var(--space-xs);
 }
 .saveModal {
