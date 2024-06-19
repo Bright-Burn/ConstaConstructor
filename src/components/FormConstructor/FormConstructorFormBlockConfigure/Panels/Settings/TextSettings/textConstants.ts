@@ -23,14 +23,18 @@ export const sizes: TextPropSize[] = [
 ]
 export const views: TextPropView[] = [
   'primary',
-  'alert',
+  'secondary',
   'brand',
   'ghost',
   'link',
   'linkMinor',
-  'secondary',
+  'system',
+  'normal',
   'success',
   'warning',
+  'alert',
+  'caution',
+  'critical',
 ]
 export const textAlign: AlignTextType[] = [
   { name: 'left', icon: IconAlignLeft },
