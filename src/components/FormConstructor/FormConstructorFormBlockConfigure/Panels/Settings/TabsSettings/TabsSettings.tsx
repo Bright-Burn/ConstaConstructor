@@ -138,7 +138,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                   }}
                 />
                 <IconSelectConsta
-                  itemsProps={tab.labelIconLeft}
+                  selectedIcon={tab.labelIconLeft}
                   disabled={!!tab.disabledIcon}
                   label="icon"
                   onChangeIcon={value => {
