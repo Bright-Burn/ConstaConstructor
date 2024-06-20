@@ -7,7 +7,7 @@ import { TextField } from '@consta/uikit/TextField'
 
 import type { IconNames, TabsElement, TabsElementProps } from '../../../../coreTypes'
 import { Icons } from '../../../../coreTypes'
-import { IconSelect } from '../IconsSelect'
+import { IconSelectConsta } from '../IconsSelect'
 
 import { useItemsHandlers } from './ItemsService'
 import { linePositionArray, sizeArray } from './types'
@@ -137,9 +137,10 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                     onTabDisabledEdit(event.target.checked, index)
                   }}
                 />
-                <IconSelect
+                <IconSelectConsta
                   itemsProps={tab.labelIconLeft}
-                  disabled={tab.disabledIcon}
+                  disabled={!!tab.disabledIcon}
+                  label="icon"
                   onChangeIcon={value => {
                     onTabIconEditLeft(value, index)
                   }}

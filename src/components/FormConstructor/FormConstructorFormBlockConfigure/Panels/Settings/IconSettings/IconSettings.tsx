@@ -85,8 +85,9 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
             onChangeSize(value)
           }}
         />
-        <IconSelectConsta selectedIcon={props.icons} label="Icon" onChangeIcon={onChangeIcon} />
       </div>
+      <IconSelectConsta selectedIcon={props.icons} label="Icon" onChangeIcon={onChangeIcon} />
+
       <Select
         getItemKey={(item: string) => item}
         getItemLabel={(item: string) => item}
