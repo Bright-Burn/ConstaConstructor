@@ -9,6 +9,7 @@ import { TextField } from '@consta/uikit/TextField'
 import type { ButtonElement, ButtonProps } from '../../../../coreTypes'
 import { Icons, icons } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
+import { IconSelectConsta } from '../IconsSelect'
 import { getValueForSelect } from '../LabelForSelectComponent'
 
 import { useItemsHandlers } from './ItemsService'
@@ -102,30 +103,13 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
           />
         </div>
         <div className={styles.rowSettings}>
-          <Select
-            getItemKey={(item: string) => item}
-            getItemLabel={(item: string) => item}
-            items={icons}
-            size="xs"
-            value={itemsProps.icon}
+          <IconSelectConsta
+            selectedIcon={itemsProps.icon}
             disabled={selectedElementProps.onlyIcon}
-            placeholder="iconLeft"
-            renderValue={({ item }) => getValueForSelect({ item, label: 'iconLeft' })}
-            renderItem={({ item, active, onClick, onMouseEnter }) => (
-              <div
-                className={styles.renderIcon}
-                role="option"
-                aria-selected={active}
-                onMouseEnter={onMouseEnter}
-                onClick={onClick}>
-                {React.createElement(Icons[item], { size: 'xs' })}
-                <Text size="xs">{item}</Text>
-              </div>
-            )}
-            onChange={value => {
-              onChangeIcon(value)
-            }}
+            label="iconLeft"
+            onChangeIcon={onChangeIcon}
           />
+
           <IconClose
             size="s"
             view="secondary"
@@ -135,30 +119,13 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
           />
         </div>
         <div className={styles.rowSettings}>
-          <Select
-            getItemKey={(item: string) => item}
-            getItemLabel={(item: string) => item}
-            items={icons}
-            size="xs"
+          <IconSelectConsta
+            selectedIcon={itemsProps.iconR}
             disabled={selectedElementProps.onlyIcon}
-            value={itemsProps.iconR}
-            placeholder="iconRight"
-            renderValue={({ item }) => getValueForSelect({ item, label: 'iconRight' })}
-            renderItem={({ item, active, onClick, onMouseEnter }) => (
-              <div
-                className={styles.renderIcon}
-                role="option"
-                aria-selected={active}
-                onMouseEnter={onMouseEnter}
-                onClick={onClick}>
-                {React.createElement(Icons[item], { size: 'xs' })}
-                <Text size="xs">{item}</Text>
-              </div>
-            )}
-            onChange={value => {
-              onChangeIconR(value)
-            }}
+            label="iconRight"
+            onChangeIcon={onChangeIcon}
           />
+
           <IconClose
             size="s"
             view="secondary"

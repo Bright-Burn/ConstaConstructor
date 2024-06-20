@@ -79,7 +79,7 @@ export type {
   IconProps,
   IFormElementIcon,
 } from './iconTypes'
-export { Icons, icons } from './iconTypes'
+export { Icons, icons, IconsGroup } from './iconTypes'
 export type { IFormElementInformer, InformerElement, InformerElementProps } from './informerTypes'
 export type { BrandInformerElementProps } from './informerTypes'
 export type {

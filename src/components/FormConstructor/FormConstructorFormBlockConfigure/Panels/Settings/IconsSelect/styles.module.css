@@ -1,0 +1,21 @@
+.select_container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+.select_option {
+    display: flex;
+    height: var(--control-height-xs);
+    border: var(--control-border-width) solid var(--color-control-bg-border-default);
+    border-radius: var(--control-radius);
+}
+.icon {
+    display: flex;
+    align-items: center;
+}
+.iconItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding-top: var(--space-3xs);
+}

@@ -16,6 +16,13 @@
   border-left: 1px solid var(--color-typo-system);
 }
 
+.rowSettings {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: var(--space-xs);
+}
+
 .elementSettings {
   overflow-x: hidden;
   overflow-y: auto;

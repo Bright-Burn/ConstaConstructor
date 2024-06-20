@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import React from 'react'
 import { Text } from '@consta/uikit/Text'
 
-import styles from './BadgeSettings/styles.module.css'
+import styles from './styles.module.css'
 
 interface LabelForSelectComponentType<T extends ReactNode> {
   item: T
