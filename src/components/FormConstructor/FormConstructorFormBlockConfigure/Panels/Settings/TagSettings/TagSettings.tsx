@@ -3,11 +3,10 @@ import React from 'react'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import type { TagBasePropSize } from '@consta/uikit/TagBase'
-import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { TagElement, TagProps } from '../../../../coreTypes'
-import { Icons, icons } from '../../../../coreTypes'
+import { IconSelectConsta } from '../IconsSelect'
 
 import { useItemsHandlers } from './ItemsService'
 import type { TagBasePropGroup, TagBasePropMode } from './types'
@@ -30,7 +29,7 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
     onChangeSwitch,
     onChangeIcon,
   } = useItemsHandlers(selectedElementProps, selectedElement)
-
+  console.log('L32 itemsProps.iconSwitch ===', itemsProps.iconSwitch)
   return (
     <div className={styles.tagSettings}>
       <TextField
@@ -71,49 +70,31 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
             checked={!!itemsProps.icon}
             onChange={onChangeSwitch('icon')}
           />
-          <Select
-            getItemKey={(item: string) => item}
-            getItemLabel={(item: string) => item}
-            items={icons}
-            disabled={!itemsProps.icon}
-            size="xs"
-            value={itemsProps.icon}
-            renderItem={({ item, active, onClick, onMouseEnter }) => (
-              <div
-                className={styles.icon}
-                role="option"
-                aria-selected={active}
-                onMouseEnter={onMouseEnter}
-                onClick={onClick}>
-                {React.createElement(Icons[item], { size: 'xs' })}
-                <Text size="xs">{item}</Text>
-              </div>
-            )}
-            onChange={value => {
-              onChangeIcon(value)
-            }}
-          />
-        </div>
-        <div className={styles.columnInRowSettings}>
-          <Switch
-            label="Группа"
-            size="xs"
-            checked={!!itemsProps.group}
-            onChange={onChangeSwitch('group')}
-          />
-          <Select
-            size="xs"
-            disabled={!itemsProps.group}
-            getItemKey={(key: TagBasePropGroup) => key}
-            getItemLabel={(label: TagBasePropGroup) => label}
-            value={itemsProps.group}
-            items={groupArray}
-            onChange={value => {
-              onChangeGroup(value)
-            }}
+          <IconSelectConsta
+            selectedIcon={itemsProps.icon}
+            disabled={itemsProps.iconSwitch}
+            label="Icon"
+            onChangeIcon={onChangeIcon}
           />
         </div>
       </div>
+      <Switch
+        label="Группа"
+        size="xs"
+        checked={!!itemsProps.group}
+        onChange={onChangeSwitch('group')}
+      />
+      <Select
+        size="xs"
+        disabled={!itemsProps.group}
+        getItemKey={(key: TagBasePropGroup) => key}
+        getItemLabel={(label: TagBasePropGroup) => label}
+        value={itemsProps.group}
+        items={groupArray}
+        onChange={value => {
+          onChangeGroup(value)
+        }}
+      />
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
-import type { IconComponent } from '@consta/icons/Icon'
 import type {
   ChoiceGroupPropForm,
   ChoiceGroupPropSize,

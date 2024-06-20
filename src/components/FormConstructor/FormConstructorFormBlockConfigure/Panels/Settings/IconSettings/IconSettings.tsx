@@ -11,8 +11,8 @@ import type {
   IconProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { Icons, icons } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { IconSelectConsta } from '../IconsSelect'
 
 import { sizes, views } from './IconsConstants'
 
@@ -85,33 +85,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
             onChangeSize(value)
           }}
         />
-        <Select
-          getItemKey={(item: string) => item}
-          getItemLabel={(item: string) => item}
-          items={icons}
-          size="xs"
-          value={props.icons}
-          renderItem={({ item, active, onClick, onMouseEnter }) => (
-            <div
-              className={styles.iconItem}
-              role="option"
-              aria-selected={active}
-              onMouseEnter={onMouseEnter}
-              onClick={onClick}>
-              {React.createElement(Icons[item], { size: 'xs' })}
-              <Text size="xs">{item}</Text>
-            </div>
-          )}
-          renderValue={({ item }) => (
-            <div className={styles.iconItem}>
-              {React.createElement(Icons[item], { size: 'xs' })}
-              <Text size="xs">{item}</Text>
-            </div>
-          )}
-          onChange={value => {
-            onChangeIcon(value)
-          }}
-        />
+        <IconSelectConsta selectedIcon={props.icons} label="Icon" onChangeIcon={onChangeIcon} />
       </div>
       <Select
         getItemKey={(item: string) => item}

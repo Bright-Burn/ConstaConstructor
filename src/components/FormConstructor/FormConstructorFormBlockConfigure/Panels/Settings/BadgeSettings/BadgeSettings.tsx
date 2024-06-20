@@ -3,11 +3,10 @@ import React from 'react'
 import { IconClose } from '@consta/icons/IconClose'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
-import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { BadgeElement, BadgeProps } from '../../../../coreTypes'
-import { Icons, icons } from '../../../../coreTypes'
+import { IconSelectConsta } from '../IconsSelect'
 import { getValueForSelect } from '../LabelForSelectComponent'
 
 import { useItemsHandlers } from './ItemsService'
@@ -90,29 +89,12 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
       />
 
       <div className={styles.rowSettings}>
-        <Select
-          getItemKey={(item: string) => item}
-          getItemLabel={(item: string) => item}
-          placeholder="iconLeft"
-          items={icons}
-          size="xs"
-          value={itemsProps.iconLeft}
-          renderValue={({ item }) => getValueForSelect({ item, label: 'iconLeft' })}
-          renderItem={({ item, active, onClick, onMouseEnter }) => (
-            <div
-              className={styles.icon}
-              role="option"
-              aria-selected={active}
-              onMouseEnter={onMouseEnter}
-              onClick={onClick}>
-              {React.createElement(Icons[item], { size: 'xs' })}
-              <Text size="xs">{item}</Text>
-            </div>
-          )}
-          onChange={value => {
-            onChangeIconLeft(value)
-          }}
+        <IconSelectConsta
+          label="iconLeft"
+          selectedIcon={itemsProps.iconLeft}
+          onChangeIcon={onChangeIconLeft}
         />
+
         <IconClose
           size="s"
           view="secondary"
@@ -122,29 +104,12 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
         />
       </div>
       <div className={styles.rowSettings}>
-        <Select
-          getItemKey={(item: string) => item}
-          getItemLabel={(item: string) => item}
-          placeholder="iconRight"
-          items={icons}
-          size="xs"
-          value={selectedElementProps.iconRight}
-          renderItem={({ item, active, onClick, onMouseEnter }) => (
-            <div
-              className={styles.icon}
-              role="option"
-              aria-selected={active}
-              onMouseEnter={onMouseEnter}
-              onClick={onClick}>
-              {React.createElement(Icons[item], { size: 'xs' })}
-              <Text size="xs">{item}</Text>
-            </div>
-          )}
-          renderValue={({ item }) => getValueForSelect({ item, label: 'iconRight' })}
-          onChange={value => {
-            onChangeIconRight(value)
-          }}
+        <IconSelectConsta
+          label="iconRight"
+          selectedIcon={selectedElementProps.iconRight}
+          onChangeIcon={onChangeIconRight}
         />
+
         <IconClose
           size="s"
           view="secondary"

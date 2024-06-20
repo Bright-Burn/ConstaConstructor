@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
-import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { IconNames, TabsElement, TabsElementProps } from '../../../../coreTypes'
-import { Icons, icons } from '../../../../coreTypes'
+import { Icons } from '../../../../coreTypes'
+import { IconSelect } from '../IconsSelect'
 
 import { useItemsHandlers } from './ItemsService'
 import { linePositionArray, sizeArray } from './types'
@@ -137,25 +137,10 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
                     onTabDisabledEdit(event.target.checked, index)
                   }}
                 />
-                <Select
-                  size="xs"
-                  getItemKey={(item: string | number) => item}
-                  getItemLabel={(item: string) => item}
-                  items={icons}
-                  disabled={!tab.disabledIcon}
-                  value={tab.labelIconLeft}
-                  renderItem={({ item, active, onClick, onMouseEnter }) => (
-                    <div
-                      className={style.tabIcon}
-                      role="option"
-                      aria-selected={active}
-                      onMouseEnter={onMouseEnter}
-                      onClick={onClick}>
-                      {React.createElement(Icons[item], { size: 'xs' })}
-                      <Text size="xs">{item}</Text>
-                    </div>
-                  )}
-                  onChange={value => {
+                <IconSelect
+                  itemsProps={tab.labelIconLeft}
+                  disabled={tab.disabledIcon}
+                  onChangeIcon={value => {
                     onTabIconEditLeft(value, index)
                   }}
                 />
