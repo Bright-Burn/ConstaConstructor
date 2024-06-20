@@ -11,7 +11,7 @@ import styles from './styles.module.css'
 type IconSelectProps = {
   selectedIcon?: IconNames
   disabled?: boolean
-  onChangeIcon: (icon: IconNames) => void
+  onChangeIcon: (icon: IconNames | null) => void
   label: string
 }
 const iconGroups: string[] = []
@@ -34,7 +34,7 @@ export const IconSelectConsta: React.FC<IconSelectProps> = ({
     setIcons(items)
   }, [group])
   const onChangeGroup = (value: string | null) => {
-    setGroups(value)
+    value && setGroups(value)
   }
   const onChange = (value: IconNames | null) => {
     onChangeIcon(value)
@@ -55,6 +55,8 @@ export const IconSelectConsta: React.FC<IconSelectProps> = ({
       <Select
         placeholder="icon"
         items={icons}
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
         size="xs"
         disabled={!disabled}
         value={selectedIcon}
