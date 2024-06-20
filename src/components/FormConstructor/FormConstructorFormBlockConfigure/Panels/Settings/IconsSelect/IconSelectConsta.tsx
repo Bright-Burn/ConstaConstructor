@@ -7,16 +7,6 @@ import { Icons, IconsGroup } from '../../../../coreTypes'
 import { getValueForSelect } from '../LabelForSelectComponent'
 
 import styles from './styles.module.css'
-type Item = {
-  label: string
-  id: number
-  groupId: number
-}
-
-type Group = {
-  label: string
-  id: number
-}
 
 type IconSelectProps = {
   selectedIcon?: IconNames
@@ -24,70 +14,64 @@ type IconSelectProps = {
   onChangeIcon: (icon: IconNames) => void
   label: string
 }
+const iconGroups: string[] = []
+Object.keys(IconsGroup).forEach(iconGroup => {
+  iconGroups.push(iconGroup)
+})
 export const IconSelectConsta: React.FC<IconSelectProps> = ({
   onChangeIcon,
   selectedIcon,
-  disabled,
+  disabled = true,
   label,
 }) => {
-  const [items, setItems] = useState<Item[]>([])
-  const [groups, setGroups] = useState<Group[]>([])
-  const [value, setValue] = useState<Item | undefined>()
+  const [icons, setIcons] = useState<string[]>([])
+  const [group, setGroups] = useState<string>('ActionIcon')
   useEffect(() => {
-    const groups: Group[] = []
-    const items: Item[] = []
-    let selectedItem: Item | undefined
-    Object.keys(IconsGroup).forEach((group, groupIdx) => {
-      groups.push({
-        label: group,
-        id: groupIdx,
-      })
-      IconsGroup[group].forEach((icon, idx) => {
-        if (icon === selectedIcon) {
-          selectedItem = {
-            label: icon,
-            id: idx,
-            groupId: groupIdx,
-          }
-        }
-        items.push({
-          label: icon,
-          id: idx,
-          groupId: groupIdx,
-        })
-      })
+    const items: string[] = []
+    IconsGroup[group].forEach(item => {
+      items.push(item)
     })
-    if (selectedItem) setValue(selectedItem)
-    setItems(items)
-    setGroups(groups)
-  }, [])
-  const onChange = (value: Item | null) => {
-    if (value) {
-      onChangeIcon(value.label)
-      setValue(value)
-    }
+    setIcons(items)
+  }, [group])
+  const onChangeGroup = (value: string | null) => {
+    setGroups(value)
+  }
+  const onChange = (value: IconNames | null) => {
+    onChangeIcon(value)
   }
   return (
-    <Select
-      placeholder="Выберите значение"
-      items={items}
-      size="xs"
-      disabled={disabled}
-      value={value} // itemsProps}
-      groups={groups}
-      renderItem={({ item, active, onClick, onMouseEnter }) => (
-        <div
-          className={styles.icon}
-          role="option"
-          aria-selected={active}
-          onMouseEnter={onMouseEnter}
-          onClick={onClick}>
-          {React.createElement(Icons[item.label], { size: 'xs' })}
-          <Text size="xs">{item.label}</Text>
-        </div>
-      )}
-      renderValue={({ item }) => getValueForSelect({ item: item.label, label })}
-      onChange={onChange}
-    />
+    <div className={styles.select_container}>
+      <Select
+        placeholder="group"
+        items={iconGroups}
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        size="xs"
+        disabled={!disabled}
+        value={group}
+        renderValue={({ item }) => getValueForSelect({ item, label: 'group' })}
+        onChange={onChangeGroup}
+      />
+      <Select
+        placeholder="icon"
+        items={icons}
+        size="xs"
+        disabled={!disabled}
+        value={selectedIcon}
+        renderItem={({ item, active, onClick, onMouseEnter }) => (
+          <div
+            className={styles.icon}
+            role="option"
+            aria-selected={active}
+            onMouseEnter={onMouseEnter}
+            onClick={onClick}>
+            {React.createElement(Icons[item], { size: 'xs' })}
+            <Text size="xs">{item}</Text>
+          </div>
+        )}
+        renderValue={({ item }) => getValueForSelect({ item, label })}
+        onChange={onChange}
+      />
+    </div>
   )
 }
