@@ -1,9 +1,11 @@
 import type { FC } from 'react'
-import React from 'react'
+import React, { useState } from 'react'
 import type { IconPropSize, IconPropView } from '@consta/icons/Icon'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'
-import { Text } from '@consta/uikit/Text'
 
+import type { ConstaColor } from '../../../../../ConstaPalette'
+import { LayoutPalette } from '../../../../../ConstaPalette'
 import type {
   BrandIconProps,
   IconElement,
@@ -22,9 +24,12 @@ type IconSettingsType = {
   selectedElementProps: IconProps
   selectedElement: IconElement
 }
+type colorSelectorType = 'view' | 'styleColor'
+const colorSelectors: colorSelectorType[] = ['view', 'styleColor']
 
 export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selectedElement }) => {
   const dispatch = useAppDispatch()
+  const [colorSelector, setColorSelector] = useState<colorSelectorType>('view')
 
   const props = { ...selectedElementProps }
 
@@ -43,8 +48,10 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
     if (value) {
       const newProps: BrandIconProps = {
         props: { ...selectedElementProps },
+
         type: 'Icon',
       }
+      delete newProps.props.styles
       newProps.props.view = value
       onDispatch(selectedElement, newProps)
     }
@@ -70,7 +77,20 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
       }),
     )
   }
+  const onChangeColor = (value: ConstaColor | null) => {
+    if (value) {
+      const newProps: BrandIconProps = {
+        props: { ...selectedElementProps },
+        type: 'Icon',
+      }
+      newProps.props.styles = { ...newProps.props.styles, color: value }
 
+      onDispatch(selectedElement, newProps)
+    }
+  }
+  const onChangeColorSelector = (value: colorSelectorType) => {
+    setColorSelector(value)
+  }
   return (
     <div className={styles.iconSettings}>
       <div className={styles.rowSettings}>
@@ -87,18 +107,29 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
         />
       </div>
       <IconSelectConsta selectedIcon={props.icons} label="Icon" onChangeIcon={onChangeIcon} />
-
-      <Select
-        getItemKey={(item: string) => item}
-        getItemLabel={(item: string) => item}
-        items={views}
-        label="Вид"
+      <ChoiceGroup
+        name="ColorSelector"
         size="xs"
-        value={props.view}
-        onChange={value => {
-          onChangeView(value)
-        }}
+        value={colorSelector}
+        items={colorSelectors}
+        getItemLabel={(item: colorSelectorType) => item}
+        onChange={onChangeColorSelector}
       />
+      {colorSelector === 'view' ? (
+        <Select
+          getItemKey={(item: string) => item}
+          getItemLabel={(item: string) => item}
+          items={views}
+          label="Вид"
+          size="xs"
+          value={props.view}
+          onChange={value => {
+            onChangeView(value)
+          }}
+        />
+      ) : (
+        <LayoutPalette color={props.styles?.color} size="xs" onChangeColor={onChangeColor} />
+      )}
     </div>
   )
 }
