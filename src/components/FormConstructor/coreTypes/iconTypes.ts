@@ -1,5 +1,7 @@
 import type { IconComponent, IconPropSize, IconPropView } from '@consta/icons/Icon'
 
+import type { ConstaColor } from '../../ConstaPalette'
+
 import {
   ActionIcon,
   ChartIcon,
@@ -35,6 +37,7 @@ export type IconProps = {
   size?: IconPropSize
   view?: IconPropView
   icons: IconNames
+  styles?: IconElementStyles
 } & BaseProps
 
 export interface IFormElementIcon extends IFormElement {
@@ -89,3 +92,7 @@ export const IconsGroup: Record<string, string[]> = {
   TextIcon: Object.keys(TextIcon),
   WeatherIcon: Object.keys(WeatherIcon),
 } as const
+
+export type IconElementStyles = {
+  color: ConstaColor | undefined
+}

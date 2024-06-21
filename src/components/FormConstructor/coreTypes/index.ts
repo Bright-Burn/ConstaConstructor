@@ -75,6 +75,7 @@ export type {
 export type {
   BrandIconProps,
   IconElement,
+  IconElementStyles,
   IconNames,
   IconProps,
   IFormElementIcon,
