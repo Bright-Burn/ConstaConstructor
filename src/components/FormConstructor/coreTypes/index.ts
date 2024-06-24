@@ -161,6 +161,7 @@ export type {
   textDecorationType,
   TextElement,
   TextElementProps,
+  TextlementStyles,
 } from './textTypes'
 export type {
   AllElementProps,

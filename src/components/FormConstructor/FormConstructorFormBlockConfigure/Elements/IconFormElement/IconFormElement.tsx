@@ -13,7 +13,6 @@ export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
   useLayoutEffect(() => {
     setIconProps(element.props.props)
   }, [element])
-  console.log('L16 iconProps ===', iconProps)
   return (
     <SelectableLayer
       parentElementId={element.id}

@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
@@ -7,6 +7,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
+import { LayoutPalette } from '../../../../../ConstaPalette'
 import type { textDecorationType, TextElement, TextElementProps } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
@@ -26,13 +27,21 @@ type TextSettingsType = {
   selectedProps: TextElementProps
   selectedElement: TextElement
 }
-
+type colorSelectorType = 'view' | 'styleColor'
+const colorSelectors: colorSelectorType[] = ['view', 'styleColor']
 export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElement }) => {
   const [refactorValue, setRefactorValue] = useState<textDecorationType[] | null>([])
   const [isOpen, setOpen] = useState<boolean>(false)
-
-  const { itemsProps, onChangeText, onChangeSwitch, onChangeField, onChangeItems } =
-    useItemsHandlers(selectedProps, selectedElement)
+  const [colorSelector, setColorSelector] = useState<colorSelectorType>('view')
+  const {
+    itemsProps,
+    onChangeText,
+    onChangeSwitch,
+    onChangeField,
+    onChangeItems,
+    onChangeColor,
+    onChangeView,
+  } = useItemsHandlers(selectedProps, selectedElement)
 
   const onRefactorValueLabelEdit = (value: textDecorationType[] | null) => {
     setRefactorValue(value)
@@ -43,6 +52,9 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
     }
   }
 
+  const onChangeColorSelector = (value: colorSelectorType) => {
+    setColorSelector(value)
+  }
   return (
     <div className={styles.textSettings}>
       <TextField
@@ -95,18 +107,27 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
             onChangeField(value, 'weight')
           }}
         />
+      </div>
+      <ChoiceGroup
+        name="ColorSelector"
+        size="xs"
+        value={colorSelector}
+        items={colorSelectors}
+        getItemLabel={(item: colorSelectorType) => item}
+        onChange={onChangeColorSelector}
+      />
+      {colorSelector === 'view' ? (
         <Select
           getItemKey={(item: string) => item}
           getItemLabel={(item: string) => item}
           items={views}
-          label="Вид"
           size="xs"
           value={itemsProps.view}
-          onChange={value => {
-            onChangeField(value, 'view')
-          }}
+          onChange={onChangeView}
         />
-      </div>
+      ) : (
+        <LayoutPalette color={selectedProps.style?.color} size="xs" onChangeColor={onChangeColor} />
+      )}
       <Collapse
         size="xs"
         label="Кастомные настройки"
