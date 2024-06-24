@@ -10,6 +10,8 @@ import type {
   TextPropWeight,
 } from '@consta/uikit/Text'
 
+import type { ConstaColor } from '../../ConstaPalette'
+
 import type {
   BaseProps,
   BrandProps,
@@ -43,6 +45,7 @@ export type TextElementProps = {
   width?: 'default'
   truncate?: boolean
   transformText: textDecorationType
+  style?: TextlementStyles
 } & BaseProps &
   TextContent
 
@@ -52,4 +55,7 @@ export type BrandTextElementProps = BrandProps<TextElementProps, 'Text'>
 
 export interface IFormElementText extends IFormElement {
   props: BrandTextElementProps
+}
+export type TextlementStyles = {
+  color: ConstaColor | undefined
 }

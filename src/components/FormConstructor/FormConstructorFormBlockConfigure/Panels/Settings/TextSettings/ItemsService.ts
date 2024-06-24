@@ -1,5 +1,7 @@
 import type React from 'react'
+import type { TextPropView } from '@consta/uikit/Text'
 
+import type { ConstaColor } from '../../../../../ConstaPalette'
 import type {
   BrandTextElementProps,
   ISelectedElement,
@@ -22,6 +24,24 @@ export const useItemsHandlers = (
       type: 'Text',
     }
     onDispatch(selectedElement, newProps)
+  }
+  const onChangeView = (value: TextPropView | null) => {
+    const newProps: BrandTextElementProps = {
+      props: { ...selectedElementProps, view: value ?? undefined },
+      type: 'Text',
+    }
+    delete newProps.props.style
+    onDispatch(selectedElement, newProps)
+  }
+  const onChangeColor = (value: ConstaColor | null) => {
+    if (value) {
+      const newProps: BrandTextElementProps = {
+        props: { ...selectedElementProps },
+        type: 'Text',
+      }
+      newProps.props.style = { ...newProps.props.style, color: value }
+      onDispatch(selectedElement, newProps)
+    }
   }
 
   const onChangeText = (propsName: keyof TextElementProps) => (value: string | null) => {
@@ -87,6 +107,8 @@ export const useItemsHandlers = (
     onChangeSwitch,
     onChangeField,
     onChangeItems,
+    onChangeColor,
+    onChangeView,
     itemsProps: {
       size: selectedElementProps.size,
       view: selectedElementProps.view,
