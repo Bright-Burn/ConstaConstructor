@@ -37,7 +37,7 @@ export type IconProps = {
   size?: IconPropSize
   view?: IconPropView
   icons: IconNames
-  styles?: IconElementStyles
+  style?: IconElementStyles
 } & BaseProps
 
 export interface IFormElementIcon extends IFormElement {

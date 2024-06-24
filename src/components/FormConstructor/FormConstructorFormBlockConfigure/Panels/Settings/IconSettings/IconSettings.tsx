@@ -51,7 +51,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
 
         type: 'Icon',
       }
-      delete newProps.props.styles
+      delete newProps.props.style
       newProps.props.view = value
       onDispatch(selectedElement, newProps)
     }
@@ -83,7 +83,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
         props: { ...selectedElementProps },
         type: 'Icon',
       }
-      newProps.props.styles = { ...newProps.props.styles, color: value }
+      newProps.props.style = { ...newProps.props.style, color: value }
 
       onDispatch(selectedElement, newProps)
     }
@@ -128,7 +128,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
           }}
         />
       ) : (
-        <LayoutPalette color={props.styles?.color} size="xs" onChangeColor={onChangeColor} />
+        <LayoutPalette color={props.style?.color} size="xs" onChangeColor={onChangeColor} />
       )}
     </div>
   )

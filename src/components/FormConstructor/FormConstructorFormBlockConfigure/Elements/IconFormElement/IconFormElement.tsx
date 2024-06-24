@@ -21,7 +21,7 @@ export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
       {!!iconProps &&
         React.createElement(Icons[iconProps.icons], {
           ...iconProps,
-          style: getStyles(iconProps.styles),
+          style: getStyles(iconProps.style),
         })}
     </SelectableLayer>
   )
