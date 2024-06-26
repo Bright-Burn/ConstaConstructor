@@ -2,6 +2,7 @@ import type { FC } from 'react'
 import React, { useLayoutEffect, useState } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'
+import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
@@ -44,6 +45,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
     onChangeDirection,
     onChangeBackroundColor,
     onChangeOverflow,
+    onChangeWrap,
   } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [widthValue, setWidthValue] = useState<string>('0')
@@ -119,6 +121,12 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
         onChange={value => {
           onChangeDirection(value.name)
         }}
+      />
+      <Switch
+        checked={selectedElementProps.styles?.flexWrap === 'wrap'}
+        size="xs"
+        label="wrap"
+        onChange={onChangeWrap}
       />
       <TextField
         className={styles.widthFlex}

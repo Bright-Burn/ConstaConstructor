@@ -7,6 +7,8 @@
   flex-direction: inherit;
   justify-content: inherit;
   align-items: inherit;
+  flex-wrap: inherit;
+  max-width: inherit;
   display: flex;
   flex-grow: 1;
   border: 0;
