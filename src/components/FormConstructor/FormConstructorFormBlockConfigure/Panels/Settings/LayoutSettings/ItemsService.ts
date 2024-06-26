@@ -58,7 +58,16 @@ export const useItemsHandlers = (
 
     onDispatch(selectedElement, newProps)
   }
-
+  const onChangeWrap = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked
+    const newProps: BrandLayoutElementPropsStyles = {
+      props: { ...selectedElementProps },
+      type: 'Layout',
+    }
+    newProps.props.styles = { ...newProps.props.styles }
+    newProps.props.styles.flexWrap = checked ? 'wrap' : 'nowrap'
+    onDispatch(selectedElement, newProps)
+  }
   const onChangeVerticalAligment = (value: LayoutPropVerticalAlign) => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedElementProps },
@@ -265,6 +274,7 @@ export const useItemsHandlers = (
     onChangeAlignItems,
     onChangeHeight,
     onChangeHorizontalAligment,
+    onChangeWrap,
     onChangeBorderWidth,
     onChangeBorderStyle,
     onChangeBorderSide,

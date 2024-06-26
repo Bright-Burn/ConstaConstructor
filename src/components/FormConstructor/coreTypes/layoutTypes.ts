@@ -54,6 +54,7 @@ export interface LayoutElementStyles {
   minHeight?: string
   justifyContent?: JustifyContentProps
   backgroundColor?: ConstaColor
+  flexWrap?: 'wrap' | 'nowrap'
   borderStyle?: BorderStyle
   borderWidth?: BorderWidth
   borderColor?: ConstaColor
