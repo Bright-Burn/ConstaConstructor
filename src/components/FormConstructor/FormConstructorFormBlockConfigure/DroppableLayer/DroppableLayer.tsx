@@ -41,7 +41,9 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   const { handleOnDropBaseComponent } = useDropBaseComponent()
 
   const handleOnDrop = (event: React.DragEvent) => {
-    event.stopPropagation()
+    // stopPropagation должен оставаться закомменченным,
+    // иначе не будет работать перетаскивание в компоненте DragbleLayer
+    // event.stopPropagation()
     event.preventDefault()
 
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
