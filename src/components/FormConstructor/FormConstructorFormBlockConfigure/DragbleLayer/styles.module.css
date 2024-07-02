@@ -1,26 +1,10 @@
 .dragbleContainer {
     position: relative;
 }
-.left {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 20%;
-    border: #000000 2px dashed;
-    opacity: 0;
-    z-index: 10;
+
+.draggingLeft {
+    box-shadow: inset  4px 0 #0078d2;
 }
-.right {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 20%;
-    border: #000000 2px dashed;
-    opacity: 0;
-    z-index: 10;
-}
-.dragging {
-    opacity: 1;
+.draggingRight {
+    box-shadow:  inset  -4px 0 #0078d2;
 }
