@@ -59,10 +59,14 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
     const target = event.target as HTMLElement
     const nativeEvent = event.nativeEvent
     const layerX = nativeEvent.layerX
+    let offset = target.offsetWidth
+    if (target.tagName === 'svg') {
+      offset = target.clientWidth
+    }
     if (layerX < 8) {
       onDropLeft(event)
       console.log('left drop')
-    } else if (layerX > target.offsetWidth - 8) {
+    } else if (layerX > offset - 8) {
       onDropRight(event)
       console.log('right drop')
     }
