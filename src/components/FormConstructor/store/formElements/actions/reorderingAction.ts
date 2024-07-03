@@ -60,7 +60,7 @@ const getMinSiblingOrder = (
     }
   }
 
-  return minOrder !== 0 ? minOrder : siblings.length + 1
+  return minOrder !== 0 ? minOrder : targetElement.order + 1
 }
 const getMaxSiblingOrder = (
   allElems: (IFormElement | IGroupElement)[],
