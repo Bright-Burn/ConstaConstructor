@@ -1,7 +1,6 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import type { IconComponent } from '@consta/icons/Icon'
-import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
@@ -29,11 +28,20 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
   selectedElementProps,
   selectedElement,
 }) => {
-  const { itemsProps, onChangeItemsCount, onChangeItems, onChangeSize, onChangeFitMode } =
-    useItemsHandlers(selectedElementProps, selectedElement)
+  const {
+    itemsProps,
+    onChangeItemsCount,
+    onChangeItems,
+    onChangeSize,
+    onChangeFitMode,
+    onChangeLastItemLink,
+  } = useItemsHandlers(selectedElementProps, selectedElement)
 
-  const [isOpen, setOpen] = useState<boolean>(false)
-  const [disabledPage, setDisabledPage] = useState<boolean>(false)
+  const [selectedPageIndex, setSelectedPageIndex] = useState<number>(0)
+
+  const pageLabels = itemsProps.items.map(item => {
+    return item.label
+  })
 
   const onPageLabelEdit = (value: string | null, index: number) => {
     const newPage = [...itemsProps.items]
@@ -42,15 +50,6 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
     onChangeItems(newPage)
   }
 
-  const onDisabledPage = (value: boolean) => {
-    const newPage = [...itemsProps.items].map(page => {
-      const { ...other } = page
-      return other
-    })
-
-    onChangeItems(newPage)
-    setDisabledPage(value)
-  }
   // TODO убрать когда избавимся от DeepWriteable
   const iconComponentToDeepWriteable = (x: IconComponent) => x as DeepWriteable<IconComponent>
 
@@ -77,9 +76,17 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
           getItemKey={(item: string) => item}
           getItemLabel={(item: string) => item}
           items={sizes}
-          label="size"
           size="xs"
+          placeholder="size"
           value={itemsProps.size}
+          renderValue={({ item }) => (
+            <div className={styles.selectRenderValue}>
+              <Text view="ghost" className="p-r-xs">
+                Size
+              </Text>
+              {item}
+            </div>
+          )}
           onChange={value => {
             onChangeSize(value)
           }}
@@ -88,78 +95,95 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
           getItemKey={(item: string) => item}
           getItemLabel={(item: string) => item}
           items={fitMode}
-          label="fitMode"
+          placeholder="Fit mode"
           size="xs"
           value={itemsProps.fitMode}
+          renderValue={({ item }) => (
+            <div className={styles.selectRenderValue}>
+              <Text view="ghost" className="p-r-xs">
+                Fit mode
+              </Text>
+              {item}
+            </div>
+          )}
           onChange={value => {
             onChangeFitMode(value)
           }}
         />
       </div>
+      <Switch
+        size="xs"
+        label="Last item link"
+        checked={itemsProps.lastItemIsLink}
+        onChange={event => {
+          onChangeLastItemLink(event.target.checked)
+        }}
+      />
       <TextField
-        label="Количество страниц"
         type="number"
         size="xs"
         value={`${itemsProps.items.length}`}
+        leftSide="Amount"
         onChange={onChangeItemsCount}
       />
-      <Switch
-        label="Иконки страниц"
+      <Select
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        items={pageLabels}
+        placeholder="Selected"
         size="xs"
-        checked={disabledPage}
-        onChange={event => {
-          onDisabledPage(event.target.checked)
+        value={itemsProps.items[selectedPageIndex]?.label}
+        renderValue={({ item }) => (
+          <div className={styles.selectRenderValue}>
+            <Text view="ghost" className="p-r-xs">
+              Selected
+            </Text>
+            {item}
+          </div>
+        )}
+        onChange={value => {
+          setSelectedPageIndex(itemsProps.items.findIndex(i => i.label === value))
         }}
       />
-      <Collapse
+      <TextField
         size="xs"
-        label="Название страниц"
-        isOpen={isOpen}
-        onClick={() => {
-          setOpen(!isOpen)
-        }}>
-        {itemsProps.items.map((page, index) => {
-          return (
-            <div key={index} className={styles.pagePadding}>
-              <div className={styles.rowSettings}>
-                <TextField
-                  key={index}
-                  size="xs"
-                  label={`Страница ${index + 1}`}
-                  value={page.label}
-                  onChange={value => {
-                    onPageLabelEdit(value, index)
-                  }}
-                />
-                <Select
-                  className={styles.iconAlign}
-                  getItemKey={(item: string) => item}
-                  getItemLabel={(item: string) => item}
-                  items={icons}
-                  disabled={!disabledPage}
-                  size="xs"
-                  value={page.labelIcon}
-                  renderItem={({ item, active, onClick, onMouseEnter }) => (
-                    <div
-                      className={styles.icon}
-                      role="option"
-                      aria-selected={active}
-                      onMouseEnter={onMouseEnter}
-                      onClick={onClick}>
-                      {checkValueIsIconNames(item) &&
-                        React.createElement(Icons[item], { size: 'xs' })}
-                      <Text size="xs">{item}</Text>
-                    </div>
-                  )}
-                  onChange={value => {
-                    onPageIconEditLeft(value, index)
-                  }}
-                />
-              </div>
-            </div>
-          )
-        })}
-      </Collapse>
+        value={itemsProps.items[selectedPageIndex]?.label}
+        leftSide="Name"
+        onChange={value => {
+          onPageLabelEdit(value, selectedPageIndex)
+        }}
+      />
+      <Select
+        className={styles.iconAlign}
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        items={icons}
+        size="xs"
+        placeholder="Icon"
+        value={itemsProps.items[selectedPageIndex]?.labelIcon}
+        renderValue={({ item }) => (
+          <div className={styles.selectRenderValue}>
+            <Text view="ghost" className="p-r-xs">
+              Icon
+            </Text>
+            {item}
+          </div>
+        )}
+        renderItem={({ item, active, onClick, onMouseEnter }) => (
+          <div
+            className={styles.icon}
+            role="option"
+            aria-selected={active}
+            onMouseEnter={onMouseEnter}
+            onClick={onClick}>
+            {checkValueIsIconNames(item) && React.createElement(Icons[item], { size: 'xs' })}
+            <Text size="xs">{item}</Text>
+          </div>
+        )}
+        onChange={value => {
+          onPageIconEditLeft(value, selectedPageIndex)
+        }}
+      />
     </div>
   )
 }

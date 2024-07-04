@@ -19,6 +19,7 @@ export type BreadcrumbProps = {
   items: DefaultItemBreadcrumbsType[]
   fitMode: BreadcrumbPropFitMode
   size: BreadcrumbPropSize
+  lastItemIsLink?: boolean
 } & BaseProps
 
 export type BrandBreadcrumbsProps = BrandProps<

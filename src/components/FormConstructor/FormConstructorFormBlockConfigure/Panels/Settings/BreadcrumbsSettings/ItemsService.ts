@@ -75,6 +75,16 @@ export const useItemsHandlers = (
     }
   }
 
+  const onChangeLastItemLink = (value: boolean) => {
+    const newProps: BrandBreadcrumbsProps = {
+      props: { ...selectedElementProps },
+      type: 'BreadcrumbsFormElement',
+    }
+
+    newProps.props.lastItemIsLink = value
+    onDispatch(selectedElement, newProps)
+  }
+
   const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
     if (value) {
       const newProps: BrandBreadcrumbsProps = {
@@ -91,11 +101,13 @@ export const useItemsHandlers = (
     onChangeItemsCount,
     onChangeSize,
     onChangeFitMode,
+    onChangeLastItemLink,
     onChangeItems,
     itemsProps: {
       items: selectedElementProps.items,
       size: selectedElementProps.size,
       fitMode: selectedElementProps.fitMode,
+      lastItemIsLink: selectedElementProps.lastItemIsLink,
     },
   }
 }

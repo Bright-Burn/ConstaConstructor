@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { Text } from '@consta/uikit/Text'
 
 import type {
   BrandAvatarGroupProps,
@@ -81,7 +82,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <AvatarGroupSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -99,7 +100,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <AvatarSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -114,7 +115,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
       }
       return (
         <>
-          <TextSettings selectedProps={selectedElementProps.props} selectedElement={element} />{' '}
+          <TextSettings selectedProps={selectedElementProps.props} selectedElement={element} />
           <BaseSettings />
         </>
       )
@@ -133,7 +134,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <InformerSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -152,7 +153,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <BadgeSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -171,7 +172,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <TableSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -190,7 +191,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <LayoutSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -209,7 +210,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <CardSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -244,7 +245,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <TabsSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -263,7 +264,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <CheckboxSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -301,7 +302,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <ListSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -320,7 +321,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <RadioButtonSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -358,7 +359,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <SwitchSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -377,7 +378,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <DatePickerSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -396,7 +397,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <ComboBoxSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -414,7 +415,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <SelectSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -432,7 +433,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <DataTimeSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -482,10 +483,13 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
       }
       return (
         <>
+          <Text size="xs" view="secondary" className="p-b-s">
+            Base
+          </Text>
           <BreadcrumbsSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -504,7 +508,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <UserSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -523,7 +527,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <TagSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
@@ -542,7 +546,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
           <ChoiceGroupSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
-          />{' '}
+          />
           <BaseSettings />
         </>
       )
