@@ -1,5 +1,4 @@
 import type { FC } from 'react'
-import { Text } from '@consta/uikit/Text'
 
 import type {
   BrandAvatarGroupProps,
@@ -483,9 +482,6 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
       }
       return (
         <>
-          <Text size="xs" view="secondary" className="p-b-s">
-            Base
-          </Text>
           <BreadcrumbsSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}

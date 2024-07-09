@@ -33,7 +33,7 @@ export const Settings: FC = () => {
   return settingsPanelState ? (
     <div className={`${styles.settingsBlock} ${styles.settingsContainer} `}>
       <div className={styles.settingsTitle}>
-        <Text size="xs">Настройки </Text>
+        <Text size="xs">Design </Text>
         <Button
           onlyIcon={true}
           iconLeft={IconClose}
@@ -42,6 +42,9 @@ export const Settings: FC = () => {
           onClick={toggleSettingsPanel}
         />
       </div>
+      <Text size="xs" view="secondary" className="p-t-s">
+        Base
+      </Text>
       <SettingPanelQualifier />
     </div>
   ) : (
