@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import React from 'react'
-import { IconClose } from '@consta/icons/IconClose'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
@@ -94,28 +93,12 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
           selectedIcon={itemsProps.iconLeft}
           onChangeIcon={onChangeIconLeft}
         />
-
-        <IconClose
-          size="s"
-          view="secondary"
-          onClick={() => {
-            onChangeIconLeft(null)
-          }}
-        />
       </div>
       <div className={styles.rowSettings}>
         <IconSelectConsta
           label="iconRight"
           selectedIcon={selectedElementProps.iconRight}
           onChangeIcon={onChangeIconRight}
-        />
-
-        <IconClose
-          size="s"
-          view="secondary"
-          onClick={() => {
-            onChangeIconRight(null)
-          }}
         />
       </div>
       <Switch

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Combobox } from '@consta/uikit/Combobox'
 import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 
@@ -52,7 +53,7 @@ export const IconSelectConsta: React.FC<IconSelectProps> = ({
         renderValue={({ item }) => getValueForSelect({ item, label: 'group' })}
         onChange={onChangeGroup}
       />
-      <Select
+      <Combobox
         placeholder="icon"
         items={icons}
         getItemKey={(item: string) => item}
