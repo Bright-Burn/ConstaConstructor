@@ -4,15 +4,9 @@
   flex-basis: 0;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 0.5fr 0.5fr;
   overflow-y: auto;
   overflow-x: hidden;
   padding: var(--space-xs);
   gap: var(--space-s);
-}
-
-@media screen and (max-width: 1900px) {
-  .componentItems {
-    grid-template-columns: 1fr 1fr;
-  }
 }
