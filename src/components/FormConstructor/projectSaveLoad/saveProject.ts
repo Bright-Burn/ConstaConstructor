@@ -1,3 +1,5 @@
+import jsonBeautify from 'json-beautify'
+
 import { saveToFile } from '../utils'
 
 import type { ProjectDataSerializable, SaveProjectIntent } from './types'
@@ -19,7 +21,8 @@ const saveToStorage = (data: ProjectDataSerializable) => {
 }
 
 const saveFile = (projData: ProjectDataSerializable) => {
-  const fileData = JSON.stringify(projData)
+  // @ts-expect-error неправильная анотация типов в библиотеке beautify
+  const fileData = jsonBeautify(projData, null, 2)
   saveToFile(fileData, `${projData.name}_ConstaConstructor.json`)
 }
 
