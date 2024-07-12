@@ -6,22 +6,22 @@
 
 .borderOut {
   border: var(--space-3xs) dashed #00416633;
-  width: var(--space-3xl);
-  height: var(--space-5xl);
+  width: var(--space-2xl);
+  height: var(--space-4xl);
   margin: var(--space-2xs);
 }
 
 .borderIn {
   border: var(--space-3xs) dashed #00416633;
-  width: var(--space-6xl);
-  height: var(--space-5xl);
+  width: var(--space-5xl);
+  height: var(--space-4xl);
   margin: var(--space-2xs);
 }
 
 .borderInIn {
   border: var(--space-3xs) dashed #00416633;
-  width: var(--space-5xl);
-  height: var(--space-4xl);
+  width: var(--space-4xl);
+  height: var(--space-xl);
   margin: var(--space-s);
 }
 
