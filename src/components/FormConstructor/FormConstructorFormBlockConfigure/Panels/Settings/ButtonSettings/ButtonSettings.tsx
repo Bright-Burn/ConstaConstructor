@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import React from 'react'
-import { IconClose } from '@consta/icons/IconClose'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
@@ -109,29 +108,13 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
             label="iconLeft"
             onChangeIcon={onChangeIcon}
           />
-
-          <IconClose
-            size="s"
-            view="secondary"
-            onClick={() => {
-              onChangeIcon(null)
-            }}
-          />
         </div>
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.iconR}
             disabled={selectedElementProps.onlyIcon}
             label="iconRight"
-            onChangeIcon={onChangeIcon}
-          />
-
-          <IconClose
-            size="s"
-            view="secondary"
-            onClick={() => {
-              onChangeIconR(null)
-            }}
+            onChangeIcon={onChangeIconR}
           />
         </div>
         <Switch
