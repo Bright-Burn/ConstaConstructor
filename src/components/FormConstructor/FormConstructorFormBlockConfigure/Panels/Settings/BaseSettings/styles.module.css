@@ -6,8 +6,7 @@
 }
 .baseContainer{
   display: flex;
-  gap: var(--space-m);
-  margin-top: var(--space-xs);
+  flex-direction: column;
 }
 .baseContainerCol{
   display: flex;
@@ -22,8 +21,8 @@
 }
 
 .textDecoration {
-  padding-top: var(--space-xs);
-  margin-bottom: var(--space-xs);
+  padding-top: var(--space-s);
+  margin-bottom: var(--space-s);
 }
 .saveModal {
   width: 600px;
