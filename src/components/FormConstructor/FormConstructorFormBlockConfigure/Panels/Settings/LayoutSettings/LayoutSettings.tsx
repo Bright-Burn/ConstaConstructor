@@ -60,9 +60,6 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
 
   return (
     <div className={styles.layoutSettings}>
-      <Text size="xs" view="secondary">
-        Base
-      </Text>
       <div className={styles.rowSettings}>
         <TextField
           value={heightValue}
