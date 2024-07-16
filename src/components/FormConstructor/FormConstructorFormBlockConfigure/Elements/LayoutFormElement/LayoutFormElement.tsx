@@ -43,6 +43,7 @@ const getStyles = (styles: LayoutElementStyles | undefined) => {
     backgroundColor: `var(--${styles?.backgroundColor})`,
     overflowX: styles?.overflowX,
     overflowY: styles?.overflowY,
+    width: styles?.overflowX ? 0 : 'auto',
     transition: 'none',
     borderTopWidth: `${styles?.borderTopWidth ?? 0}px`,
     borderRightWidth: `${styles?.borderRightWidth ?? 0}px`,
