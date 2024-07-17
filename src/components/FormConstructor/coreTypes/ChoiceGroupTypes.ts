@@ -3,6 +3,7 @@ import type {
   ChoiceGroupPropForm,
   ChoiceGroupPropSize,
   ChoiceGroupPropView,
+  ChoiceGroupPropWidth,
 } from '@consta/uikit/ChoiceGroup'
 
 import type { IconNames } from './iconTypes'
@@ -27,6 +28,7 @@ type ChoiceGroupProps<ITEM, MULTIPLE extends boolean = false> = {
   value?: ChoiceGroupPropValue<ITEM, MULTIPLE>
   disabled?: boolean
   onlyIcon?: boolean
+  width: ChoiceGroupPropWidth
 }
 export type SingleChoiceGroupProps = ChoiceGroupProps<ChoiceGroupItem> & BaseProps
 
