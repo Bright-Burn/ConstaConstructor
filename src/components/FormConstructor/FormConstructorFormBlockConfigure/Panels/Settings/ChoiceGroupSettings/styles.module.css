@@ -42,3 +42,7 @@
   color: var(--color-control-typo-secondary);
   margin-left: var(--space-2xs);
 }
+
+.selectRenderValue {
+  display: flex;
+}

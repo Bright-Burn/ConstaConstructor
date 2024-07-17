@@ -93,6 +93,7 @@ export const useItemsHandlers = (
       multiple: selectedElementProps.multiple,
       onlyIcon: selectedElementProps.onlyIcon,
       disabled: selectedElementProps.disabled,
+      width: selectedElementProps.width,
     },
   }
 }
