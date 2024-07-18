@@ -38,6 +38,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
     useItemsHandlers(selectedElementProps, selectedElement)
 
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(0)
+  const activeItemValue = Array.isArray(itemsProps.value) ? itemsProps.value : undefined
 
   const onDisabledPage = (value: boolean, index: number) => {
     const newPage = [...itemsProps.items]
@@ -61,11 +62,15 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
     onChangeItems([...newLines])
   }
 
-  const onItemLabelEdit = (value: string | null, index: number) => {
-    const newPage = [...itemsProps.items]
-    if (!value) newPage[index] = { ...newPage[index], label: '' }
-    else newPage[index] = { ...newPage[index], label: value }
-    onChangeItems(newPage)
+  const onItemLabelEdit = (label: string | null, index: number) => {
+    const newItem = [...itemsProps.items]
+    if (!label) newItem[index] = { ...newItem[index], label: '' }
+    else newItem[index] = { ...newItem[index], label }
+    onChangeItems(newItem)
+  }
+
+  const onChangeSelectedItem = (value: ChoiceGroupItem | null) => {
+    if (value) setSelectedItemIndex(itemsProps.items.findIndex(i => i.label === value.label))
   }
 
   return (
@@ -157,7 +162,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
         disabled={!itemsProps.multiple}
         placeholder="Items"
         items={itemsProps.items}
-        value={itemsProps.value as ChoiceGroupItem[]}
+        value={activeItemValue}
         getItemKey={(key: ChoiceGroupItem) => key.label}
         multiple={true}
         onChange={value => {
@@ -194,9 +199,7 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
             {item.label}
           </div>
         )}
-        onChange={value => {
-          setSelectedItemIndex(itemsProps.items.findIndex(i => i.label === value?.label))
-        }}
+        onChange={onChangeSelectedItem}
       />
       <TextField
         size="xs"
