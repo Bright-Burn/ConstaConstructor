@@ -7,12 +7,13 @@ import {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store'
+import { AddNewElementPayload } from './types'
 
 export const useDropBaseComponent = () => {
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
   const dispathBaseComponents = useBaseComponentsDispatch()
 
-  const handleOnDropBaseComponent = (parentElementId: string) => {
+  const handleOnDropBaseComponent = (parentElementId: string): AddNewElementPayload[] => {
     if (draggableBaseComponent) {
       const map = new Map<string, (IGroupElement | IFormElement)[]>()
       const allElementsMap = new Map<string, IGroupElement | IFormElement>()
@@ -43,7 +44,7 @@ export const useDropBaseComponent = () => {
           }
         }
       })
-      const action = [...allElementsMap].map(([_, value]) => ({
+      const action: AddNewElementPayload[] = [...allElementsMap].map(([_, value]) => ({
         element: value,
         parent: value.parentId ?? parentElementId,
       }))
@@ -52,6 +53,7 @@ export const useDropBaseComponent = () => {
       dispathBaseComponents(setDraggableBaseComponent(null))
       return action
     }
+    return []
   }
   return { handleOnDropBaseComponent }
 }

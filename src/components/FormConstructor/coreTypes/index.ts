@@ -189,3 +189,4 @@ export type {
   IFormElementWizardForm,
   wizardFormProps,
 } from './wizardFormTypes'
+export { FormInstance } from './FormInstance'

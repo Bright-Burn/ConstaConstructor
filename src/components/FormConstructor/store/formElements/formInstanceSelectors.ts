@@ -1,0 +1,36 @@
+import { createSelector } from '@reduxjs/toolkit'
+import { FormInstance } from '../../coreTypes'
+import { RootState } from '../setupStore'
+import { getElementById } from './formElementsSelectors'
+import { formInstanceAdapter } from './formInstanse'
+
+const { selectById } = formInstanceAdapter.getSelectors<RootState>(
+  state => state.formConstructor.elmentInstances,
+)
+
+export const formInstanceSelector = (id: string) => (state: RootState) => selectById(state, id)
+
+/**
+ * Возвращает props из Инстанса выбранного элемента
+ */
+export const getSelectedElementProps = (state: RootState) => {
+  const selectedElementId = state.formConstructor.selectedElement?.elementId
+  if (selectedElementId) {
+    const selectPropsFromInstance = getInstanceProps(selectedElementId)
+    return selectPropsFromInstance(state)
+  }
+}
+
+/**
+ * Возвращает функцию селектор для получения пропсов конкретного элемента(ссылки) из его инстанса
+ */
+export const getInstanceProps = (elementId: string) => (state: RootState) => {
+  const element = getElementById(elementId)(state)
+  if (element && element.instanceId) {
+    const type = element.type
+    const instance: FormInstance<typeof type> | undefined = formInstanceSelector(
+      element.instanceId,
+    )(state)
+    return instance?.props
+  }
+}

@@ -28,6 +28,10 @@ export {
   setDraggableElement,
   setSelectedElement,
   updateOrders,
+  getInstanceProps,
+  copyLinkElement,
+  getSelectedElementProps,
+  formInstanceSelector,
 } from './formElements'
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'

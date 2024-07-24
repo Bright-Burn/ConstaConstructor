@@ -13,6 +13,7 @@ import {
 } from '../../store'
 
 import css from './styles.module.css'
+import { copyLinkElement } from '../../store/formElements/formElementsActions'
 
 interface Props {
   children?: ReactNode
@@ -63,6 +64,21 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       const { code } = e
       if (selectedElement && code === 'Delete') {
         dispatch(deleteFormElement(selectedElement.elementId))
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [selectedElement])
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const { code, ctrlKey } = e
+      if (code === 'KeyC' && ctrlKey && selectedElement) {
+        dispatch(copyLinkElement(selectedElement.elementId))
       }
     }
 

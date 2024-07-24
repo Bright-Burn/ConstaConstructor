@@ -6,7 +6,7 @@ import type {
   BrandAvatarGroupProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { useAppDispatch } from '../../../../store'
 
 import type { form, sizes } from './constants'
 
@@ -58,15 +58,7 @@ export const useItemsHandlers = (
 
     onDispatch(selectedElement, newProps)
   }
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandAvatarGroupProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
-  }
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandAvatarGroupProps) => {}
 
   return {
     onChangeSize,

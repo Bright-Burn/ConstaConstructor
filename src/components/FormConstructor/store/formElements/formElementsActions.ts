@@ -2,6 +2,7 @@ import uuid from 'react-uuid'
 
 import type {
   FormElementTypes,
+  FormInstance,
   IFormElement,
   IGroupElement,
   ILayoutElement,
@@ -11,7 +12,7 @@ import type {
 } from '../../coreTypes'
 import type { SaveProjectIntent } from '../../projectSaveLoad'
 import { ProjectSaveWays, saveProjectData } from '../../projectSaveLoad'
-import { saveToFile } from '../../utils'
+import { saveToFile, Values } from '../../utils'
 import type { IBaseComponent } from '../baseComponentsItems'
 import { pushHistoryElement } from '../history'
 import type { AppDispatch, RootState } from '../setupStore'
@@ -19,16 +20,10 @@ import { ViewerSlice } from '../Viewer'
 
 import { formConstructorSlice } from './formElementsSlice'
 import { initialLayout, layuoutAdapter } from './initialState'
-import type {
-  AddNewElementPayload,
-  SaveNewProject,
-  SetNewElementDraggableElem,
-  SetNewSelectedElement,
-} from './payload'
+import type { SaveNewProject, SetNewElementDraggableElem } from './payload'
+import { getElementById } from './formElementsSelectors'
+import { selectById, selectAll } from './layoutAdapterSelectors'
 
-const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
-  state => state.formConstructor.allElements,
-)
 export const deletePage =
   (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     if (getState().formConstructor.pages.length > 1) {
@@ -52,36 +47,17 @@ export const changePageName = (pageName: string) => (dispatch: AppDispatch) => {
   dispatch(formConstructorSlice.actions.changePageName({ pageName }))
 }
 
-export const setSelectedElement =
-  (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
-    if (!payload) {
-      dispatch(formConstructorSlice.actions.deselectElement())
-      return
-    }
-
-    const element = selectById(getState(), payload.elementId)
-    if (element) {
-      dispatch(
-        formConstructorSlice.actions.setSelectedElement({ element, newProps: payload.newProps }),
-      )
-      if (payload.newProps) {
-        const prevProps = { ...element.props }
-        dispatch(
-          pushHistoryElement(() =>
-            dispatch(
-              formConstructorSlice.actions.setSelectedElement({ element, newProps: prevProps }),
-            ),
-          ),
-        )
-      }
-    }
-  }
-
 export const deleteFormElement =
   (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const map = new Map<string, (IGroupElement | IFormElement)[]>()
     const elementForDelete = selectById(state, id)
+    dispatch(
+      formConstructorSlice.actions.changeElementLinkCount({
+        id: elementForDelete?.instanceId || '',
+        type: 'DEC',
+      }),
+    )
     if (!elementForDelete) return
     const allElements = selectAll(state)
 
@@ -126,7 +102,7 @@ export const setDraggableElement =
     dispatch(formConstructorSlice.actions.setDraggableElement(el))
   }
 
-const getSiblingsCount = (state: RootState, parentId: string) => {
+export const getSiblingsCount = (state: RootState, parentId: string) => {
   const allElements: (IFormElement | IGroupElement)[] = selectAll(state)
   let elements = 0
   allElements.forEach(element => {
@@ -136,24 +112,7 @@ const getSiblingsCount = (state: RootState, parentId: string) => {
   })
   return elements
 }
-export const addNewFormElement =
-  (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch, getState: () => RootState) => {
-    addPayloads.forEach(payload => {
-      const siblingsCount = getSiblingsCount(getState(), payload.parent)
-      const element = {
-        ...payload.element,
-        parentId: payload.parent,
-        order: siblingsCount + 1,
-      }
-      dispatch(formConstructorSlice.actions.addNewFormElement(element))
 
-      dispatch(
-        pushHistoryElement(() =>
-          dispatch(formConstructorSlice.actions.deleteFormElement([element.id])),
-        ),
-      )
-    })
-  }
 export const loadProjectFromStorage =
   (project: IFormConstructorSerializable) => (dispatch: AppDispatch) => {
     dispatch(formConstructorSlice.actions.loadProjectFromJson(project))

@@ -1,7 +1,6 @@
 export { reorderFormElement, updateOrders } from './actions'
 export type { IFormConstructorSerializable } from './formElementsActions'
 export {
-  addNewFormElement,
   addNewPage,
   changeActivePage,
   changePageName,
@@ -13,7 +12,6 @@ export {
   saveProjectToHtml,
   saveProjectToMemoryStorage,
   setDraggableElement,
-  setSelectedElement,
 } from './formElementsActions'
 export {
   getAllFormElements,
@@ -24,3 +22,10 @@ export {
   getSelectedPageId,
 } from './formElementsSelectors'
 export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
+export {
+  formInstanceSelector,
+  getInstanceProps,
+  getSelectedElementProps,
+} from './formInstanceSelectors'
+export { addNewFormElement, copyLinkElement } from './linkActions'
+export { setSelectedElement } from './setSelectedElementAction'

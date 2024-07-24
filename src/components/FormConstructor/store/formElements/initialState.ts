@@ -1,8 +1,15 @@
 import uuid from 'react-uuid'
 import { createEntityAdapter } from '@reduxjs/toolkit'
 
-import type { IFormConstructor, IFormElement, IGroupElement, ILayoutElement } from '../../coreTypes'
+import type {
+  FormInstance,
+  IFormConstructor,
+  IFormElement,
+  IGroupElement,
+  ILayoutElement,
+} from '../../coreTypes'
 import { FormGroupsDictTypes } from '../../coreTypes'
+import { formInstanceAdapter } from './formInstanse'
 
 export const rootId = uuid()
 const initialLayoutId = uuid()
@@ -45,6 +52,8 @@ export const layuoutAdapter = createEntityAdapter<IFormElement | IGroupElement>(
 
 export const initialState: IFormConstructor = {
   allElements: layuoutAdapter.getInitialState(),
+  elmentInstances: formInstanceAdapter.getInitialState(),
+  instanceManager: {},
   selectedElement: null,
   selectedElementProps: null,
   draggableElement: null,
