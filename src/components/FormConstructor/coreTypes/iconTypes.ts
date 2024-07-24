@@ -27,6 +27,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -40,9 +41,11 @@ export type IconProps = {
   style?: IconElementStyles
 } & BaseProps
 
-export interface IFormElementIcon extends IFormElement {
-  props: BrandIconProps
-}
+export type IFormElementIcon = OmitInstanceId<
+  IFormElement & {
+    props: BrandIconProps
+  }
+>
 
 export type BrandIconProps = BrandProps<IconProps, 'Icon'>
 

@@ -9,6 +9,7 @@ import type {
   BrandProps,
   ConcreteSelectedElement,
   DeepWriteable,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -31,6 +32,8 @@ export type BreadcrumbsFormElement = ConcreteSelectedElement<
   typeof FormElementDictTypes.BreadcrumbsForm
 >
 
-export interface IFormElementBreadcrumbs extends IFormElement {
-  props: BrandBreadcrumbsProps
-}
+export type IFormElementBreadcrumbs = OmitInstanceId<
+  IFormElement & {
+    props: BrandBreadcrumbsProps
+  }
+>

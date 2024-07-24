@@ -67,6 +67,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
     dispatch(addNewFormElement(payload))
   }
 
+  console.log(elementsOnLayer)
   return (
     <div
       className={styles.droppableContainer}

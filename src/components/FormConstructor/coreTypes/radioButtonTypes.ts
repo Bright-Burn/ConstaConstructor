@@ -4,6 +4,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -21,6 +22,8 @@ export type BrandRadioButtonProps = BrandProps<RadioButtonProps, 'RadioButton'>
 
 export type RadioButtonElement = ConcreteSelectedElement<typeof FormElementDictTypes.RadioButton>
 
-export interface IFormElementRadioButton extends IFormElement {
-  props: BrandRadioButtonProps
-}
+export type IFormElementRadioButton = OmitInstanceId<
+  IFormElement & {
+    props: BrandRadioButtonProps
+  }
+>

@@ -10,6 +10,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -30,6 +31,8 @@ export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>
 
 export type BadgeElement = ConcreteSelectedElement<typeof FormElementDictTypes.Badge>
 
-export interface IFormElementBadge extends IFormElement {
-  props: BrandBadgeProps
-}
+export type IFormElementBadge = OmitInstanceId<
+  IFormElement & {
+    props: BrandBadgeProps
+  }
+>

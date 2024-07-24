@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 
 import { JsonHelper } from '../../../../helpers'
 import {
+  copyLinkElement,
   deleteFormElement,
   loadProjectFromStorage,
   onSetViewMode,
@@ -13,7 +14,6 @@ import {
 } from '../../store'
 
 import css from './styles.module.css'
-import { copyLinkElement } from '../../store/formElements/formElementsActions'
 
 interface Props {
   children?: ReactNode

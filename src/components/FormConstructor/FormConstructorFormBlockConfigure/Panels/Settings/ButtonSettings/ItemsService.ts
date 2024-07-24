@@ -147,7 +147,6 @@ export const useItemsHandlers = (
       setSelectedElement({
         elementType: selectedElement.elementType,
         elementId: selectedElement.elementId,
-        newProps: { ...newProps },
       }),
     )
   }
@@ -171,13 +170,12 @@ export const useItemsHandlers = (
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    // dispatch(
+    //   setSelectedElement({
+    //     elementType: selectedElement.elementType,
+    //     elementId: selectedElement.elementId,
+    //   }),
+    // )
   }
 
   return {

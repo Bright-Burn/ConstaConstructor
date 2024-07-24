@@ -4,7 +4,6 @@ export {
   addNewPage,
   changeActivePage,
   changePageName,
-  deleteFormElement,
   deletePage,
   loadProjectFromStorage,
   saveModuleToFile,
@@ -27,5 +26,5 @@ export {
   getInstanceProps,
   getSelectedElementProps,
 } from './formInstanceSelectors'
-export { addNewFormElement, copyLinkElement } from './linkActions'
+export { addNewFormElement, copyLinkElement, deleteFormElement } from './instanceElements'
 export { setSelectedElement } from './setSelectedElementAction'

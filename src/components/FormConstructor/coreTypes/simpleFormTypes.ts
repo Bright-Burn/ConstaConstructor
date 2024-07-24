@@ -1,10 +1,12 @@
-import type { BaseProps, BrandProps, IFormElement } from './types'
+import type { BaseProps, BrandProps, OmitInstanceId, IFormElement } from './types'
 
 export type simpleFormProps = {
   children?: never
 } & BaseProps
 
-export interface IFormElementSimpleForm extends IFormElement {
-  props: BrandSimpleFormProps
-}
+export type IFormElementSimpleForm = OmitInstanceId<
+  IFormElement & {
+    props: BrandSimpleFormProps
+  }
+>
 export type BrandSimpleFormProps = BrandProps<simpleFormProps, 'SimpleForm'>

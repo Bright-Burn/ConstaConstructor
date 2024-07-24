@@ -4,6 +4,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -24,6 +25,8 @@ export type BrandDataTimeProps = BrandProps<DataTimeProps, 'DataTime'>
 
 export type DataTimeElement = ConcreteSelectedElement<typeof FormElementDictTypes.DataTime>
 
-export interface IFormElementDataTime extends IFormElement {
-  props: BrandDataTimeProps
-}
+export type IFormElementDataTime = OmitInstanceId<
+  IFormElement & {
+    props: BrandDataTimeProps
+  }
+>

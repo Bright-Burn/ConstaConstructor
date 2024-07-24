@@ -11,6 +11,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -42,6 +43,8 @@ export type BrandTextFieldProps = BrandProps<TextFieldProps, 'TextField'>
 
 export type TextFieldElement = ConcreteSelectedElement<typeof FormElementDictTypes.TextField>
 
-export interface IFormElementTextField extends IFormElement {
-  props: BrandTextFieldProps
-}
+export type IFormElementTextField = OmitInstanceId<
+  IFormElement & {
+    props: BrandTextFieldProps
+  }
+>
