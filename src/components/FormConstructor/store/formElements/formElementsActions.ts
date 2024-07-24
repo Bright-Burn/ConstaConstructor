@@ -2,7 +2,6 @@ import uuid from 'react-uuid'
 
 import type {
   FormElementTypes,
-  FormInstance,
   IFormElement,
   IGroupElement,
   ILayoutElement,
@@ -12,17 +11,16 @@ import type {
 } from '../../coreTypes'
 import type { SaveProjectIntent } from '../../projectSaveLoad'
 import { ProjectSaveWays, saveProjectData } from '../../projectSaveLoad'
-import { saveToFile, Values } from '../../utils'
+import { saveToFile } from '../../utils'
 import type { IBaseComponent } from '../baseComponentsItems'
-import { pushHistoryElement } from '../history'
 import type { AppDispatch, RootState } from '../setupStore'
 import { ViewerSlice } from '../Viewer'
 
 import { formConstructorSlice } from './formElementsSlice'
-import { initialLayout, layuoutAdapter } from './initialState'
+import { initialLayout } from './initialState'
 import type { SaveNewProject, SetNewElementDraggableElem } from './payload'
-import { getElementById } from './formElementsSelectors'
 import { selectById, selectAll } from './layoutAdapterSelectors'
+import { deleteFormElement } from './instanceElements'
 
 export const deletePage =
   (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
@@ -46,55 +44,6 @@ export const changeActivePage = (pageId: string) => (dispatch: AppDispatch) => {
 export const changePageName = (pageName: string) => (dispatch: AppDispatch) => {
   dispatch(formConstructorSlice.actions.changePageName({ pageName }))
 }
-
-export const deleteFormElement =
-  (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const state = getState()
-    const map = new Map<string, (IGroupElement | IFormElement)[]>()
-    const elementForDelete = selectById(state, id)
-    dispatch(
-      formConstructorSlice.actions.changeElementLinkCount({
-        id: elementForDelete?.instanceId || '',
-        type: 'DEC',
-      }),
-    )
-    if (!elementForDelete) return
-    const allElements = selectAll(state)
-
-    allElements.forEach(el => {
-      if (el.parentId && map.get(el.parentId)) {
-        map.set(el.parentId, [...(map.get(el.parentId) ?? []), el])
-      } else if (el.parentId) {
-        map.set(el.parentId, [el])
-      }
-    })
-
-    const getElementsForDelete = (parent: IFormElement | IGroupElement) => {
-      let elemsForDelete: (IFormElement | IGroupElement)[] = []
-      const arrForDelete = map.get(parent.id)
-
-      arrForDelete?.forEach(el => {
-        if (map.get(el.id)) {
-          elemsForDelete = [...elemsForDelete, ...getElementsForDelete(el)]
-        }
-
-        elemsForDelete.push(el)
-      })
-
-      return elemsForDelete
-    }
-    const elementsForDelete = [elementForDelete, ...getElementsForDelete(elementForDelete)]
-    const idsForDelete = elementsForDelete.map(el => el.id)
-    dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
-
-    dispatch(
-      pushHistoryElement(() => {
-        elementsForDelete.forEach(el => {
-          dispatch(formConstructorSlice.actions.addNewFormElement(el))
-        })
-      }),
-    )
-  }
 
 export const setDraggableElement =
   <T extends FormElementTypes = FormElementTypes>(el: SetNewElementDraggableElem<T>) =>

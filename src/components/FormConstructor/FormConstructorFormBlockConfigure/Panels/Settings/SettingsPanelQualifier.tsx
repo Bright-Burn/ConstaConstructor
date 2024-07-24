@@ -28,7 +28,6 @@ import type {
   BrandTextElementProps,
   BrandTextFieldProps,
   BrandUserProps,
-  FormInstance,
   ISelectedElement,
   UnionProps,
 } from '../../../coreTypes'

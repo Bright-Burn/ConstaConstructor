@@ -164,7 +164,6 @@ export type {
   TextlementStyles,
 } from './textTypes'
 export type {
-  AllElementProps,
   AllElementTypes,
   BaseProps,
   BrandProps,
@@ -174,13 +173,14 @@ export type {
   FormGroupsTypes,
   GroupElementUnion,
   ICardElement,
-  IFormConstructor,
   IFormElement,
   IGroupElement,
   ILayoutElement,
   IPageOfLayout,
   ISelectedElement,
-  UnionProps,
+  OmitInstanceId,
+  IFormConstructor,
+  DraggbleElement,
 } from './types'
 export { ElementTypes, FormElementDictTypes, FormGroupsDictTypes } from './types'
 export type { BrandUserProps, IFormElementUser, UserElement, UserProps } from './userTypes'
@@ -189,4 +189,4 @@ export type {
   IFormElementWizardForm,
   wizardFormProps,
 } from './wizardFormTypes'
-export { FormInstance } from './FormInstance'
+export { FormInstance, UnionProps } from './formInstance'

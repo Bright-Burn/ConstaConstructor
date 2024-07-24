@@ -1,4 +1,4 @@
-export { addNewFormElement } from './addNewFormElement'
+export { addNewFormElementAdapter } from './addNewFormElement'
 export { addNewPage } from './addNewPage'
 export { changeActivePage } from './changeActivePage'
 export { changePageName } from './changePageName'
@@ -12,5 +12,6 @@ export { updateOrders } from './updateOrders'
 export {
   addNewFormInstance,
   changeElementLinkCount,
-  deleteFormInstance,
-} from '../instance/addNewFormInstance'
+  addNewFormElement,
+  copyLinkElement,
+} from '../instanceElements'

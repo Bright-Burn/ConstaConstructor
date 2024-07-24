@@ -108,7 +108,7 @@ export type FormInstance<T extends AllElementTypes> = {
                                                                       : never
 }
 
-export type AllProps =
+export type UnionProps =
   | FormInstance<FormElementTypes>['props']
   | FormInstance<FormGroupsTypes>['props']
 

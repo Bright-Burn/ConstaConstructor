@@ -11,6 +11,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -36,9 +37,11 @@ export type MultipleChoiceGroupProps = ChoiceGroupProps<ChoiceGroupItem, true> &
 
 export type OwnChoiceGroupProps = SingleChoiceGroupProps | MultipleChoiceGroupProps
 
-export interface IFormElementChoiceGroup extends IFormElement {
-  props: BrandOwnChoiceGroupProps
-}
+export type IFormElementChoiceGroup = OmitInstanceId<
+  IFormElement & {
+    props: BrandOwnChoiceGroupProps
+  }
+>
 
 export type ChoiceGroupElement = ConcreteSelectedElement<typeof FormElementDictTypes.ChoiceGroup>
 

@@ -1,5 +1,5 @@
-import type { ILayoutElement } from '../../../coreTypes'
+import type { IGroupElement } from '../../../coreTypes'
 
 export interface ILayoutFormElement {
-  element: ILayoutElement
+  element: IGroupElement<'Layout'>
 }

@@ -6,6 +6,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -44,6 +45,8 @@ export type BrandTabsElementProps = BrandProps<TabsElementProps, 'Tabs'>
 
 export type TabsElement = ConcreteSelectedElement<typeof FormElementDictTypes.Tabs>
 
-export interface IFormElementTabs extends IFormElement {
-  props: BrandTabsElementProps
-}
+export type IFormElementTabs = OmitInstanceId<
+  IFormElement & {
+    props: BrandTabsElementProps
+  }
+>

@@ -1,5 +1,11 @@
-import { FormInstance, IFormElement, IGroupElement } from '../../../coreTypes'
-import { AllProps } from '../../../coreTypes/formInstance'
+import {
+  AllElementTypes,
+  FormInstance,
+  IFormElement,
+  IGroupElement,
+  UnionProps,
+} from '../../../coreTypes'
+
 import { AppDispatch } from '../../setupStore'
 import { formConstructorSlice } from '../formElementsSlice'
 import { LinkCountType } from './types'
@@ -8,15 +14,15 @@ import { LinkCountType } from './types'
  * Создание нового инстанса
  */
 export const createInstanceForElement =
-  (element: IFormElement | IGroupElement, props: AllProps) => (dispatch: AppDispatch) => {
-    const formElemntInstance: FormInstance<typeof element.type> = {
-      id: element.instanceId,
+  (instanceId: string, type: AllElementTypes, props: UnionProps) => (dispatch: AppDispatch) => {
+    const formElemntInstance: FormInstance<typeof type> = {
+      id: instanceId,
       props: props,
     }
     dispatch(formConstructorSlice.actions.addNewFormInstance(formElemntInstance))
     dispatch(
       formConstructorSlice.actions.changeElementLinkCount({
-        id: element.instanceId,
+        id: instanceId,
         type: 'INC',
       }),
     )
@@ -26,11 +32,10 @@ export const createInstanceForElement =
  * Управление текущими инстансами
  */
 export const manageInstanceLinkForElement =
-  (element: IFormElement | IGroupElement, payloadType: LinkCountType) =>
-  (dispatch: AppDispatch) => {
+  (instanceId: string, payloadType: LinkCountType) => (dispatch: AppDispatch) => {
     dispatch(
       formConstructorSlice.actions.changeElementLinkCount({
-        id: element.instanceId,
+        id: instanceId,
         type: payloadType,
       }),
     )

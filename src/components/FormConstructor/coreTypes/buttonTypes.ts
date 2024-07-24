@@ -5,6 +5,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   FormGroupsDictTypes,
   IFormElement,
@@ -29,9 +30,11 @@ export type ButtonElement = ConcreteSelectedElement<typeof FormElementDictTypes.
 export const buttonActions: ButtonAction[] = ['none', 'ButtonModal']
 export const buttonActionsActive = ['ButtonModal']
 
-export interface IFormElementButton extends IFormElement {
-  props: BrandButtonProps
-}
+export type IFormElementButton = OmitInstanceId<
+  IFormElement & {
+    props: BrandButtonProps
+  }
+>
 
 export const defaultHeight = '400px'
 export const defaultWidth = '400px'

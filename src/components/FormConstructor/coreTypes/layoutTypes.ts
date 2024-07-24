@@ -2,7 +2,13 @@ import type { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta
 
 import type { ConstaColor } from '../../ConstaPalette'
 
-import type { BaseProps, BrandProps, ConcreteSelectedElement, FormGroupsDictTypes } from './types'
+import type {
+  BaseProps,
+  BrandProps,
+  ConcreteSelectedElement,
+  OmitInstanceId,
+  FormGroupsDictTypes,
+} from './types'
 
 // Нет возможности использовать тип импортированный из консты, как это сделано с типом ButtonElementProps, так как нет возможности создать State, содержащий поле типа HTMLElement
 // В будущем решим эту проблему, пока что описал вручную
@@ -73,10 +79,12 @@ export interface LayoutElementStyles {
   transform?: string
 }
 
-export interface LayoutElementPropsStyles extends BaseProps {
-  constaProps: LayoutElementProps
-  styles?: LayoutElementStyles
-}
+export type LayoutElementPropsStyles = OmitInstanceId<
+  BaseProps & {
+    constaProps: LayoutElementProps
+    styles?: LayoutElementStyles
+  }
+>
 
 export type BrandLayoutElementPropsStyles = BrandProps<LayoutElementPropsStyles, 'Layout'>
 

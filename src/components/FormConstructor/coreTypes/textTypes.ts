@@ -16,6 +16,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -53,9 +54,11 @@ export type TextElement = ConcreteSelectedElement<typeof FormElementDictTypes.Te
 
 export type BrandTextElementProps = BrandProps<TextElementProps, 'Text'>
 
-export interface IFormElementText extends IFormElement {
-  props: BrandTextElementProps
-}
+export type IFormElementText = OmitInstanceId<
+  IFormElement & {
+    props: BrandTextElementProps
+  }
+>
 export type TextlementStyles = {
   color: ConstaColor | undefined
 }

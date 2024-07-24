@@ -26,7 +26,7 @@ import type { IFormElementTagProps } from './tagTypes'
 import type { IFormElementTextField } from './textFieldTypes'
 import type { IFormElementText } from './textTypes'
 import type { IFormElementUser } from './userTypes'
-import { FormInstance, InstanceManager } from './formInstance'
+import { FormInstance, InstanceManager, UnionProps } from './formInstance'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -94,9 +94,11 @@ export type FormElementTypes = Values<typeof FormElementDictTypes>
 //   props: GroupElementProps
 // }
 
-export interface ILayoutElement extends IGroupElement {
-  props: BrandLayoutElementPropsStyles
-}
+export type ILayoutElement = OmitInstanceId<
+  IGroupElement & {
+    props: BrandLayoutElementPropsStyles
+  }
+>
 
 type emptyObj = Record<string, never>
 export type IGroupElement<T extends FormGroupsTypes = FormGroupsTypes> = IUnion & {
@@ -113,15 +115,19 @@ export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion
   instanceId: string
 }
 
+export type OmitInstanceId<T> = Omit<T, 'instanceId'>
+
 export interface IUnion {
   id: string
   type: FormElementTypes | FormGroupsTypes
   order: number
 }
 
-export interface ICardElement extends IGroupElement {
-  props: BrandCardElementPropsStyles
-}
+export type ICardElement = OmitInstanceId<
+  IGroupElement & {
+    props: BrandCardElementPropsStyles
+  }
+>
 
 export type AllElementTypes = FormElementTypes | FormGroupsTypes
 
@@ -215,6 +221,10 @@ export interface IPageOfLayout {
   name: string
 }
 
+export type DraggbleElement<T extends IFormElement | IGroupElement> = OmitInstanceId<T> & {
+  props: UnionProps
+}
+
 export interface IFormConstructor extends IHistory {
   allElements: EntityState<IFormElement | IGroupElement>
   elmentInstances: EntityState<FormInstance<FormElementTypes>>
@@ -225,7 +235,7 @@ export interface IFormConstructor extends IHistory {
     | FormInstance<FormGroupsTypes>['props']
     | emptyObj
     | null
-  draggableElement: IFormElement | IGroupElement | null
+  draggableElement: DraggbleElement<IFormElement | IGroupElement> | null
 
   pages: IPageOfLayout[]
   numberOfPages: number

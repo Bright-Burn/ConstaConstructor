@@ -4,6 +4,7 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
+  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
 } from './types'
@@ -22,6 +23,8 @@ export type BrandCheckboxProps = BrandProps<CheckboxProps, 'Checkbox'>
 
 export type CheckboxElement = ConcreteSelectedElement<typeof FormElementDictTypes.Checkbox>
 
-export interface IFormElementCheckbox extends IFormElement {
-  props: BrandCheckboxProps
-}
+export type IFormElementCheckbox = OmitInstanceId<
+  IFormElement & {
+    props: BrandCheckboxProps
+  }
+>

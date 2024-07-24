@@ -1,14 +1,14 @@
 import type {
+  DraggbleElement,
   FormElementTypes,
   FormGroupsTypes,
   IFormElement,
   IGroupElement,
+  UnionProps,
 } from '../../coreTypes'
-import { AllProps } from '../../coreTypes/formInstance'
 
 export interface AddNewElementPayload {
-  props: AllProps
-  element: IFormElement | IGroupElement
+  element: DraggbleElement<IFormElement | IGroupElement>
   parent: string
 }
 
@@ -39,8 +39,8 @@ export interface LoadProjectFromFile {
   projectJson: string
 }
 
-export interface SetNewElementDraggableElem<T extends FormElementTypes = FormElementTypes> {
-  element: IFormElement<T> | IGroupElement | null
+export type SetNewElementDraggableElem<T extends FormElementTypes = FormElementTypes> = {
+  element: DraggbleElement<IFormElement | IGroupElement> | null
 }
 
 export interface ChangeActivePage {
