@@ -3,9 +3,11 @@ import type {
   FormGroupsTypes,
   IFormElement,
   IGroupElement,
-  UnionProps,
 } from '../../coreTypes'
+import { AllProps } from '../../coreTypes/formInstance'
+
 export interface AddNewElementPayload {
+  props: AllProps
   element: IFormElement | IGroupElement
   parent: string
 }
@@ -18,7 +20,6 @@ export interface PanelStatePayload {
 export type SetNewSelectedElement = {
   elementId: string
   elementType: FormGroupsTypes | FormElementTypes
-  newProps?: UnionProps
 } | null
 
 export interface ShowGrid {

@@ -2,43 +2,31 @@ import type { EntityState } from '@reduxjs/toolkit'
 
 import type { Values } from '../utils'
 
-import type { BrandAvatarGroupProps } from './avatarGroupTypes'
-import type { BrandAvatarProps, IFormElementAvatar } from './avatartTypes'
-import type { BrandBadgeProps, IFormElementBadge } from './badgeTypes'
+import type { IFormElementAvatar } from './avatartTypes'
+import type { IFormElementBadge } from './badgeTypes'
 import type { BaseTypes } from './basePropsTypes'
-import type { BrandBreadcrumbsProps, IFormElementBreadcrumbs } from './BreadcrumbsTypes'
-import type {
-  BrandButtonGroupProps,
-  BrandButtonProps,
-  IButtonActionElement,
-  IFormElementButton,
-} from './buttonTypes'
+import type { IFormElementBreadcrumbs } from './BreadcrumbsTypes'
+import type { IButtonActionElement, IFormElementButton } from './buttonTypes'
 import type { BrandCardElementPropsStyles } from './cardTypes'
-import type { BrandCardWithChartProps } from './cardWithBarChartTypes'
-import type { BrandCheckboxProps, IFormElementCheckbox } from './checkboxTypes'
-import type { BrandOwnChoiceGroupProps, IFormElementChoiceGroup } from './ChoiceGroupTypes'
-import type { BrandComboboxProps, IFormElementComboBox } from './comboBoxTypes'
-import type { BrandDashboardProps } from './dashboardTypes'
-import type { BrandDataTimeProps, IFormElementDataTime } from './dataTimeTypes'
-import type { BrandDatePickerProps, IFormElementDatePicker } from './datePickerTypes'
-import type { BrandFooterWithSwitchProps } from './footerWithSwitchTypes'
-import type { BrandIconProps, IFormElementIcon } from './iconTypes'
-import type { BrandInformerElementProps, IFormElementInformer } from './informerTypes'
+import type { IFormElementCheckbox } from './checkboxTypes'
+import type { IFormElementChoiceGroup } from './ChoiceGroupTypes'
+import type { IFormElementComboBox } from './comboBoxTypes'
+import type { IFormElementDataTime } from './dataTimeTypes'
+import type { IFormElementDatePicker } from './datePickerTypes'
+import type { IFormElementIcon } from './iconTypes'
+import type { IFormElementInformer } from './informerTypes'
 import type { BrandLayoutElementPropsStyles } from './layoutTypes'
-import type { BrandListProps, IFormElementList } from './ListTypes'
-import type { BrandPlaceholderProps } from './placeholderTypes'
-import type { BrandPrototypeRectangleProps, BrandPrototypeTextProps } from './prototypeTypes'
-import type { BrandRadioButtonProps, IFormElementRadioButton } from './radioButtonTypes'
-import type { BrandSelectProps, IFormElementSelect } from './selectTypes'
-import type { BrandSimpleFormProps } from './simpleFormTypes'
-import type { BrandSwitchProps, IFormElementSwitch } from './SwitchTypes'
-import type { BrandTableProps, IFormElementTable } from './tableTypes'
-import type { BrandTabsElementProps, IFormElementTabs } from './tabsTypes'
-import type { BrandTagProps, IFormElementTagProps } from './tagTypes'
-import type { BrandTextFieldProps, IFormElementTextField } from './textFieldTypes'
-import type { BrandTextElementProps, IFormElementText } from './textTypes'
-import type { BrandUserProps, IFormElementUser } from './userTypes'
-import type { BrandWizardFromProps } from './wizardFormTypes'
+import type { IFormElementList } from './ListTypes'
+import type { IFormElementRadioButton } from './radioButtonTypes'
+import type { IFormElementSelect } from './selectTypes'
+import type { IFormElementSwitch } from './SwitchTypes'
+import type { IFormElementTable } from './tableTypes'
+import type { IFormElementTabs } from './tabsTypes'
+import type { IFormElementTagProps } from './tagTypes'
+import type { IFormElementTextField } from './textFieldTypes'
+import type { IFormElementText } from './textTypes'
+import type { IFormElementUser } from './userTypes'
+import { FormInstance, InstanceManager } from './formInstance'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -113,86 +101,16 @@ export interface ILayoutElement extends IGroupElement {
 type emptyObj = Record<string, never>
 export type IGroupElement<T extends FormGroupsTypes = FormGroupsTypes> = IUnion & {
   id: string
+  instanceId: string
   parentId?: string
   type: T
   isOuter: boolean
-  props: T extends 'Layout'
-    ? BrandLayoutElementPropsStyles
-    : emptyObj & T extends 'Card'
-      ? BrandCardElementPropsStyles
-      : emptyObj & T extends 'ButtonModal'
-        ? BrandButtonGroupProps
-        : never
 }
 export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion & {
   id: string
   parentId?: string
   type: T
-  props: T extends 'Avatar'
-    ? BrandAvatarProps
-    : emptyObj & T extends 'Button'
-      ? BrandButtonProps
-      : emptyObj & T extends 'Badge'
-        ? BrandBadgeProps
-        : emptyObj & T extends 'Tabs'
-          ? BrandTabsElementProps
-          : emptyObj & T extends 'Informer'
-            ? BrandInformerElementProps
-            : emptyObj & T extends 'Checkbox'
-              ? BrandCheckboxProps
-              : emptyObj & T extends 'Text'
-                ? BrandTextElementProps
-                : emptyObj & T extends 'TextField'
-                  ? BrandTextFieldProps
-                  : emptyObj & T extends 'Table'
-                    ? BrandTableProps
-                    : emptyObj & T extends 'List'
-                      ? BrandListProps
-                      : emptyObj & T extends 'RadioButton'
-                        ? BrandRadioButtonProps
-                        : emptyObj & T extends 'Switch'
-                          ? BrandSwitchProps
-                          : emptyObj & T extends 'DatePicker'
-                            ? BrandDatePickerProps
-                            : emptyObj & T extends 'ComboBox'
-                              ? BrandComboboxProps
-                              : emptyObj & T extends 'SelectForm'
-                                ? BrandSelectProps
-                                : emptyObj & T extends 'DataTime'
-                                  ? BrandDataTimeProps
-                                  : emptyObj & T extends 'User'
-                                    ? BrandUserProps
-                                    : emptyObj & T extends 'Icon'
-                                      ? BrandIconProps
-                                      : emptyObj & T extends 'Tag'
-                                        ? BrandTagProps
-                                        : emptyObj & T extends 'BreadcrumbsFormElement'
-                                          ? BrandBreadcrumbsProps
-                                          : emptyObj & T extends 'ChoiceGroup'
-                                            ? BrandOwnChoiceGroupProps
-                                            : emptyObj & T extends 'ProjectGrid'
-                                              ? emptyObj
-                                              : emptyObj & T extends 'Placeholder'
-                                                ? BrandPlaceholderProps
-                                                : emptyObj & T extends 'CardWithBarChart'
-                                                  ? BrandCardWithChartProps
-                                                  : emptyObj & T extends 'Dashboard'
-                                                    ? BrandDashboardProps
-                                                    : emptyObj & T extends 'SimpleForm'
-                                                      ? BrandSimpleFormProps
-                                                      : emptyObj & T extends 'WizardForm'
-                                                        ? BrandWizardFromProps
-                                                        : emptyObj & T extends 'FooterWithSwitch'
-                                                          ? BrandFooterWithSwitchProps
-                                                          : emptyObj &
-                                                                T extends 'PrototypeTextElement'
-                                                            ? BrandPrototypeTextProps
-                                                            : emptyObj &
-                                                                  T extends 'PrototypeRectangleElement'
-                                                              ? BrandPrototypeRectangleProps
-                                                              : emptyObj & T extends 'AvatarGroup'
-                                                                ? BrandAvatarGroupProps
-                                                                : never
+  instanceId: string
 }
 
 export interface IUnion {
@@ -207,7 +125,7 @@ export interface ICardElement extends IGroupElement {
 
 export type AllElementTypes = FormElementTypes | FormGroupsTypes
 
-export type AllElementProps = FormElementProps | GroupElementProps
+// export type AllElementProps = FormElementProps | GroupElementProps
 
 export type BrandProps<T, ElementTypes extends AllElementTypes> = {
   type: ElementTypes
@@ -220,7 +138,7 @@ export type ConcreteSelectedElement<ElementTypes extends AllElementTypes> = {
 }
 
 // Все Union пропсы для FormElement
-export type FormElementProps = IFormElement['props']
+// export type FormElementProps = IFormElement['props']
 // export type FormElementProps =
 //   | BrandButtonProps
 //   | BrandBadgeProps
@@ -247,7 +165,7 @@ export type FormElementProps = IFormElement['props']
 //   | BrandPlaceholderProps
 
 // Все Union пропсы для GroupElement
-export type GroupElementProps = IGroupElement['props']
+// export type GroupElementProps = IGroupElement['props']
 // export type GroupElementProps =
 //   | BrandLayoutElementPropsStyles
 //   | BrandCardElementPropsStyles
@@ -280,8 +198,8 @@ export type FormElementUnion =
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
 
-/// По мере расширения сюда подем дописывать новые объединения
-export type UnionProps = FormElementProps | GroupElementProps
+// /// По мере расширения сюда подем дописывать новые объединения
+// export type UnionProps = FormElementProps | GroupElementProps
 export interface BaseProps {
   className: string
   baseProps: BaseTypes
@@ -299,8 +217,14 @@ export interface IPageOfLayout {
 
 export interface IFormConstructor extends IHistory {
   allElements: EntityState<IFormElement | IGroupElement>
+  elmentInstances: EntityState<FormInstance<FormElementTypes>>
+  instanceManager: InstanceManager
   selectedElement: ISelectedElement | null
-  selectedElementProps: UnionProps | emptyObj | null
+  selectedElementProps:
+    | FormInstance<FormElementTypes>['props']
+    | FormInstance<FormGroupsTypes>['props']
+    | emptyObj
+    | null
   draggableElement: IFormElement | IGroupElement | null
 
   pages: IPageOfLayout[]

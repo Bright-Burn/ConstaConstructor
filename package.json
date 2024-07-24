@@ -45,6 +45,7 @@
     "@conarti/eslint-plugin-feature-sliced": "^1.0.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@testing-library/jest-dom": "^6.4.2",
+    "@types/reselect": "2.2.0",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "autoprefixer": "10.4.0",

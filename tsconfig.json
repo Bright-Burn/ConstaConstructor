@@ -15,6 +15,9 @@
     "strict": true,
     "allowJs": true,
     "noUncheckedIndexedAccess": false,
+    "paths": {
+      "react": ["./node_modules/@types/react"]
+    },
     "lib": [
       "es2017",
       "dom",

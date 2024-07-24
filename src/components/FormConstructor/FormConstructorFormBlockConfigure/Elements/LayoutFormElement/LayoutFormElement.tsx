@@ -2,20 +2,20 @@ import type { FC } from 'react'
 import { useLayoutEffect, useState } from 'react'
 import { Layout } from '@consta/uikit/Layout'
 
-import type { LayoutElementPropsStyles, LayoutElementStyles } from '../../../coreTypes'
+import type { FormInstance, LayoutElementStyles } from '../../../coreTypes'
 import { ElementTypes, FormGroupsDictTypes } from '../../../coreTypes'
 import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ILayoutFormElement } from './types'
+import { useAppSelector } from '../../../store'
+import { formInstanceSelector } from '../../../store/formElements'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
-  const [layoutProps, setLayoutProps] = useState<LayoutElementPropsStyles>()
-
-  useLayoutEffect(() => {
-    const layoutElementWithProps = element
-    setLayoutProps(layoutElementWithProps.props.props)
-  }, [element])
+  const formInstance: FormInstance<'Layout'> | undefined = useAppSelector(
+    formInstanceSelector(element?.instanceId || ''),
+  )
+  const layoutProps = formInstance?.props.props
 
   const style = getStyles(layoutProps?.styles)
   return (
