@@ -4,7 +4,7 @@ import { createEntityAdapter } from '@reduxjs/toolkit'
 import type { IFormElement, IGroupElement, ILayoutElement } from '../../coreTypes'
 import { FormGroupsDictTypes } from '../../coreTypes'
 import { IFormConstructor } from '../../coreTypes/types'
-import { formInstanceAdapter } from './instanceElements/formInstanseAdapter'
+import { formInstanceAdapter } from './formInstanseAdapter'
 
 export const rootId = uuid()
 const initialLayoutId = uuid()

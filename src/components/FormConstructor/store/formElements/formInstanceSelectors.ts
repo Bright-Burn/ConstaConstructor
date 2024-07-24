@@ -1,8 +1,7 @@
-import { createSelector } from '@reduxjs/toolkit'
 import { FormInstance } from '../../coreTypes'
 import { RootState } from '../setupStore'
 import { getElementById } from './formElementsSelectors'
-import { formInstanceAdapter } from './instanceElements'
+import { formInstanceAdapter } from './formInstanseAdapter'
 
 const { selectById } = formInstanceAdapter.getSelectors<RootState>(
   state => state.formConstructor.elmentInstances,
