@@ -6,6 +6,7 @@ import type {
   PrototypeTextElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useTextSettingsStore = (
   selectedElementProps: PrototypeProps,
@@ -14,13 +15,7 @@ export const useTextSettingsStore = (
   const dispatch = useAppDispatch()
 
   const onDispatch = (newProps: BrandPrototypeTextProps | BrandPrototypeRectangleProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   return {

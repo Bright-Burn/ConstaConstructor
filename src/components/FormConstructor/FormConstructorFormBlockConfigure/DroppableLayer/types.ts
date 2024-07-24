@@ -1,4 +1,4 @@
-import { DraggbleElement, UnionProps } from '../../coreTypes'
+import { DraggbleElement, IFormElement, IGroupElement } from '../../coreTypes'
 
 export interface IDroppableLayer {
   parentElementId: string
@@ -6,6 +6,6 @@ export interface IDroppableLayer {
 }
 
 export interface AddNewElementPayload {
-  element: DraggbleElement
+  element: DraggbleElement<IFormElement | IGroupElement>
   parent: string
 }

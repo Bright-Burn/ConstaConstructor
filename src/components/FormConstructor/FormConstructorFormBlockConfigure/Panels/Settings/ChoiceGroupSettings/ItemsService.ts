@@ -5,7 +5,8 @@ import type {
   ISelectedElement,
   OwnChoiceGroupProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { ValueType } from './types'
 
@@ -16,13 +17,7 @@ export const useItemsHandlers = (
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandOwnChoiceGroupProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {

@@ -11,7 +11,8 @@ import type {
   DeepWriteable,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: DeepWriteable<BreadcrumbProps>,
@@ -19,13 +20,7 @@ export const useItemsHandlers = (
 ) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandBreadcrumbsProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {

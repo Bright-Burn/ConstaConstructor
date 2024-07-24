@@ -7,6 +7,7 @@ import type {
   ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: InformerElementProps,
@@ -48,13 +49,7 @@ export const useItemsHandlers = (
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandInformerElementProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   return {

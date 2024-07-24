@@ -13,7 +13,8 @@ import type {
   IconNames,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: BadgeProps,
@@ -72,13 +73,7 @@ export const useItemsHandlers = (
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandBadgeProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   return {

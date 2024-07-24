@@ -5,6 +5,7 @@ import type {
   ListProps,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { ValueType } from './types'
 
@@ -56,13 +57,7 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
     }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandListProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
   return {
     onChangeField,

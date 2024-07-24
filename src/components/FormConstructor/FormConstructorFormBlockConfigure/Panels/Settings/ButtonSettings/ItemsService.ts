@@ -10,6 +10,7 @@ import type {
 } from '../../../../coreTypes'
 import { buttonActionsActive } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: ButtonProps,
@@ -143,12 +144,7 @@ export const useItemsHandlers = (
   }
 
   const onUpdateSelected = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   const onChangeIcon = (value: IconNames | null) => {
@@ -170,12 +166,7 @@ export const useItemsHandlers = (
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
-    // dispatch(
-    //   setSelectedElement({
-    //     elementType: selectedElement.elementType,
-    //     elementId: selectedElement.elementId,
-    //   }),
-    // )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   return {

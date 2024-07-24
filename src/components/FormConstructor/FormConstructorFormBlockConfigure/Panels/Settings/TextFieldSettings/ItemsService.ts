@@ -5,6 +5,7 @@ import type {
   TextFieldProps,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: TextFieldProps,
@@ -41,13 +42,7 @@ export const useItemsHandlers = (
       onDispatch(selectedElement, newProps)
     }
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTextFieldProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
   return {
     onChangeTextField,

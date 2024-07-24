@@ -28,7 +28,7 @@ export const addNewFormElement =
             isOuter: payloadElement.isOuter,
             instanceId: instanceId,
             order: siblingsCount + 1,
-            parentId: payloadElement.parentId,
+            parentId: payload.parent,
             type: elementType,
           }),
         )
@@ -38,7 +38,7 @@ export const addNewFormElement =
           formConstructorSlice.actions.addNewFormElementAdapter({
             id: payloadElement.id,
             instanceId: instanceId,
-            parentId: payloadElement.parentId,
+            parentId: payload.parent,
             order: siblingsCount + 1,
             type: elementType,
           }),

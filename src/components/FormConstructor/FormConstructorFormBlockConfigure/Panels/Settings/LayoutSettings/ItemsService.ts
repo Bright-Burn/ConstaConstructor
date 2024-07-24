@@ -15,6 +15,7 @@ import type {
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { overflowType } from './LayoutConstants'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: LayoutElementPropsStyles,
@@ -25,13 +26,7 @@ export const useItemsHandlers = (
     selectedElement: ISelectedElement,
     newProps: BrandLayoutElementPropsStyles,
   ) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   const onChangeFlex = (value: string | null) => {

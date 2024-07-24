@@ -17,6 +17,7 @@ import type {
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import style from './styles.module.css'
+import { setInstanceProps } from '../../../../store/formElements'
 
 type fillType = {
   name: string
@@ -45,13 +46,7 @@ export const FilledSettings: React.FC<IFilledSettings> = ({
       type: element,
     }
 
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps: newProps as UnionProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
   const filled = selectedElementProps.filled
     ? { name: 'filled', icon: IconMaxHeight }

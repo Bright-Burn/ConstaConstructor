@@ -1,5 +1,6 @@
 import type { ISelectedElement, UnionProps } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { useAppDispatch, useAppSelector } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
 
@@ -18,13 +19,7 @@ export const usePaddingHandlers = () => {
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: UnionProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
   const onChangePaddingLeft = (value: (typeof paddingsLeft)[number] | null) => {
     if (selectedElement && value != null) {

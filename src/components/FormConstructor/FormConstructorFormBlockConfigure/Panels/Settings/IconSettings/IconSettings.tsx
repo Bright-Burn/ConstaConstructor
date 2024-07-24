@@ -19,6 +19,7 @@ import { IconSelectConsta } from '../IconsSelect'
 import { sizes, views } from './IconsConstants'
 
 import styles from './styles.module.css'
+import { setInstanceProps } from '../../../../store/formElements'
 
 type IconSettingsType = {
   selectedElementProps: IconProps
@@ -69,13 +70,7 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selec
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandIconProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
   const onChangeColor = (value: ConstaColor | null) => {
     if (value) {

@@ -9,9 +9,3 @@ export { reorderFormElements } from './reorderFormElements'
 export { setDraggableElement } from './setDraggableElement'
 export { deselectElement, setSelectedElement } from './setSelectedElement'
 export { updateOrders } from './updateOrders'
-export {
-  addNewFormInstance,
-  changeElementLinkCount,
-  addNewFormElement,
-  copyLinkElement,
-} from '../instanceElements'

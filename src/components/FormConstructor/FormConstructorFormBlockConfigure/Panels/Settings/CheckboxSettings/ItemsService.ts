@@ -7,6 +7,7 @@ import type {
   ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: CheckboxProps,
@@ -42,13 +43,7 @@ export const useItemsHandlers = (
     }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandCheckboxProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   return {
