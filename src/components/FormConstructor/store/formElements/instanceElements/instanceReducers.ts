@@ -1,7 +1,7 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import { formInstanceAdapter } from '../formInstanse'
+import { PayloadAction, Update } from '@reduxjs/toolkit'
 import { ChangeElementLinkCountPayload } from './types'
 import { AllElementTypes, FormInstance, IFormConstructor } from '../../../coreTypes'
+import { formInstanceAdapter } from './formInstanseAdapter'
 
 /**
  * Создает новый инстанс
@@ -11,6 +11,16 @@ export const addNewFormInstance = (
   { payload }: PayloadAction<FormInstance<AllElementTypes>>,
 ) => {
   formInstanceAdapter.addOne(state.elmentInstances, payload)
+}
+
+/**
+ * Создает новый инстанс
+ */
+export const updateFormInstance = (
+  state: IFormConstructor,
+  { payload }: PayloadAction<Update<FormInstance<AllElementTypes>>>,
+) => {
+  formInstanceAdapter.updateOne(state.elmentInstances, payload)
 }
 
 /**

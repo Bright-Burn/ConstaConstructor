@@ -1,3 +1,5 @@
 export { addNewFormElement, copyLinkElement } from './elementCreateActions'
-export { addNewFormInstance, changeElementLinkCount } from './addNewFormInstance'
+export { addNewFormInstance, changeElementLinkCount, updateFormInstance } from './instanceReducers'
 export { deleteFormElement } from './deleteFormElements'
+export { formInstanceAdapter } from './formInstanseAdapter'
+export { setInstanceProps } from './instanceActions'

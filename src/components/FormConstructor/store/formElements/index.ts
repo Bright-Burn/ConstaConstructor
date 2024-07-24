@@ -26,5 +26,10 @@ export {
   getInstanceProps,
   getSelectedElementProps,
 } from './formInstanceSelectors'
-export { addNewFormElement, copyLinkElement, deleteFormElement } from './instanceElements'
+export {
+  addNewFormElement,
+  copyLinkElement,
+  deleteFormElement,
+  setInstanceProps,
+} from './instanceElements'
 export { setSelectedElement } from './setSelectedElementAction'

@@ -5,6 +5,7 @@ import type {
   UserProps,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { sizeType, statusType, viewsType } from './UserConstants'
 export const useItemsHandlers = (selectedElementProps: UserProps, selectedElement: UserElement) => {
@@ -63,13 +64,7 @@ export const useItemsHandlers = (selectedElementProps: UserProps, selectedElemen
     }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandUserProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
   return {
     onChangeAvatarUrl,

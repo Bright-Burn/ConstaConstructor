@@ -12,6 +12,7 @@ import type {
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { ValueTypes } from './types'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: TextElementProps,
@@ -94,13 +95,7 @@ export const useItemsHandlers = (
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTextElementProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
   return {
     onChangeText,

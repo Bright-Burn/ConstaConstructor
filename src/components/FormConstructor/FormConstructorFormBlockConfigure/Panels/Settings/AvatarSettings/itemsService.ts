@@ -6,9 +6,10 @@ import type {
   BrandAvatarProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { useAppDispatch } from '../../../../store'
 
 import type { form, sizes } from './constants'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: AvatarProps,
@@ -60,13 +61,7 @@ export const useItemsHandlers = (
     onDispatch(selectedElement, newProps)
   }
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandAvatarProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   return {

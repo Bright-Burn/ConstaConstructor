@@ -1,5 +1,6 @@
 import type { ISelectedElement, UnionProps } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../../store'
+import { useAppDispatch, useAppSelector } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { marginBottom, marginLeft, marginRight, marginTop } from './types'
 
@@ -18,13 +19,7 @@ export const useMarginHandlers = () => {
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: UnionProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
   const onChangemarginLeft = (value: (typeof marginLeft)[number] | null) => {
     if (selectedElement && value != null) {

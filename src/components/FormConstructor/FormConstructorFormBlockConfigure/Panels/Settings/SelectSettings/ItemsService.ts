@@ -10,6 +10,7 @@ import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './fileTypes'
 import type { StatusType } from './types'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: SelectProps,
@@ -17,13 +18,7 @@ export const useItemsHandlers = (
 ) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: SelectElement, newProps: BrandSelectProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {

@@ -10,6 +10,7 @@ import type {
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { FitMode } from './types'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: TabsElementProps,
@@ -17,13 +18,7 @@ export const useItemsHandlers = (
 ) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTabsElementProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {

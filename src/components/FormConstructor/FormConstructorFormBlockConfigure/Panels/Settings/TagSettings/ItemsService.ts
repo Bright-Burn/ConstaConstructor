@@ -10,18 +10,13 @@ import type {
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import type { TagBasePropGroup, TagBasePropMode } from './types'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement: TagElement) => {
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTagProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   const onChangeSize = (value: TagBasePropSize | null) => {

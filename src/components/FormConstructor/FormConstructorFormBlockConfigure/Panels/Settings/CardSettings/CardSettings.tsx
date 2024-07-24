@@ -16,6 +16,7 @@ import { setSelectedElement, useAppDispatch } from '../../../../store'
 import { getValueForSelect } from '../LabelForSelectComponent'
 
 import styles from './styles.module.css'
+import { setInstanceProps } from '../../../../store/formElements'
 
 type CardSettingsType = {
   selectedElementProps: CardElementPropsStyles
@@ -97,13 +98,7 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandCardElementPropsStyles) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   return (

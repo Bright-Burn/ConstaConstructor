@@ -11,6 +11,7 @@ import type {
 import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import styles from './styles.module.css'
+import { setInstanceProps } from '../../../../store/formElements'
 
 type TableSettingsType = {
   selectedElementProps: TableProps
@@ -40,13 +41,7 @@ export const TableSettings: FC<TableSettingsType> = ({ selectedElementProps, sel
   }
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTableProps) => {
-    dispatch(
-      setSelectedElement({
-        elementType: selectedElement.elementType,
-        elementId: selectedElement.elementId,
-        newProps,
-      }),
-    )
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
 
   useLayoutEffect(() => {
