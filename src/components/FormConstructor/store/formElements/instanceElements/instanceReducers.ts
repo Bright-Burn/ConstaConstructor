@@ -28,22 +28,28 @@ export const updateFormInstance = (
  */
 export const changeElementLinkCount = (
   state: IFormConstructor,
-  { payload, type }: PayloadAction<ChangeElementLinkCountPayload>,
+  payloadAction: PayloadAction<ChangeElementLinkCountPayload[]>,
 ) => {
   const instanceManager = state.instanceManager
-  switch (type) {
-    case 'INC': {
-      instanceManager[payload.id] = instanceManager[payload.id]
-        ? instanceManager[payload.id] + 1
-        : 1
-      return state
-    }
-    case 'DEC': {
-      instanceManager[payload.id]--
-      if (instanceManager[payload.id] === 0) {
-        delete instanceManager[payload.id]
+  payloadAction.payload.forEach(payload => {
+    const type = payload.type
+    switch (type) {
+      case 'INC': {
+        instanceManager[payload.id] = instanceManager[payload.id]
+          ? instanceManager[payload.id] + 1
+          : 1
+        break
       }
-      return state
+      case 'DEC': {
+        if (instanceManager[payload.id] != undefined) {
+          instanceManager[payload.id]--
+          if (instanceManager[payload.id] === 0) {
+            delete instanceManager[payload.id]
+            formInstanceAdapter.removeOne(state.elmentInstances, payload.id)
+          }
+          break
+        }
+      }
     }
-  }
+  })
 }

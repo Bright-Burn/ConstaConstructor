@@ -30,10 +30,12 @@ export const createInstanceForElement =
     }
     dispatch(formConstructorSlice.actions.addNewFormInstance(formElemntInstance))
     dispatch(
-      formConstructorSlice.actions.changeElementLinkCount({
-        id: instanceId,
-        type: 'INC',
-      }),
+      formConstructorSlice.actions.changeElementLinkCount([
+        {
+          id: instanceId,
+          type: 'INC',
+        },
+      ]),
     )
   }
 
@@ -43,9 +45,11 @@ export const createInstanceForElement =
 export const manageInstanceLinkForElement =
   (instanceId: string, payloadType: LinkCountType) => (dispatch: AppDispatch) => {
     dispatch(
-      formConstructorSlice.actions.changeElementLinkCount({
-        id: instanceId,
-        type: payloadType,
-      }),
+      formConstructorSlice.actions.changeElementLinkCount([
+        {
+          id: instanceId,
+          type: payloadType,
+        },
+      ]),
     )
   }
