@@ -8,6 +8,7 @@ import uuid from 'react-uuid'
 import { createInstanceForElement, manageInstanceLinkForElement } from './instanceActions'
 import { pushHistoryElement } from '../../history'
 import { deepCopyElements } from '../../../utils'
+import { deleteFormElement } from './deleteFormElements'
 
 /**
  * Добавляет новый элемент(вместе с экшеном)
@@ -87,9 +88,7 @@ export const copyLinkElement =
       treeElements.push({ ...parentElementToCopy, order: siblingsCount + 1 }, ...elements)
     }
 
-    console.log(treeElements)
     const newElements = deepCopyElements(treeElements)
-    console.log(newElements)
 
     dispatch(
       manageInstanceLinkForElement(
@@ -100,4 +99,7 @@ export const copyLinkElement =
     )
 
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElements))
+    newElements.forEach(elem => {
+      dispatch(pushHistoryElement(() => dispatch(deleteFormElement(elem.id))))
+    })
   }

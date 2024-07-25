@@ -51,9 +51,7 @@ export const deleteFormElement =
 
     dispatch(
       pushHistoryElement(() => {
-        elementsForDelete.forEach(el => {
-          dispatch(formConstructorSlice.actions.addNewFormElementAdapter(el))
-        })
+        dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsForDelete))
       }),
     )
   }
