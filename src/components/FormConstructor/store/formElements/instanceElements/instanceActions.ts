@@ -3,7 +3,7 @@ import { AllElementTypes, FormInstance, UnionProps } from '../../../coreTypes'
 
 import { AppDispatch, RootState } from '../../setupStore'
 import { formConstructorSlice } from '../formElementsSlice'
-import { LinkCountType } from './types'
+import { ChangeElementLinkCountPayload, CrateInstancePayload, LinkCountType } from './types'
 import { getElementById } from '../formElementsSelectors'
 
 export const setInstanceProps =
@@ -23,33 +23,27 @@ export const setInstanceProps =
  * Создание нового инстанса
  */
 export const createInstanceForElement =
-  (instanceId: string, type: AllElementTypes, props: UnionProps) => (dispatch: AppDispatch) => {
-    const formElemntInstance: FormInstance<typeof type> = {
-      id: instanceId,
-      props: props,
-    }
-    dispatch(formConstructorSlice.actions.addNewFormInstance(formElemntInstance))
-    dispatch(
-      formConstructorSlice.actions.changeElementLinkCount([
-        {
-          id: instanceId,
-          type: 'INC',
-        },
-      ]),
-    )
+  (createInstances: CrateInstancePayload[]) => (dispatch: AppDispatch) => {
+    const formInstances: FormInstance<AllElementTypes>[] = []
+    const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
+    createInstances.forEach(createPayload => {
+      formInstances.push({
+        id: createPayload.instanceId,
+        props: createPayload.props,
+      })
+      changeLinksCountPayloads.push({
+        id: createPayload.instanceId,
+        type: 'INC',
+      })
+    })
+    dispatch(formConstructorSlice.actions.addNewFormInstance(formInstances))
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
   }
 
 /**
  * Управление текущими инстансами
  */
 export const manageInstanceLinkForElement =
-  (instanceId: string, payloadType: LinkCountType) => (dispatch: AppDispatch) => {
-    dispatch(
-      formConstructorSlice.actions.changeElementLinkCount([
-        {
-          id: instanceId,
-          type: payloadType,
-        },
-      ]),
-    )
+  (payloads: ChangeElementLinkCountPayload[]) => (dispatch: AppDispatch) => {
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(payloads))
   }

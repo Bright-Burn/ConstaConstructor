@@ -31,5 +31,6 @@ export {
   copyLinkElement,
   deleteFormElement,
   setInstanceProps,
+  ChangeElementLinkCountPayload,
 } from './instanceElements'
 export { setSelectedElement } from './setSelectedElementAction'
