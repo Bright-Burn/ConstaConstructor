@@ -5,7 +5,7 @@ import { layuoutAdapter } from '../initialState'
 
 export const addNewFormElementAdapter = (
   state: IFormConstructor,
-  { payload }: PayloadAction<IFormElement | IGroupElement>,
+  { payload }: PayloadAction<(IFormElement | IGroupElement)[]>,
 ) => {
-  layuoutAdapter.addOne(state.allElements, payload)
+  layuoutAdapter.addMany(state.allElements, payload)
 }

@@ -32,6 +32,7 @@ export {
   copyLinkElement,
   getSelectedElementProps,
   formInstanceSelector,
+  ChangeElementLinkCountPayload,
 } from './formElements'
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'

@@ -8,13 +8,13 @@ import { formInstanceAdapter } from '../formInstanseAdapter'
  */
 export const addNewFormInstance = (
   state: IFormConstructor,
-  { payload }: PayloadAction<FormInstance<AllElementTypes>>,
+  { payload }: PayloadAction<FormInstance<AllElementTypes>[]>,
 ) => {
-  formInstanceAdapter.addOne(state.elmentInstances, payload)
+  formInstanceAdapter.addMany(state.elmentInstances, payload)
 }
 
 /**
- * Создает новый инстанс
+ * Обновляет инстанс
  */
 export const updateFormInstance = (
   state: IFormConstructor,
@@ -24,7 +24,7 @@ export const updateFormInstance = (
 }
 
 /**
- * Управляет ссылками на инстансы
+ * Управляет ссылками на инстансы, удаляет инстанс при отсутствии ссылок
  */
 export const changeElementLinkCount = (
   state: IFormConstructor,

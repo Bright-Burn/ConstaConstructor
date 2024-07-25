@@ -9,6 +9,7 @@ import type {
 import { useAppDispatch } from '../../../../store'
 
 import type { form, sizes } from './constants'
+import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: AvatarGroupProps,
@@ -58,7 +59,9 @@ export const useItemsHandlers = (
 
     onDispatch(selectedElement, newProps)
   }
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandAvatarGroupProps) => {}
+  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandAvatarGroupProps) => {
+    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  }
 
   return {
     onChangeSize,
