@@ -3,18 +3,14 @@ import { pushHistoryElement } from '../../history'
 import { AppDispatch, RootState } from '../../setupStore'
 import { formConstructorSlice } from '../formElementsSlice'
 import { selectById, selectAll } from '../layoutAdapterSelectors'
+import { ChangeElementLinkCountPayload } from './types'
 
 export const deleteFormElement =
   (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const map = new Map<string, (IGroupElement | IFormElement)[]>()
     const elementForDelete = selectById(state, id)
-    dispatch(
-      formConstructorSlice.actions.changeElementLinkCount({
-        id: elementForDelete?.instanceId || '',
-        type: 'DEC',
-      }),
-    )
+
     if (!elementForDelete) return
     const allElements = selectAll(state)
 
@@ -41,6 +37,15 @@ export const deleteFormElement =
       return elemsForDelete
     }
     const elementsForDelete = [elementForDelete, ...getElementsForDelete(elementForDelete)]
+    const instancReferencesToDelete: ChangeElementLinkCountPayload[] = elementsForDelete.map(
+      element => {
+        return {
+          id: element.instanceId,
+          type: 'DEC',
+        }
+      },
+    )
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(instancReferencesToDelete))
     const idsForDelete = elementsForDelete.map(el => el.id)
     dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
 
