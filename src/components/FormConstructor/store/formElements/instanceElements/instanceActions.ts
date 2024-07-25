@@ -3,19 +3,33 @@ import { AllElementTypes, FormInstance, UnionProps } from '../../../coreTypes'
 
 import { AppDispatch, RootState } from '../../setupStore'
 import { formConstructorSlice } from '../formElementsSlice'
-import { ChangeElementLinkCountPayload, CrateInstancePayload, LinkCountType } from './types'
+import { ChangeElementLinkCountPayload, CrateInstancePayload } from './types'
 import { getElementById } from '../formElementsSelectors'
+import { pushHistoryElement } from '../../history'
+import { getInstanceProps } from '../formInstanceSelectors'
 
 export const setInstanceProps =
   (elementId: string, newProps: UnionProps) =>
   (dispatch: AppDispatch, getState: () => RootState) => {
-    const element = getElementById(elementId)(getState())
+    const state = getState()
+    const element = getElementById(elementId)(state)
+    const prevProps = getInstanceProps(elementId)(state)
     if (element) {
       const updates: Update<FormInstance<AllElementTypes>> = {
         id: element.instanceId,
         changes: { props: newProps },
       }
       dispatch(formConstructorSlice.actions.updateFormInstance(updates))
+      dispatch(
+        pushHistoryElement(() => {
+          dispatch(
+            formConstructorSlice.actions.updateFormInstance({
+              id: element.instanceId,
+              changes: { props: prevProps },
+            }),
+          )
+        }),
+      )
     }
   }
 
