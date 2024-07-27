@@ -49,7 +49,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
     if (isBaseComponent === 'true') {
       const elementsToAdd = handleOnDropBaseComponent(parentElementId)
-      elementsToAdd && addElements(elementsToAdd)
+      addElements(elementsToAdd)
       return
     }
     if (draggableElement) {

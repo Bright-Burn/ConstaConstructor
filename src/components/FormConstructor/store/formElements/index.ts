@@ -23,6 +23,7 @@ export {
 export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
 export {
   formInstanceSelector,
+  formInstancesSelector,
   getInstanceProps,
   getSelectedElementProps,
 } from './formInstanceSelectors'

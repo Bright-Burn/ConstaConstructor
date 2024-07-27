@@ -19,6 +19,7 @@ export const useDropBaseComponent = () => {
       const map = new Map<string, (IGroupElement | IFormElement)[]>()
       const allElementsMap = new Map<string, IGroupElement | IFormElement>()
       const allElements = draggableBaseComponent.childrenElementList
+      const savedInstances = draggableBaseComponent.instances
       allElements.forEach(el => {
         if (el.parentId && map.get(el.parentId)) {
           map.set(el.parentId, [...(map.get(el.parentId) ?? []), el])
@@ -45,10 +46,22 @@ export const useDropBaseComponent = () => {
           }
         }
       })
-      const action: AddNewElementPayload[] = [...allElementsMap].map(([_, value]) => ({
-        element: value,
-        parent: value.parentId ?? parentElementId,
-      }))
+      const action: AddNewElementPayload[] = []
+      Array.from(allElementsMap.entries()).forEach(([_, value]) => {
+        const usedInstanceProps = savedInstances.find(
+          instance => value.instanceId === instance.id,
+        )?.props
+        if (usedInstanceProps) {
+          const payload: AddNewElementPayload = {
+            element: {
+              ...value,
+              props: usedInstanceProps,
+            },
+            parent: value.parentId ?? parentElementId,
+          }
+          action.push(payload)
+        }
+      })
 
       // После перетаскивания, очищаем соответсвующее поле в сторе
       dispathBaseComponents(setDraggableBaseComponent(null))
