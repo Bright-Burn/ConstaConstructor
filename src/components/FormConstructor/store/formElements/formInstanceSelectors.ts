@@ -1,5 +1,6 @@
-import { FormInstance } from '../../coreTypes'
-import { RootState } from '../setupStore'
+import type { AllElementTypes, FormInstance } from '../../coreTypes'
+import type { RootState } from '../setupStore'
+
 import { getElementById } from './formElementsSelectors'
 import { formInstanceAdapter } from './formInstanseAdapter'
 
@@ -7,8 +8,15 @@ const { selectById } = formInstanceAdapter.getSelectors<RootState>(
   state => state.formConstructor.elmentInstances,
 )
 
-export const formInstanceSelector = (id: string) => (state: RootState) => selectById(state, id)
-
+export const formInstanceSelector =
+  <T extends FormInstance<AllElementTypes>['props']['type']>(id: string, type: T) =>
+  (state: RootState): FormInstance<T> | null => {
+    const elem = selectById(state, id)
+    if (elem && elem.props.type === type) {
+      return elem
+    }
+    return null
+  }
 /**
  * Возвращает props из Инстанса выбранного элемента
  */

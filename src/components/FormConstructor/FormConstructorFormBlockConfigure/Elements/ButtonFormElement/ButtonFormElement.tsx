@@ -1,21 +1,15 @@
-import type { FC } from 'react'
 import { Button } from '@consta/uikit/Button'
-
-import type { FormInstance } from '../../../coreTypes'
+import { FC } from 'react'
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
+import { useAppSelector, formInstanceSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
-
-import type { IButtonFormElement } from './types'
-import { useAppSelector } from '../../../store'
-import { formInstanceSelector } from '../../../store/formElements'
+import { IButtonFormElement } from './types'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   // const [buttonProps] = useState<ButtonProps>()
   // const [openViewer, setOpenViewer] = useState<boolean>(false)
   // const [buttonGroup] = useState<IButtonActionElement>()
-  const buttonInstance: FormInstance<'Button'> | undefined = useAppSelector(
-    formInstanceSelector(element?.instanceId || ''),
-  )
+  const buttonInstance = useAppSelector(formInstanceSelector(element.instanceId, 'Button'))
   const buttonProps = buttonInstance?.props.props
 
   // const onCloseViewer = () => {
