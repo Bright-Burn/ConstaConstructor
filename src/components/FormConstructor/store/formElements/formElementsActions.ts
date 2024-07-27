@@ -18,9 +18,9 @@ import { ViewerSlice } from '../Viewer'
 
 import { formConstructorSlice } from './formElementsSlice'
 import { initialLayout } from './initialState'
-import type { SaveNewProject, SetNewElementDraggableElem } from './payload'
-import { selectById, selectAll } from './layoutAdapterSelectors'
 import { deleteFormElement } from './instanceElements'
+import { selectAll, selectById } from './layoutAdapterSelectors'
+import type { SaveNewProject, SetNewElementDraggableElem } from './payload'
 
 export const deletePage =
   (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {

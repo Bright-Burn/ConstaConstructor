@@ -8,9 +8,9 @@ import type {
   TagProps,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { TagBasePropGroup, TagBasePropMode } from './types'
-import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (selectedElementProps: TagProps, selectedElement: TagElement) => {
   const dispatch = useAppDispatch()

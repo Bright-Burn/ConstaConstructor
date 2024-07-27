@@ -1,4 +1,4 @@
-import { AllElementTypes, UnionProps } from '../../../coreTypes'
+import type { AllElementTypes, UnionProps } from '../../../coreTypes'
 
 export type LinkCountType = 'INC' | 'DEC'
 export type ChangeElementLinkCountPayload = {

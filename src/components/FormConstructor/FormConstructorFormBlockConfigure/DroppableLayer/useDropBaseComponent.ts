@@ -7,7 +7,8 @@ import {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store'
-import { AddNewElementPayload } from './types'
+
+import type { AddNewElementPayload } from './types'
 
 export const useDropBaseComponent = () => {
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)

@@ -9,9 +9,9 @@ import type {
   BrandProps,
   ConcreteSelectedElement,
   DeepWriteable,
-  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
+  OmitInstanceId,
 } from './types'
 
 export type DefaultItemBreadcrumbsType = DefaultItem & { labelIcon?: string }

@@ -1,4 +1,4 @@
-import type { BaseProps, BrandProps, OmitInstanceId, IFormElement } from './types'
+import type { BaseProps, BrandProps, IFormElement, OmitInstanceId } from './types'
 
 export type PlaceholderProps = {
   children?: never

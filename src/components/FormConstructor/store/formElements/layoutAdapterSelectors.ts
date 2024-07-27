@@ -1,4 +1,5 @@
-import { RootState } from '../setupStore'
+import type { RootState } from '../setupStore'
+
 import { layuoutAdapter } from './initialState'
 
 const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(

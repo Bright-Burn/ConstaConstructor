@@ -13,6 +13,7 @@ import type { IFormElementChoiceGroup } from './ChoiceGroupTypes'
 import type { IFormElementComboBox } from './comboBoxTypes'
 import type { IFormElementDataTime } from './dataTimeTypes'
 import type { IFormElementDatePicker } from './datePickerTypes'
+import type { FormInstance, InstanceManager, UnionProps } from './formInstance'
 import type { IFormElementIcon } from './iconTypes'
 import type { IFormElementInformer } from './informerTypes'
 import type { BrandLayoutElementPropsStyles } from './layoutTypes'
@@ -26,7 +27,6 @@ import type { IFormElementTagProps } from './tagTypes'
 import type { IFormElementTextField } from './textFieldTypes'
 import type { IFormElementText } from './textTypes'
 import type { IFormElementUser } from './userTypes'
-import { FormInstance, InstanceManager, UnionProps } from './formInstance'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType

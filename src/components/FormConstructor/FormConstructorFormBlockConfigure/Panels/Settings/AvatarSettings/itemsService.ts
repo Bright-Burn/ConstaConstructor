@@ -7,9 +7,9 @@ import type {
   ISelectedElement,
 } from '../../../../coreTypes'
 import { useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { form, sizes } from './constants'
-import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: AvatarProps,

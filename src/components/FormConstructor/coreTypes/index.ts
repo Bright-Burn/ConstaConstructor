@@ -72,6 +72,7 @@ export type {
   footerWithSwitchProps,
   IFormElementFooterWithSwitch,
 } from './footerWithSwitchTypes'
+export type { FormInstance, UnionProps } from './formInstance'
 export type {
   BrandIconProps,
   IconElement,
@@ -168,19 +169,19 @@ export type {
   BaseProps,
   BrandProps,
   DeepWriteable,
+  DraggbleElement,
   FormElementTypes,
   FormElementUnion,
   FormGroupsTypes,
   GroupElementUnion,
   ICardElement,
+  IFormConstructor,
   IFormElement,
   IGroupElement,
   ILayoutElement,
   IPageOfLayout,
   ISelectedElement,
   OmitInstanceId,
-  IFormConstructor,
-  DraggbleElement,
 } from './types'
 export { ElementTypes, FormElementDictTypes, FormGroupsDictTypes } from './types'
 export type { BrandUserProps, IFormElementUser, UserElement, UserProps } from './userTypes'
@@ -189,4 +190,3 @@ export type {
   IFormElementWizardForm,
   wizardFormProps,
 } from './wizardFormTypes'
-export { FormInstance, UnionProps } from './formInstance'

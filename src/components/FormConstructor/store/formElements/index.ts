@@ -26,11 +26,11 @@ export {
   getInstanceProps,
   getSelectedElementProps,
 } from './formInstanceSelectors'
+export type { ChangeElementLinkCountPayload } from './instanceElements'
 export {
   addNewFormElement,
   copyLinkElement,
   deleteFormElement,
   setInstanceProps,
-  ChangeElementLinkCountPayload,
 } from './instanceElements'
 export { setSelectedElement } from './setSelectedElementAction'

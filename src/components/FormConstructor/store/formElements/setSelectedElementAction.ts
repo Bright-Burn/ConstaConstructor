@@ -1,7 +1,8 @@
-import { AppDispatch, RootState } from '../setupStore'
+import type { AppDispatch, RootState } from '../setupStore'
+
 import { formConstructorSlice } from './formElementsSlice'
 import { selectById } from './layoutAdapterSelectors'
-import { SetNewSelectedElement } from './payload'
+import type { SetNewSelectedElement } from './payload'
 
 /**
  * Устаналивает статус выбранного элемента

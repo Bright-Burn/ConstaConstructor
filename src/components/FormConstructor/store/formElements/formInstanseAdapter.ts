@@ -1,5 +1,6 @@
 import { createEntityAdapter } from '@reduxjs/toolkit'
-import { FormInstance, AllElementTypes } from '../../coreTypes'
+
+import type { AllElementTypes, FormInstance } from '../../coreTypes'
 
 export const formInstanceAdapter = createEntityAdapter<FormInstance<AllElementTypes>>({
   selectId: instance => instance.id,

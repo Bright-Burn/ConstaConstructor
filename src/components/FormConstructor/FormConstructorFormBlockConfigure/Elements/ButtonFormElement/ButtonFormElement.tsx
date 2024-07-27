@@ -1,9 +1,11 @@
+import type { FC } from 'react'
 import { Button } from '@consta/uikit/Button'
-import { FC } from 'react'
+
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
-import { useAppSelector, formInstanceSelector } from '../../../store'
+import { formInstanceSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
-import { IButtonFormElement } from './types'
+
+import type { IButtonFormElement } from './types'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   // const [buttonProps] = useState<ButtonProps>()
