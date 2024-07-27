@@ -1,10 +1,9 @@
 import type {
+  AllElementTypes,
   DraggbleElement,
   FormElementTypes,
-  FormGroupsTypes,
   IFormElement,
   IGroupElement,
-  UnionProps,
 } from '../../coreTypes'
 
 export interface AddNewElementPayload {
@@ -19,7 +18,7 @@ export interface PanelStatePayload {
 
 export type SetNewSelectedElement = {
   elementId: string
-  elementType: FormGroupsTypes | FormElementTypes
+  elementType: AllElementTypes
 } | null
 
 export interface ShowGrid {

@@ -213,7 +213,7 @@ export interface BaseProps {
 
 export interface ISelectedElement {
   elementId: string
-  elementType: FormGroupsTypes | FormElementTypes
+  elementType: AllElementTypes
 }
 
 export interface IPageOfLayout {

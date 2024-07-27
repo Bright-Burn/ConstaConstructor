@@ -1,4 +1,4 @@
-import type { FormElementTypes, FormGroupsTypes } from '../../../../../coreTypes'
+import type { AllElementTypes, FormElementTypes, FormGroupsTypes } from '../../../../../coreTypes'
 
 export interface IComponentCard {
   id: string
@@ -10,6 +10,6 @@ export interface IComponentCard {
 
 export interface IComponetCardElement {
   name: string
-  value: FormGroupsTypes | FormElementTypes
+  value: AllElementTypes
   isOuter?: boolean
 }

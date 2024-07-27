@@ -4,7 +4,7 @@ import type { RootState } from '../setupStore'
 import { getElementById } from './formElementsSelectors'
 import { formInstanceAdapter } from './formInstanseAdapter'
 
-const { selectById } = formInstanceAdapter.getSelectors<RootState>(
+const { selectById, selectAll } = formInstanceAdapter.getSelectors<RootState>(
   state => state.formConstructor.elmentInstances,
 )
 
@@ -17,6 +17,15 @@ export const formInstanceSelector =
     }
     return null
   }
+
+export const formInstancesSelector =
+  (ids: string[]) =>
+  (state: RootState): FormInstance<AllElementTypes>[] => {
+    const idsToFilter = new Set(ids)
+    const allInstances = selectAll(state)
+    return [...allInstances].filter(elem => idsToFilter.has(elem.id))
+  }
+
 /**
  * Возвращает props из Инстанса выбранного элемента
  */
@@ -34,10 +43,8 @@ export const getSelectedElementProps = (state: RootState) => {
 export const getInstanceProps = (elementId: string) => (state: RootState) => {
   const element = getElementById(elementId)(state)
   if (element && element.instanceId) {
-    const type = element.type
-    const instance: FormInstance<typeof type> | undefined = formInstanceSelector(
-      element.instanceId,
-    )(state)
+    const type: AllElementTypes = element.type
+    const instance = formInstanceSelector<typeof type>(element.instanceId, type)(state)
     return instance?.props
   }
 }

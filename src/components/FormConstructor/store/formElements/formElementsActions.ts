@@ -17,6 +17,7 @@ import type { AppDispatch, RootState } from '../setupStore'
 import { ViewerSlice } from '../Viewer'
 
 import { formConstructorSlice } from './formElementsSlice'
+import { formInstancesSelector } from './formInstanceSelectors'
 import { initialLayout } from './initialState'
 import { deleteFormElement } from './instanceElements'
 import { selectAll, selectById } from './layoutAdapterSelectors'
@@ -97,6 +98,7 @@ export const saveModuleToFile =
       }
     })
 
+    console.log(allElements)
     const getIdsForSave = (parentId: string) => {
       let idsForSave: (IGroupElement | IFormElement)[] = []
       const arrForSave = map.get(parentId)
@@ -118,11 +120,14 @@ export const saveModuleToFile =
       arrForSave = [parentEl, ...arrForSave]
     }
 
+    const instancesToSave = formInstancesSelector(arrForSave.map(elem => elem.instanceId))(state)
+
     const saveObj: IBaseComponent = {
       id: uuid(),
       name: fileName,
       childrenElementList: arrForSave,
       description: fileName,
+      instances: instancesToSave,
     }
 
     saveToFile(JSON.stringify(saveObj), `${fileName}_BaseComponent.json`)
