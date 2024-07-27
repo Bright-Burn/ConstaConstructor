@@ -1,5 +1,5 @@
-export { addNewFormElement, copyLinkElement } from './elementCreateActions'
-export { addNewFormInstance, changeElementLinkCount, updateFormInstance } from './instanceReducers'
 export { deleteFormElement } from './deleteFormElements'
+export { addNewFormElement, copyLinkElement } from './elementCreateActions'
 export { setInstanceProps } from './instanceActions'
-export { ChangeElementLinkCountPayload, CrateInstancePayload } from './types'
+export { addNewFormInstance, changeElementLinkCount, updateFormInstance } from './instanceReducers'
+export type { ChangeElementLinkCountPayload, CrateInstancePayload } from './types'

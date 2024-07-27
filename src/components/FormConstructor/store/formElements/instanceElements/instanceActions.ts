@@ -1,12 +1,13 @@
-import { Update } from '@reduxjs/toolkit'
-import { AllElementTypes, FormInstance, UnionProps } from '../../../coreTypes'
+import type { Update } from '@reduxjs/toolkit'
 
-import { AppDispatch, RootState } from '../../setupStore'
-import { formConstructorSlice } from '../formElementsSlice'
-import { ChangeElementLinkCountPayload, CrateInstancePayload } from './types'
-import { getElementById } from '../formElementsSelectors'
+import type { AllElementTypes, FormInstance, UnionProps } from '../../../coreTypes'
 import { pushHistoryElement } from '../../history'
+import type { AppDispatch, RootState } from '../../setupStore'
+import { getElementById } from '../formElementsSelectors'
+import { formConstructorSlice } from '../formElementsSlice'
 import { getInstanceProps } from '../formInstanceSelectors'
+
+import type { ChangeElementLinkCountPayload, CrateInstancePayload } from './types'
 
 export const setInstanceProps =
   (elementId: string, newProps: UnionProps) =>

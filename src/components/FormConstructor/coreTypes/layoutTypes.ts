@@ -6,8 +6,8 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
-  OmitInstanceId,
   FormGroupsDictTypes,
+  OmitInstanceId,
 } from './types'
 
 // Нет возможности использовать тип импортированный из консты, как это сделано с типом ButtonElementProps, так как нет возможности создать State, содержащий поле типа HTMLElement

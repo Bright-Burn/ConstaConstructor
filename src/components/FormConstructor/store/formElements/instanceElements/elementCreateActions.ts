@@ -1,14 +1,16 @@
-import { DraggbleElement, IFormElement, IGroupElement } from '../../../coreTypes'
-import { AppDispatch, RootState } from '../../setupStore'
+import uuid from 'react-uuid'
+
+import type { DraggbleElement, IFormElement, IGroupElement } from '../../../coreTypes'
+import { deepCopyElements } from '../../../utils'
+import { pushHistoryElement } from '../../history'
+import type { AppDispatch, RootState } from '../../setupStore'
 import { getSiblingsCount } from '../formElementsActions'
 import { getElementById, getElementsOnLayer } from '../formElementsSelectors'
 import { formConstructorSlice } from '../formElementsSlice'
-import { AddNewElementPayload } from '../payload'
-import uuid from 'react-uuid'
-import { createInstanceForElement, manageInstanceLinkForElement } from './instanceActions'
-import { pushHistoryElement } from '../../history'
-import { deepCopyElements } from '../../../utils'
+import type { AddNewElementPayload } from '../payload'
+
 import { deleteFormElement } from './deleteFormElements'
+import { createInstanceForElement, manageInstanceLinkForElement } from './instanceActions'
 
 /**
  * Добавляет новый элемент(вместе с экшеном)
@@ -24,7 +26,7 @@ export const addNewFormElement =
       dispatch(
         createInstanceForElement([
           {
-            instanceId: instanceId,
+            instanceId,
             type: payloadElement.type,
             props: payloadElement.props,
           },
@@ -36,7 +38,7 @@ export const addNewFormElement =
         elementsToAdd.push({
           id: payloadElement.id,
           isOuter: payloadElement.isOuter,
-          instanceId: instanceId,
+          instanceId,
           order: siblingsCount + 1,
           parentId: payload.parent,
           type: elementType,
@@ -45,7 +47,7 @@ export const addNewFormElement =
         const elementType = payloadElement.type
         elementsToAdd.push({
           id: payloadElement.id,
-          instanceId: instanceId,
+          instanceId,
           parentId: payload.parent,
           order: siblingsCount + 1,
           type: elementType,
@@ -83,7 +85,7 @@ export const copyLinkElement =
     const treeElements: (IFormElement | IGroupElement)[] = []
 
     if (parentElementToCopy) {
-      const siblingsCount = getSiblingsCount(getState(), parentElementToCopy?.parentId || '')
+      const siblingsCount = getSiblingsCount(getState(), parentElementToCopy.parentId || '')
       const elements = getElementsOnLayer(parentElementToCopy.id)(state)
       treeElements.push({ ...parentElementToCopy, order: siblingsCount + 1 }, ...elements)
     }
@@ -100,6 +102,10 @@ export const copyLinkElement =
 
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElements))
     newElements.forEach(elem => {
-      dispatch(pushHistoryElement(() => dispatch(deleteFormElement(elem.id))))
+      dispatch(
+        pushHistoryElement(() => {
+          dispatch(deleteFormElement(elem.id))
+        }),
+      )
     })
   }

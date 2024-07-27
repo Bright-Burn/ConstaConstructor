@@ -16,9 +16,9 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
-  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
+  OmitInstanceId,
 } from './types'
 
 type TextContent = { content: string }

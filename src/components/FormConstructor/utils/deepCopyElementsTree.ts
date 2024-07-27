@@ -1,5 +1,6 @@
-import { IFormElement, IGroupElement } from '../coreTypes'
 import uuid from 'react-uuid'
+
+import type { IFormElement, IGroupElement } from '../coreTypes'
 
 /**
  * Производит глубокое копирование ветви с установкой новых id

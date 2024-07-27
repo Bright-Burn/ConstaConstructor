@@ -13,9 +13,9 @@ import type {
   LayoutPropDirection,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { overflowType } from './LayoutConstants'
-import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: LayoutElementPropsStyles,

@@ -4,9 +4,9 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
-  OmitInstanceId,
   FormElementDictTypes,
   IFormElement,
+  OmitInstanceId,
 } from './types'
 
 export type ItemList = {

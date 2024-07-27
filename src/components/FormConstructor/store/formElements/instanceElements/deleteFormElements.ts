@@ -1,9 +1,10 @@
-import { IGroupElement, IFormElement } from '../../../coreTypes'
+import type { IFormElement, IGroupElement } from '../../../coreTypes'
 import { pushHistoryElement } from '../../history'
-import { AppDispatch, RootState } from '../../setupStore'
+import type { AppDispatch, RootState } from '../../setupStore'
 import { formConstructorSlice } from '../formElementsSlice'
-import { selectById, selectAll } from '../layoutAdapterSelectors'
-import { ChangeElementLinkCountPayload } from './types'
+import { selectAll, selectById } from '../layoutAdapterSelectors'
+
+import type { ChangeElementLinkCountPayload } from './types'
 
 export const deleteFormElement =
   (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {

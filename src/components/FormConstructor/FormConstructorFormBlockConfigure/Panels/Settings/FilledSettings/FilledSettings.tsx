@@ -15,9 +15,9 @@ import type {
   UserProps,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import style from './styles.module.css'
-import { setInstanceProps } from '../../../../store/formElements'
 
 type fillType = {
   name: string

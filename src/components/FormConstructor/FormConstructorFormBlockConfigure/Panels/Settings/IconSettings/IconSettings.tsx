@@ -14,12 +14,12 @@ import type {
   ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 import { IconSelectConsta } from '../IconsSelect'
 
 import { sizes, views } from './IconsConstants'
 
 import styles from './styles.module.css'
-import { setInstanceProps } from '../../../../store/formElements'
 
 type IconSettingsType = {
   selectedElementProps: IconProps

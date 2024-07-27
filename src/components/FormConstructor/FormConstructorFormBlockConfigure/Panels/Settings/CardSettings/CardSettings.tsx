@@ -13,10 +13,10 @@ import type {
   ISelectedElement,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 import { getValueForSelect } from '../LabelForSelectComponent'
 
 import styles from './styles.module.css'
-import { setInstanceProps } from '../../../../store/formElements'
 
 type CardSettingsType = {
   selectedElementProps: CardElementPropsStyles

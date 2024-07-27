@@ -1,4 +1,4 @@
-import { DraggbleElement, IFormElement, IGroupElement } from '../../coreTypes'
+import type { DraggbleElement, IFormElement, IGroupElement } from '../../coreTypes'
 
 export interface IDroppableLayer {
   parentElementId: string

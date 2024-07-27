@@ -1,7 +1,9 @@
-import { PayloadAction, Update } from '@reduxjs/toolkit'
-import { ChangeElementLinkCountPayload } from './types'
-import { AllElementTypes, FormInstance, IFormConstructor } from '../../../coreTypes'
+import type { PayloadAction, Update } from '@reduxjs/toolkit'
+
+import type { AllElementTypes, FormInstance, IFormConstructor } from '../../../coreTypes'
 import { formInstanceAdapter } from '../formInstanseAdapter'
+
+import type { ChangeElementLinkCountPayload } from './types'
 
 /**
  * Создает новый инстанс

@@ -7,18 +7,23 @@ export {
   useBaseComponentsSelector,
 } from './baseComponentsItems'
 export type { IFormConstructorSerializable } from './formElements'
+export type { ChangeElementLinkCountPayload } from './formElements'
 export {
   addNewFormElement,
   addNewPage,
   changeActivePage,
   changePageName,
+  copyLinkElement,
   deleteFormElement,
   deletePage,
+  formInstanceSelector,
   getAllFormElements,
   getElementById,
   getElementsOnLayer,
   getFormConstructor,
   getFormElAsMap,
+  getInstanceProps,
+  getSelectedElementProps,
   getSelectedPageId,
   loadProjectFromStorage,
   reorderFormElement,
@@ -28,11 +33,6 @@ export {
   setDraggableElement,
   setSelectedElement,
   updateOrders,
-  getInstanceProps,
-  copyLinkElement,
-  getSelectedElementProps,
-  formInstanceSelector,
-  ChangeElementLinkCountPayload,
 } from './formElements'
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'

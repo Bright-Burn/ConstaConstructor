@@ -5,11 +5,11 @@ import type {
   BaseProps,
   BrandProps,
   ConcreteSelectedElement,
-  OmitInstanceId,
   FormElementDictTypes,
   FormGroupsDictTypes,
   IFormElement,
   IGroupElement,
+  OmitInstanceId,
 } from './types'
 
 ///  | 'RightSidebar' | 'LeftSidebar'

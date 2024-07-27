@@ -7,10 +7,10 @@ import type {
   SelectProps,
 } from '../../../../coreTypes'
 import { setSelectedElement, useAppDispatch } from '../../../../store'
+import { setInstanceProps } from '../../../../store/formElements'
 
 import type { ValueType } from './fileTypes'
 import type { StatusType } from './types'
-import { setInstanceProps } from '../../../../store/formElements'
 
 export const useItemsHandlers = (
   selectedElementProps: SelectProps,
