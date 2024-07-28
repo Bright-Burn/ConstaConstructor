@@ -12,7 +12,7 @@ export const addNewFormInstance = (
   state: IFormConstructor,
   { payload }: PayloadAction<FormInstance<AllElementTypes>[]>,
 ) => {
-  formInstanceAdapter.addMany(state.elmentInstances, payload)
+  formInstanceAdapter.addMany(state.elementInstances, payload)
 }
 
 /**
@@ -22,7 +22,7 @@ export const updateFormInstance = (
   state: IFormConstructor,
   { payload }: PayloadAction<Update<FormInstance<AllElementTypes>>>,
 ) => {
-  formInstanceAdapter.updateOne(state.elmentInstances, payload)
+  formInstanceAdapter.updateOne(state.elementInstances, payload)
 }
 
 /**
@@ -47,7 +47,7 @@ export const changeElementLinkCount = (
           instanceManager[payload.id]--
           if (instanceManager[payload.id] === 0) {
             delete instanceManager[payload.id]
-            formInstanceAdapter.removeOne(state.elmentInstances, payload.id)
+            formInstanceAdapter.removeOne(state.elementInstances, payload.id)
           }
           break
         }

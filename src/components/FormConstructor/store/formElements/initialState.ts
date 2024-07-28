@@ -48,7 +48,7 @@ export const layuoutAdapter = createEntityAdapter<IFormElement | IGroupElement>(
 
 export const initialState: IFormConstructor = {
   allElements: layuoutAdapter.getInitialState(),
-  elmentInstances: formInstanceAdapter.getInitialState(),
+  elementInstances: formInstanceAdapter.getInitialState(),
   instanceManager: {},
   selectedElement: null,
   selectedElementProps: null,

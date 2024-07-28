@@ -5,7 +5,7 @@ import { getElementById } from './formElementsSelectors'
 import { formInstanceAdapter } from './formInstanseAdapter'
 
 const { selectById, selectAll } = formInstanceAdapter.getSelectors<RootState>(
-  state => state.formConstructor.elmentInstances,
+  state => state.formConstructor.elementInstances,
 )
 
 export const formInstanceSelector =

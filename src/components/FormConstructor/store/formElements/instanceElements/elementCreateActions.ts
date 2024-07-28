@@ -1,6 +1,6 @@
 import uuid from 'react-uuid'
 
-import type { DraggbleElement, IFormElement, IGroupElement } from '../../../coreTypes'
+import type { IFormElement, IGroupElement } from '../../../coreTypes'
 import { deepCopyElements } from '../../../utils'
 import { pushHistoryElement } from '../../history'
 import type { AppDispatch, RootState } from '../../setupStore'
@@ -10,6 +10,7 @@ import { formConstructorSlice } from '../formElementsSlice'
 import type { AddNewElementPayload } from '../payload'
 
 import { deleteFormElement } from './deleteFormElements'
+import { isDragFormElement, isDragGroupElement } from './dragElemGuards'
 import { createInstanceForElement, manageInstanceLinkForElement } from './instanceActions'
 
 /**
@@ -33,7 +34,7 @@ export const addNewFormElement =
         ]),
       )
 
-      if (isDragGrop(payloadElement)) {
+      if (isDragGroupElement(payloadElement)) {
         const elementType = payloadElement.type
         elementsToAdd.push({
           id: payloadElement.id,
@@ -62,18 +63,6 @@ export const addNewFormElement =
     })
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsToAdd))
   }
-
-const isDragGrop = (
-  element: DraggbleElement<IFormElement | IGroupElement>,
-): element is DraggbleElement<IGroupElement> => {
-  return 'isOuter' in element
-}
-
-const isDragFormElement = (
-  element: DraggbleElement<IFormElement | IGroupElement>,
-): element is DraggbleElement<IFormElement> => {
-  return !('isOuter' in element)
-}
 
 /**
  * Создает НЕ глуюокую копию - копирует ссылку(view), но не сам инстансе

@@ -227,7 +227,7 @@ export type DraggbleElement<T extends IFormElement | IGroupElement> = OmitInstan
 
 export interface IFormConstructor extends IHistory {
   allElements: EntityState<IFormElement | IGroupElement>
-  elmentInstances: EntityState<FormInstance<FormElementTypes>>
+  elementInstances: EntityState<FormInstance<AllElementTypes>>
   instanceManager: InstanceManager
   selectedElement: ISelectedElement | null
   selectedElementProps:
