@@ -59,7 +59,6 @@ export const FormElementDictTypes = {
   Checkbox: 'Checkbox',
   Text: 'Text',
   TextField: 'TextField',
-  ProjectGrid: 'ProjectGrid',
   Placeholder: 'Placeholder',
   CardWithBarChart: 'CardWithBarChart',
   Dashboard: 'Dashboard',

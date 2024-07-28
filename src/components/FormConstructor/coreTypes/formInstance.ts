@@ -76,36 +76,34 @@ export type FormInstance<T extends AllElementTypes> = {
                                           ? BrandBreadcrumbsProps
                                           : emptyObj & T extends 'ChoiceGroup'
                                             ? BrandOwnChoiceGroupProps
-                                            : emptyObj & T extends 'ProjectGrid'
-                                              ? emptyObj
-                                              : emptyObj & T extends 'Placeholder'
-                                                ? BrandPlaceholderProps
-                                                : emptyObj & T extends 'CardWithBarChart'
-                                                  ? BrandCardWithChartProps
-                                                  : emptyObj & T extends 'Dashboard'
-                                                    ? BrandDashboardProps
-                                                    : emptyObj & T extends 'SimpleForm'
-                                                      ? BrandSimpleFormProps
-                                                      : emptyObj & T extends 'WizardForm'
-                                                        ? BrandWizardFromProps
-                                                        : emptyObj & T extends 'FooterWithSwitch'
-                                                          ? BrandFooterWithSwitchProps
+                                            : emptyObj & T extends 'Placeholder'
+                                              ? BrandPlaceholderProps
+                                              : emptyObj & T extends 'CardWithBarChart'
+                                                ? BrandCardWithChartProps
+                                                : emptyObj & T extends 'Dashboard'
+                                                  ? BrandDashboardProps
+                                                  : emptyObj & T extends 'SimpleForm'
+                                                    ? BrandSimpleFormProps
+                                                    : emptyObj & T extends 'WizardForm'
+                                                      ? BrandWizardFromProps
+                                                      : emptyObj & T extends 'FooterWithSwitch'
+                                                        ? BrandFooterWithSwitchProps
+                                                        : emptyObj &
+                                                              T extends 'PrototypeTextElement'
+                                                          ? BrandPrototypeTextProps
                                                           : emptyObj &
-                                                                T extends 'PrototypeTextElement'
-                                                            ? BrandPrototypeTextProps
-                                                            : emptyObj &
-                                                                  T extends 'PrototypeRectangleElement'
-                                                              ? BrandPrototypeRectangleProps
-                                                              : emptyObj & T extends 'AvatarGroup'
-                                                                ? BrandAvatarGroupProps
-                                                                : T extends 'Layout'
-                                                                  ? BrandLayoutElementPropsStyles
-                                                                  : emptyObj & T extends 'Card'
-                                                                    ? BrandCardElementPropsStyles
-                                                                    : emptyObj &
-                                                                          T extends 'ButtonModal'
-                                                                      ? BrandButtonGroupProps
-                                                                      : never
+                                                                T extends 'PrototypeRectangleElement'
+                                                            ? BrandPrototypeRectangleProps
+                                                            : emptyObj & T extends 'AvatarGroup'
+                                                              ? BrandAvatarGroupProps
+                                                              : T extends 'Layout'
+                                                                ? BrandLayoutElementPropsStyles
+                                                                : emptyObj & T extends 'Card'
+                                                                  ? BrandCardElementPropsStyles
+                                                                  : emptyObj &
+                                                                        T extends 'ButtonModal'
+                                                                    ? BrandButtonGroupProps
+                                                                    : never
 }
 
 export type UnionProps =
