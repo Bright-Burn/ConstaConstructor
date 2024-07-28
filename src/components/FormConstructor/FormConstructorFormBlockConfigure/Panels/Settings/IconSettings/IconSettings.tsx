@@ -13,8 +13,7 @@ import type {
   IconProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 import { IconSelectConsta } from '../IconsSelect'
 
 import { sizes, views } from './IconsConstants'

@@ -10,12 +10,10 @@ import type {
   ButtonProps,
   TextFieldElement,
   TextFieldProps,
-  UnionProps,
   UserElement,
   UserProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import style from './styles.module.css'
 

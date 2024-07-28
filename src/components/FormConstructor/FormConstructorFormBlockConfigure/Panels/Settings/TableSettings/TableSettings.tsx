@@ -8,8 +8,7 @@ import type {
   TableElement,
   TableProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import styles from './styles.module.css'
 

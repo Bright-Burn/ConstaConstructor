@@ -12,8 +12,7 @@ import type {
   CardElementPropsStyles,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 import { getValueForSelect } from '../LabelForSelectComponent'
 
 import styles from './styles.module.css'

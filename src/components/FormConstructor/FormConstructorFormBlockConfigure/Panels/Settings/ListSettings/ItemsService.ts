@@ -4,8 +4,7 @@ import type {
   ListElement,
   ListProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './types'
 

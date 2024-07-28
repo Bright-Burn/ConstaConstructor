@@ -6,8 +6,7 @@ import type {
   BrandAvatarGroupProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { form, sizes } from './constants'
 

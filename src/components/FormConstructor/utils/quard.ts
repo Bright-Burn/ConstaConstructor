@@ -1,14 +1,4 @@
-import type {
-  AllElementTypes,
-  FormElementTypes,
-  FormGroupsTypes,
-  IFormElement,
-  IGroupElement,
-  ISelectedElement,
-  OmitInstanceId,
-  UnionProps,
-} from '../coreTypes'
-import { GroupCardsTypes } from '../FormConstructorFormBlockConfigure/Panels/ComponentsStructure/BaseComponents/BaseComponentCardsList/BaseComponentGroupCard'
+import type { AllElementTypes, ISelectedElement, UnionProps } from '../coreTypes'
 
 export function isElementProps<T extends UnionProps>(
   element: UnionProps | null,

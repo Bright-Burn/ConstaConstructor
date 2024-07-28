@@ -1,8 +1,7 @@
 import type { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
 
 import type { BrandDataTimeProps, DataTimeElement, DataTimeProps } from '../../../../coreTypes'
-import { useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
   selectedElementProps: DataTimeProps,

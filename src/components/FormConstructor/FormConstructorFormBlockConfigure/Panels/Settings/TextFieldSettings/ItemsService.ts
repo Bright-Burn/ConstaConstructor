@@ -4,8 +4,7 @@ import type {
   TextFieldElement,
   TextFieldProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
   selectedElementProps: TextFieldProps,

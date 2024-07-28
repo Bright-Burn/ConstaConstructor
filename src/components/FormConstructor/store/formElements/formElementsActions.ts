@@ -46,11 +46,9 @@ export const changePageName = (pageName: string) => (dispatch: AppDispatch) => {
   dispatch(formConstructorSlice.actions.changePageName({ pageName }))
 }
 
-export const setDraggableElement =
-  <T extends FormElementTypes = FormElementTypes>(el: SetNewElementDraggableElem<T>) =>
-  (dispatch: AppDispatch) => {
-    dispatch(formConstructorSlice.actions.setDraggableElement(el))
-  }
+export const setDraggableElement = (el: SetNewElementDraggableElem) => (dispatch: AppDispatch) => {
+  dispatch(formConstructorSlice.actions.setDraggableElement(el))
+}
 
 export const getSiblingsCount = (state: RootState, parentId: string) => {
   const allElements: (IFormElement | IGroupElement)[] = selectAll(state)
