@@ -5,8 +5,7 @@ import type {
   ISelectedElement,
   OwnChoiceGroupProps,
 } from '../../../../coreTypes'
-import { useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './types'
 

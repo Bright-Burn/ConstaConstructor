@@ -9,8 +9,7 @@ import type {
   TextElement,
   TextElementProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { ValueTypes } from './types'
 

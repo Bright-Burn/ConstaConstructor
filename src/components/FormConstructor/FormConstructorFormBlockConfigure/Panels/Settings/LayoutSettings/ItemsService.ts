@@ -12,8 +12,7 @@ import type {
   LayoutElementPropsStyles,
   LayoutPropDirection,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { overflowType } from './LayoutConstants'
 

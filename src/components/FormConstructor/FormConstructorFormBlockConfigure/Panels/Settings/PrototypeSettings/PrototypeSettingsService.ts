@@ -5,8 +5,7 @@ import type {
   PrototypeRectangleElement,
   PrototypeTextElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useTextSettingsStore = (
   selectedElementProps: PrototypeProps,

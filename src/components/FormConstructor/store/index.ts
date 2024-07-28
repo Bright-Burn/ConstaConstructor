@@ -31,6 +31,7 @@ export {
   saveProjectToFile,
   saveProjectToHtml,
   setDraggableElement,
+  setInstanceProps,
   setSelectedElement,
   updateOrders,
 } from './formElements'

@@ -38,7 +38,7 @@ export interface LoadProjectFromFile {
   projectJson: string
 }
 
-export type SetNewElementDraggableElem<T extends FormElementTypes = FormElementTypes> = {
+export type SetNewElementDraggableElem = {
   element: DraggbleElement<IFormElement | IGroupElement> | null
 }
 

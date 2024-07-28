@@ -4,8 +4,7 @@ import type {
   DatePickerProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './fileTypes'
 import type { statusType } from './types'

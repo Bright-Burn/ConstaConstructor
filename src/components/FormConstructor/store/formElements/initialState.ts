@@ -1,9 +1,8 @@
 import uuid from 'react-uuid'
 import { createEntityAdapter } from '@reduxjs/toolkit'
 
-import type { IFormElement, IGroupElement, ILayoutElement } from '../../coreTypes'
+import type { IFormConstructor, IFormElement, IGroupElement, ILayoutElement } from '../../coreTypes'
 import { FormGroupsDictTypes } from '../../coreTypes'
-import type { IFormConstructor } from '../../coreTypes/types'
 
 import { formInstanceAdapter } from './formInstanseAdapter'
 

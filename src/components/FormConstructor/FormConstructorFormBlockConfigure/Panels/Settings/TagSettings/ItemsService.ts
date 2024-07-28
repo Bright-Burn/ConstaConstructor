@@ -7,8 +7,7 @@ import type {
   TagElement,
   TagProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { TagBasePropGroup, TagBasePropMode } from './types'
 

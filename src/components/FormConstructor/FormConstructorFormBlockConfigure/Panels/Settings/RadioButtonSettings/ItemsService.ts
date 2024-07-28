@@ -6,8 +6,7 @@ import type {
   RadioButtonElement,
   RadioButtonProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
   selectedElementProps: RadioButtonProps,

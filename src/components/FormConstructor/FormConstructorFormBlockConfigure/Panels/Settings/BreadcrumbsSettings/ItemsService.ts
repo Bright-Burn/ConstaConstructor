@@ -11,8 +11,7 @@ import type {
   DeepWriteable,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
   selectedElementProps: DeepWriteable<BreadcrumbProps>,

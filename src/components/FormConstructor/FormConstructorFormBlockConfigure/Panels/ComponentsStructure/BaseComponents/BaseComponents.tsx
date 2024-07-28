@@ -17,7 +17,6 @@ import {
   cardMock,
   dashboardMock,
   footerWithSwitchMock,
-  gridMock,
   placeholderMock,
   PrototypeRectangleMock,
   PrototypeTextMock,
@@ -35,7 +34,6 @@ export const BaseComponents: FC = () => {
   const baseComponentMocks = [
     placeholderMock,
     cardMock,
-    gridMock,
     dashboardMock,
     simpleFormMock,
     wizardFormMock,

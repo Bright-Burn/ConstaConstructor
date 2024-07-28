@@ -43,9 +43,11 @@ export const changeElementLinkCount = (
         break
       }
       case 'DEC': {
-        if (instanceManager[payload.id] != undefined) {
+        if (instanceManager[payload.id]) {
           instanceManager[payload.id]--
           if (instanceManager[payload.id] === 0) {
+            // Необходимо удалять из объекта
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
             delete instanceManager[payload.id]
             formInstanceAdapter.removeOne(state.elementInstances, payload.id)
           }

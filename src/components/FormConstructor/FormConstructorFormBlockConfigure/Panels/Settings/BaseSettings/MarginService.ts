@@ -1,6 +1,5 @@
 import type { ISelectedElement, UnionProps } from '../../../../coreTypes'
-import { useAppDispatch, useAppSelector } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch, useAppSelector } from '../../../../store'
 
 import type { marginBottom, marginLeft, marginRight, marginTop } from './types'
 

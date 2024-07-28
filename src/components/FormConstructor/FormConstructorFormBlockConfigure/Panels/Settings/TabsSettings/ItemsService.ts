@@ -7,8 +7,7 @@ import type {
   TabsElement,
   TabsElementProps,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
-import { setInstanceProps } from '../../../../store/formElements'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { FitMode } from './types'
 
