@@ -21,7 +21,6 @@ export {
   placeholderMock,
   placeholderMockId,
 } from './PlaceholderFormElement'
-export { gridMock, gridMockId, ProjectGrid } from './ProjectGrid'
 export {
   PrototypeRectangleElement,
   PrototypeRectangleMock,
