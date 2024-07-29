@@ -1,7 +1,6 @@
 import uuid from 'react-uuid'
 
 import type {
-  FormElementTypes,
   IFormElement,
   IGroupElement,
   ILayoutElement,

@@ -7,14 +7,18 @@ import type { AppDispatch, RootState } from '../../setupStore'
 import { getSiblingsCount } from '../formElementsActions'
 import { getElementById, getElementsOnLayer } from '../formElementsSelectors'
 import { formConstructorSlice } from '../formElementsSlice'
-import type { AddNewElementPayload } from '../payload'
+import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../payload'
 
 import { deleteFormElement } from './deleteFormElements'
 import { isDragFormElement, isDragGroupElement } from './dragElemGuards'
-import { createInstanceForElement, manageInstanceLinkForElement } from './instanceActions'
+import {
+  addInstances,
+  createInstanceForElement,
+  manageInstanceLinkForElement,
+} from './instanceActions'
 
 /**
- * Добавляет новый элемент(вместе с экшеном)
+ * Добавляет новый элемент, созадвая новый инстанс
  */
 export const addNewFormElement =
   (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch, getState: () => RootState) => {
@@ -65,9 +69,9 @@ export const addNewFormElement =
   }
 
 /**
- * Создает НЕ глуюокую копию - копирует ссылку(view), но не сам инстансе
+ * Добаляет новый элемент, использует существующий инстанс
  */
-export const copyLinkElement =
+export const copyFormElementLink =
   (elementId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const parentElementToCopy = getElementById(elementId)(state)
@@ -97,4 +101,38 @@ export const copyLinkElement =
         }),
       )
     })
+  }
+
+/**
+ * Создает новый элемент и добавляет новый инстанс из payload
+ */
+export const addFormElementWithDefaultInstance =
+  (payload: AddElementsWithInstancesPayload) =>
+  (dispatch: AppDispatch, getState: () => RootState) => {
+    const elements = payload.elements
+    const instances = payload.instances
+    const parentId = payload.parentId
+
+    /*Order для верхнего элемента в структуре*/
+    const orderForParentElem = getSiblingsCount(getState(), parentId) + 1
+
+    /*Устаналиваем правильный parentId и order в структуре*/
+    const elementsWithOrder = elements.map(elem => {
+      return {
+        ...elem,
+        parentId: !elem.parentId ? parentId : elem.parentId,
+        order: !elem.parentId ? orderForParentElem : elem.order,
+      }
+    })
+
+    elements.forEach(elem => {
+      dispatch(
+        pushHistoryElement(() => {
+          dispatch(deleteFormElement(elem.id))
+        }),
+      )
+    })
+
+    dispatch(addInstances(instances))
+    dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsWithOrder))
   }

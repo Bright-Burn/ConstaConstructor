@@ -3,7 +3,7 @@ import uuid from 'react-uuid'
 import type { IFormElement, IGroupElement } from '../coreTypes'
 
 /**
- * Производит глубокое копирование ветви с установкой новых id
+ * Производит глубокое копирование ветви с установкой новых id, сохраняя взаимосвязи типа родитель - ребенок
  */
 export const deepCopyElements = (
   allElements: (IFormElement | IGroupElement)[],

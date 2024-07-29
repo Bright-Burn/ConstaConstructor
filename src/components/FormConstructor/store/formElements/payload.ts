@@ -1,7 +1,7 @@
 import type {
   AllElementTypes,
   DraggbleElement,
-  FormElementTypes,
+  FormInstance,
   IFormElement,
   IGroupElement,
 } from '../../coreTypes'
@@ -9,6 +9,15 @@ import type {
 export interface AddNewElementPayload {
   element: DraggbleElement<IFormElement | IGroupElement>
   parent: string
+}
+
+/**
+ * При перетаскивание базового компонента используем payload содержащий instance целиком
+ */
+export type AddElementsWithInstancesPayload = {
+  elements: (IFormElement | IGroupElement)[]
+  instances: FormInstance<AllElementTypes>[]
+  parentId: string
 }
 
 export interface PanelStatePayload {

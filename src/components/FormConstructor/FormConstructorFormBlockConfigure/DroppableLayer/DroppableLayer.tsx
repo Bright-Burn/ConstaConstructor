@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 
 import type { IFormElement, IGroupElement } from '../../coreTypes'
 import {
+  addFormElementWithDefaultInstance,
   addNewFormElement,
   getElementsOnLayer,
   setDraggableElement,
@@ -48,8 +49,10 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
 
     const isBaseComponent = event.dataTransfer.getData('BaseComponent')
     if (isBaseComponent === 'true') {
-      const elementsToAdd = handleOnDropBaseComponent(parentElementId)
-      addElements(elementsToAdd)
+      const payload = handleOnDropBaseComponent(parentElementId)
+      if (payload) {
+        dispatch(addFormElementWithDefaultInstance(payload))
+      }
       return
     }
     if (draggableElement) {
