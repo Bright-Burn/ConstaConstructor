@@ -8,12 +8,14 @@ export {
 } from './baseComponentsItems'
 export type { IFormConstructorSerializable } from './formElements'
 export type { ChangeElementLinkCountPayload } from './formElements'
+export type { AddElementsWithInstancesPayload } from './formElements'
 export {
+  addFormElementWithDefaultInstance,
   addNewFormElement,
   addNewPage,
   changeActivePage,
   changePageName,
-  copyLinkElement,
+  copyFormElementLink,
   deleteFormElement,
   deletePage,
   formInstanceSelector,

@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import { JsonHelper } from '../../../../helpers'
 import {
-  copyLinkElement,
+  copyFormElementLink,
   deleteFormElement,
   loadProjectFromStorage,
   onSetViewMode,
@@ -78,7 +78,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
       if (code === 'KeyC' && ctrlKey && selectedElement) {
-        dispatch(copyLinkElement(selectedElement.elementId))
+        dispatch(copyFormElementLink(selectedElement.elementId))
       }
     }
 

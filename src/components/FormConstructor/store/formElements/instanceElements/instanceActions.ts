@@ -9,6 +9,7 @@ import { getInstanceProps } from '../formInstanceSelectors'
 
 import type { ChangeElementLinkCountPayload, CrateInstancePayload } from './types'
 
+/* Устанавливает props для instance*/
 export const setInstanceProps =
   (elementId: string, newProps: UnionProps) =>
   (dispatch: AppDispatch, getState: () => RootState) => {
@@ -35,7 +36,7 @@ export const setInstanceProps =
   }
 
 /**
- * Создание нового инстанса
+ * Создает новый инстанс для элемента
  */
 export const createInstanceForElement =
   (createInstances: CrateInstancePayload[]) => (dispatch: AppDispatch) => {
@@ -56,7 +57,23 @@ export const createInstanceForElement =
   }
 
 /**
- * Управление текущими инстансами
+ * Добавляет новый инстанс (не создает новый)
+ **/
+export const addInstances =
+  (formInstances: FormInstance<AllElementTypes>[]) => (dispatch: AppDispatch) => {
+    const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
+    formInstances.forEach(insatnce => {
+      changeLinksCountPayloads.push({
+        id: insatnce.id,
+        type: 'INC',
+      })
+    })
+    dispatch(formConstructorSlice.actions.addNewFormInstance(formInstances))
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
+  }
+
+/**
+ * Управляет текущими инстансами
  */
 export const manageInstanceLinkForElement =
   (payloads: ChangeElementLinkCountPayload[]) => (dispatch: AppDispatch) => {
