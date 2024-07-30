@@ -1,9 +1,12 @@
 import uuid from 'react-uuid'
 
 import type {
+  AllElementTypes,
+  FormInstance,
   IFormElement,
   IGroupElement,
   ILayoutElement,
+  InstanceManager,
   IPageOfLayout,
   ISelectedElement,
   UnionProps,
@@ -16,7 +19,7 @@ import type { AppDispatch, RootState } from '../setupStore'
 import { ViewerSlice } from '../Viewer'
 
 import { formConstructorSlice } from './formElementsSlice'
-import { formInstancesSelector } from './formInstanceSelectors'
+import { formInstancesSelector, selectAllInstances } from './formInstanceSelectors'
 import { initialLayout } from './initialState'
 import { deleteFormElement } from './instanceElements'
 import { selectAll, selectById } from './layoutAdapterSelectors'
@@ -71,11 +74,18 @@ export const saveProjectToFile =
     const viewer = state.Viewer
     const formConstructor = state.formConstructor
     const allElements = selectAll(state)
+    const elementInstances = selectAllInstances(state)
+
     const intent: SaveProjectIntent = {
       description: project.description,
       name: project.name,
       saveWay: ProjectSaveWays.FILE,
-      project: { ...formConstructor, isGridVisible: viewer.isGridVisible, allElements },
+      project: {
+        ...formConstructor,
+        isGridVisible: viewer.isGridVisible,
+        allElements,
+        elementInstances,
+      },
     }
     saveProjectData(intent)
     //это просто экшн
@@ -136,11 +146,17 @@ export const saveProjectToMemoryStorage =
     const viewer = state.Viewer
     const formConstructor = state.formConstructor
     const allElements = selectAll(state)
+    const elementInstances = selectAllInstances(state)
     const intent: SaveProjectIntent = {
       description: project.description,
       name: project.name,
       saveWay: ProjectSaveWays.FILE,
-      project: { ...formConstructor, isGridVisible: viewer.isGridVisible, allElements },
+      project: {
+        ...formConstructor,
+        isGridVisible: viewer.isGridVisible,
+        allElements,
+        elementInstances,
+      },
     }
     saveProjectData(intent)
     //это просто экшн
@@ -207,7 +223,9 @@ export interface IFormConstructorSerializable {
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
   isGridVisible: boolean
-
+  elementInstances: FormInstance<AllElementTypes>[]
+  /*Надо будет избавиться от этого*/
+  instanceManager: InstanceManager
   pages: IPageOfLayout[]
   selectedPageId: string
   numberOfPages: number
