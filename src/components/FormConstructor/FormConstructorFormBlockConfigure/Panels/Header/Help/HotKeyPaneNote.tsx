@@ -63,6 +63,20 @@ export const HotKeyPaneNote: React.FC<IHotkeys> = ({ onClose }) => {
       ),
       id: '3',
     },
+    {
+      action: 'Копировать с наследованием',
+      win: (
+        <div>
+          <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="с" view="ghost" />
+        </div>
+      ),
+      mac: (
+        <div>
+          <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="с" view="ghost" />
+        </div>
+      ),
+      id: '3',
+    },
   ]
 
   const columns: TableColumn<(typeof rows)[number]>[] = [
