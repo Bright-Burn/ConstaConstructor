@@ -78,9 +78,10 @@ export const copyFormElementLink =
     const treeElements: (IFormElement | IGroupElement)[] = []
 
     if (parentElementToCopy) {
-      const siblingsCount = getSiblingsCount(getState(), parentElementToCopy.parentId || '')
+      const orderForParentElem =
+        getSiblingsCount(getState(), parentElementToCopy.parentId || '') + 1
       const elements = getElementsOnLayer(parentElementToCopy.id)(state)
-      treeElements.push({ ...parentElementToCopy, order: siblingsCount + 1 }, ...elements)
+      treeElements.push({ ...parentElementToCopy, order: orderForParentElem }, ...elements)
     }
 
     const newElements = deepCopyElements(treeElements)
@@ -94,13 +95,13 @@ export const copyFormElementLink =
     )
 
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElements))
-    newElements.forEach(elem => {
-      dispatch(
-        pushHistoryElement(() => {
+    dispatch(
+      pushHistoryElement(() => {
+        newElements.forEach(elem => {
           dispatch(deleteFormElement(elem.id))
-        }),
-      )
-    })
+        })
+      }),
+    )
   }
 
 /**
@@ -125,13 +126,13 @@ export const addFormElementWithDefaultInstance =
       }
     })
 
-    elements.forEach(elem => {
-      dispatch(
-        pushHistoryElement(() => {
+    dispatch(
+      pushHistoryElement(() => {
+        elements.forEach(elem => {
           dispatch(deleteFormElement(elem.id))
-        }),
-      )
-    })
+        })
+      }),
+    )
 
     dispatch(addInstances(instances))
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsWithOrder))
