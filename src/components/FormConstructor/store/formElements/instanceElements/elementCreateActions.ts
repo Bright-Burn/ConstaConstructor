@@ -16,6 +16,7 @@ import {
   createInstanceForElement,
   manageInstanceLinkForElement,
 } from './instanceActions'
+import type { ChangeElementLinkCountPayload } from './types'
 
 /**
  * Добавляет новый элемент, созадвая новый инстанс
@@ -114,6 +115,7 @@ export const addFormElementWithDefaultInstance =
     const elements = payload.elements
     const instances = payload.instances
     const parentId = payload.parentId
+    const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
 
     /*Order для верхнего элемента в структуре*/
     const orderForParentElem = getSiblingsCount(getState(), parentId) + 1
@@ -126,6 +128,12 @@ export const addFormElementWithDefaultInstance =
         order: !elem.parentId ? orderForParentElem : elem.order,
       }
     })
+    elementsWithOrder.forEach(elem => {
+      changeLinksCountPayloads.push({
+        id: elem.instanceId,
+        type: 'INC',
+      })
+    })
 
     dispatch(
       pushHistoryElement(() => {
@@ -134,7 +142,7 @@ export const addFormElementWithDefaultInstance =
         })
       }),
     )
-
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     dispatch(addInstances(instances))
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsWithOrder))
   }

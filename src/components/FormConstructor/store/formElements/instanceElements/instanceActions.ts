@@ -61,15 +61,7 @@ export const createInstanceForElement =
  **/
 export const addInstances =
   (formInstances: FormInstance<AllElementTypes>[]) => (dispatch: AppDispatch) => {
-    const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
-    formInstances.forEach(insatnce => {
-      changeLinksCountPayloads.push({
-        id: insatnce.id,
-        type: 'INC',
-      })
-    })
     dispatch(formConstructorSlice.actions.addNewFormInstance(formInstances))
-    dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
   }
 
 /**
