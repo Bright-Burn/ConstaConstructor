@@ -48,3 +48,5 @@ export const getInstanceProps = (elementId: string) => (state: RootState) => {
     return instance?.props
   }
 }
+
+export const selectAllInstances = selectAll

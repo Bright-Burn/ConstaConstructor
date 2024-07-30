@@ -1,4 +1,6 @@
 import type {
+  AllElementTypes,
+  FormInstance,
   IFormElement,
   IGroupElement,
   IPageOfLayout,
@@ -24,6 +26,7 @@ export interface ProjectData {
 }
 interface IFormConstructor {
   allElements: (IFormElement | IGroupElement)[]
+  elementInstances: FormInstance<AllElementTypes>[]
   selectedElement: ISelectedElement | null
   selectedElementProps: UnionProps | null
 

@@ -72,7 +72,7 @@ export type {
   footerWithSwitchProps,
   IFormElementFooterWithSwitch,
 } from './footerWithSwitchTypes'
-export type { FormInstance, UnionProps } from './formInstance'
+export type { FormInstance, InstanceManager, UnionProps } from './formInstance'
 export type {
   BrandIconProps,
   IconElement,
