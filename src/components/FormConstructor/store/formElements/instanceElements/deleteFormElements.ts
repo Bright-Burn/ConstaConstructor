@@ -7,7 +7,8 @@ import { selectAll, selectById } from '../layoutAdapterSelectors'
 import type { ChangeElementLinkCountPayload } from './types'
 
 export const deleteFormElement =
-  (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+  (id: string, withHistory: boolean = true) =>
+  (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const map = new Map<string, (IGroupElement | IFormElement)[]>()
     const elementForDelete = selectById(state, id)
@@ -50,9 +51,10 @@ export const deleteFormElement =
     const idsForDelete = elementsForDelete.map(el => el.id)
     dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
 
-    dispatch(
-      pushHistoryElement(() => {
-        dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsForDelete))
-      }),
-    )
+    withHistory &&
+      dispatch(
+        pushHistoryElement(() => {
+          dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsForDelete))
+        }),
+      )
   }

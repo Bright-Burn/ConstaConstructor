@@ -60,9 +60,10 @@ export const addNewFormElement =
       }
 
       dispatch(
-        pushHistoryElement(() =>
-          dispatch(formConstructorSlice.actions.deleteFormElement([payloadElement.id])),
-        ),
+        pushHistoryElement(() => {
+          dispatch(formConstructorSlice.actions.deleteFormElement([payloadElement.id]))
+          dispatch(manageInstanceLinkForElement([{ id: instanceId, type: 'DEC' }]))
+        }),
       )
     })
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsToAdd))
@@ -98,7 +99,7 @@ export const copyFormElementLink =
     dispatch(
       pushHistoryElement(() => {
         newElements.forEach(elem => {
-          dispatch(deleteFormElement(elem.id))
+          dispatch(deleteFormElement(elem.id, false))
         })
       }),
     )
@@ -129,7 +130,7 @@ export const addFormElementWithDefaultInstance =
     dispatch(
       pushHistoryElement(() => {
         elements.forEach(elem => {
-          dispatch(deleteFormElement(elem.id))
+          dispatch(deleteFormElement(elem.id, false))
         })
       }),
     )
