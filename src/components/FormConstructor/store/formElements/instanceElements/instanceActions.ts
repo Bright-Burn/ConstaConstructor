@@ -36,35 +36,6 @@ export const setInstanceProps =
   }
 
 /**
- * Создает новый инстанс для элемента
- */
-export const createInstanceForElement =
-  (createInstances: CrateInstancePayload[]) => (dispatch: AppDispatch) => {
-    const formInstances: FormInstance<AllElementTypes>[] = []
-    const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
-    createInstances.forEach(createPayload => {
-      formInstances.push({
-        id: createPayload.instanceId,
-        props: createPayload.props,
-      })
-      changeLinksCountPayloads.push({
-        id: createPayload.instanceId,
-        type: 'INC',
-      })
-    })
-    dispatch(formConstructorSlice.actions.addNewFormInstance(formInstances))
-    dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
-  }
-
-/**
- * Добавляет новый инстанс (не создает новый)
- **/
-export const addInstances =
-  (formInstances: FormInstance<AllElementTypes>[]) => (dispatch: AppDispatch) => {
-    dispatch(formConstructorSlice.actions.addNewFormInstance(formInstances))
-  }
-
-/**
  * Управляет текущими инстансами
  */
 export const manageInstanceLinkForElement =
