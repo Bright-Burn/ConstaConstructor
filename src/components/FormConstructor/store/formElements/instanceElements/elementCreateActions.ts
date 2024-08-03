@@ -1,6 +1,6 @@
 import uuid from 'react-uuid'
 
-import type { IFormElement, IGroupElement } from '../../../coreTypes'
+import type { AllElementTypes, FormInstance, IFormElement, IGroupElement } from '../../../coreTypes'
 import { deepCopyElements } from '../../../utils'
 import { pushHistoryElement } from '../../history'
 import type { AppDispatch, RootState } from '../../setupStore'
@@ -11,11 +11,7 @@ import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../p
 
 import { deleteFormElement } from './deleteFormElements'
 import { isDragFormElement, isDragGroupElement } from './dragElemGuards'
-import {
-  addInstances,
-  createInstanceForElement,
-  manageInstanceLinkForElement,
-} from './instanceActions'
+import { manageInstanceLinkForElement } from './instanceActions'
 import type { ChangeElementLinkCountPayload } from './types'
 
 /**
@@ -24,20 +20,20 @@ import type { ChangeElementLinkCountPayload } from './types'
 export const addNewFormElement =
   (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch, getState: () => RootState) => {
     const elementsToAdd: (IFormElement | IGroupElement)[] = []
+    const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
+    const formInstances: FormInstance<AllElementTypes>[] = []
+
     addPayloads.forEach(payload => {
       const siblingsCount = getSiblingsCount(getState(), payload.parent)
       const payloadElement = payload.element
       const instanceId = uuid()
 
-      dispatch(
-        createInstanceForElement([
-          {
-            instanceId,
-            type: payloadElement.type,
-            props: payloadElement.props,
-          },
-        ]),
-      )
+      formInstances.push({
+        id: instanceId,
+        props: payload.element.props,
+      })
+
+      changeLinksCountPayloads.push({ id: instanceId, type: 'INC' })
 
       if (isDragGroupElement(payloadElement)) {
         const elementType = payloadElement.type
@@ -59,15 +55,19 @@ export const addNewFormElement =
           type: elementType,
         })
       }
-
-      dispatch(
-        pushHistoryElement(() => {
-          dispatch(formConstructorSlice.actions.deleteFormElement([payloadElement.id]))
-          dispatch(manageInstanceLinkForElement([{ id: instanceId, type: 'DEC' }]))
-        }),
-      )
     })
+
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsToAdd))
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
+    dispatch(formConstructorSlice.actions.addNewFormInstance(formInstances))
+
+    dispatch(
+      pushHistoryElement(() => {
+        elementsToAdd.forEach(elem => {
+          dispatch(deleteFormElement(elem.id, false))
+        })
+      }),
+    )
   }
 
 /**
@@ -142,7 +142,8 @@ export const addFormElementWithDefaultInstance =
         })
       }),
     )
+
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
-    dispatch(addInstances(instances))
+    dispatch(formConstructorSlice.actions.addNewFormInstance(instances))
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsWithOrder))
   }
