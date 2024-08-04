@@ -1,12 +1,3 @@
-import { saveProject as saveProjectData /*projectFromSerilizable*/ } from './saveProject'
-import type { IFormConstructorSerializable, ProjectData, SaveProjectIntent } from './types'
-import { ProjectSaveWays } from './types'
-
-export {
-  type IFormConstructorSerializable,
-  type ProjectData,
-  ProjectSaveWays,
-  saveProjectData,
-  type SaveProjectIntent,
-  /*projectFromSerilizable,*/
-}
+export { saveProject as saveProjectData } from './saveProject'
+export type { FormConstructorToSave, ProjectData, SaveProjectIntent } from './types'
+export { ProjectSaveWays } from './types'

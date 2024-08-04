@@ -7,8 +7,6 @@ import { getElementById } from '../formElementsSelectors'
 import { formConstructorSlice } from '../formElementsSlice'
 import { getInstanceProps } from '../formInstanceSelectors'
 
-import type { ChangeElementLinkCountPayload } from './types'
-
 /* Устанавливает props для instance*/
 export const setInstanceProps =
   (elementId: string, newProps: UnionProps) =>

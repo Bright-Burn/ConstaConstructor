@@ -6,7 +6,6 @@ export {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from './baseComponentsItems'
-export type { IFormConstructorSerializable } from './formElements'
 export type { ChangeElementLinkCountPayload } from './formElements'
 export type { AddElementsWithInstancesPayload } from './formElements'
 export {
@@ -27,7 +26,7 @@ export {
   getFormElAsMap,
   getSelectedElementPropsSelector,
   getSelectedPageId,
-  loadProjectFromStorage,
+  loadProjectFromFile,
   reorderFormElement,
   saveModuleToFile,
   saveProjectToFile,
