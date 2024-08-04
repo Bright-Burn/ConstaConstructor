@@ -1,8 +1,9 @@
 import { useState } from 'react'
 
 import { JsonHelper } from '../../../../../helpers'
+import type { FormConstructorToSave } from '../../../projectSaveLoad'
 import {
-  loadProjectFromStorage,
+  loadProjectFromFile,
   saveProjectToFile,
   saveProjectToHtml,
   useAppDispatch,
@@ -20,7 +21,8 @@ export const useProject = () => {
       readFile(file).then(json => {
         //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
         const parsedFile: any = JsonHelper.parse(json)
-        dispatch(loadProjectFromStorage(parsedFile.project))
+        const project = parsedFile.project as FormConstructorToSave
+        dispatch(loadProjectFromFile(project))
       })
     }
   }

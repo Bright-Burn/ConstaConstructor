@@ -60,7 +60,6 @@ export const initialState: IFormConstructor = {
       numberOfPages: initialNumberPage,
       pages: initialPages,
       selectedElement: null,
-      selectedElementProps: null,
     },
   ],
 }

@@ -1,29 +1,16 @@
 import uuid from 'react-uuid'
 
-import type {
-  AllElementTypes,
-  FormInstance,
-  IFormElement,
-  IGroupElement,
-  ILayoutElement,
-  InstanceManager,
-  IPageOfLayout,
-  ISelectedElement,
-  UnionProps,
-} from '../../coreTypes'
-import type { SaveProjectIntent } from '../../projectSaveLoad'
-import { ProjectSaveWays, saveProjectData } from '../../projectSaveLoad'
+import type { IFormElement, IGroupElement, ILayoutElement } from '../../coreTypes'
 import { saveToFile } from '../../utils'
 import type { IBaseComponent } from '../baseComponentsItems'
 import type { AppDispatch, RootState } from '../setupStore'
-import { ViewerSlice } from '../Viewer'
 
 import { formConstructorSlice } from './formElementsSlice'
-import { formInstancesSelector, selectAllInstances } from './formInstanceSelectors'
+import { formInstancesSelector } from './formInstanceSelectors'
 import { initialLayout } from './initialState'
 import { deleteFormElement } from './instanceElements'
 import { selectAll, selectById } from './layoutAdapterSelectors'
-import type { SaveNewProject, SetNewElementDraggableElem } from './payload'
+import type { SetNewElementDraggableElem } from './payload'
 
 export const deletePage =
   (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
@@ -63,33 +50,6 @@ export const getSiblingsCount = (state: RootState, parentId: string) => {
   return elements
 }
 
-export const loadProjectFromStorage =
-  (project: IFormConstructorSerializable) => (dispatch: AppDispatch) => {
-    dispatch(formConstructorSlice.actions.loadProjectFromJson(project))
-    dispatch(ViewerSlice.actions.showGrid(project.isGridVisible))
-  }
-export const saveProjectToFile =
-  (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const state = getState()
-    const viewer = state.Viewer
-    const formConstructor = state.formConstructor
-    const allElements = selectAll(state)
-    const elementInstances = selectAllInstances(state)
-
-    const intent: SaveProjectIntent = {
-      description: project.description,
-      name: project.name,
-      saveWay: ProjectSaveWays.FILE,
-      project: {
-        ...formConstructor,
-        isGridVisible: viewer.isGridVisible,
-        allElements,
-        elementInstances,
-      },
-    }
-    saveProjectData(intent)
-    //это просто экшн
-  }
 export const saveModuleToFile =
   (id: string, fileName: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
@@ -105,7 +65,6 @@ export const saveModuleToFile =
       }
     })
 
-    console.log(allElements)
     const getIdsForSave = (parentId: string) => {
       let idsForSave: (IGroupElement | IFormElement)[] = []
       const arrForSave = map.get(parentId)
@@ -138,27 +97,6 @@ export const saveModuleToFile =
     }
 
     saveToFile(JSON.stringify(saveObj), `${fileName}_BaseComponent.json`)
-    //это просто экшн
-  }
-export const saveProjectToMemoryStorage =
-  (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const state = getState()
-    const viewer = state.Viewer
-    const formConstructor = state.formConstructor
-    const allElements = selectAll(state)
-    const elementInstances = selectAllInstances(state)
-    const intent: SaveProjectIntent = {
-      description: project.description,
-      name: project.name,
-      saveWay: ProjectSaveWays.FILE,
-      project: {
-        ...formConstructor,
-        isGridVisible: viewer.isGridVisible,
-        allElements,
-        elementInstances,
-      },
-    }
-    saveProjectData(intent)
     //это просто экшн
   }
 
@@ -217,16 +155,3 @@ export const saveProjectToHtml =
       tagA.click()
     })
   }
-
-export interface IFormConstructorSerializable {
-  allElements: (IFormElement | IGroupElement)[]
-  selectedElement: ISelectedElement | null
-  selectedElementProps: UnionProps | null
-  isGridVisible: boolean
-  elementInstances: FormInstance<AllElementTypes>[]
-  /*Надо будет избавиться от этого*/
-  instanceManager: InstanceManager
-  pages: IPageOfLayout[]
-  selectedPageId: string
-  numberOfPages: number
-}

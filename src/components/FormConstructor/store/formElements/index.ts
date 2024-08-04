@@ -1,15 +1,11 @@
 export { reorderFormElement, updateOrders } from './actions'
-export type { IFormConstructorSerializable } from './formElementsActions'
 export {
   addNewPage,
   changeActivePage,
   changePageName,
   deletePage,
-  loadProjectFromStorage,
   saveModuleToFile,
-  saveProjectToFile,
   saveProjectToHtml,
-  saveProjectToMemoryStorage,
   setDraggableElement,
 } from './formElementsActions'
 export {
@@ -37,4 +33,9 @@ export {
   setInstanceProps,
 } from './instanceElements'
 export type { AddElementsWithInstancesPayload } from './payload'
+export {
+  loadProjectFromFile,
+  saveProjectToFile,
+  saveProjectToMemoryStorage,
+} from './projectSaveLoadActions'
 export { setSelectedElement } from './setSelectedElementAction'
