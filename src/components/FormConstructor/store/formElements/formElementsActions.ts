@@ -1,6 +1,6 @@
 import uuid from 'react-uuid'
 
-import type { IFormElement, IGroupElement, ILayoutElement } from '../../coreTypes'
+import type { IFormElement, IGroupElement } from '../../coreTypes'
 import { saveToFile } from '../../utils'
 import type { IBaseComponent } from '../baseComponentsItems'
 import type { AppDispatch, RootState } from '../setupStore'
@@ -8,7 +8,7 @@ import type { AppDispatch, RootState } from '../setupStore'
 import { formConstructorSlice } from './formElementsSlice'
 import { formInstancesSelector } from './formInstanceSelectors'
 import { initialLayout } from './initialState'
-import { deleteFormElement } from './instanceElements'
+import { addNewFormElement, deleteFormElement } from './instanceElements'
 import { selectAll, selectById } from './layoutAdapterSelectors'
 import type { SetNewElementDraggableElem } from './payload'
 
@@ -22,9 +22,10 @@ export const deletePage =
 
 export const addNewPage = () => (dispatch: AppDispatch) => {
   const newPageId = uuid()
-  const pageLayout: ILayoutElement = { ...initialLayout, id: uuid(), parentId: newPageId }
+  const layoutElement = { ...initialLayout, id: uuid(), parentId: newPageId }
 
-  dispatch(formConstructorSlice.actions.addNewPage({ newPageId, pageLayout }))
+  dispatch(addNewFormElement([{ element: layoutElement, parent: newPageId }]))
+  dispatch(formConstructorSlice.actions.addNewPage({ newPageId }))
 }
 
 export const changeActivePage = (pageId: string) => (dispatch: AppDispatch) => {
