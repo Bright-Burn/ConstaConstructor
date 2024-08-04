@@ -1,6 +1,7 @@
 import type { ISelectedElement, UnionProps } from '../../../../coreTypes'
 import {
   getSelectedElementPropsSelector,
+  selectedElementSelector,
   setInstanceProps,
   useAppDispatch,
   useAppSelector,
@@ -9,7 +10,7 @@ import {
 import type { marginBottom, marginLeft, marginRight, marginTop } from './types'
 
 export const useMarginHandlers = () => {
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const selectedElement = useAppSelector(selectedElementSelector)
   const dispatch = useAppDispatch()
   const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
 

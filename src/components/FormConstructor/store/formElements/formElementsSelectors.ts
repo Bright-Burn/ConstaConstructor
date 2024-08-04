@@ -14,6 +14,10 @@ export const getFormConstructor = (state: RootState): IFormConstructor => state.
 export const getAllFormElements = (state: RootState): (IFormElement | IGroupElement)[] =>
   selectAll(state)
 
+export const selectedElementSelector = (state: RootState) => {
+  return state.formConstructor.selectedElement
+}
+
 export const getSelectedPageId = (state: RootState): string => state.formConstructor.selectedPageId
 
 export const getElementsOnLayer = (parentId: string) =>
