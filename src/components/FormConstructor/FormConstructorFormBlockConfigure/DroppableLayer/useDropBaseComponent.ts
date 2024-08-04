@@ -53,5 +53,5 @@ export const useDropBaseComponent = () => {
     }
     return null
   }
-  return { handleOnDropBaseComponent }
+  return handleOnDropBaseComponent
 }
