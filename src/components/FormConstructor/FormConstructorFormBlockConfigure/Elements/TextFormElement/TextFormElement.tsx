@@ -1,28 +1,23 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
 import { Text } from '@consta/uikit/Text'
 
-import type { TextElementProps, TextlementStyles } from '../../../coreTypes'
+import type { TextlementStyles } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ITextFormElement } from './types'
 
 export const TextFormElement: FC<ITextFormElement> = ({ element }) => {
-  const [textProps, setTextProps] = useState<TextElementProps>()
-
-  useLayoutEffect(() => {
-    const textFormElement = element
-    setTextProps(textFormElement.props.props)
-  }, [element])
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Text}>
-      <Text {...textProps} align={textProps?.align?.name} style={getStyles(textProps?.style)}>
-        {textProps?.content}
+      <Text {...props} align={props?.align?.name} style={getStyles(props?.style)}>
+        {props?.content}
       </Text>
     </SelectableLayer>
   )

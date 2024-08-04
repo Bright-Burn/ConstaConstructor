@@ -10,6 +10,7 @@ import type {
   ButtonProps,
   TextFieldElement,
   TextFieldProps,
+  UnionProps,
   UserElement,
   UserProps,
 } from '../../../../coreTypes'
@@ -39,7 +40,7 @@ export const FilledSettings: React.FC<IFilledSettings> = ({
   const dispatch = useAppDispatch()
 
   function onFilledChange(value: fillType | null): void {
-    const newProps = {
+    const newProps: UnionProps = {
       props: { ...selectedElementProps, filled: value?.name === 'filled' },
       type: element,
     }

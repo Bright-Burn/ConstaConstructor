@@ -1,5 +1,5 @@
-import type { ICardElement } from '../../../coreTypes'
+import type { IGroupElement } from '../../../coreTypes'
 
 export interface ICardFormElement {
-  element: ICardElement
+  element: IGroupElement<'Card'>
 }

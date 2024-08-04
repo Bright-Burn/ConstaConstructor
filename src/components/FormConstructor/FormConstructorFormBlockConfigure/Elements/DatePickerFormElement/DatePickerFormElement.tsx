@@ -1,21 +1,15 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
 import { Button } from '@consta/uikit/Button'
 import { DatePicker } from '@consta/uikit/DatePicker'
 
-import type { DatePickerProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IDatePickerFormElement } from './types'
 
 export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) => {
-  const [datePickerProps, setDatePickerProps] = useState<DatePickerProps>()
-
-  useLayoutEffect(() => {
-    const datePickerFormElement = element
-    setDatePickerProps(datePickerFormElement.props.props)
-  }, [element])
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   return (
     <SelectableLayer
@@ -23,9 +17,9 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.DatePicker}>
       <DatePicker
-        {...datePickerProps}
+        {...props}
         renderAdditionalControls={() =>
-          datePickerProps?.withAdditionalControls && (
+          props?.withAdditionalControls && (
             <>
               <Button label="Кнопка" />
               <Button label="Кнопка" />

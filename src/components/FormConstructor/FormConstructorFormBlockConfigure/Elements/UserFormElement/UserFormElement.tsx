@@ -1,22 +1,16 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
 import { User } from '@consta/uikit/User'
 
-import type { IFormElementUser, UserProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IUserFormElement } from './types'
 
 export const UserFormElement: FC<IUserFormElement> = ({ element }) => {
-  const [userProps, setUserProps] = useState<UserProps>()
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  useLayoutEffect(() => {
-    const userFormElement = element as IFormElementUser
-    setUserProps(userFormElement.props.props)
-  }, [element])
-
-  const isFilled = element.props.props.filled
+  const isFilled = props ? props.filled : false
 
   return (
     <SelectableLayer
@@ -24,7 +18,7 @@ export const UserFormElement: FC<IUserFormElement> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.User}
       className={isFilled ? 'container-row flex-grow-1' : ''}>
-      <User {...userProps} />
+      <User {...props} />
     </SelectableLayer>
   )
 }

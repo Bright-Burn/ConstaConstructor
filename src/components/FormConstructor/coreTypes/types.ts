@@ -85,21 +85,12 @@ export const FormElementDictTypes = {
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export type FormElementTypes = Values<typeof FormElementDictTypes>
 
-// export interface IGroupElement extends IUnion {
-//   id: string
-//   parentId?: string
-//   type: FormGroupsTypes
-//   isOuter: boolean
-//   props: GroupElementProps
-// }
-
 export type ILayoutElement = OmitInstanceId<
   IGroupElement & {
     props: BrandLayoutElementPropsStyles
   }
 >
 
-type emptyObj = Record<string, never>
 export type IGroupElement<T extends FormGroupsTypes = FormGroupsTypes> = IUnion & {
   id: string
   instanceId: string
@@ -141,40 +132,6 @@ export type ConcreteSelectedElement<ElementTypes extends AllElementTypes> = {
   elementId: string
   elementType: ElementTypes
 }
-
-// Все Union пропсы для FormElement
-// export type FormElementProps = IFormElement['props']
-// export type FormElementProps =
-//   | BrandButtonProps
-//   | BrandBadgeProps
-//   | BrandTextElementProps
-//   | BrandInformerElementProps
-//   | BrandCheckboxProps
-//   | BrandTabsElementProps
-//   | BrandTextFieldProps
-//   | BrandTableProps
-//   | BrandListProps
-//   | BrandRadioButtonProps
-//   | BrandSwitchProps
-//   | BrandDatePickerProps
-//   | BrandComboboxProps
-//   | BrandSelectProps
-//   | BrandDataTimeProps
-//   | BrandPrototypeTextProps
-//   | BrandPrototypeRectangleProps
-//   | BrandBreadcrumbsProps
-//   | BrandUserProps
-//   | BrandIconProps
-//   | BrandTagProps
-//   | BrandOwnChoiceGroupProps
-//   | BrandPlaceholderProps
-
-// Все Union пропсы для GroupElement
-// export type GroupElementProps = IGroupElement['props']
-// export type GroupElementProps =
-//   | BrandLayoutElementPropsStyles
-//   | BrandCardElementPropsStyles
-//   | BrandButtonGroupProps
 
 // По мере добавление новых обычных элементов формы сюда будем добавлять новые объединения
 export type FormElementUnion =
@@ -229,11 +186,6 @@ export interface IFormConstructor extends IHistory {
   elementInstances: EntityState<FormInstance<AllElementTypes>>
   instanceManager: InstanceManager
   selectedElement: ISelectedElement | null
-  selectedElementProps:
-    | FormInstance<FormElementTypes>['props']
-    | FormInstance<FormGroupsTypes>['props']
-    | emptyObj
-    | null
   draggableElement: DraggbleElement<IFormElement | IGroupElement> | null
 
   pages: IPageOfLayout[]

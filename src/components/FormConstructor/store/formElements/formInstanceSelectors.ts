@@ -18,6 +18,13 @@ export const formInstanceSelector =
     return null
   }
 
+export const formInstancePropsSelector =
+  <T extends FormInstance<AllElementTypes>['props']['type']>(id: string, type: T) =>
+  (state: RootState) => {
+    const instance = formInstanceSelector(id, type)(state)
+    return instance?.props
+  }
+
 export const formInstancesSelector =
   (ids: string[]) =>
   (state: RootState): FormInstance<AllElementTypes>[] => {
@@ -29,7 +36,7 @@ export const formInstancesSelector =
 /**
  * Возвращает props из Инстанса выбранного элемента
  */
-export const getSelectedElementProps = (state: RootState) => {
+export const getSelectedElementPropsSelector = (state: RootState) => {
   const selectedElementId = state.formConstructor.selectedElement?.elementId
   if (selectedElementId) {
     const selectPropsFromInstance = getInstanceProps(selectedElementId)

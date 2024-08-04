@@ -44,7 +44,7 @@ export const ButtonActionModal: FC<IButtonActionViewer> = ({
       </div>
       <div className={styles.modalContent}>
         <div className={styles.configPane}>
-          {buttonGroup ? <DroppableLayer parentElementId={buttonGroup.id} /> : null}
+          <DroppableLayer parentElementId={buttonGroup.id} />
         </div>
       </div>
     </Modal>

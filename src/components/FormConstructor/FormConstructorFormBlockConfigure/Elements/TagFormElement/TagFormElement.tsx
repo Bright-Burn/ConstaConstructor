@@ -1,89 +1,81 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import { Tag } from '@consta/uikit/Tag'
 
-import type { TagProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ITagFormElement } from './types'
 
 export const TagFormElement: FC<ITagFormElement> = ({ element }) => {
   const [checked, setChecked] = useState<boolean>(false)
-  const [tagProps, setTagPropsProps] = useState<TagProps>({
-    label: 'Рисунок',
-    className: '',
-    baseProps: {},
-    mode: 'link',
-    checked: false,
-  })
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  useLayoutEffect(() => {
-    const tagFormElement = element
-    setTagPropsProps(tagFormElement.props.props)
-  }, [element])
   function getTag() {
-    switch (tagProps.mode) {
-      case 'check':
-        return (
-          <Tag
-            mode={tagProps.mode}
-            label={tagProps.label || ''}
-            size={tagProps.size}
-            checked={checked}
-            group={tagProps.group}
-            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
-            className={tagProps.className}
-            onChange={setChecked}
-          />
-        )
-      case 'cancel':
-        return (
-          <Tag
-            mode={tagProps.mode}
-            label={tagProps.label || ''}
-            size={tagProps.size}
-            group={tagProps.group}
-            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
-            className={tagProps.className}
-            onCancel={() => null}
-          />
-        )
-      case 'button':
-        return (
-          <Tag
-            mode={tagProps.mode}
-            label={tagProps.label || ''}
-            size={tagProps.size}
-            group={tagProps.group}
-            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
-            className={tagProps.className}
-            onClick={() => null}
-          />
-        )
-      case 'link':
-        return (
-          <Tag
-            mode={tagProps.mode}
-            href="#"
-            label={tagProps.label || ''}
-            size={tagProps.size}
-            group={tagProps.group}
-            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
-            className={tagProps.className}
-          />
-        )
-      case 'info':
-        return (
-          <Tag
-            mode={tagProps.mode}
-            label={tagProps.label || ''}
-            size={tagProps.size}
-            group={tagProps.group}
-            icon={tagProps.icon ? Icons[tagProps.icon] : undefined}
-            className={tagProps.className}
-          />
-        )
+    if (props) {
+      switch (props.mode) {
+        case 'check':
+          return (
+            <Tag
+              mode={props.mode}
+              label={props.label || ''}
+              size={props.size}
+              checked={checked}
+              group={props.group}
+              icon={props.icon ? Icons[props.icon] : undefined}
+              className={props.className}
+              onChange={setChecked}
+            />
+          )
+        case 'cancel':
+          return (
+            <Tag
+              mode={props.mode}
+              label={props.label || ''}
+              size={props.size}
+              group={props.group}
+              icon={props.icon ? Icons[props.icon] : undefined}
+              className={props.className}
+              onCancel={() => null}
+            />
+          )
+        case 'button':
+          return (
+            <Tag
+              mode={props.mode}
+              label={props.label || ''}
+              size={props.size}
+              group={props.group}
+              icon={props.icon ? Icons[props.icon] : undefined}
+              className={props.className}
+              onClick={() => null}
+            />
+          )
+        case 'link':
+          return (
+            <Tag
+              mode={props.mode}
+              href="#"
+              label={props.label || ''}
+              size={props.size}
+              group={props.group}
+              icon={props.icon ? Icons[props.icon] : undefined}
+              className={props.className}
+            />
+          )
+        case 'info':
+          return (
+            <Tag
+              mode={props.mode}
+              label={props.label || ''}
+              size={props.size}
+              group={props.group}
+              icon={props.icon ? Icons[props.icon] : undefined}
+              className={props.className}
+            />
+          )
+      }
     }
   }
 

@@ -1,5 +1,4 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
 import { IconForward } from '@consta/icons/IconForward'
 import { Badge } from '@consta/uikit/Badge'
 import { Button } from '@consta/uikit/Button'
@@ -9,8 +8,8 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { wizardFormProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { formInstanceSelector, useAppSelector } from '../../../store'
 import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import { steps, wizardFromCompanyBlock } from './mocks'
@@ -19,13 +18,6 @@ import type { IWizardForm } from './types'
 import css from './styles.module.css'
 
 export const WizardForm: FC<IWizardForm> = ({ element }) => {
-  const [formProps, setFormProps] = useState<wizardFormProps>()
-
-  useLayoutEffect(() => {
-    const simpleFormElement = element.props
-    setFormProps(simpleFormElement.props)
-  }, [element])
-
   return (
     <SelectableLayerFullWidth
       parentElementId={element.id}

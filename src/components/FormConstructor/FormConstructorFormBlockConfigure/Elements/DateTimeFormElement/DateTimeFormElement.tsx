@@ -1,21 +1,17 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import { DateTime } from '@consta/uikit/DateTime'
 
-import type { DataTimeProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IDataTimeFormElement } from './types'
 
 export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
-  const [dataTimeProps, setDataTimeProps] = useState<DataTimeProps>()
-  const [timeValue, setTimeValue] = useState<Date>()
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  useLayoutEffect(() => {
-    const dataTimeFormElement = element
-    setDataTimeProps(dataTimeFormElement.props.props)
-  }, [element])
+  const [timeValue, setTimeValue] = useState<Date>()
 
   return (
     <SelectableLayer
@@ -23,11 +19,11 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.DataTime}>
       <DateTime
-        {...dataTimeProps}
+        {...props}
         value={timeValue}
-        multiplicityHours={dataTimeProps ? Number(dataTimeProps.multiplicityHours) : undefined}
-        multiplicityMinutes={dataTimeProps ? Number(dataTimeProps.multiplicityMinutes) : undefined}
-        multiplicitySeconds={dataTimeProps ? Number(dataTimeProps.multiplicitySeconds) : undefined}
+        multiplicityHours={props ? Number(props.multiplicityHours) : undefined}
+        multiplicityMinutes={props ? Number(props.multiplicityMinutes) : undefined}
+        multiplicitySeconds={props ? Number(props.multiplicitySeconds) : undefined}
         onChange={setTimeValue}
       />
     </SelectableLayer>
