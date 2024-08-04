@@ -1,10 +1,9 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-import type { IFormConstructor, ILayoutElement } from '../../../coreTypes'
-import { layuoutAdapter } from '../initialState'
+import type { IFormConstructor } from '../../../coreTypes'
 
 export const addNewPage = (state: IFormConstructor, { payload }: PayloadAction<newPagePayload>) => {
-  const { newPageId, pageLayout } = payload
+  const { newPageId } = payload
   const pagesCount = state.pages.length
 
   state.pages = [
@@ -15,10 +14,8 @@ export const addNewPage = (state: IFormConstructor, { payload }: PayloadAction<n
     },
   ]
   state.numberOfPages = pagesCount + 1
-  layuoutAdapter.addOne(state.allElements, pageLayout)
 }
 
 interface newPagePayload {
   newPageId: string
-  pageLayout: ILayoutElement
 }
