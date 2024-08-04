@@ -1,9 +1,9 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
 import { List, ListBox } from '@consta/uikit/ListCanary'
 
-import type { ItemList, ListProps } from '../../../coreTypes'
+import type { ItemList } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IListFormElement } from './types'
@@ -26,24 +26,19 @@ const items: ItemList[] = [
   },
 ]
 export const ListFormElement: FC<IListFormElement> = ({ element }) => {
-  const [ListProps, setListProps] = useState<ListProps>()
-
-  useLayoutEffect(() => {
-    const ListFormElement = element
-    setListProps(ListFormElement.props.props)
-  }, [element])
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.List}>
-      {ListProps?.withListBox === true ? (
-        <ListBox form={ListProps.form} shadow={true} border={true}>
-          <List {...ListProps} />
+      {props?.withListBox === true ? (
+        <ListBox form={props.form} shadow={true} border={true}>
+          <List {...props} />
         </ListBox>
       ) : (
-        <List items={items} {...ListProps} />
+        <List items={items} {...props} />
       )}
     </SelectableLayer>
   )

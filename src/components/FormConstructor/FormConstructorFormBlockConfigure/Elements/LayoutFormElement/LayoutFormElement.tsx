@@ -3,19 +3,18 @@ import { Layout } from '@consta/uikit/Layout'
 
 import type { LayoutElementStyles } from '../../../coreTypes'
 import { ElementTypes, FormGroupsDictTypes } from '../../../coreTypes'
-import { formInstanceSelector, useAppSelector } from '../../../store'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ILayoutFormElement } from './types'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
-  const formInstance = useAppSelector(formInstanceSelector(element.instanceId, 'Layout'))
-  const layoutProps = formInstance?.props.props
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  const style = getStyles(layoutProps?.styles)
+  const style = getStyles(props?.styles)
   return (
-    <Layout className={layoutProps?.className} {...layoutProps?.constaProps} style={style}>
+    <Layout className={props?.className} {...props?.constaProps} style={style}>
       <SelectableLayer
         parentElementId={element.id}
         elementType={FormGroupsDictTypes.Layout}

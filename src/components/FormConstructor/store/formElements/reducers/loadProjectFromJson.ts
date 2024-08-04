@@ -25,7 +25,6 @@ export const loadProjectFromJson = (
 
   // state.isGridVisible = newSate.isGridVisible
   state.selectedElement = newSate.selectedElement
-  state.selectedElementProps = newSate.selectedElementProps
   state.instanceManager = newSate.instanceManager
   state.pages = newSate.pages
   state.numberOfPages = newSate.numberOfPages

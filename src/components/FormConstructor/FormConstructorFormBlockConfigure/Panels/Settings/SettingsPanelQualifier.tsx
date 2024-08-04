@@ -32,7 +32,7 @@ import type {
   UnionProps,
 } from '../../../coreTypes'
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../coreTypes'
-import { getInstanceProps, getSelectedElementProps, useAppSelector } from '../../../store'
+import { getSelectedElementPropsSelector, useAppSelector } from '../../../store'
 import { isElementProps } from '../../../utils'
 
 import { AvatarGroupSettings } from './AvatarGroupSettings'
@@ -567,7 +567,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
 
 export const SettingPanelQualifier: FC = () => {
   const { selectedElement } = useAppSelector(state => state.formConstructor)
-  const selectedElementProps = useAppSelector(getSelectedElementProps)
+  const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
 
   return selectedElement && selectedElementProps ? (
     <div className={`${styles.elementSettings} m-t-s`}>

@@ -1,10 +1,17 @@
 import type { ISelectedElement, UnionProps } from '../../../../coreTypes'
-import { setInstanceProps, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  getSelectedElementPropsSelector,
+  setInstanceProps,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../store'
 
 import type { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
 
 export const usePaddingHandlers = () => {
-  const { selectedElementProps, selectedElement } = useAppSelector(state => state.formConstructor)
+  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
+
   const dispatch = useAppDispatch()
 
   if (!selectedElementProps) {

@@ -22,10 +22,10 @@ export {
 } from './formElementsSelectors'
 export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
 export {
+  formInstancePropsSelector,
   formInstanceSelector,
   formInstancesSelector,
-  getInstanceProps,
-  getSelectedElementProps,
+  getSelectedElementPropsSelector,
 } from './formInstanceSelectors'
 export type { ChangeElementLinkCountPayload } from './instanceElements'
 export {

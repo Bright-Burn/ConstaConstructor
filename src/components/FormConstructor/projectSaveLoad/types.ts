@@ -5,7 +5,6 @@ import type {
   IGroupElement,
   IPageOfLayout,
   ISelectedElement,
-  UnionProps,
 } from '../coreTypes'
 import type { Values } from '../utils'
 
@@ -20,33 +19,22 @@ export const ProjectSaveWays = {
 export type ProjectSaveWays = Values<typeof ProjectSaveWays>
 
 export interface ProjectData {
-  project: IFormConstructor & { isGridVisible: boolean }
+  project: IFormConstructorToSave & { isGridVisible: boolean }
   name: string
   description: string
 }
-interface IFormConstructor {
+interface IFormConstructorToSave {
   allElements: (IFormElement | IGroupElement)[]
   elementInstances: FormInstance<AllElementTypes>[]
   selectedElement: ISelectedElement | null
-  selectedElementProps: UnionProps | null
 
-  pages: IPageOfLayout[]
-  selectedPageId: string
-  numberOfPages: number
-}
-export interface IFormConstructorSerializable {
-  allElements: (IFormElement | IGroupElement)[]
-  selectedElement: ISelectedElement | null
-  selectedElementProps: UnionProps | null
-
-  isGridVisible: boolean
   pages: IPageOfLayout[]
   selectedPageId: string
   numberOfPages: number
 }
 
 export interface ProjectDataSerializable {
-  project: IFormConstructorSerializable
+  project: IFormConstructorToSave
   name: string
   description: string
 }

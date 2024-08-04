@@ -13,13 +13,6 @@ import type { IPlaceholderFormElement } from './types'
 import style from './styles.module.css'
 
 export const PlaceholderFormElement: FC<IPlaceholderFormElement> = ({ element }) => {
-  const [placeholderProps, setPlaceholderProps] = useState<PlaceholderProps>()
-
-  useLayoutEffect(() => {
-    const placeholderFormElement = element.props
-    setPlaceholderProps(placeholderFormElement.props)
-  }, [element])
-
   return (
     <SelectableLayerFitSpace
       parentElementId={element.id}

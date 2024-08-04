@@ -9,7 +9,6 @@ import { DragNDropField } from '@consta/uikit/DragNDropField'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { simpleFormProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
@@ -18,13 +17,6 @@ import type { ISimpleForm } from './types'
 import css from './styles.module.css'
 
 export const SimpleForm: FC<ISimpleForm> = ({ element }) => {
-  const [, setFormProps] = useState<simpleFormProps>()
-
-  useLayoutEffect(() => {
-    const simpleFormElement = element.props
-    setFormProps(simpleFormElement.props)
-  }, [element])
-
   return (
     <SelectableLayerFullWidth
       parentElementId={element.id}

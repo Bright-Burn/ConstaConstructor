@@ -1,19 +1,14 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
 import { Badge } from '@consta/uikit/Badge'
 
-import type { BadgeProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IBadgeFormElement } from './types'
 
 export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
-  const [badgeProps, setbadgeProps] = useState<BadgeProps>()
-
-  useLayoutEffect(() => {
-    setbadgeProps(element.props.props)
-  }, [element])
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   return (
     <SelectableLayer
@@ -21,9 +16,9 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Badge}>
       <Badge
-        {...badgeProps}
-        iconLeft={badgeProps?.iconLeft ? Icons[badgeProps.iconLeft] : undefined}
-        iconRight={badgeProps?.iconRight ? Icons[badgeProps.iconRight] : undefined}
+        {...props}
+        iconLeft={props?.iconLeft ? Icons[props.iconLeft] : undefined}
+        iconRight={props?.iconRight ? Icons[props.iconRight] : undefined}
       />
     </SelectableLayer>
   )

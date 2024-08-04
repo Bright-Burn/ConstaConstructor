@@ -1,10 +1,8 @@
 import type { FC } from 'react'
-import { useLayoutEffect, useState } from 'react'
 import { Bar } from '@consta/charts/Bar'
 import { Card } from '@consta/uikit/Card'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 
-import type { cardWithChartProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { SelectableLayerFullWidth } from '../../SelectableLayer/'
 
@@ -14,13 +12,6 @@ import type { ICardWithBarChart } from './types'
 import css from './styles.module.css'
 
 export const CardWithBarChart: FC<ICardWithBarChart> = ({ element }) => {
-  const [cardProps, setCardProps] = useState<cardWithChartProps>()
-
-  useLayoutEffect(() => {
-    const cardFormElement = element.props
-    setCardProps(cardFormElement.props)
-  }, [element])
-
   const PATTERN_MAP = {
     ПВ: {
       type: 'line',

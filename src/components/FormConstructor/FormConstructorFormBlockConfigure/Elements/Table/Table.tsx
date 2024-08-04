@@ -1,10 +1,10 @@
 import type { FC } from 'react'
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { GridApi } from 'ag-grid-community'
 import { AgGridReact } from 'ag-grid-react'
 
-import type { TableProps } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayerFullWidth } from '../../SelectableLayer'
 
 import type { ITable } from './types'
@@ -15,7 +15,8 @@ import style from './styles.module.css'
 
 export const Table: FC<ITable> = ({ element }) => {
   const gridRef = useRef<GridApi | null>(null)
-  const [tableProps, setTableProps] = useState<TableProps>()
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
+
   const result: { field: string }[] = []
 
   const [rowData, setRowData] = useState([
@@ -31,12 +32,12 @@ export const Table: FC<ITable> = ({ element }) => {
   ])
 
   const updateRow = (columnDefs: { field: string }[]) => {
-    if (tableProps?.row) {
+    if (props?.row) {
       const someName: Record<string, string> = {}
       columnDefs.forEach(cd => {
         someName[cd.field] = 'Item'
       })
-      const newArray = new Array(tableProps.row).fill(someName)
+      const newArray = new Array(props.row).fill(someName)
       setRowData(newArray)
     }
   }
@@ -45,24 +46,20 @@ export const Table: FC<ITable> = ({ element }) => {
     if (gridRef.current) gridRef.current.sizeColumnsToFit()
   }
 
-  useLayoutEffect(() => {
-    setTableProps(element.props.props)
-  }, [element])
-
   useEffect(() => {
-    if (tableProps?.row && rowData.length !== tableProps.row) {
+    if (props?.row && rowData.length !== props.row) {
       updateRow(columnDefs)
       return
     }
-    if (tableProps?.column && columnDefs.length !== tableProps.column) {
-      for (let i = 1; i <= tableProps.column; i++) {
+    if (props?.column && columnDefs.length !== props.column) {
+      for (let i = 1; i <= props.column; i++) {
         result.push({ field: `Header${i}` })
       }
       const newColumns = [...result]
       setColumnDefs(newColumns)
       updateRow(newColumns)
     }
-  }, [tableProps])
+  }, [props])
 
   useEffect(() => {
     sizeToFit()
@@ -84,7 +81,7 @@ export const Table: FC<ITable> = ({ element }) => {
           onFirstDataRendered={() => {
             sizeToFit()
           }}
-          {...tableProps}
+          {...props}
         />
       </div>
     </SelectableLayerFullWidth>

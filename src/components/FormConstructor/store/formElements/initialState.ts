@@ -50,7 +50,6 @@ export const initialState: IFormConstructor = {
   elementInstances: formInstanceAdapter.getInitialState(),
   instanceManager: {},
   selectedElement: null,
-  selectedElementProps: null,
   draggableElement: null,
   pages: initialPages,
   numberOfPages: initialNumberPage,
