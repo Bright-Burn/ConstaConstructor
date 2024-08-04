@@ -34,11 +34,3 @@ export const setInstanceProps =
       )
     }
   }
-
-/**
- * Управляет текущими инстансами
- */
-export const manageInstanceLinkForElement =
-  (payloads: ChangeElementLinkCountPayload[]) => (dispatch: AppDispatch) => {
-    dispatch(formConstructorSlice.actions.changeElementLinkCount(payloads))
-  }
