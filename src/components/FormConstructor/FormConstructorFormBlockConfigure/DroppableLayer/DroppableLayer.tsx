@@ -39,7 +39,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   }, [])
 
   const dispatch = useAppDispatch()
-  const { handleOnDropBaseComponent } = useDropBaseComponent()
+  const handleOnDropBaseComponent = useDropBaseComponent()
 
   const handleOnDrop = (event: React.DragEvent) => {
     // stopPropagation должен оставаться закомменченным,
