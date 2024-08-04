@@ -9,7 +9,7 @@ import { getElementById, getElementsOnLayer } from '../formElementsSelectors'
 import { formConstructorSlice } from '../formElementsSlice'
 import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../payload'
 
-import { deleteFormElement } from './deleteFormElements'
+import { deleteFormElementHistory } from './deleteFormElements'
 import { isDragFormElement, isDragGroupElement } from './dragElemGuards'
 import { manageInstanceLinkForElement } from './instanceActions'
 import type { ChangeElementLinkCountPayload } from './types'
@@ -64,7 +64,7 @@ export const addNewFormElement =
     dispatch(
       pushHistoryElement(() => {
         elementsToAdd.forEach(elem => {
-          dispatch(deleteFormElement(elem.id, false))
+          dispatch(deleteFormElementHistory(elem.id))
         })
       }),
     )
@@ -100,7 +100,7 @@ export const copyFormElementLink =
     dispatch(
       pushHistoryElement(() => {
         newElements.forEach(elem => {
-          dispatch(deleteFormElement(elem.id, false))
+          dispatch(deleteFormElementHistory(elem.id))
         })
       }),
     )
@@ -138,7 +138,7 @@ export const addFormElementWithDefaultInstance =
     dispatch(
       pushHistoryElement(() => {
         elements.forEach(elem => {
-          dispatch(deleteFormElement(elem.id, false))
+          dispatch(deleteFormElementHistory(elem.id))
         })
       }),
     )

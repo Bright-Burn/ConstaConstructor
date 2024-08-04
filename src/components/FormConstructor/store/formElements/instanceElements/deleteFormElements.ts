@@ -6,55 +6,82 @@ import { selectAll, selectById } from '../layoutAdapterSelectors'
 
 import type { ChangeElementLinkCountPayload } from './types'
 
-export const deleteFormElement =
-  (id: string, withHistory: boolean = true) =>
-  (dispatch: AppDispatch, getState: () => RootState) => {
-    const state = getState()
-    const map = new Map<string, (IGroupElement | IFormElement)[]>()
-    const elementForDelete = selectById(state, id)
+const deleteElementFormById = (id: string, state: RootState) => {
+  const parentIdElemeMap = new Map<string, (IGroupElement | IFormElement)[]>()
+  const elementForDelete = selectById(state, id)
 
-    if (!elementForDelete) return
-    const allElements = selectAll(state)
+  if (!elementForDelete) {
+    return {
+      elementsForDelete: [],
+      instancReferencesToDelete: [],
+    }
+  }
+  const allElements = selectAll(state)
 
-    allElements.forEach(el => {
-      if (el.parentId && map.get(el.parentId)) {
-        map.set(el.parentId, [...(map.get(el.parentId) ?? []), el])
-      } else if (el.parentId) {
-        map.set(el.parentId, [el])
+  allElements.forEach(el => {
+    if (el.parentId && parentIdElemeMap.get(el.parentId)) {
+      parentIdElemeMap.set(el.parentId, [...(parentIdElemeMap.get(el.parentId) ?? []), el])
+    } else if (el.parentId) {
+      parentIdElemeMap.set(el.parentId, [el])
+    }
+  })
+
+  const getElementsForDelete = (parent: IFormElement | IGroupElement) => {
+    let elemsForDelete: (IFormElement | IGroupElement)[] = []
+    const arrForDelete = parentIdElemeMap.get(parent.id)
+
+    arrForDelete?.forEach(el => {
+      if (parentIdElemeMap.get(el.id)) {
+        elemsForDelete = [...elemsForDelete, ...getElementsForDelete(el)]
       }
+
+      elemsForDelete.push(el)
     })
 
-    const getElementsForDelete = (parent: IFormElement | IGroupElement) => {
-      let elemsForDelete: (IFormElement | IGroupElement)[] = []
-      const arrForDelete = map.get(parent.id)
+    return elemsForDelete
+  }
+  const elementsForDelete = [elementForDelete, ...getElementsForDelete(elementForDelete)]
+  const instancReferencesToDelete: ChangeElementLinkCountPayload[] = elementsForDelete.map(
+    element => {
+      return {
+        id: element.instanceId,
+        type: 'DEC',
+      }
+    },
+  )
+  return {
+    elementsForDelete,
+    instancReferencesToDelete,
+  }
+}
 
-      arrForDelete?.forEach(el => {
-        if (map.get(el.id)) {
-          elemsForDelete = [...elemsForDelete, ...getElementsForDelete(el)]
-        }
-
-        elemsForDelete.push(el)
-      })
-
-      return elemsForDelete
-    }
-    const elementsForDelete = [elementForDelete, ...getElementsForDelete(elementForDelete)]
-    const instancReferencesToDelete: ChangeElementLinkCountPayload[] = elementsForDelete.map(
-      element => {
-        return {
-          id: element.instanceId,
-          type: 'DEC',
-        }
-      },
-    )
+/**
+ * Действие пользователя - удалить элемент
+ * @param id Идентифкатор элемента
+ */
+export const deleteFormElement =
+  (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const state = getState()
+    const { instancReferencesToDelete, elementsForDelete } = deleteElementFormById(id, state)
     dispatch(formConstructorSlice.actions.changeElementLinkCount(instancReferencesToDelete))
     const idsForDelete = elementsForDelete.map(el => el.id)
     dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
+    dispatch(
+      pushHistoryElement(() => {
+        dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsForDelete))
+      }),
+    )
+  }
 
-    withHistory &&
-      dispatch(
-        pushHistoryElement(() => {
-          dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsForDelete))
-        }),
-      )
+/**
+ * Обратное действие на добавление элемента - удалить элемент
+ * @param id Идентифкатор элемента
+ */
+export const deleteFormElementHistory =
+  (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const state = getState()
+    const { instancReferencesToDelete, elementsForDelete } = deleteElementFormById(id, state)
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(instancReferencesToDelete))
+    const idsForDelete = elementsForDelete.map(el => el.id)
+    dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
   }
