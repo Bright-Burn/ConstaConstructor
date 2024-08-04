@@ -35,6 +35,7 @@ export {
 export type { AddElementsWithInstancesPayload } from './payload'
 export {
   loadProjectFromFile,
+  loadProjectFromStorage,
   saveProjectToFile,
   saveProjectToMemoryStorage,
 } from './projectSaveLoadActions'

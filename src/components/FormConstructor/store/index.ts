@@ -27,6 +27,7 @@ export {
   getSelectedElementPropsSelector,
   getSelectedPageId,
   loadProjectFromFile,
+  loadProjectFromStorage,
   reorderFormElement,
   saveModuleToFile,
   saveProjectToFile,

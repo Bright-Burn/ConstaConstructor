@@ -2,6 +2,7 @@ import type { IFormConstructor } from '../../coreTypes'
 import type { FormConstructorToSave, SaveProjectIntent } from '../../projectSaveLoad'
 import { ProjectSaveWays, saveProjectData } from '../../projectSaveLoad'
 import type { AppDispatch, RootState } from '../setupStore'
+import { ViewerSlice } from '../Viewer'
 
 import { formConstructorSlice } from './formElementsSlice'
 import { selectAllInstances } from './formInstanceSelectors'
@@ -13,6 +14,12 @@ import type { SaveNewProject } from './payload'
 export const loadProjectFromFile = (project: FormConstructorToSave) => (dispatch: AppDispatch) => {
   dispatch(formConstructorSlice.actions.loadProjectFromJson(formConstructorSaveToState(project)))
 }
+
+export const loadProjectFromStorage =
+  (project: FormConstructorToSave) => (dispatch: AppDispatch) => {
+    dispatch(formConstructorSlice.actions.loadProjectFromJson(formConstructorSaveToState(project)))
+    dispatch(ViewerSlice.actions.showGrid(false))
+  }
 
 export const saveProjectToFile =
   (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
