@@ -32,6 +32,7 @@ export {
   saveModuleToFile,
   saveProjectToFile,
   saveProjectToHtml,
+  selectedElementSelector,
   setDraggableElement,
   setInstanceProps,
   setSelectedElement,

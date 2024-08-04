@@ -19,6 +19,7 @@ export {
   getFormConstructor,
   getFormElAsMap,
   getSelectedPageId,
+  selectedElementSelector,
 } from './formElementsSelectors'
 export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
 export {
