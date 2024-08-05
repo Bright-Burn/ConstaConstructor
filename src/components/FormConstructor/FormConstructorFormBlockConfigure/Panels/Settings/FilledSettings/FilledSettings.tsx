@@ -1,53 +1,49 @@
 import React from 'react'
-import type { IconComponent } from '@consta/icons/Icon'
 import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
 import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Text } from '@consta/uikit/Text'
 
-import type {
-  ButtonElement,
-  ButtonProps,
-  TextFieldElement,
-  TextFieldProps,
-  UnionProps,
-  UserElement,
-  UserProps,
-} from '../../../../coreTypes'
+import type { BrandButtonProps, BrandTextFieldProps, BrandUserProps } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
+import { isElementProps } from '../../../../utils'
+
+import type { FilledSettingsType, fillType } from './types'
 
 import style from './styles.module.css'
-
-type fillType = {
-  name: string
-  icon: IconComponent
-}
 
 const fillValues = [
   { name: 'default', icon: IconMaxHeight },
   { name: 'filled', icon: IconMaxWidth },
 ]
-interface IFilledSettings {
-  selectedElementProps: ButtonProps | TextFieldProps | UserProps
-  selectedElement: ButtonElement | TextFieldElement | UserElement
-  element: 'Button' | 'TextField' | 'User'
-}
-export const FilledSettings: React.FC<IFilledSettings> = ({
-  selectedElementProps,
-  selectedElement,
-  element,
-}) => {
+
+/*Компонент нуждается в перепроетировании*/
+export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props }) => {
   const dispatch = useAppDispatch()
 
   function onFilledChange(value: fillType | null): void {
-    const newProps: UnionProps = {
-      props: { ...selectedElementProps, filled: value?.name === 'filled' },
-      type: element,
+    const isFilled = value?.name === 'filled'
+    if (isElementProps<BrandButtonProps>(props, props.type)) {
+      const newProps: BrandButtonProps = {
+        props: { ...props.props, filled: isFilled },
+        type: props.type,
+      }
+      dispatch(setInstanceProps(elementId, newProps))
+    } else if (isElementProps<BrandTextFieldProps>(props, props.type)) {
+      const newProps: BrandTextFieldProps = {
+        props: { ...props.props, filled: isFilled },
+        type: props.type,
+      }
+      dispatch(setInstanceProps(elementId, newProps))
+    } else if (isElementProps<BrandUserProps>(props, props.type)) {
+      const newProps: BrandUserProps = {
+        props: { ...props.props, filled: isFilled },
+        type: props.type,
+      }
+      dispatch(setInstanceProps(elementId, newProps))
     }
-
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
   }
-  const filled = selectedElementProps.filled
+  const filledValue = props.props.filled
     ? { name: 'filled', icon: IconMaxHeight }
     : { name: 'default', icon: IconMaxWidth }
 
@@ -61,7 +57,7 @@ export const FilledSettings: React.FC<IFilledSettings> = ({
         onlyIcon={true}
         view="ghost"
         aria-label="Ширина"
-        value={filled}
+        value={filledValue}
         items={fillValues}
         getItemLabel={item => item.name}
         getItemIcon={item => item.icon}

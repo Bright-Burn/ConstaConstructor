@@ -5,7 +5,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { ButtonElement, ButtonProps } from '../../../../coreTypes'
+import type { BrandButtonProps, ButtonElement, ButtonProps } from '../../../../coreTypes'
 import { Icons, icons } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
 import { IconSelectConsta } from '../IconsSelect'
@@ -17,7 +17,7 @@ import { forms, sizes, views } from './UserConstants'
 import styles from './styles.module.css'
 
 type ButtonSettingsType = {
-  selectedElementProps: ButtonProps
+  selectedElementProps: BrandButtonProps
   selectedElement: ButtonElement
 }
 
@@ -34,7 +34,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
     onChangeSize,
     onChangeView,
     onChangeForm,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedElementProps.props, selectedElement)
 
   return (
     <div className={styles.buttonPropsSettings}>
@@ -95,16 +95,12 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
           }}
         />
         <div className={styles.rowSettings}>
-          <FilledSettings
-            selectedElement={selectedElement}
-            selectedElementProps={selectedElementProps}
-            element="Button"
-          />
+          <FilledSettings elementId={selectedElement.elementId} props={selectedElementProps} />
         </div>
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.icon}
-            disabled={selectedElementProps.onlyIcon}
+            disabled={selectedElementProps.props.onlyIcon}
             label="iconLeft"
             onChangeIcon={onChangeIcon}
           />
@@ -112,7 +108,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.iconR}
-            disabled={selectedElementProps.onlyIcon}
+            disabled={selectedElementProps.props.onlyIcon}
             label="iconRight"
             onChangeIcon={onChangeIconR}
           />

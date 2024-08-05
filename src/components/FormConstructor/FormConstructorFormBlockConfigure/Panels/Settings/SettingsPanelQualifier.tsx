@@ -17,12 +17,9 @@ import type {
   BrandLayoutElementPropsStyles,
   BrandListProps,
   BrandOwnChoiceGroupProps,
-  BrandPrototypeRectangleProps,
-  BrandPrototypeTextProps,
   BrandRadioButtonProps,
   BrandSelectProps,
   BrandSwitchProps,
-  BrandTableProps,
   BrandTabsElementProps,
   BrandTagProps,
   BrandTextElementProps,
@@ -53,11 +50,9 @@ import { InformerSettings } from './InformerSettings'
 import { LayoutSettings } from './LayoutSettings'
 import { ListSettings } from './ListSettings'
 import { NotFound } from './NotFound'
-import { PrototypeSettings } from './PrototypeSettings'
 import { RadioButtonSettings } from './RadioButtonSettings'
 import { SelectSettings } from './SelectSettings'
 import { SwitchSettings } from './SwitchSettings'
-import { TableSettings } from './TableSettings'
 import { TabsSettings } from './TabsSettings'
 import { TagSettings } from './TagSettings'
 import { TextFieldSettings } from './TextFieldSettings'
@@ -150,25 +145,6 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
       return (
         <>
           <BadgeSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
-          <BaseSettings />
-        </>
-      )
-    }
-    case FormElementDictTypes.Table: {
-      if (!isElementProps<BrandTableProps>(selectedElementProps, 'Table')) {
-        return
-      }
-      const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
-      }
-
-      return (
-        <>
-          <TableSettings
             selectedElementProps={selectedElementProps.props}
             selectedElement={element}
           />
@@ -280,7 +256,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
       return (
         <>
           <TextFieldSettings
-            selectedElementProps={selectedElementProps.props}
+            selectedElementProps={selectedElementProps}
             selectedElement={element}
           />
           <BaseSettings />
@@ -336,10 +312,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
 
       return (
         <>
-          <ButtonSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <ButtonSettings selectedElementProps={selectedElementProps} selectedElement={element} />
           <BaseSettings />
         </>
       )
@@ -437,41 +410,6 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
         </>
       )
     }
-    case FormElementDictTypes.PrototypeTextElement: {
-      if (!isElementProps<BrandPrototypeTextProps>(selectedElementProps, 'PrototypeTextElement')) {
-        return
-      }
-      const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
-      }
-      return (
-        <PrototypeSettings
-          selectedElementProps={selectedElementProps.props}
-          selectedElement={element}
-        />
-      )
-    }
-    case FormElementDictTypes.PrototypeRectangleElement: {
-      if (
-        !isElementProps<BrandPrototypeRectangleProps>(
-          selectedElementProps,
-          'PrototypeRectangleElement',
-        )
-      ) {
-        return
-      }
-      const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
-      }
-      return (
-        <PrototypeSettings
-          selectedElementProps={selectedElementProps.props}
-          selectedElement={element}
-        />
-      )
-    }
     case FormElementDictTypes.BreadcrumbsForm: {
       if (!isElementProps<BrandBreadcrumbsProps>(selectedElementProps, 'BreadcrumbsFormElement')) {
         return
@@ -501,10 +439,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
 
       return (
         <>
-          <UserSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <UserSettings selectedElementProps={selectedElementProps} selectedElement={element} />
           <BaseSettings />
         </>
       )

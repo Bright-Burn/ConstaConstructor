@@ -1,5 +1,4 @@
 import type { FC } from 'react'
-import React from 'react'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
