@@ -32,7 +32,7 @@ export {
   reorderFormElement,
   saveBaseComponent,
   saveProjectToFile,
-  saveProjectToHtml,
+  saveProjectToHTML,
   selectedElementSelector,
   setDraggableElement,
   setInstanceProps,

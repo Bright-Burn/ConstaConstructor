@@ -34,6 +34,19 @@ export const saveProjectToFile =
     saveProjectData(intent)
   }
 
+export const saveProjectToHTML =
+  (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const state = getState()
+
+    const intent: SaveProjectIntent = {
+      description: project.description,
+      name: project.name,
+      saveWay: ProjectSaveWays.HTML,
+      project: formConstructorToSave(state),
+    }
+    saveProjectData(intent)
+  }
+
 /**
  * Формирует объект для сохраенения из текущего состояния
  */
@@ -71,6 +84,5 @@ const formConstructorSaveToState = (save: FormConstructorToSave): IFormConstruct
     draggableElement: null,
     selectedElement: null,
   }
-
   return formConstructor
 }
