@@ -20,7 +20,7 @@ export const useProject = () => {
       const file = target.files[0]
       readFile(file).then(json => {
         //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-        const parsedFile: any = JsonHelper.parse(json)
+        const parsedFile = JsonHelper.parse(json)
         const project = parsedFile.project as FormConstructorToSave
         dispatch(loadProjectFromFile(project))
       })

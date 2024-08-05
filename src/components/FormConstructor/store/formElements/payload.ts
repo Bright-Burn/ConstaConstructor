@@ -8,7 +8,8 @@ import type {
 
 export interface AddNewElementPayload {
   element: DraggbleElement<IFormElement | IGroupElement>
-  parent: string
+  /*Идентикатор нового радительского элемента, в ктороый происходит добавление*/
+  newParentElementId: string
 }
 
 /**

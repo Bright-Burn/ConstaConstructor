@@ -24,7 +24,7 @@ export const addNewPage = () => (dispatch: AppDispatch) => {
   const newPageId = uuid()
   const layoutElement = { ...initialLayout, id: uuid(), parentId: newPageId }
 
-  dispatch(addNewFormElement([{ element: layoutElement, parent: newPageId }]))
+  dispatch(addNewFormElement([{ element: layoutElement, newParentElementId: newPageId }]))
   dispatch(formConstructorSlice.actions.addNewPage({ newPageId }))
 }
 

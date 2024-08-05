@@ -2,6 +2,7 @@ import type { FC } from 'react'
 import React, { useEffect } from 'react'
 
 import type { IFormElement, IGroupElement } from '../../coreTypes'
+import type { AddNewElementPayload } from '../../store'
 import {
   addFormElementWithDefaultInstance,
   addNewFormElement,
@@ -13,7 +14,7 @@ import {
 } from '../../store'
 import { FormGroupsDict } from '../FormGroupDict'
 
-import type { AddNewElementPayload, IDroppableLayer } from './types'
+import type { IDroppableLayer } from './types'
 import { useDropBaseComponent } from './useDropBaseComponent'
 
 import styles from './styles.module.css'
@@ -57,9 +58,9 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
     }
     if (draggableElement) {
       if ('isOuter' in draggableElement && draggableElement.isOuter && outerParentId) {
-        addElements([{ element: draggableElement, parent: outerParentId }])
+        addElements([{ element: draggableElement, newParentElementId: outerParentId }])
       } else {
-        addElements([{ element: draggableElement, parent: parentElementId }])
+        addElements([{ element: draggableElement, newParentElementId: parentElementId }])
       }
     }
 

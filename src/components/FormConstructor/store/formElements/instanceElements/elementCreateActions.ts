@@ -9,7 +9,7 @@ import { getElementById, getElementsOnLayer } from '../formElementsSelectors'
 import { formConstructorSlice } from '../formElementsSlice'
 import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../payload'
 
-import { deleteFormElementHistory } from './deleteFormElements'
+import { deleteFormElementRollback } from './deleteFormElements'
 import { isDragFormElement, isDragGroupElement } from './dragElemGuards'
 import type { ChangeElementLinkCountPayload } from './types'
 
@@ -28,7 +28,7 @@ export const addNewFormElement =
 
     addPayloads.forEach(payload => {
       //Новый порядковый номер - количество всех дочерних элементов в слое + 1
-      const order = getSiblingsCount(getState(), payload.parent) + 1
+      const order = getSiblingsCount(getState(), payload.newParentElementId) + 1
       const payloadElement = payload.element
       const instanceId = uuid()
 
@@ -47,7 +47,7 @@ export const addNewFormElement =
           isOuter: payloadElement.isOuter,
           instanceId,
           order,
-          parentId: payload.parent,
+          parentId: payload.newParentElementId,
           type: elementType,
         })
         // Если элемент является обычным
@@ -56,7 +56,7 @@ export const addNewFormElement =
         elementsToAdd.push({
           id: payloadElement.id,
           instanceId,
-          parentId: payload.parent,
+          parentId: payload.newParentElementId,
           order,
           type: elementType,
         })
@@ -73,7 +73,7 @@ export const addNewFormElement =
     dispatch(
       pushHistoryElement(() => {
         elementsToAdd.forEach(elem => {
-          dispatch(deleteFormElementHistory(elem.id))
+          dispatch(deleteFormElementRollback(elem.id))
         })
       }),
     )
@@ -117,7 +117,7 @@ export const copyFormElementLink =
     dispatch(
       pushHistoryElement(() => {
         newElements.forEach(elem => {
-          dispatch(deleteFormElementHistory(elem.id))
+          dispatch(deleteFormElementRollback(elem.id))
         })
       }),
     )
@@ -161,7 +161,7 @@ export const addFormElementWithDefaultInstance =
     dispatch(
       pushHistoryElement(() => {
         elements.forEach(elem => {
-          dispatch(deleteFormElementHistory(elem.id))
+          dispatch(deleteFormElementRollback(elem.id))
         })
       }),
     )
