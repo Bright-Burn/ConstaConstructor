@@ -4,7 +4,6 @@ export {
   changeActivePage,
   changePageName,
   deletePage,
-  saveModuleToFile,
   saveProjectToHtml,
   setDraggableElement,
 } from './formElementsActions'
@@ -38,4 +37,5 @@ export {
   loadProjectFromStorage,
   saveProjectToFile,
 } from './projectSaveLoadActions'
+export { saveBaseComponent } from './saveBaseComponentAction'
 export { setSelectedElement } from './setSelectedElementAction'

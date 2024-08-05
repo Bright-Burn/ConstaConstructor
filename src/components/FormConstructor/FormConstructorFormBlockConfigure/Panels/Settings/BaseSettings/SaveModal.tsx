@@ -4,7 +4,7 @@ import { Modal } from '@consta/uikit/Modal'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import { saveModuleToFile, useAppDispatch, useAppSelector } from '../../../../store'
+import { saveBaseComponent, useAppDispatch, useAppSelector } from '../../../../store'
 
 import style from './styles.module.css'
 interface ISaveModal {
@@ -20,7 +20,7 @@ export const SaveModal: React.FC<ISaveModal> = ({ onCloseModal, isModalOpen }) =
   }
   const onSaveModule = () => {
     if (selectedElement && moduleName) {
-      dispatch(saveModuleToFile(selectedElement.elementId, moduleName))
+      dispatch(saveBaseComponent(selectedElement.elementId, moduleName))
     }
   }
 

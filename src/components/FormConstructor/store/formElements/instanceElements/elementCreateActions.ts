@@ -1,12 +1,13 @@
 import uuid from 'react-uuid'
 
 import type { AllElementTypes, FormInstance, IFormElement, IGroupElement } from '../../../coreTypes'
-import { deepCopyElements } from '../../../utils'
+import { deepCopyElements, getAllChildrenElements } from '../../../utils'
 import { pushHistoryElement } from '../../history'
 import type { AppDispatch, RootState } from '../../setupStore'
 import { getSiblingsCount } from '../formElementsActions'
-import { getElementById, getElementsOnLayer } from '../formElementsSelectors'
+import { getElementById } from '../formElementsSelectors'
 import { formConstructorSlice } from '../formElementsSlice'
+import { selectAll } from '../layoutAdapterSelectors'
 import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../payload'
 
 import { deleteFormElementRollback } from './deleteFormElements'
@@ -87,6 +88,8 @@ export const copyFormElementLink =
     const state = getState()
     //Верхнеуровневый элемент для копирования, может быть как группирующим, так и обычным
     const upperElementToCopy = getElementById(elementId)(state)
+    // Получаем все элементы из состояния
+    const allElements = selectAll(state)
     // Массив для хранения копируемых элементов
     const treeElements: (IFormElement | IGroupElement)[] = []
 
@@ -95,7 +98,7 @@ export const copyFormElementLink =
       const orderForUpperElement =
         getSiblingsCount(getState(), upperElementToCopy.parentId || '') + 1
       // Получаем дочерние элементы элемента, который нужно скопировать
-      const elements = getElementsOnLayer(upperElementToCopy.id)(state)
+      const elements = getAllChildrenElements(upperElementToCopy, allElements)
       // Добавляем элемент и его дочерние элементы в массив
       treeElements.push({ ...upperElementToCopy, order: orderForUpperElement }, ...elements)
     }
@@ -103,12 +106,10 @@ export const copyFormElementLink =
     const newElements = deepCopyElements(treeElements)
     // Диспатчим действия для изменения количества ссылок
     dispatch(
-      dispatch(
-        formConstructorSlice.actions.changeElementLinkCount(
-          newElements.map(element => {
-            return { id: element.instanceId, type: 'INC' }
-          }),
-        ),
+      formConstructorSlice.actions.changeElementLinkCount(
+        newElements.map(element => {
+          return { id: element.instanceId, type: 'INC' }
+        }),
       ),
     )
     // Диспатчим действия для добавления новых элементов
@@ -160,7 +161,7 @@ export const addFormElementWithDefaultInstance =
     //Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {
-        elements.forEach(elem => {
+        elementsWithOrder.forEach(elem => {
           dispatch(deleteFormElementRollback(elem.id))
         })
       }),

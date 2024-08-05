@@ -1,4 +1,5 @@
 export { deepCopyElements } from './deepCopyElementsTree'
+export { getAllChildrenElements } from './getAllChildrenElements'
 export { getElementsOnLayer } from './getElementsOnLayer'
 export { getNewGroupParentLevel } from './getNewGroupParentLevel'
 export { isElementProps } from './quard'
