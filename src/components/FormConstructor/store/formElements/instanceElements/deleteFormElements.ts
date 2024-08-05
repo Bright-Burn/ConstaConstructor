@@ -16,7 +16,7 @@ const deleteElementFormById = (id: string, state: RootState) => {
   if (!elementForDelete) {
     return {
       elementsForDelete: [],
-      instancReferencesToDelete: [],
+      instanceReferencesToDelete: [],
     }
   }
   // Получаем все элементы из состояния
@@ -32,26 +32,14 @@ const deleteElementFormById = (id: string, state: RootState) => {
       parentElementIdElemMap.set(el.parentId, [el])
     }
   })
-  // Рекурсивно получаем список всех элементов для удаления, включая вложенные элементы
 
-  const getElementsForDelete = (parent: IFormElement | IGroupElement) => {
-    let elemsForDelete: (IFormElement | IGroupElement)[] = []
-    const arrForDelete = parentElementIdElemMap.get(parent.id)
-
-    arrForDelete?.forEach(el => {
-      if (parentElementIdElemMap.get(el.id)) {
-        elemsForDelete = [...elemsForDelete, ...getElementsForDelete(el)]
-      }
-
-      elemsForDelete.push(el)
-    })
-
-    return elemsForDelete
-  }
   // Формируем список элементов для удаления
-  const elementsForDelete = [elementForDelete, ...getElementsForDelete(elementForDelete)]
+  const elementsForDelete = [
+    elementForDelete,
+    ...getElementsForDelete(elementForDelete, parentElementIdElemMap),
+  ]
   // Формируем список ссылок на инстансы для удаления
-  const instancReferencesToDelete: ChangeElementLinkCountPayload[] = elementsForDelete.map(
+  const instanceReferencesToDelete: ChangeElementLinkCountPayload[] = elementsForDelete.map(
     element => {
       return {
         id: element.instanceId,
@@ -61,8 +49,32 @@ const deleteElementFormById = (id: string, state: RootState) => {
   )
   return {
     elementsForDelete,
-    instancReferencesToDelete,
+    instanceReferencesToDelete,
   }
+}
+
+/**
+ * Рекурсивная функция поиска элементов для удаления
+ * @param parent Удаляемый элемент - родитель
+ * @param parentElementIdElemMap Карта для хранения связи id родительского элемента - элемент
+ * @returns Элементы для удаления
+ */
+const getElementsForDelete = (
+  parent: IFormElement | IGroupElement,
+  parentElementIdElemMap: Map<string, (IFormElement | IGroupElement)[]>,
+) => {
+  let elemsForDelete: (IFormElement | IGroupElement)[] = []
+  const arrForDelete = parentElementIdElemMap.get(parent.id)
+
+  arrForDelete?.forEach(el => {
+    if (parentElementIdElemMap.get(el.id)) {
+      elemsForDelete = [...elemsForDelete, ...getElementsForDelete(el, parentElementIdElemMap)]
+    }
+
+    elemsForDelete.push(el)
+  })
+
+  return elemsForDelete
 }
 
 /**
@@ -72,8 +84,8 @@ const deleteElementFormById = (id: string, state: RootState) => {
 export const deleteFormElement =
   (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
-    const { instancReferencesToDelete, elementsForDelete } = deleteElementFormById(id, state)
-    dispatch(formConstructorSlice.actions.changeElementLinkCount(instancReferencesToDelete))
+    const { instanceReferencesToDelete, elementsForDelete } = deleteElementFormById(id, state)
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(instanceReferencesToDelete))
     const idsForDelete = elementsForDelete.map(el => el.id)
     dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
     dispatch(
@@ -87,11 +99,11 @@ export const deleteFormElement =
  * Обратное действие на добавление элемента - удалить элемент
  * @param id Идентифкатор элемента
  */
-export const deleteFormElementHistory =
+export const deleteFormElementRollback =
   (id: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
-    const { instancReferencesToDelete, elementsForDelete } = deleteElementFormById(id, state)
-    dispatch(formConstructorSlice.actions.changeElementLinkCount(instancReferencesToDelete))
+    const { instanceReferencesToDelete, elementsForDelete } = deleteElementFormById(id, state)
+    dispatch(formConstructorSlice.actions.changeElementLinkCount(instanceReferencesToDelete))
     const idsForDelete = elementsForDelete.map(el => el.id)
     dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
   }

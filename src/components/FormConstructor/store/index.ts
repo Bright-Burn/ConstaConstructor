@@ -8,6 +8,7 @@ export {
 } from './baseComponentsItems'
 export type { ChangeElementLinkCountPayload } from './formElements'
 export type { AddElementsWithInstancesPayload } from './formElements'
+export type { AddNewElementPayload } from './formElements'
 export {
   addFormElementWithDefaultInstance,
   addNewFormElement,

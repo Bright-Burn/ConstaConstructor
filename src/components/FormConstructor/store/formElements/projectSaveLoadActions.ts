@@ -34,18 +34,6 @@ export const saveProjectToFile =
     saveProjectData(intent)
   }
 
-export const saveProjectToMemoryStorage =
-  (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const state = getState()
-    const intent: SaveProjectIntent = {
-      description: project.description,
-      name: project.name,
-      saveWay: ProjectSaveWays.FILE,
-      project: formConstructorToSave(state),
-    }
-    saveProjectData(intent)
-  }
-
 /**
  * Формирует объект для сохраенения из текущего состояния
  */

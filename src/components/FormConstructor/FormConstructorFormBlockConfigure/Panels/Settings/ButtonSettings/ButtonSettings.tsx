@@ -5,7 +5,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { BrandButtonProps, ButtonElement, ButtonProps } from '../../../../coreTypes'
+import type { BrandButtonProps, ButtonElement } from '../../../../coreTypes'
 import { Icons, icons } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
 import { IconSelectConsta } from '../IconsSelect'

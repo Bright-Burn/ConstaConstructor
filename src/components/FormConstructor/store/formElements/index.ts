@@ -32,11 +32,10 @@ export {
   deleteFormElement,
   setInstanceProps,
 } from './instanceElements'
-export type { AddElementsWithInstancesPayload } from './payload'
+export type { AddElementsWithInstancesPayload, AddNewElementPayload } from './payload'
 export {
   loadProjectFromFile,
   loadProjectFromStorage,
   saveProjectToFile,
-  saveProjectToMemoryStorage,
 } from './projectSaveLoadActions'
 export { setSelectedElement } from './setSelectedElementAction'
