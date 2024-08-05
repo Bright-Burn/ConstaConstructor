@@ -51,7 +51,6 @@ export const HotKeyPaneNote: React.FC<IHotkeys> = ({ onClose }) => {
       action: 'Удалить',
       win: (
         <div>
-          <Button label="ctrl" view="ghost" className="m-r-s" />{' '}
           <Button label="delete" view="ghost" />
         </div>
       ),
