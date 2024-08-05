@@ -30,7 +30,7 @@ export {
   loadProjectFromFile,
   loadProjectFromStorage,
   reorderFormElement,
-  saveModuleToFile,
+  saveBaseComponent,
   saveProjectToFile,
   saveProjectToHtml,
   selectedElementSelector,

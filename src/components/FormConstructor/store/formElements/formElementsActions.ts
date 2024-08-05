@@ -1,15 +1,12 @@
 import uuid from 'react-uuid'
 
 import type { IFormElement, IGroupElement } from '../../coreTypes'
-import { saveToFile } from '../../utils'
-import type { IBaseComponent } from '../baseComponentsItems'
 import type { AppDispatch, RootState } from '../setupStore'
 
 import { formConstructorSlice } from './formElementsSlice'
-import { formInstancesSelector } from './formInstanceSelectors'
 import { initialLayout } from './initialState'
 import { addNewFormElement, deleteFormElement } from './instanceElements'
-import { selectAll, selectById } from './layoutAdapterSelectors'
+import { selectAll } from './layoutAdapterSelectors'
 import type { SetNewElementDraggableElem } from './payload'
 
 export const deletePage =
@@ -50,56 +47,6 @@ export const getSiblingsCount = (state: RootState, parentId: string) => {
   })
   return elements
 }
-
-export const saveModuleToFile =
-  (id: string, fileName: string) => (dispatch: AppDispatch, getState: () => RootState) => {
-    const state = getState()
-    const allElements = selectAll(state)
-    const selectedEl = selectById(state, id)
-    const map = new Map<string, (IGroupElement | IFormElement)[]>()
-    //TODO нужно проверить есть ли выбранный элемент
-    allElements.forEach(el => {
-      if (el.parentId && map.get(el.parentId)) {
-        map.set(el.parentId, [...(map.get(el.parentId) ?? []), el])
-      } else if (el.parentId) {
-        map.set(el.parentId, [el])
-      }
-    })
-
-    const getIdsForSave = (parentId: string) => {
-      let idsForSave: (IGroupElement | IFormElement)[] = []
-      const arrForSave = map.get(parentId)
-
-      arrForSave?.forEach(el => {
-        if (map.get(el.id)) {
-          idsForSave = [...idsForSave, ...getIdsForSave(el.id)]
-        }
-
-        idsForSave.push(el)
-      })
-
-      return idsForSave
-    }
-    let arrForSave = [...getIdsForSave(id)]
-
-    if (selectedEl) {
-      const parentEl = { ...selectedEl, parentId: undefined }
-      arrForSave = [parentEl, ...arrForSave]
-    }
-
-    const instancesToSave = formInstancesSelector(arrForSave.map(elem => elem.instanceId))(state)
-
-    const saveObj: IBaseComponent = {
-      id: uuid(),
-      name: fileName,
-      childrenElementList: arrForSave,
-      description: fileName,
-      instances: instancesToSave,
-    }
-
-    saveToFile(JSON.stringify(saveObj), `${fileName}_BaseComponent.json`)
-    //это просто экшн
-  }
 
 export const saveProjectToHtml =
   (projectName: string | null) => (dispatch: AppDispatch, getState: () => RootState) => {
