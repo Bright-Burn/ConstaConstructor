@@ -7,20 +7,21 @@ import { selectAll, selectById } from '../layoutAdapterSelectors'
 import type { ChangeElementLinkCountPayload } from './types'
 
 const deleteElementFormById = (id: string, state: RootState) => {
-  /*Взаимосвязь id родительского элемента - элемент*/
+  // Функция для удаления элемента по id из состояния
+  // Создаем карту для хранения связи id родительского элемента - элемент
   const parentElementIdElemMap = new Map<string, (IGroupElement | IFormElement)[]>()
-  /*Верхнеуровневый элемент для удаления*/
+  // Получаем элемент для удаления по id
   const elementForDelete = selectById(state, id)
-
+  // Если элемент для удаления не найден, возвращаем пустые массивы
   if (!elementForDelete) {
     return {
       elementsForDelete: [],
       instancReferencesToDelete: [],
     }
   }
+  // Получаем все элементы из состояния
   const allElements = selectAll(state)
-
-  /*Заполняем взаимосвязь id родительского элемента - элемент*/
+  // Заполняем карту связей id родительского элемента - элемент
   allElements.forEach(el => {
     if (el.parentId && parentElementIdElemMap.get(el.parentId)) {
       parentElementIdElemMap.set(el.parentId, [
@@ -31,8 +32,8 @@ const deleteElementFormById = (id: string, state: RootState) => {
       parentElementIdElemMap.set(el.parentId, [el])
     }
   })
+  // Рекурсивно получаем список всех элементов для удаления, включая вложенные элементы
 
-  /*Рекурсивная функция, формирующая список всех эелемнтов для удаления, с учетом возможной вложенности*/
   const getElementsForDelete = (parent: IFormElement | IGroupElement) => {
     let elemsForDelete: (IFormElement | IGroupElement)[] = []
     const arrForDelete = parentElementIdElemMap.get(parent.id)
@@ -47,11 +48,9 @@ const deleteElementFormById = (id: string, state: RootState) => {
 
     return elemsForDelete
   }
-
-  /*Список элементов для удаления*/
+  // Формируем список элементов для удаления
   const elementsForDelete = [elementForDelete, ...getElementsForDelete(elementForDelete)]
-
-  /*Список инстансов для удаления*/
+  // Формируем список ссылок на инстансы для удаления
   const instancReferencesToDelete: ChangeElementLinkCountPayload[] = elementsForDelete.map(
     element => {
       return {
