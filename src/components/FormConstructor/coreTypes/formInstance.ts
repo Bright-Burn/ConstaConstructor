@@ -4,32 +4,24 @@ import type { BrandBadgeProps } from './badgeTypes'
 import type { BrandBreadcrumbsProps } from './BreadcrumbsTypes'
 import type { BrandButtonGroupProps, BrandButtonProps } from './buttonTypes'
 import type { BrandCardElementPropsStyles } from './cardTypes'
-import type { BrandCardWithChartProps } from './cardWithBarChartTypes'
 import type { BrandCheckboxProps } from './checkboxTypes'
 import type { BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
 import type { BrandComboboxProps } from './comboBoxTypes'
-import type { BrandDashboardProps } from './dashboardTypes'
 import type { BrandDataTimeProps } from './dataTimeTypes'
 import type { BrandDatePickerProps } from './datePickerTypes'
-import type { BrandFooterWithSwitchProps } from './footerWithSwitchTypes'
 import type { BrandIconProps } from './iconTypes'
 import type { BrandInformerElementProps } from './informerTypes'
 import type { BrandLayoutElementPropsStyles } from './layoutTypes'
 import type { BrandListProps } from './ListTypes'
-import type { BrandPlaceholderProps } from './placeholderTypes'
-import type { BrandPrototypeRectangleProps, BrandPrototypeTextProps } from './prototypeTypes'
 import type { BrandRadioButtonProps } from './radioButtonTypes'
 import type { BrandSelectProps } from './selectTypes'
-import type { BrandSimpleFormProps } from './simpleFormTypes'
 import type { BrandSwitchProps } from './SwitchTypes'
-import type { BrandTableProps } from './tableTypes'
 import type { BrandTabsElementProps } from './tabsTypes'
 import type { BrandTagProps } from './tagTypes'
 import type { BrandTextFieldProps } from './textFieldTypes'
 import type { BrandTextElementProps } from './textTypes'
 import type { AllElementTypes, FormElementTypes, FormGroupsTypes } from './types'
 import type { BrandUserProps } from './userTypes'
-import type { BrandWizardFromProps } from './wizardFormTypes'
 type emptyObj = Record<string, never>
 
 export type FormInstance<T extends AllElementTypes> = {
@@ -50,60 +42,39 @@ export type FormInstance<T extends AllElementTypes> = {
                 ? BrandTextElementProps
                 : emptyObj & T extends 'TextField'
                   ? BrandTextFieldProps
-                  : emptyObj & T extends 'Table'
-                    ? BrandTableProps
-                    : emptyObj & T extends 'List'
-                      ? BrandListProps
-                      : emptyObj & T extends 'RadioButton'
-                        ? BrandRadioButtonProps
-                        : emptyObj & T extends 'Switch'
-                          ? BrandSwitchProps
-                          : emptyObj & T extends 'DatePicker'
-                            ? BrandDatePickerProps
-                            : emptyObj & T extends 'ComboBox'
-                              ? BrandComboboxProps
-                              : emptyObj & T extends 'SelectForm'
-                                ? BrandSelectProps
-                                : emptyObj & T extends 'DataTime'
-                                  ? BrandDataTimeProps
-                                  : emptyObj & T extends 'User'
-                                    ? BrandUserProps
-                                    : emptyObj & T extends 'Icon'
-                                      ? BrandIconProps
-                                      : emptyObj & T extends 'Tag'
-                                        ? BrandTagProps
-                                        : emptyObj & T extends 'BreadcrumbsFormElement'
-                                          ? BrandBreadcrumbsProps
-                                          : emptyObj & T extends 'ChoiceGroup'
-                                            ? BrandOwnChoiceGroupProps
-                                            : emptyObj & T extends 'Placeholder'
-                                              ? BrandPlaceholderProps
-                                              : emptyObj & T extends 'CardWithBarChart'
-                                                ? BrandCardWithChartProps
-                                                : emptyObj & T extends 'Dashboard'
-                                                  ? BrandDashboardProps
-                                                  : emptyObj & T extends 'SimpleForm'
-                                                    ? BrandSimpleFormProps
-                                                    : emptyObj & T extends 'WizardForm'
-                                                      ? BrandWizardFromProps
-                                                      : emptyObj & T extends 'FooterWithSwitch'
-                                                        ? BrandFooterWithSwitchProps
-                                                        : emptyObj &
-                                                              T extends 'PrototypeTextElement'
-                                                          ? BrandPrototypeTextProps
-                                                          : emptyObj &
-                                                                T extends 'PrototypeRectangleElement'
-                                                            ? BrandPrototypeRectangleProps
-                                                            : emptyObj & T extends 'AvatarGroup'
-                                                              ? BrandAvatarGroupProps
-                                                              : T extends 'Layout'
-                                                                ? BrandLayoutElementPropsStyles
-                                                                : emptyObj & T extends 'Card'
-                                                                  ? BrandCardElementPropsStyles
-                                                                  : emptyObj &
-                                                                        T extends 'ButtonModal'
-                                                                    ? BrandButtonGroupProps
-                                                                    : never
+                  : emptyObj & T extends 'List'
+                    ? BrandListProps
+                    : emptyObj & T extends 'RadioButton'
+                      ? BrandRadioButtonProps
+                      : emptyObj & T extends 'Switch'
+                        ? BrandSwitchProps
+                        : emptyObj & T extends 'DatePicker'
+                          ? BrandDatePickerProps
+                          : emptyObj & T extends 'ComboBox'
+                            ? BrandComboboxProps
+                            : emptyObj & T extends 'SelectForm'
+                              ? BrandSelectProps
+                              : emptyObj & T extends 'DataTime'
+                                ? BrandDataTimeProps
+                                : emptyObj & T extends 'User'
+                                  ? BrandUserProps
+                                  : emptyObj & T extends 'Icon'
+                                    ? BrandIconProps
+                                    : emptyObj & T extends 'Tag'
+                                      ? BrandTagProps
+                                      : emptyObj & T extends 'BreadcrumbsFormElement'
+                                        ? BrandBreadcrumbsProps
+                                        : emptyObj & T extends 'ChoiceGroup'
+                                          ? BrandOwnChoiceGroupProps
+                                          : emptyObj & T extends 'AvatarGroup'
+                                            ? BrandAvatarGroupProps
+                                            : T extends 'Layout'
+                                              ? BrandLayoutElementPropsStyles
+                                              : emptyObj & T extends 'Card'
+                                                ? BrandCardElementPropsStyles
+                                                : emptyObj & T extends 'ButtonModal'
+                                                  ? BrandButtonGroupProps
+                                                  : never
 }
 
 export type UnionProps =

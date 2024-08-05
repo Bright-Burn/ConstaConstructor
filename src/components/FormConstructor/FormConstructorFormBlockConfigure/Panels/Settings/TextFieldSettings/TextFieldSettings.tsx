@@ -6,7 +6,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { TextFieldElement, TextFieldProps } from '../../../../coreTypes'
+import type { BrandTextFieldProps, TextFieldElement } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
 
 import { useItemsHandlers } from './ItemsService'
@@ -15,7 +15,7 @@ import { forms, labelPosition, sizes, status, types, view } from './TextFieldCon
 import styles from './styles.module.css'
 
 type TextFieldSettingsType = {
-  selectedElementProps: TextFieldProps
+  selectedElementProps: BrandTextFieldProps
   selectedElement: TextFieldElement
 }
 
@@ -24,7 +24,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
   selectedElement,
 }) => {
   const { itemsProps, onChangeTextField, onChangeSwitch } = useItemsHandlers(
-    selectedElementProps,
+    selectedElementProps.props,
     selectedElement,
   )
 
@@ -67,11 +67,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
           value={itemsProps.size || 's'}
           onChange={onChangeTextField('size')}
         />
-        <FilledSettings
-          selectedElement={selectedElement}
-          selectedElementProps={selectedElementProps}
-          element="TextField"
-        />
+        <FilledSettings elementId={selectedElement.elementId} props={selectedElementProps} />
       </div>
       <div className={styles.rowSettings}>
         <Select

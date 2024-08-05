@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { IconDownload } from '@consta/icons/IconDownload'
 import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
@@ -13,17 +13,6 @@ import {
   useBaseComponentsSelector,
 } from '../../../../store'
 import { readFile } from '../../../../utils'
-import {
-  cardMock,
-  dashboardMock,
-  footerWithSwitchMock,
-  placeholderMock,
-  PrototypeRectangleMock,
-  PrototypeTextMock,
-  simpleFormMock,
-  TableMock,
-  wizardFormMock,
-} from '../../../Elements'
 
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 
@@ -31,27 +20,8 @@ import styles from './styles.module.css'
 
 export const BaseComponents: FC = () => {
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
-  const baseComponentMocks = [
-    placeholderMock,
-    cardMock,
-    dashboardMock,
-    simpleFormMock,
-    wizardFormMock,
-    footerWithSwitchMock,
-    TableMock,
-    PrototypeTextMock,
-    PrototypeRectangleMock,
-  ]
 
   const dispatch = useBaseComponentsDispatch()
-  useEffect(() => {
-    //Инициализация дефолтных компонент
-    baseComponentMocks.forEach(mock => {
-      if (!baseComponents.some(component => component.id === mock.id)) {
-        dispatch(addBaseElement({ baseComponent: mock }))
-      }
-    })
-  }, [baseComponentMocks, baseComponents])
 
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const target = e.target as EventTarget & HTMLInputElement

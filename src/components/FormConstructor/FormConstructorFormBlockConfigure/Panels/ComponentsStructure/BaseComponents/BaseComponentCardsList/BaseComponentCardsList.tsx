@@ -5,7 +5,6 @@ import type { IBaseComponent } from '../../../../../store'
 
 import type { GroupCardsTypes } from './BaseComponentGroupCard'
 import { BaseComponentGroupCard, GroupCards } from './BaseComponentGroupCard'
-import { componentsDict } from './ComponentsDict'
 import type { IBaseComponentCardsList } from './types'
 
 export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseComponents }) => {
@@ -17,11 +16,7 @@ export const BaseComponentCardsList: FC<IBaseComponentCardsList> = ({ baseCompon
     const map = new Map<GroupCardsTypes, IBaseComponent[]>()
 
     baseComponents.forEach(bc => {
-      if (componentsDict[bc.id]) {
-        map.set(componentsDict[bc.id], [...(map.get(componentsDict[bc.id]) || []), bc])
-      } else {
-        map.set('Others', [...(map.get('Others') || []), bc])
-      }
+      map.set('Others', [...(map.get('Others') || []), bc])
     })
 
     setGroupComponentsMap(map)

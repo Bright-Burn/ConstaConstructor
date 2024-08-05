@@ -8,7 +8,6 @@ import type {
   ButtonGroupProps,
   ISelectedElement,
 } from '../../../../coreTypes'
-import { setSelectedElement, useAppDispatch } from '../../../../store'
 
 import styles from './styles.module.css'
 
@@ -22,8 +21,6 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({
   selectedElement,
 }) => {
   const [props, setProps] = useState<BrandButtonGroupProps>()
-
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
     const buttonGroupProps: BrandButtonGroupProps = {

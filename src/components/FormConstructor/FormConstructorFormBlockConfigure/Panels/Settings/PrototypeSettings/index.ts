@@ -1,1 +1,0 @@
-export { PrototypeSettings } from './PrototypeSettings'

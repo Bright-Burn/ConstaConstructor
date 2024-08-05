@@ -35,6 +35,7 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
           size: 'm',
           name: 'ChoiceGroupExample',
           items,
+          width: 'default',
           className: '',
           baseProps: {},
         },

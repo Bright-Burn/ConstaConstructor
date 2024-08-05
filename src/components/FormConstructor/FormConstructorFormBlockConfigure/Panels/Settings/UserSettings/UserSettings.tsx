@@ -3,7 +3,7 @@ import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { UserElement, UserProps } from '../../../../coreTypes'
+import type { BrandUserProps, UserElement } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
 
 import { useItemsHandlers } from './ItemsService'
@@ -12,7 +12,7 @@ import { sizes, status, views } from './UserConstants'
 import styles from './styles.module.css'
 
 type UserSettingsType = {
-  selectedElementProps: UserProps
+  selectedElementProps: BrandUserProps
   selectedElement: UserElement
 }
 
@@ -26,7 +26,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
     onChangeStatus,
     onChangeView,
     onChangeSize,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedElementProps.props, selectedElement)
 
   return (
     <div className={styles.settingsBlockUser}>
@@ -55,11 +55,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
         />
       </div>
       <div className={styles.settingsBlockRow}>
-        <FilledSettings
-          selectedElement={selectedElement}
-          selectedElementProps={selectedElementProps}
-          element="User"
-        />
+        <FilledSettings elementId={selectedElement.elementId} props={selectedElementProps} />
         <Select
           className={styles.elementWidth}
           getItemKey={(item: string) => item}

@@ -21,7 +21,6 @@ import type { IFormElementList } from './ListTypes'
 import type { IFormElementRadioButton } from './radioButtonTypes'
 import type { IFormElementSelect } from './selectTypes'
 import type { IFormElementSwitch } from './SwitchTypes'
-import type { IFormElementTable } from './tableTypes'
 import type { IFormElementTabs } from './tabsTypes'
 import type { IFormElementTagProps } from './tagTypes'
 import type { IFormElementTextField } from './textFieldTypes'
@@ -59,13 +58,6 @@ export const FormElementDictTypes = {
   Checkbox: 'Checkbox',
   Text: 'Text',
   TextField: 'TextField',
-  Placeholder: 'Placeholder',
-  CardWithBarChart: 'CardWithBarChart',
-  Dashboard: 'Dashboard',
-  SimpleForm: 'SimpleForm',
-  WizardForm: 'WizardForm',
-  FooterWithSwitch: 'FooterWithSwitch',
-  Table: 'Table',
   List: 'List',
   RadioButton: 'RadioButton',
   Switch: 'Switch',
@@ -73,8 +65,6 @@ export const FormElementDictTypes = {
   ComboBox: 'ComboBox',
   Select: 'SelectForm',
   DataTime: 'DataTime',
-  PrototypeTextElement: 'PrototypeTextElement',
-  PrototypeRectangleElement: 'PrototypeRectangleElement',
   BreadcrumbsForm: 'BreadcrumbsFormElement',
   User: 'User',
   Icon: 'Icon',
@@ -142,7 +132,6 @@ export type FormElementUnion =
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
-  | IFormElementTable
   | IFormElementList
   | IFormElementRadioButton
   | IFormElementSwitch
