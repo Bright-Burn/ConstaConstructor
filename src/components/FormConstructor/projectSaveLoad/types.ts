@@ -12,6 +12,7 @@ import type { Values } from '../utils'
 export const ProjectSaveWays = {
   STORAGE: 'STORAGE',
   FILE: 'FILE',
+  HTML: 'HTML',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

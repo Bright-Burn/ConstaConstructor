@@ -5,7 +5,7 @@ import type { FormConstructorToSave } from '../../../projectSaveLoad'
 import {
   loadProjectFromFile,
   saveProjectToFile,
-  saveProjectToHtml,
+  saveProjectToHTML,
   useAppDispatch,
 } from '../../../store'
 import { readFile } from '../../../utils'
@@ -28,13 +28,14 @@ export const useProject = () => {
   }
 
   const onSaveProject = () => {
+    //TODO почему то тут стоит проверка на null, по идее название проекта ведь должно быть всегда
     if (projectName) dispatch(saveProjectToFile({ name: projectName, description: '' }))
   }
   const onChangeProjectName = (value: string | null) => {
     setProjectName(value)
   }
   const saveToHtml = () => {
-    dispatch(saveProjectToHtml(projectName))
+    if (projectName) dispatch(saveProjectToHTML({ name: projectName, description: '' }))
   }
   return { onDownloadProject, onSaveProject, onChangeProjectName, projectName, saveToHtml }
 }
