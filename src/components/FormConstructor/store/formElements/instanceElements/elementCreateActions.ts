@@ -14,33 +14,32 @@ import { isDragFormElement, isDragGroupElement } from './dragElemGuards'
 import type { ChangeElementLinkCountPayload } from './types'
 
 /**
- * Добавляет новый элемент, созадвая новый инстанс - Функционал добавления элемента
+ * Функция добавляет новые элементы и инстансы.
+ * @param addPayloads - Массив с информацией о новых элементах и их родительских слоях.
  */
 export const addNewFormElement =
   (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch, getState: () => RootState) => {
-    /*Список элементов для добавления(отображение)*/
+    //Список элементов для добавления(отображение)
     const elementsToAdd: (IFormElement | IGroupElement)[] = []
-    /*Список пайлоадов на изменение количества ссылок*/
+    // Массив для хранения изменений количества ссылок на элементы
     const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
-    /*Список инстансов для добавления*/
+    // Массив для хранения новых инстансов
     const formInstances: FormInstance<AllElementTypes>[] = []
 
     addPayloads.forEach(payload => {
-      /*Новый порядковый номер - количество всех дочерних элементов в слое + 1*/
+      //Новый порядковый номер - количество всех дочерних элементов в слое + 1
       const order = getSiblingsCount(getState(), payload.parent) + 1
       const payloadElement = payload.element
       const instanceId = uuid()
 
-      /*Доабавляем новый инстанс*/
+      // Добавляем новый инстанс
       formInstances.push({
         id: instanceId,
         props: payload.element.props,
       })
-
-      /*Доабавляем новый пайлоад на количества ссылок*/
+      // Добавляем изменение количества ссылок
       changeLinksCountPayloads.push({ id: instanceId, type: 'INC' })
-
-      /*Доабавляем новый элемент(отображение)*/
+      // Если элемент является группирующим
       if (isDragGroupElement(payloadElement)) {
         const elementType = payloadElement.type
         elementsToAdd.push({
@@ -51,6 +50,7 @@ export const addNewFormElement =
           parentId: payload.parent,
           type: elementType,
         })
+        // Если элемент является обычным
       } else if (isDragFormElement(payloadElement)) {
         const elementType = payloadElement.type
         elementsToAdd.push({
@@ -62,13 +62,14 @@ export const addNewFormElement =
         })
       }
     })
-
-    /*Диспатчем в стор подготовленный данные*/
+    // Диспатчем в стор подготовленный данные
+    // Диспатчим действия для добавления новых элементов
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsToAdd))
+    // Диспатчим действия для изменения количества ссылок
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
+    // Диспатчим действия для добавления новых инстансов
     dispatch(formConstructorSlice.actions.addNewFormInstance(formInstances))
-
-    /*Диспатчем в стор коллбек на отмену изменений*/
+    // Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {
         elementsToAdd.forEach(elem => {
@@ -84,22 +85,23 @@ export const addNewFormElement =
 export const copyFormElementLink =
   (elementId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
-    /*Верхнеуровневый элемент для копирования, может быть как группирующим, так и обычным*/
+    //Верхнеуровневый элемент для копирования, может быть как группирующим, так и обычным
     const upperElementToCopy = getElementById(elementId)(state)
+    // Массив для хранения копируемых элементов
     const treeElements: (IFormElement | IGroupElement)[] = []
 
     if (upperElementToCopy) {
-      /*Новый порядковый номер - количество всех дочерних элементов в слое + 1*/
+      //Новый порядковый номер - количество всех дочерних элементов в слое + 1
       const orderForUpperElement =
         getSiblingsCount(getState(), upperElementToCopy.parentId || '') + 1
+      // Получаем дочерние элементы элемента, который нужно скопировать
       const elements = getElementsOnLayer(upperElementToCopy.id)(state)
+      // Добавляем элемент и его дочерние элементы в массив
       treeElements.push({ ...upperElementToCopy, order: orderForUpperElement }, ...elements)
     }
-
-    /*Производит глубокое копирование ветви с установкой новых id, сохраняя взаимосвязи типа родитель - ребенок*/
+    //Производит глубокое копирование ветви с установкой новых id, сохраняя взаимосвязи типа родитель - ребенок
     const newElements = deepCopyElements(treeElements)
-
-    /*Диспатчем в стор подготовленный данные*/
+    // Диспатчим действия для изменения количества ссылок
     dispatch(
       dispatch(
         formConstructorSlice.actions.changeElementLinkCount(
@@ -109,9 +111,9 @@ export const copyFormElementLink =
         ),
       ),
     )
+    // Диспатчим действия для добавления новых элементов
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElements))
-
-    /*Диспатчем в стор коллбек на отмену изменений*/
+    //Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {
         newElements.forEach(elem => {
@@ -127,18 +129,16 @@ export const copyFormElementLink =
 export const addFormElementWithDefaultInstance =
   (payload: AddElementsWithInstancesPayload) =>
   (dispatch: AppDispatch, getState: () => RootState) => {
-    /*Список элементов - отображение*/
+    //Список элементов - отображение
     const elements = payload.elements
-    /*Список инстансов*/
+    //Список инстансов
     const instances = payload.instances
-    /*Идентифкатор слоя, куда происходит вставка*/
+    //Идентифкатор слоя, куда происходит вставка
     const insertionParentId = payload.parentId
     const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
-
-    /*Новый порядковый номер - количество всех дочерних элементов в слое + 1*/
+    //Новый порядковый номер - количество всех дочерних элементов в слое + 1
     const orderForParentElem = getSiblingsCount(getState(), insertionParentId) + 1
-
-    /*Устаналиваем правильный parentId и order в структуре*/
+    //Добавляем порядковые номера и правильный parentId  к каждому элементу
     const elementsWithOrder = elements.map(elem => {
       return {
         ...elem,
@@ -146,19 +146,18 @@ export const addFormElementWithDefaultInstance =
         order: !elem.parentId ? orderForParentElem : elem.order,
       }
     })
+
     elementsWithOrder.forEach(elem => {
       changeLinksCountPayloads.push({
         id: elem.instanceId,
         type: 'INC',
       })
     })
-
-    /*Диспатчем в стор подготовленный данные*/
+    //Диспатчем в стор подготовленный данные
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     dispatch(formConstructorSlice.actions.addNewFormInstance(instances))
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsWithOrder))
-
-    /*Диспатчем в стор коллбек на отмену изменений*/
+    //Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {
         elements.forEach(elem => {
