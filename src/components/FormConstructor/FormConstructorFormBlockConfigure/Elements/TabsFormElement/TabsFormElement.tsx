@@ -1,27 +1,15 @@
 import type { FC } from 'react'
-import React, { useLayoutEffect, useState } from 'react'
 import { Tabs } from '@consta/uikit/Tabs'
 
-import type { tabItemType, TabsElementProps } from '../../../coreTypes'
+import type { tabItemType } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ITabsFormElement } from './types'
 
 export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
-  const [tabsProps, setTabsProps] = useState<TabsElementProps>({
-    className: '',
-    baseProps: {},
-    items: [
-      { id: 0, label: 'tab1' },
-      { id: 1, label: 'tab2' },
-    ],
-  })
-
-  useLayoutEffect(() => {
-    const tabsFormElementWithProps = element
-    setTabsProps(tabsFormElementWithProps.props.props)
-  }, [element])
+  const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   const getItemLeftIcon = (item: tabItemType) => item.iconLeft
 
@@ -30,7 +18,7 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Tabs}>
-      <Tabs {...tabsProps} getItemLeftIcon={getItemLeftIcon} onChange={() => {}} />
+      {props ? <Tabs {...props} getItemLeftIcon={getItemLeftIcon} onChange={() => {}} /> : null}
     </SelectableLayer>
   )
 }
