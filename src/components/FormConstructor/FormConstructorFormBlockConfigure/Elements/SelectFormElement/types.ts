@@ -1,5 +1,5 @@
-import type { IFormElementSelect } from '../../../coreTypes'
+import type { IFormElement } from '../../../coreTypes'
 
 export interface ISelectFormElement {
-  element: IFormElementSelect
+  element: IFormElement<'SelectForm'>
 }
