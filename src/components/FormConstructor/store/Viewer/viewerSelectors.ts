@@ -7,3 +7,4 @@ export const getComponentsStructurePanelState = (state: RootState) =>
 export const getSettingsPanelState = (state: RootState) => getViewer(state).settingsPanelState
 export const checkIsGridVisible = (state: RootState) => getViewer(state).isGridVisible
 export const checkViewMode = (state: RootState) => getViewer(state).isViewMode
+export const checkDevMode = (state: RootState) => getViewer(state).devMode

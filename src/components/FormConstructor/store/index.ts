@@ -43,12 +43,14 @@ export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'
 export { useAppDispatch, useAppSelector } from './setupStore'
 export {
+  checkDevMode,
   checkIsGridVisible,
   checkViewMode,
   getComponentsStructurePanelState,
   getSettingsPanelState,
   onSetViewMode,
   toggleComponentsStructurePanel,
+  toggleDevMode,
   toggleGrid,
   togglePanels,
   toggleSettingsPanelState,

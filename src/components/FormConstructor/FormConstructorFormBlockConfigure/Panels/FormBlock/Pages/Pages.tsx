@@ -6,7 +6,9 @@ import { Text } from '@consta/uikit/Text'
 import {
   changeActivePage,
   changePageName,
+  checkDevMode,
   checkIsGridVisible,
+  toggleDevMode,
   toggleGrid,
   useAppDispatch,
   useAppSelector,
@@ -24,6 +26,7 @@ export const Pages = ({ pages }: PagesProps) => {
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
   const isGridVisible = useAppSelector(checkIsGridVisible)
+  const devMode = useAppSelector(checkDevMode)
 
   const changePage = (pageId: string) => {
     dispatch(changeActivePage(pageId))
@@ -40,6 +43,9 @@ export const Pages = ({ pages }: PagesProps) => {
 
   const onClickShowGrid = () => {
     dispatch(toggleGrid())
+  }
+  const onClickDevMode = () => {
+    dispatch(toggleDevMode())
   }
   const visiblePages = pages.slice(0, 7)
   const pagesUnderPopover = pages.slice(7)
@@ -80,6 +86,10 @@ export const Pages = ({ pages }: PagesProps) => {
         />
       </div>
       <div className="container-row align-center ">
+        <Text className="m-r-s" size="s">
+          devmode
+        </Text>
+        <Switch checked={devMode} size="s" onChange={onClickDevMode} />
         <Text className="m-r-s" size="s">
           Сетка
         </Text>
