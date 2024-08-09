@@ -76,8 +76,9 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
+      e.preventDefault()
       const { code, ctrlKey } = e
-      if (code === 'KeyC' && ctrlKey && selectedElement) {
+      if (code === 'KeyD' && ctrlKey && selectedElement) {
         dispatch(copyFormElementLink(selectedElement.elementId))
       }
     }
