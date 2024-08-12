@@ -13,6 +13,7 @@ export {
   getFormConstructor,
   getFormElAsMap,
   getSelectedPageId,
+  sameInstanceElementsIdsSelector,
   selectedElementSelector,
 } from './formElementsSelectors'
 export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
@@ -38,4 +39,6 @@ export {
   saveProjectToHTML,
 } from './projectSaveLoadActions'
 export { saveBaseComponent } from './saveBaseComponentAction'
+export { setSameElementsIdsById } from './setSameElementsIdsById'
 export { setSelectedElement } from './setSelectedElementAction'
+export { updateBaseComponentAction } from './updateBaseComponentAction'

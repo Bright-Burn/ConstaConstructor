@@ -30,13 +30,16 @@ export {
   loadProjectFromFile,
   loadProjectFromStorage,
   reorderFormElement,
+  sameInstanceElementsIdsSelector,
   saveBaseComponent,
   saveProjectToFile,
   saveProjectToHTML,
   selectedElementSelector,
   setDraggableElement,
   setInstanceProps,
+  setSameElementsIdsById,
   setSelectedElement,
+  updateBaseComponentAction,
   updateOrders,
 } from './formElements'
 export { popHistoryElement } from './history'

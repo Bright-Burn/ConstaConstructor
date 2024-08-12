@@ -17,15 +17,5 @@ export const setSelectedElement =
     const element = selectById(getState(), payload.elementId)
     if (element) {
       dispatch(formConstructorSlice.actions.setSelectedElement({ element }))
-      // if (payload.newProps) {
-      //   const prevProps = { ...element.props }
-      //   dispatch(
-      //     pushHistoryElement(() =>
-      //       dispatch(
-      //         formConstructorSlice.actions.setSelectedElement({ element, newProps: prevProps }),
-      //       ),
-      //     ),
-      //   )
-      // }
     }
   }

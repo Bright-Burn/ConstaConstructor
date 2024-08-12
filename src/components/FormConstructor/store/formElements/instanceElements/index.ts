@@ -1,4 +1,4 @@
-export { deleteFormElement } from './deleteFormElements'
+export { deleteFormElement, deleteElementFormById } from './deleteFormElements'
 export {
   addFormElementWithDefaultInstance,
   addNewFormElement,

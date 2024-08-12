@@ -31,9 +31,9 @@ export interface SaveProjectIntent extends ProjectData {
 /**
  * Тип для сохранения и загрузки проекта
  */
-export type FormConstructorToSave = Omit<
+export type FormConstructorToSave = Pick<
   IFormConstructor,
-  'allElements' | 'elementInstances' | 'history' | 'selectedElement' | 'draggableElement'
+  'instanceManager' | 'numberOfPages' | 'pages' | 'selectedPageId'
 > & {
   /*Сохраняем списком*/
   allElements: (IFormElement | IGroupElement)[]

@@ -26,6 +26,11 @@
   /*border-color: rgba(39, 50, 245, 0.8);*/
 }
 
+.sameInstanceElements {
+  outline: 1px solid rgba(245, 39, 39, 0.8);
+  outline-offset: -1px;
+}
+
 .fitSpace {
   flex-grow: 1;
 }
@@ -33,7 +38,8 @@
   outline: 1px dashed #41a3ff;
   outline-offset: -2px;
 }
-.focused:hover:not(:has(.selectedElement)){
+.focused:hover:not(:has(.selectedElement,.sameInstanceElements)){
   outline: 1px dashed #41a3ff;
   outline-offset: -2px;
 }
+

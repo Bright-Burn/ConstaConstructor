@@ -6,6 +6,7 @@ import { Text } from '@consta/uikit/Text'
 import { setDraggableBaseComponent, useBaseComponentsDispatch } from '../../../../../../store'
 
 import type { IBaseComponentCard } from './types'
+import { UpdateBaseComponentButton } from './UpdateBaseComponentButton'
 
 import styles from './styles.module.css'
 
@@ -21,6 +22,7 @@ export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
 
   return (
     <div className={styles.componentCard} draggable={true} onDragStart={onDragFormElementStart}>
+      <UpdateBaseComponentButton baseComponent={baseComponent} />
       <Text className={styles.text} size="xs">
         {baseComponent.description}
       </Text>

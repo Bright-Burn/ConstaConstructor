@@ -13,6 +13,7 @@ import {
   loadProjectFromJson,
   reorderFormElements,
   setDraggableElement,
+  setSameInstanceElementsIds,
   setSelectedElement,
   updateOrders,
 } from './reducers'
@@ -21,6 +22,7 @@ export const formConstructorSlice = createSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
+    setSameInstanceElementsIds,
     changeElementLinkCount,
     updateFormInstance,
     addNewFormInstance,

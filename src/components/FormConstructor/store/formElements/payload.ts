@@ -12,6 +12,11 @@ export interface AddNewElementPayload {
   newParentElementId: string
 }
 
+export type UpdateBaseComponentPayload = {
+  elements: (IFormElement | IGroupElement)[]
+  instances: FormInstance<AllElementTypes>[]
+}
+
 /**
  * При перетаскивание базового компонента используем payload содержащий instance целиком
  */
