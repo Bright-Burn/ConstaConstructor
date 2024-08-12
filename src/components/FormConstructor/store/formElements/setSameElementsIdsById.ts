@@ -24,7 +24,10 @@ export const setSameElementsIdsById =
         .filter(el => el.instanceId === instanceId)
         .map(el => el.id)
 
-      disptch(setSelectedElement(null))
       disptch(formConstructorSlice.actions.setSameInstanceElementsIds(sameInstanceElementsIds))
     }
   }
+
+export const clearSameInstanceIds = () => (dispatch: AppDispatch) => {
+  dispatch(formConstructorSlice.actions.setSameInstanceElementsIds([]))
+}

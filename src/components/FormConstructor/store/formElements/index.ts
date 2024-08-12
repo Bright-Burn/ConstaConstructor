@@ -39,6 +39,6 @@ export {
   saveProjectToHTML,
 } from './projectSaveLoadActions'
 export { saveBaseComponent } from './saveBaseComponentAction'
-export { setSameElementsIdsById } from './setSameElementsIdsById'
+export { setSameElementsIdsById, clearSameInstanceIds } from './setSameElementsIdsById'
 export { setSelectedElement } from './setSelectedElementAction'
 export { updateBaseComponentAction } from './updateBaseComponentAction'

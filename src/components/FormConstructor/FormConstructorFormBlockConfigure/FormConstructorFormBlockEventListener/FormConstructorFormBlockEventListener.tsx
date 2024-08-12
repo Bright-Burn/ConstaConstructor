@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 
 import { JsonHelper } from '../../../../helpers'
 import {
+  clearSameInstanceIds,
   copyFormElementLink,
   deleteFormElement,
   loadProjectFromStorage,
@@ -115,6 +116,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       const { code } = e
       if (code === 'Escape') {
         e.preventDefault()
+        dispatch(clearSameInstanceIds())
       }
     }
 

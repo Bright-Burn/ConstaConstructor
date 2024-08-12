@@ -31,6 +31,7 @@ export {
   loadProjectFromStorage,
   reorderFormElement,
   sameInstanceElementsIdsSelector,
+  clearSameInstanceIds,
   saveBaseComponent,
   saveProjectToFile,
   saveProjectToHTML,
