@@ -38,6 +38,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
       if (code === 'Space' && ctrlKey) {
+        e.preventDefault()
         dispatch(togglePanels())
       }
     }
@@ -45,6 +46,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const onKeyGoBack = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
       if (code === 'KeyZ' && ctrlKey) {
+        e.preventDefault()
         console.log('TODO написать реализацию истории')
         dispatch(popHistoryElement())
       }
@@ -63,6 +65,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const onKeyDown = (e: KeyboardEvent) => {
       const { code } = e
       if (selectedElement && code === 'Delete') {
+        e.preventDefault()
         dispatch(deleteFormElement(selectedElement.elementId))
       }
     }
@@ -78,6 +81,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
       if (code === 'KeyD' && ctrlKey && selectedElement) {
+        e.preventDefault()
         dispatch(copyFormElementLink(selectedElement.elementId))
       }
     }
