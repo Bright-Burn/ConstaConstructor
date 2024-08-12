@@ -6,7 +6,7 @@ import { selectAll, selectById } from '../layoutAdapterSelectors'
 
 import type { ChangeElementLinkCountPayload } from './types'
 
-const deleteElementFormById = (id: string, state: RootState) => {
+export const deleteElementFormById = (id: string, state: RootState) => {
   // Получаем элемент для удаления по id
   const elementForDelete = selectById(state, id)
   // Если элемент для удаления не найден, возвращаем пустые массивы

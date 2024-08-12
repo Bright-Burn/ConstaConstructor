@@ -57,7 +57,7 @@ export const Header: React.FC = () => {
         </FileField>
       </div>
       <ProjectName projectName={projectName} onChangeProjectName={onChangeProjectName} />
-      <div>
+      <div className="container-row">
         <Button
           label="json"
           iconLeft={IconUpload}

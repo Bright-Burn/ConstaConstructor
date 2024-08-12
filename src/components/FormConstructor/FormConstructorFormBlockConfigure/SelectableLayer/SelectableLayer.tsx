@@ -2,7 +2,13 @@ import type { FC } from 'react'
 import React, { useLayoutEffect, useState } from 'react'
 
 import { ElementTypes } from '../../coreTypes'
-import { checkIsGridVisible, setSelectedElement, useAppDispatch, useAppSelector } from '../../store'
+import {
+  checkIsGridVisible,
+  sameInstanceElementsIdsSelector,
+  setSelectedElement,
+  useAppDispatch,
+  useAppSelector,
+} from '../../store'
 import { DragbleLayer } from '../DragbleLayer'
 
 import type { ISelectableLayer } from './types'
@@ -20,6 +26,10 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const { selectedElement } = useAppSelector(state => state.formConstructor)
   const isGridVisible = useAppSelector(checkIsGridVisible)
+
+  const isInSameInstanceElements = useAppSelector(sameInstanceElementsIdsSelector).has(
+    parentElementId,
+  )
 
   const dispatch = useAppDispatch()
 
@@ -46,7 +56,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
     elementTypeUsage === ElementTypes.FormElement
       ? styles.selectableLayerFormElement
       : styles.selectableLayerLayoutElement
-  } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''}`
+  } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''} ${isInSameInstanceElements ? styles.sameInstanceElements : ''}`
   return (
     <div className={containerClass} tabIndex={0} onClick={onClickElement}>
       <DragbleLayer className={containerClass} elId={parentElementId}>

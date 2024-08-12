@@ -57,3 +57,4 @@ export const getInstanceProps = (elementId: string) => (state: RootState) => {
 }
 
 export const selectAllInstances = selectAll
+export const selectInstanceById = selectById

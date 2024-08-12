@@ -175,6 +175,7 @@ export interface IFormConstructor extends IHistory {
   elementInstances: EntityState<FormInstance<AllElementTypes>>
   instanceManager: InstanceManager
   selectedElement: ISelectedElement | null
+  sameInstanceElementsIds: string[]
   draggableElement: DraggbleElement<IFormElement | IGroupElement> | null
 
   pages: IPageOfLayout[]

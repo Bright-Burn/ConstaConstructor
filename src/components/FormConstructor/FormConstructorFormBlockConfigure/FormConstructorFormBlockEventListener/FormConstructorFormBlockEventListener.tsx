@@ -8,6 +8,7 @@ import {
   loadProjectFromStorage,
   onSetViewMode,
   popHistoryElement,
+  setSameElementsIdsById,
   togglePanels,
   useAppDispatch,
   useAppSelector,
@@ -92,6 +93,37 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [selectedElement])
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const { code, ctrlKey } = e
+      if (code === 'KeyR' && ctrlKey) {
+        e.preventDefault()
+        selectedElement && dispatch(setSameElementsIdsById(selectedElement.elementId))
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [selectedElement])
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const { code } = e
+      if (code === 'Escape') {
+        e.preventDefault()
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [])
 
   return <div className={css.formConstructorEventListener}>{children}</div>
 }

@@ -83,6 +83,7 @@ const formConstructorSaveToState = (save: FormConstructorToSave): IFormConstruct
     elementInstances: newElementInstances,
     draggableElement: null,
     selectedElement: null,
+    sameInstanceElementsIds: [],
   }
   return formConstructor
 }

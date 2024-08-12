@@ -37,3 +37,7 @@ export const getFormElAsMap = (state: RootState): Map<string, IFormElement | IGr
 }
 export const getElementById = (id?: string) => (state: RootState) =>
   id ? selectById(state, id) : null
+
+export const sameInstanceElementsIdsSelector = (state: RootState) => {
+  return new Set(state.formConstructor.sameInstanceElementsIds)
+}
