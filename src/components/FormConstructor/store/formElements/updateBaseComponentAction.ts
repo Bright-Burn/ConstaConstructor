@@ -11,6 +11,9 @@ import { UpdateBaseComponentPayload } from './payload'
 import { pushHistoryElement } from '../history'
 import { selectAllInstances } from './formInstanceSelectors'
 
+/**
+ * Выполняет каскадную замену компонетов или группы компонентов(базовый элемент) формы ввода на другую группу компонентов(базовый элемент)
+ */
 export const updateBaseComponentAction =
   (payload: UpdateBaseComponentPayload) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
@@ -21,7 +24,7 @@ export const updateBaseComponentAction =
     // Полезные данные для удаления инстансов и ссылок
     const instanceReferencesToChange: ChangeElementLinkCountPayload[] = []
     // Элементы для удаления
-    const elementsToDelete: (IFormElement | IGroupElement)[] = []
+    const selectedElementsToDelete: (IFormElement | IGroupElement)[] = []
     //Список элементов для 'обновелния'
     const sameInstanceElements = selectAll(state).filter(elem =>
       sameInstanceElementsIds.has(elem.id),
@@ -64,21 +67,28 @@ export const updateBaseComponentAction =
         copiedElem.id,
         state,
       )
+      // Для всех добавляемых элементов формируем payload на изменение количества ссылок с типом DEC
       instanceReferencesToChange.push(...instanceReferencesToDelete)
-      elementsToDelete.push(...elementsForDelete)
+
+      selectedElementsToDelete.push(...elementsForDelete)
     })
 
-    // Для всех добавляемых элементов формируем payload на изменение количества ссылок
+    // Для всех добавляемых элементов формируем payload на изменение количества ссылок с типом INC
     elementsToAdd.forEach(element => {
       instanceReferencesToChange.push({ id: element.instanceId, type: 'INC' })
     })
 
     // Отправляем в стор все накопленные изменения
+    // Добавляем новые элементы
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsToAdd))
+    // Добавляем новые инстансы
     dispatch(formConstructorSlice.actions.addNewFormInstance(instancesToAdd))
-
+    // Изменяем количество ссылок на инстансы - в случае если количество = 0, то инстанс будет удален
     dispatch(formConstructorSlice.actions.changeElementLinkCount(instanceReferencesToChange))
-    dispatch(formConstructorSlice.actions.deleteFormElement(elementsToDelete.map(el => el.id)))
+    // Удаляем старые элементы
+    dispatch(
+      formConstructorSlice.actions.deleteFormElement(selectedElementsToDelete.map(el => el.id)),
+    )
 
     // Очистка
     dispatch(formConstructorSlice.actions.setSameInstanceElementsIds([]))
@@ -90,7 +100,7 @@ export const updateBaseComponentAction =
     const instancesForRollBack = selectAllInstances(state).filter(instance =>
       insatnceIdsForRollbackSet.has(instance.id),
     )
-    const elementsFotRollBack = elementsToDelete
+    const elementsFotRollBack = selectedElementsToDelete
 
     // Обратное действие
     dispatch(
@@ -102,12 +112,13 @@ export const updateBaseComponentAction =
         // Удаляем все, что добавили
         dispatch(formConstructorSlice.actions.deleteFormElement(elementsToAdd.map(el => el.id)))
 
-        // Контроль ссылок
+        // Обратнае действие с типами - все что имело тип INC станет DEC, все что было DEC станет INC
         const changeLinksCountPayloads: ChangeElementLinkCountPayload[] =
           instanceReferencesToChange.map(ref => {
             return { ...ref, type: ref.type === 'INC' ? 'DEC' : 'INC' }
           })
 
+        // Контроль ссылок
         dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
       }),
     )
