@@ -1,7 +1,12 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
 
-import { reorderFormElement, useAppDispatch, useAppSelector } from '../../store'
+import {
+  reorderFormElement,
+  selectedElementSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '../../store'
 
 import type { IDragbleleLayer } from './types'
 
@@ -10,7 +15,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
   const [isDragLeft, setIsDragLeft] = useState(false)
   const [isDragRight, setIsDragRight] = useState(false)
   const dispatch = useAppDispatch()
-  const selectedEl = useAppSelector(state => state.formConstructor.selectedElement)
+  const selectedElement = useAppSelector(selectedElementSelector)
   const onDragStart = (event: React.DragEvent) => {
     event.stopPropagation()
     event.dataTransfer.setData('draggedElId', elId)
@@ -27,7 +32,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
       reorderFormElement({
         elementId: draggedELId,
         parentId: elId,
-        selectedElId: selectedEl ? selectedEl.elementId : undefined,
+        selectedElId: selectedElement ? selectedElement.elementId : undefined,
         left,
       }),
     )

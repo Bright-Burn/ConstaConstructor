@@ -14,11 +14,14 @@ export {
   getFormElAsMap,
   getSelectedPageId,
   selectedElementSelector,
+  getAllFormElementsSelector,
+  selectedPageIdSelector,
+  pagesSelector,
+  getElemIdChildrenSelector,
 } from './formElementsSelectors'
 export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
 export {
   formInstancePropsSelector,
-  formInstanceSelector,
   formInstancesSelector,
   getSelectedElementPropsSelector,
 } from './formInstanceSelectors'

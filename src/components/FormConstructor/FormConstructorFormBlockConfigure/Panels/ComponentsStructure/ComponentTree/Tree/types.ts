@@ -5,7 +5,3 @@ export type ITreeItem = {
   children: Array<ITreeItem>
   disableCheckbox: boolean
 }
-
-export interface ITree {
-  data: ITreeItem[]
-}

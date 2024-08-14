@@ -14,12 +14,14 @@ export {
   addNewFormElement,
   addNewPage,
   changeActivePage,
+  pagesSelector,
   changePageName,
   copyFormElementLink,
   deleteFormElement,
   deletePage,
+  getAllFormElementsSelector,
+  selectedPageIdSelector,
   formInstancePropsSelector,
-  formInstanceSelector,
   getAllFormElements,
   getElementById,
   getElementsOnLayer,
@@ -38,6 +40,7 @@ export {
   setInstanceProps,
   setSelectedElement,
   updateOrders,
+  getElemIdChildrenSelector,
 } from './formElements'
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'

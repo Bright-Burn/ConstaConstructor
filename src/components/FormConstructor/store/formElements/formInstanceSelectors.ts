@@ -8,20 +8,22 @@ const { selectById, selectAll } = formInstanceAdapter.getSelectors<RootState>(
   state => state.formConstructor.elementInstances,
 )
 
-export const formInstanceSelector =
-  <T extends FormInstance<AllElementTypes>['props']['type']>(id: string, type: T) =>
-  (state: RootState): FormInstance<T> | null => {
-    const elem = selectById(state, id)
-    if (elem && elem.props.type === type) {
-      return elem
-    }
-    return null
+const formInstanceSelector = <T extends FormInstance<AllElementTypes>['props']['type']>(
+  id: string,
+  type: T,
+  state: RootState,
+): FormInstance<T> | null => {
+  const elem = selectById(state, id)
+  if (elem && elem.props.type === type) {
+    return elem
   }
+  return null
+}
 
 export const formInstancePropsSelector =
   <T extends FormInstance<AllElementTypes>['props']['type']>(id: string, type: T) =>
   (state: RootState) => {
-    const instance = formInstanceSelector(id, type)(state)
+    const instance = formInstanceSelector(id, type, state)
     return instance?.props
   }
 
@@ -51,7 +53,7 @@ export const getInstanceProps = (elementId: string) => (state: RootState) => {
   const element = getElementById(elementId)(state)
   if (element && element.instanceId) {
     const type: AllElementTypes = element.type
-    const instance = formInstanceSelector<typeof type>(element.instanceId, type)(state)
+    const instance = formInstanceSelector<typeof type>(element.instanceId, type, state)
     return instance?.props
   }
 }

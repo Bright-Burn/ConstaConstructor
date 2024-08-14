@@ -8,6 +8,7 @@ import {
   loadProjectFromStorage,
   onSetViewMode,
   popHistoryElement,
+  selectedElementSelector,
   togglePanels,
   useAppDispatch,
   useAppSelector,
@@ -21,7 +22,7 @@ interface Props {
 
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch()
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const selectedElement = useAppSelector(selectedElementSelector)
 
   useEffect(() => {
     const loadedData = document.getElementById('loaded_data')

@@ -29,7 +29,11 @@ import type {
   UnionProps,
 } from '../../../coreTypes'
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../coreTypes'
-import { getSelectedElementPropsSelector, useAppSelector } from '../../../store'
+import {
+  getSelectedElementPropsSelector,
+  selectedElementSelector,
+  useAppSelector,
+} from '../../../store'
 import { isElementProps } from '../../../utils'
 
 import { AvatarGroupSettings } from './AvatarGroupSettings'
@@ -501,7 +505,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
 }
 
 export const SettingPanelQualifier: FC = () => {
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const selectedElement = useAppSelector(selectedElementSelector)
   const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
 
   return selectedElement && selectedElementProps ? (

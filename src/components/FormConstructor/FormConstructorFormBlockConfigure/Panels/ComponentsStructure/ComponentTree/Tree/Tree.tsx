@@ -6,19 +6,21 @@ import RCTree from 'rc-tree'
 
 import type { IFormElement, IGroupElement } from '../../../../../coreTypes'
 import {
+  getElemIdChildrenSelector,
   getFormElAsMap,
+  selectedElementSelector,
   setSelectedElement,
   useAppDispatch,
   useAppSelector,
 } from '../../../../../store'
 
-import type { ITree } from './types'
-
-export const Tree: FC<ITree> = ({ data }) => {
-  const allElementsMap = useAppSelector(getFormElAsMap)
-  const selectedEl = useAppSelector(state => state.formConstructor.selectedElement)
-  const dispatch = useAppDispatch()
+export const Tree: FC = () => {
   const [expandedKeys, setExpandedKeys] = useState<(string | number)[]>([])
+
+  const allElementsMap = useAppSelector(getFormElAsMap)
+  const tree = useAppSelector(getElemIdChildrenSelector)
+  const selectedEl = useAppSelector(selectedElementSelector)
+  const dispatch = useAppDispatch()
 
   const treeProps = rcTreeAdapter()
   const prefix = cnRcTree(
@@ -27,12 +29,9 @@ export const Tree: FC<ITree> = ({ data }) => {
     },
     ['CustomTree'],
   )
+
   useEffect(() => {
     if (selectedEl) {
-      //TODO раскоментировать если есть необходимость не закрывать предыдущие узлы когда выбираются новые
-      // const parentsIds = getParentsIds(allElementsMap, [], selectedEl.elementId)
-      //       const expandedKeysSet = new Set([...expandedKeys, ...parentsIds])
-      //       setExpandedKeys(Array.from(expandedKeysSet))
       setExpandedKeys(getParentsIds(allElementsMap, [], selectedEl.elementId))
     }
   }, [selectedEl])
@@ -53,10 +52,12 @@ export const Tree: FC<ITree> = ({ data }) => {
   const onExpand = (keys: (string | number)[]) => {
     setExpandedKeys(keys)
   }
+
+  console.log('render')
   return (
     <RCTree
       {...treeProps}
-      treeData={data}
+      treeData={tree}
       prefixCls={prefix}
       selectedKeys={[selectedEl?.elementId ?? '']}
       expandedKeys={expandedKeys}
