@@ -53,7 +53,6 @@ export const Tree: FC = () => {
     setExpandedKeys(keys)
   }
 
-  console.log('render')
   return (
     <RCTree
       {...treeProps}

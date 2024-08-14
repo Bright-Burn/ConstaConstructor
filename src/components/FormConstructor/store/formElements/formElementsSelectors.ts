@@ -4,7 +4,7 @@ import type { IFormConstructor, IFormElement, IGroupElement } from '../../coreTy
 import type { RootState } from '../setupStore'
 
 import { layuoutAdapter } from './initialState'
-import { ITreeItem } from '../../FormConstructorFormBlockConfigure/Panels/ComponentsStructure/ComponentTree/Tree'
+import { ITreeItem } from '../../FormConstructorFormBlockConfigure'
 
 const { selectAll, selectById } = layuoutAdapter.getSelectors<RootState>(
   state => state.formConstructor.allElements,
