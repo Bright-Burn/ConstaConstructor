@@ -183,6 +183,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
       <LayoutPalette
         color={itemsProps.styles?.backgroundColor}
         size="xs"
+        placeholder="Bg"
         onChangeColor={onChangeBackroundColor}
       />
       <LayoutBorderSettings

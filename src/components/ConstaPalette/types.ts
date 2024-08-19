@@ -5,12 +5,14 @@ export interface IConstaPalette {
   colorsToSelect: ConstaColor[]
   color: ConstaColor | undefined
   size: PropSize
+  placeholder?: string
 }
 
 export interface IConcreteConstaPalette {
   onChangeColor: (color: ConstaColor) => void
   color: ConstaColor | undefined
   size: PropSize
+  placeholder?: string
 }
 
 export const ConstaColors = [
