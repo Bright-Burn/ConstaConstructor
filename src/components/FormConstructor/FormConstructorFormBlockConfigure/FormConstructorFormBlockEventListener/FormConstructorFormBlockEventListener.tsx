@@ -35,13 +35,21 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
   }, [])
 
   useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
+    const onToggleLeftPanel = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
-      if (code === 'Space' && ctrlKey) {
+      if (code === 'BracketLeft' && ctrlKey) {
         e.preventDefault()
-        dispatch(togglePanels())
+        dispatch(togglePanels('left'))
       }
     }
+    const onToggleRightPanel = (e: KeyboardEvent) => {
+      const { code, ctrlKey } = e
+      if (code === 'BracketRight' && ctrlKey) {
+        e.preventDefault()
+        dispatch(togglePanels('right'))
+      }
+    }
+
     /// Полуает последнее состояние из истории
     const onKeyGoBack = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
@@ -53,10 +61,12 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     }
 
     document.addEventListener('keydown', onKeyGoBack)
-    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('keydown', onToggleLeftPanel)
+    document.addEventListener('keydown', onToggleRightPanel)
 
     return () => {
-      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('keydown', onToggleLeftPanel)
+      document.removeEventListener('keydown', onToggleRightPanel)
       document.removeEventListener('keydown', onKeyGoBack)
     }
   }, [])

@@ -10,8 +10,8 @@ const {
   setViewMode,
 } = ViewerSlice.actions
 
-export const togglePanels = () => (dispatch: AppDispatch) => {
-  dispatch(togglePanelsByHotkey())
+export const togglePanels = (direction: 'left' | 'right') => (dispatch: AppDispatch) => {
+  dispatch(togglePanelsByHotkey(direction))
 }
 
 export const toggleGrid = () => (dispatch: AppDispatch) => {

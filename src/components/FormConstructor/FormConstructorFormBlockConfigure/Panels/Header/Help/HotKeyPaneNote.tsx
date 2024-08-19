@@ -31,21 +31,36 @@ export const HotKeyPaneNote: React.FC<IHotkeys> = ({ onClose }) => {
       id: '1',
     },
     {
-      action: 'Скрыть/показать панель',
+      action: 'Скрыть/показать левую панель',
       win: (
         <div>
-          <Button label="ctrl" view="ghost" className="m-r-s" />{' '}
-          <Button label="space" view="ghost" />
+          <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="[" view="ghost" />
         </div>
       ),
       mac: (
         <div className="container-row align-center m-r-s">
           <Button onlyIcon={true} iconLeft={IconArrowUp} view="ghost" className="m-r-s" />
           <Button onlyIcon={true} iconLeft={IconCommand} view="ghost" className="m-r-s" />
-          <Button label="space" view="ghost" />
+          <Button label="[" view="ghost" />
         </div>
       ),
       id: '2',
+    },
+    {
+      action: 'Скрыть/показать правую панель',
+      win: (
+        <div>
+          <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="[" view="ghost" />
+        </div>
+      ),
+      mac: (
+        <div className="container-row align-center m-r-s">
+          <Button onlyIcon={true} iconLeft={IconArrowUp} view="ghost" className="m-r-s" />
+          <Button onlyIcon={true} iconLeft={IconCommand} view="ghost" className="m-r-s" />
+          <Button label="]" view="ghost" />
+        </div>
+      ),
+      id: '3',
     },
     {
       action: 'Удалить',
@@ -60,7 +75,7 @@ export const HotKeyPaneNote: React.FC<IHotkeys> = ({ onClose }) => {
           <Button onlyIcon={true} iconLeft={IconDel} view="ghost" />
         </div>
       ),
-      id: '3',
+      id: '4',
     },
     {
       action: 'Копировать с наследованием',
@@ -74,7 +89,7 @@ export const HotKeyPaneNote: React.FC<IHotkeys> = ({ onClose }) => {
           <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="D" view="ghost" />
         </div>
       ),
-      id: '3',
+      id: '5',
     },
   ]
 
