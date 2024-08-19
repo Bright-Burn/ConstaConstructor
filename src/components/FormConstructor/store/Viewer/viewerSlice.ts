@@ -18,12 +18,15 @@ export const ViewerSlice = createSlice({
     setViewMode: state => {
       state.isViewMode = true
     },
-    togglePanelsByHotkey: state => {
-      if (state.componentsStructurePanelState || state.settingsPanelState) {
+    togglePanelsByHotkey: (state, action: PayloadAction<'left' | 'right'>) => {
+      if (action.payload === 'left' && state.componentsStructurePanelState) {
         state.componentsStructurePanelState = false
-        state.settingsPanelState = false
-      } else {
+      } else if (action.payload === 'left') {
         state.componentsStructurePanelState = true
+      }
+      if (action.payload === 'right' && state.settingsPanelState) {
+        state.settingsPanelState = false
+      } else if (action.payload === 'right') {
         state.settingsPanelState = true
       }
     },
