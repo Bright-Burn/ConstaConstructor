@@ -58,15 +58,15 @@ export const BaseSettings = () => {
               size="xs"
               getItemKey={key => key}
               getItemLabel={label => label}
-              items={paddingsLeft}
-              value={paddingProps?.paddingLeft || 'Null'}
+              items={paddingsTop}
+              value={paddingProps?.paddingTop || 'Null'}
               renderValue={({ item }) => (
                 <div className={style.arrowAndText}>
-                  <IconBackward size="xs" />
+                  <IconTop size="xs" />
                   {item}
                 </div>
               )}
-              onChange={onChangePaddingLeft}
+              onChange={onChangePaddingTop}
             />
             <Select
               size="xs"
@@ -86,20 +86,6 @@ export const BaseSettings = () => {
               size="xs"
               getItemKey={key => key}
               getItemLabel={label => label}
-              items={paddingsTop}
-              value={paddingProps?.paddingTop || 'Null'}
-              renderValue={({ item }) => (
-                <div className={style.arrowAndText}>
-                  <IconTop size="xs" />
-                  {item}
-                </div>
-              )}
-              onChange={onChangePaddingTop}
-            />
-            <Select
-              size="xs"
-              getItemKey={key => key}
-              getItemLabel={label => label}
               items={paddingsBottom}
               value={paddingProps?.paddingBottom || 'Null'}
               renderValue={({ item }) => (
@@ -109,6 +95,20 @@ export const BaseSettings = () => {
                 </div>
               )}
               onChange={onChangePaddingBottom}
+            />
+            <Select
+              size="xs"
+              getItemKey={key => key}
+              getItemLabel={label => label}
+              items={paddingsLeft}
+              value={paddingProps?.paddingLeft || 'Null'}
+              renderValue={({ item }) => (
+                <div className={style.arrowAndText}>
+                  <IconBackward size="xs" />
+                  {item}
+                </div>
+              )}
+              onChange={onChangePaddingLeft}
             />
           </div>
         </div>
@@ -121,16 +121,16 @@ export const BaseSettings = () => {
               size="xs"
               getItemKey={key => key}
               getItemLabel={label => label}
-              items={marginLeft}
-              value={marginProps?.marginLeft || 'Null'}
+              items={marginTop}
+              value={marginProps?.marginTop || 'Null'}
               renderValue={({ item }) => (
                 <div className={style.arrowAndText}>
-                  <IconBackward size="xs" />
+                  <IconTop size="xs" />
                   {item}
                 </div>
               )}
-              onChange={onChangemarginLeft}
-            />
+              onChange={onChangemarginTop}
+            />{' '}
             <Select
               size="xs"
               getItemKey={key => key}
@@ -149,20 +149,6 @@ export const BaseSettings = () => {
               size="xs"
               getItemKey={key => key}
               getItemLabel={label => label}
-              items={marginTop}
-              value={marginProps?.marginTop || 'Null'}
-              renderValue={({ item }) => (
-                <div className={style.arrowAndText}>
-                  <IconTop size="xs" />
-                  {item}
-                </div>
-              )}
-              onChange={onChangemarginTop}
-            />
-            <Select
-              size="xs"
-              getItemKey={key => key}
-              getItemLabel={label => label}
               items={marginBottom}
               value={marginProps?.marginBottom || 'Null'}
               renderValue={({ item }) => (
@@ -172,6 +158,20 @@ export const BaseSettings = () => {
                 </div>
               )}
               onChange={onChangemarginBottom}
+            />
+            <Select
+              size="xs"
+              getItemKey={key => key}
+              getItemLabel={label => label}
+              items={marginLeft}
+              value={marginProps?.marginLeft || 'Null'}
+              renderValue={({ item }) => (
+                <div className={style.arrowAndText}>
+                  <IconBackward size="xs" />
+                  {item}
+                </div>
+              )}
+              onChange={onChangemarginLeft}
             />
           </div>
         </div>
