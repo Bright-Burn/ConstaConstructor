@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { IconAdd } from '@consta/icons/IconAdd'
+import { IconCheck } from '@consta/icons/IconCheck'
 import { IconEdit } from '@consta/icons/IconEdit'
 import { Button } from '@consta/uikit/Button'
 import { Text } from '@consta/uikit/Text'
@@ -28,7 +28,7 @@ export const ProjectName: React.FC<IProjectName> = ({ onChangeProjectName, proje
           <TextField size="xs" value={projectName} onChange={onChangeProjectName} />{' '}
           <Button
             view="clear"
-            iconLeft={IconAdd}
+            iconLeft={IconCheck}
             size="xs"
             onlyIcon={true}
             onClick={onEndEditing}
