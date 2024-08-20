@@ -2,14 +2,15 @@ import uuid from 'react-uuid'
 
 import type { AllElementTypes, FormInstance, IFormElement, IGroupElement } from '../../coreTypes'
 import { deepCopyElements } from '../../utils'
+import { pushHistoryElement } from '../history'
 import type { AppDispatch, RootState } from '../setupStore'
 
 import { formConstructorSlice } from './formElementsSlice'
-import { deleteElementFormById, type ChangeElementLinkCountPayload } from './instanceElements'
-import { selectAll } from './layoutAdapterSelectors'
-import { UpdateBaseComponentPayload } from './payload'
-import { pushHistoryElement } from '../history'
 import { selectAllInstances } from './formInstanceSelectors'
+import type { ChangeElementLinkCountPayload } from './instanceElements'
+import { deleteElementFormById } from './instanceElements'
+import { selectAll } from './layoutAdapterSelectors'
+import type { UpdateBaseComponentPayload } from './payload'
 
 /**
  * Выполняет каскадную замену компонетов или группы компонентов(базовый элемент) формы ввода на другую группу компонентов(базовый элемент)
@@ -94,11 +95,11 @@ export const updateBaseComponentAction =
     dispatch(formConstructorSlice.actions.setSameInstanceElementsIds([]))
 
     // Подготовка данных для отмены операции
-    const insatnceIdsForRollbackSet = new Set(
+    const instanceIdsForRollbackSet = new Set(
       instanceReferencesToChange.filter(ref => ref.type === 'DEC').map(ref => ref.id),
     )
     const instancesForRollBack = selectAllInstances(state).filter(instance =>
-      insatnceIdsForRollbackSet.has(instance.id),
+      instanceIdsForRollbackSet.has(instance.id),
     )
     const elementsFotRollBack = selectedElementsToDelete
 
@@ -120,6 +121,8 @@ export const updateBaseComponentAction =
 
         // Контроль ссылок
         dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
+
+        dispatch(formConstructorSlice.actions.setSameInstanceElementsIds([]))
       }),
     )
   }

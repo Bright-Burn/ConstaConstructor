@@ -2,19 +2,18 @@ import type { AppDispatch, RootState } from '../setupStore'
 
 import { formConstructorSlice } from './formElementsSlice'
 import { selectAll, selectById } from './layoutAdapterSelectors'
-import { setSelectedElement } from './setSelectedElementAction'
 
 /**
  * Устанавливает id элементов принадлежащих одному инстансу (скопрованные элементы)
  * @param instanceId Идентикатор Инстанса
  */
 export const setSameElementsIdsById =
-  (elementId: string) => (disptch: AppDispatch, getState: () => RootState) => {
+  (elementId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
-    let sameInstanceElementsIds: string[] = state.formConstructor.sameInstanceElementsIds || []
+    let sameInstanceElementsIds: string[] = state.formConstructor.sameInstanceElementsIds
 
     if (sameInstanceElementsIds.length) {
-      disptch(formConstructorSlice.actions.setSameInstanceElementsIds([]))
+      dispatch(formConstructorSlice.actions.setSameInstanceElementsIds([]))
       return
     }
 
@@ -24,7 +23,7 @@ export const setSameElementsIdsById =
         .filter(el => el.instanceId === instanceId)
         .map(el => el.id)
 
-      disptch(formConstructorSlice.actions.setSameInstanceElementsIds(sameInstanceElementsIds))
+      dispatch(formConstructorSlice.actions.setSameInstanceElementsIds(sameInstanceElementsIds))
     }
   }
 

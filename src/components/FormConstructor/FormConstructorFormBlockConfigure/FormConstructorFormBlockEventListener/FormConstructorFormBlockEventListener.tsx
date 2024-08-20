@@ -10,6 +10,7 @@ import {
   onSetViewMode,
   popHistoryElement,
   setSameElementsIdsById,
+  setSelectedElement,
   togglePanels,
   useAppDispatch,
   useAppSelector,
@@ -108,7 +109,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
-      if (code === 'KeyR' && ctrlKey) {
+      if (code === 'KeyQ' && ctrlKey) {
         e.preventDefault()
         selectedElement && dispatch(setSameElementsIdsById(selectedElement.elementId))
       }
@@ -136,6 +137,18 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [])
+
+  useEffect(() => {
+    const escHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        dispatch(setSelectedElement(null))
+      }
+    }
+    document.body.addEventListener('keydown', escHandler)
+    return () => {
+      document.body.removeEventListener('keydown', escHandler)
+    }
+  }, [selectedElement])
 
   return <div className={css.formConstructorEventListener}>{children}</div>
 }
