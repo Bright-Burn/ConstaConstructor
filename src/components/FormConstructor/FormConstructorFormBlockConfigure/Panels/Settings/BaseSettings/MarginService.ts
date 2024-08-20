@@ -1,4 +1,11 @@
-import type { ISelectedElement, UnionProps } from '../../../../coreTypes'
+import type {
+  ISelectedElement,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  marginTop,
+  UnionProps,
+} from '../../../../coreTypes'
 import {
   getSelectedElementPropsSelector,
   selectedElementSelector,
@@ -6,8 +13,6 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../store'
-
-import type { marginBottom, marginLeft, marginRight, marginTop } from './types'
 
 export const useMarginHandlers = () => {
   const selectedElement = useAppSelector(selectedElementSelector)

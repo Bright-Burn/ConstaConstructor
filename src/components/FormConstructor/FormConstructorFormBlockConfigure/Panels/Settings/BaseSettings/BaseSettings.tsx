@@ -7,9 +7,6 @@ import { Button } from '@consta/uikit/Button'
 import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 
-import { useMarginHandlers } from './MarginService'
-import { usePaddingHandlers } from './PaddingService'
-import { SaveModal } from './SaveModal'
 import {
   marginBottom,
   marginLeft,
@@ -19,7 +16,11 @@ import {
   paddingsLeft,
   paddingsRight,
   paddingsTop,
-} from './types'
+} from '../../../../coreTypes'
+
+import { useMarginHandlers } from './MarginService'
+import { usePaddingHandlers } from './PaddingService'
+import { SaveModal } from './SaveModal'
 
 import styles from '../styles.module.css'
 import style from './styles.module.css'

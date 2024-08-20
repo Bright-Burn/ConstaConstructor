@@ -56,6 +56,37 @@ code {
 .dottedCard {
   border: 1px dotted;
 }
+.p-l-3xs {
+  padding-left: var(--space-3xs);
+}
+
+.p-t-3xs {
+  padding-top: var(--space-3xs);
+}
+
+.p-b-3xs {
+  padding-bottom: var(--space-3xs);
+}
+
+.p-r-3xs {
+  padding-right: var(--space-3xs);
+}
+.p-l-2xs {
+  padding-left: var(--space-2xs);
+}
+
+.p-t-2xs {
+  padding-top: var(--space-2xs);
+}
+
+.p-b-2xs {
+  padding-bottom: var(--space-2xs);
+}
+
+.p-r-2xs {
+  padding-right: var(--space-2xs);
+}
+
 
 .p-l-xs {
   padding-left: var(--space-xs);
@@ -216,7 +247,36 @@ code {
 .p-r-6xl {
   padding-right: var(--space-6xl);
 }
+.m-l-3xs {
+  margin-left: var(--space-3xs);
+}
 
+.m-t-3xs {
+  margin-top: var(--space-3xs);
+}
+
+.m-b-3xs {
+  margin-bottom: var(--space-3xs);
+}
+
+.m-r-3xs {
+  margin-right: var(--space-3xs);
+}
+.m-l-2xs {
+  margin-left: var(--space-2xs);
+}
+
+.m-t-2xs {
+  margin-top: var(--space-2xs);
+}
+
+.m-b-2xs {
+  margin-bottom: var(--space-2xs);
+}
+
+.m-r-2xs {
+  margin-right: var(--space-2xs);
+}
 .m-l-xs {
   margin-left: var(--space-xs);
 }

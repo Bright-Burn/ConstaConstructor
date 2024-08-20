@@ -1,4 +1,11 @@
-import type { ISelectedElement, UnionProps } from '../../../../coreTypes'
+import type {
+  ISelectedElement,
+  paddingsBottom,
+  paddingsLeft,
+  paddingsRight,
+  paddingsTop,
+  UnionProps,
+} from '../../../../coreTypes'
 import {
   getSelectedElementPropsSelector,
   selectedElementSelector,
@@ -6,8 +13,6 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../../store'
-
-import type { paddingsBottom, paddingsLeft, paddingsRight, paddingsTop } from './types'
 
 export const usePaddingHandlers = () => {
   const selectedElement = useAppSelector(selectedElementSelector)
