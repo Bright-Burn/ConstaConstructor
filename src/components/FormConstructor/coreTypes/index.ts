@@ -12,6 +12,16 @@ export type {
 } from './avatartTypes'
 export type { BadgeElement, BadgeProps, BrandBadgeProps, IFormElementBadge } from './badgeTypes'
 export type { BaseTypes } from './basePropsTypes'
+export {
+  marginBottom,
+  marginLeft,
+  marginRight,
+  marginTop,
+  paddingsBottom,
+  paddingsLeft,
+  paddingsRight,
+  paddingsTop,
+} from './basePropsTypes'
 export type {
   BrandBreadcrumbsProps,
   BreadcrumbProps,

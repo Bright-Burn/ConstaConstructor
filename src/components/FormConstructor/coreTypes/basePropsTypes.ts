@@ -1,5 +1,7 @@
 export const paddingsLeft = [
-  '',
+  'Null',
+  'p-l-3xs',
+  'p-l-2xs',
   'p-l-xs',
   'p-l-s',
   'p-l-m',
@@ -12,7 +14,9 @@ export const paddingsLeft = [
   'p-l-6xl',
 ]
 export const paddingsRight = [
-  '',
+  'Null',
+  'p-r-3xs',
+  'p-r-2xs',
   'p-r-xs',
   'p-r-s',
   'p-r-m',
@@ -25,7 +29,9 @@ export const paddingsRight = [
   'p-r-6xl',
 ]
 export const paddingsTop = [
-  '',
+  'Null',
+  'p-t-3xs',
+  'p-t-2xs',
   'p-t-xs',
   'p-t-s',
   'p-t-m',
@@ -38,7 +44,9 @@ export const paddingsTop = [
   'p-t-6xl',
 ]
 export const paddingsBottom = [
-  '',
+  'Null',
+  'p-b-3xs',
+  'p-b-2xs',
   'p-b-xs',
   'p-b-s',
   'p-b-m',
@@ -52,7 +60,9 @@ export const paddingsBottom = [
 ]
 
 export const marginLeft = [
-  '',
+  'Null',
+  'm-l-3xs',
+  'm-l-2xs',
   'm-l-xs',
   'm-l-s',
   'm-l-m',
@@ -65,7 +75,9 @@ export const marginLeft = [
   'm-l-6xl',
 ]
 export const marginRight = [
-  '',
+  'Null',
+  'm-r-3xs',
+  'm-r-2xs',
   'm-r-xs',
   'm-r-s',
   'm-r-m',
@@ -78,7 +90,9 @@ export const marginRight = [
   'm-r-6xl',
 ]
 export const marginTop = [
-  '',
+  'Null',
+  'm-t-3xs',
+  'm-t-2xs',
   'm-t-xs',
   'm-t-s',
   'm-t-m',
@@ -91,7 +105,9 @@ export const marginTop = [
   'm-t-6xl',
 ]
 export const marginBottom = [
-  '',
+  'Null',
+  'm-b-3xs',
+  'm-b-2xs',
   'm-b-xs',
   'm-b-s',
   'm-b-m',
@@ -103,7 +119,6 @@ export const marginBottom = [
   'm-b-5xl',
   'm-b-6xl',
 ]
-
 export type BaseTypes = {
   padding?: {
     paddingLeft?: (typeof paddingsLeft)[number]
@@ -118,7 +133,3 @@ export type BaseTypes = {
     marginTop?: (typeof marginTop)[number]
   }
 }
-
-export type unionPaddings = (typeof paddingsLeft)[number]
-
-export type unionMargin = (typeof marginLeft)[number]
