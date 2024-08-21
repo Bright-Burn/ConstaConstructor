@@ -41,3 +41,5 @@ export const getElementById = (id?: string) => (state: RootState) =>
 export const sameInstanceElementsIdsSelector = (state: RootState) => {
   return new Set(state.formConstructor.sameInstanceElementsIds)
 }
+
+export const elementToRopyIdSelector = (state: RootState) => state.formConstructor.elementToCopyId

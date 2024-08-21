@@ -1,6 +1,3 @@
-import uuid from 'react-uuid'
-
-import type { AllElementTypes, FormInstance } from '../../coreTypes'
 import type { AddElementsWithInstancesPayload } from '../../store'
 import {
   getDraggedBaseComponent,
@@ -8,7 +5,7 @@ import {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../store'
-import { deepCopyElements } from '../../utils'
+import { copyInstances, deepCopyElements } from '../../utils'
 
 export const useDropBaseComponent = () => {
   const draggableBaseComponent = useBaseComponentsSelector(getDraggedBaseComponent)
@@ -30,16 +27,7 @@ export const useDropBaseComponent = () => {
       // Получаем список всех элементов и экземпляров из draggableBaseComponent
       const allElements = draggableBaseComponent.childrenElementList
       const instances = draggableBaseComponent.instances
-      const newInstancesIdsDict: Record<string, string> = {}
-      // Создаем новые экземпляры с обновленными идентификаторами
-      const instancesToAdd: FormInstance<AllElementTypes>[] = instances.map(instance => {
-        const newId = uuid()
-        newInstancesIdsDict[instance.id] = newId
-        return {
-          ...instance,
-          id: newId,
-        }
-      })
+      const { newInstances, newInstancesIdsDict } = copyInstances(instances)
       // Создаем копию всех элементов с обновленными идентификаторами экземпляров
       const elementsCopy = deepCopyElements(allElements).map(elem => {
         return { ...elem, instanceId: newInstancesIdsDict[elem.instanceId] }
@@ -47,7 +35,7 @@ export const useDropBaseComponent = () => {
       // Создаем объект с копией элементов, новыми экземплярами и идентификатором родительского элемента
       const addBaseElementPayload: AddElementsWithInstancesPayload = {
         elements: elementsCopy,
-        instances: instancesToAdd,
+        instances: newInstances,
         parentId: parentElementId,
       }
       dispathBaseComponents(setDraggableBaseComponent(null))

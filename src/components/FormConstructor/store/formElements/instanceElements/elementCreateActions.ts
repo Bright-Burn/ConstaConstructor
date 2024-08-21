@@ -1,14 +1,27 @@
 import uuid from 'react-uuid'
 
-import type { AllElementTypes, FormInstance, IFormElement, IGroupElement } from '../../../coreTypes'
-import { deepCopyElements, getAllChildrenElements } from '../../../utils'
+import type {
+  AllElementTypes,
+  FormInstance,
+  IFormElement,
+  IGroupElement,
+  ISelectedElement,
+} from '../../../coreTypes'
+import {
+  copyInstances,
+  deepCopyElements,
+  getAllChildrenElements,
+  getFormType,
+} from '../../../utils'
 import { pushHistoryElement } from '../../history'
 import type { AppDispatch, RootState } from '../../setupStore'
 import { getSiblingsCount } from '../formElementsActions'
-import { getElementById } from '../formElementsSelectors'
+import { elementToRopyIdSelector, getElementById } from '../formElementsSelectors'
 import { formConstructorSlice } from '../formElementsSlice'
+import { formInstancesSelector } from '../formInstanceSelectors'
 import { selectAll } from '../layoutAdapterSelectors'
 import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../payload'
+import { clearSameInstanceIds } from '../setSameElementsIdsById'
 
 import { deleteFormElementRollback } from './deleteFormElements'
 import { isDragFormElement, isDragGroupElement } from './dragElemGuards'
@@ -73,6 +86,7 @@ export const addNewFormElement =
     // Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {
+        dispatch(clearSameInstanceIds())
         elementsToAdd.forEach(elem => {
           dispatch(deleteFormElementRollback(elem.id))
         })
@@ -84,71 +98,145 @@ export const addNewFormElement =
  * Добаляет новый элемент, использует существующий инстанс - Функционал копирования
  */
 export const copyFormElementLink =
-  (elementId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
+  (selectedElement: ISelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
+
+    const elementToCopyId = elementToRopyIdSelector(state)
+
+    let insertionParentId = ''
+    // Вставка разрешена только в группирующие элементы
+    if (getFormType(selectedElement.elementType) === 'FormGroups') {
+      insertionParentId = selectedElement.elementId
+    } else {
+      return
+    }
     //Верхнеуровневый элемент для копирования, может быть как группирующим, так и обычным
-    const upperElementToCopy = getElementById(elementId)(state)
+    const upperElementToCopy = getElementById(elementToCopyId)(state)
+
     // Получаем все элементы из состояния
     const allElements = selectAll(state)
     // Массив для хранения копируемых элементов
     const treeElements: (IFormElement | IGroupElement)[] = []
 
-    if (upperElementToCopy) {
+    if (upperElementToCopy && insertionParentId) {
       //Новый порядковый номер - количество всех дочерних элементов в слое + 1
-      const orderForUpperElement =
-        getSiblingsCount(getState(), upperElementToCopy.parentId || '') + 1
+      const orderForInsertionElem = getSiblingsCount(getState(), insertionParentId || '') + 1
       // Получаем дочерние элементы элемента, который нужно скопировать
       const elements = getAllChildrenElements(upperElementToCopy, allElements)
       // Добавляем элемент и его дочерние элементы в массив
-      treeElements.push({ ...upperElementToCopy, order: orderForUpperElement }, ...elements)
-    }
-    //Производит глубокое копирование ветви с установкой новых id, сохраняя взаимосвязи типа родитель - ребенок
-    const newElements = deepCopyElements(treeElements)
-    // Диспатчим действия для изменения количества ссылок
-    dispatch(
-      formConstructorSlice.actions.changeElementLinkCount(
-        newElements.map(element => {
-          return { id: element.instanceId, type: 'INC' }
+      treeElements.push(
+        { ...upperElementToCopy, order: orderForInsertionElem, parentId: insertionParentId },
+        ...elements,
+      )
+      //Производит глубокое копирование ветви с установкой новых id, сохраняя взаимосвязи типа родитель - ребенок
+      const newElements = deepCopyElements(treeElements)
+      // Диспатчим действия для изменения количества ссылок
+      dispatch(
+        formConstructorSlice.actions.changeElementLinkCount(
+          newElements.map(element => {
+            return { id: element.instanceId, type: 'INC' }
+          }),
+        ),
+      )
+      // Диспатчим действия для добавления новых элементов
+      dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElements))
+      //Диспатчем в стор коллбек на отмену изменений
+      dispatch(
+        pushHistoryElement(() => {
+          dispatch(clearSameInstanceIds())
+          newElements.forEach(elem => {
+            dispatch(deleteFormElementRollback(elem.id))
+          })
         }),
-      ),
-    )
-    // Диспатчим действия для добавления новых элементов
-    dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElements))
-    //Диспатчем в стор коллбек на отмену изменений
-    dispatch(
-      pushHistoryElement(() => {
-        newElements.forEach(elem => {
-          dispatch(deleteFormElementRollback(elem.id))
-        })
-      }),
-    )
+      )
+    }
   }
 
 /**
  * Создает новый элемент и добавляет новый инстанс из payload - Функционал добавления базовых элементов
  */
 export const addFormElementWithDefaultInstance =
-  (payload: AddElementsWithInstancesPayload) =>
-  (dispatch: AppDispatch, getState: () => RootState) => {
+  (payload: AddElementsWithInstancesPayload) => (dispatch: AppDispatch) => {
     //Список элементов - отображение
     const elements = payload.elements
     //Список инстансов
     const instances = payload.instances
     //Идентифкатор слоя, куда происходит вставка
     const insertionParentId = payload.parentId
+
+    dispatch(addBaseElement(elements, instances, insertionParentId))
+  }
+
+/**
+ * Вставляет скопированный базовый элемент (группу элементов)
+ */
+export const insertNewElements =
+  (selectedElement: ISelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
+    const state = getState()
+
+    const elementToCopyId = elementToRopyIdSelector(state)
+
+    let insertionParentId = ''
+
+    // Вставка разрешена только в группирующие элементы
+    if (getFormType(selectedElement.elementType) === 'FormGroups') {
+      insertionParentId = selectedElement.elementId
+    } else {
+      return
+    }
+
+    //Верхнеуровневый элемент для копирования, может быть как группирующим, так и обычным
+    const upperElementToCopy = getElementById(elementToCopyId)(state)
+
+    if (upperElementToCopy && insertionParentId) {
+      // Получаем все элементы из состояния
+      const allElements = selectAll(state)
+      const treeElements: (IFormElement | IGroupElement)[] = []
+
+      // Получаем дочерние элементы элемента, который нужно скопировать
+      const elements = getAllChildrenElements(upperElementToCopy, allElements)
+      // Добавляем элемент, предварительно обнулив его родителя и его дочерние элементы в массив
+      treeElements.push({ ...upperElementToCopy, parentId: undefined }, ...elements)
+      const instances = formInstancesSelector(treeElements.map(el => el.instanceId))(state)
+
+      // Копируем инстансы
+      const { newInstances, newInstancesIdsDict } = copyInstances(instances)
+
+      // Создаем копию всех элементов с обновленными идентификаторами экземпляров
+      const elementsCopy = deepCopyElements(treeElements).map(elem => {
+        return { ...elem, instanceId: newInstancesIdsDict[elem.instanceId] }
+      })
+
+      dispatch(addBaseElement(elementsCopy, newInstances, insertionParentId))
+    }
+  }
+
+/**
+ * Добавляет элементы в указанную позицию
+ * @param elements Список всех элементов (View)
+ * @param instances Инстансы (Instances)
+ * @param insertionParentId Идентификатор слоя для вставки
+ */
+const addBaseElement =
+  (
+    elements: (IFormElement | IGroupElement)[],
+    instances: FormInstance<AllElementTypes>[],
+    insertionParentId: string,
+  ) =>
+  (dispatch: AppDispatch, getState: () => RootState) => {
     const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
     //Новый порядковый номер - количество всех дочерних элементов в слое + 1
-    const orderForParentElem = getSiblingsCount(getState(), insertionParentId) + 1
+    const orderForInsertionElem = getSiblingsCount(getState(), insertionParentId) + 1
     //Добавляем порядковые номера и правильный parentId  к каждому элементу
-    const elementsWithOrder = elements.map(elem => {
+    const newElementsToAdd = elements.map(elem => {
       return {
         ...elem,
         parentId: !elem.parentId ? insertionParentId : elem.parentId,
-        order: !elem.parentId ? orderForParentElem : elem.order,
+        order: !elem.parentId ? orderForInsertionElem : elem.order,
       }
     })
 
-    elementsWithOrder.forEach(elem => {
+    newElementsToAdd.forEach(elem => {
       changeLinksCountPayloads.push({
         id: elem.instanceId,
         type: 'INC',
@@ -157,11 +245,12 @@ export const addFormElementWithDefaultInstance =
     //Диспатчем в стор подготовленный данные
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     dispatch(formConstructorSlice.actions.addNewFormInstance(instances))
-    dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsWithOrder))
+    dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElementsToAdd))
     //Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {
-        elementsWithOrder.forEach(elem => {
+        dispatch(clearSameInstanceIds())
+        newElementsToAdd.forEach(elem => {
           dispatch(deleteFormElementRollback(elem.id))
         })
       }),

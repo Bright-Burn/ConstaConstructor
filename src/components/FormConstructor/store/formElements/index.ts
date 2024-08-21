@@ -29,6 +29,7 @@ export {
   addNewFormElement,
   copyFormElementLink,
   deleteFormElement,
+  insertNewElements,
   setInstanceProps,
 } from './instanceElements'
 export type { AddElementsWithInstancesPayload, AddNewElementPayload } from './payload'
@@ -39,6 +40,7 @@ export {
   saveProjectToHTML,
 } from './projectSaveLoadActions'
 export { saveBaseComponent } from './saveBaseComponentAction'
+export { setElementToCopyId } from './setElementToCopyId'
 export { clearSameInstanceIds, setSameElementsIdsById } from './setSameElementsIdsById'
 export { setSelectedElement } from './setSelectedElementAction'
 export { updateBaseComponentAction } from './updateBaseComponentAction'

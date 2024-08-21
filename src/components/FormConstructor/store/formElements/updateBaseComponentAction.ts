@@ -1,7 +1,5 @@
-import uuid from 'react-uuid'
-
-import type { AllElementTypes, FormInstance, IFormElement, IGroupElement } from '../../coreTypes'
-import { deepCopyElements } from '../../utils'
+import type { IFormElement, IGroupElement } from '../../coreTypes'
+import { copyInstances, deepCopyElements } from '../../utils'
 import { pushHistoryElement } from '../history'
 import type { AppDispatch, RootState } from '../setupStore'
 
@@ -30,16 +28,8 @@ export const updateBaseComponentAction =
     const sameInstanceElements = selectAll(state).filter(elem =>
       sameInstanceElementsIds.has(elem.id),
     )
-    const newInstancesIdsDict: Record<string, string> = {}
-    // Создаем новые экземпляры с обновленными идентификаторами
-    const instancesToAdd: FormInstance<AllElementTypes>[] = payload.instances.map(instance => {
-      const newId = uuid()
-      newInstancesIdsDict[instance.id] = newId
-      return {
-        ...instance,
-        id: newId,
-      }
-    })
+    // Копируем инстансы, со связью со старым id
+    const { newInstances, newInstancesIdsDict } = copyInstances(payload.instances)
 
     // Идем по всем найденным элементам
     sameInstanceElements.forEach(copiedElem => {
@@ -83,7 +73,7 @@ export const updateBaseComponentAction =
     // Добавляем новые элементы
     dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsToAdd))
     // Добавляем новые инстансы
-    dispatch(formConstructorSlice.actions.addNewFormInstance(instancesToAdd))
+    dispatch(formConstructorSlice.actions.addNewFormInstance(newInstances))
     // Изменяем количество ссылок на инстансы - в случае если количество = 0, то инстанс будет удален
     dispatch(formConstructorSlice.actions.changeElementLinkCount(instanceReferencesToChange))
     // Удаляем старые элементы

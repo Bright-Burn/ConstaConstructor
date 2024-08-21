@@ -55,7 +55,7 @@ export const initialState: IFormConstructor = {
   pages: initialPages,
   numberOfPages: initialNumberPage,
   selectedPageId: rootId,
-
+  elementToCopyId: '',
   history: [
     {
       numberOfPages: initialNumberPage,
