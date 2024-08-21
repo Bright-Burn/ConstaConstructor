@@ -1,13 +1,15 @@
 import React from 'react'
 import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
 import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
-import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Select } from '@consta/uikit/Select'
 import { Text } from '@consta/uikit/Text'
 
 import type { BrandButtonProps, BrandTextFieldProps, BrandUserProps } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 import { isElementProps } from '../../../../utils'
+import { getValueForSelect } from '../LabelForSelectComponent'
 
+import { width } from './constants'
 import type { FilledSettingsType, fillType } from './types'
 
 import style from './styles.module.css'
@@ -22,7 +24,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
   const dispatch = useAppDispatch()
 
   function onFilledChange(value: fillType | null): void {
-    const isFilled = value?.name === 'filled'
+    const isFilled = value === 'filled'
     if (isElementProps<BrandButtonProps>(props, props.type)) {
       const newProps: BrandButtonProps = {
         props: { ...props.props, filled: isFilled },
@@ -43,28 +45,19 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
       dispatch(setInstanceProps(elementId, newProps))
     }
   }
-  const filledValue = props.props.filled
-    ? { name: 'filled', icon: IconMaxHeight }
-    : { name: 'default', icon: IconMaxWidth }
+  const filledValue = props.props.filled ? 'filled' : 'default'
 
   return (
     <div className={style.choiceGroup}>
-      <Text view="secondary" size="xs">
-        Ширина
-      </Text>
-      <ChoiceGroup
+      <Select
+        getItemKey={(item: string) => item}
+        getItemLabel={(item: string) => item}
+        items={width}
         size="xs"
-        onlyIcon={true}
-        view="ghost"
-        aria-label="Ширина"
         value={filledValue}
-        items={fillValues}
-        getItemLabel={item => item.name}
-        getItemIcon={item => item.icon}
-        multiple={false}
-        name="ChoiceGroupExample"
+        renderValue={({ item }) => getValueForSelect({ item, label: 'width' })}
         onChange={value => {
-          onFilledChange(value)
+          value && onFilledChange(value)
         }}
       />
     </div>
