@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { Text } from '@consta/uikit/Text'
 
 import type {
   BrandAvatarGroupProps,
@@ -505,7 +506,10 @@ export const SettingPanelQualifier: FC = () => {
   const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
 
   return selectedElement && selectedElementProps ? (
-    <div className={`${styles.elementSettings} m-t-s`}>
+    <div className={styles.elementSettings}>
+      <Text size="xs" view="secondary" className="p-t-s p-b-xs">
+        Base
+      </Text>
       {getSettingsPanel(selectedElementProps, selectedElement)}
     </div>
   ) : (
