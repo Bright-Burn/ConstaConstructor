@@ -35,7 +35,6 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
     onChangeView,
     onChangeForm,
   } = useItemsHandlers(selectedElementProps.props, selectedElement)
-
   return (
     <div className={styles.buttonPropsSettings}>
       <div className={styles.blockIcon}>
@@ -100,7 +99,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.icon}
-            disabled={selectedElementProps.props.onlyIcon}
+            disabled={!selectedElementProps.props.onlyIcon}
             label="iconLeft"
             onChangeIcon={onChangeIcon}
           />
@@ -108,14 +107,14 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.iconR}
-            disabled={selectedElementProps.props.onlyIcon}
+            disabled={!selectedElementProps.props.onlyIcon}
             label="iconRight"
             onChangeIcon={onChangeIconR}
           />
         </div>
         <Switch
           checked={itemsProps.onlyIcon}
-          label="Только иконка"
+          label="onlyIcon"
           size="xs"
           onChange={onChangeSwitch('onlyIcon')}
         />
@@ -140,12 +139,6 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
           onChange={value => {
             onChangeIcon(value)
           }}
-        />
-        <Switch
-          checked={itemsProps.activeAction}
-          label="Модальное окно при нажатии"
-          size="xs"
-          onChange={onChangeSwitch('activeAction')}
         />
       </div>
     </div>

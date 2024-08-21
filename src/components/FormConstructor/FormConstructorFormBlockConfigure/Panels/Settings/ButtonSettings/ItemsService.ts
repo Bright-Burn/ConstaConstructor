@@ -1,3 +1,4 @@
+import type React from 'react'
 import type { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uikit/Button'
 
 import type {
@@ -59,6 +60,8 @@ export const useItemsHandlers = (
         },
         type: 'Button',
       }
+      debugger
+
       onDispatch(selectedElement, newProps)
       if (propsName === 'action' && checked) {
         onChangeButtonAction('ButtonModal')
