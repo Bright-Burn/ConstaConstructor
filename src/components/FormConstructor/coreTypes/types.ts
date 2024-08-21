@@ -181,6 +181,7 @@ export interface IFormConstructor extends IHistory {
   pages: IPageOfLayout[]
   numberOfPages: number
   selectedPageId: string
+  elementToCopyId: string
 }
 
 //TODO определить ипнтерфейс

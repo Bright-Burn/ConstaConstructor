@@ -6,9 +6,11 @@ import {
   clearSameInstanceIds,
   copyFormElementLink,
   deleteFormElement,
+  insertNewElements,
   loadProjectFromStorage,
   onSetViewMode,
   popHistoryElement,
+  setElementToCopyId,
   setSameElementsIdsById,
   setSelectedElement,
   togglePanels,
@@ -95,7 +97,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       const { code, ctrlKey } = e
       if (code === 'KeyD' && ctrlKey && selectedElement) {
         e.preventDefault()
-        dispatch(copyFormElementLink(selectedElement.elementId))
+        dispatch(copyFormElementLink(selectedElement))
       }
     }
 
@@ -109,9 +111,43 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
-      if (code === 'KeyQ' && ctrlKey) {
+      if (selectedElement && code === 'KeyQ' && ctrlKey) {
         e.preventDefault()
-        selectedElement && dispatch(setSameElementsIdsById(selectedElement.elementId))
+        dispatch(clearSameInstanceIds())
+        dispatch(setSameElementsIdsById(selectedElement.elementId))
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [selectedElement])
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const { code, ctrlKey } = e
+      if (selectedElement && code === 'KeyC' && ctrlKey) {
+        e.preventDefault()
+        dispatch(setElementToCopyId(selectedElement.elementId))
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [selectedElement])
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const { code, ctrlKey } = e
+      if (selectedElement && code === 'KeyI' && ctrlKey) {
+        e.preventDefault()
+        dispatch(clearSameInstanceIds())
+        dispatch(insertNewElements(selectedElement))
       }
     }
 

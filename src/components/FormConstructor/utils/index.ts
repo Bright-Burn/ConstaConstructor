@@ -1,6 +1,8 @@
+export { copyInstances } from './copyInstances'
 export { deepCopyElements } from './deepCopyElementsTree'
 export { getAllChildrenElements } from './getAllChildrenElements'
 export { getElementsOnLayer } from './getElementsOnLayer'
+export { getFormType } from './getFormType'
 export { getNewGroupParentLevel } from './getNewGroupParentLevel'
 export { isElementProps } from './quard'
 export { readFile } from './readFile'

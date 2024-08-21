@@ -78,7 +78,21 @@ export const HotKeyPaneNote: React.FC<IHotkeys> = ({ onClose }) => {
       id: '4',
     },
     {
-      action: 'Копировать с наследованием',
+      action: 'Копировать',
+      win: (
+        <div>
+          <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="C" view="ghost" />
+        </div>
+      ),
+      mac: (
+        <div>
+          <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="C" view="ghost" />
+        </div>
+      ),
+      id: '5',
+    },
+    {
+      action: 'Вставка с наследованием',
       win: (
         <div>
           <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="D" view="ghost" />
@@ -90,6 +104,20 @@ export const HotKeyPaneNote: React.FC<IHotkeys> = ({ onClose }) => {
         </div>
       ),
       id: '5',
+    },
+    {
+      action: 'Вставка без наследования',
+      win: (
+        <div>
+          <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="I" view="ghost" />
+        </div>
+      ),
+      mac: (
+        <div>
+          <Button label="ctrl" view="ghost" className="m-r-s" /> <Button label="I" view="ghost" />
+        </div>
+      ),
+      id: '4',
     },
     {
       action: 'Найти копии',
