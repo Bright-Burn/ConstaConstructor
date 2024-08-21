@@ -60,8 +60,6 @@ export const useItemsHandlers = (
         },
         type: 'Button',
       }
-      debugger
-
       onDispatch(selectedElement, newProps)
       if (propsName === 'action' && checked) {
         onChangeButtonAction('ButtonModal')
