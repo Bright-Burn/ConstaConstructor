@@ -42,9 +42,7 @@ export const Settings: FC = () => {
           onClick={toggleSettingsPanel}
         />
       </div>
-      <Text size="xs" view="secondary" className="p-t-s">
-        Base
-      </Text>
+
       <SettingPanelQualifier />
     </div>
   ) : (
