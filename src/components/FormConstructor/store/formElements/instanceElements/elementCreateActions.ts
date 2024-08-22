@@ -16,7 +16,7 @@ import {
 import { pushHistoryElement } from '../../history'
 import type { AppDispatch, RootState } from '../../setupStore'
 import { getSiblingsCount } from '../formElementsActions'
-import { elementToRopyIdSelector, getElementById } from '../formElementsSelectors'
+import { elementToCopyIdSelector, getElementById } from '../formElementsSelectors'
 import { formConstructorSlice } from '../formElementsSlice'
 import { formInstancesSelector } from '../formInstanceSelectors'
 import { selectAll } from '../layoutAdapterSelectors'
@@ -98,18 +98,24 @@ export const addNewFormElement =
  * Добаляет новый элемент, использует существующий инстанс - Функционал копирования
  */
 export const copyFormElementLink =
-  (selectedElement: ISelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
+  (elementId: string, elementType: AllElementTypes) =>
+  (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
 
-    const elementToCopyId = elementToRopyIdSelector(state)
+    const elementToCopyId = elementToCopyIdSelector(state)
 
-    let insertionParentId = ''
+    if (!elementToCopyId) {
+      return
+    }
+
+    let insertionParentId = null
     // Вставка разрешена только в группирующие элементы
-    if (getFormType(selectedElement.elementType) === 'FormGroups') {
-      insertionParentId = selectedElement.elementId
+    if (getFormType(elementType) === 'FormGroups') {
+      insertionParentId = elementId
     } else {
       return
     }
+
     //Верхнеуровневый элемент для копирования, может быть как группирующим, так и обычным
     const upperElementToCopy = getElementById(elementToCopyId)(state)
 
@@ -168,19 +174,24 @@ export const addFormElementWithDefaultInstance =
   }
 
 /**
- * Вставляет скопированный базовый элемент (группу элементов)
+ * Создает скопированный базовый элемент (группу элементов) - функционал копирования без наследования
  */
 export const insertNewElements =
-  (selectedElement: ISelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
+  (elementId: string, elementType: AllElementTypes) =>
+  (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
 
-    const elementToCopyId = elementToRopyIdSelector(state)
+    const elementToCopyId = elementToCopyIdSelector(state)
 
-    let insertionParentId = ''
+    if (!elementToCopyId) {
+      return
+    }
+
+    let insertionParentId = null
 
     // Вставка разрешена только в группирующие элементы
-    if (getFormType(selectedElement.elementType) === 'FormGroups') {
-      insertionParentId = selectedElement.elementId
+    if (getFormType(elementType) === 'FormGroups') {
+      insertionParentId = elementId
     } else {
       return
     }

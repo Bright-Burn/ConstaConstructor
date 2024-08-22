@@ -97,7 +97,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       const { code, ctrlKey } = e
       if (code === 'KeyD' && ctrlKey && selectedElement) {
         e.preventDefault()
-        dispatch(copyFormElementLink(selectedElement))
+        dispatch(copyFormElementLink(selectedElement.elementId, selectedElement.elementType))
       }
     }
 
@@ -147,7 +147,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       if (selectedElement && code === 'KeyI' && ctrlKey) {
         e.preventDefault()
         dispatch(clearSameInstanceIds())
-        dispatch(insertNewElements(selectedElement))
+        dispatch(insertNewElements(selectedElement.elementId, selectedElement.elementType))
       }
     }
 
@@ -164,6 +164,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       if (code === 'Escape') {
         e.preventDefault()
         dispatch(clearSameInstanceIds())
+        dispatch(setSelectedElement(null))
       }
     }
 
@@ -173,18 +174,6 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [])
-
-  useEffect(() => {
-    const escHandler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        dispatch(setSelectedElement(null))
-      }
-    }
-    document.body.addEventListener('keydown', escHandler)
-    return () => {
-      document.body.removeEventListener('keydown', escHandler)
-    }
-  }, [selectedElement])
 
   return <div className={css.formConstructorEventListener}>{children}</div>
 }
