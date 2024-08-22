@@ -1,0 +1,16 @@
+.rowSettings {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.settingCaption {
+    padding: var(--space-2xs) var(--space-xs);
+}
+.flexGrow {
+    flex: 1;
+}
+.layoutSettings {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
