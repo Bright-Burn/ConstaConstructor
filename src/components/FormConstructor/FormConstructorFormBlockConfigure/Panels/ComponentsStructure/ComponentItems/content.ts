@@ -106,6 +106,11 @@ export const constaCards = [
     name: 'Icon',
     formElementType: FormElementDictTypes.Icon,
   },
+  {
+    id: uuid(),
+    name: 'EChart',
+    formElementType: FormElementDictTypes.EChart,
+  },
 ]
 
 export const groupElement = [

@@ -71,6 +71,12 @@ export type {
   DatePickerProps,
   IFormElementDatePicker,
 } from './datePickerTypes'
+export type {
+  BrandEChartProps,
+  EChartFormElement,
+  EChartProps,
+  IFormElementEChart,
+} from './echarts'
 export type { FormInstance, InstanceManager, UnionProps } from './formInstance'
 export type {
   BrandIconProps,

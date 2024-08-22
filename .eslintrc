@@ -215,7 +215,8 @@
           "@consta/rc-tree-adapter/rcTreeAdapter",
           "react-dom/*",
           "@reduxjs/toolkit/*",
-          "*/styles/*.css"
+          "*/styles/*.css",
+          "echarts/core"
         ]
       }
     ]

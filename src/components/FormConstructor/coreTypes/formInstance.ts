@@ -9,6 +9,7 @@ import type { BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
 import type { BrandComboboxProps } from './comboBoxTypes'
 import type { BrandDataTimeProps } from './dataTimeTypes'
 import type { BrandDatePickerProps } from './datePickerTypes'
+import type { BrandEChartProps } from './echarts'
 import type { BrandIconProps } from './iconTypes'
 import type { BrandInformerElementProps } from './informerTypes'
 import type { BrandLayoutElementPropsStyles } from './layoutTypes'
@@ -72,9 +73,11 @@ export type FormInstance<T extends AllElementTypes> = {
                                               ? BrandLayoutElementPropsStyles
                                               : emptyObj & T extends 'Card'
                                                 ? BrandCardElementPropsStyles
-                                                : emptyObj & T extends 'ButtonModal'
-                                                  ? BrandButtonGroupProps
-                                                  : never
+                                                : emptyObj & T extends 'EChart'
+                                                  ? BrandEChartProps
+                                                  : emptyObj & T extends 'ButtonModal'
+                                                    ? BrandButtonGroupProps
+                                                    : never
 }
 
 export type UnionProps =

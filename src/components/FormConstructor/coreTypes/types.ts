@@ -53,6 +53,7 @@ export const FormElementDictTypes = {
   AvatarGroup: 'AvatarGroup',
   Button: 'Button',
   Badge: 'Badge',
+  EChart: 'EChart',
   Tabs: 'Tabs',
   Informer: 'Informer',
   Checkbox: 'Checkbox',

@@ -13,6 +13,7 @@ import type {
   BrandComboboxProps,
   BrandDataTimeProps,
   BrandDatePickerProps,
+  BrandEChartProps,
   BrandIconProps,
   BrandInformerElementProps,
   BrandLayoutElementPropsStyles,
@@ -46,6 +47,7 @@ import { ChoiceGroupSettings } from './ChoiceGroupSettings'
 import { ComboBoxSettings } from './ComboBoxSettings'
 import { DataTimeSettings } from './DataTimeSettings'
 import { DatePickerSettings } from './DatePickerSettings'
+import { EChartSettings } from './EChartSettings'
 import { IconSettings } from './IconSettings'
 import { InformerSettings } from './InformerSettings'
 import { LayoutSettings } from './LayoutSettings'
@@ -494,6 +496,25 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
 
       return (
         <IconSettings selectedElementProps={selectedElementProps.props} selectedElement={element} />
+      )
+    }
+    case FormElementDictTypes.EChart: {
+      if (!isElementProps<BrandEChartProps>(selectedElementProps, 'EChart')) {
+        return
+      }
+      const element = {
+        elementId: selectedElement.elementId,
+        elementType: selectedElement.elementType,
+      }
+
+      return (
+        <>
+          <EChartSettings
+            selectedElementProps={selectedElementProps.props}
+            selectedElement={element}
+          />
+          <BaseSettings />
+        </>
       )
     }
     default:

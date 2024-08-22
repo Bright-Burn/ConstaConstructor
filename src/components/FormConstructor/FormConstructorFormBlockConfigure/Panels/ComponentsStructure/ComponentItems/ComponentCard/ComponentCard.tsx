@@ -13,6 +13,7 @@ import { ComponentCardChoiceGroup } from './ComponentCardChoiceGroup'
 import { ComponentCardComboBox } from './ComponentCardComboBox'
 import { ComponentCardDataTime } from './ComponentCardDataTime'
 import { ComponentCardDatePicker } from './ComponentCardDatePicker'
+import { ComponentCardEChart } from './ComponentCardEChart'
 import { ComponentCardIcon } from './ComponentCardIcon'
 import { ComponentCardInformer } from './ComponentCardInformer'
 import { ComponentCardInnerCard } from './ComponentCardInnerCard'
@@ -41,6 +42,7 @@ export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, group
           <ComponentCardBadge name={name} value={FormElementDictTypes.Badge} />
           <ComponentCardCheckbox name={name} value={FormElementDictTypes.Checkbox} />
           <ComponentCardLayout name={name} value={FormGroupsDictTypes.Layout} />
+          <ComponentCardEChart name={name} value={FormElementDictTypes.EChart} />
           <ComponentCardInnerCard name={name} value={FormGroupsDictTypes.Card} />
           <ComponentCardTabs name={name} value={FormElementDictTypes.Tabs} />
           <ComponentCardTextField name={name} value={FormElementDictTypes.TextField} />
