@@ -15,9 +15,6 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
   const ref = React.useRef(null)
   const chartRef = React.useRef<EChartsType | null>(null)
   useEffect(() => {
-    console.log('L8 ref ===', ref.current)
-    console.log('L10 document===', document.getElementById('test'))
-
     const myChart = init(ref.current)
     chartRef.current = myChart
     myChart.setOption({

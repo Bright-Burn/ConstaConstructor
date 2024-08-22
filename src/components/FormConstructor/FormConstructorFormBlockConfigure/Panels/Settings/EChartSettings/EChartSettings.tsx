@@ -1,5 +1,7 @@
 import type { FC } from 'react'
 import React from 'react'
+import { IconDownload } from '@consta/icons/IconDownload'
+import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
@@ -57,9 +59,16 @@ export const EChartSettings: FC<EChartSettingsType> = ({
       </div>
       <div className={styles.rowSettings}>
         <FileField id={selectedElement.elementId} onChange={onDownload}>
-          <Text view="primary" size="m" lineHeight="m">
-            Нажми меня
-          </Text>
+          {props => (
+            <Button
+              id="btn"
+              {...props}
+              label="config"
+              view="secondary"
+              iconLeft={IconDownload}
+              size="xs"
+            />
+          )}
         </FileField>
       </div>
     </div>
