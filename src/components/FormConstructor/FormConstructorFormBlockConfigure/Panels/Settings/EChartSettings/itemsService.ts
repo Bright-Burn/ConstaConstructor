@@ -1,22 +1,14 @@
 import type React from 'react'
 
-import type {
-  BrandEChartProps,
-  EChartFormElement,
-  EChartProps,
-  ISelectedElement,
-} from '../../../../coreTypes'
+import type { BrandEChartProps, EChartProps } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 import { readFile } from '../../../../utils'
 
-export const useItemsHandlers = (
-  selectedElementProps: EChartProps,
-  selectedElement: EChartFormElement,
-) => {
+export const useItemsHandlers = (selectedElementProps: EChartProps, selectedElementId: string) => {
   const dispatch = useAppDispatch()
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandEChartProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedElementId: string, newProps: BrandEChartProps) => {
+    dispatch(setInstanceProps(selectedElementId, newProps))
   }
   const onChangeHeight = (value: string | null) => {
     const newProps: BrandEChartProps = {
@@ -28,7 +20,7 @@ export const useItemsHandlers = (
     const newValue = Number(value)
 
     newProps.props.height = value != null ? newValue : 1
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedElementId, newProps)
   }
 
   const onChangeWidth = (value: string | null) => {
@@ -41,7 +33,7 @@ export const useItemsHandlers = (
     const newValue = Number(value)
 
     newProps.props.width = value != null ? newValue : 1
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedElementId, newProps)
   }
   const onDownload = (event: DragEvent | React.ChangeEvent) => {
     const target = event.target as EventTarget & HTMLInputElement
@@ -54,7 +46,7 @@ export const useItemsHandlers = (
         }
         newProps.props = { ...newProps.props }
         newProps.props.options = json
-        onDispatch(selectedElement, newProps)
+        onDispatch(selectedElementId, newProps)
       })
     }
   }
