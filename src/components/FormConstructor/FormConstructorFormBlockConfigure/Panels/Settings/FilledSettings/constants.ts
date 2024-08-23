@@ -1,1 +1,1 @@
-export const width = ['default', 'filled']
+export const width: ('filled' | 'default')[] = ['default', 'filled']

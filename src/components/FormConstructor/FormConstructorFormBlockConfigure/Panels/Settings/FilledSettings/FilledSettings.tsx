@@ -1,8 +1,5 @@
 import React from 'react'
-import { IconMaxHeight } from '@consta/icons/IconMaxHeight'
-import { IconMaxWidth } from '@consta/icons/IconMaxWidth'
 import { Select } from '@consta/uikit/Select'
-import { Text } from '@consta/uikit/Text'
 
 import type { BrandButtonProps, BrandTextFieldProps, BrandUserProps } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
@@ -13,11 +10,6 @@ import { width } from './constants'
 import type { FilledSettingsType, fillType } from './types'
 
 import style from './styles.module.css'
-
-const fillValues = [
-  { name: 'default', icon: IconMaxHeight },
-  { name: 'filled', icon: IconMaxWidth },
-]
 
 /*Компонент нуждается в перепроетировании*/
 export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props }) => {
@@ -50,8 +42,8 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
   return (
     <div className={style.choiceGroup}>
       <Select
-        getItemKey={(item: string) => item}
-        getItemLabel={(item: string) => item}
+        getItemKey={(item: 'filled' | 'default') => item}
+        getItemLabel={(item: 'filled' | 'default') => item}
         items={width}
         size="xs"
         value={filledValue}
