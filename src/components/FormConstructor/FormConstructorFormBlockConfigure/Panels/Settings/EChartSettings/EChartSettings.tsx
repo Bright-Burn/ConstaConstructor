@@ -23,7 +23,7 @@ export const EChartSettings: FC<EChartSettingsType> = ({
 }) => {
   const { onDownload, onChangeWidth, onChangeHeight } = useItemsHandlers(
     selectedElementProps,
-    selectedElement,
+    selectedElement.elementId,
   )
   return (
     <div className={styles.layoutSettings}>
@@ -38,7 +38,6 @@ export const EChartSettings: FC<EChartSettingsType> = ({
           onChange={onChangeHeight}
         />{' '}
         <Text view="secondary" size="xs" className={styles.settingCaption}>
-          {' '}
           px
         </Text>
       </div>
@@ -51,9 +50,8 @@ export const EChartSettings: FC<EChartSettingsType> = ({
           size="xs"
           min="0"
           onChange={onChangeWidth}
-        />{' '}
+        />
         <Text view="secondary" size="xs" className={styles.settingCaption}>
-          {' '}
           px
         </Text>
       </div>
