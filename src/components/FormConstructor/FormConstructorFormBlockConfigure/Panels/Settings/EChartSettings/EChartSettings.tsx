@@ -6,7 +6,7 @@ import { FileField } from '@consta/uikit/FileField'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { EChartFormElement, EChartProps } from '../../../../coreTypes'
+import type { EChartProps } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './itemsService'
 
@@ -14,16 +14,16 @@ import styles from './styles.module.css'
 
 type EChartSettingsType = {
   selectedElementProps: EChartProps
-  selectedElement: EChartFormElement
+  selectedElementId: string
 }
 
 export const EChartSettings: FC<EChartSettingsType> = ({
   selectedElementProps,
-  selectedElement,
+  selectedElementId,
 }) => {
   const { onDownload, onChangeWidth, onChangeHeight } = useItemsHandlers(
     selectedElementProps,
-    selectedElement.elementId,
+    selectedElementId,
   )
   return (
     <div className={styles.layoutSettings}>
@@ -56,7 +56,7 @@ export const EChartSettings: FC<EChartSettingsType> = ({
         </Text>
       </div>
       <div className={styles.rowSettings}>
-        <FileField id={selectedElement.elementId} onChange={onDownload}>
+        <FileField id={selectedElementId} onChange={onDownload}>
           {props => (
             <Button
               id="btn"

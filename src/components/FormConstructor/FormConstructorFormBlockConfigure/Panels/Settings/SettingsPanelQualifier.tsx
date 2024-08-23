@@ -511,7 +511,7 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
         <>
           <EChartSettings
             selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
+            selectedElementId={element.elementId}
           />
           <BaseSettings />
         </>
