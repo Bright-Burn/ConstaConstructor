@@ -88,6 +88,7 @@ export type IGroupElement<T extends FormGroupsTypes = FormGroupsTypes> = IUnion 
   parentId?: string
   type: T
   isOuter: boolean
+  label?: string
 }
 export type IFormElement<T extends FormElementTypes = FormElementTypes> = IUnion & {
   id: string

@@ -43,6 +43,7 @@ export {
   setSameElementsIdsById,
   setSelectedElement,
   updateBaseComponentAction,
+  updateGroupFormElementLabel,
   updateOrders,
 } from './formElements'
 export { popHistoryElement } from './history'

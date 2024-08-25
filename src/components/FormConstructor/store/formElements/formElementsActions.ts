@@ -4,9 +4,9 @@ import type { IFormElement, IGroupElement } from '../../coreTypes'
 import type { AppDispatch, RootState } from '../setupStore'
 
 import { formConstructorSlice } from './formElementsSlice'
-import { initialLayout } from './initialState'
+import { initialLayout, layuoutAdapter } from './initialState'
 import { addNewFormElement, deleteFormElement } from './instanceElements'
-import { selectAll } from './layoutAdapterSelectors'
+import { selectAll, selectById } from './layoutAdapterSelectors'
 import type { SetNewElementDraggableElem } from './payload'
 
 export const deletePage =
@@ -47,3 +47,13 @@ export const getSiblingsCount = (state: RootState, parentId: string) => {
   })
   return elements
 }
+
+export const updateGroupFormElementLabel =
+  (label: string, elId: string) => (dispatch: AppDispatch) => {
+    dispatch(
+      formConstructorSlice.actions.updateFormElements({
+        id: elId,
+        changes: { label },
+      }),
+    )
+  }
