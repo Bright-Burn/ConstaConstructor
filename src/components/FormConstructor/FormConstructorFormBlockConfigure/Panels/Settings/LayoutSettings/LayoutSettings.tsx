@@ -46,6 +46,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
     onChangeBackroundColor,
     onChangeOverflow,
     onChangeWrap,
+    onChangeLabel,
   } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [widthValue, setWidthValue] = useState<string>('0')
@@ -60,6 +61,15 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
 
   return (
     <div className={styles.layoutSettings}>
+      <TextField
+        value={selectedElementProps.constaProps.label}
+        leftSide="label"
+        size="xs"
+        min="0"
+        onChange={value => {
+          onChangeLabel(value)
+        }}
+      />
       <div className={styles.rowSettings}>
         <TextField
           value={heightValue}

@@ -18,6 +18,7 @@ export interface LayoutElementProps {
   verticalAlign?: LayoutPropVerticalAlign
   horizontalAlign?: LayoutPropHorizontalAlign
   direction?: LayoutPropDirection
+  label?: string
 }
 
 export type BorderStyle =

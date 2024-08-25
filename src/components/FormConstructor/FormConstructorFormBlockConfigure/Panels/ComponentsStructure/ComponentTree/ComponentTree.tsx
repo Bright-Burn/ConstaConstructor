@@ -32,7 +32,12 @@ const getTree = (
   const childrenItems: ITreeItem[] = []
 
   childrenIds.forEach(childId => {
-    const title = allElementsMap.get(childId.id)?.type
+    const child = allElementsMap.get(childId.id)
+    let title: string = child?.type ?? 'пока нет названия'
+
+    if (child?.type === 'Layout' && child.label) {
+      title = child.label
+    }
 
     if (title) {
       const treeItem: ITreeItem = {

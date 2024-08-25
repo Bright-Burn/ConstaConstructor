@@ -1,12 +1,6 @@
 import uuid from 'react-uuid'
 
-import type {
-  AllElementTypes,
-  FormInstance,
-  IFormElement,
-  IGroupElement,
-  ISelectedElement,
-} from '../../../coreTypes'
+import type { AllElementTypes, FormInstance, IFormElement, IGroupElement } from '../../../coreTypes'
 import {
   copyInstances,
   deepCopyElements,

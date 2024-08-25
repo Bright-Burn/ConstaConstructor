@@ -9,3 +9,9 @@ export const updateOrders = (
 ) => {
   layuoutAdapter.updateMany(state.allElements, action.payload)
 }
+export const updateFormElements = (
+  state: IFormConstructor,
+  { payload }: PayloadAction<Update<IGroupElement>>,
+) => {
+  layuoutAdapter.updateOne(state.allElements, payload)
+}

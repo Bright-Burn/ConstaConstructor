@@ -5,6 +5,7 @@ export {
   changePageName,
   deletePage,
   setDraggableElement,
+  updateGroupFormElementLabel,
 } from './formElementsActions'
 export {
   getAllFormElements,

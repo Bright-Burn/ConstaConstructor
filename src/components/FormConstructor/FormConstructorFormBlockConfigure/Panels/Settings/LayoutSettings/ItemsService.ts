@@ -12,7 +12,7 @@ import type {
   LayoutElementPropsStyles,
   LayoutPropDirection,
 } from '../../../../coreTypes'
-import { setInstanceProps, useAppDispatch } from '../../../../store'
+import { setInstanceProps, updateGroupFormElementLabel, useAppDispatch } from '../../../../store'
 
 import type { overflowType } from './LayoutConstants'
 
@@ -260,6 +260,16 @@ export const useItemsHandlers = (
     newProps.props.styles.transform = value ? value : undefined
     onDispatch(selectedElement, newProps)
   }
+  const onChangeLabel = (value: string | null) => {
+    const newProps: BrandLayoutElementPropsStyles = {
+      props: { ...selectedElementProps },
+      type: 'Layout',
+    }
+    newProps.props.constaProps = { ...newProps.props.constaProps }
+    newProps.props.constaProps.label = value ? value : undefined
+    dispatch(updateGroupFormElementLabel(value ?? '', selectedElement.elementId))
+    onDispatch(selectedElement, newProps)
+  }
 
   return {
     onChangeFlex,
@@ -279,6 +289,7 @@ export const useItemsHandlers = (
     onChangeOverflow,
     onChangeBorderRadius,
     onChangeRotate,
+    onChangeLabel,
     itemsProps: {
       constaProps: selectedElementProps.constaProps,
       styles: selectedElementProps.styles,

@@ -16,6 +16,7 @@ import {
   setElementToCopyId,
   setSameInstanceElementsIds,
   setSelectedElement,
+  updateFormElements,
   updateOrders,
 } from './reducers'
 
@@ -40,6 +41,7 @@ export const formConstructorSlice = createSlice({
     changePageName,
     deletePage,
     updateOrders,
+    updateFormElements,
   },
 })
 
