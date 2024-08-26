@@ -1,11 +1,10 @@
-export { reorderFormElement, updateOrders } from './actions'
+export { reorderFormElement, updateGroupFormElementLabel, updateOrders } from './actions'
 export {
   addNewPage,
   changeActivePage,
   changePageName,
   deletePage,
   setDraggableElement,
-  updateGroupFormElementLabel,
 } from './formElementsActions'
 export {
   getAllFormElements,
