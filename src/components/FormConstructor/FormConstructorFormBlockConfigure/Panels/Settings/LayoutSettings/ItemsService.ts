@@ -261,14 +261,8 @@ export const useItemsHandlers = (
     onDispatch(selectedElement, newProps)
   }
   const onChangeLabel = (value: string | null) => {
-    const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
-      type: 'Layout',
-    }
-    newProps.props.constaProps = { ...newProps.props.constaProps }
-    newProps.props.constaProps.label = value ? value : undefined
-    dispatch(updateGroupFormElementLabel(value ?? '', selectedElement.elementId))
-    onDispatch(selectedElement, newProps)
+    const newLabel = value ? value : ''
+    dispatch(updateGroupFormElementLabel(newLabel, selectedElement.elementId))
   }
 
   return {

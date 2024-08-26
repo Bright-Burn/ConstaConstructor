@@ -33,7 +33,7 @@ const getTree = (
 
   childrenIds.forEach(childId => {
     const child = allElementsMap.get(childId.id)
-    let title: string = child?.type ?? 'пока нет названия'
+    let title = child?.type ?? 'пока нет названия'
 
     if (child?.type === 'Layout' && child.label) {
       title = child.label

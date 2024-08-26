@@ -62,7 +62,6 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
   return (
     <div className={styles.layoutSettings}>
       <TextField
-        value={selectedElementProps.constaProps.label}
         leftSide="label"
         size="xs"
         min="0"
