@@ -5,7 +5,8 @@ import { ElementTypes } from '../../coreTypes'
 import {
   checkIsGridVisible,
   sameInstanceElementsIdsSelector,
-  setSelectedElement,
+  selectedViewSelector,
+  setSelectedView,
   useAppDispatch,
   useAppSelector,
 } from '../../store'
@@ -24,7 +25,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   className,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const selectedView = useAppSelector(selectedViewSelector)
   const isGridVisible = useAppSelector(checkIsGridVisible)
 
   const isInSameInstanceElements = useAppSelector(sameInstanceElementsIdsSelector).has(
@@ -34,19 +35,19 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
-    if (selectedElement?.elementId === parentElementId) {
+    if (selectedView?.elementId === parentElementId) {
       setIsSelected(true)
     } else {
       setIsSelected(false)
     }
-  }, [selectedElement, parentElementId])
+  }, [selectedView, parentElementId])
 
   const onClickElement = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
     event.preventDefault()
 
     dispatch(
-      setSelectedElement({
+      setSelectedView({
         elementId: parentElementId,
         elementType,
       }),

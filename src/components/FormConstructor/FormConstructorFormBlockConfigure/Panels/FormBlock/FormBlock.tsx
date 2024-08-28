@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { useEffect } from 'react'
 
-import { setSelectedElement, useAppDispatch, useAppSelector } from '../../../store'
+import { setSelectedView, useAppDispatch, useAppSelector } from '../../../store'
 import { DroppableLayer } from '../../DroppableLayer'
 
 import { Pages } from './Pages'

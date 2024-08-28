@@ -8,14 +8,14 @@ import type {
 } from '../../../../coreTypes'
 import {
   getSelectedElementPropsSelector,
-  selectedElementSelector,
+  selectedViewSelector,
   setInstanceProps,
   useAppDispatch,
   useAppSelector,
 } from '../../../../store'
 
 export const useMarginHandlers = () => {
-  const selectedElement = useAppSelector(selectedElementSelector)
+  const selectedElement = useAppSelector(selectedViewSelector)
   const dispatch = useAppDispatch()
   const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
 

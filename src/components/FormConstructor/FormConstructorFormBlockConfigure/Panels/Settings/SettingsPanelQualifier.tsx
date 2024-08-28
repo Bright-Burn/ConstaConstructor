@@ -31,7 +31,11 @@ import type {
   UnionProps,
 } from '../../../coreTypes'
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../coreTypes'
-import { getSelectedElementPropsSelector, useAppSelector } from '../../../store'
+import {
+  getSelectedElementPropsSelector,
+  selectedViewSelector,
+  useAppSelector,
+} from '../../../store'
 import { isElementProps } from '../../../utils'
 
 import { AvatarGroupSettings } from './AvatarGroupSettings'
@@ -523,15 +527,15 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
 }
 
 export const SettingPanelQualifier: FC = () => {
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const selectedView = useAppSelector(selectedViewSelector)
   const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
 
-  return selectedElement && selectedElementProps ? (
+  return selectedView && selectedElementProps ? (
     <div className={styles.elementSettings}>
       <Text size="xs" view="secondary" className="p-t-s p-b-xs">
         Base
       </Text>
-      {getSettingsPanel(selectedElementProps, selectedElement)}
+      {getSettingsPanel(selectedElementProps, selectedView)}
     </div>
   ) : (
     <NotFound title=" " description="Нет выбранного элемента для настройки" />

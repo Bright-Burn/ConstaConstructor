@@ -12,7 +12,7 @@ import type {
   LayoutElementPropsStyles,
   LayoutPropDirection,
 } from '../../../../coreTypes'
-import { setInstanceProps, updateGroupFormElementLabel, useAppDispatch } from '../../../../store'
+import { setInstanceProps, setViewLabel, useAppDispatch } from '../../../../store'
 
 import type { overflowType } from './LayoutConstants'
 
@@ -262,7 +262,7 @@ export const useItemsHandlers = (
   }
   const onChangeLabel = (value: string | null) => {
     const newLabel = value ? value : ''
-    dispatch(updateGroupFormElementLabel(newLabel, selectedElement.elementId))
+    dispatch(setViewLabel(selectedElement.elementId, newLabel))
   }
 
   return {

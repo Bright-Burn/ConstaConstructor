@@ -7,7 +7,8 @@ import RCTree from 'rc-tree'
 import type { IFormElement, IGroupElement } from '../../../../../coreTypes'
 import {
   getFormElAsMap,
-  setSelectedElement,
+  selectedViewSelector,
+  setSelectedView,
   useAppDispatch,
   useAppSelector,
 } from '../../../../../store'
@@ -16,7 +17,7 @@ import type { ITree } from './types'
 
 export const Tree: FC<ITree> = ({ data }) => {
   const allElementsMap = useAppSelector(getFormElAsMap)
-  const selectedEl = useAppSelector(state => state.formConstructor.selectedElement)
+  const selectedView = useAppSelector(selectedViewSelector)
   const dispatch = useAppDispatch()
   const [expandedKeys, setExpandedKeys] = useState<(string | number)[]>([])
 
@@ -28,21 +29,21 @@ export const Tree: FC<ITree> = ({ data }) => {
     ['CustomTree'],
   )
   useEffect(() => {
-    if (selectedEl) {
+    if (selectedView) {
       //TODO раскоментировать если есть необходимость не закрывать предыдущие узлы когда выбираются новые
       // const parentsIds = getParentsIds(allElementsMap, [], selectedEl.elementId)
       //       const expandedKeysSet = new Set([...expandedKeys, ...parentsIds])
       //       setExpandedKeys(Array.from(expandedKeysSet))
-      setExpandedKeys(getParentsIds(allElementsMap, [], selectedEl.elementId))
+      setExpandedKeys(getParentsIds(allElementsMap, [], selectedView.elementId))
     }
-  }, [selectedEl])
+  }, [selectedView])
 
   const onSelect = (selectedKeys: (string | number)[]) => {
     selectedKeys.forEach(key => {
       const element = allElementsMap.get(`${key}`)
       if (element) {
         dispatch(
-          setSelectedElement({
+          setSelectedView({
             elementType: element.type,
             elementId: element.id,
           }),
@@ -58,7 +59,7 @@ export const Tree: FC<ITree> = ({ data }) => {
       {...treeProps}
       treeData={data}
       prefixCls={prefix}
-      selectedKeys={[selectedEl?.elementId ?? '']}
+      selectedKeys={[selectedView?.elementId ?? '']}
       expandedKeys={expandedKeys}
       defaultExpandAll={true}
       onSelect={onSelect}

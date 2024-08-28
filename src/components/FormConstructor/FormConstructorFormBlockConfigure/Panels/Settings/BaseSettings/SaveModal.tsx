@@ -4,7 +4,12 @@ import { Modal } from '@consta/uikit/Modal'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import { saveBaseComponent, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  saveBaseComponent,
+  selectedViewSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../store'
 
 import style from './styles.module.css'
 interface ISaveModal {
@@ -13,14 +18,14 @@ interface ISaveModal {
 }
 export const SaveModal: React.FC<ISaveModal> = ({ onCloseModal, isModalOpen }) => {
   const [moduleName, setModuleName] = useState<string | null>(null)
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const selectedView = useAppSelector(selectedViewSelector)
   const dispatch = useAppDispatch()
   const changeTextFieldValue = (value: string | null) => {
     setModuleName(value)
   }
   const onSaveModule = () => {
-    if (selectedElement && moduleName) {
-      dispatch(saveBaseComponent(selectedElement.elementId, moduleName))
+    if (selectedView && moduleName) {
+      dispatch(saveBaseComponent(selectedView.elementId, moduleName))
     }
   }
 

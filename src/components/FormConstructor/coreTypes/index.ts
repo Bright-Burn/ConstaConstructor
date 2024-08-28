@@ -77,7 +77,6 @@ export type {
   EChartProps,
   IFormElementEChart,
 } from './echarts'
-export type { FormInstance, InstanceManager, UnionProps } from './formInstance'
 export type {
   BrandIconProps,
   IconElement,
@@ -87,8 +86,9 @@ export type {
   IFormElementIcon,
 } from './iconTypes'
 export { Icons, icons, IconsGroup } from './iconTypes'
-export type { IFormElementInformer, InformerElement, InformerElementProps } from './informerTypes'
+export type { IFormViewtInformer, InformerElement, InformerElementProps } from './informerTypes'
 export type { BrandInformerElementProps } from './informerTypes'
+export type { FormInstance, InstanceManager, UnionProps } from './instance'
 export type {
   BorderSide,
   BorderStyle,
@@ -168,3 +168,4 @@ export type {
 } from './types'
 export { ElementTypes, FormElementDictTypes, FormGroupsDictTypes } from './types'
 export type { BrandUserProps, IFormElementUser, UserElement, UserProps } from './userTypes'
+export type { ViewtInfo } from './viewtInfo'

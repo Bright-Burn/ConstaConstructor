@@ -1,22 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { initialState } from './initialState'
-import { addNewFormInstance, changeElementLinkCount, updateFormInstance } from './instanceElements'
 import {
   addNewFormElementAdapter,
+  addNewFormInstance,
   addNewPage,
   changeActivePage,
+  changeElementLinkCount,
   changePageName,
   deleteFormElement,
   deletePage,
   deselectElement,
-  loadProjectFromJson,
   reorderFormElements,
+  repalceState,
+  replaceViewInfo,
   setDraggableElement,
   setElementToCopyId,
   setSameInstanceElementsIds,
-  setSelectedElement,
+  setSelectedView,
   updateFormElements,
+  updateFormInstance,
   updateOrders,
 } from './reducers'
 
@@ -24,6 +27,7 @@ export const formConstructorSlice = createSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
+    replaceViewInfo,
     setElementToCopyId,
     setSameInstanceElementsIds,
     changeElementLinkCount,
@@ -31,8 +35,8 @@ export const formConstructorSlice = createSlice({
     addNewFormInstance,
     reorderFormElements,
     setDraggableElement,
-    loadProjectFromJson,
-    setSelectedElement,
+    repalceState,
+    setSelectedView,
     deselectElement,
     addNewFormElementAdapter,
     deleteFormElement,

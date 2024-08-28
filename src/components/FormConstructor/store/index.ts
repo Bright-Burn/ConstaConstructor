@@ -6,9 +6,13 @@ export {
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from './baseComponentsItems'
-export type { ChangeElementLinkCountPayload } from './formElements'
-export type { AddElementsWithInstancesPayload } from './formElements'
-export type { AddNewElementPayload } from './formElements'
+export type {
+  AddElementsWithInstancesPayload,
+  AddNewElementPayload,
+  ReorderPayload,
+  SaveNewProject,
+  UpdateBaseComponentPayload,
+} from './formElements'
 export {
   addFormElementWithDefaultInstance,
   addNewFormElement,
@@ -19,15 +23,19 @@ export {
   copyFormElementLink,
   deleteFormElement,
   deletePage,
+  elementToCopyIdSelector,
   formInstancePropsSelector,
   formInstanceSelector,
+  formInstancesSelector,
   getAllFormElements,
   getElementById,
   getElementsOnLayer,
   getFormConstructor,
   getFormElAsMap,
+  getInstanceProps,
   getSelectedElementPropsSelector,
   getSelectedPageId,
+  getSiblingsCount,
   insertNewElements,
   loadProjectFromFile,
   loadProjectFromStorage,
@@ -36,14 +44,14 @@ export {
   saveBaseComponent,
   saveProjectToFile,
   saveProjectToHTML,
-  selectedElementSelector,
+  selectedViewSelector,
   setDraggableElement,
   setElementToCopyId,
   setInstanceProps,
   setSameElementsIdsById,
-  setSelectedElement,
+  setSelectedView,
+  setViewLabel,
   updateBaseComponentAction,
-  updateGroupFormElementLabel,
   updateOrders,
 } from './formElements'
 export { popHistoryElement } from './history'
