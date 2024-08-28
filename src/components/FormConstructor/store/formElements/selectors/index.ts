@@ -5,6 +5,7 @@ export {
   getInstanceProps,
   getSelectedElementPropsSelector,
 } from './instanceSelectors'
+export { getViewInfoByIdSelector, viewInfoSelector } from './viewInfoSelector'
 export {
   elementToCopyIdSelector,
   getAllFormElements,
@@ -17,4 +18,3 @@ export {
   sameInstanceElementsIdsSelector,
   selectedViewSelector,
 } from './viewSelectors'
-export { getViewInfoByIdSelector, viewInfoSelector } from './viewInfoSelector'

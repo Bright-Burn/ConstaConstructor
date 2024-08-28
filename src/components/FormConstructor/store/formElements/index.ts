@@ -45,9 +45,9 @@ export {
   getInstanceProps,
   getSelectedElementPropsSelector,
   getSelectedPageId,
-  viewInfoSelector,
   getSiblingsCount,
+  getViewInfoByIdSelector,
   sameInstanceElementsIdsSelector,
   selectedViewSelector,
-  getViewInfoByIdSelector,
+  viewInfoSelector,
 } from './selectors'

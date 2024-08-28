@@ -1,4 +1,4 @@
-import { RootState } from '../../setupStore'
+import type { RootState } from '../../setupStore'
 import { selectViewInfoById, selectViewInfoEntities } from '../adapters'
 
 export const getViewInfoByIdSelector = (id: string) => (state: RootState) => {

@@ -1,1 +1,1 @@
-export { updateViewInfo, addViewInfos, deleteViewInfos } from './updateViewInfo'
+export { addViewInfos, deleteViewInfos, updateViewInfo } from './updateViewInfo'

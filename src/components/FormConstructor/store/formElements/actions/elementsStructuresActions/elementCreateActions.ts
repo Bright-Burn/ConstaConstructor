@@ -27,8 +27,8 @@ import {
 import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../payloads'
 import { clearSameInstanceIds } from '../viewSelectionActions'
 
-import { deleteFormElementRollback } from './deleteFormElements'
 import { addViews } from './combinedViewActions'
+import { deleteFormElementRollback } from './deleteFormElements'
 
 /**
  * Функция добавляет новые элементы и инстансы.
