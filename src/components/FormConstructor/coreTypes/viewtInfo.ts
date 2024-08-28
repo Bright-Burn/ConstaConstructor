@@ -4,5 +4,5 @@ type ElementId = (IFormElement | IGroupElement)['id']
 
 export type ViewtInfo = {
   id: ElementId
-  label: string
+  label: string | null
 }

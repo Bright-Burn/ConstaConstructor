@@ -6,6 +6,7 @@ import { selectInstanceAll, selectViewAll } from '../../adapters'
 import { formConstructorSlice } from '../../formElementsSlice'
 import type { ChangeElementLinkCountPayload } from '../../reducers'
 import type { UpdateBaseComponentPayload } from '../payloads'
+import { addViews, deleteViews } from './combinedViewActions'
 
 import { deleteElementFormById } from './deleteFormElements'
 
@@ -70,7 +71,7 @@ export const updateBaseComponentAction =
 
     // Отправляем в стор все накопленные изменения
     // Добавляем новые элементы
-    dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsToAdd))
+    dispatch(addViews(elementsToAdd))
     // Добавляем новые инстансы
     dispatch(formConstructorSlice.actions.addNewFormInstance(newInstances))
     // Изменяем количество ссылок на инстансы - в случае если количество = 0, то инстанс будет удален
@@ -97,10 +98,10 @@ export const updateBaseComponentAction =
       pushHistoryElement(() => {
         // Возвращаем все, что удалили
         dispatch(formConstructorSlice.actions.addNewFormInstance(instancesForRollBack))
-        dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsFotRollBack))
+        dispatch(addViews(elementsFotRollBack))
 
         // Удаляем все, что добавили
-        dispatch(formConstructorSlice.actions.deleteFormElement(elementsToAdd.map(el => el.id)))
+        dispatch(deleteViews(elementsToAdd.map(el => el.id)))
 
         // Обратнае действие с типами - все что имело тип INC станет DEC, все что было DEC станет INC
         const changeLinksCountPayloads: ChangeElementLinkCountPayload[] =

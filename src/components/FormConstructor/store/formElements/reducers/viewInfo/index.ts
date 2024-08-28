@@ -1,1 +1,1 @@
-export { replaceViewInfo } from './replaceViewInfo'
+export { updateViewInfo, addViewInfos, deleteViewInfos } from './updateViewInfo'

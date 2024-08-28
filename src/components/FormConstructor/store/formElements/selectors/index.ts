@@ -17,3 +17,4 @@ export {
   sameInstanceElementsIdsSelector,
   selectedViewSelector,
 } from './viewSelectors'
+export { getViewInfoByIdSelector, viewInfoSelector } from './viewInfoSelector'
