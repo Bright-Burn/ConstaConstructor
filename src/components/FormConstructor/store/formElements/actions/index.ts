@@ -27,7 +27,7 @@ export { setDraggableElement } from './setDraggableElement'
 export { reorderFormElement, updateOrders } from './viewOrderingActions'
 export {
   clearSameInstanceIds,
-  setElementToCopyId,
   setSameElementsIdsById,
   setSelectedView,
+  setViewToCopyId,
 } from './viewSelectionActions'

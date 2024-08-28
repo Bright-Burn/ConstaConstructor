@@ -9,7 +9,7 @@ export type SetNewElementDraggableElem = {
   element: DraggbleElement<IFormElement | IGroupElement> | null
 }
 
-export type SetNewSelectedElement = {
+export type SetNewSelectedView = {
   elementId: string
   elementType: AllElementTypes
 } | null

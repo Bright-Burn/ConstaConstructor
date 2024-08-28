@@ -7,7 +7,7 @@ import type {
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   DeepWriteable,
   FormElementDictTypes,
   IFormElement,
@@ -28,7 +28,7 @@ export type BrandBreadcrumbsProps = BrandProps<
   'BreadcrumbsFormElement'
 >
 
-export type BreadcrumbsFormElement = ConcreteSelectedElement<
+export type BreadcrumbsFormElement = ConcreteSelectedView<
   typeof FormElementDictTypes.BreadcrumbsForm
 >
 

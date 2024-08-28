@@ -11,14 +11,11 @@ import type {
   BadgeProps,
   BrandBadgeProps,
   IconNames,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = (
-  selectedElementProps: BadgeProps,
-  selectedElement: BadgeElement,
-) => {
+export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: BadgeElement) => {
   const dispatch = useAppDispatch()
 
   const onChangeField = (
@@ -26,53 +23,53 @@ export const useItemsHandlers = (
     field: keyof BadgeProps,
   ) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedElementProps, [field]: value },
+      props: { ...selectedViewProps, [field]: value },
       type: 'Badge',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof BadgeProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandBadgeProps = {
-        props: { ...selectedElementProps, [propsName]: checked.target.checked },
+        props: { ...selectedViewProps, [propsName]: checked.target.checked },
         type: 'Badge',
       }
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
 
   const onChangeIconLeft = (value: IconNames | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Badge',
     }
     newProps.props.iconLeft = value ? value : undefined
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeIconRight = (value: IconNames | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Badge',
     }
     newProps.props.iconRight = value ? value : undefined
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const handleOnChangeLabel = (value: string | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Badge',
     }
     newProps.props.label = value || undefined
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandBadgeProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandBadgeProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   return {
@@ -82,13 +79,13 @@ export const useItemsHandlers = (
     onChangeField,
     onChangeIconRight,
     itemsProps: {
-      size: selectedElementProps.size,
-      view: selectedElementProps.view,
-      form: selectedElementProps.form,
-      label: selectedElementProps.label,
-      minified: selectedElementProps.minified,
-      status: selectedElementProps.status,
-      iconLeft: selectedElementProps.iconLeft,
+      size: selectedViewProps.size,
+      view: selectedViewProps.view,
+      form: selectedViewProps.form,
+      label: selectedViewProps.label,
+      minified: selectedViewProps.minified,
+      status: selectedViewProps.status,
+      iconLeft: selectedViewProps.iconLeft,
     },
   }
 }

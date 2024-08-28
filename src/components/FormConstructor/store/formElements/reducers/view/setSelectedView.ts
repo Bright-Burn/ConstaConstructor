@@ -8,13 +8,13 @@ export const deselectElement = (state: IFormConstructor) => {
 
 export const setSelectedView = (
   state: IFormConstructor,
-  action: PayloadAction<SetNewSelectedElement>,
+  action: PayloadAction<SetNewSelectedView>,
 ) => {
   state.selectedView = {
     elementId: action.payload.element.id,
     elementType: action.payload.element.type,
   }
 }
-type SetNewSelectedElement = {
+type SetNewSelectedView = {
   element: IFormElement | IGroupElement
 }

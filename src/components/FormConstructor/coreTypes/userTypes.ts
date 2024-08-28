@@ -3,7 +3,7 @@ import type { UserPropSize, UserPropStatus, UserPropView, UserPropWidth } from '
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -25,7 +25,7 @@ export type UserProps = {
 
 export type BrandUserProps = BrandProps<UserProps, 'User'>
 
-export type UserElement = ConcreteSelectedElement<typeof FormElementDictTypes.User>
+export type UserElement = ConcreteSelectedView<typeof FormElementDictTypes.User>
 
 export type IFormElementUser = OmitInstanceId<
   IFormElement & {

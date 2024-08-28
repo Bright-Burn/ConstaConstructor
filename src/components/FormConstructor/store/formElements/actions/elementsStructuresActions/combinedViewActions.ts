@@ -7,7 +7,7 @@ import { formConstructorSlice } from '../../formElementsSlice'
  * @param views Список элементов для добавления
  */
 export const addViews = (views: (IFormElement | IGroupElement)[]) => (dispatch: AppDispatch) => {
-  dispatch(formConstructorSlice.actions.addNewFormElementAdapter(views))
+  dispatch(formConstructorSlice.actions.addNewView(views))
   dispatch(formConstructorSlice.actions.addViewInfos(views.map(getViewInfoDefault)))
 }
 

@@ -9,7 +9,7 @@ import type { IconNames } from './iconTypes'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -29,7 +29,7 @@ export type BadgeProps = {
 
 export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>
 
-export type BadgeElement = ConcreteSelectedElement<typeof FormElementDictTypes.Badge>
+export type BadgeElement = ConcreteSelectedView<typeof FormElementDictTypes.Badge>
 
 export type IFormElementBadge = OmitInstanceId<
   IFormElement & {

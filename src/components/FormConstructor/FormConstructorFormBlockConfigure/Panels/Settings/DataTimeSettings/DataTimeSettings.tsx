@@ -16,17 +16,14 @@ import { typeArray, viewArray } from './types'
 import styles from './styles.module.css'
 
 type DataTimeSettingsType = {
-  selectedElementProps: DataTimeProps
-  selectedElement: DataTimeElement
+  selectedViewProps: DataTimeProps
+  selectedView: DataTimeElement
 }
 
-export const DataTimeSettings: FC<DataTimeSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const DataTimeSettings: FC<DataTimeSettingsType> = ({ selectedViewProps, selectedView }) => {
   const { itemsProps, onChangeField, onChangeItemsCount } = useItemsHandlers(
-    selectedElementProps,
-    selectedElement,
+    selectedViewProps,
+    selectedView,
   )
 
   const [isOpenEvents, setOpenEvents] = useState<boolean>(false)

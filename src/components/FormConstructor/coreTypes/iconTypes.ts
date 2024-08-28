@@ -26,7 +26,7 @@ import {
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -49,7 +49,7 @@ export type IFormElementIcon = OmitInstanceId<
 
 export type BrandIconProps = BrandProps<IconProps, 'Icon'>
 
-export type IconElement = ConcreteSelectedElement<typeof FormElementDictTypes.Icon>
+export type IconElement = ConcreteSelectedView<typeof FormElementDictTypes.Icon>
 
 export const Icons: Record<string, IconComponent> = {
   ...ActionIcon,

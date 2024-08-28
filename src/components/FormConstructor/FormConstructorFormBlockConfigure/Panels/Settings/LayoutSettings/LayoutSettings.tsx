@@ -27,14 +27,11 @@ import { LayoutRadiusSettings } from './LayoutRadiusSettings'
 import styles from './styles.module.css'
 
 type LayoutSettingsType = {
-  selectedElementProps: LayoutElementPropsStyles
-  selectedElement: LayoutElement
+  selectedViewProps: LayoutElementPropsStyles
+  selectedView: LayoutElement
 }
 
-export const LayoutSettings: FC<LayoutSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
     onChangeFlex,
@@ -47,21 +44,21 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
     onChangeBackroundColor,
     onChangeOverflow,
     onChangeWrap,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
 
   const [widthValue, setWidthValue] = useState<string>('0')
   const [heightValue, setHeightValue] = useState<string>('0')
 
   useLayoutEffect(() => {
-    const layoutProps = itemsProps.selectedElementProps
+    const layoutProps = itemsProps.selectedViewProps
 
     setHeightValue(layoutProps.styles?.maxHeight?.replaceAll('px', '') || '0')
     setWidthValue(layoutProps.styles?.maxWidth?.replaceAll('px', '') || '0')
-  }, [itemsProps.selectedElementProps])
+  }, [itemsProps.selectedViewProps])
 
   return (
     <div className={styles.layoutSettings}>
-      <LabelField viewId={selectedElement.elementId} />
+      <LabelField viewId={selectedView.elementId} />
       <div className={styles.rowSettings}>
         <TextField
           value={heightValue}
@@ -122,7 +119,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
         }}
       />
       <Switch
-        checked={selectedElementProps.styles?.flexWrap === 'wrap'}
+        checked={selectedViewProps.styles?.flexWrap === 'wrap'}
         size="xs"
         label="wrap"
         onChange={onChangeWrap}
@@ -188,15 +185,9 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
         placeholder="Bg"
         onChangeColor={onChangeBackroundColor}
       />
-      <LayoutBorderSettings
-        selectedElementProps={selectedElementProps}
-        selectedElement={selectedElement}
-      />
+      <LayoutBorderSettings selectedViewProps={selectedViewProps} selectedView={selectedView} />
 
-      <LayoutRadiusSettings
-        selectedElementProps={selectedElementProps}
-        selectedElement={selectedElement}
-      />
+      <LayoutRadiusSettings selectedViewProps={selectedViewProps} selectedView={selectedView} />
     </div>
   )
 }

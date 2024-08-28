@@ -1,5 +1,5 @@
 import type {
-  ISelectedElement,
+  IselectedView,
   paddingsBottom,
   paddingsLeft,
   paddingsRight,
@@ -7,7 +7,7 @@ import type {
   UnionProps,
 } from '../../../../coreTypes'
 import {
-  getSelectedElementPropsSelector,
+  getselectedViewPropsSelector,
   selectedViewSelector,
   setInstanceProps,
   useAppDispatch,
@@ -15,12 +15,12 @@ import {
 } from '../../../../store'
 
 export const usePaddingHandlers = () => {
-  const selectedElement = useAppSelector(selectedViewSelector)
-  const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
+  const selectedView = useAppSelector(selectedViewSelector)
+  const selectedViewProps = useAppSelector(getselectedViewPropsSelector)
 
   const dispatch = useAppDispatch()
 
-  if (!selectedElementProps) {
+  if (!selectedViewProps) {
     return {
       paddingProps: null,
       onChangePaddingBottom: () => {},
@@ -30,12 +30,12 @@ export const usePaddingHandlers = () => {
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: UnionProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: UnionProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
   const onChangePaddingLeft = (value: (typeof paddingsLeft)[number] | null) => {
-    if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)
+    if (selectedView && value != null) {
+      const newProps: UnionProps = structuredClone(selectedViewProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
@@ -51,12 +51,12 @@ export const usePaddingHandlers = () => {
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangePaddingRight = (value: (typeof paddingsRight)[number] | null) => {
-    if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)
+    if (selectedView && value != null) {
+      const newProps: UnionProps = structuredClone(selectedViewProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
@@ -72,12 +72,12 @@ export const usePaddingHandlers = () => {
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangePaddingTop = (value: (typeof paddingsTop)[number] | null) => {
-    if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)
+    if (selectedView && value != null) {
+      const newProps: UnionProps = structuredClone(selectedViewProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
@@ -93,12 +93,12 @@ export const usePaddingHandlers = () => {
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangePaddingBottom = (value: (typeof paddingsBottom)[number] | null) => {
-    if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)
+    if (selectedView && value != null) {
+      const newProps: UnionProps = structuredClone(selectedViewProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
@@ -113,7 +113,7 @@ export const usePaddingHandlers = () => {
         ? Object.values({ ...newProps.props.baseProps.padding, paddingBottom: '' }).join(' ')
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   return {
@@ -121,6 +121,6 @@ export const usePaddingHandlers = () => {
     onChangePaddingLeft,
     onChangePaddingRight,
     onChangePaddingTop,
-    paddingProps: selectedElementProps.props.baseProps.padding,
+    paddingProps: selectedViewProps.props.baseProps.padding,
   }
 }

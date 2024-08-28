@@ -20,13 +20,13 @@ import { useItemsHandlers } from './ItemsService'
 import styles from './styles.module.css'
 
 type BreadcrumbSettingsType = {
-  selectedElementProps: DeepWriteable<BreadcrumbProps>
-  selectedElement: BreadcrumbsFormElement
+  selectedViewProps: DeepWriteable<BreadcrumbProps>
+  selectedView: BreadcrumbsFormElement
 }
 
 export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
   const {
     itemsProps,
@@ -35,7 +35,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
     onChangeSize,
     onChangeFitMode,
     onChangeLastItemLink,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
 
   const [selectedPageIndex, setSelectedPageIndex] = useState<number>(0)
 

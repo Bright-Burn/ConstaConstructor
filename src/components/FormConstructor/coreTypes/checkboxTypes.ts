@@ -3,7 +3,7 @@ import type { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@con
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -21,7 +21,7 @@ export type CheckboxProps = {
 
 export type BrandCheckboxProps = BrandProps<CheckboxProps, 'Checkbox'>
 
-export type CheckboxElement = ConcreteSelectedElement<typeof FormElementDictTypes.Checkbox>
+export type CheckboxElement = ConcreteSelectedView<typeof FormElementDictTypes.Checkbox>
 
 export type IFormElementCheckbox = OmitInstanceId<
   IFormElement & {

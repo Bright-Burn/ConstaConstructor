@@ -27,15 +27,11 @@ import type {
   BrandTextElementProps,
   BrandTextFieldProps,
   BrandUserProps,
-  ISelectedElement,
+  IselectedView,
   UnionProps,
 } from '../../../coreTypes'
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../coreTypes'
-import {
-  getSelectedElementPropsSelector,
-  selectedViewSelector,
-  useAppSelector,
-} from '../../../store'
+import { getselectedViewPropsSelector, selectedViewSelector, useAppSelector } from '../../../store'
 import { isElementProps } from '../../../utils'
 
 import { AvatarGroupSettings } from './AvatarGroupSettings'
@@ -68,454 +64,392 @@ import { UserSettings } from './UserSettings'
 
 import styles from './styles.module.css'
 
-const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISelectedElement) => {
-  switch (selectedElement.elementType) {
+const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: IselectedView) => {
+  switch (selectedView.elementType) {
     case FormElementDictTypes.AvatarGroup: {
-      if (!isElementProps<BrandAvatarGroupProps>(selectedElementProps, 'AvatarGroup')) {
+      if (!isElementProps<BrandAvatarGroupProps>(selectedViewProps, 'AvatarGroup')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
       return (
         <>
-          <AvatarGroupSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <AvatarGroupSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Avatar: {
-      if (!isElementProps<BrandAvatarProps>(selectedElementProps, 'Avatar')) {
+      if (!isElementProps<BrandAvatarProps>(selectedViewProps, 'Avatar')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
       return (
         <>
-          <AvatarSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <AvatarSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Text: {
-      if (!isElementProps<BrandTextElementProps>(selectedElementProps, 'Text')) {
+      if (!isElementProps<BrandTextElementProps>(selectedViewProps, 'Text')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
       return (
         <>
-          <TextSettings selectedProps={selectedElementProps.props} selectedElement={element} />
+          <TextSettings selectedProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Informer: {
-      if (!isElementProps<BrandInformerElementProps>(selectedElementProps, 'Informer')) {
+      if (!isElementProps<BrandInformerElementProps>(selectedViewProps, 'Informer')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <InformerSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <InformerSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Badge: {
-      if (!isElementProps<BrandBadgeProps>(selectedElementProps, 'Badge')) {
+      if (!isElementProps<BrandBadgeProps>(selectedViewProps, 'Badge')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <BadgeSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <BadgeSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormGroupsDictTypes.Layout: {
-      if (!isElementProps<BrandLayoutElementPropsStyles>(selectedElementProps, 'Layout')) {
+      if (!isElementProps<BrandLayoutElementPropsStyles>(selectedViewProps, 'Layout')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <LayoutSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <LayoutSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormGroupsDictTypes.Card: {
-      if (!isElementProps<BrandCardElementPropsStyles>(selectedElementProps, 'Card')) {
+      if (!isElementProps<BrandCardElementPropsStyles>(selectedViewProps, 'Card')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <CardSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <CardSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormGroupsDictTypes.ButtonModal: {
-      if (!isElementProps<BrandButtonGroupProps>(selectedElementProps, 'ButtonModal')) {
+      if (!isElementProps<BrandButtonGroupProps>(selectedViewProps, 'ButtonModal')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
-        <ButtonModuleSettings
-          selectedElementProps={selectedElementProps.props}
-          selectedElement={element}
-        />
+        <ButtonModuleSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
       )
     }
     case FormElementDictTypes.Tabs: {
-      if (!isElementProps<BrandTabsElementProps>(selectedElementProps, 'Tabs')) {
+      if (!isElementProps<BrandTabsElementProps>(selectedViewProps, 'Tabs')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <TabsSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <TabsSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Checkbox: {
-      if (!isElementProps<BrandCheckboxProps>(selectedElementProps, 'Checkbox')) {
+      if (!isElementProps<BrandCheckboxProps>(selectedViewProps, 'Checkbox')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <CheckboxSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <CheckboxSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.TextField: {
-      if (!isElementProps<BrandTextFieldProps>(selectedElementProps, 'TextField')) {
+      if (!isElementProps<BrandTextFieldProps>(selectedViewProps, 'TextField')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <TextFieldSettings
-            selectedElementProps={selectedElementProps}
-            selectedElement={element}
-          />
+          <TextFieldSettings selectedViewProps={selectedViewProps} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.List: {
-      if (!isElementProps<BrandListProps>(selectedElementProps, 'List')) {
+      if (!isElementProps<BrandListProps>(selectedViewProps, 'List')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <ListSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <ListSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.RadioButton: {
-      if (!isElementProps<BrandRadioButtonProps>(selectedElementProps, 'RadioButton')) {
+      if (!isElementProps<BrandRadioButtonProps>(selectedViewProps, 'RadioButton')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <RadioButtonSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <RadioButtonSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Button: {
-      if (!isElementProps<BrandButtonProps>(selectedElementProps, 'Button')) {
+      if (!isElementProps<BrandButtonProps>(selectedViewProps, 'Button')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <ButtonSettings selectedElementProps={selectedElementProps} selectedElement={element} />
+          <ButtonSettings selectedViewProps={selectedViewProps} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Switch: {
-      if (!isElementProps<BrandSwitchProps>(selectedElementProps, 'Switch')) {
+      if (!isElementProps<BrandSwitchProps>(selectedViewProps, 'Switch')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <SwitchSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <SwitchSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.DatePicker: {
-      if (!isElementProps<BrandDatePickerProps>(selectedElementProps, 'DatePicker')) {
+      if (!isElementProps<BrandDatePickerProps>(selectedViewProps, 'DatePicker')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <DatePickerSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <DatePickerSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.ComboBox: {
-      if (!isElementProps<BrandComboboxProps>(selectedElementProps, 'ComboBox')) {
+      if (!isElementProps<BrandComboboxProps>(selectedViewProps, 'ComboBox')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <ComboBoxSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <ComboBoxSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Select: {
-      if (!isElementProps<BrandSelectProps>(selectedElementProps, 'SelectForm')) {
+      if (!isElementProps<BrandSelectProps>(selectedViewProps, 'SelectForm')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
       return (
         <>
-          <SelectSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <SelectSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.DataTime: {
-      if (!isElementProps<BrandDataTimeProps>(selectedElementProps, 'DataTime')) {
+      if (!isElementProps<BrandDataTimeProps>(selectedViewProps, 'DataTime')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
       return (
         <>
-          <DataTimeSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <DataTimeSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.BreadcrumbsForm: {
-      if (!isElementProps<BrandBreadcrumbsProps>(selectedElementProps, 'BreadcrumbsFormElement')) {
+      if (!isElementProps<BrandBreadcrumbsProps>(selectedViewProps, 'BreadcrumbsFormElement')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
       return (
         <>
-          <BreadcrumbsSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <BreadcrumbsSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.User: {
-      if (!isElementProps<BrandUserProps>(selectedElementProps, 'User')) {
+      if (!isElementProps<BrandUserProps>(selectedViewProps, 'User')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <UserSettings selectedElementProps={selectedElementProps} selectedElement={element} />
+          <UserSettings selectedViewProps={selectedViewProps} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Tag: {
-      if (!isElementProps<BrandTagProps>(selectedElementProps, 'Tag')) {
+      if (!isElementProps<BrandTagProps>(selectedViewProps, 'Tag')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <TagSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <TagSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.ChoiceGroup: {
-      if (!isElementProps<BrandOwnChoiceGroupProps>(selectedElementProps, 'ChoiceGroup')) {
+      if (!isElementProps<BrandOwnChoiceGroupProps>(selectedViewProps, 'ChoiceGroup')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
-          <ChoiceGroupSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElement={element}
-          />
+          <ChoiceGroupSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
       )
     }
     case FormElementDictTypes.Icon: {
-      if (!isElementProps<BrandIconProps>(selectedElementProps, 'Icon')) {
+      if (!isElementProps<BrandIconProps>(selectedViewProps, 'Icon')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
-      return (
-        <IconSettings selectedElementProps={selectedElementProps.props} selectedElement={element} />
-      )
+      return <IconSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
     }
     case FormElementDictTypes.EChart: {
-      if (!isElementProps<BrandEChartProps>(selectedElementProps, 'EChart')) {
+      if (!isElementProps<BrandEChartProps>(selectedViewProps, 'EChart')) {
         return
       }
       const element = {
-        elementId: selectedElement.elementId,
-        elementType: selectedElement.elementType,
+        elementId: selectedView.elementId,
+        elementType: selectedView.elementType,
       }
 
       return (
         <>
           <EChartSettings
-            selectedElementProps={selectedElementProps.props}
-            selectedElementId={element.elementId}
+            selectedViewProps={selectedViewProps.props}
+            selectedViewId={element.elementId}
           />
           <BaseSettings />
         </>
@@ -528,14 +462,14 @@ const getSettingsPanel = (selectedElementProps: UnionProps, selectedElement: ISe
 
 export const SettingPanelQualifier: FC = () => {
   const selectedView = useAppSelector(selectedViewSelector)
-  const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
+  const selectedViewProps = useAppSelector(getselectedViewPropsSelector)
 
-  return selectedView && selectedElementProps ? (
+  return selectedView && selectedViewProps ? (
     <div className={styles.elementSettings}>
       <Text size="xs" view="secondary" className="p-t-s p-b-xs">
         Base
       </Text>
-      {getSettingsPanel(selectedElementProps, selectedView)}
+      {getSettingsPanel(selectedViewProps, selectedView)}
     </div>
   ) : (
     <NotFound title=" " description="Нет выбранного элемента для настройки" />

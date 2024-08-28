@@ -9,7 +9,7 @@ import type { PropForm } from './selectTypes'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -43,7 +43,7 @@ export type ComboboxProps = {
 
 export type BrandComboboxProps = BrandProps<ComboboxProps, 'ComboBox'>
 
-export type ComboBoxElement = ConcreteSelectedElement<typeof FormElementDictTypes.ComboBox>
+export type ComboBoxElement = ConcreteSelectedView<typeof FormElementDictTypes.ComboBox>
 
 export type IFormElementComboBox = OmitInstanceId<
   IFormElement & {

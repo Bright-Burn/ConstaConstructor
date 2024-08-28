@@ -8,18 +8,15 @@ import { useItemsHandlers } from './ItemsService'
 
 import styles from './styles.module.css'
 type LayoutSettingsType = {
-  selectedElementProps: LayoutElementPropsStyles
-  selectedElement: LayoutElement
+  selectedViewProps: LayoutElementPropsStyles
+  selectedView: LayoutElement
 }
 
 export const LayoutRadiusSettings: React.FC<LayoutSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
-  const { itemsProps, onChangeBorderRadius } = useItemsHandlers(
-    selectedElementProps,
-    selectedElement,
-  )
+  const { itemsProps, onChangeBorderRadius } = useItemsHandlers(selectedViewProps, selectedView)
   return (
     <div className={`${styles.columnSettings} ${styles.labelMarginTop}`}>
       <Text size="xs" view="secondary">

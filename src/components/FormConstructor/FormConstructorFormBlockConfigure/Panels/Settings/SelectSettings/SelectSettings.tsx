@@ -22,14 +22,11 @@ import {
 import styles from './styles.module.css'
 
 type SelectSettingsType = {
-  selectedElementProps: SelectProps
-  selectedElement: SelectElement
+  selectedViewProps: SelectProps
+  selectedView: SelectElement
 }
 
-export const SelectSettings: FC<SelectSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const SelectSettings: FC<SelectSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -40,7 +37,7 @@ export const SelectSettings: FC<SelectSettingsType> = ({
     onChangeCaption,
     onChangePlaceholder,
     onChangeSwitch,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
 
   const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
   const [isOpenList, setOpenList] = useState<boolean>(false)

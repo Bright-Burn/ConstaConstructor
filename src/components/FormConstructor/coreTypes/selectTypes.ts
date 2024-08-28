@@ -7,7 +7,7 @@ import type {
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -57,7 +57,7 @@ export type SelectProps = {
 
 export type BrandSelectProps = BrandProps<SelectProps, 'SelectForm'>
 
-export type SelectElement = ConcreteSelectedElement<typeof FormElementDictTypes.Select>
+export type SelectElement = ConcreteSelectedView<typeof FormElementDictTypes.Select>
 
 export type IFormElementSelect = OmitInstanceId<
   IFormElement & {

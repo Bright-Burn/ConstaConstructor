@@ -32,10 +32,10 @@ export const formInstancesSelector =
 /**
  * Возвращает props из Инстанса выбранного элемента
  */
-export const getSelectedElementPropsSelector = (state: RootState) => {
-  const selectedElementId = state.formConstructor.selectedView?.elementId
-  if (selectedElementId) {
-    const selectPropsFromInstance = getInstanceProps(selectedElementId)
+export const getselectedViewPropsSelector = (state: RootState) => {
+  const selectedViewId = state.formConstructor.selectedView?.elementId
+  if (selectedViewId) {
+    const selectPropsFromInstance = getInstanceProps(selectedViewId)
     return selectPropsFromInstance(state)
   }
 }

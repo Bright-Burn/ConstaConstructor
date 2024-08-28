@@ -4,17 +4,17 @@ import type { BrandDataTimeProps, DataTimeElement, DataTimeProps } from '../../.
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
-  selectedElementProps: DataTimeProps,
-  selectedElement: DataTimeElement,
+  selectedViewProps: DataTimeProps,
+  selectedView: DataTimeElement,
 ) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: DataTimeElement, newProps: BrandDataTimeProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: DataTimeElement, newProps: BrandDataTimeProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {
     const newProps: BrandDataTimeProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'DataTime',
     }
     let itemsProps: Date[] = newProps.props.events
@@ -32,7 +32,7 @@ export const useItemsHandlers = (
       itemsProps = [...itemsProps, new Date()]
     }
     newProps.props.events = itemsProps
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeField = (
@@ -40,24 +40,24 @@ export const useItemsHandlers = (
     field: keyof DataTimeProps,
   ) => {
     const newProps: BrandDataTimeProps = {
-      props: { ...selectedElementProps, [field]: value },
+      props: { ...selectedViewProps, [field]: value },
       type: 'DataTime',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   return {
     onChangeItemsCount,
     onChangeField,
     itemsProps: {
-      type: selectedElementProps.type,
-      view: selectedElementProps.view,
-      minDate: selectedElementProps.minDate,
-      maxDate: selectedElementProps.maxDate,
-      multiplicityHours: selectedElementProps.multiplicityHours,
-      multiplicityMinutes: selectedElementProps.multiplicityMinutes,
-      multiplicitySeconds: selectedElementProps.multiplicitySeconds,
-      events: selectedElementProps.events,
+      type: selectedViewProps.type,
+      view: selectedViewProps.view,
+      minDate: selectedViewProps.minDate,
+      maxDate: selectedViewProps.maxDate,
+      multiplicityHours: selectedViewProps.multiplicityHours,
+      multiplicityMinutes: selectedViewProps.multiplicityMinutes,
+      multiplicitySeconds: selectedViewProps.multiplicitySeconds,
+      events: selectedViewProps.events,
     },
   }
 }

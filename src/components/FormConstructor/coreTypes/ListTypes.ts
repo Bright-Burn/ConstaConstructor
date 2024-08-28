@@ -3,7 +3,7 @@ import type { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/ui
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -26,7 +26,7 @@ export type ListProps = {
 
 export type BrandListProps = BrandProps<ListProps, 'List'>
 
-export type ListElement = ConcreteSelectedElement<typeof FormElementDictTypes.List>
+export type ListElement = ConcreteSelectedView<typeof FormElementDictTypes.List>
 
 export type IFormElementList = OmitInstanceId<
   IFormElement & {

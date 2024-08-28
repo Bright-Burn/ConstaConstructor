@@ -6,55 +6,55 @@ import type {
   BrandButtonGroupProps,
   ButtonGroupElement,
   ButtonGroupProps,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 
 import styles from './styles.module.css'
 
 type ButtonModuleSettingsType = {
-  selectedElementProps: ButtonGroupProps
-  selectedElement: ButtonGroupElement
+  selectedViewProps: ButtonGroupProps
+  selectedView: ButtonGroupElement
 }
 
 export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
   const [props, setProps] = useState<BrandButtonGroupProps>()
 
   useEffect(() => {
     const buttonGroupProps: BrandButtonGroupProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'ButtonModal',
     }
     setProps(buttonGroupProps)
-  }, [selectedElementProps])
+  }, [selectedViewProps])
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandButtonGroupProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'ButtonModal',
     }
     newProps.props.width = value ? `${value}px` : ''
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeHeight = (value: string | null) => {
     if (props) {
       const newProps: BrandButtonGroupProps = {
-        props: selectedElementProps,
+        props: selectedViewProps,
         type: 'ButtonModal',
       }
       newProps.props.height = value ? `${value}px` : ''
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandButtonGroupProps) => {
+  const onDispatch = (selectedView: IselectedView, newProps: BrandButtonGroupProps) => {
     // dispatch(
     //   setSelectedView({
-    //     elementType: selectedElement.elementType,
-    //     elementId: selectedElement.elementId,
+    //     elementType: selectedView.elementType,
+    //     elementId: selectedView.elementId,
     //     newProps,
     //   }),
     // )

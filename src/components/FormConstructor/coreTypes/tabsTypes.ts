@@ -5,7 +5,7 @@ import type { IconNames } from './iconTypes'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -43,7 +43,7 @@ export type TabsElementProps = TabsProps & BaseProps
 
 export type BrandTabsElementProps = BrandProps<TabsElementProps, 'Tabs'>
 
-export type TabsElement = ConcreteSelectedElement<typeof FormElementDictTypes.Tabs>
+export type TabsElement = ConcreteSelectedView<typeof FormElementDictTypes.Tabs>
 
 export type IFormElementTabs = OmitInstanceId<
   IFormElement & {

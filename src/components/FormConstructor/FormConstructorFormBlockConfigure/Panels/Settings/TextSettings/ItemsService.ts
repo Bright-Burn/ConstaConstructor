@@ -4,7 +4,7 @@ import type { TextPropView } from '@consta/uikit/Text'
 import type { ConstaColor } from '../../../../../ConstaPalette'
 import type {
   BrandTextElementProps,
-  ISelectedElement,
+  IselectedView,
   textDecorationType,
   TextElement,
   TextElementProps,
@@ -14,49 +14,49 @@ import { setInstanceProps, useAppDispatch } from '../../../../store'
 import type { ValueTypes } from './types'
 
 export const useItemsHandlers = (
-  selectedElementProps: TextElementProps,
-  selectedElement: TextElement,
+  selectedViewProps: TextElementProps,
+  selectedView: TextElement,
 ) => {
   const dispatch = useAppDispatch()
   const onChangeField = (value: ValueTypes, field: keyof TextElementProps) => {
     const newProps: BrandTextElementProps = {
-      props: { ...selectedElementProps, [field]: value },
+      props: { ...selectedViewProps, [field]: value },
       type: 'Text',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeView = (value: TextPropView | null) => {
     const newProps: BrandTextElementProps = {
-      props: { ...selectedElementProps, view: value ?? undefined },
+      props: { ...selectedViewProps, view: value ?? undefined },
       type: 'Text',
     }
     delete newProps.props.style
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeColor = (value: ConstaColor | null) => {
     if (value) {
       const newProps: BrandTextElementProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Text',
       }
       newProps.props.style = { ...newProps.props.style, color: value }
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeText = (propsName: keyof TextElementProps) => (value: string | null) => {
     const newProps: BrandTextElementProps = {
-      props: { ...selectedElementProps, [propsName]: value },
+      props: { ...selectedViewProps, [propsName]: value },
       type: 'Text',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof TextElementProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
       const checked = check.target.checked
       const newProps: BrandTextElementProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedViewProps, [propsName]: checked },
         type: 'Text',
       }
       if (propsName === 'font') {
@@ -66,13 +66,13 @@ export const useItemsHandlers = (
         newProps.props.cursor = checked ? 'pointer' : undefined
       }
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
 
   const onChangeItems = (items: textDecorationType[] | undefined) => {
     const newProps: BrandTextElementProps = {
       props: {
-        ...selectedElementProps,
+        ...selectedViewProps,
         fontStyle: undefined,
         transform: undefined,
         decoration: undefined,
@@ -90,11 +90,11 @@ export const useItemsHandlers = (
         newProps.props.fontStyle = 'italic'
       }
     })
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTextElementProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandTextElementProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
   return {
     onChangeText,
@@ -104,21 +104,21 @@ export const useItemsHandlers = (
     onChangeColor,
     onChangeView,
     itemsProps: {
-      size: selectedElementProps.size,
-      view: selectedElementProps.view,
-      align: selectedElementProps.align,
-      content: selectedElementProps.content,
-      weight: selectedElementProps.weight,
-      lineHeight: selectedElementProps.lineHeight,
-      spacing: selectedElementProps.spacing,
-      display: selectedElementProps.display,
-      font: selectedElementProps.font,
-      decoration: selectedElementProps.decoration,
-      fontStyle: selectedElementProps.fontStyle,
-      cursor: selectedElementProps.cursor,
-      transform: selectedElementProps.transform,
-      truncate: selectedElementProps.truncate,
-      transformText: selectedElementProps.transformText,
+      size: selectedViewProps.size,
+      view: selectedViewProps.view,
+      align: selectedViewProps.align,
+      content: selectedViewProps.content,
+      weight: selectedViewProps.weight,
+      lineHeight: selectedViewProps.lineHeight,
+      spacing: selectedViewProps.spacing,
+      display: selectedViewProps.display,
+      font: selectedViewProps.font,
+      decoration: selectedViewProps.decoration,
+      fontStyle: selectedViewProps.fontStyle,
+      cursor: selectedViewProps.cursor,
+      transform: selectedViewProps.transform,
+      truncate: selectedViewProps.truncate,
+      transformText: selectedViewProps.transformText,
     },
   }
 }

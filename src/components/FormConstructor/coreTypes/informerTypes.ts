@@ -4,7 +4,7 @@ import type { InformerPropSize, InformerPropStatus, InformerPropView } from '@co
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -20,7 +20,7 @@ export type Props = {
 }
 export type InformerElementProps = Props & BaseProps
 
-export type InformerElement = ConcreteSelectedElement<typeof FormElementDictTypes.Informer>
+export type InformerElement = ConcreteSelectedView<typeof FormElementDictTypes.Informer>
 
 export type BrandInformerElementProps = BrandProps<InformerElementProps, 'Informer'>
 

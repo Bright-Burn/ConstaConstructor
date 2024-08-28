@@ -1,7 +1,7 @@
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -14,7 +14,7 @@ export type EChartProps = {
 } & BaseProps
 export type BrandEChartProps = BrandProps<EChartProps, 'EChart'>
 
-export type EChartFormElement = ConcreteSelectedElement<typeof FormElementDictTypes.EChart>
+export type EChartFormElement = ConcreteSelectedView<typeof FormElementDictTypes.EChart>
 
 export type IFormElementEChart = OmitInstanceId<
   IFormElement & {

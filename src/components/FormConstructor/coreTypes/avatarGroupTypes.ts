@@ -2,7 +2,7 @@ import type { AvatarProps } from './avatartTypes'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -17,7 +17,7 @@ export type AvatarGroupProps = {
 } & BaseProps
 export type BrandAvatarGroupProps = BrandProps<AvatarGroupProps, 'AvatarGroup'>
 
-export type AvatarGroupElement = ConcreteSelectedElement<typeof FormElementDictTypes.AvatarGroup>
+export type AvatarGroupElement = ConcreteSelectedView<typeof FormElementDictTypes.AvatarGroup>
 
 export type IFormElementAvatarGroup = OmitInstanceId<
   IFormElement & {

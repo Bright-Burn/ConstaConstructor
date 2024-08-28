@@ -163,7 +163,7 @@ export type {
   IGroupElement,
   ILayoutElement,
   IPageOfLayout,
-  ISelectedElement,
+  IselectedView,
   OmitInstanceId,
 } from './types'
 export { ElementTypes, FormElementDictTypes, FormGroupsDictTypes } from './types'

@@ -1,31 +1,31 @@
 import type {
   BrandTextFieldProps,
-  ISelectedElement,
+  IselectedView,
   TextFieldElement,
   TextFieldProps,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
-  selectedElementProps: TextFieldProps,
-  selectedElement: TextFieldElement,
+  selectedViewProps: TextFieldProps,
+  selectedView: TextFieldElement,
 ) => {
   const dispatch = useAppDispatch()
 
   const onChangeTextField = (propsName: keyof TextFieldProps) => (value: string | null) => {
     const newProps: BrandTextFieldProps = {
-      props: { ...selectedElementProps, [propsName]: value },
+      props: { ...selectedViewProps, [propsName]: value },
       type: 'TextField',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof TextFieldProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
       const checked = check.target.checked
       const newProps: BrandTextFieldProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedViewProps, [propsName]: checked },
         type: 'TextField',
       }
       if (propsName === 'label' && checked) {
@@ -38,36 +38,36 @@ export const useItemsHandlers = (
         newProps.props.maxLength = 1
       }
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTextFieldProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandTextFieldProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
   return {
     onChangeTextField,
     onChangeSwitch,
     itemsProps: {
-      caption: selectedElementProps.caption,
-      disabled: selectedElementProps.disabled,
-      form: selectedElementProps.form,
-      incrementButtons: selectedElementProps.incrementButtons,
-      label: selectedElementProps.label,
-      labelPosition: selectedElementProps.labelPosition,
-      max: selectedElementProps.max,
-      maxLength: selectedElementProps.maxLength,
-      maxRows: selectedElementProps.maxRows,
-      min: selectedElementProps.min,
-      minRows: selectedElementProps.minRows,
-      placeholder: selectedElementProps.placeholder,
-      size: selectedElementProps.size,
-      required: selectedElementProps.required,
-      rows: selectedElementProps.rows,
-      status: selectedElementProps.status,
-      step: selectedElementProps.step,
-      type: selectedElementProps.type,
-      value: selectedElementProps.value,
-      view: selectedElementProps.view,
-      withClearButton: selectedElementProps.withClearButton,
+      caption: selectedViewProps.caption,
+      disabled: selectedViewProps.disabled,
+      form: selectedViewProps.form,
+      incrementButtons: selectedViewProps.incrementButtons,
+      label: selectedViewProps.label,
+      labelPosition: selectedViewProps.labelPosition,
+      max: selectedViewProps.max,
+      maxLength: selectedViewProps.maxLength,
+      maxRows: selectedViewProps.maxRows,
+      min: selectedViewProps.min,
+      minRows: selectedViewProps.minRows,
+      placeholder: selectedViewProps.placeholder,
+      size: selectedViewProps.size,
+      required: selectedViewProps.required,
+      rows: selectedViewProps.rows,
+      status: selectedViewProps.status,
+      step: selectedViewProps.step,
+      type: selectedViewProps.type,
+      value: selectedViewProps.value,
+      view: selectedViewProps.view,
+      withClearButton: selectedViewProps.withClearButton,
     },
   }
 }

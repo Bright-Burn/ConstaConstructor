@@ -121,7 +121,7 @@ export type BrandProps<T, ElementTypes extends AllElementTypes> = {
   props: T
 }
 
-export type ConcreteSelectedElement<ElementTypes extends AllElementTypes> = {
+export type ConcreteSelectedView<ElementTypes extends AllElementTypes> = {
   elementId: string
   elementType: ElementTypes
 }
@@ -159,7 +159,7 @@ export interface BaseProps {
   baseProps: BaseTypes
 }
 
-export interface ISelectedElement {
+export interface IselectedView {
   elementId: string
   elementType: AllElementTypes
 }
@@ -178,7 +178,7 @@ export interface IFormConstructor extends IHistory {
   instances: EntityState<FormInstance<AllElementTypes>>
   viewInfo: EntityState<ViewtInfo>
   instanceManager: InstanceManager
-  selectedView: ISelectedElement | null
+  selectedView: IselectedView | null
   sameInstanceElementsIds: string[]
   draggableElement: DraggbleElement<IFormElement | IGroupElement> | null
 

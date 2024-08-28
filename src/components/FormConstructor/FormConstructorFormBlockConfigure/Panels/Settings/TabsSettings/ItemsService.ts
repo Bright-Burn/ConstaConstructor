@@ -2,7 +2,7 @@ import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/u
 
 import type {
   BrandTabsElementProps,
-  ISelectedElement,
+  IselectedView,
   tabItemType,
   TabsElement,
   TabsElementProps,
@@ -12,18 +12,18 @@ import { setInstanceProps, useAppDispatch } from '../../../../store'
 import type { FitMode } from './types'
 
 export const useItemsHandlers = (
-  selectedElementProps: TabsElementProps,
-  selectedElement: TabsElement,
+  selectedViewProps: TabsElementProps,
+  selectedView: TabsElement,
 ) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandTabsElementProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandTabsElementProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Tabs',
       }
       let itemsProps = [...newProps.props.items]
@@ -38,66 +38,66 @@ export const useItemsHandlers = (
         }
       }
       newProps.props.items = itemsProps
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangeActiveItem = (value: tabItemType | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Tabs',
       }
       newProps.props.value = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangeItems = (items: tabItemType[]) => {
     const newProps: BrandTabsElementProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Tabs',
     }
     newProps.props.items = [...items]
     newProps.props.value = items[0]
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeLinePosition = (value: TabsPropLinePosition | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Tabs',
       }
       newProps.props.linePosition = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangeView = (value: TabsPropView | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Tabs',
       }
       newProps.props.view = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangeSize = (value: TabsPropSize | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Tabs',
       }
       newProps.props.size = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangeFitMode = (value: FitMode | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Tabs',
       }
       newProps.props.fitMode = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
@@ -105,7 +105,7 @@ export const useItemsHandlers = (
     (propsName: keyof TabsElementProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
       const checked = check.target.checked
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedViewProps, [propsName]: checked },
         type: 'Tabs',
       }
       if (propsName === 'view' && checked) {
@@ -114,7 +114,7 @@ export const useItemsHandlers = (
       if (propsName === 'view' && !checked) {
         onChangeView(null)
       }
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
 
   return {
@@ -127,12 +127,12 @@ export const useItemsHandlers = (
     onChangeFitMode,
     onChangeSwitch,
     itemsProps: {
-      items: selectedElementProps.items,
-      activeItem: selectedElementProps.value,
-      linePosition: selectedElementProps.linePosition,
-      view: selectedElementProps.view,
-      size: selectedElementProps.size,
-      fitMode: selectedElementProps.fitMode,
+      items: selectedViewProps.items,
+      activeItem: selectedViewProps.value,
+      linePosition: selectedViewProps.linePosition,
+      view: selectedViewProps.view,
+      size: selectedViewProps.size,
+      fitMode: selectedViewProps.fitMode,
     },
   }
 }

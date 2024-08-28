@@ -1,69 +1,64 @@
-import type {
-  BrandUserProps,
-  ISelectedElement,
-  UserElement,
-  UserProps,
-} from '../../../../coreTypes'
+import type { BrandUserProps, IselectedView, UserElement, UserProps } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { sizeType, statusType, viewsType } from './UserConstants'
-export const useItemsHandlers = (selectedElementProps: UserProps, selectedElement: UserElement) => {
+export const useItemsHandlers = (selectedViewProps: UserProps, selectedView: UserElement) => {
   const dispatch = useAppDispatch()
 
   const onChangeSize = (value: sizeType) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedElementProps, size: value },
+      props: { ...selectedViewProps, size: value },
       type: 'User',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeView = (value: viewsType) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedElementProps, view: value },
+      props: { ...selectedViewProps, view: value },
       type: 'User',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeStatus = (value: statusType) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedElementProps, status: value },
+      props: { ...selectedViewProps, status: value },
       type: 'User',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeAvatarUrl = (value: string) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedElementProps, avatarUrl: value },
+      props: { ...selectedViewProps, avatarUrl: value },
       type: 'User',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeName = (value: string) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedElementProps, name: value },
+      props: { ...selectedViewProps, name: value },
       type: 'User',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeInfo = (value: string) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedElementProps, info: value },
+      props: { ...selectedViewProps, info: value },
       type: 'User',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof UserProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandUserProps = {
-        props: { ...selectedElementProps, [propsName]: checked.target.checked },
+        props: { ...selectedViewProps, [propsName]: checked.target.checked },
         type: 'User',
       }
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandUserProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandUserProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
   return {
     onChangeAvatarUrl,
@@ -74,16 +69,16 @@ export const useItemsHandlers = (selectedElementProps: UserProps, selectedElemen
     onChangeView,
     onChangeSwitch,
     itemsProps: {
-      avatarUrl: selectedElementProps.avatarUrl,
-      checked: selectedElementProps.checked,
-      info: selectedElementProps.info,
-      name: selectedElementProps.name,
-      onlyAvatar: selectedElementProps.onlyAvatar,
-      size: selectedElementProps.size,
-      status: selectedElementProps.status,
-      view: selectedElementProps.view,
-      width: selectedElementProps.width,
-      withArrow: selectedElementProps.withArrow,
+      avatarUrl: selectedViewProps.avatarUrl,
+      checked: selectedViewProps.checked,
+      info: selectedViewProps.info,
+      name: selectedViewProps.name,
+      onlyAvatar: selectedViewProps.onlyAvatar,
+      size: selectedViewProps.size,
+      status: selectedViewProps.status,
+      view: selectedViewProps.view,
+      width: selectedViewProps.width,
+      withArrow: selectedViewProps.withArrow,
     },
   }
 }

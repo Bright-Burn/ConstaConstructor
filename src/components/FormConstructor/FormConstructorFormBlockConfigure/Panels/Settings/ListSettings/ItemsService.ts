@@ -1,20 +1,15 @@
-import type {
-  BrandListProps,
-  ISelectedElement,
-  ListElement,
-  ListProps,
-} from '../../../../coreTypes'
+import type { BrandListProps, IselectedView, ListElement, ListProps } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './types'
 
-export const useItemsHandlers = (selectedElementProps: ListProps, selectedElement: ListElement) => {
+export const useItemsHandlers = (selectedViewProps: ListProps, selectedView: ListElement) => {
   const dispatch = useAppDispatch()
 
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandListProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'List',
       }
       let itemsProps = [...newProps.props.items]
@@ -32,43 +27,43 @@ export const useItemsHandlers = (selectedElementProps: ListProps, selectedElemen
         }
       }
       newProps.props.items = itemsProps
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeField = (value: ValueType, field: keyof ListProps) => {
     const newProps: BrandListProps = {
-      props: { ...selectedElementProps, [field]: value },
+      props: { ...selectedViewProps, [field]: value },
       type: 'List',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof ListProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandListProps = {
-        props: { ...selectedElementProps, [propsName]: checked },
+        props: { ...selectedViewProps, [propsName]: checked },
         type: 'List',
       }
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandListProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandListProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
   return {
     onChangeField,
     onChangeSwitch,
     onChangeItemsCount,
     itemsProps: {
-      activeItem: selectedElementProps.value,
-      items: selectedElementProps.items,
-      form: selectedElementProps.form,
-      size: selectedElementProps.size,
-      innerOffset: selectedElementProps.innerOffset,
-      withListBox: selectedElementProps.withListBox,
+      activeItem: selectedViewProps.value,
+      items: selectedViewProps.items,
+      form: selectedViewProps.form,
+      size: selectedViewProps.size,
+      innerOffset: selectedViewProps.innerOffset,
+      withListBox: selectedViewProps.withListBox,
     },
   }
 }

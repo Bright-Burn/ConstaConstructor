@@ -3,7 +3,7 @@ import type { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -23,7 +23,7 @@ export type DataTimeProps = {
 
 export type BrandDataTimeProps = BrandProps<DataTimeProps, 'DataTime'>
 
-export type DataTimeElement = ConcreteSelectedElement<typeof FormElementDictTypes.DataTime>
+export type DataTimeElement = ConcreteSelectedView<typeof FormElementDictTypes.DataTime>
 
 export type IFormElementDataTime = OmitInstanceId<
   IFormElement & {

@@ -14,7 +14,7 @@ import type { PropForm } from './selectTypes'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -44,7 +44,7 @@ export type DatePickerProps = {
 
 export type BrandDatePickerProps = BrandProps<DatePickerProps, 'DatePicker'>
 
-export type DatePickerElement = ConcreteSelectedElement<typeof FormElementDictTypes.DatePicker>
+export type DatePickerElement = ConcreteSelectedView<typeof FormElementDictTypes.DatePicker>
 
 export type IFormElementDatePicker = OmitInstanceId<
   IFormElement & {

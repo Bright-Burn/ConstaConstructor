@@ -15,17 +15,17 @@ import { forms, labelPosition, sizes, status, types, view } from './TextFieldCon
 import styles from './styles.module.css'
 
 type TextFieldSettingsType = {
-  selectedElementProps: BrandTextFieldProps
-  selectedElement: TextFieldElement
+  selectedViewProps: BrandTextFieldProps
+  selectedView: TextFieldElement
 }
 
 export const TextFieldSettings: FC<TextFieldSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
   const { itemsProps, onChangeTextField, onChangeSwitch } = useItemsHandlers(
-    selectedElementProps.props,
-    selectedElement,
+    selectedViewProps.props,
+    selectedView,
   )
 
   return (
@@ -67,7 +67,7 @@ export const TextFieldSettings: FC<TextFieldSettingsType> = ({
           value={itemsProps.size || 's'}
           onChange={onChangeTextField('size')}
         />
-        <FilledSettings elementId={selectedElement.elementId} props={selectedElementProps} />
+        <FilledSettings elementId={selectedView.elementId} props={selectedViewProps} />
       </div>
       <div className={styles.rowSettings}>
         <Select

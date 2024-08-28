@@ -11,12 +11,12 @@ export const saveBaseComponent =
   (id: string, fileName: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     const state = getState()
     const allElements = selectViewAll(state)
-    const selectedElement = selectViewById(state, id)
+    const selectedView = selectViewById(state, id)
 
-    if (selectedElement) {
+    if (selectedView) {
       const arrToSave: (IFormElement | IGroupElement)[] = [
-        { ...selectedElement, parentId: undefined },
-        ...getAllChildrenElements(selectedElement, allElements),
+        { ...selectedView, parentId: undefined },
+        ...getAllChildrenElements(selectedView, allElements),
       ]
       const instancesToSave = formInstancesSelector(arrToSave.map(elem => elem.instanceId))(state)
 

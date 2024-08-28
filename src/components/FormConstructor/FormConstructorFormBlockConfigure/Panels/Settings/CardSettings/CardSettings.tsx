@@ -10,7 +10,7 @@ import type {
   CardElement,
   CardElementProps,
   CardElementPropsStyles,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 import { getValueForSelect } from '../LabelForSelectComponent'
@@ -18,11 +18,11 @@ import { getValueForSelect } from '../LabelForSelectComponent'
 import styles from './styles.module.css'
 
 type CardSettingsType = {
-  selectedElementProps: CardElementPropsStyles
-  selectedElement: CardElement
+  selectedViewProps: CardElementPropsStyles
+  selectedView: CardElement
 }
 
-export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selectedElement }) => {
+export const CardSettings: FC<CardSettingsType> = ({ selectedViewProps, selectedView }) => {
   const [props, setProps] = useState<CardElementPropsStyles>()
   const status: string[] = ['alert', 'success', 'warning', 'undefined']
   const form: string[] = ['round', 'square']
@@ -30,31 +30,31 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
   const [heightValue, setHeightValue] = useState<string>('227')
 
   useLayoutEffect(() => {
-    setHeightValue(selectedElementProps.styles?.height?.replaceAll('px', '') || '')
-    setWidthValue(selectedElementProps.styles?.width?.replaceAll('px', '') || '')
-    setProps(selectedElementProps)
-  }, [selectedElementProps])
+    setHeightValue(selectedViewProps.styles?.height?.replaceAll('px', '') || '')
+    setWidthValue(selectedViewProps.styles?.width?.replaceAll('px', '') || '')
+    setProps(selectedViewProps)
+  }, [selectedViewProps])
 
   const dispatch = useAppDispatch()
 
   useLayoutEffect(() => {
-    setProps(selectedElementProps)
-  }, [selectedElementProps])
+    setProps(selectedViewProps)
+  }, [selectedViewProps])
 
   const onChangeCardField = (propsName: keyof CardElementProps) => (value: string | null) => {
     const newProps: BrandCardElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Card',
     }
     newProps.props.constaProps = { ...newProps.props.constaProps, [propsName]: value }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeCardSwitch =
     (propsName: keyof CardElementProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
       const checked = check.target.checked
       const newProps: BrandCardElementPropsStyles = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Card',
       }
       newProps.props.constaProps = { ...newProps.props.constaProps, [propsName]: checked }
@@ -63,41 +63,41 @@ export const CardSettings: FC<CardSettingsType> = ({ selectedElementProps, selec
         newProps.props.constaProps.status = undefined
       }
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandCardElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Card',
     }
     newProps.props.styles = { ...newProps.props.styles }
     if (value && value !== '0') {
       newProps.props.styles.width = `${value}px`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     } else {
       newProps.props.styles.width = undefined
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeHeight = (value: string | null) => {
     const newProps: BrandCardElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Card',
     }
     newProps.props.styles = { ...newProps.props.styles }
     if (value && value !== '0') {
       newProps.props.styles.height = `${value}px`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     } else {
       newProps.props.styles.height = undefined
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandCardElementPropsStyles) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandCardElementPropsStyles) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   return (

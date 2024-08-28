@@ -13,24 +13,21 @@ import { useItemsHandlers } from './itemsService'
 import styles from './styles.module.css'
 
 type EChartSettingsType = {
-  selectedElementProps: EChartProps
-  selectedElementId: string
+  selectedViewProps: EChartProps
+  selectedViewId: string
 }
 
-export const EChartSettings: FC<EChartSettingsType> = ({
-  selectedElementProps,
-  selectedElementId,
-}) => {
+export const EChartSettings: FC<EChartSettingsType> = ({ selectedViewProps, selectedViewId }) => {
   const { onDownload, onChangeWidth, onChangeHeight } = useItemsHandlers(
-    selectedElementProps,
-    selectedElementId,
+    selectedViewProps,
+    selectedViewId,
   )
   return (
     <div className={styles.layoutSettings}>
       <div className={styles.rowSettings}>
         <TextField
           className={styles.flexGrow}
-          value={selectedElementProps.height.toString()}
+          value={selectedViewProps.height.toString()}
           type="number"
           leftSide="H"
           size="xs"
@@ -44,7 +41,7 @@ export const EChartSettings: FC<EChartSettingsType> = ({
       <div className={styles.rowSettings}>
         <TextField
           className={styles.flexGrow}
-          value={selectedElementProps.width.toString()}
+          value={selectedViewProps.width.toString()}
           type="number"
           leftSide="W"
           size="xs"
@@ -56,7 +53,7 @@ export const EChartSettings: FC<EChartSettingsType> = ({
         </Text>
       </div>
       <div className={styles.rowSettings}>
-        <FileField id={selectedElementId} onChange={onDownload}>
+        <FileField id={selectedViewId} onChange={onDownload}>
           {props => (
             <Button
               id="btn"

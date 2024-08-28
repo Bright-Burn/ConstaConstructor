@@ -1,13 +1,13 @@
 import type { AppDispatch, RootState } from '../../../setupStore'
 import { selectViewById } from '../../adapters'
 import { formConstructorSlice } from '../../formElementsSlice'
-import type { SetNewSelectedElement } from '../../reducers'
+import type { SetNewSelectedView } from '../../reducers'
 
 /**
  * Устаналивает статус выбранного элемента
  */
 export const setSelectedView =
-  (payload: SetNewSelectedElement) => (dispatch: AppDispatch, getState: () => RootState) => {
+  (payload: SetNewSelectedView) => (dispatch: AppDispatch, getState: () => RootState) => {
     if (!payload) {
       dispatch(formConstructorSlice.actions.deselectElement())
       return

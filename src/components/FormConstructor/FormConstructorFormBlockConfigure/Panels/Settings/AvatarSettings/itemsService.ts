@@ -4,63 +4,60 @@ import type {
   AvatarElement,
   AvatarProps,
   BrandAvatarProps,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { form, sizes } from './constants'
 
-export const useItemsHandlers = (
-  selectedElementProps: AvatarProps,
-  selectedElement: AvatarElement,
-) => {
+export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: AvatarElement) => {
   const dispatch = useAppDispatch()
 
   const onChangeName = (name: string | null) => {
     const newProps: BrandAvatarProps = {
-      props: { ...selectedElementProps, name: name || undefined },
+      props: { ...selectedViewProps, name: name || undefined },
       type: 'Avatar',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeSize = (size: (typeof sizes)[number] | null) => {
     const newProps: BrandAvatarProps = {
-      props: { ...selectedElementProps, size: size || undefined },
+      props: { ...selectedViewProps, size: size || undefined },
       type: 'Avatar',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeForm = (forms: (typeof form)[number] | null) => {
     const newProps: BrandAvatarProps = {
-      props: { ...selectedElementProps, form: forms || undefined },
+      props: { ...selectedViewProps, form: forms || undefined },
       type: 'Avatar',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeImage = (image: ChangeEvent<HTMLInputElement> | null) => {
     const newProps: BrandAvatarProps = {
       props: {
-        ...selectedElementProps,
+        ...selectedViewProps,
         url: image?.target.checked ? './assets/avatar.jpg' : undefined,
       },
       type: 'Avatar',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeMonochrome = (monochrome: ChangeEvent<HTMLInputElement> | null) => {
     const newProps: BrandAvatarProps = {
-      props: { ...selectedElementProps, monochrome: monochrome?.target.checked || undefined },
+      props: { ...selectedViewProps, monochrome: monochrome?.target.checked || undefined },
       type: 'Avatar',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandAvatarProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandAvatarProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   return {

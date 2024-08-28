@@ -2,7 +2,7 @@ import type {
   BrandDatePickerProps,
   DatePickerElement,
   DatePickerProps,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
@@ -10,17 +10,17 @@ import type { ValueType } from './fileTypes'
 import type { statusType } from './types'
 
 export const useItemsHandlers = (
-  selectedElementProps: DatePickerProps,
-  selectedElement: DatePickerElement,
+  selectedViewProps: DatePickerProps,
+  selectedView: DatePickerElement,
 ) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandDatePickerProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandDatePickerProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {
     const newProps: BrandDatePickerProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'DatePicker',
     }
     let itemsProps: Date[] = newProps.props.events
@@ -38,43 +38,43 @@ export const useItemsHandlers = (
       itemsProps = [...itemsProps, new Date()]
     }
     newProps.props.events = itemsProps
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeCaption = (caption: string) => {
     const newProps: BrandDatePickerProps = {
-      props: { ...selectedElementProps, caption },
+      props: { ...selectedViewProps, caption },
       type: 'DatePicker',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeLabel = (label: string) => {
     const newProps: BrandDatePickerProps = {
-      props: { ...selectedElementProps, label },
+      props: { ...selectedViewProps, label },
       type: 'DatePicker',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeStatus = (status: statusType) => {
     const newProps: BrandDatePickerProps = {
-      props: { ...selectedElementProps, status: status === '' ? undefined : status },
+      props: { ...selectedViewProps, status: status === '' ? undefined : status },
       type: 'DatePicker',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeSwitch =
     (propsName: keyof DatePickerProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandDatePickerProps = {
         props: {
-          ...selectedElementProps,
+          ...selectedViewProps,
           [propsName]: checked.target.checked,
         },
         type: 'DatePicker',
       }
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   const onChangeField = (value: ValueType, field: keyof DatePickerProps) => {
     const newProps: BrandDatePickerProps = {
-      props: { ...selectedElementProps, [field]: value },
+      props: { ...selectedViewProps, [field]: value },
       type: 'DatePicker',
     }
     if (field === 'label' && value === true) {
@@ -83,7 +83,7 @@ export const useItemsHandlers = (
     if (field === 'caption' && value === true) {
       newProps.props.caption = 'Подпись'
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   return {
     onChangeField,
@@ -93,24 +93,24 @@ export const useItemsHandlers = (
     onChangeSwitch,
     onChangeStatus,
     itemsProps: {
-      type: selectedElementProps.type,
-      form: selectedElementProps.form,
-      status: selectedElementProps.status,
-      withClearButton: selectedElementProps.withClearButton,
-      withAdditionalControls: selectedElementProps.withAdditionalControls,
-      label: selectedElementProps.label,
-      labelPosition: selectedElementProps.labelPosition,
-      required: selectedElementProps.required,
-      caption: selectedElementProps.caption,
-      size: selectedElementProps.size,
-      view: selectedElementProps.view,
-      disabled: selectedElementProps.disabled,
-      minDate: selectedElementProps.minDate,
-      maxDate: selectedElementProps.maxDate,
-      dateTimeView: selectedElementProps.dateTimeView,
-      dropdownForm: selectedElementProps.dropdownForm,
-      events: selectedElementProps.events,
-      value: selectedElementProps.value,
+      type: selectedViewProps.type,
+      form: selectedViewProps.form,
+      status: selectedViewProps.status,
+      withClearButton: selectedViewProps.withClearButton,
+      withAdditionalControls: selectedViewProps.withAdditionalControls,
+      label: selectedViewProps.label,
+      labelPosition: selectedViewProps.labelPosition,
+      required: selectedViewProps.required,
+      caption: selectedViewProps.caption,
+      size: selectedViewProps.size,
+      view: selectedViewProps.view,
+      disabled: selectedViewProps.disabled,
+      minDate: selectedViewProps.minDate,
+      maxDate: selectedViewProps.maxDate,
+      dateTimeView: selectedViewProps.dateTimeView,
+      dropdownForm: selectedViewProps.dropdownForm,
+      events: selectedViewProps.events,
+      value: selectedViewProps.value,
     },
   }
 }

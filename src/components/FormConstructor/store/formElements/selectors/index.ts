@@ -3,7 +3,7 @@ export {
   formInstanceSelector,
   formInstancesSelector,
   getInstanceProps,
-  getSelectedElementPropsSelector,
+  getselectedViewPropsSelector,
 } from './instanceSelectors'
 export { getViewInfoByIdSelector, viewInfoSelector } from './viewInfoSelector'
 export {

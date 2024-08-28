@@ -3,7 +3,7 @@ import type { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -20,7 +20,7 @@ export type RadioButtonProps = {
 
 export type BrandRadioButtonProps = BrandProps<RadioButtonProps, 'RadioButton'>
 
-export type RadioButtonElement = ConcreteSelectedElement<typeof FormElementDictTypes.RadioButton>
+export type RadioButtonElement = ConcreteSelectedView<typeof FormElementDictTypes.RadioButton>
 
 export type IFormElementRadioButton = OmitInstanceId<
   IFormElement & {

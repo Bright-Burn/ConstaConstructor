@@ -19,11 +19,11 @@ export const updateBaseComponentAction =
     // Список Id элементов для 'обновелния'
     const sameInstanceElementsIds = new Set(state.formConstructor.sameInstanceElementsIds)
     // Список элементов для добавления
-    const elementsToAdd: (IFormElement | IGroupElement)[] = []
+    const viewsToAdd: (IFormElement | IGroupElement)[] = []
     // Полезные данные для удаления инстансов и ссылок
     const instanceReferencesToChange: ChangeElementLinkCountPayload[] = []
     // Элементы для удаления
-    const selectedElementsToDelete: (IFormElement | IGroupElement)[] = []
+    const selectedViewsToDelete: (IFormElement | IGroupElement)[] = []
     //Список элементов для 'обновелния'
     const sameInstanceElements = selectViewAll(state).filter(elem =>
       sameInstanceElementsIds.has(elem.id),
@@ -40,7 +40,7 @@ export const updateBaseComponentAction =
         const orderForParentElem = copiedElem.order
 
         // Создаем копию всех элементов с обновленными идентификаторами экземпляров
-        const subElementsToAdd: (IFormElement | IGroupElement)[] = deepCopyElements(
+        const subviewsToAdd: (IFormElement | IGroupElement)[] = deepCopyElements(
           payload.elements,
         ).map(subElem => {
           return {
@@ -50,7 +50,7 @@ export const updateBaseComponentAction =
             order: !subElem.parentId ? orderForParentElem : subElem.order,
           }
         })
-        elementsToAdd.push(...subElementsToAdd)
+        viewsToAdd.push(...subviewsToAdd)
       }
 
       // Подготавливаем старые данные для удаления
@@ -61,25 +61,23 @@ export const updateBaseComponentAction =
       // Для всех добавляемых элементов формируем payload на изменение количества ссылок с типом DEC
       instanceReferencesToChange.push(...instanceReferencesToDelete)
 
-      selectedElementsToDelete.push(...elementsForDelete)
+      selectedViewsToDelete.push(...elementsForDelete)
     })
 
     // Для всех добавляемых элементов формируем payload на изменение количества ссылок с типом INC
-    elementsToAdd.forEach(element => {
+    viewsToAdd.forEach(element => {
       instanceReferencesToChange.push({ id: element.instanceId, type: 'INC' })
     })
 
     // Отправляем в стор все накопленные изменения
     // Добавляем новые элементы
-    dispatch(addViews(elementsToAdd))
+    dispatch(addViews(viewsToAdd))
     // Добавляем новые инстансы
     dispatch(formConstructorSlice.actions.addNewFormInstance(newInstances))
     // Изменяем количество ссылок на инстансы - в случае если количество = 0, то инстанс будет удален
     dispatch(formConstructorSlice.actions.changeElementLinkCount(instanceReferencesToChange))
     // Удаляем старые элементы
-    dispatch(
-      formConstructorSlice.actions.deleteFormElement(selectedElementsToDelete.map(el => el.id)),
-    )
+    dispatch(formConstructorSlice.actions.deleteFormElement(selectedViewsToDelete.map(el => el.id)))
 
     // Очистка
     dispatch(formConstructorSlice.actions.setSameInstanceElementsIds([]))
@@ -91,7 +89,7 @@ export const updateBaseComponentAction =
     const instancesForRollBack = selectInstanceAll(state).filter(instance =>
       instanceIdsForRollbackSet.has(instance.id),
     )
-    const elementsFotRollBack = selectedElementsToDelete
+    const elementsFotRollBack = selectedViewsToDelete
 
     // Обратное действие
     dispatch(
@@ -101,7 +99,7 @@ export const updateBaseComponentAction =
         dispatch(addViews(elementsFotRollBack))
 
         // Удаляем все, что добавили
-        dispatch(deleteViews(elementsToAdd.map(el => el.id)))
+        dispatch(deleteViews(viewsToAdd.map(el => el.id)))
 
         // Обратнае действие с типами - все что имело тип INC станет DEC, все что было DEC станет INC
         const changeLinksCountPayloads: ChangeElementLinkCountPayload[] =

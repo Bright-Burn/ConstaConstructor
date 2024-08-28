@@ -1,3 +1,3 @@
-export { setElementToCopyId } from './setElementToCopyId'
-export { clearSameInstanceIds, setSameElementsIdsById } from './setSameElementsIdsById'
+export { clearSameInstanceIds, setSameElementsIdsById } from './setSameViewIdsById'
 export { setSelectedView } from './setSelectedViewAction'
+export { setViewToCopyId } from './setViewToCopyId'

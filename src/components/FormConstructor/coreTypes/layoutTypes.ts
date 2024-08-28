@@ -5,7 +5,7 @@ import type { ConstaColor } from '../../ConstaPalette'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormGroupsDictTypes,
   OmitInstanceId,
 } from './types'
@@ -88,4 +88,4 @@ export type LayoutElementPropsStyles = OmitInstanceId<
 
 export type BrandLayoutElementPropsStyles = BrandProps<LayoutElementPropsStyles, 'Layout'>
 
-export type LayoutElement = ConcreteSelectedElement<typeof FormGroupsDictTypes.Layout>
+export type LayoutElement = ConcreteSelectedView<typeof FormGroupsDictTypes.Layout>
