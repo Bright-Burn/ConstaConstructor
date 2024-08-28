@@ -28,6 +28,7 @@ import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../p
 import { clearSameInstanceIds } from '../viewSelectionActions'
 
 import { deleteFormElementRollback } from './deleteFormElements'
+import { addViews } from './combinedViewActions'
 
 /**
  * Функция добавляет новые элементы и инстансы.
@@ -80,7 +81,7 @@ export const addNewFormElement =
     })
     // Диспатчем в стор подготовленный данные
     // Диспатчим действия для добавления новых элементов
-    dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsToAdd))
+    dispatch(addViews(elementsToAdd))
     // Диспатчим действия для изменения количества ссылок
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     // Диспатчим действия для добавления новых инстансов
@@ -147,7 +148,7 @@ export const copyFormElementLink =
         ),
       )
       // Диспатчим действия для добавления новых элементов
-      dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElements))
+      dispatch(addViews(newElements))
       //Диспатчем в стор коллбек на отмену изменений
       dispatch(
         pushHistoryElement(() => {
@@ -258,7 +259,7 @@ const addBaseElement =
     //Диспатчем в стор подготовленный данные
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     dispatch(formConstructorSlice.actions.addNewFormInstance(instances))
-    dispatch(formConstructorSlice.actions.addNewFormElementAdapter(newElementsToAdd))
+    dispatch(addViews(newElementsToAdd))
     //Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {

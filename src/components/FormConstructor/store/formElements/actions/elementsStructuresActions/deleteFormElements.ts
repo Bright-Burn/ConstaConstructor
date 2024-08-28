@@ -4,6 +4,7 @@ import type { AppDispatch, RootState } from '../../../setupStore'
 import { selectViewAll, selectViewById } from '../../adapters'
 import { formConstructorSlice } from '../../formElementsSlice'
 import type { ChangeElementLinkCountPayload } from '../../reducers'
+import { addViews, deleteViews } from './combinedViewActions'
 
 export const deleteElementFormById = (id: string, state: RootState) => {
   // Получаем элемент для удаления по id
@@ -47,10 +48,10 @@ export const deleteFormElement =
     const { instanceReferencesToDelete, elementsForDelete } = deleteElementFormById(id, state)
     dispatch(formConstructorSlice.actions.changeElementLinkCount(instanceReferencesToDelete))
     const idsForDelete = elementsForDelete.map(el => el.id)
-    dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
+    dispatch(deleteViews(idsForDelete))
     dispatch(
       pushHistoryElement(() => {
-        dispatch(formConstructorSlice.actions.addNewFormElementAdapter(elementsForDelete))
+        dispatch(addViews(elementsForDelete))
       }),
     )
   }
@@ -65,5 +66,5 @@ export const deleteFormElementRollback =
     const { instanceReferencesToDelete, elementsForDelete } = deleteElementFormById(id, state)
     dispatch(formConstructorSlice.actions.changeElementLinkCount(instanceReferencesToDelete))
     const idsForDelete = elementsForDelete.map(el => el.id)
-    dispatch(formConstructorSlice.actions.deleteFormElement(idsForDelete))
+    dispatch(deleteViews(idsForDelete))
   }

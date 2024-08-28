@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
@@ -24,6 +24,7 @@ import {
 import { LayoutRadiusSettings } from './LayoutRadiusSettings'
 
 import styles from './styles.module.css'
+import { LabelField } from './LabelField'
 
 type LayoutSettingsType = {
   selectedElementProps: LayoutElementPropsStyles
@@ -46,7 +47,6 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
     onChangeBackroundColor,
     onChangeOverflow,
     onChangeWrap,
-    onChangeLabel,
   } = useItemsHandlers(selectedElementProps, selectedElement)
 
   const [widthValue, setWidthValue] = useState<string>('0')
@@ -61,14 +61,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({
 
   return (
     <div className={styles.layoutSettings}>
-      <TextField
-        leftSide="label"
-        size="xs"
-        min="0"
-        onChange={value => {
-          onChangeLabel(value)
-        }}
-      />
+      <LabelField viewId={selectedElement.elementId} />
       <div className={styles.rowSettings}>
         <TextField
           value={heightValue}

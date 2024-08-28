@@ -1,8 +1,10 @@
-import type { IFormElement, IGroupElement } from '../../../../coreTypes'
+import { Dictionary } from '@reduxjs/toolkit'
+import type { IFormElement, IGroupElement, ViewtInfo } from '../../../../coreTypes'
 import {
   getAllFormElements,
   getFormElAsMap,
   getSelectedPageId,
+  viewInfoSelector,
   useAppSelector,
 } from '../../../../store'
 
@@ -15,10 +17,11 @@ export const ComponentTree = () => {
   const allElements = useAppSelector(getAllFormElements)
   const allElementsMap = useAppSelector(getFormElAsMap)
   const selectedPageId = useAppSelector(getSelectedPageId)
+  const viewsInfoStruct = useAppSelector(viewInfoSelector)
 
   return (
     <div className={styles.commentTree}>
-      <Tree data={getTree(allElementsMap, allElements, selectedPageId)} />
+      <Tree data={getTree(allElementsMap, allElements, selectedPageId, viewsInfoStruct)} />
     </div>
   )
 }
@@ -27,22 +30,19 @@ const getTree = (
   allElementsMap: Map<string, IFormElement | IGroupElement>,
   allElements: (IFormElement | IGroupElement)[],
   parentId: string,
+  viewsInfoStruct: Dictionary<ViewtInfo>,
 ) => {
   const childrenIds = allElements.filter(el => el.parentId === parentId)
   const childrenItems: ITreeItem[] = []
 
   childrenIds.forEach(childId => {
     const child = allElementsMap.get(childId.id)
-    let title = child?.type ?? 'пока нет названия'
 
-    if (child?.type === 'Layout' && child.label) {
-      title = child.label
-    }
-
-    if (title) {
+    if (child?.id) {
+      let title = viewsInfoStruct[child?.id]?.label ?? 'пока нет названия'
       const treeItem: ITreeItem = {
         key: childId.id,
-        children: getTree(allElementsMap, allElements, childId.id),
+        children: getTree(allElementsMap, allElements, childId.id, viewsInfoStruct),
         visible: true,
         disableCheckbox: true,
         title,

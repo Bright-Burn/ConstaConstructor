@@ -13,13 +13,15 @@ import {
   deselectElement,
   reorderFormElements,
   repalceState,
-  replaceViewInfo,
+  updateViewInfo,
   setDraggableElement,
   setElementToCopyId,
   setSameInstanceElementsIds,
   setSelectedView,
   updateFormElements,
   updateFormInstance,
+  deleteViewInfos,
+  addViewInfos,
   updateOrders,
 } from './reducers'
 
@@ -27,7 +29,9 @@ export const formConstructorSlice = createSlice({
   name: 'formConstructor',
   initialState,
   reducers: {
-    replaceViewInfo,
+    deleteViewInfos,
+    addViewInfos,
+    updateViewInfo,
     setElementToCopyId,
     setSameInstanceElementsIds,
     changeElementLinkCount,

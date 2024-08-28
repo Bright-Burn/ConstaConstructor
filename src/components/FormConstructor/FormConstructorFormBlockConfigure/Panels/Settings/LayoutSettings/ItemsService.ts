@@ -12,7 +12,7 @@ import type {
   LayoutElementPropsStyles,
   LayoutPropDirection,
 } from '../../../../coreTypes'
-import { setInstanceProps, setViewLabel, useAppDispatch } from '../../../../store'
+import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { overflowType } from './LayoutConstants'
 
@@ -260,10 +260,6 @@ export const useItemsHandlers = (
     newProps.props.styles.transform = value ? value : undefined
     onDispatch(selectedElement, newProps)
   }
-  const onChangeLabel = (value: string | null) => {
-    const newLabel = value ? value : ''
-    dispatch(setViewLabel(selectedElement.elementId, newLabel))
-  }
 
   return {
     onChangeFlex,
@@ -283,7 +279,6 @@ export const useItemsHandlers = (
     onChangeOverflow,
     onChangeBorderRadius,
     onChangeRotate,
-    onChangeLabel,
     itemsProps: {
       constaProps: selectedElementProps.constaProps,
       styles: selectedElementProps.styles,
