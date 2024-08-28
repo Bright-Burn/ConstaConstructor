@@ -9,7 +9,7 @@ import type { SetNewSelectedView } from '../../reducers'
 export const setSelectedView =
   (payload: SetNewSelectedView) => (dispatch: AppDispatch, getState: () => RootState) => {
     if (!payload) {
-      dispatch(formConstructorSlice.actions.deselectElement())
+      dispatch(formConstructorSlice.actions.deselectView())
       return
     }
 
