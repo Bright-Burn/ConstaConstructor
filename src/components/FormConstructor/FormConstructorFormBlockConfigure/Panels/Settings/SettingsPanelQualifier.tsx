@@ -63,6 +63,7 @@ import { TextSettings } from './TextSettings'
 import { UserSettings } from './UserSettings'
 
 import styles from './styles.module.css'
+import { LabelSetting } from './LabelSetting'
 
 const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: IselectedView) => {
   switch (selectedView.elementType) {
@@ -469,6 +470,9 @@ export const SettingPanelQualifier: FC = () => {
       <Text size="xs" view="secondary" className="p-t-s p-b-xs">
         Base
       </Text>
+      <div className="m-b-s">
+        <LabelSetting viewId={selectedView.elementId} />
+      </div>
       {getSettingsPanel(selectedViewProps, selectedView)}
     </div>
   ) : (

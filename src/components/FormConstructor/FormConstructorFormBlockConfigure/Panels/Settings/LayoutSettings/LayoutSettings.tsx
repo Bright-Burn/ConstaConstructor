@@ -11,7 +11,6 @@ import type { LayoutElement, LayoutElementPropsStyles } from '../../../../coreTy
 import { getValueForSelect } from '../LabelForSelectComponent'
 
 import { useItemsHandlers } from './ItemsService'
-import { LabelField } from './LabelField'
 import { LayoutBorderSettings } from './LayoutBorderSettings'
 import {
   alignItems,
@@ -58,7 +57,6 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
 
   return (
     <div className={styles.layoutSettings}>
-      <LabelField viewId={selectedView.elementId} />
       <div className={styles.rowSettings}>
         <TextField
           value={heightValue}
