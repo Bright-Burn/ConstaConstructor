@@ -6,9 +6,9 @@ import {
   setViewLabel,
   useAppDispatch,
   useAppSelector,
-} from '../../../../store'
+} from '../../../store'
 
-export const LabelField: FC<{ viewId: string }> = ({ viewId }) => {
+export const LabelSetting: FC<{ viewId: string }> = ({ viewId }) => {
   const dispatch = useAppDispatch()
   const viewInfo = useAppSelector(getViewInfoByIdSelector(viewId))
   const onChangeLabel = (value: string | null) => {
