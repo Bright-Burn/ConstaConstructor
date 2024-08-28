@@ -23,14 +23,11 @@ import {
 import styles from './styles.module.css'
 
 type ComboBoxSettingsType = {
-  selectedElementProps: ComboboxProps
-  selectedElement: ComboBoxElement
+  selectedViewProps: ComboboxProps
+  selectedView: ComboBoxElement
 }
 
-export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -41,7 +38,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({
     onChangePlaceholder,
     onChangeCaption,
     onChangeSwitch,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
   const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
   const [isOpenList, setOpenList] = useState<boolean>(false)
 

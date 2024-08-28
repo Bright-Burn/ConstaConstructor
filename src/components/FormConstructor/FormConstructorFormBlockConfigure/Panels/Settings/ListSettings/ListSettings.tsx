@@ -14,14 +14,14 @@ import { FormArray, innerOffsetArray, sizeArray } from './types'
 import styles from './styles.module.css'
 
 type ListSettingsType = {
-  selectedElementProps: ListProps
-  selectedElement: ListElement
+  selectedViewProps: ListProps
+  selectedView: ListElement
 }
 
-export const ListSettings: FC<ListSettingsType> = ({ selectedElementProps, selectedElement }) => {
+export const ListSettings: FC<ListSettingsType> = ({ selectedViewProps, selectedView }) => {
   const { itemsProps, onChangeField, onChangeSwitch, onChangeItemsCount } = useItemsHandlers(
-    selectedElementProps,
-    selectedElement,
+    selectedViewProps,
+    selectedView,
   )
 
   const [isOpenOptions, setOpenOptions] = useState<boolean>(false)

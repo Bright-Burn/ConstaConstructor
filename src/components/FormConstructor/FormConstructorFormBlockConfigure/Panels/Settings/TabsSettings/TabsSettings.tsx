@@ -15,11 +15,11 @@ import { linePositionArray, sizeArray } from './types'
 import style from './styles.module.css'
 
 type TabsSettingsType = {
-  selectedElementProps: TabsElementProps
-  selectedElement: TabsElement
+  selectedViewProps: TabsElementProps
+  selectedView: TabsElement
 }
 
-export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selectedElement }) => {
+export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
     onChangeItemsCount,
@@ -28,7 +28,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedElementProps, selec
     onChangeLinePosition,
     onChangeSize,
     onChangeSwitch,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
   const [isOpen, setOpen] = useState<boolean>(false)
 
   const onTabLabelEdit = (value: string | null, index: number) => {

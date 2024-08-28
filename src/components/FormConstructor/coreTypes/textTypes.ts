@@ -15,7 +15,7 @@ import type { ConstaColor } from '../../ConstaPalette'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -50,7 +50,7 @@ export type TextElementProps = {
 } & BaseProps &
   TextContent
 
-export type TextElement = ConcreteSelectedElement<typeof FormElementDictTypes.Text>
+export type TextElement = ConcreteSelectedView<typeof FormElementDictTypes.Text>
 
 export type BrandTextElementProps = BrandProps<TextElementProps, 'Text'>
 

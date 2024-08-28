@@ -14,16 +14,16 @@ import { alignArray, sizeArray, viewArray } from './types'
 import styles from './styles.module.css'
 
 type RadioButtonSettingsType = {
-  selectedElementProps: RadioButtonProps
-  selectedElement: RadioButtonElement
+  selectedViewProps: RadioButtonProps
+  selectedView: RadioButtonElement
 }
 
 export const RadioButtonSettings: FC<RadioButtonSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
   const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeSwitch, onChangeField } =
-    useItemsHandlers(selectedElementProps, selectedElement)
+    useItemsHandlers(selectedViewProps, selectedView)
 
   return (
     <div className={styles.radioButtonSettings}>

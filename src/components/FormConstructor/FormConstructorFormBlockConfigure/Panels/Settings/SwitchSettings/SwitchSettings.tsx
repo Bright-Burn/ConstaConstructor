@@ -13,16 +13,13 @@ import { alignArray, sizeArray, viewArray } from './types'
 import styles from './styles.module.css'
 
 type SwitchSettingsType = {
-  selectedElementProps: SwitchProps
-  selectedElement: SwitchElement
+  selectedViewProps: SwitchProps
+  selectedView: SwitchElement
 }
 
-export const SwitchSettings: FC<SwitchSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const SwitchSettings: FC<SwitchSettingsType> = ({ selectedViewProps, selectedView }) => {
   const { itemsProps, onChangeSize, onChangeView, onChangeAlign, onChangeField, onChangeSwitch } =
-    useItemsHandlers(selectedElementProps, selectedElement)
+    useItemsHandlers(selectedViewProps, selectedView)
 
   return (
     <div className={styles.switchSettings}>

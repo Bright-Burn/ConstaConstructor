@@ -11,12 +11,12 @@ import { useItemsHandlers } from './itemsService'
 
 import styles from './styles.module.css'
 type AvatarGroupSettingsType = {
-  selectedElementProps: AvatarGroupProps
-  selectedElement: AvatarGroupElement
+  selectedViewProps: AvatarGroupProps
+  selectedView: AvatarGroupElement
 }
 export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
   const {
     onChangeVisibleCount,
@@ -24,11 +24,11 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
     onChangeSize,
     onChangeForm,
     onChangeMonochrome,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
   return (
     <div className={styles.settingsContainer}>
       <Switch
-        checked={selectedElementProps.visibleCount === 'auto'}
+        checked={selectedViewProps.visibleCount === 'auto'}
         size="xs"
         label="Visible count auto"
         onChange={onChangeVisibleCount}
@@ -36,11 +36,11 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
       <TextField
         size="xs"
         type="number"
-        disabled={selectedElementProps.visibleCount === 'auto'}
+        disabled={selectedViewProps.visibleCount === 'auto'}
         value={
-          typeof selectedElementProps.visibleCount !== 'number'
+          typeof selectedViewProps.visibleCount !== 'number'
             ? '4'
-            : String(selectedElementProps.visibleCount)
+            : String(selectedViewProps.visibleCount)
         }
         onChange={handleChangeVisibleCount}
       />
@@ -50,7 +50,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
         items={sizes}
         placeholder="Size"
         size="xs"
-        value={selectedElementProps.size}
+        value={selectedViewProps.size}
         renderValue={({ item }) => getValueForSelect({ item, label: 'size' })}
         onChange={value => {
           onChangeSize(value)
@@ -62,7 +62,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
         items={form}
         placeholder="Form"
         size="xs"
-        value={selectedElementProps.form}
+        value={selectedViewProps.form}
         renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeForm(value)
@@ -70,7 +70,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
       />
 
       <Switch
-        checked={selectedElementProps.monochrome}
+        checked={selectedViewProps.monochrome}
         size="xs"
         label="Monochrome"
         onChange={onChangeMonochrome}

@@ -8,16 +8,16 @@ export {
 export type { ChangeActivePage, ChangeNamePage, DeletePage } from './pages'
 export { addNewPage, changeActivePage, changePageName, deletePage } from './pages'
 export { repalceState } from './repalceState'
-export type { SetNewElementDraggableElem, SetNewSelectedElement } from './view'
+export type { SetNewElementDraggableElem, SetNewSelectedView } from './view'
 export {
-  addNewFormElementAdapter,
+  addNewView,
   deleteFormElement,
   deselectElement,
-  reorderFormElements,
+  reorderView,
   setDraggableElement,
-  setElementToCopyId,
   setSelectedView,
-  updateFormElements,
+  setViewToCopyId,
   updateOrders,
+  updateView,
 } from './view'
 export { addViewInfos, deleteViewInfos, updateViewInfo } from './viewInfo'

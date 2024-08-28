@@ -4,45 +4,45 @@ import type {
   BrandCheckboxProps,
   CheckboxElement,
   CheckboxProps,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
-  selectedElementProps: CheckboxProps,
-  selectedElement: CheckboxElement,
+  selectedViewProps: CheckboxProps,
+  selectedView: CheckboxElement,
 ) => {
   const dispatch = useAppDispatch()
   const onChangeLabel = (value: string) => {
     const newProps: BrandCheckboxProps = {
-      props: { ...selectedElementProps, label: value },
+      props: { ...selectedViewProps, label: value },
       type: 'Checkbox',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeField = (
     value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | boolean | null,
     field: keyof CheckboxProps,
   ) => {
     const newProps: BrandCheckboxProps = {
-      props: { ...selectedElementProps, [field]: value },
+      props: { ...selectedViewProps, [field]: value },
       type: 'Checkbox',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof CheckboxProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandCheckboxProps = {
-        props: { ...selectedElementProps, [propsName]: checked.target.checked },
+        props: { ...selectedViewProps, [propsName]: checked.target.checked },
         type: 'Checkbox',
       }
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandCheckboxProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandCheckboxProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   return {
@@ -50,13 +50,13 @@ export const useItemsHandlers = (
     onChangeSwitch,
     onChangeLabel,
     itemsProps: {
-      align: selectedElementProps.align,
-      view: selectedElementProps.view,
-      checked: selectedElementProps.checked,
-      disabled: selectedElementProps.disabled,
-      label: selectedElementProps.label,
-      size: selectedElementProps.size,
-      intermediate: selectedElementProps.intermediate,
+      align: selectedViewProps.align,
+      view: selectedViewProps.view,
+      checked: selectedViewProps.checked,
+      disabled: selectedViewProps.disabled,
+      label: selectedViewProps.label,
+      size: selectedViewProps.size,
+      intermediate: selectedViewProps.intermediate,
     },
   }
 }

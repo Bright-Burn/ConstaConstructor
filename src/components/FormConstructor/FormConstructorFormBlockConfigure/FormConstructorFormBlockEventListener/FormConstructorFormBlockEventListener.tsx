@@ -11,9 +11,9 @@ import {
   onSetViewMode,
   popHistoryElement,
   selectedViewSelector,
-  setElementToCopyId,
   setSameElementsIdsById,
   setSelectedView,
+  setViewToCopyId,
   togglePanels,
   useAppDispatch,
   useAppSelector,
@@ -131,7 +131,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       const { code, ctrlKey } = e
       if (selectedView && code === 'KeyC' && ctrlKey) {
         e.preventDefault()
-        dispatch(setElementToCopyId(selectedView.elementId))
+        dispatch(setViewToCopyId(selectedView.elementId))
       }
     }
 

@@ -15,11 +15,11 @@ import { groupArray, modeArray, sizeArray } from './types'
 import styles from './styles.module.css'
 
 type TagSettingsType = {
-  selectedElementProps: TagProps
-  selectedElement: TagElement
+  selectedViewProps: TagProps
+  selectedView: TagElement
 }
 
-export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selectedElement }) => {
+export const TagSettings: FC<TagSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
     onChangeField,
@@ -28,7 +28,7 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedElementProps, selecte
     onChangeGroup,
     onChangeSwitch,
     onChangeIcon,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
   console.log('L32 itemsProps.iconSwitch ===', itemsProps.iconSwitch)
   return (
     <div className={styles.tagSettings}>

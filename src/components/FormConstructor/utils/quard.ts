@@ -1,4 +1,4 @@
-import type { AllElementTypes, ISelectedElement, UnionProps } from '../coreTypes'
+import type { AllElementTypes, IselectedView, UnionProps } from '../coreTypes'
 
 export function isElementProps<T extends UnionProps>(
   element: UnionProps | null,
@@ -9,8 +9,8 @@ export function isElementProps<T extends UnionProps>(
   return element.type === type
 }
 
-export function isElement<T extends ISelectedElement>(
-  element: ISelectedElement | null,
+export function isElement<T extends IselectedView>(
+  element: IselectedView | null,
   type: AllElementTypes,
 ): element is T {
   if (!element) return false

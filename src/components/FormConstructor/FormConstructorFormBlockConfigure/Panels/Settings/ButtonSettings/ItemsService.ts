@@ -7,47 +7,44 @@ import type {
   ButtonElement,
   ButtonProps,
   IconNames,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { buttonActionsActive } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
-export const useItemsHandlers = (
-  selectedElementProps: ButtonProps,
-  selectedElement: ButtonElement,
-) => {
+export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: ButtonElement) => {
   const dispatch = useAppDispatch()
   const onChangeLabel = (value: string) => {
     const newProps: BrandButtonProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Button',
     }
     newProps.props.label = value
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeSize = (value: ButtonPropSize) => {
     const newProps: BrandButtonProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Button',
     }
     newProps.props.size = value
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeView = (value: ButtonPropView) => {
     const newProps: BrandButtonProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Button',
     }
     newProps.props.view = value
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeForm = (value: ButtonPropForm) => {
     const newProps: BrandButtonProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Button',
     }
     newProps.props.form = value
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
@@ -55,12 +52,12 @@ export const useItemsHandlers = (
       const checked = event.target.checked
       const newProps: BrandButtonProps = {
         props: {
-          ...selectedElementProps,
+          ...selectedViewProps,
           [propsName]: checked,
         },
         type: 'Button',
       }
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
       if (propsName === 'action' && checked) {
         onChangeButtonAction('ButtonModal')
       }
@@ -71,13 +68,13 @@ export const useItemsHandlers = (
 
   const onChangeButtonAction = (value: ButtonAction) => {
     const newProps: BrandButtonProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Button',
     }
 
     newProps.props['action'] = value
 
-    onUpdateSelected(selectedElement, newProps)
+    onUpdateSelected(selectedView, newProps)
     if (buttonActionsActive.includes(value)) {
       addConnectedElement()
     } else {
@@ -86,7 +83,7 @@ export const useItemsHandlers = (
   }
 
   const addConnectedElement = () => {
-    // const currentButtonElement = allElementsMap.get(selectedElement?.elementId || '')
+    // const currentButtonElement = allElementsMap.get(selectedView?.elementId || '')
     // if (currentButtonElement && currentButtonElement.id) {
     //   const connectedButtonGroupElement: IButtonModalElement = {
     //     id: uuid(),
@@ -131,8 +128,8 @@ export const useItemsHandlers = (
   }
 
   const removeConnectedElement = () => {
-    // if (selectedElement) {
-    //   // const connectedElementIds = allElementsTree.get(selectedElement.elementId)
+    // if (selectedView) {
+    //   // const connectedElementIds = allElementsTree.get(selectedView.elementId)
     //   // connectedElementIds?.forEach((id: any) => {
     //   //   dispatch(
     //   //     formConstructorSlice.actions.deleteFormElement({
@@ -143,30 +140,30 @@ export const useItemsHandlers = (
     // }
   }
 
-  const onUpdateSelected = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onUpdateSelected = (selectedView: IselectedView, newProps: BrandButtonProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   const onChangeIcon = (value: IconNames | null) => {
     const newProps: BrandButtonProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Button',
     }
     newProps.props.icon = value ? value : undefined
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeIconR = (value: IconNames | null) => {
     const newProps: BrandButtonProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Button',
     }
     newProps.props.iconR = value ? value : undefined
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandButtonProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandButtonProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   return {
@@ -179,19 +176,19 @@ export const useItemsHandlers = (
     onChangeView,
     onChangeForm,
     itemsProps: {
-      size: selectedElementProps.size,
-      view: selectedElementProps.view,
-      action: selectedElementProps.action,
-      label: selectedElementProps.label,
-      disabled: selectedElementProps.disabled,
-      iconLeft: selectedElementProps.iconLeft,
-      form: selectedElementProps.form,
-      loading: selectedElementProps.loading,
-      iconRight: selectedElementProps.iconRight,
-      onlyIcon: selectedElementProps.onlyIcon,
-      icon: selectedElementProps.icon,
-      iconR: selectedElementProps.iconR,
-      activeAction: selectedElementProps.activeAction,
+      size: selectedViewProps.size,
+      view: selectedViewProps.view,
+      action: selectedViewProps.action,
+      label: selectedViewProps.label,
+      disabled: selectedViewProps.disabled,
+      iconLeft: selectedViewProps.iconLeft,
+      form: selectedViewProps.form,
+      loading: selectedViewProps.loading,
+      iconRight: selectedViewProps.iconRight,
+      onlyIcon: selectedViewProps.onlyIcon,
+      icon: selectedViewProps.icon,
+      iconR: selectedViewProps.iconR,
+      activeAction: selectedViewProps.activeAction,
     },
   }
 }

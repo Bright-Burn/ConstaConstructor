@@ -17,14 +17,11 @@ import { forms, sizes, views } from './UserConstants'
 import styles from './styles.module.css'
 
 type ButtonSettingsType = {
-  selectedElementProps: BrandButtonProps
-  selectedElement: ButtonElement
+  selectedViewProps: BrandButtonProps
+  selectedView: ButtonElement
 }
 
-export const ButtonSettings: FC<ButtonSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const ButtonSettings: FC<ButtonSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
     onChangeSwitch,
@@ -34,7 +31,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
     onChangeSize,
     onChangeView,
     onChangeForm,
-  } = useItemsHandlers(selectedElementProps.props, selectedElement)
+  } = useItemsHandlers(selectedViewProps.props, selectedView)
   return (
     <div className={styles.buttonPropsSettings}>
       <div className={styles.blockIcon}>
@@ -94,12 +91,12 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
           }}
         />
         <div className={styles.rowSettings}>
-          <FilledSettings elementId={selectedElement.elementId} props={selectedElementProps} />
+          <FilledSettings elementId={selectedView.elementId} props={selectedViewProps} />
         </div>
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.icon}
-            disabled={!selectedElementProps.props.onlyIcon}
+            disabled={!selectedViewProps.props.onlyIcon}
             label="iconLeft"
             onChangeIcon={onChangeIcon}
           />
@@ -107,7 +104,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.iconR}
-            disabled={!selectedElementProps.props.onlyIcon}
+            disabled={!selectedViewProps.props.onlyIcon}
             label="iconRight"
             onChangeIcon={onChangeIconR}
           />

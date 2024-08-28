@@ -26,16 +26,16 @@ import { formArray, sizeArray, viewArray, widthArray } from './types'
 import styles from './styles.module.css'
 
 type ChoiceGroupSettingsType = {
-  selectedElementProps: OwnChoiceGroupProps
-  selectedElement: ChoiceGroupElement
+  selectedViewProps: OwnChoiceGroupProps
+  selectedView: ChoiceGroupElement
 }
 
 export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
   const { itemsProps, onChangeItemsCount, onChangeItems, onChangeField, onChangeSwitch } =
-    useItemsHandlers(selectedElementProps, selectedElement)
+    useItemsHandlers(selectedViewProps, selectedView)
 
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(0)
   const activeItemValue = Array.isArray(itemsProps.value) ? itemsProps.value : undefined

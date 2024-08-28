@@ -29,12 +29,10 @@ export const reorderFormElement =
       }
 
       const newEl: IFormElement | IGroupElement = { ...element, parentId, order }
-      dispatch(formConstructorSlice.actions.reorderFormElements(newEl))
+      dispatch(formConstructorSlice.actions.reorderView(newEl))
 
       dispatch(
-        pushHistoryElement(() =>
-          dispatch(formConstructorSlice.actions.reorderFormElements(element)),
-        ),
+        pushHistoryElement(() => dispatch(formConstructorSlice.actions.reorderView(element))),
       )
     }
   }

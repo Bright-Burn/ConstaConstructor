@@ -25,11 +25,11 @@ import styles from './styles.module.css'
 
 type TextSettingsType = {
   selectedProps: TextElementProps
-  selectedElement: TextElement
+  selectedView: TextElement
 }
 type colorSelectorType = 'view' | 'styleColor'
 const colorSelectors: colorSelectorType[] = ['view', 'styleColor']
-export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElement }) => {
+export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedView }) => {
   const [refactorValue, setRefactorValue] = useState<textDecorationType[] | null>([])
   const [isOpen, setOpen] = useState<boolean>(false)
   const [colorSelector, setColorSelector] = useState<colorSelectorType>('view')
@@ -41,7 +41,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedElem
     onChangeItems,
     onChangeColor,
     onChangeView,
-  } = useItemsHandlers(selectedProps, selectedElement)
+  } = useItemsHandlers(selectedProps, selectedView)
 
   const onRefactorValueLabelEdit = (value: textDecorationType[] | null) => {
     setRefactorValue(value)

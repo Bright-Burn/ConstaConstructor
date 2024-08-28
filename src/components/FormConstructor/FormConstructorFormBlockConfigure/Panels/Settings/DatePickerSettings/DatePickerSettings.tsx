@@ -26,13 +26,13 @@ import {
 import styles from './styles.module.css'
 
 type DatePickerSettingsType = {
-  selectedElementProps: DatePickerProps
-  selectedElement: DatePickerElement
+  selectedViewProps: DatePickerProps
+  selectedView: DatePickerElement
 }
 
 export const DatePickerSettings: FC<DatePickerSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
   const {
     itemsProps,
@@ -42,7 +42,7 @@ export const DatePickerSettings: FC<DatePickerSettingsType> = ({
     onChangeLabel,
     onChangeStatus,
     onChangeSwitch,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
 
   const [isOpenDate, setOpenDate] = useState<boolean>(false)
   const [isOpenEvents, setOpenEvents] = useState<boolean>(false)

@@ -16,7 +16,7 @@
   margin: 0;
 }
 
-.selectedElement {
+.selectedView {
   /*overflow: hidden;*/
 
   outline: 1px solid rgba(39, 50, 245, 0.8);
@@ -38,7 +38,7 @@
   outline: 1px dashed #41a3ff;
   outline-offset: -2px;
 }
-.focused:hover:not(:has(.selectedElement,.sameInstanceElements)){
+.focused:hover:not(:has(.selectedView,.sameInstanceElements)){
   outline: 1px dashed #41a3ff;
   outline-offset: -2px;
 }

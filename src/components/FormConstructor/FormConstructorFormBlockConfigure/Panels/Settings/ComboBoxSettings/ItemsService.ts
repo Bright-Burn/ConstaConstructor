@@ -3,24 +3,24 @@ import type {
   ComboBoxElement,
   comboboxItemType,
   ComboboxProps,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { statusType, ValueType } from './types'
 
 export const useItemsHandlers = (
-  selectedElementProps: ComboboxProps,
-  selectedElement: ComboBoxElement,
+  selectedViewProps: ComboboxProps,
+  selectedView: ComboBoxElement,
 ) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandComboboxProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandComboboxProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandComboboxProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'ComboBox',
       }
       let itemsProps = [...newProps.props.items]
@@ -35,59 +35,59 @@ export const useItemsHandlers = (
         }
       }
       newProps.props.items = itemsProps
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangeItems = (items: comboboxItemType[]) => {
     const newProps: BrandComboboxProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'ComboBox',
     }
     newProps.props.items = [...items]
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeStatus = (status: statusType) => {
     const newProps: BrandComboboxProps = {
-      props: { ...selectedElementProps, status: status === '' ? undefined : status },
+      props: { ...selectedViewProps, status: status === '' ? undefined : status },
       type: 'ComboBox',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeLabel = (label: string) => {
     const newProps: BrandComboboxProps = {
-      props: { ...selectedElementProps, label },
+      props: { ...selectedViewProps, label },
       type: 'ComboBox',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangePlaceholder = (placeholder: string) => {
     const newProps: BrandComboboxProps = {
-      props: { ...selectedElementProps, placeholder },
+      props: { ...selectedViewProps, placeholder },
       type: 'ComboBox',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeCaption = (caption: string) => {
     const newProps: BrandComboboxProps = {
-      props: { ...selectedElementProps, caption },
+      props: { ...selectedViewProps, caption },
       type: 'ComboBox',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeSwitch =
     (propsName: keyof ComboboxProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandComboboxProps = {
         props: {
-          ...selectedElementProps,
+          ...selectedViewProps,
           [propsName]: checked.target.checked,
         },
         type: 'ComboBox',
       }
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   const onChangeField = (value: ValueType, field: keyof ComboboxProps) => {
     const newProps: BrandComboboxProps = {
-      props: { ...selectedElementProps, [field]: value },
+      props: { ...selectedViewProps, [field]: value },
       type: 'ComboBox',
     }
     if (field === 'label' && value === true) {
@@ -96,7 +96,7 @@ export const useItemsHandlers = (
     if (field === 'caption' && value === true) {
       newProps.props.caption = 'Подпись'
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   return {
     onChangeItemsCount,
@@ -108,23 +108,23 @@ export const useItemsHandlers = (
     onChangePlaceholder,
     onChangeSwitch,
     itemsProps: {
-      items: selectedElementProps.items,
-      value: selectedElementProps.value,
-      disabled: selectedElementProps.disabled,
-      size: selectedElementProps.size,
-      view: selectedElementProps.view,
-      form: selectedElementProps.form,
-      required: selectedElementProps.required,
-      caption: selectedElementProps.caption,
-      label: selectedElementProps.label,
-      status: selectedElementProps.status,
-      labelPosition: selectedElementProps.labelPosition,
-      placeholder: selectedElementProps.placeholder,
-      isLoading: selectedElementProps.isLoading,
-      multiple: selectedElementProps.multiple,
-      groups: selectedElementProps.groups,
-      groupsActive: selectedElementProps.groupsActive,
-      dropdownForm: selectedElementProps.dropdownForm,
+      items: selectedViewProps.items,
+      value: selectedViewProps.value,
+      disabled: selectedViewProps.disabled,
+      size: selectedViewProps.size,
+      view: selectedViewProps.view,
+      form: selectedViewProps.form,
+      required: selectedViewProps.required,
+      caption: selectedViewProps.caption,
+      label: selectedViewProps.label,
+      status: selectedViewProps.status,
+      labelPosition: selectedViewProps.labelPosition,
+      placeholder: selectedViewProps.placeholder,
+      isLoading: selectedViewProps.isLoading,
+      multiple: selectedViewProps.multiple,
+      groups: selectedViewProps.groups,
+      groupsActive: selectedViewProps.groupsActive,
+      dropdownForm: selectedViewProps.dropdownForm,
     },
   }
 }

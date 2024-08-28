@@ -10,7 +10,7 @@ import type { IconNames } from './iconTypes'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -43,7 +43,7 @@ export type IFormElementChoiceGroup = OmitInstanceId<
   }
 >
 
-export type ChoiceGroupElement = ConcreteSelectedElement<typeof FormElementDictTypes.ChoiceGroup>
+export type ChoiceGroupElement = ConcreteSelectedView<typeof FormElementDictTypes.ChoiceGroup>
 
 export type BrandOwnChoiceGroupProps = BrandProps<OwnChoiceGroupProps, 'ChoiceGroup'>
 

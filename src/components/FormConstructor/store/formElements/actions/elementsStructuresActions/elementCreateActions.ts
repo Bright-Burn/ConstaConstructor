@@ -37,7 +37,7 @@ import { deleteFormElementRollback } from './deleteFormElements'
 export const addNewFormElement =
   (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch, getState: () => RootState) => {
     //Список элементов для добавления(отображение)
-    const elementsToAdd: (IFormElement | IGroupElement)[] = []
+    const viewsToAdd: (IFormElement | IGroupElement)[] = []
     // Массив для хранения изменений количества ссылок на элементы
     const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
     // Массив для хранения новых инстансов
@@ -59,7 +59,7 @@ export const addNewFormElement =
       // Если элемент является группирующим
       if (isDragGroupElement(payloadElement)) {
         const elementType = payloadElement.type
-        elementsToAdd.push({
+        viewsToAdd.push({
           id: payloadElement.id,
           isOuter: payloadElement.isOuter,
           instanceId,
@@ -70,7 +70,7 @@ export const addNewFormElement =
         // Если элемент является обычным
       } else if (isDragFormElement(payloadElement)) {
         const elementType = payloadElement.type
-        elementsToAdd.push({
+        viewsToAdd.push({
           id: payloadElement.id,
           instanceId,
           parentId: payload.newParentElementId,
@@ -81,7 +81,7 @@ export const addNewFormElement =
     })
     // Диспатчем в стор подготовленный данные
     // Диспатчим действия для добавления новых элементов
-    dispatch(addViews(elementsToAdd))
+    dispatch(addViews(viewsToAdd))
     // Диспатчим действия для изменения количества ссылок
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     // Диспатчим действия для добавления новых инстансов
@@ -90,7 +90,7 @@ export const addNewFormElement =
     dispatch(
       pushHistoryElement(() => {
         dispatch(clearSameInstanceIds())
-        elementsToAdd.forEach(elem => {
+        viewsToAdd.forEach(elem => {
           dispatch(deleteFormElementRollback(elem.id))
         })
       }),
@@ -242,7 +242,7 @@ const addBaseElement =
     //Новый порядковый номер - количество всех дочерних элементов в слое + 1
     const orderForInsertionElem = getSiblingsCount(getState(), insertionParentId) + 1
     //Добавляем порядковые номера и правильный parentId  к каждому элементу
-    const newElementsToAdd = elements.map(elem => {
+    const newviewsToAdd = elements.map(elem => {
       return {
         ...elem,
         parentId: !elem.parentId ? insertionParentId : elem.parentId,
@@ -250,7 +250,7 @@ const addBaseElement =
       }
     })
 
-    newElementsToAdd.forEach(elem => {
+    newviewsToAdd.forEach(elem => {
       changeLinksCountPayloads.push({
         id: elem.instanceId,
         type: 'INC',
@@ -259,12 +259,12 @@ const addBaseElement =
     //Диспатчем в стор подготовленный данные
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     dispatch(formConstructorSlice.actions.addNewFormInstance(instances))
-    dispatch(addViews(newElementsToAdd))
+    dispatch(addViews(newviewsToAdd))
     //Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {
         dispatch(clearSameInstanceIds())
-        newElementsToAdd.forEach(elem => {
+        newviewsToAdd.forEach(elem => {
           dispatch(deleteFormElementRollback(elem.id))
         })
       }),

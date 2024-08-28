@@ -1,7 +1,7 @@
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -16,7 +16,7 @@ export type AvatarProps = {
 } & BaseProps
 export type BrandAvatarProps = BrandProps<AvatarProps, 'Avatar'>
 
-export type AvatarElement = ConcreteSelectedElement<typeof FormElementDictTypes.Avatar>
+export type AvatarElement = ConcreteSelectedView<typeof FormElementDictTypes.Avatar>
 
 export type IFormElementAvatar = OmitInstanceId<
   IFormElement & {

@@ -12,17 +12,14 @@ import { useItemsHandlers } from './ItemsService'
 import styles from './styles.module.css'
 
 type CheckboxSettingsType = {
-  selectedElementProps: CheckboxProps
-  selectedElement: CheckboxElement
+  selectedViewProps: CheckboxProps
+  selectedView: CheckboxElement
 }
 
-export const CheckboxSettings: FC<CheckboxSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const CheckboxSettings: FC<CheckboxSettingsType> = ({ selectedViewProps, selectedView }) => {
   const { itemsProps, onChangeField, onChangeSwitch, onChangeLabel } = useItemsHandlers(
-    selectedElementProps,
-    selectedElement,
+    selectedViewProps,
+    selectedView,
   )
 
   return (

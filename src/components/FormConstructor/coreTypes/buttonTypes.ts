@@ -4,7 +4,7 @@ import type { IconNames } from './iconTypes'
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   FormGroupsDictTypes,
   IFormElement,
@@ -25,7 +25,7 @@ export interface ButtonProps extends BaseProps, Props {
 
 export type BrandButtonProps = BrandProps<ButtonProps, 'Button'>
 
-export type ButtonElement = ConcreteSelectedElement<typeof FormElementDictTypes.Button>
+export type ButtonElement = ConcreteSelectedView<typeof FormElementDictTypes.Button>
 
 export const buttonActions: ButtonAction[] = ['none', 'ButtonModal']
 export const buttonActionsActive = ['ButtonModal']
@@ -46,7 +46,7 @@ export interface ButtonGroupProps extends BaseProps {
 
 export type BrandButtonGroupProps = BrandProps<ButtonGroupProps, 'ButtonModal'>
 
-export type ButtonGroupElement = ConcreteSelectedElement<typeof FormGroupsDictTypes.ButtonModal>
+export type ButtonGroupElement = ConcreteSelectedView<typeof FormGroupsDictTypes.ButtonModal>
 
 export interface IButtonActionElement extends IGroupElement {
   connectedButtonId: string

@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { IFormConstructor, IFormElement, IGroupElement } from '../../../../coreTypes'
 import { viewAdapter } from '../../adapters'
 
-export const reorderFormElements = (
+export const reorderView = (
   state: IFormConstructor,
   action: PayloadAction<IFormElement | IGroupElement>,
 ) => {

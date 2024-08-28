@@ -12,30 +12,22 @@ import { useItemsHandlers } from './itemsService'
 
 import styles from './styles.module.css'
 type AvatarSettingsType = {
-  selectedElementProps: AvatarProps
-  selectedElement: AvatarElement
+  selectedViewProps: AvatarProps
+  selectedView: AvatarElement
 }
-export const AvatarSettings: FC<AvatarSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const AvatarSettings: FC<AvatarSettingsType> = ({ selectedViewProps, selectedView }) => {
   const { onChangeName, onChangeSize, onChangeForm, onChangeMonochrome, onChangeImage } =
-    useItemsHandlers(selectedElementProps, selectedElement)
+    useItemsHandlers(selectedViewProps, selectedView)
   return (
     <div className={styles.settingsContainer}>
-      <TextField
-        size="xs"
-        leftSide="Name"
-        value={selectedElementProps.name}
-        onChange={onChangeName}
-      />
+      <TextField size="xs" leftSide="Name" value={selectedViewProps.name} onChange={onChangeName} />
       <Select
         getItemKey={(item: string) => item}
         getItemLabel={(item: string) => item}
         items={sizes}
         placeholder="Size"
         size="xs"
-        value={selectedElementProps.size}
+        value={selectedViewProps.size}
         renderValue={({ item }) => getValueForSelect({ item, label: 'size' })}
         onChange={value => {
           onChangeSize(value)
@@ -47,20 +39,20 @@ export const AvatarSettings: FC<AvatarSettingsType> = ({
         items={form}
         placeholder="Form"
         size="xs"
-        value={selectedElementProps.form}
+        value={selectedViewProps.form}
         renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeForm(value)
         }}
       />
       <Switch
-        checked={!!selectedElementProps.url}
+        checked={!!selectedViewProps.url}
         size="xs"
         label="With image"
         onChange={onChangeImage}
       />
       <Switch
-        checked={selectedElementProps.monochrome}
+        checked={selectedViewProps.monochrome}
         size="xs"
         label="Monochrome"
         onChange={onChangeMonochrome}

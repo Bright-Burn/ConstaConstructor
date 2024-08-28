@@ -4,62 +4,62 @@ import type {
   AvatarGroupElement,
   AvatarGroupProps,
   BrandAvatarGroupProps,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { form, sizes } from './constants'
 
 export const useItemsHandlers = (
-  selectedElementProps: AvatarGroupProps,
-  selectedElement: AvatarGroupElement,
+  selectedViewProps: AvatarGroupProps,
+  selectedView: AvatarGroupElement,
 ) => {
   const dispatch = useAppDispatch()
 
   const onChangeSize = (size: (typeof sizes)[number] | null) => {
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedElementProps, size: size || undefined },
+      props: { ...selectedViewProps, size: size || undefined },
       type: 'AvatarGroup',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeVisibleCount = (event: ChangeEvent<HTMLInputElement> | null) => {
     const visibleCount = event?.target.checked ? 'auto' : 4
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedElementProps, visibleCount },
+      props: { ...selectedViewProps, visibleCount },
       type: 'AvatarGroup',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const handleChangeVisibleCount = (visibleCount: string | null) => {
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedElementProps, visibleCount: visibleCount ? +visibleCount : undefined },
+      props: { ...selectedViewProps, visibleCount: visibleCount ? +visibleCount : undefined },
       type: 'AvatarGroup',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeForm = (forms: (typeof form)[number] | null) => {
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedElementProps, form: forms || undefined },
+      props: { ...selectedViewProps, form: forms || undefined },
       type: 'AvatarGroup',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeMonochrome = (monochrome: ChangeEvent<HTMLInputElement> | null) => {
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedElementProps, monochrome: monochrome?.target.checked || undefined },
+      props: { ...selectedViewProps, monochrome: monochrome?.target.checked || undefined },
       type: 'AvatarGroup',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandAvatarGroupProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandAvatarGroupProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   return {

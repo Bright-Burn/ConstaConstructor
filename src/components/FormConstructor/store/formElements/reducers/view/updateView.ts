@@ -3,7 +3,7 @@ import type { PayloadAction, Update } from '@reduxjs/toolkit'
 import type { IFormConstructor, IGroupElement } from '../../../../coreTypes'
 import { viewAdapter } from '../../adapters'
 
-export const updateFormElements = (
+export const updateView = (
   state: IFormConstructor,
   { payload }: PayloadAction<Update<IGroupElement>>,
 ) => {

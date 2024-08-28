@@ -4,34 +4,34 @@ import type {
   BrandInformerElementProps,
   InformerElement,
   InformerElementProps,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
-  selectedElementProps: InformerElementProps,
-  selectedElement: InformerElement,
+  selectedViewProps: InformerElementProps,
+  selectedView: InformerElement,
 ) => {
   const dispatch = useAppDispatch()
   const onChangeTitle = (value: string) => {
     const newProps: BrandInformerElementProps = {
       props: {
-        ...selectedElementProps,
+        ...selectedViewProps,
         title: value,
       },
       type: 'Informer',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeLabel = (value: string) => {
     const newProps: BrandInformerElementProps = {
       props: {
-        ...selectedElementProps,
+        ...selectedViewProps,
         label: value,
       },
       type: 'Informer',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeField = (
     value: InformerPropSize | InformerPropView | InformerPropStatus | null,
@@ -39,16 +39,16 @@ export const useItemsHandlers = (
   ) => {
     const newProps: BrandInformerElementProps = {
       props: {
-        ...selectedElementProps,
+        ...selectedViewProps,
         [field]: value,
       },
       type: 'Informer',
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandInformerElementProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandInformerElementProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   return {
@@ -56,12 +56,12 @@ export const useItemsHandlers = (
     onChangeTitle,
     onChangeLabel,
     itemsProps: {
-      size: selectedElementProps.size,
-      view: selectedElementProps.view,
-      icon: selectedElementProps.icon,
-      label: selectedElementProps.label,
-      title: selectedElementProps.title,
-      status: selectedElementProps.status,
+      size: selectedViewProps.size,
+      view: selectedViewProps.view,
+      icon: selectedViewProps.icon,
+      label: selectedViewProps.label,
+      title: selectedViewProps.title,
+      status: selectedViewProps.status,
     },
   }
 }

@@ -2,7 +2,7 @@ import type {
   BrandOwnChoiceGroupProps,
   ChoiceGroupElement,
   ChoiceGroupItem,
-  ISelectedElement,
+  IselectedView,
   OwnChoiceGroupProps,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
@@ -10,19 +10,19 @@ import { setInstanceProps, useAppDispatch } from '../../../../store'
 import type { ValueType } from './types'
 
 export const useItemsHandlers = (
-  selectedElementProps: OwnChoiceGroupProps,
-  selectedElement: ChoiceGroupElement,
+  selectedViewProps: OwnChoiceGroupProps,
+  selectedView: ChoiceGroupElement,
 ) => {
   const dispatch = useAppDispatch()
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandOwnChoiceGroupProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandOwnChoiceGroupProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'ChoiceGroup',
       }
       let itemsProps = [...newProps.props.items]
@@ -42,35 +42,35 @@ export const useItemsHandlers = (
         }
       }
       newProps.props.items = itemsProps
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeItems = (items: ChoiceGroupItem[]) => {
     const newProps: BrandOwnChoiceGroupProps = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'ChoiceGroup',
     }
     newProps.props.items = [...items]
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeField = (value: ValueType, field: keyof OwnChoiceGroupProps) => {
     const newProps: BrandOwnChoiceGroupProps = {
-      props: { ...selectedElementProps, [field]: value },
+      props: { ...selectedViewProps, [field]: value },
       type: 'ChoiceGroup',
     }
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
     (propsName: keyof OwnChoiceGroupProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedElementProps, [propsName]: checked.target.checked },
+        props: { ...selectedViewProps, [propsName]: checked.target.checked },
         type: 'ChoiceGroup',
       }
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
 
   return {
@@ -79,15 +79,15 @@ export const useItemsHandlers = (
     onChangeField,
     onChangeSwitch,
     itemsProps: {
-      items: selectedElementProps.items,
-      value: selectedElementProps.value,
-      size: selectedElementProps.size,
-      view: selectedElementProps.view,
-      form: selectedElementProps.form,
-      multiple: selectedElementProps.multiple,
-      onlyIcon: selectedElementProps.onlyIcon,
-      disabled: selectedElementProps.disabled,
-      width: selectedElementProps.width,
+      items: selectedViewProps.items,
+      value: selectedViewProps.value,
+      size: selectedViewProps.size,
+      view: selectedViewProps.view,
+      form: selectedViewProps.form,
+      multiple: selectedViewProps.multiple,
+      onlyIcon: selectedViewProps.onlyIcon,
+      disabled: selectedViewProps.disabled,
+      width: selectedViewProps.width,
     },
   }
 }

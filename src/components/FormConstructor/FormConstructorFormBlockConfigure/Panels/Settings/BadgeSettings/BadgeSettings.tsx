@@ -14,11 +14,11 @@ import { forms, sizes, statuses, views } from './textConstants'
 import styles from './styles.module.css'
 
 type BadgeSettingsType = {
-  selectedElementProps: BadgeProps
-  selectedElement: BadgeElement
+  selectedViewProps: BadgeProps
+  selectedView: BadgeElement
 }
 
-export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, selectedElement }) => {
+export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
     onChangeSwitch,
@@ -26,7 +26,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
     handleOnChangeLabel,
     onChangeField,
     onChangeIconRight,
-  } = useItemsHandlers(selectedElementProps, selectedElement)
+  } = useItemsHandlers(selectedViewProps, selectedView)
   return (
     <div className={styles.badgeSettings}>
       <TextField
@@ -53,7 +53,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
         getItemKey={(item: string) => item}
         getItemLabel={(item: string) => item}
         items={views}
-        value={selectedElementProps.view}
+        value={selectedViewProps.view}
         size="xs"
         renderValue={({ item }) => getValueForSelect({ item, label: 'view' })}
         onChange={value => {
@@ -67,7 +67,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
         items={forms}
         placeholder="forms"
         size="xs"
-        value={selectedElementProps.form}
+        value={selectedViewProps.form}
         renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeField(value, 'form')
@@ -97,7 +97,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedElementProps, sel
       <div className={styles.rowSettings}>
         <IconSelectConsta
           label="iconRight"
-          selectedIcon={selectedElementProps.iconRight}
+          selectedIcon={selectedViewProps.iconRight}
           onChangeIcon={onChangeIconRight}
         />
       </div>

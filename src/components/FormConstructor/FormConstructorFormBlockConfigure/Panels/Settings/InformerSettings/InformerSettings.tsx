@@ -12,17 +12,14 @@ import { useItemsHandlers } from './ItemsService'
 import styles from './styles.module.css'
 
 type InformerSettingsType = {
-  selectedElementProps: InformerElementProps
-  selectedElement: InformerElement
+  selectedViewProps: InformerElementProps
+  selectedView: InformerElement
 }
 
-export const InformerSettings: FC<InformerSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
-}) => {
+export const InformerSettings: FC<InformerSettingsType> = ({ selectedViewProps, selectedView }) => {
   const { itemsProps, onChangeField, onChangeTitle, onChangeLabel } = useItemsHandlers(
-    selectedElementProps,
-    selectedElement,
+    selectedViewProps,
+    selectedView,
   )
 
   return (

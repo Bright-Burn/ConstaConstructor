@@ -1,5 +1,5 @@
 import type {
-  ISelectedElement,
+  IselectedView,
   marginBottom,
   marginLeft,
   marginRight,
@@ -7,7 +7,7 @@ import type {
   UnionProps,
 } from '../../../../coreTypes'
 import {
-  getSelectedElementPropsSelector,
+  getselectedViewPropsSelector,
   selectedViewSelector,
   setInstanceProps,
   useAppDispatch,
@@ -15,11 +15,11 @@ import {
 } from '../../../../store'
 
 export const useMarginHandlers = () => {
-  const selectedElement = useAppSelector(selectedViewSelector)
+  const selectedView = useAppSelector(selectedViewSelector)
   const dispatch = useAppDispatch()
-  const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
+  const selectedViewProps = useAppSelector(getselectedViewPropsSelector)
 
-  if (!selectedElementProps) {
+  if (!selectedViewProps) {
     return {
       marginProps: null,
       onChangemarginBottom: () => {},
@@ -29,12 +29,12 @@ export const useMarginHandlers = () => {
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: UnionProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: UnionProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
   const onChangemarginLeft = (value: (typeof marginLeft)[number] | null) => {
-    if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)
+    if (selectedView && value != null) {
+      const newProps: UnionProps = structuredClone(selectedViewProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
@@ -51,12 +51,12 @@ export const useMarginHandlers = () => {
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangemarginRight = (value: (typeof marginRight)[number] | null) => {
-    if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)
+    if (selectedView && value != null) {
+      const newProps: UnionProps = structuredClone(selectedViewProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
@@ -72,12 +72,12 @@ export const useMarginHandlers = () => {
         ? Object.values({ ...newProps.props.baseProps.margin, marginRight: '' }).join(' ')
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin}  ${value}`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangemarginTop = (value: (typeof marginTop)[number] | null) => {
-    if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)
+    if (selectedView && value != null) {
+      const newProps: UnionProps = structuredClone(selectedViewProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
@@ -93,12 +93,12 @@ export const useMarginHandlers = () => {
         ? Object.values({ ...newProps.props.baseProps.margin, marginTop: '' }).join(' ')
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin}  ${value}`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangemarginBottom = (value: (typeof marginBottom)[number] | null) => {
-    if (selectedElement && value != null) {
-      const newProps: UnionProps = structuredClone(selectedElementProps)
+    if (selectedView && value != null) {
+      const newProps: UnionProps = structuredClone(selectedViewProps)
       if ('constaProps' in newProps.props) {
         newProps.props.constaProps = { ...newProps.props.constaProps }
       }
@@ -114,11 +114,11 @@ export const useMarginHandlers = () => {
         ? Object.values({ ...newProps.props.baseProps.margin, marginBottom: '' }).join(' ')
         : ''
       newProps.props.className = `${prevPadding} ${prevMargin}  ${value}`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   return {
-    marginProps: selectedElementProps.props.baseProps.margin,
+    marginProps: selectedViewProps.props.baseProps.margin,
     onChangemarginBottom,
     onChangemarginLeft,
     onChangemarginRight,

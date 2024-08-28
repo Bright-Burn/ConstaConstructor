@@ -6,7 +6,7 @@ import type {
   BorderSide,
   BorderStyle,
   BrandLayoutElementPropsStyles,
-  ISelectedElement,
+  IselectedView,
   JustifyContentProps,
   LayoutElement,
   LayoutElementPropsStyles,
@@ -17,20 +17,17 @@ import { setInstanceProps, useAppDispatch } from '../../../../store'
 import type { overflowType } from './LayoutConstants'
 
 export const useItemsHandlers = (
-  selectedElementProps: LayoutElementPropsStyles,
-  selectedElement: LayoutElement,
+  selectedViewProps: LayoutElementPropsStyles,
+  selectedView: LayoutElement,
 ) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (
-    selectedElement: ISelectedElement,
-    newProps: BrandLayoutElementPropsStyles,
-  ) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandLayoutElementPropsStyles) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   const onChangeFlex = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.constaProps = { ...newProps.props.constaProps }
@@ -38,56 +35,56 @@ export const useItemsHandlers = (
     const newValue = Number(value)
 
     newProps.props.constaProps['flex'] = value != null ? newValue : 1
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeDirection = (value: LayoutPropDirection) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.constaProps = { ...newProps.props.constaProps }
 
     newProps.props.constaProps.direction = value
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeWrap = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
     newProps.props.styles.flexWrap = checked ? 'wrap' : 'nowrap'
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeVerticalAligment = (value: LayoutPropVerticalAlign) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.constaProps = { ...newProps.props.constaProps }
 
     newProps.props.constaProps.verticalAlign = value
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeHorizontalAligment = (value: LayoutPropHorizontalAlign) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
 
     newProps.props.constaProps = { ...newProps.props.constaProps }
 
     newProps.props.constaProps.horizontalAlign = value
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeJustifyContent = (value: JustifyContentProps | undefined) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
 
@@ -95,24 +92,24 @@ export const useItemsHandlers = (
 
     newProps.props.styles.justifyContent = value
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeAlignItems = (value: AlignItems | undefined) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
 
     newProps.props.styles.alignItems = value
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
@@ -124,17 +121,17 @@ export const useItemsHandlers = (
       }
       newProps.props.styles.maxWidth = `${newValue}px`
       newProps.props.styles.minWidth = `${newValue}px`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     } else {
       newProps.props.styles.maxWidth = undefined
       newProps.props.styles.minWidth = undefined
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeHeight = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
@@ -146,17 +143,17 @@ export const useItemsHandlers = (
       }
       newProps.props.styles.maxHeight = `${newValue}px`
       newProps.props.styles.minHeight = `${newValue}px`
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     } else {
       newProps.props.styles.maxHeight = undefined
       newProps.props.styles.minHeight = undefined
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeBorderWidth = (value: string | null, direction: 'T' | 'R' | 'B' | 'L') => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
 
@@ -170,59 +167,59 @@ export const useItemsHandlers = (
     } else {
       newProps.props.styles.borderLeftWidth = value ? value : undefined
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeBorderStyle = (value: BorderStyle | null | undefined) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
 
     newProps.props.styles = { ...newProps.props.styles }
     newProps.props.styles.borderStyle = value ? value : undefined
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeBorderSide = (value: BorderSide | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
 
     newProps.props.styles = { ...newProps.props.styles }
     newProps.props.styles.borderSide = value ? value : undefined
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeBorderColor = (value: ConstaColor) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
 
     newProps.props.styles = { ...newProps.props.styles }
     newProps.props.styles.borderColor = value
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   const onChangeBackroundColor = (color: ConstaColor) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
 
     newProps.props.styles = { ...newProps.props.styles }
     newProps.props.styles.backgroundColor = color
 
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeOverflow = (overflow: overflowType | null, type: 'X' | 'Y') => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
 
@@ -232,11 +229,11 @@ export const useItemsHandlers = (
     } else {
       newProps.props.styles.overflowY = overflow ?? undefined
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeBorderRadius = (value: string | null, direction: 'TL' | 'TR' | 'BR' | 'BL') => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
@@ -249,16 +246,16 @@ export const useItemsHandlers = (
     } else {
       newProps.props.styles.borderBottomLeftRadius = value ? value : undefined
     }
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
   const onChangeRotate = (value: string | null) => {
     const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedElementProps },
+      props: { ...selectedViewProps },
       type: 'Layout',
     }
     newProps.props.styles = { ...newProps.props.styles }
     newProps.props.styles.transform = value ? value : undefined
-    onDispatch(selectedElement, newProps)
+    onDispatch(selectedView, newProps)
   }
 
   return {
@@ -280,9 +277,9 @@ export const useItemsHandlers = (
     onChangeBorderRadius,
     onChangeRotate,
     itemsProps: {
-      constaProps: selectedElementProps.constaProps,
-      styles: selectedElementProps.styles,
-      selectedElementProps,
+      constaProps: selectedViewProps.constaProps,
+      styles: selectedViewProps.styles,
+      selectedViewProps,
     },
   }
 }

@@ -3,7 +3,7 @@ import type { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/ui
 import type {
   BaseProps,
   BrandProps,
-  ConcreteSelectedElement,
+  ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
@@ -20,7 +20,7 @@ export type SwitchProps = {
 
 export type BrandSwitchProps = BrandProps<SwitchProps, 'Switch'>
 
-export type SwitchElement = ConcreteSelectedElement<typeof FormElementDictTypes.Switch>
+export type SwitchElement = ConcreteSelectedView<typeof FormElementDictTypes.Switch>
 
 export type IFormElementSwitch = OmitInstanceId<
   IFormElement & {

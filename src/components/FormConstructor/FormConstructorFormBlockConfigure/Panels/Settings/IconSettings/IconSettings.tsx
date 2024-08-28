@@ -11,7 +11,7 @@ import type {
   IconElement,
   IconNames,
   IconProps,
-  ISelectedElement,
+  IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 import { IconSelectConsta } from '../IconsSelect'
@@ -21,65 +21,65 @@ import { sizes, views } from './IconsConstants'
 import styles from './styles.module.css'
 
 type IconSettingsType = {
-  selectedElementProps: IconProps
-  selectedElement: IconElement
+  selectedViewProps: IconProps
+  selectedView: IconElement
 }
 type colorSelectorType = 'view' | 'styleColor'
 const colorSelectors: colorSelectorType[] = ['view', 'styleColor']
 
-export const IconSettings: FC<IconSettingsType> = ({ selectedElementProps, selectedElement }) => {
+export const IconSettings: FC<IconSettingsType> = ({ selectedViewProps, selectedView }) => {
   const dispatch = useAppDispatch()
   const [colorSelector, setColorSelector] = useState<colorSelectorType>('view')
 
-  const props = { ...selectedElementProps }
+  const props = { ...selectedViewProps }
 
   const onChangeSize = (value: IconPropSize | null) => {
     if (value) {
       const newProps: BrandIconProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Icon',
       }
       newProps.props.size = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeView = (value: IconPropView | null) => {
     if (value) {
       const newProps: BrandIconProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
 
         type: 'Icon',
       }
       delete newProps.props.style
       newProps.props.view = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeIcon = (value: IconNames | null) => {
     if (value) {
       const newProps: BrandIconProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Icon',
       }
       newProps.props.icons = value
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
 
-  const onDispatch = (selectedElement: ISelectedElement, newProps: BrandIconProps) => {
-    dispatch(setInstanceProps(selectedElement.elementId, newProps))
+  const onDispatch = (selectedView: IselectedView, newProps: BrandIconProps) => {
+    dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
   const onChangeColor = (value: ConstaColor | null) => {
     if (value) {
       const newProps: BrandIconProps = {
-        props: { ...selectedElementProps },
+        props: { ...selectedViewProps },
         type: 'Icon',
       }
       newProps.props.style = { ...newProps.props.style, color: value }
 
-      onDispatch(selectedElement, newProps)
+      onDispatch(selectedView, newProps)
     }
   }
   const onChangeColorSelector = (value: colorSelectorType) => {

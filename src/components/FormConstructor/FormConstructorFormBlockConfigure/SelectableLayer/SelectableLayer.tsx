@@ -57,7 +57,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
     elementTypeUsage === ElementTypes.FormElement
       ? styles.selectableLayerFormElement
       : styles.selectableLayerLayoutElement
-  } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedElement : ''} ${isInSameInstanceElements ? styles.sameInstanceElements : ''}`
+  } ${className ?? ''} ${isGridVisible ? styles.focused : ''}  ${isSelected ? styles.selectedView : ''} ${isInSameInstanceElements ? styles.sameInstanceElements : ''}`
   return (
     <div className={containerClass} tabIndex={0} onClick={onClickElement}>
       <DragbleLayer className={containerClass} elId={parentElementId}>

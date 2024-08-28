@@ -12,11 +12,11 @@ import { sizes, status, views } from './UserConstants'
 import styles from './styles.module.css'
 
 type UserSettingsType = {
-  selectedElementProps: BrandUserProps
-  selectedElement: UserElement
+  selectedViewProps: BrandUserProps
+  selectedView: UserElement
 }
 
-export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selectedElement }) => {
+export const UserSettings: FC<UserSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
     onChangeSwitch,
@@ -26,7 +26,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
     onChangeStatus,
     onChangeView,
     onChangeSize,
-  } = useItemsHandlers(selectedElementProps.props, selectedElement)
+  } = useItemsHandlers(selectedViewProps.props, selectedView)
 
   return (
     <div className={styles.settingsBlockUser}>
@@ -55,7 +55,7 @@ export const UserSettings: FC<UserSettingsType> = ({ selectedElementProps, selec
         />
       </div>
       <div className={styles.settingsBlockRow}>
-        <FilledSettings elementId={selectedElement.elementId} props={selectedElementProps} />
+        <FilledSettings elementId={selectedView.elementId} props={selectedViewProps} />
         <Select
           className={styles.elementWidth}
           getItemKey={(item: string) => item}

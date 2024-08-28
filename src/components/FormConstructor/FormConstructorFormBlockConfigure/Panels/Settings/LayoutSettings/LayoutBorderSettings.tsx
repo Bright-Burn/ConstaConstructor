@@ -12,15 +12,15 @@ import { borderStyle, borderStyleDict } from './LayoutConstants'
 import styles from './styles.module.css'
 
 type LayoutSettingsType = {
-  selectedElementProps: LayoutElementPropsStyles
-  selectedElement: LayoutElement
+  selectedViewProps: LayoutElementPropsStyles
+  selectedView: LayoutElement
 }
 export const LayoutBorderSettings: React.FC<LayoutSettingsType> = ({
-  selectedElementProps,
-  selectedElement,
+  selectedViewProps,
+  selectedView,
 }) => {
   const { itemsProps, onChangeBorderWidth, onChangeBorderStyle, onChangeBorderColor } =
-    useItemsHandlers(selectedElementProps, selectedElement)
+    useItemsHandlers(selectedViewProps, selectedView)
   return (
     <div className={`${styles.columnSettings} ${styles.labelMarginTop}`}>
       <Text size="xs" view="secondary">
