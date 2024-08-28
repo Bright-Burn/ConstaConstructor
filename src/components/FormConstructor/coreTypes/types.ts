@@ -13,9 +13,9 @@ import type { IFormElementChoiceGroup } from './ChoiceGroupTypes'
 import type { IFormElementComboBox } from './comboBoxTypes'
 import type { IFormElementDataTime } from './dataTimeTypes'
 import type { IFormElementDatePicker } from './datePickerTypes'
-import type { FormInstance, InstanceManager, UnionProps } from './formInstance'
 import type { IFormElementIcon } from './iconTypes'
-import type { IFormElementInformer } from './informerTypes'
+import type { IFormViewtInformer } from './informerTypes'
+import type { FormInstance, InstanceManager, UnionProps } from './instance'
 import type { BrandLayoutElementPropsStyles } from './layoutTypes'
 import type { IFormElementList } from './ListTypes'
 import type { IFormElementRadioButton } from './radioButtonTypes'
@@ -26,6 +26,7 @@ import type { IFormElementTagProps } from './tagTypes'
 import type { IFormElementTextField } from './textFieldTypes'
 import type { IFormElementText } from './textTypes'
 import type { IFormElementUser } from './userTypes'
+import type { ViewtInfo } from './viewtInfo'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -130,7 +131,7 @@ export type FormElementUnion =
   | IFormElementButton
   | IFormElementBadge
   | IFormElementText
-  | IFormElementInformer
+  | IFormViewtInformer
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
@@ -173,10 +174,11 @@ export type DraggbleElement<T extends IFormElement | IGroupElement> = OmitInstan
 }
 
 export interface IFormConstructor extends IHistory {
-  allElements: EntityState<IFormElement | IGroupElement>
-  elementInstances: EntityState<FormInstance<AllElementTypes>>
+  views: EntityState<IFormElement | IGroupElement>
+  instances: EntityState<FormInstance<AllElementTypes>>
+  viewInfo: EntityState<ViewtInfo>
   instanceManager: InstanceManager
-  selectedElement: ISelectedElement | null
+  selectedView: ISelectedElement | null
   sameInstanceElementsIds: string[]
   draggableElement: DraggbleElement<IFormElement | IGroupElement> | null
 

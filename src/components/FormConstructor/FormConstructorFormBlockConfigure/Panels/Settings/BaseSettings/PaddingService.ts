@@ -8,14 +8,14 @@ import type {
 } from '../../../../coreTypes'
 import {
   getSelectedElementPropsSelector,
-  selectedElementSelector,
+  selectedViewSelector,
   setInstanceProps,
   useAppDispatch,
   useAppSelector,
 } from '../../../../store'
 
 export const usePaddingHandlers = () => {
-  const selectedElement = useAppSelector(selectedElementSelector)
+  const selectedElement = useAppSelector(selectedViewSelector)
   const selectedElementProps = useAppSelector(getSelectedElementPropsSelector)
 
   const dispatch = useAppDispatch()

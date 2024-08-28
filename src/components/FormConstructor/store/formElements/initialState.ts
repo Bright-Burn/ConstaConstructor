@@ -1,10 +1,9 @@
 import uuid from 'react-uuid'
-import { createEntityAdapter } from '@reduxjs/toolkit'
 
-import type { IFormConstructor, IFormElement, IGroupElement, ILayoutElement } from '../../coreTypes'
+import type { IFormConstructor, ILayoutElement } from '../../coreTypes'
 import { FormGroupsDictTypes } from '../../coreTypes'
 
-import { formInstanceAdapter } from './formInstanseAdapter'
+import { instanceAdapter, viewAdapter, viewInfoAdapter } from './adapters'
 
 export const rootId = uuid()
 const initialLayoutId = uuid()
@@ -40,16 +39,12 @@ export const initialLayout: ILayoutElement = {
 const initialPages = [{ id: rootId, name: 'Страница 1' }]
 const initialNumberPage = 1
 
-export const layuoutAdapter = createEntityAdapter<IFormElement | IGroupElement>({
-  // Assume IDs are stored in a field other than `book.id`
-  selectId: layout => layout.id,
-})
-
 export const initialState: IFormConstructor = {
-  allElements: layuoutAdapter.getInitialState(),
-  elementInstances: formInstanceAdapter.getInitialState(),
+  views: viewAdapter.getInitialState(),
+  instances: instanceAdapter.getInitialState(),
+  viewInfo: viewInfoAdapter.getInitialState(),
   instanceManager: {},
-  selectedElement: null,
+  selectedView: null,
   sameInstanceElementsIds: [],
   draggableElement: null,
   pages: initialPages,

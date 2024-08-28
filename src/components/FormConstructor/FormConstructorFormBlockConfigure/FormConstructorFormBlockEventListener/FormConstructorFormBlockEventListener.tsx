@@ -10,9 +10,10 @@ import {
   loadProjectFromStorage,
   onSetViewMode,
   popHistoryElement,
+  selectedViewSelector,
   setElementToCopyId,
   setSameElementsIdsById,
-  setSelectedElement,
+  setSelectedView,
   togglePanels,
   useAppDispatch,
   useAppSelector,
@@ -26,7 +27,7 @@ interface Props {
 
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch()
-  const { selectedElement } = useAppSelector(state => state.formConstructor)
+  const selectedView = useAppSelector(selectedViewSelector)
 
   useEffect(() => {
     const loadedData = document.getElementById('loaded_data')
@@ -79,9 +80,9 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const { code } = e
-      if (selectedElement && code === 'Delete') {
+      if (selectedView && code === 'Delete') {
         e.preventDefault()
-        dispatch(deleteFormElement(selectedElement.elementId))
+        dispatch(deleteFormElement(selectedView.elementId))
       }
     }
 
@@ -90,14 +91,14 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     return () => {
       document.removeEventListener('keydown', onKeyDown)
     }
-  }, [selectedElement])
+  }, [selectedView])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
-      if (code === 'KeyD' && ctrlKey && selectedElement) {
+      if (code === 'KeyD' && ctrlKey && selectedView) {
         e.preventDefault()
-        dispatch(copyFormElementLink(selectedElement.elementId, selectedElement.elementType))
+        dispatch(copyFormElementLink(selectedView.elementId, selectedView.elementType))
       }
     }
 
@@ -106,15 +107,15 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     return () => {
       document.removeEventListener('keydown', onKeyDown)
     }
-  }, [selectedElement])
+  }, [selectedView])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
-      if (selectedElement && code === 'KeyQ' && ctrlKey) {
+      if (selectedView && code === 'KeyQ' && ctrlKey) {
         e.preventDefault()
         dispatch(clearSameInstanceIds())
-        dispatch(setSameElementsIdsById(selectedElement.elementId))
+        dispatch(setSameElementsIdsById(selectedView.elementId))
       }
     }
 
@@ -123,14 +124,14 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     return () => {
       document.removeEventListener('keydown', onKeyDown)
     }
-  }, [selectedElement])
+  }, [selectedView])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
-      if (selectedElement && code === 'KeyC' && ctrlKey) {
+      if (selectedView && code === 'KeyC' && ctrlKey) {
         e.preventDefault()
-        dispatch(setElementToCopyId(selectedElement.elementId))
+        dispatch(setElementToCopyId(selectedView.elementId))
       }
     }
 
@@ -139,15 +140,15 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     return () => {
       document.removeEventListener('keydown', onKeyDown)
     }
-  }, [selectedElement])
+  }, [selectedView])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const { code, ctrlKey } = e
-      if (selectedElement && code === 'KeyI' && ctrlKey) {
+      if (selectedView && code === 'KeyI' && ctrlKey) {
         e.preventDefault()
         dispatch(clearSameInstanceIds())
-        dispatch(insertNewElements(selectedElement.elementId, selectedElement.elementType))
+        dispatch(insertNewElements(selectedView.elementId, selectedView.elementType))
       }
     }
 
@@ -156,7 +157,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     return () => {
       document.removeEventListener('keydown', onKeyDown)
     }
-  }, [selectedElement])
+  }, [selectedView])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -164,7 +165,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       if (code === 'Escape') {
         e.preventDefault()
         dispatch(clearSameInstanceIds())
-        dispatch(setSelectedElement(null))
+        dispatch(setSelectedView(null))
       }
     }
 

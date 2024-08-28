@@ -1,13 +1,23 @@
-export { addNewFormElementAdapter } from './addNewFormElement'
-export { addNewPage } from './addNewPage'
-export { changeActivePage } from './changeActivePage'
-export { changePageName } from './changePageName'
-export { deleteFormElement } from './deleteFormElement'
-export { deletePage } from './deletePage'
-export { loadProjectFromJson } from './loadProjectFromJson'
-export { reorderFormElements } from './reorderFormElements'
-export { setDraggableElement } from './setDraggableElement'
-export { setElementToCopyId } from './setElementToCopyId'
-export { setSameInstanceElementsIds } from './setSameInstanceElementIds'
-export { deselectElement, setSelectedElement } from './setSelectedElement'
-export { updateFormElements, updateOrders } from './updateOrders'
+export type { ChangeElementLinkCountPayload, LinkCountType } from './instance'
+export {
+  addNewFormInstance,
+  changeElementLinkCount,
+  setSameInstanceElementsIds,
+  updateFormInstance,
+} from './instance'
+export type { ChangeActivePage, ChangeNamePage, DeletePage } from './pages'
+export { addNewPage, changeActivePage, changePageName, deletePage } from './pages'
+export { repalceState } from './repalceState'
+export type { SetNewElementDraggableElem, SetNewSelectedElement } from './view'
+export {
+  addNewFormElementAdapter,
+  deleteFormElement,
+  deselectElement,
+  reorderFormElements,
+  setDraggableElement,
+  setElementToCopyId,
+  setSelectedView,
+  updateFormElements,
+  updateOrders,
+} from './view'
+export { replaceViewInfo } from './viewInfo'

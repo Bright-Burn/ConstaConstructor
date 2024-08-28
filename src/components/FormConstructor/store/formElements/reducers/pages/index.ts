@@ -1,0 +1,5 @@
+export { addNewPage } from './addNewPage'
+export { changeActivePage } from './changeActivePage'
+export { changePageName } from './changePageName'
+export { deletePage } from './deletePage'
+export type { ChangeActivePage, ChangeNamePage, DeletePage } from './payloads'

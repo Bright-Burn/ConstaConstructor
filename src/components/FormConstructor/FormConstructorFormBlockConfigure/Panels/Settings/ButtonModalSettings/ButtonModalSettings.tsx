@@ -52,7 +52,7 @@ export const ButtonModuleSettings: FC<ButtonModuleSettingsType> = ({
 
   const onDispatch = (selectedElement: ISelectedElement, newProps: BrandButtonGroupProps) => {
     // dispatch(
-    //   setSelectedElement({
+    //   setSelectedView({
     //     elementType: selectedElement.elementType,
     //     elementId: selectedElement.elementId,
     //     newProps,
