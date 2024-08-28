@@ -2,7 +2,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 import type { IFormConstructor, IFormElement, IGroupElement } from '../../../../coreTypes'
 
-export const deselectElement = (state: IFormConstructor) => {
+export const deselectView = (state: IFormConstructor) => {
   state.selectedView = null
 }
 

@@ -12,7 +12,7 @@ export type { SetNewElementDraggableElem, SetNewSelectedView } from './view'
 export {
   addNewView,
   deleteFormElement,
-  deselectElement,
+  deselectView,
   reorderView,
   setDraggableElement,
   setSelectedView,

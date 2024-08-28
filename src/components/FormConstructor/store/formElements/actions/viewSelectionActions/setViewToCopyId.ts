@@ -3,5 +3,5 @@ import { formConstructorSlice } from '../../formElementsSlice'
 
 export const setViewToCopyId = (elementId: string | null) => (dispatch: AppDispatch) => {
   dispatch(formConstructorSlice.actions.setViewToCopyId(elementId))
-  dispatch(formConstructorSlice.actions.deselectElement())
+  dispatch(formConstructorSlice.actions.deselectView())
 }
