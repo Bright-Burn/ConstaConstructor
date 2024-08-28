@@ -6,8 +6,8 @@ import { selectInstanceAll, selectViewAll } from '../../adapters'
 import { formConstructorSlice } from '../../formElementsSlice'
 import type { ChangeElementLinkCountPayload } from '../../reducers'
 import type { UpdateBaseComponentPayload } from '../payloads'
-import { addViews, deleteViews } from './combinedViewActions'
 
+import { addViews, deleteViews } from './combinedViewActions'
 import { deleteElementFormById } from './deleteFormElements'
 
 /**

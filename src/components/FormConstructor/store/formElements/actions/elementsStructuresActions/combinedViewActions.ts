@@ -1,5 +1,5 @@
-import { IFormElement, IGroupElement } from '../../../../coreTypes'
-import { AppDispatch } from '../../../setupStore'
+import type { IFormElement, IGroupElement } from '../../../../coreTypes'
+import type { AppDispatch } from '../../../setupStore'
 import { formConstructorSlice } from '../../formElementsSlice'
 
 /**

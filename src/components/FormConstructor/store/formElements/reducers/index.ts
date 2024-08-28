@@ -20,4 +20,4 @@ export {
   updateFormElements,
   updateOrders,
 } from './view'
-export { updateViewInfo, addViewInfos, deleteViewInfos } from './viewInfo'
+export { addViewInfos, deleteViewInfos, updateViewInfo } from './viewInfo'

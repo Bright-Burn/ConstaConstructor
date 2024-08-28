@@ -36,6 +36,7 @@ export {
   getSelectedElementPropsSelector,
   getSelectedPageId,
   getSiblingsCount,
+  getViewInfoByIdSelector,
   insertNewElements,
   loadProjectFromFile,
   loadProjectFromStorage,
@@ -51,10 +52,9 @@ export {
   setSameElementsIdsById,
   setSelectedView,
   setViewLabel,
-  viewInfoSelector,
   updateBaseComponentAction,
   updateOrders,
-  getViewInfoByIdSelector,
+  viewInfoSelector,
 } from './formElements'
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'

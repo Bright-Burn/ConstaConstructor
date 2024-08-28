@@ -1,11 +1,12 @@
-import { Dictionary } from '@reduxjs/toolkit'
+import type { Dictionary } from '@reduxjs/toolkit'
+
 import type { IFormElement, IGroupElement, ViewtInfo } from '../../../../coreTypes'
 import {
   getAllFormElements,
   getFormElAsMap,
   getSelectedPageId,
-  viewInfoSelector,
   useAppSelector,
+  viewInfoSelector,
 } from '../../../../store'
 
 import type { ITreeItem } from './Tree'
@@ -39,7 +40,7 @@ const getTree = (
     const child = allElementsMap.get(childId.id)
 
     if (child?.id) {
-      let title = viewsInfoStruct[child?.id]?.label ?? 'пока нет названия'
+      const title = viewsInfoStruct[child.id]?.label ?? 'пока нет названия'
       const treeItem: ITreeItem = {
         key: childId.id,
         children: getTree(allElementsMap, allElements, childId.id, viewsInfoStruct),

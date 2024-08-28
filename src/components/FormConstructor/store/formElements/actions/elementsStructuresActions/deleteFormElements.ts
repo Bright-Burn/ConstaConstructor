@@ -4,6 +4,7 @@ import type { AppDispatch, RootState } from '../../../setupStore'
 import { selectViewAll, selectViewById } from '../../adapters'
 import { formConstructorSlice } from '../../formElementsSlice'
 import type { ChangeElementLinkCountPayload } from '../../reducers'
+
 import { addViews, deleteViews } from './combinedViewActions'
 
 export const deleteElementFormById = (id: string, state: RootState) => {

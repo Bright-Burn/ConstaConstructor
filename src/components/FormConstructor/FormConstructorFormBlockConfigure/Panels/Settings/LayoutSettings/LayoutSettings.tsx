@@ -11,6 +11,7 @@ import type { LayoutElement, LayoutElementPropsStyles } from '../../../../coreTy
 import { getValueForSelect } from '../LabelForSelectComponent'
 
 import { useItemsHandlers } from './ItemsService'
+import { LabelField } from './LabelField'
 import { LayoutBorderSettings } from './LayoutBorderSettings'
 import {
   alignItems,
@@ -24,7 +25,6 @@ import {
 import { LayoutRadiusSettings } from './LayoutRadiusSettings'
 
 import styles from './styles.module.css'
-import { LabelField } from './LabelField'
 
 type LayoutSettingsType = {
   selectedElementProps: LayoutElementPropsStyles

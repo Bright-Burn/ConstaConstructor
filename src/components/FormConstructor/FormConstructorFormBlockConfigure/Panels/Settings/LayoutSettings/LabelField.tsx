@@ -1,11 +1,12 @@
+import type { FC } from 'react'
 import { TextField } from '@consta/uikit/TextField'
+
 import {
+  getViewInfoByIdSelector,
   setViewLabel,
   useAppDispatch,
   useAppSelector,
-  getViewInfoByIdSelector,
 } from '../../../../store'
-import { FC } from 'react'
 
 export const LabelField: FC<{ viewId: string }> = ({ viewId }) => {
   const dispatch = useAppDispatch()
