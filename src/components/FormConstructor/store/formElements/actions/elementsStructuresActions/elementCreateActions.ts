@@ -138,22 +138,22 @@ export const copyFormElementLink =
         ...elements,
       )
       //Производит глубокое копирование ветви с установкой новых id, сохраняя взаимосвязи типа родитель - ребенок
-      const newElements = deepCopyElements(treeElements)
+      const { newViews } = deepCopyElements(treeElements)
       // Диспатчим действия для изменения количества ссылок
       dispatch(
         formConstructorSlice.actions.changeElementLinkCount(
-          newElements.map(element => {
+          newViews.map(element => {
             return { id: element.instanceId, type: 'INC' }
           }),
         ),
       )
       // Диспатчим действия для добавления новых элементов
-      dispatch(addViews(newElements))
+      dispatch(addViews(newViews))
       //Диспатчем в стор коллбек на отмену изменений
       dispatch(
         pushHistoryElement(() => {
           dispatch(clearSameInstanceIds())
-          newElements.forEach(elem => {
+          newViews.forEach(elem => {
             dispatch(deleteFormElementRollback(elem.id))
           })
         }),
@@ -167,13 +167,16 @@ export const copyFormElementLink =
 export const addFormElementWithDefaultInstance =
   (payload: AddElementsWithInstancesPayload) => (dispatch: AppDispatch) => {
     //Список элементов - отображение
-    const elements = payload.elements
+    const elements = payload.views
     //Список инстансов
     const instances = payload.instances
     //Идентифкатор слоя, куда происходит вставка
     const insertionParentId = payload.parentId
+    // Информация о вью элементах
+    const viewInfos = payload.viewInfos
 
     dispatch(addBaseElement(elements, instances, insertionParentId))
+    dispatch(formConstructorSlice.actions.addViewInfos(viewInfos))
   }
 
 /**
@@ -217,7 +220,8 @@ export const insertNewElements =
       const { newInstances, newInstancesIdsDict } = copyInstances(instances)
 
       // Создаем копию всех элементов с обновленными идентификаторами экземпляров
-      const elementsCopy = deepCopyElements(treeElements).map(elem => {
+      const { newViews } = deepCopyElements(treeElements)
+      const elementsCopy = newViews.map(elem => {
         return { ...elem, instanceId: newInstancesIdsDict[elem.instanceId] }
       })
 

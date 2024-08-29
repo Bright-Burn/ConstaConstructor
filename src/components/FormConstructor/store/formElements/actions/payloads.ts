@@ -4,6 +4,7 @@ import type {
   FormInstance,
   IFormElement,
   IGroupElement,
+  ViewInfo,
 } from '../../../coreTypes'
 
 export type UpdateBaseComponentPayload = {
@@ -15,8 +16,9 @@ export type UpdateBaseComponentPayload = {
  * При перетаскивание базового компонента используем payload содержащий instance целиком
  */
 export type AddElementsWithInstancesPayload = {
-  elements: (IFormElement | IGroupElement)[]
+  views: (IFormElement | IGroupElement)[]
   instances: FormInstance<AllElementTypes>[]
+  viewInfos: ViewInfo[]
   parentId: string
 }
 

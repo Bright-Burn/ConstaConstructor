@@ -1,11 +1,25 @@
-import type { AllElementTypes, FormInstance, IFormElement, IGroupElement } from '../../coreTypes'
+import type {
+  AllElementTypes,
+  FormInstance,
+  IFormElement,
+  IGroupElement,
+  ViewInfo,
+} from '../../coreTypes'
 
-export interface IBaseComponent {
+export type IBaseComponent = {
   id: string
   name: string
   description: string
-  childrenElementList: (IFormElement | IGroupElement)[]
+  views: (IFormElement | IGroupElement)[]
   instances: FormInstance<AllElementTypes>[]
+  viewInfos: ViewInfo[]
+}
+
+export type BaseComponentSerializable = Pick<
+  IBaseComponent,
+  'id' | 'name' | 'description' | 'viewInfos' | 'instances'
+> & {
+  childrenElementList: (IFormElement | IGroupElement)[]
 }
 
 export interface IBaseComponentsItems {

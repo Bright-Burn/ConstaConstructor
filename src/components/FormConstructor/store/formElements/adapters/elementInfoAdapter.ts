@@ -1,10 +1,10 @@
 import { createEntityAdapter } from '@reduxjs/toolkit'
 
-import type { ViewtInfo } from '../../../coreTypes'
+import type { ViewInfo } from '../../../coreTypes'
 import type { RootState } from '../../setupStore'
 
-const viewInfoAdapter = createEntityAdapter<ViewtInfo>({
-  selectId: ViewtInfo => ViewtInfo.id,
+const viewInfoAdapter = createEntityAdapter<ViewInfo>({
+  selectId: ViewInfo => ViewInfo.id,
 })
 
 const { selectById, selectAll, selectEntities } = viewInfoAdapter.getSelectors<RootState>(

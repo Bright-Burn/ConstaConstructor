@@ -25,18 +25,24 @@ export const useDropBaseComponent = () => {
     // Проверяем, что draggableBaseComponent не равен null
     if (draggableBaseComponent) {
       // Получаем список всех элементов и экземпляров из draggableBaseComponent
-      const allElements = draggableBaseComponent.childrenElementList
+      const allElements = draggableBaseComponent.views
       const instances = draggableBaseComponent.instances
+      const viewInfos = draggableBaseComponent.viewInfos
       const { newInstances, newInstancesIdsDict } = copyInstances(instances)
       // Создаем копию всех элементов с обновленными идентификаторами экземпляров
-      const elementsCopy = deepCopyElements(allElements).map(elem => {
+      const { newViews, prevIdNewIdDict } = deepCopyElements(allElements)
+      const elementsCopy = newViews.map(elem => {
         return { ...elem, instanceId: newInstancesIdsDict[elem.instanceId] }
+      })
+      const viewInfosToCopy = viewInfos.map(viewInfo => {
+        return { ...viewInfo, id: prevIdNewIdDict[viewInfo.id] }
       })
       // Создаем объект с копией элементов, новыми экземплярами и идентификатором родительского элемента
       const addBaseElementPayload: AddElementsWithInstancesPayload = {
-        elements: elementsCopy,
+        views: elementsCopy,
         instances: newInstances,
         parentId: parentElementId,
+        viewInfos: viewInfosToCopy,
       }
       dispathBaseComponents(setDraggableBaseComponent(null))
 

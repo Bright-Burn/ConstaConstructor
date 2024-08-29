@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import uuid from 'react-uuid'
 import { Text } from '@consta/uikit/Text'
 
-import type { IFormViewtInformer } from '../../../../../../coreTypes'
+import type { IFormViewInformer } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import type { IComponetCardElement } from '../types'
@@ -15,7 +15,7 @@ export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = () => {
-    const newInformer: IFormViewtInformer = {
+    const newInformer: IFormViewInformer = {
       id: uuid(),
       type: FormElementDictTypes.Informer,
       order: 1,

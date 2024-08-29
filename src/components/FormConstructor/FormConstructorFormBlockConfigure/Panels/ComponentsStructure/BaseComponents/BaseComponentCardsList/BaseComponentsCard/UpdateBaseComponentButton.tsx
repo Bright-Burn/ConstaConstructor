@@ -19,7 +19,7 @@ export const UpdateBaseComponentButton: FC<{ baseComponent: IBaseComponent }> = 
   const onButtonUpdateClick = () => {
     dispatch(
       updateBaseComponentAction({
-        elements: baseComponent.childrenElementList,
+        elements: baseComponent.views,
         instances: baseComponent.instances,
       }),
     )

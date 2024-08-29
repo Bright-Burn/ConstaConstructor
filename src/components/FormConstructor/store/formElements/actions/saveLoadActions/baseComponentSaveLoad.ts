@@ -2,10 +2,10 @@ import uuid from 'react-uuid'
 
 import type { IFormElement, IGroupElement } from '../../../../coreTypes'
 import { getAllChildrenElements, saveToFile } from '../../../../utils'
-import type { IBaseComponent } from '../../../baseComponentsItems'
+import type { BaseComponentSerializable } from '../../../baseComponentsItems'
 import type { AppDispatch, RootState } from '../../../setupStore'
-import { formInstancesSelector } from '../..'
 import { selectViewAll, selectViewById } from '../../adapters'
+import { formInstancesSelector, getViewInfosByIds } from '../../selectors'
 
 export const saveBaseComponent =
   (id: string, fileName: string) => (dispatch: AppDispatch, getState: () => RootState) => {
@@ -14,18 +14,20 @@ export const saveBaseComponent =
     const selectedView = selectViewById(state, id)
 
     if (selectedView) {
-      const arrToSave: (IFormElement | IGroupElement)[] = [
+      const viewsToSave: (IFormElement | IGroupElement)[] = [
         { ...selectedView, parentId: undefined },
         ...getAllChildrenElements(selectedView, allElements),
       ]
-      const instancesToSave = formInstancesSelector(arrToSave.map(elem => elem.instanceId))(state)
+      const instancesToSave = formInstancesSelector(viewsToSave.map(elem => elem.instanceId))(state)
+      const viewInfosToSave = getViewInfosByIds(viewsToSave.map(view => view.id))(state)
 
-      const saveObj: IBaseComponent = {
+      const saveObj: BaseComponentSerializable = {
         id: uuid(),
         name: fileName,
-        childrenElementList: arrToSave,
+        childrenElementList: viewsToSave,
         description: fileName,
         instances: instancesToSave,
+        viewInfos: viewInfosToSave,
       }
 
       saveToFile(JSON.stringify(saveObj), `${fileName}_BaseComponent.json`)

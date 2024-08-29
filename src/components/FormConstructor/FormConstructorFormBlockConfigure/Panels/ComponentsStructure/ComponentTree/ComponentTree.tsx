@@ -1,6 +1,6 @@
 import type { Dictionary } from '@reduxjs/toolkit'
 
-import type { IFormElement, IGroupElement, ViewtInfo } from '../../../../coreTypes'
+import type { IFormElement, IGroupElement, ViewInfo } from '../../../../coreTypes'
 import {
   getAllFormElements,
   getFormElAsMap,
@@ -32,7 +32,7 @@ const getTree = (
   allElementsMap: Map<string, IFormElement | IGroupElement>,
   allElements: (IFormElement | IGroupElement)[],
   parentId: string,
-  viewsInfoStruct: Dictionary<ViewtInfo>,
+  viewsInfoStruct: Dictionary<ViewInfo>,
 ) => {
   const childrenIds = allElements.filter(el => el.parentId === parentId)
   const childrenItems: ITreeItem[] = []
@@ -63,5 +63,5 @@ const getTree = (
  */
 export const getLabel = (
   view: IFormElement | IGroupElement,
-  viewsInfoStruct: Dictionary<ViewtInfo>,
+  viewsInfoStruct: Dictionary<ViewInfo>,
 ) => getViewInfoLabelText(view, viewsInfoStruct[view.id] || null)

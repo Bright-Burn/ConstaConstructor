@@ -86,7 +86,7 @@ export type {
   IFormElementIcon,
 } from './iconTypes'
 export { Icons, icons, IconsGroup } from './iconTypes'
-export type { IFormViewtInformer, InformerElement, InformerElementProps } from './informerTypes'
+export type { IFormViewInformer, InformerElement, InformerElementProps } from './informerTypes'
 export type { BrandInformerElementProps } from './informerTypes'
 export type { FormInstance, InstanceManager, UnionProps } from './instance'
 export type {
@@ -168,4 +168,4 @@ export type {
 } from './types'
 export { ElementTypes, FormElementDictTypes, FormGroupsDictTypes } from './types'
 export type { BrandUserProps, IFormElementUser, UserElement, UserProps } from './userTypes'
-export type { ViewtInfo } from './viewtInfo'
+export type { ViewInfo } from './viewInfo'

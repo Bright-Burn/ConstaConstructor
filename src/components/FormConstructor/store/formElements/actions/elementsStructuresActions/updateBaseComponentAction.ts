@@ -40,9 +40,8 @@ export const updateBaseComponentAction =
         const orderForParentElem = copiedElem.order
 
         // Создаем копию всех элементов с обновленными идентификаторами экземпляров
-        const subviewsToAdd: (IFormElement | IGroupElement)[] = deepCopyElements(
-          payload.elements,
-        ).map(subElem => {
+        const { newViews } = deepCopyElements(payload.elements)
+        const subviewsToAdd: (IFormElement | IGroupElement)[] = newViews.map(subElem => {
           return {
             ...subElem,
             instanceId: newInstancesIdsDict[subElem.instanceId],
@@ -77,7 +76,7 @@ export const updateBaseComponentAction =
     // Изменяем количество ссылок на инстансы - в случае если количество = 0, то инстанс будет удален
     dispatch(formConstructorSlice.actions.changeElementLinkCount(instanceReferencesToChange))
     // Удаляем старые элементы
-    dispatch(formConstructorSlice.actions.deleteFormElement(selectedViewsToDelete.map(el => el.id)))
+    dispatch(deleteViews(selectedViewsToDelete.map(el => el.id)))
 
     // Очистка
     dispatch(formConstructorSlice.actions.setSameInstanceElementsIds([]))
