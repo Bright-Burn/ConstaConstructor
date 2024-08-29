@@ -50,6 +50,7 @@ import { DatePickerSettings } from './DatePickerSettings'
 import { EChartSettings } from './EChartSettings'
 import { IconSettings } from './IconSettings'
 import { InformerSettings } from './InformerSettings'
+import { LabelSetting } from './LabelSetting'
 import { LayoutSettings } from './LayoutSettings'
 import { ListSettings } from './ListSettings'
 import { NotFound } from './NotFound'
@@ -63,7 +64,6 @@ import { TextSettings } from './TextSettings'
 import { UserSettings } from './UserSettings'
 
 import styles from './styles.module.css'
-import { LabelSetting } from './LabelSetting'
 
 const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: IselectedView) => {
   switch (selectedView.elementType) {

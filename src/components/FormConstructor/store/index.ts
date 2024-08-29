@@ -36,7 +36,7 @@ export {
   getSelectedPageId,
   getselectedViewPropsSelector,
   getSiblingsCount,
-  getViewInfoByIdSelector,
+  getViewInfoLabelByIdSelector,
   insertNewElements,
   loadProjectFromFile,
   loadProjectFromStorage,

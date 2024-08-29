@@ -8,14 +8,6 @@ import { formConstructorSlice } from '../../formElementsSlice'
  */
 export const addViews = (views: (IFormElement | IGroupElement)[]) => (dispatch: AppDispatch) => {
   dispatch(formConstructorSlice.actions.addNewView(views))
-  dispatch(formConstructorSlice.actions.addViewInfos(views.map(getViewInfoDefault)))
-}
-
-const getViewInfoDefault = (view: IFormElement | IGroupElement) => {
-  return {
-    id: view.id,
-    label: view.type,
-  }
 }
 
 export const deleteViews = (ids: string[]) => (dispatch: AppDispatch) => {
