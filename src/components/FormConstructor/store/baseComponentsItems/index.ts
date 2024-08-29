@@ -5,10 +5,11 @@ import {
   useBaseComponentsSelector,
 } from './baseComponentsSlices'
 import type { AddBaseComponent, SetDraggableBaseComponent } from './payload'
-import type { IBaseComponent, IBaseComponentsItems } from './types'
+import type { BaseComponentSerializable, IBaseComponent, IBaseComponentsItems } from './types'
 
 export {
   type AddBaseComponent,
+  type BaseComponentSerializable,
   baseComponentsReducer,
   baseComponentsSlice,
   type IBaseComponent,

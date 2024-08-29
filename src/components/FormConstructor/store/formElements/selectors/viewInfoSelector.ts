@@ -1,6 +1,11 @@
 import { getViewInfoLabelText } from '../../../utils'
 import type { RootState } from '../../setupStore'
-import { selectViewById, selectViewInfoById, selectViewInfoEntities } from '../adapters'
+import {
+  selectViewById,
+  selectViewInfoAll,
+  selectViewInfoById,
+  selectViewInfoEntities,
+} from '../adapters'
 
 /**
  * Селектор, возвращающий Label для view
@@ -18,4 +23,10 @@ export const getViewInfoLabelByIdSelector = (viewId: string) => (state: RootStat
 
 export const viewInfoSelector = (state: RootState) => {
   return selectViewInfoEntities(state)
+}
+
+export const getViewInfosByIds = (ids: string[]) => (state: RootState) => {
+  const idsSet = new Set(ids)
+  const viewInfosAll = selectViewInfoAll(state)
+  return [...viewInfosAll].filter(viewInfo => idsSet.has(viewInfo.id))
 }

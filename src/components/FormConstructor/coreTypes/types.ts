@@ -14,7 +14,7 @@ import type { IFormElementComboBox } from './comboBoxTypes'
 import type { IFormElementDataTime } from './dataTimeTypes'
 import type { IFormElementDatePicker } from './datePickerTypes'
 import type { IFormElementIcon } from './iconTypes'
-import type { IFormViewtInformer } from './informerTypes'
+import type { IFormViewInformer } from './informerTypes'
 import type { FormInstance, InstanceManager, UnionProps } from './instance'
 import type { BrandLayoutElementPropsStyles } from './layoutTypes'
 import type { IFormElementList } from './ListTypes'
@@ -26,7 +26,7 @@ import type { IFormElementTagProps } from './tagTypes'
 import type { IFormElementTextField } from './textFieldTypes'
 import type { IFormElementText } from './textTypes'
 import type { IFormElementUser } from './userTypes'
-import type { ViewtInfo } from './viewtInfo'
+import type { ViewInfo } from './viewInfo'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType
@@ -131,7 +131,7 @@ export type FormElementUnion =
   | IFormElementButton
   | IFormElementBadge
   | IFormElementText
-  | IFormViewtInformer
+  | IFormViewInformer
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField
@@ -176,7 +176,7 @@ export type DraggbleElement<T extends IFormElement | IGroupElement> = OmitInstan
 export interface IFormConstructor extends IHistory {
   views: EntityState<IFormElement | IGroupElement>
   instances: EntityState<FormInstance<AllElementTypes>>
-  viewInfo: EntityState<ViewtInfo>
+  viewInfo: EntityState<ViewInfo>
   instanceManager: InstanceManager
   selectedView: IselectedView | null
   sameInstanceElementsIds: string[]

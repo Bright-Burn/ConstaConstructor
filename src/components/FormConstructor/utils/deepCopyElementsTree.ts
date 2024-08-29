@@ -5,11 +5,11 @@ import type { IFormElement, IGroupElement } from '../coreTypes'
 /**
  * Производит глубокое копирование ветви с установкой новых id, сохраняя взаимосвязи типа родитель - ребенок
  */
-export const deepCopyElements = (
-  allElements: (IFormElement | IGroupElement)[],
-): (IFormElement | IGroupElement)[] => {
+export const deepCopyElements = (allElements: (IFormElement | IGroupElement)[]) => {
   const parentIdElemMap = new Map<string, (IGroupElement | IFormElement)[]>()
   const allElementsMap = new Map<string, IGroupElement | IFormElement>()
+  // Структура для сохранения взаимосвязей старый id - новый id
+  const prevIdNewIdDict: Record<string, string> = {}
 
   allElements.forEach(el => {
     if (el.parentId && parentIdElemMap.get(el.parentId)) {
@@ -27,7 +27,9 @@ export const deepCopyElements = (
     const currElement = allElementsMap.get(el.id)
 
     if (currElement) {
-      const newEl = { ...currElement, id: uuid() }
+      const newId = uuid()
+      const newEl = { ...currElement, id: newId }
+      prevIdNewIdDict[currElement.id] = newId
       allElementsMap.set(currElement.id, newEl)
       if (parentEl) {
         parentEl.forEach(el => {
@@ -38,5 +40,10 @@ export const deepCopyElements = (
     }
   })
 
-  return Array.from(allElementsMap.values())
+  const newViews = Array.from(allElementsMap.values())
+
+  return {
+    newViews,
+    prevIdNewIdDict,
+  }
 }

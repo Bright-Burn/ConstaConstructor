@@ -1,4 +1,4 @@
-import type { IFormElement, IGroupElement, ViewtInfo } from '../coreTypes'
+import type { IFormElement, IGroupElement, ViewInfo } from '../coreTypes'
 
 /**
  * Формирует label для view
@@ -7,5 +7,5 @@ import type { IFormElement, IGroupElement, ViewtInfo } from '../coreTypes'
  */
 export const getViewInfoLabelText = (
   view: IFormElement | IGroupElement,
-  viewInfo: ViewtInfo | null,
+  viewInfo: ViewInfo | null,
 ) => viewInfo?.label ?? view.type

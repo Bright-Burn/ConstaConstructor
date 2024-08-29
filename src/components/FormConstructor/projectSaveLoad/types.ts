@@ -4,7 +4,7 @@ import type {
   IFormConstructor,
   IFormElement,
   IGroupElement,
-  ViewtInfo,
+  ViewInfo,
 } from '../coreTypes'
 import type { Values } from '../utils'
 
@@ -41,5 +41,5 @@ export type FormConstructorToSave = Pick<
   /*Сохраняем списком*/
   elementInstances: FormInstance<AllElementTypes>[]
   /*Сохраняем списом*/
-  viewInfos: ViewtInfo[]
+  viewInfos: ViewInfo[]
 }

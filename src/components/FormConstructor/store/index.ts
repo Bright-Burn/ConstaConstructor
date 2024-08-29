@@ -1,4 +1,4 @@
-export type { IBaseComponent } from './baseComponentsItems'
+export type { BaseComponentSerializable, IBaseComponent } from './baseComponentsItems'
 export {
   addBaseElement,
   getDraggedBaseComponent,
@@ -9,6 +9,7 @@ export {
 export type {
   AddElementsWithInstancesPayload,
   AddNewElementPayload,
+  getViewInfosByIds,
   ReorderPayload,
   SaveNewProject,
   UpdateBaseComponentPayload,

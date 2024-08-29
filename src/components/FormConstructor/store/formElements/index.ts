@@ -47,6 +47,7 @@ export {
   getselectedViewPropsSelector,
   getSiblingsCount,
   getViewInfoLabelByIdSelector,
+  getViewInfosByIds,
   sameInstanceElementsIdsSelector,
   selectedViewSelector,
   viewInfoSelector,

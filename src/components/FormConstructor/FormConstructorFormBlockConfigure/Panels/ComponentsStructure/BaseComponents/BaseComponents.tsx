@@ -6,7 +6,7 @@ import { FileField } from '@consta/uikit/FileField'
 import { Text } from '@consta/uikit/Text'
 
 import { JsonHelper } from '../../../../../../helpers'
-import type { IBaseComponent } from '../../../../store'
+import type { BaseComponentSerializable } from '../../../../store'
 import {
   addBaseElement,
   useBaseComponentsDispatch,
@@ -32,8 +32,8 @@ export const BaseComponents: FC = () => {
       filesArray.forEach(file => {
         readFile(file).then(json => {
           //TODO сделать проверку типов
-          const baseComponent: IBaseComponent = JsonHelper.parse(json)
-          dispatch(addBaseElement({ baseComponent }))
+          const baseComponent: BaseComponentSerializable = JsonHelper.parse(json)
+          dispatch(addBaseElement(baseComponent))
         })
       })
     }
