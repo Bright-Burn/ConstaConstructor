@@ -8,6 +8,7 @@ import {
   useAppSelector,
   viewInfoSelector,
 } from '../../../../store'
+import { getViewInfoLabelText } from '../../../../utils'
 
 import type { ITreeItem } from './Tree'
 import { Tree } from './Tree'
@@ -40,7 +41,7 @@ const getTree = (
     const child = allElementsMap.get(childId.id)
 
     if (child?.id) {
-      const title = viewsInfoStruct[child.id]?.label ?? 'пока нет названия'
+      const title = getLabel(child, viewsInfoStruct)
       const treeItem: ITreeItem = {
         key: childId.id,
         children: getTree(allElementsMap, allElements, childId.id, viewsInfoStruct),
@@ -54,3 +55,13 @@ const getTree = (
   })
   return childrenItems
 }
+
+/**
+ * Формирует label для view
+ * @param view Отображаемый элемент формы ввода
+ * @param viewsInfoStruct Структура viewInfo
+ */
+export const getLabel = (
+  view: IFormElement | IGroupElement,
+  viewsInfoStruct: Dictionary<ViewtInfo>,
+) => getViewInfoLabelText(view, viewsInfoStruct[view.id] || null)

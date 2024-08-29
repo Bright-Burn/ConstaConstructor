@@ -1,8 +1,19 @@
+import { getViewInfoLabelText } from '../../../utils'
 import type { RootState } from '../../setupStore'
-import { selectViewInfoById, selectViewInfoEntities } from '../adapters'
+import { selectViewById, selectViewInfoById, selectViewInfoEntities } from '../adapters'
 
-export const getViewInfoByIdSelector = (id: string) => (state: RootState) => {
-  return selectViewInfoById(state, id)
+/**
+ * Селектор, возвращающий Label для view
+ * @param viewId
+ * @returns
+ */
+export const getViewInfoLabelByIdSelector = (viewId: string) => (state: RootState) => {
+  const view = selectViewById(state, viewId)
+  const viewInfo = selectViewInfoById(state, viewId)
+  if (view) {
+    return getViewInfoLabelText(view, viewInfo || null)
+  }
+  return ''
 }
 
 export const viewInfoSelector = (state: RootState) => {

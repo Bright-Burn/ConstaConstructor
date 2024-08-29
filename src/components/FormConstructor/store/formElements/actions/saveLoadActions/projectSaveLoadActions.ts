@@ -58,6 +58,7 @@ const formConstructorToSave = (state: RootState): FormConstructorToSave => {
   const instances = selectInstanceAll(state)
   const viewInfos = selectViewInfoAll(state)
   const formConstructor = state.formConstructor
+
   const toSave: FormConstructorToSave = {
     instanceManager: formConstructor.instanceManager,
     numberOfPages: formConstructor.numberOfPages,
@@ -81,7 +82,7 @@ const formConstructorSaveToState = (save: FormConstructorToSave): IFormConstruct
 
   const newAllElements = viewAdapter.addMany(allElements, save.allElements)
   const newElementInstances = instanceAdapter.addMany(elementInstances, save.elementInstances)
-  const allNewInfos = viewInfoAdapter.addMany(viewInfos, save.viewInfos)
+  const allNewInfos = viewInfoAdapter.addMany(viewInfos, save.viewInfos || [])
 
   const formConstructor: IFormConstructor = {
     ...save,
