@@ -6,9 +6,9 @@ export {
   getselectedViewPropsSelector,
 } from './instanceSelectors'
 export {
+  getViewInfoDict,
   getViewInfoLabelByIdSelector,
   getViewInfosByIds,
-  viewInfoSelector,
 } from './viewInfoSelector'
 export {
   elementToCopyIdSelector,
@@ -18,7 +18,7 @@ export {
   getFormConstructor,
   getFormElAsMap,
   getSelectedPageId,
+  getSelectedView,
   getSiblingsCount,
   sameInstanceElementsIdsSelector,
-  selectedViewSelector,
 } from './viewSelectors'

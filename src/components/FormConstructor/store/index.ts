@@ -15,9 +15,9 @@ export type {
   UpdateBaseComponentPayload,
 } from './formElements'
 export {
-  addFormElementWithDefaultInstance,
-  addNewFormElement,
+  addBaseComponent,
   addNewPage,
+  addNewView,
   changeActivePage,
   changePageName,
   clearSameInstanceIds,
@@ -35,8 +35,10 @@ export {
   getFormElAsMap,
   getInstanceProps,
   getSelectedPageId,
+  getSelectedView,
   getselectedViewPropsSelector,
   getSiblingsCount,
+  getViewInfoDict,
   getViewInfoLabelByIdSelector,
   insertNewElements,
   loadProjectFromFile,
@@ -46,7 +48,6 @@ export {
   saveBaseComponent,
   saveProjectToFile,
   saveProjectToHTML,
-  selectedViewSelector,
   setDraggableElement,
   setInstanceProps,
   setSameElementsIdsById,
@@ -55,7 +56,6 @@ export {
   setViewToCopyId,
   updateBaseComponentAction,
   updateOrders,
-  viewInfoSelector,
 } from './formElements'
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'

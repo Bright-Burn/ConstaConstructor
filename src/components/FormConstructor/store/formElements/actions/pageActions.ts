@@ -4,7 +4,7 @@ import type { AppDispatch, RootState } from '../../setupStore'
 import { formConstructorSlice } from '../formElementsSlice'
 import { initialLayout } from '../initialState'
 
-import { addNewFormElement, deleteFormElement } from './elementsStructuresActions'
+import { addNewView, deleteFormElement } from './elementsStructuresActions'
 
 export const deletePage =
   (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
@@ -18,7 +18,7 @@ export const addNewPage = () => (dispatch: AppDispatch) => {
   const newPageId = uuid()
   const layoutElement = { ...initialLayout, id: uuid(), parentId: newPageId }
 
-  dispatch(addNewFormElement([{ element: layoutElement, newParentElementId: newPageId }]))
+  dispatch(addNewView([{ element: layoutElement, newParentElementId: newPageId }]))
   dispatch(formConstructorSlice.actions.addNewPage({ newPageId }))
 }
 

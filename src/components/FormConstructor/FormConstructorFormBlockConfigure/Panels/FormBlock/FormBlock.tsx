@@ -1,7 +1,6 @@
 import type { FC } from 'react'
-import { useEffect } from 'react'
 
-import { setSelectedView, useAppDispatch, useAppSelector } from '../../../store'
+import { useAppSelector } from '../../../store'
 import { DroppableLayer } from '../../DroppableLayer'
 
 import { Pages } from './Pages'
@@ -11,7 +10,6 @@ import styles from './styles.module.css'
 export const FormBlock: FC = () => {
   const pages = useAppSelector(state => state.formConstructor.pages)
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
-  const dispatch = useAppDispatch()
 
   return (
     <div className={styles.formBlock}>

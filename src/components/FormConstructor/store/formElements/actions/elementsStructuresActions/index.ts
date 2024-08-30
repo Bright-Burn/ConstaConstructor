@@ -1,7 +1,7 @@
 export { deleteFormElement } from './deleteFormElements'
 export {
-  addFormElementWithDefaultInstance,
-  addNewFormElement,
+  addBaseComponent,
+  addNewView,
   copyFormElementLink,
   insertNewElements,
 } from './elementCreateActions'

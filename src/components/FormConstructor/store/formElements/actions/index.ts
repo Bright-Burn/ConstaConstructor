@@ -1,6 +1,6 @@
 export {
-  addFormElementWithDefaultInstance,
-  addNewFormElement,
+  addBaseComponent,
+  addNewView,
   copyFormElementLink,
   deleteFormElement,
   insertNewElements,

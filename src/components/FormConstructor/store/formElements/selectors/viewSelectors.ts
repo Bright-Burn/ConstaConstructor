@@ -9,7 +9,7 @@ export const getFormConstructor = (state: RootState): IFormConstructor => state.
 export const getAllFormElements = (state: RootState): (IFormElement | IGroupElement)[] =>
   selectViewAll(state)
 
-export const selectedViewSelector = (state: RootState) => {
+export const getSelectedView = (state: RootState) => {
   return state.formConstructor.selectedView
 }
 

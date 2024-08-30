@@ -4,8 +4,8 @@ import React, { useLayoutEffect, useState } from 'react'
 import { ElementTypes } from '../../coreTypes'
 import {
   checkIsGridVisible,
+  getSelectedView,
   sameInstanceElementsIdsSelector,
-  selectedViewSelector,
   setSelectedView,
   useAppDispatch,
   useAppSelector,
@@ -25,7 +25,7 @@ export const SelectableLayer: FC<ISelectableLayer> = ({
   className,
 }) => {
   const [isSelected, setIsSelected] = useState<boolean>(false)
-  const selectedView = useAppSelector(selectedViewSelector)
+  const selectedView = useAppSelector(getSelectedView)
   const isGridVisible = useAppSelector(checkIsGridVisible)
 
   const isInSameInstanceElements = useAppSelector(sameInstanceElementsIdsSelector).has(

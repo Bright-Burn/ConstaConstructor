@@ -5,8 +5,8 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import {
+  getSelectedView,
   saveBaseComponent,
-  selectedViewSelector,
   useAppDispatch,
   useAppSelector,
 } from '../../../../store'
@@ -18,7 +18,7 @@ interface ISaveModal {
 }
 export const SaveModal: React.FC<ISaveModal> = ({ onCloseModal, isModalOpen }) => {
   const [moduleName, setModuleName] = useState<string | null>(null)
-  const selectedView = useAppSelector(selectedViewSelector)
+  const selectedView = useAppSelector(getSelectedView)
   const dispatch = useAppDispatch()
   const changeTextFieldValue = (value: string | null) => {
     setModuleName(value)

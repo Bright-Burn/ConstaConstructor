@@ -21,9 +21,7 @@ export const getViewInfoLabelByIdSelector = (viewId: string) => (state: RootStat
   return ''
 }
 
-export const viewInfoSelector = (state: RootState) => {
-  return selectViewInfoEntities(state)
-}
+export const getViewInfoDict = (state: RootState) => selectViewInfoEntities(state)
 
 export const getViewInfosByIds = (ids: string[]) => (state: RootState) => {
   const idsSet = new Set(ids)

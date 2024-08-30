@@ -4,8 +4,8 @@ import React, { useEffect } from 'react'
 import type { IFormElement, IGroupElement } from '../../coreTypes'
 import type { AddNewElementPayload } from '../../store'
 import {
-  addFormElementWithDefaultInstance,
-  addNewFormElement,
+  addBaseComponent,
+  addNewView,
   getElementsOnLayer,
   setDraggableElement,
   updateOrders,
@@ -52,7 +52,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
     if (isBaseComponent === 'true') {
       const payload = handleOnDropBaseComponent(parentElementId)
       if (payload) {
-        dispatch(addFormElementWithDefaultInstance(payload))
+        dispatch(addBaseComponent(payload))
       }
       return
     }
@@ -68,7 +68,7 @@ export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerPare
   }
 
   const addElements = (payload: AddNewElementPayload[]) => {
-    dispatch(addNewFormElement(payload))
+    dispatch(addNewView(payload))
   }
 
   return (

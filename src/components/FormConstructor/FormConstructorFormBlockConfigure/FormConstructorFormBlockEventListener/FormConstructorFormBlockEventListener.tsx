@@ -6,11 +6,11 @@ import {
   clearSameInstanceIds,
   copyFormElementLink,
   deleteFormElement,
+  getSelectedView,
   insertNewElements,
   loadProjectFromStorage,
   onSetViewMode,
   popHistoryElement,
-  selectedViewSelector,
   setSameElementsIdsById,
   setSelectedView,
   setViewToCopyId,
@@ -27,7 +27,7 @@ interface Props {
 
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch()
-  const selectedView = useAppSelector(selectedViewSelector)
+  const selectedView = useAppSelector(getSelectedView)
 
   useEffect(() => {
     const loadedData = document.getElementById('loaded_data')

@@ -1,4 +1,4 @@
-import { AppDispatch, RootState } from '../../../setupStore'
+import type { AppDispatch, RootState } from '../../../setupStore'
 import { formConstructorSlice } from '../../formElementsSlice'
 import { getViewInfosByIds } from '../../selectors'
 
