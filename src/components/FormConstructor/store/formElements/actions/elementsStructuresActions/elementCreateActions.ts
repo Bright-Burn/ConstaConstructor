@@ -5,7 +5,6 @@ import type {
   FormInstance,
   IFormElement,
   IGroupElement,
-  ViewInfo,
 } from '../../../../coreTypes'
 import {
   copyInstances,
@@ -15,7 +14,7 @@ import {
 } from '../../../../utils'
 import { pushHistoryElement } from '../../../history'
 import type { AppDispatch, RootState } from '../../../setupStore'
-import { selectViewAll, selectViewInfoAll } from '../../adapters'
+import { selectViewAll } from '../../adapters'
 import { isDragFormElement, isDragGroupElement } from '../../dragElemGuards'
 import { formConstructorSlice } from '../../formElementsSlice'
 import type { ChangeElementLinkCountPayload } from '../../reducers'
@@ -24,20 +23,20 @@ import {
   formInstancesSelector,
   getElementById,
   getSiblingsCount,
-  getViewInfosByIds,
 } from '../../selectors'
 import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../payloads'
 import { clearSameInstanceIds } from '../viewSelectionActions'
 
 import { addViews } from './combinedViewActions'
-import { deleteFormElementRollback } from './deleteFormElements'
 import { copyViewInfos } from './copyViewInfos'
+import { deleteFormElementRollback } from './deleteFormElements'
 
 /**
- * Функция добавляет новые элементы и инстансы.
- * @param addPayloads - Массив с информацией о новых элементах и их родительских слоях.
+ * Функция добавляет новые view и instnce
+ * @param addPayloads Полезные данные
+ * @returns
  */
-export const addNewFormElement =
+export const addNewView =
   (addPayloads: AddNewElementPayload[]) => (dispatch: AppDispatch, getState: () => RootState) => {
     //Список элементов для добавления(отображение)
     const viewsToAdd: (IFormElement | IGroupElement)[] = []
@@ -102,6 +101,9 @@ export const addNewFormElement =
 
 /**
  * Добаляет новый элемент, использует существующий инстанс - Функционал копирования с наследованием
+ * @param elementId Идентификатиор view
+ * @param elementType Тип view
+ * @returns
  */
 export const copyFormElementLink =
   (elementId: string, elementType: AllElementTypes) =>
@@ -167,9 +169,11 @@ export const copyFormElementLink =
   }
 
 /**
- * Создает новый элемент и добавляет новый инстанс из payload - Функционал добавления базовых элементов
+ * Добавляет новый базовый элемент на форму ввода - добавляет view и связанные instance
+ * @param payload Полезные данные
+ * @returns
  */
-export const addFormElementWithDefaultInstance =
+export const addBaseComponent =
   (payload: AddElementsWithInstancesPayload) => (dispatch: AppDispatch) => {
     //Список элементов - отображение
     const elements = payload.views
@@ -238,10 +242,10 @@ export const insertNewElements =
   }
 
 /**
- * Добавляет элементы в указанную позицию
- * @param elements Список всех элементов (View)
- * @param instances Инстансы (Instances)
- * @param insertionParentId Идентификатор слоя для вставки
+ * Добавляет элементы на указанную позицию
+ * @param elements Список view для добалвения
+ * @param instances Список instance
+ * @param insertionParentId Идентификатор для вставки
  */
 const addBaseElement =
   (

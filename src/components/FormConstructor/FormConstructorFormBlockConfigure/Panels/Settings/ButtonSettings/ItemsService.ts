@@ -111,13 +111,13 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     //     },
     //   }
     //   dispatch(
-    //     addNewFormElement([{
+    //     addNewView([{
     //         parent: currentButtonElement.id,
     //         element: connectedButtonGroupElement
     //       }])
     //   )
     //   dispatch(
-    //    addNewFormElement([
+    //    addNewView([
     //       {
     //         parent: connectedButtonGroupElement.id,
     //         element: layoutElement,

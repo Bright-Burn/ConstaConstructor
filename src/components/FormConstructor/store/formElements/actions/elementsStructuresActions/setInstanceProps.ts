@@ -3,9 +3,8 @@ import type { Update } from '@reduxjs/toolkit'
 import type { AllElementTypes, FormInstance, UnionProps } from '../../../../coreTypes'
 import { pushHistoryElement } from '../../../history'
 import type { AppDispatch, RootState } from '../../../setupStore'
-import { getElementById } from '../..'
 import { formConstructorSlice } from '../../formElementsSlice'
-import { getInstanceProps } from '../../selectors'
+import { getElementById, getInstanceProps } from '../../selectors'
 
 /* Устанавливает props для instance*/
 export const setInstanceProps =

@@ -24,7 +24,7 @@ export type InformerElement = ConcreteSelectedView<typeof FormElementDictTypes.I
 
 export type BrandInformerElementProps = BrandProps<InformerElementProps, 'Informer'>
 
-export type IFormViewInformer = OmitInstanceId<
+export type IFormElementInformer = OmitInstanceId<
   IFormElement & {
     props: BrandInformerElementProps
   }

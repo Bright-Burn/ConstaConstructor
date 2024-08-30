@@ -14,7 +14,7 @@ import type { IFormElementComboBox } from './comboBoxTypes'
 import type { IFormElementDataTime } from './dataTimeTypes'
 import type { IFormElementDatePicker } from './datePickerTypes'
 import type { IFormElementIcon } from './iconTypes'
-import type { IFormViewInformer } from './informerTypes'
+import type { IFormElementInformer } from './informerTypes'
 import type { FormInstance, InstanceManager, UnionProps } from './instance'
 import type { BrandLayoutElementPropsStyles } from './layoutTypes'
 import type { IFormElementList } from './ListTypes'
@@ -131,7 +131,7 @@ export type FormElementUnion =
   | IFormElementButton
   | IFormElementBadge
   | IFormElementText
-  | IFormViewInformer
+  | IFormElementInformer
   | IFormElementCheckbox
   | IFormElementTabs
   | IFormElementTextField

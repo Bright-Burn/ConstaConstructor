@@ -7,7 +7,7 @@ import RCTree from 'rc-tree'
 import type { IFormElement, IGroupElement } from '../../../../../coreTypes'
 import {
   getFormElAsMap,
-  selectedViewSelector,
+  getSelectedView,
   setSelectedView,
   useAppDispatch,
   useAppSelector,
@@ -17,7 +17,7 @@ import type { ITree } from './types'
 
 export const Tree: FC<ITree> = ({ data }) => {
   const allElementsMap = useAppSelector(getFormElAsMap)
-  const selectedView = useAppSelector(selectedViewSelector)
+  const selectedView = useAppSelector(getSelectedView)
   const dispatch = useAppDispatch()
   const [expandedKeys, setExpandedKeys] = useState<(string | number)[]>([])
 

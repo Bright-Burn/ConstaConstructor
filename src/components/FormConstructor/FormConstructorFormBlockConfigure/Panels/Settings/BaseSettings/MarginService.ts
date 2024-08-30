@@ -7,15 +7,15 @@ import type {
   UnionProps,
 } from '../../../../coreTypes'
 import {
+  getSelectedView,
   getselectedViewPropsSelector,
-  selectedViewSelector,
   setInstanceProps,
   useAppDispatch,
   useAppSelector,
 } from '../../../../store'
 
 export const useMarginHandlers = () => {
-  const selectedView = useAppSelector(selectedViewSelector)
+  const selectedView = useAppSelector(getSelectedView)
   const dispatch = useAppDispatch()
   const selectedViewProps = useAppSelector(getselectedViewPropsSelector)
 

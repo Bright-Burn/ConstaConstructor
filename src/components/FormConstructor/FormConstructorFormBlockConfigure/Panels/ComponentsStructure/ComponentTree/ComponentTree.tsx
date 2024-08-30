@@ -1,12 +1,10 @@
-import type { Dictionary } from '@reduxjs/toolkit'
-
 import type { IFormElement, IGroupElement, ViewInfo } from '../../../../coreTypes'
 import {
   getAllFormElements,
   getFormElAsMap,
   getSelectedPageId,
+  getViewInfoDict,
   useAppSelector,
-  viewInfoSelector,
 } from '../../../../store'
 import { getViewInfoLabelText } from '../../../../utils'
 
@@ -19,7 +17,7 @@ export const ComponentTree = () => {
   const allElements = useAppSelector(getAllFormElements)
   const allElementsMap = useAppSelector(getFormElAsMap)
   const selectedPageId = useAppSelector(getSelectedPageId)
-  const viewsInfoStruct = useAppSelector(viewInfoSelector)
+  const viewsInfoStruct = useAppSelector(getViewInfoDict)
 
   return (
     <div className={styles.commentTree}>
@@ -32,7 +30,7 @@ const getTree = (
   allElementsMap: Map<string, IFormElement | IGroupElement>,
   allElements: (IFormElement | IGroupElement)[],
   parentId: string,
-  viewsInfoStruct: Dictionary<ViewInfo>,
+  viewsInfoStruct: Record<string, ViewInfo | undefined>,
 ) => {
   const childrenIds = allElements.filter(el => el.parentId === parentId)
   const childrenItems: ITreeItem[] = []
@@ -63,5 +61,5 @@ const getTree = (
  */
 export const getLabel = (
   view: IFormElement | IGroupElement,
-  viewsInfoStruct: Dictionary<ViewInfo>,
+  viewsInfoStruct: Record<string, ViewInfo | undefined>,
 ) => getViewInfoLabelText(view, viewsInfoStruct[view.id] || null)

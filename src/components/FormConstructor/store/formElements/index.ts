@@ -6,9 +6,9 @@ export type {
   UpdateBaseComponentPayload,
 } from './actions'
 export {
-  addFormElementWithDefaultInstance,
-  addNewFormElement,
+  addBaseComponent,
   addNewPage,
+  addNewView,
   changeActivePage,
   changePageName,
   clearSameInstanceIds,
@@ -44,11 +44,11 @@ export {
   getFormElAsMap,
   getInstanceProps,
   getSelectedPageId,
+  getSelectedView,
   getselectedViewPropsSelector,
   getSiblingsCount,
+  getViewInfoDict,
   getViewInfoLabelByIdSelector,
   getViewInfosByIds,
   sameInstanceElementsIdsSelector,
-  selectedViewSelector,
-  viewInfoSelector,
 } from './selectors'

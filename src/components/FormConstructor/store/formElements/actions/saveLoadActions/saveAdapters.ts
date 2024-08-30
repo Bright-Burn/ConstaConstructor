@@ -42,14 +42,14 @@ export const formConstructorSaveToState = (save: FormConstructorToSave): IFormCo
 
   const newAllElements = viewAdapter.addMany(allElements, save.allElements)
   const newElementInstances = instanceAdapter.addMany(elementInstances, save.elementInstances)
-  const allNewInfos = viewInfoAdapter.addMany(viewInfos, save.viewInfos || [])
+  const newInfos = viewInfoAdapter.addMany(viewInfos, save.viewInfos || [])
 
   const formConstructor: IFormConstructor = {
     ...save,
     history: [],
     views: newAllElements,
     instances: newElementInstances,
-    viewInfo: allNewInfos,
+    viewInfo: newInfos,
     draggableElement: null,
     elementToCopyId: null,
     selectedView: null,
