@@ -4,13 +4,13 @@ import type { AppDispatch, RootState } from '../../setupStore'
 import { formConstructorSlice } from '../formElementsSlice'
 import { initialLayout } from '../initialState'
 
-import { addNewView, deleteFormElement } from './elementsStructuresActions'
+import { addNewView, deleteView } from './elementsStructuresActions'
 
 export const deletePage =
   (pageId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
     if (getState().formConstructor.pages.length > 1) {
       dispatch(formConstructorSlice.actions.deletePage({ id: pageId }))
-      dispatch(deleteFormElement(pageId))
+      dispatch(deleteView(pageId))
     }
   }
 
