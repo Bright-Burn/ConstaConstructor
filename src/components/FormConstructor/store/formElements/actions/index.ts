@@ -2,7 +2,7 @@ export {
   addBaseComponent,
   addNewView,
   copyFormElementLink,
-  deleteFormElement,
+  deleteView,
   insertNewElements,
   setInstanceProps,
   setViewLabel,

@@ -5,7 +5,7 @@ import { JsonHelper } from '../../../../helpers'
 import {
   clearSameInstanceIds,
   copyFormElementLink,
-  deleteFormElement,
+  deleteView,
   getSelectedView,
   insertNewElements,
   loadProjectFromStorage,
@@ -82,7 +82,7 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       const { code } = e
       if (selectedView && code === 'Delete') {
         e.preventDefault()
-        dispatch(deleteFormElement(selectedView.elementId))
+        dispatch(deleteView(selectedView.elementId))
       }
     }
 

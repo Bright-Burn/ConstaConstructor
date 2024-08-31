@@ -27,9 +27,8 @@ import {
 import type { AddElementsWithInstancesPayload, AddNewElementPayload } from '../payloads'
 import { clearSameInstanceIds } from '../viewSelectionActions'
 
-import { addViews } from './combinedViewActions'
 import { copyViewInfos } from './copyViewInfos'
-import { deleteFormElementRollback } from './deleteFormElements'
+import { deleteViewRollback } from './deleteViewActions'
 
 /**
  * Функция добавляет новые view и instnce
@@ -83,7 +82,7 @@ export const addNewView =
     })
     // Диспатчем в стор подготовленный данные
     // Диспатчим действия для добавления новых элементов
-    dispatch(addViews(viewsToAdd))
+    dispatch(formConstructorSlice.actions.addNewView(viewsToAdd))
     // Диспатчим действия для изменения количества ссылок
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     // Диспатчим действия для добавления новых инстансов
@@ -93,7 +92,7 @@ export const addNewView =
       pushHistoryElement(() => {
         dispatch(clearSameInstanceIds())
         viewsToAdd.forEach(elem => {
-          dispatch(deleteFormElementRollback(elem.id))
+          dispatch(deleteViewRollback(elem.id))
         })
       }),
     )
@@ -155,13 +154,13 @@ export const copyFormElementLink =
       const existedViewsIds = treeElements.map(view => view.id)
       dispatch(copyViewInfos(existedViewsIds, prevIdNewIdDict))
       // Диспатчим действия для добавления новых элементов
-      dispatch(addViews(newViews))
+      dispatch(formConstructorSlice.actions.addNewView(newViews))
       //Диспатчем в стор коллбек на отмену изменений
       dispatch(
         pushHistoryElement(() => {
           dispatch(clearSameInstanceIds())
           newViews.forEach(elem => {
-            dispatch(deleteFormElementRollback(elem.id))
+            dispatch(deleteViewRollback(elem.id))
           })
         }),
       )
@@ -275,13 +274,14 @@ const addBaseElement =
     //Диспатчем в стор подготовленный данные
     dispatch(formConstructorSlice.actions.changeElementLinkCount(changeLinksCountPayloads))
     dispatch(formConstructorSlice.actions.addNewFormInstance(instances))
-    dispatch(addViews(newViewsToAdd))
+    dispatch(formConstructorSlice.actions.addNewView(newViewsToAdd))
+
     //Диспатчем в стор коллбек на отмену изменений
     dispatch(
       pushHistoryElement(() => {
         dispatch(clearSameInstanceIds())
         newViewsToAdd.forEach(elem => {
-          dispatch(deleteFormElementRollback(elem.id))
+          dispatch(deleteViewRollback(elem.id))
         })
       }),
     )

@@ -1,4 +1,4 @@
-export { deleteFormElement } from './deleteFormElements'
+export { deleteView } from './deleteViewActions'
 export {
   addBaseComponent,
   addNewView,

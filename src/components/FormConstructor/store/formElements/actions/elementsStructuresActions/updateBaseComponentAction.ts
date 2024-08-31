@@ -1,4 +1,4 @@
-import type { IFormElement, IGroupElement } from '../../../../coreTypes'
+import type { IFormElement, IGroupElement, ViewInfo } from '../../../../coreTypes'
 import { copyInstances, deepCopyElements } from '../../../../utils'
 import { pushHistoryElement } from '../../../history'
 import type { AppDispatch, RootState } from '../../../setupStore'
@@ -7,8 +7,8 @@ import { formConstructorSlice } from '../../formElementsSlice'
 import type { ChangeElementLinkCountPayload } from '../../reducers'
 import type { UpdateBaseComponentPayload } from '../payloads'
 
-import { addViews, deleteViews } from './combinedViewActions'
-import { deleteElementFormById } from './deleteFormElements'
+import { deleteViews } from './combinedViewActions'
+import { getViewConnectionsToDelete } from './deleteViewActions'
 
 /**
  * Выполняет каскадную замену компонетов или группы компонентов(базовый элемент) формы ввода на другую группу компонентов(базовый элемент)
@@ -24,6 +24,8 @@ export const updateBaseComponentAction =
     const instanceReferencesToChange: ChangeElementLinkCountPayload[] = []
     // Элементы для удаления
     const selectedViewsToDelete: (IFormElement | IGroupElement)[] = []
+    const viewInfosToRestore: ViewInfo[] = []
+
     //Список элементов для 'обновелния'
     const sameInstanceElements = selectViewAll(state).filter(elem =>
       sameInstanceElementsIds.has(elem.id),
@@ -53,14 +55,14 @@ export const updateBaseComponentAction =
       }
 
       // Подготавливаем старые данные для удаления
-      const { instanceReferencesToDelete, elementsForDelete } = deleteElementFormById(
+      const { instanceReferencesToDelete, viewsToDelete, viewInfos } = getViewConnectionsToDelete(
         copiedElem.id,
         state,
       )
       // Для всех добавляемых элементов формируем payload на изменение количества ссылок с типом DEC
       instanceReferencesToChange.push(...instanceReferencesToDelete)
-
-      selectedViewsToDelete.push(...elementsForDelete)
+      viewInfosToRestore.push(...viewInfos)
+      selectedViewsToDelete.push(...viewsToDelete)
     })
 
     // Для всех добавляемых элементов формируем payload на изменение количества ссылок с типом INC
@@ -70,7 +72,7 @@ export const updateBaseComponentAction =
 
     // Отправляем в стор все накопленные изменения
     // Добавляем новые элементы
-    dispatch(addViews(viewsToAdd))
+    dispatch(formConstructorSlice.actions.addNewView(viewsToAdd))
     // Добавляем новые инстансы
     dispatch(formConstructorSlice.actions.addNewFormInstance(newInstances))
     // Изменяем количество ссылок на инстансы - в случае если количество = 0, то инстанс будет удален
@@ -95,7 +97,8 @@ export const updateBaseComponentAction =
       pushHistoryElement(() => {
         // Возвращаем все, что удалили
         dispatch(formConstructorSlice.actions.addNewFormInstance(instancesForRollBack))
-        dispatch(addViews(elementsFotRollBack))
+        dispatch(formConstructorSlice.actions.addNewView(elementsFotRollBack))
+        dispatch(formConstructorSlice.actions.addViewInfos(viewInfosToRestore))
 
         // Удаляем все, что добавили
         dispatch(deleteViews(viewsToAdd.map(el => el.id)))
