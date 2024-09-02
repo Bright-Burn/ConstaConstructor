@@ -8,8 +8,6 @@ import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IComboBoxFormElement } from './types'
 
-import style from './style.module.css'
-
 export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   const defaultComboboxProps: ComboboxProps = {
     className: '',
@@ -35,11 +33,11 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   }
 
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
-
+  const isFilled = props?.filled || false
   return props ? (
     <SelectableLayer
       parentElementId={element.id}
-      className={style.ComboBox}
+      className={isFilled ? 'container-row flex-grow-1' : ''}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ComboBox}>
       <Combobox
@@ -50,6 +48,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
         getItemGroupKey={item => item.group}
         getGroupLabel={(group: string) => group}
         getGroupKey={(group: string) => group}
+        style={{ flexGrow: isFilled ? 1 : 0 }}
         onChange={() => {}}
       />
     </SelectableLayer>

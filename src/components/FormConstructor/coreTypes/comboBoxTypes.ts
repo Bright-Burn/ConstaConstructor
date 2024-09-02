@@ -39,6 +39,7 @@ export type ComboboxProps = {
   groups: string[]
   groupsActive?: boolean
   dropdownForm?: DatePickerPropDropdownForm
+  filled?: boolean
 } & BaseProps
 
 export type BrandComboboxProps = BrandProps<ComboboxProps, 'ComboBox'>
