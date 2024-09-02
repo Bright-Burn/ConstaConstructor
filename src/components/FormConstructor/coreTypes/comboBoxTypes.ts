@@ -40,8 +40,9 @@ export type ComboboxProps = {
   groupsActive?: boolean
   dropdownForm?: DatePickerPropDropdownForm
   filled?: boolean
+  style: ComboBoxStyles
 } & BaseProps
-
+export type ComboBoxStyles = { maxWidth: string; minWidth: string }
 export type BrandComboboxProps = BrandProps<ComboboxProps, 'ComboBox'>
 
 export type ComboBoxElement = ConcreteSelectedView<typeof FormElementDictTypes.ComboBox>

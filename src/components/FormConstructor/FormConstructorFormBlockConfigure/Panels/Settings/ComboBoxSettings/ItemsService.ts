@@ -98,6 +98,26 @@ export const useItemsHandlers = (
     }
     onDispatch(selectedView, newProps)
   }
+  const onChangeWidth = (value: string | null) => {
+    const newProps: BrandComboboxProps = {
+      props: { ...selectedViewProps },
+      type: 'ComboBox',
+    }
+    newProps.props.style = { ...newProps.props.style }
+    if (value && value !== '0') {
+      let newValue = value
+      if (value.startsWith('0')) {
+        newValue = newValue.replace('0', '')
+      }
+      newProps.props.style.maxWidth = `${newValue}px`
+      newProps.props.style.minWidth = `${newValue}px`
+      onDispatch(selectedView, newProps)
+    } else {
+      newProps.props.style.maxWidth = ''
+      newProps.props.style.minWidth = ''
+      onDispatch(selectedView, newProps)
+    }
+  }
   return {
     onChangeItemsCount,
     onChangeItems,
@@ -107,6 +127,7 @@ export const useItemsHandlers = (
     onChangeCaption,
     onChangePlaceholder,
     onChangeSwitch,
+    onChangeWidth,
     itemsProps: {
       items: selectedViewProps.items,
       value: selectedViewProps.value,
