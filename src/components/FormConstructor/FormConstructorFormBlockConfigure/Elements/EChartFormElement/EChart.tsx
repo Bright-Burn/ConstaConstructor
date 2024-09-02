@@ -1,13 +1,17 @@
 import type { FC } from 'react'
 import React, { useEffect } from 'react'
 import type { EChartsType } from 'echarts'
-import { init } from 'echarts'
+import { init, registerTheme } from 'echarts'
 
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
+import { defaultTheme } from './defaultTheme'
 import type { IEChartFormElement } from './types'
+//регисрация темы для чарта
+registerTheme('default', defaultTheme)
+
 export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
   const width = props?.width
@@ -15,7 +19,8 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
   const ref = React.useRef(null)
   const chartRef = React.useRef<EChartsType | null>(null)
   useEffect(() => {
-    const myChart = init(ref.current)
+    //TODO при смене темы надо прописывать название в init
+    const myChart = init(ref.current, 'default')
     chartRef.current = myChart
     myChart.setOption({
       title: {
