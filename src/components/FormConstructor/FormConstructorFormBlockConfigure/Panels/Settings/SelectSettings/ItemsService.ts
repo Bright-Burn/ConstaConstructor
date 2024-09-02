@@ -99,6 +99,26 @@ export const useItemsHandlers = (selectedViewProps: SelectProps, selectedView: S
     }
     onDispatch(selectedView, newProps)
   }
+  const onChangeWidth = (value: string | null) => {
+    const newProps: BrandSelectProps = {
+      props: { ...selectedViewProps },
+      type: 'SelectForm',
+    }
+    newProps.props.style = { maxWidth: '200px', minWidth: '200px' }
+    newProps.props.style = { ...newProps.props.style }
+    if (value && value !== '0') {
+      let newValue = value
+      if (value.startsWith('0')) {
+        newValue = newValue.replace('0', '')
+      }
+      newProps.props.style.maxWidth = `${newValue}px`
+      newProps.props.style.minWidth = `${newValue}px`
+    } else {
+      newProps.props.style.maxWidth = ''
+      newProps.props.style.minWidth = ''
+    }
+    onDispatch(selectedView, newProps)
+  }
 
   return {
     onChangeItemsCount,
@@ -109,6 +129,7 @@ export const useItemsHandlers = (selectedViewProps: SelectProps, selectedView: S
     onChangeCaption,
     onChangePlaceholder,
     onChangeSwitch,
+    onChangeWidth,
     itemsProps: {
       disabled: selectedViewProps.disabled,
       size: selectedViewProps.size,

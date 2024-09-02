@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
@@ -38,11 +38,12 @@ export const SelectSettings: FC<SelectSettingsType> = ({ selectedViewProps, sele
     onChangeCaption,
     onChangePlaceholder,
     onChangeSwitch,
+    onChangeWidth,
   } = useItemsHandlers(selectedViewProps, selectedView)
 
   const [isOpenVariable, setOpenVariable] = useState<boolean>(false)
   const [isOpenList, setOpenList] = useState<boolean>(false)
-
+  const [widthValue, setWidthValue] = useState<string>('0')
   const onLinesLabelEdit = (value: string | null, index: number) => {
     const newLines = [...itemsProps.items]
     newLines[index] = { ...newLines[index], label: `${value}` }
@@ -54,9 +55,29 @@ export const SelectSettings: FC<SelectSettingsType> = ({ selectedViewProps, sele
     newLines[index] = { ...newLines[index], group: `${value}` }
     onChangeItems(newLines)
   }
+  useLayoutEffect(() => {
+    const comboboxStyles = selectedViewProps.style
 
+    setWidthValue(comboboxStyles?.maxWidth.replaceAll('px', '') || '0')
+  }, [selectedViewProps.style])
   return (
     <div className={styles.SelectSettings}>
+      <div className={styles.rowSettings}>
+        <TextField
+          value={widthValue}
+          type="number"
+          leftSide="W"
+          size="xs"
+          min="0"
+          onChange={value => {
+            onChangeWidth(value)
+          }}
+        />
+        <Text view="secondary" size="xs" className={styles.settingCaption}>
+          {' '}
+          px
+        </Text>
+      </div>
       <div className={styles.rowSettings}>
         <Select
           className={styles.widthFlex}

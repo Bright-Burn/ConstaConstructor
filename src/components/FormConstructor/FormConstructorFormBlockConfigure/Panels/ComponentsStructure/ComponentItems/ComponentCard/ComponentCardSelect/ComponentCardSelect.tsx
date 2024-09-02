@@ -51,6 +51,7 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
           items,
+          style: { maxWidth: '200px', minWidth: '200px' },
         },
         type: 'SelectForm',
       },

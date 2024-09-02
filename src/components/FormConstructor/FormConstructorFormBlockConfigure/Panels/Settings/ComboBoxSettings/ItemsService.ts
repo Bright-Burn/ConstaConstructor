@@ -103,6 +103,7 @@ export const useItemsHandlers = (
       props: { ...selectedViewProps },
       type: 'ComboBox',
     }
+    newProps.props.style = { maxWidth: '200px', minWidth: '200px' }
     newProps.props.style = { ...newProps.props.style }
     if (value && value !== '0') {
       let newValue = value
