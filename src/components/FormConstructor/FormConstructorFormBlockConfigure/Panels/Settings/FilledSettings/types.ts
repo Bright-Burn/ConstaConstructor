@@ -1,5 +1,6 @@
 import type {
   BrandButtonProps,
+  BrandComboboxProps,
   BrandSelectProps,
   BrandTextFieldProps,
   BrandUserProps,
@@ -12,4 +13,9 @@ export type FilledSettingsType = {
   props: FilledProps
 }
 
-export type FilledProps = BrandTextFieldProps | BrandUserProps | BrandButtonProps | BrandSelectProps
+export type FilledProps =
+  | BrandTextFieldProps
+  | BrandUserProps
+  | BrandButtonProps
+  | BrandSelectProps
+  | BrandComboboxProps

@@ -9,6 +9,7 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { ComboBoxElement, comboboxItemType, ComboboxProps } from '../../../../coreTypes'
+import { FilledSettings } from '../FilledSettings'
 
 import { useItemsHandlers } from './ItemsService'
 import {
@@ -108,6 +109,12 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({ selectedViewProps, 
           onChange={value => {
             value !== null ? onChangeStatus(value) : onChangeStatus('')
           }}
+        />
+      </div>
+      <div className={styles.rowSettings}>
+        <FilledSettings
+          elementId={selectedView.elementId}
+          props={{ props: selectedViewProps, type: 'ComboBox' }}
         />
       </div>
       <Switch
