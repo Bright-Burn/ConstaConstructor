@@ -194,7 +194,7 @@ export const defaultTheme = {
     axisLine: {
       show: true,
       lineStyle: {
-        color: 'rgba(0,65,102,0.2)',
+        color: '#6E7079',
       },
     },
     axisTick: {
