@@ -336,16 +336,14 @@ export const defaultTheme = {
         width: 1,
       },
     },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'cross',
-      },
-      backgroundColor: '#22272b',
-      borderColor: '#22272b',
-      textStyle: {
-        color: 'hsla(0,0%,100%,0.8)',
-      },
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+    },
+    backgroundColor: '#22272b',
+    borderColor: '#22272b',
+    textStyle: {
+      color: 'hsla(0,0%,100%,0.8)',
     },
   },
   timeline: {
