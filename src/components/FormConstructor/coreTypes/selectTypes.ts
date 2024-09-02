@@ -52,6 +52,7 @@ export type SelectProps = {
   dropdownForm?: 'brick' | 'default' | 'round'
   groups: string[]
   groupsActive?: boolean
+  filled?: boolean
 } & BaseProps &
   TextContent
 

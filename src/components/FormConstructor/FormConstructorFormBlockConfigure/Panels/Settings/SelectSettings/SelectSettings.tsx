@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
@@ -8,6 +8,7 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { SelectElement, selectitemType, SelectProps } from '../../../../coreTypes'
+import { FilledSettings } from '../FilledSettings'
 
 import { useItemsHandlers } from './ItemsService'
 import {
@@ -85,6 +86,12 @@ export const SelectSettings: FC<SelectSettingsType> = ({ selectedViewProps, sele
             }}
           />
         </div>
+      </div>
+      <div className={styles.rowSettings}>
+        <FilledSettings
+          elementId={selectedView.elementId}
+          props={{ props: selectedViewProps, type: 'SelectForm' }}
+        />
       </div>
       <div className={styles.rowSettings}>
         <Select
