@@ -326,16 +326,6 @@ export const defaultTheme = {
     },
   },
   tooltip: {
-    axisPointer: {
-      lineStyle: {
-        color: 'rgba(0,65,102,0.2)',
-        width: 1,
-      },
-      crossStyle: {
-        color: 'rgba(0,65,102,0.2)',
-        width: 1,
-      },
-    },
     trigger: 'axis',
     axisPointer: {
       type: 'cross',
