@@ -121,6 +121,7 @@ export type {
   selectitemType,
   SelectProps,
   selectStatus,
+  SelectStyles,
 } from './selectTypes'
 export type { IFormElementSwitch, SwitchElement, SwitchProps } from './SwitchTypes'
 export type { BrandSwitchProps } from './SwitchTypes'

@@ -53,9 +53,10 @@ export type SelectProps = {
   groups: string[]
   groupsActive?: boolean
   filled?: boolean
+  style?: SelectStyles
 } & BaseProps &
   TextContent
-
+export type SelectStyles = { maxWidth: string; minWidth: string }
 export type BrandSelectProps = BrandProps<SelectProps, 'SelectForm'>
 
 export type SelectElement = ConcreteSelectedView<typeof FormElementDictTypes.Select>

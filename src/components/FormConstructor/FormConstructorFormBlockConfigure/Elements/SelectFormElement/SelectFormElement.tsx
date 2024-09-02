@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { Select } from '@consta/uikit/Select'
 
-import type { selectitemType } from '../../../coreTypes'
+import type { selectitemType, SelectStyles } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
@@ -11,6 +11,7 @@ import type { ISelectFormElement } from './types'
 export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
   const isFilled = props?.filled || false
+  const styles = isFilled ? {} : getStyles(props?.style)
   return props ? (
     <SelectableLayer
       parentElementId={element.id}
@@ -25,9 +26,15 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
         getItemGroupKey={item => item.group}
         getGroupLabel={(group: string) => group}
         getGroupKey={(group: string) => group}
-        style={{ flexGrow: isFilled ? 1 : 0 }}
+        style={{ flexGrow: isFilled ? 1 : 0, ...styles }}
         onChange={() => {}}
       />
     </SelectableLayer>
   ) : null
+}
+const getStyles = (styles: SelectStyles | undefined) => {
+  return {
+    maxWidth: styles?.maxWidth,
+    minWidth: styles?.minWidth,
+  }
 }

@@ -40,7 +40,7 @@ export type ComboboxProps = {
   groupsActive?: boolean
   dropdownForm?: DatePickerPropDropdownForm
   filled?: boolean
-  style: ComboBoxStyles
+  style?: ComboBoxStyles
 } & BaseProps
 export type ComboBoxStyles = { maxWidth: string; minWidth: string }
 export type BrandComboboxProps = BrandProps<ComboboxProps, 'ComboBox'>

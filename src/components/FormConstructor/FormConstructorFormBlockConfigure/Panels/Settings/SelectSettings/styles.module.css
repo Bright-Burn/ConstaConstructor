@@ -44,3 +44,6 @@
   gap: var(--space-s);
   padding-top: var(--space-s);
 }
+.settingCaption {
+  padding: var(--space-2xs) var(--space-xs);
+}

@@ -58,8 +58,8 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({ selectedViewProps, 
   useLayoutEffect(() => {
     const comboboxStyles = selectedViewProps.style
 
-    setWidthValue(comboboxStyles.maxWidth.replaceAll('px', '') || '0')
-  }, [selectedViewProps.style.maxWidth])
+    setWidthValue(comboboxStyles?.maxWidth.replaceAll('px', '') || '0')
+  }, [selectedViewProps.style])
 
   return (
     <div className={styles.comoboboxSettings}>
