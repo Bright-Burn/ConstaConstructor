@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { Combobox } from '@consta/uikit/Combobox'
 
-import type { ComboboxProps } from '../../../coreTypes'
+import type { ComboboxProps, ComboBoxStyles } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
@@ -11,6 +11,7 @@ import type { IComboBoxFormElement } from './types'
 export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   const defaultComboboxProps: ComboboxProps = {
     className: '',
+    style: { maxWidth: '200px', minWidth: '200px' },
     baseProps: {},
     groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
     items: [
@@ -34,6 +35,8 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
 
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
   const isFilled = props?.filled || false
+  //Когда включено заполнение ширина не должна быть задана
+  const styles = isFilled ? {} : getStyles(props?.style)
   return props ? (
     <SelectableLayer
       parentElementId={element.id}
@@ -48,9 +51,15 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
         getItemGroupKey={item => item.group}
         getGroupLabel={(group: string) => group}
         getGroupKey={(group: string) => group}
-        style={{ flexGrow: isFilled ? 1 : 0 }}
+        style={{ flexGrow: isFilled ? 1 : 0, ...styles }}
         onChange={() => {}}
       />
     </SelectableLayer>
   ) : null
+}
+const getStyles = (styles: ComboBoxStyles | undefined) => {
+  return {
+    maxWidth: styles?.maxWidth,
+    minWidth: styles?.minWidth,
+  }
 }

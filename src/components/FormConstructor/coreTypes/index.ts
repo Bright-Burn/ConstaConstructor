@@ -57,6 +57,7 @@ export type {
   ComboBoxElement,
   comboboxItemType,
   ComboboxProps,
+  ComboBoxStyles,
   IFormElementComboBox,
 } from './comboBoxTypes'
 export type {

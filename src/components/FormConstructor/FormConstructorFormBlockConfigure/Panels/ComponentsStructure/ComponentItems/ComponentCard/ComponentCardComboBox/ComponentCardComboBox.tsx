@@ -47,6 +47,10 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
           items,
+          style: {
+            maxWidth: '200px',
+            minWidth: '200px',
+          },
         },
         type: 'ComboBox',
       },
