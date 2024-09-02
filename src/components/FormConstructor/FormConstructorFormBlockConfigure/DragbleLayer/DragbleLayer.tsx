@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
 
-import { reorderFormElement, useAppDispatch, useAppSelector } from '../../store'
+import { getSelectedView, reorderFormElement, useAppDispatch, useAppSelector } from '../../store'
 
 import type { IDragbleleLayer } from './types'
 
@@ -10,7 +10,7 @@ export const DragbleLayer: FC<IDragbleleLayer> = ({ children, className, elId })
   const [isDragLeft, setIsDragLeft] = useState(false)
   const [isDragRight, setIsDragRight] = useState(false)
   const dispatch = useAppDispatch()
-  const selectedEl = useAppSelector(state => state.formConstructor.selectedView)
+  const selectedEl = useAppSelector(getSelectedView)
   const onDragStart = (event: React.DragEvent) => {
     event.stopPropagation()
     event.dataTransfer.setData('draggedElId', elId)

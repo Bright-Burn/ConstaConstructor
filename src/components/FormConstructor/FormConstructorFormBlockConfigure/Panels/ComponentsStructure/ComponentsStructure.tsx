@@ -60,7 +60,6 @@ export const ComponentsStructure = () => {
         />
       </div>
       {getTabContentRenderer()}
-      <ComponentTree />
     </div>
   ) : (
     <div className={styles.toggleButton}>

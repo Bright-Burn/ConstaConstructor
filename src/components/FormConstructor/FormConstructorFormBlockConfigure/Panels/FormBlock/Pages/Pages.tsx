@@ -7,6 +7,7 @@ import {
   changeActivePage,
   changePageName,
   checkIsGridVisible,
+  getSelectedPageId,
   toggleGrid,
   useAppDispatch,
   useAppSelector,
@@ -21,7 +22,7 @@ import styles from './styles.module.css'
 
 export const Pages = ({ pages }: PagesProps) => {
   const [isNameEdited, setIsNameEdited] = useState<boolean>(false)
-  const { selectedPageId } = useAppSelector(state => state.formConstructor)
+  const selectedPageId = useAppSelector(getSelectedPageId)
   const dispatch = useAppDispatch()
   const isGridVisible = useAppSelector(checkIsGridVisible)
 

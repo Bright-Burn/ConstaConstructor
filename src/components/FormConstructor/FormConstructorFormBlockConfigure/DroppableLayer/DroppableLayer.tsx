@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import type { IFormElement, IGroupElement } from '../../coreTypes'
 import type { AddNewElementPayload } from '../../store'
@@ -12,6 +12,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../store'
+import { getDragbleElement } from '../../store/formElements/selectors/viewSelectors'
 import { FormGroupsDict } from '../FormGroupDict'
 
 import type { IDroppableLayer } from './types'
@@ -22,8 +23,8 @@ import styles from './styles.module.css'
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerParentId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
-  const { draggableElement } = useAppSelector(state => state.formConstructor)
-
+  const draggableElement = useAppSelector(getDragbleElement)
+  console.count('DroppableLayer')
   const elementsOnLayer = useAppSelector(getElementsOnLayer(parentElementId))
   //TODO Удалить как во все старые макеты добавится свойство order/
   //Удалить со стора экшен updateOrders и его редьюсер
