@@ -1,4 +1,9 @@
-import type { BrandButtonProps, BrandTextFieldProps, BrandUserProps } from '../../../../coreTypes'
+import type {
+  BrandButtonProps,
+  BrandSelectProps,
+  BrandTextFieldProps,
+  BrandUserProps,
+} from '../../../../coreTypes'
 
 export type fillType = 'filled' | 'default'
 
@@ -7,4 +12,4 @@ export type FilledSettingsType = {
   props: FilledProps
 }
 
-export type FilledProps = BrandTextFieldProps | BrandUserProps | BrandButtonProps
+export type FilledProps = BrandTextFieldProps | BrandUserProps | BrandButtonProps | BrandSelectProps

@@ -1,7 +1,12 @@
 import React from 'react'
 import { Select } from '@consta/uikit/Select'
 
-import type { BrandButtonProps, BrandTextFieldProps, BrandUserProps } from '../../../../coreTypes'
+import type {
+  BrandButtonProps,
+  BrandSelectProps,
+  BrandTextFieldProps,
+  BrandUserProps,
+} from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 import { isElementProps } from '../../../../utils'
 import { getValueForSelect } from '../LabelForSelectComponent'
@@ -31,6 +36,12 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandUserProps>(props, props.type)) {
       const newProps: BrandUserProps = {
+        props: { ...props.props, filled: isFilled },
+        type: props.type,
+      }
+      dispatch(setInstanceProps(elementId, newProps))
+    } else if (isElementProps<BrandSelectProps>(props, props.type)) {
+      const newProps: BrandSelectProps = {
         props: { ...props.props, filled: isFilled },
         type: props.type,
       }
