@@ -37,10 +37,12 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   const isFilled = props?.filled || false
   //Когда включено заполнение ширина не должна быть задана
   const styles = isFilled ? {} : getStyles(props?.style)
+  const selectableLayerClass = isFilled ? 'container-row flex-grow-1' : ''
+  const comboBoxStyles = { flexGrow: isFilled ? 1 : 0, ...styles }
   return props ? (
     <SelectableLayer
       parentElementId={element.id}
-      className={isFilled ? 'container-row flex-grow-1' : ''}
+      className={selectableLayerClass}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ComboBox}>
       <Combobox
@@ -51,7 +53,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
         getItemGroupKey={item => item.group}
         getGroupLabel={(group: string) => group}
         getGroupKey={(group: string) => group}
-        style={{ flexGrow: isFilled ? 1 : 0, ...styles }}
+        style={comboBoxStyles}
         onChange={() => {}}
       />
     </SelectableLayer>
