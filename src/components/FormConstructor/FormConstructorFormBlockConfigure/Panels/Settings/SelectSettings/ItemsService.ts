@@ -104,9 +104,8 @@ export const useItemsHandlers = (selectedViewProps: SelectProps, selectedView: S
       props: { ...selectedViewProps },
       type: 'SelectForm',
     }
-    newProps.props.style = { maxWidth: '200px', minWidth: '200px' }
-    newProps.props.style = { ...newProps.props.style }
-    if (value && value !== '0') {
+    newProps.props.style = { maxWidth: '200px', minWidth: '200px', ...newProps.props.style }
+    if (value) {
       let newValue = value
       if (value.startsWith('0')) {
         newValue = newValue.replace('0', '')
