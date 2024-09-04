@@ -4,7 +4,14 @@ import { Provider } from 'react-redux'
 import { store } from '../store'
 
 import { FormConstructorFormBlockEventListener } from './FormConstructorFormBlockEventListener'
-import { ComponentsStructure, FormBlock, Header, Settings } from './Panels'
+import {
+  ComponentsStructure,
+  DeveloperPanel,
+  FormBlock,
+  Header,
+  RightPanelSwitch,
+  Settings,
+} from './Panels'
 import type { IFormConstructorFormBlockConfigure } from './types'
 
 interface Props {
@@ -21,6 +28,8 @@ export const FormConstructorFormBlockConfigure: FC<Props> & IFormConstructorForm
   )
 }
 
+FormConstructorFormBlockConfigure.RightPanelSwitch = RightPanelSwitch
+FormConstructorFormBlockConfigure.DeveloperPanel = DeveloperPanel
 FormConstructorFormBlockConfigure.Settings = Settings
 FormConstructorFormBlockConfigure.WhiteFormBlock = FormBlock
 FormConstructorFormBlockConfigure.ComponentsStructure = ComponentsStructure

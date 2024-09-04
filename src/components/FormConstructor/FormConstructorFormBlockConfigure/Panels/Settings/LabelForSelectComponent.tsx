@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import React from 'react'
 import { Text } from '@consta/uikit/Text'
 
 import styles from './styles.module.css'

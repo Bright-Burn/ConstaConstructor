@@ -1,0 +1,59 @@
+.toggleButton {
+  position: absolute;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.toggleButton:hover {
+  opacity: 1;
+}
+
+.rightPanelContainer {
+  padding-left: var(--space-xs);
+  padding-bottom: var(--space-xs);
+  padding-top: 0;
+  min-width: 240px;
+  max-width: 240px;
+ flex-grow: 0.5;
+  flex-shrink: 1;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-secondary);
+  border-left: 1px solid var(--color-typo-system);
+}
+
+.elementRightPanel {
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-right: var(--space-xs);
+}
+
+.rightPanelTitle {
+  height: 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-xs);
+  padding-top: var(--space-xs);
+  padding-right: var(--space-xs);
+
+}
+.exportText {
+  padding-top: var(--space-xs);
+  display: flex;
+  align-items: flex-end;
+}
+
+.exportButton {
+  margin-top: var(--space-xs);
+}

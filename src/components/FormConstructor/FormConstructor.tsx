@@ -12,7 +12,7 @@ export const FormConstructor: FC = () => {
         <div className={`${css.formConstructorMain} container-row flex-grow-1`}>
           <FormConstructorFormBlockConfigure.ComponentsStructure />
           <FormConstructorFormBlockConfigure.WhiteFormBlock />
-          <FormConstructorFormBlockConfigure.Settings />
+          <FormConstructorFormBlockConfigure.RightPanelSwitch />
         </div>
       </FormConstructorFormBlockConfigure>
     </div>
