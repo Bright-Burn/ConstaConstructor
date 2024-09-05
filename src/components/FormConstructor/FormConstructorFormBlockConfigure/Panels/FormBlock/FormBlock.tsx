@@ -12,7 +12,7 @@ export const FormBlock: FC = () => {
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
 
   return (
-    <div className={styles.formBlock}>
+    <div className={styles.formBlockContainer}>
       <Pages pages={pages} />
       <div className={styles.formBlock}>
         {pages.map(page =>
