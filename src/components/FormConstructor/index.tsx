@@ -1,2 +1,2 @@
 export { FormConstructor } from './FormConstructor'
-export { localStorageObserver } from './utils'
+export { useTheme } from './utils'
