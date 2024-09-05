@@ -1,0 +1,8 @@
+.code {
+    background-color: white;
+}
+
+.code_pane {
+    overflow-y: auto;
+    gap: 1.2rem
+}
