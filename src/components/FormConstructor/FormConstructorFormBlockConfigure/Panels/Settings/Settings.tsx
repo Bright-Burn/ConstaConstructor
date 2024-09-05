@@ -33,7 +33,9 @@ export const Settings: FC = () => {
   return settingsPanelState ? (
     <div className={`${styles.settingsBlock} ${styles.settingsContainer} `}>
       <div className={styles.settingsTitle}>
-        <Text size="xs">Design </Text>
+        <Text size="xs" view="primary">
+          Design{' '}
+        </Text>
         <Button
           onlyIcon={true}
           iconLeft={IconClose}

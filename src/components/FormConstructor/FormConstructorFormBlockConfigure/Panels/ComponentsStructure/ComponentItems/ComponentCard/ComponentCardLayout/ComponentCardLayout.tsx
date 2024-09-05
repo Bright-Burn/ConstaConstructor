@@ -5,6 +5,7 @@ import { Text } from '@consta/uikit/Text'
 import type { ILayoutElement } from '../../../../../../coreTypes'
 import { FormGroupsDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
 import styles from './styles.module.css'
@@ -45,7 +46,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
   return (
     <div className={styles.cardLayout} draggable={true} onDragStart={onStartDragComponentCard}>
       <div className={styles.layerOut}>
-        <Text className={styles.marginText}>{name}</Text>
+        <CardLabel label={name} />
         <div className={styles.borderFlex}>
           <div className={isOuter ? styles.borderOut : styles.borderIn}>
             {!isOuter && <div className={styles.borderInIn} />}

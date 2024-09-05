@@ -5,6 +5,7 @@ import { Text } from '@consta/uikit/Text'
 import type { IFormElementSwitch } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
 import SwitchImage from './SwitchImage'
@@ -36,7 +37,7 @@ export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
 
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <Text className={styles.paddingText}>{name}</Text>
+      <CardLabel label={name} />
       <SwitchImage />
     </div>
   )

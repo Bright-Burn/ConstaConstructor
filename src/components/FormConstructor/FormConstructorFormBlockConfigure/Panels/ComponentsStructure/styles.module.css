@@ -10,7 +10,7 @@
 
   border-right: 1px solid var(--color-typo-system);
 
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-default);
 }
 
 .tabs :global(.TabsTab:before) {

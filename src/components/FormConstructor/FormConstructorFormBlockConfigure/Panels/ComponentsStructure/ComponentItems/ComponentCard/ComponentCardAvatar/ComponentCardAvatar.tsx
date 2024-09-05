@@ -31,7 +31,9 @@ export const ComponentCardAvatar: FC<IComponetCardElement> = ({ name }) => {
 
   return (
     <div draggable={true} className={styles.cardHeight} onDragStart={onStartDragComponentCard}>
-      <Text className={styles.paddingText}>{name}</Text>
+      <Text className={styles.paddingText} view="primary">
+        {name}
+      </Text>
     </div>
   )
 }

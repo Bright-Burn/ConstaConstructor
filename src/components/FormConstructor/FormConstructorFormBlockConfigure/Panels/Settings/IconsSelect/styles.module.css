@@ -13,6 +13,7 @@
 .icon {
     display: flex;
     align-items: center;
+    margin-left: var(--space-2xs);
 }
 .iconItem {
     display: flex;

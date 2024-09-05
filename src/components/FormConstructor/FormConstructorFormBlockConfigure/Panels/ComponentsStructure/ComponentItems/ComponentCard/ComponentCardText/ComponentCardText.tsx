@@ -5,6 +5,7 @@ import { Text } from '@consta/uikit/Text'
 import type { IFormElementText } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
 import TextImage from './TextImage'
@@ -35,7 +36,7 @@ export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
 
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <Text className={styles.paddingText}>{name}</Text>
+      <CardLabel label={name} />
       <TextImage />
     </div>
   )

@@ -1,7 +1,7 @@
 .componentCard {
   flex: 1;
   border-radius: 0.5rem;
-  border: 2px solid #00416633;
+  border: 2px solid var(--color-bg-border);
 }
 
 .paddingText {

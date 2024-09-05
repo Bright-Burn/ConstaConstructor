@@ -5,6 +5,7 @@ import { Text } from '@consta/uikit/Text'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { pagesSubMenu } from '../../../../../Elements'
+import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
 import BreadcrumbsImage from './BreadcrumbsImage'
@@ -36,7 +37,7 @@ export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
 
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <Text className={styles.paddingText}>{name}</Text>
+      <CardLabel label={name} />
       <BreadcrumbsImage />
     </div>
   )

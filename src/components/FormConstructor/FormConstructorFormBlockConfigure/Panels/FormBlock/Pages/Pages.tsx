@@ -80,7 +80,7 @@ export const Pages = ({ pages }: PagesProps) => {
         />
       </div>
       <div className="container-row align-center ">
-        <Text className="m-r-s" size="s">
+        <Text className="m-r-s" size="s" view="primary">
           Сетка
         </Text>
         <Switch checked={isGridVisible} size="s" onChange={onClickShowGrid} />
