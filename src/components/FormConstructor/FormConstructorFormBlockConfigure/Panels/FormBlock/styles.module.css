@@ -1,4 +1,4 @@
-.formBlock {
+.formBlockContainer {
   flex-grow: 1.5;
   flex-shrink: 1;
   flex-basis: 0;
@@ -7,10 +7,18 @@
   flex-direction: column;
   overflow-y: hidden;
 }
+.formBlock {
+  flex-grow: 1.5;
+  flex-shrink: 1;
+  flex-basis: 0;
+
+  display: flex;
+  overflow-y: hidden;
+  background-color: var(--color-bg-default);
+}
 
 .formBlockContent {
   display: flex;
   flex: 1;
-  flex-direction: column;
   position: relative;
 }
