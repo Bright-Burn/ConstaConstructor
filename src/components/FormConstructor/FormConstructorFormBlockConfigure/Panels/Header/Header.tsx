@@ -65,7 +65,14 @@ export const Header: React.FC = () => {
       </div>
       <ProjectName projectName={projectName} onChangeProjectName={onChangeProjectName} />
       <div className="container-row">
-        <Button onlyIcon={true} iconLeft={IconMoon} view="clear" size="xs" onClick={toggleTheme} />
+        <Button
+          onlyIcon={true}
+          iconLeft={IconMoon}
+          view="clear"
+          size="xs"
+          className="m-r-xs"
+          onClick={toggleTheme}
+        />
         <Button
           label="json"
           iconLeft={IconUpload}
