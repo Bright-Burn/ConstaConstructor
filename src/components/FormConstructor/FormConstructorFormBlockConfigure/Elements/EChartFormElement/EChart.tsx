@@ -28,7 +28,7 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
     chartRef.current?.dispose()
     const myChart = init(ref.current, theme)
     chartRef.current = myChart
-    if (props.options === '') {
+    if (props?.options === '') {
       myChart.setOption({
         title: {
           text: 'ECharts Getting Started Example',
@@ -46,7 +46,7 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
           },
         ],
       })
-    } else {
+    } else if (props?.options) {
       setNewOptions(props.options)
     }
   }, [theme])
@@ -64,10 +64,10 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
     }
   }, [props?.options])
 
-  const setNewOptions = (options: string) => {
+  const setNewOptions = (optionsJSON: string) => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const options = JSON.parse(props.options)
+      const options = JSON.parse(optionsJSON)
       chartRef.current?.clear()
       chartRef.current?.setOption(options)
     } catch (e) {
