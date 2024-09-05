@@ -25,7 +25,12 @@ export const ProjectName: React.FC<IProjectName> = ({ onChangeProjectName, proje
       {isEditingProjectName ? (
         <>
           {' '}
-          <TextField size="xs" value={projectName} onChange={onChangeProjectName} />{' '}
+          <TextField
+            size="xs"
+            value={projectName}
+            type="text"
+            onChange={onChangeProjectName}
+          />{' '}
           <Button
             view="clear"
             iconLeft={IconCheck}
@@ -37,7 +42,7 @@ export const ProjectName: React.FC<IProjectName> = ({ onChangeProjectName, proje
       ) : (
         <>
           {' '}
-          <Text weight="light" size="xs" className="p-r-l">
+          <Text weight="light" size="xs" className="p-r-l" view="primary">
             {projectName}
           </Text>
           <Button

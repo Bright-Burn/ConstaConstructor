@@ -62,7 +62,9 @@ export const ConstaPalette: FC<IConstaPalette> = ({
               onMouseEnter={onCustomMouseEnter}
               onMouseLeave={onMouseLeave}
               onClick={onClick}>
-              {item}
+              <Text size="s" view="primary">
+                {item}
+              </Text>
             </div>
           )
         }}

@@ -1,25 +1,25 @@
 .cardLayout {
   display: flex;
-  border: var(--space-3xs) solid #00416633;
+  border: var(--space-3xs) solid var(--color-bg-border);
   border-radius: var(--space-2xs);
 }
 
 .borderOut {
-  border: var(--space-3xs) dashed #00416633;
+  border: var(--space-3xs) dashed var(--color-bg-border);
   width: var(--space-2xl);
   height: var(--space-4xl);
   margin: var(--space-2xs);
 }
 
 .borderIn {
-  border: var(--space-3xs) dashed #00416633;
+  border: var(--space-3xs) dashed var(--color-bg-border);
   width: var(--space-5xl);
   height: var(--space-4xl);
   margin: var(--space-2xs);
 }
 
 .borderInIn {
-  border: var(--space-3xs) dashed #00416633;
+  border: var(--space-3xs) dashed var(--color-bg-border);
   width: var(--space-4xl);
   height: var(--space-xl);
   margin: var(--space-s);
@@ -38,4 +38,5 @@
 .borderFlex {
   display: flex;
   flex-direction: row;
+  background-color: var(--color-bg-default);
 }

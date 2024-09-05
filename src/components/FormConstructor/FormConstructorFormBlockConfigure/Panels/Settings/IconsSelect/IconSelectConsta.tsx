@@ -68,8 +68,10 @@ export const IconSelectConsta: React.FC<IconSelectProps> = ({
             aria-selected={active}
             onMouseEnter={onMouseEnter}
             onClick={onClick}>
-            {React.createElement(Icons[item], { size: 'xs' })}
-            <Text size="xs">{item}</Text>
+            {React.createElement(Icons[item], { size: 'xs', view: 'primary' })}
+            <Text size="xs" view="primary" className="m-l-xs">
+              {item}
+            </Text>
           </div>
         )}
         renderValue={({ item }) => getValueForSelect({ item, label })}

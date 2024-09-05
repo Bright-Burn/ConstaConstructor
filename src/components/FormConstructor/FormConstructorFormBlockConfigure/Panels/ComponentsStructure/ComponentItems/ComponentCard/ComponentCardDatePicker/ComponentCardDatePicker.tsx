@@ -5,6 +5,7 @@ import { Text } from '@consta/uikit/Text'
 import type { IFormElementDatePicker } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
+import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
 import DatePickerImage from './DatePickerImage'
@@ -44,7 +45,7 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
 
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <Text className={styles.paddingText}>{name}</Text>
+      <CardLabel label={name} />
       <DatePickerImage />
     </div>
   )

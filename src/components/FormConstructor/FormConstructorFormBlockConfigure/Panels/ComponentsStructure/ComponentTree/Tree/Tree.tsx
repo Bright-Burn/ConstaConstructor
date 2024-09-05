@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { cnRcTree } from '@consta/rc-tree-adapter/RcTree'
 import { rcTreeAdapter } from '@consta/rc-tree-adapter/rcTreeAdapter'
-import RCTree from 'rc-tree'
+import RCTree, { TreeNode } from 'rc-tree'
 
 import type { IFormElement, IGroupElement } from '../../../../../coreTypes'
 import {
@@ -24,7 +24,7 @@ export const Tree: FC<ITree> = ({ data }) => {
   const treeProps = rcTreeAdapter()
   const prefix = cnRcTree(
     {
-      size: 'm',
+      size: 's',
     },
     ['CustomTree'],
   )
@@ -59,6 +59,8 @@ export const Tree: FC<ITree> = ({ data }) => {
       {...treeProps}
       treeData={data}
       prefixCls={prefix}
+      className="Text_size_xs Text_view_primary"
+      showLine={true}
       selectedKeys={[selectedView?.elementId ?? '']}
       expandedKeys={expandedKeys}
       defaultExpandAll={true}

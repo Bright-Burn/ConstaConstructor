@@ -9,7 +9,7 @@ import 'index.css'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
-  <Theme preset={presetGpnDark}>
+  <Theme preset={presetGpnDefault}>
     <App />
   </Theme>,
 )
