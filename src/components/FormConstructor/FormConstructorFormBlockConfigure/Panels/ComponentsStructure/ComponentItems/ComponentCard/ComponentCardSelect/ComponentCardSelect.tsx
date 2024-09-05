@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { Text } from '@consta/uikit/Text'
 
 import type { IFormElementSelect } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
@@ -9,8 +8,6 @@ import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
 import SelectImage from './SelectImage'
-
-import styles from '../styles.module.css'
 
 export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

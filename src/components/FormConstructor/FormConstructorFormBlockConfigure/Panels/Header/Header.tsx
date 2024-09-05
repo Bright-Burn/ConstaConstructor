@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { IconDownload } from '@consta/icons/IconDownload'
+import { IconMoon } from '@consta/icons/IconMoon'
 import { IconQuestion } from '@consta/icons/IconQuestion'
 import { IconUpload } from '@consta/icons/IconUpload'
 import { Button } from '@consta/uikit/Button'
@@ -8,6 +9,7 @@ import { Modal } from '@consta/uikit/Modal'
 
 import { MainIcon } from '../../../../../Icons'
 import { checkViewMode, useAppSelector } from '../../../store'
+import { localStorageObserver } from '../../../utils'
 
 import { useProject } from './headerServices'
 import { HotKeyPaneNote } from './Help'
@@ -31,7 +33,12 @@ export const Header: React.FC = () => {
   if (isViewMode) {
     return null
   }
-
+  const toggleTheme = () => {
+    localStorageObserver.setItem(
+      'theme',
+      localStorage.getItem('theme') === 'dark' ? 'light' : 'dark',
+    )
+  }
   return (
     <div className={`${style.headerContainer} container-row`}>
       <div className="container-row align-center ">
@@ -58,6 +65,7 @@ export const Header: React.FC = () => {
       </div>
       <ProjectName projectName={projectName} onChangeProjectName={onChangeProjectName} />
       <div className="container-row">
+        <Button onlyIcon={true} iconLeft={IconMoon} view="clear" size="xs" onClick={toggleTheme} />
         <Button
           label="json"
           iconLeft={IconUpload}

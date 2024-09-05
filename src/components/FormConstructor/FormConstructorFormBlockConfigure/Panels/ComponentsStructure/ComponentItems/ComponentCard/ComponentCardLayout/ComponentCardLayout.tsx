@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { Text } from '@consta/uikit/Text'
 
 import type { ILayoutElement } from '../../../../../../coreTypes'
 import { FormGroupsDictTypes } from '../../../../../../coreTypes'
