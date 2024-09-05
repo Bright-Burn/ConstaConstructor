@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 
 import { localStorageObserver } from './localStorageObserver'
 
-const theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
 export const useTheme = () => {
+  const theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
+
   const [value, setValue] = useState<'dark' | 'light' | null>(theme)
 
   useEffect(() => {
