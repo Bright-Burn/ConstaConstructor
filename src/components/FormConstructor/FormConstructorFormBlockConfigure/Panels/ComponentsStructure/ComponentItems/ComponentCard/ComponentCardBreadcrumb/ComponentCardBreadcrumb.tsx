@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { Text } from '@consta/uikit/Text'
 
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
@@ -10,8 +9,6 @@ import type { IComponetCardElement } from '../types'
 
 import BreadcrumbsImage from './BreadcrumbsImage'
 import type { IFormElementBreadcrumbs } from './types'
-
-import styles from '../styles.module.css'
 
 export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

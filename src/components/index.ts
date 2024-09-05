@@ -1,2 +1,2 @@
 export { type ConstaColor, ConstaColors, LayoutPalette } from './ConstaPalette'
-export { FormConstructor } from './FormConstructor'
+export { FormConstructor, localStorageObserver } from './FormConstructor'

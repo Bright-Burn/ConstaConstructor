@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { Text } from '@consta/uikit/Text'
 
 import type { IFormElementCheckbox } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
@@ -9,8 +8,6 @@ import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
 import CheckboxImage from './CheckboxImage'
-
-import styles from '../styles.module.css'
 
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
