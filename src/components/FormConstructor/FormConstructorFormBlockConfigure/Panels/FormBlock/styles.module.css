@@ -14,7 +14,6 @@
 
   display: flex;
   overflow-y: hidden;
-  background-color: var(--color-bg-default);
 }
 
 .formBlockContent {
