@@ -4,7 +4,7 @@ import { presetGpnDark, presetGpnDefault, Theme } from '@consta/uikit/Theme'
 import { FormConstructorPage } from './pages/FormConstructorPage'
 import { localStorageObserver } from './components'
 
-const theme = localStorage.getItem('light') === 'dark' ? 'dark' : 'light'
+const theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light'
 function App() {
   const [value, setValue] = useState<'dark' | 'light' | null>(theme)
 
