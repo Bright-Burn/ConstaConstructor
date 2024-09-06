@@ -6,6 +6,7 @@ import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IButtonFormElement } from './types'
+import { getIsFilledClassName } from '../../../utils'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   // const [buttonProps] = useState<ButtonProps>()
@@ -35,7 +36,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
           parentElementId={element.id}
           elementTypeUsage={ElementTypes.FormElement}
           elementType={FormElementDictTypes.Button}
-          className={isFilled ? 'container-row flex-grow-1' : ''}>
+          className={getIsFilledClassName(isFilled)}>
           <Button
             {...props}
             style={{ flexGrow: isFilled ? 1 : 0 }}

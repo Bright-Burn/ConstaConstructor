@@ -58,29 +58,29 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
         type: 'Button',
       }
       onDispatch(selectedView, newProps)
-      if (propsName === 'action' && checked) {
-        onChangeButtonAction('ButtonModal')
-      }
-      if (propsName === 'action' && !checked) {
-        onChangeButtonAction('none')
-      }
+      // if (propsName === 'action' && checked) {
+      //   onChangeButtonAction('ButtonModal')
+      // }
+      // if (propsName === 'action' && !checked) {
+      //   onChangeButtonAction('none')
+      // }
     }
 
-  const onChangeButtonAction = (value: ButtonAction) => {
-    const newProps: BrandButtonProps = {
-      props: { ...selectedViewProps },
-      type: 'Button',
-    }
+  // const onChangeButtonAction = (value: ButtonAction) => {
+  //   const newProps: BrandButtonProps = {
+  //     props: { ...selectedViewProps },
+  //     type: 'Button',
+  //   }
 
-    newProps.props['action'] = value
+  //   newProps.props['action'] = value
 
-    onUpdateSelected(selectedView, newProps)
-    if (buttonActionsActive.includes(value)) {
-      addConnectedElement()
-    } else {
-      removeConnectedElement()
-    }
-  }
+  //   onUpdateSelected(selectedView, newProps)
+  //   if (buttonActionsActive.includes(value)) {
+  //     addConnectedElement()
+  //   } else {
+  //     removeConnectedElement()
+  //   }
+  // }
 
   const addConnectedElement = () => {
     // const currentButtonElement = allElementsMap.get(selectedView?.elementId || '')
@@ -168,7 +168,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
 
   return {
     onChangeSwitch,
-    onChangeButtonAction,
+    // onChangeButtonAction,
     onChangeIcon,
     onChangeIconR,
     onChangeLabel,
@@ -178,7 +178,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     itemsProps: {
       size: selectedViewProps.size,
       view: selectedViewProps.view,
-      action: selectedViewProps.action,
+      // action: selectedViewProps.action,
       label: selectedViewProps.label,
       disabled: selectedViewProps.disabled,
       iconLeft: selectedViewProps.iconLeft,
@@ -188,7 +188,6 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
       onlyIcon: selectedViewProps.onlyIcon,
       icon: selectedViewProps.icon,
       iconR: selectedViewProps.iconR,
-      activeAction: selectedViewProps.activeAction,
     },
   }
 }
