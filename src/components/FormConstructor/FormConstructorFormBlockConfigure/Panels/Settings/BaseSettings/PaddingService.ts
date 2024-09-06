@@ -8,7 +8,7 @@ import type {
 } from '../../../../coreTypes'
 import {
   getSelectedView,
-  getselectedViewPropsSelector,
+  getSelectedViewPropsSelector,
   setInstanceProps,
   useAppDispatch,
   useAppSelector,
@@ -16,7 +16,7 @@ import {
 
 export const usePaddingHandlers = () => {
   const selectedView = useAppSelector(getSelectedView)
-  const selectedViewProps = useAppSelector(getselectedViewPropsSelector)
+  const selectedViewProps = useAppSelector(getSelectedViewPropsSelector)
 
   const dispatch = useAppDispatch()
 
