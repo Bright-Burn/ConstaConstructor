@@ -33,6 +33,7 @@ const getStyles = (styles: LayoutElementStyles | undefined) => {
     minHeight: styles?.minHeight,
     justifyContent: styles?.justifyContent,
     flexWrap: styles?.flexWrap,
+    flexBasis: 0,
     alignItems: styles?.alignItems,
     borderSide: styles?.borderSide,
     backgroundColor: `var(--${styles?.backgroundColor})`,
