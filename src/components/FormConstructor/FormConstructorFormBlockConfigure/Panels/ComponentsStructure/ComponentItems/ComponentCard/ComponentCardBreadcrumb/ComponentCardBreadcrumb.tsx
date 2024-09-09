@@ -7,7 +7,6 @@ import { pagesSubMenu } from '../../../../../Elements'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
-import BreadcrumbsImage from './BreadcrumbsImage'
 import type { IFormElementBreadcrumbs } from './types'
 
 export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
@@ -35,7 +34,6 @@ export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
       <CardLabel label={name} />
-      <BreadcrumbsImage />
     </div>
   )
 }

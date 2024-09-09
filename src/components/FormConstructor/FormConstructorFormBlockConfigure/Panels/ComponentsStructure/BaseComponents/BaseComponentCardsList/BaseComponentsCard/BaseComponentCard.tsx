@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import React from 'react'
-import { IconPicture } from '@consta/icons/IconPicture'
 import { Text } from '@consta/uikit/Text'
 
 import { setDraggableBaseComponent, useBaseComponentsDispatch } from '../../../../../../store'
@@ -23,12 +22,7 @@ export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
   return (
     <div className={styles.componentCard} draggable={true} onDragStart={onDragFormElementStart}>
       <UpdateBaseComponentButton baseComponent={baseComponent} />
-      <Text className={styles.text} size="xs">
-        {baseComponent.description}
-      </Text>
-      <div className={styles.imgBox}>
-        <IconPicture view="ghost" className={styles.img} />
-      </div>
+      <Text className={styles.text}>{baseComponent.description}</Text>
     </div>
   )
 }

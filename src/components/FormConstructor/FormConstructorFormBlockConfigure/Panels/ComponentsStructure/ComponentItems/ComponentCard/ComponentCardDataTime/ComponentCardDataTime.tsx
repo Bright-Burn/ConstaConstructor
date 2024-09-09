@@ -7,8 +7,6 @@ import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
-import DateTimeImage from './DateTimeImage'
-
 export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
   const onStartDragComponentCard = () => {
@@ -37,7 +35,6 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
       <CardLabel label={name} />
-      <DateTimeImage />
     </div>
   )
 }

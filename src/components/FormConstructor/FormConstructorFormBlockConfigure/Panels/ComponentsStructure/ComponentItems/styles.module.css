@@ -1,12 +1,8 @@
 .componentItems {
-  flex-grow: 0.5;
-  flex-shrink: 1;
-  flex-basis: 0;
-
-  display: grid;
-  grid-template-columns: 0.5fr 0.5fr;
-  overflow-y: auto;
+  flex: 1 0 50%;
   overflow-x: hidden;
-  padding: var(--space-xs);
-  gap: var(--space-s);
+  padding: 0 var(--space-xs) var(--space-xs) var(--space-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
 }
