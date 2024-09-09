@@ -1,10 +1,10 @@
 .componentGroupCard {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-s);
-  padding-left: var(--space-s);
-  padding-right: var(--space-s);
-  padding-top: var(--space-s);
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-left: var(--space-xs);
+  padding-right: var(--space-xs);
+  padding-top: var(--space-xs);
 }
 
 .componentGroupCardCollapse {

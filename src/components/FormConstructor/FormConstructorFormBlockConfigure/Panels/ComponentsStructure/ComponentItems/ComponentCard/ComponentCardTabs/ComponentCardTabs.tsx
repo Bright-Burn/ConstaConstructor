@@ -7,8 +7,6 @@ import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
-import TabsImage from './TabsImage'
-
 export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -41,7 +39,6 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
       <CardLabel label={name} />
-      <TabsImage />
     </div>
   )
 }

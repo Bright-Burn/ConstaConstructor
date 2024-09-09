@@ -7,8 +7,6 @@ import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
-import CheckboxImage from './CheckboxImage'
-
 export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -37,7 +35,6 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
       <CardLabel label={name} />
-      <CheckboxImage />
     </div>
   )
 }

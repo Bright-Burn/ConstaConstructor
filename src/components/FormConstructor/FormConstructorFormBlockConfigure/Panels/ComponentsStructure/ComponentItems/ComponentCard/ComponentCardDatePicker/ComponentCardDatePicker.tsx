@@ -7,8 +7,6 @@ import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
-import DatePickerImage from './DatePickerImage'
-
 export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -43,7 +41,6 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
       <CardLabel label={name} />
-      <DatePickerImage />
     </div>
   )
 }

@@ -31,12 +31,18 @@ import type { IComponentCard } from './types'
 
 import styles from './styles.module.css'
 
-export const ComponentCard: FC<IComponentCard> = ({ name, formElementType, groupElementType }) => {
+export const ComponentCard: FC<IComponentCard> = ({
+  name,
+  formElementType,
+  groupElementType,
+  isOuter,
+}) => {
   const testValue = formElementType || groupElementType
   return (
     <div className={styles.componentCard}>
       {testValue ? (
         <SwitchComponent testValue={testValue}>
+          <ComponentCardLayout isOuter={isOuter} name={name} value={FormGroupsDictTypes.Layout} />
           <ComponentCardAvatar name={name} value={FormElementDictTypes.Avatar} />
           <ComponentCardAvatarGroup name={name} value={FormElementDictTypes.AvatarGroup} />
           <ComponentCardBadge name={name} value={FormElementDictTypes.Badge} />

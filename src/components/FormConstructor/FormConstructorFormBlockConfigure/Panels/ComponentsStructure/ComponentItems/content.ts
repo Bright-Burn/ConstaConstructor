@@ -2,7 +2,9 @@ import uuid from 'react-uuid'
 
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../coreTypes'
 
-export const constaCards = [
+export const componentCards = [
+  { id: uuid(), name: 'Layout', groupElementType: FormGroupsDictTypes.Layout },
+  { id: uuid(), name: 'Layout', groupElementType: FormGroupsDictTypes.Layout, isOuter: true },
   { id: uuid(), name: 'Avatar', formElementType: FormElementDictTypes.Avatar },
   { id: uuid(), name: 'AvatarGroup', formElementType: FormElementDictTypes.AvatarGroup },
 

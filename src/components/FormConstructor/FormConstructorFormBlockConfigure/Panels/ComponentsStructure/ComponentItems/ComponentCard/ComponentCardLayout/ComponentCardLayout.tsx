@@ -7,8 +7,6 @@ import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
-import styles from './styles.module.css'
-
 export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter }) => {
   const dispatch = useAppDispatch()
 
@@ -40,18 +38,10 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
     }
     dispatch(setDraggableElement({ element: layoutElement }))
   }
-
+  const fullName = isOuter ? `${name} out` : `${name} in`
   return (
-    <div className={styles.cardLayout} draggable={true} onDragStart={onStartDragComponentCard}>
-      <div className={styles.layerOut}>
-        <CardLabel label={name} />
-        <div className={styles.borderFlex}>
-          <div className={isOuter ? styles.borderOut : styles.borderIn}>
-            {!isOuter && <div className={styles.borderInIn} />}
-          </div>
-          {!!isOuter && <div className={styles.borderOut} />}
-        </div>
-      </div>
+    <div draggable={true} onDragStart={onStartDragComponentCard}>
+      <CardLabel label={fullName} />
     </div>
   )
 }

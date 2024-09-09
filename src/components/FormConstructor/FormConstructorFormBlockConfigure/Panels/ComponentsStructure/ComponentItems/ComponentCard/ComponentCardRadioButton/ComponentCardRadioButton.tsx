@@ -7,8 +7,6 @@ import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
-import RadioImage from './RadioImage'
-
 export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
@@ -36,7 +34,6 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
   return (
     <div draggable={true} onDragStart={onStartDragComponentCard}>
       <CardLabel label={name} />
-      <RadioImage />
     </div>
   )
 }

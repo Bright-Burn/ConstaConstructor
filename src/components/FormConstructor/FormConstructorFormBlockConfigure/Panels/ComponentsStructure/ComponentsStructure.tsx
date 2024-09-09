@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { IconArrowRight } from '@consta/icons/IconArrowRight'
 import { Button } from '@consta/uikit/Button'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Tabs } from '@consta/uikit/Tabs'
 
 import {
@@ -15,25 +16,25 @@ import { BaseComponents } from './BaseComponents'
 import { ComponentsGrid } from './ComponentGrid'
 import { ComponentItems } from './ComponentItems'
 import { ComponentTree } from './ComponentTree'
-import { componentsTabItems } from './content'
+import { choiceItems, componentsTabItems, EChoiceItems } from './content'
 import type { ComponentsTabItem } from './types'
 
 import styles from './styles.module.css'
 
 export const ComponentsStructure = () => {
-  const [tabValue, setTabValue] = useState<ComponentsTabItem | null>(componentsTabItems[0])
+  const [structureView, setStructureView] = useState<EChoiceItems>(EChoiceItems.Components)
   const isViewMode = useAppSelector(checkViewMode)
 
-  const getTabContentRenderer = () => {
-    switch (tabValue) {
-      case componentsTabItems[0]:
-        return <ComponentsGrid />
-      case componentsTabItems[1]:
-        return <ComponentItems />
-      case componentsTabItems[2]:
-        return <BaseComponents />
-    }
-  }
+  // const getTabContentRenderer = () => {
+  //   switch (structureView) {
+  //     case componentsTabItems[0]:
+  //       return <ComponentsGrid />
+  //     case componentsTabItems[1]:
+  //       return <ComponentItems />
+  //     case componentsTabItems[2]:
+  //       return <BaseComponents />
+  //   }
+  // }
 
   const dispatch = useAppDispatch()
   const componentsStructurePanelState = useAppSelector(getComponentsStructurePanelState)
@@ -47,20 +48,23 @@ export const ComponentsStructure = () => {
   }
   return componentsStructurePanelState ? (
     <div className={styles.componentStructure}>
-      <div className={styles.tabs}>
-        <Tabs
-          className={styles.tabs_margin}
-          value={tabValue}
-          items={componentsTabItems}
-          size="s"
-          view="clear"
-          onChange={value => {
-            setTabValue(value)
-          }}
-        />
-      </div>
-      {getTabContentRenderer()}
-      <ComponentTree />
+      <ChoiceGroup
+        items={choiceItems}
+        className="m-b-xs"
+        name="structureItems"
+        getItemLabel={(item: string) => item}
+        value={structureView}
+        size="xs"
+        view="ghost"
+        onChange={setStructureView}
+      />
+      {EChoiceItems.Components === structureView ? (
+        <>
+          <ComponentItems /> <BaseComponents />
+        </>
+      ) : (
+        <ComponentTree />
+      )}
     </div>
   ) : (
     <div className={styles.toggleButton}>
