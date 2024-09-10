@@ -5,7 +5,7 @@ import { Button } from '@consta/uikit/Button'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import style from './Header.module.css'
+import style from '../../Header/Header.module.css'
 
 interface IProjectName {
   projectName: string | null
