@@ -10,10 +10,10 @@ import { Modal } from '@consta/uikit/Modal'
 import { MainIcon } from '../../../../../Icons'
 import { checkViewMode, useAppSelector } from '../../../store'
 import { localStorageObserver } from '../../../utils'
+import { ProjectName } from '../ComponentsStructure/ProjectName/ProjectName'
 
 import { useProject } from './headerServices'
 import { HotKeyPaneNote } from './Help'
-import { ProjectName } from './ProjectName'
 
 import style from './Header.module.css'
 
