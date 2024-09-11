@@ -7,6 +7,7 @@ import {
   useAppDispatch,
   togglePanels,
   setRightPanelMode,
+  getSelectedView,
 } from '../../../store'
 import { RightPanelsSwitch } from '../../../store/Viewer/types'
 import css from './styles.module.css'
@@ -14,6 +15,8 @@ import { Text } from '@consta/uikit/Text'
 
 export const RightPanelHeader = () => {
   const rightPaneType = useAppSelector(getRightPanelType)
+  // Признак был ли выбран Layout
+  const isViewTypeLayout = useAppSelector(getSelectedView)?.elementType === 'Layout'
   const dispatch = useAppDispatch()
 
   const toggaleRightPane = () => {
@@ -35,7 +38,7 @@ export const RightPanelHeader = () => {
         <Text size="xs" className="m-r-xs">
           {text}
         </Text>
-        <Switch checked={isCheked} size="s" onChange={onCheck} />
+        {isViewTypeLayout ? <Switch checked={isCheked} size="s" onChange={onCheck} /> : null}
       </div>
       <Button
         onlyIcon={true}

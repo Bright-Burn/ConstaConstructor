@@ -1,8 +1,8 @@
-import { UnionProps } from '../../../../coreTypes'
+import { LayoutElementPropsStyles } from '../../../../coreTypes'
 
 export type BuildedCode = {
   jsxCode: string
   cssCode: string
 }
 
-export type CodeBuilder = (props: UnionProps) => BuildedCode
+export type LayoutStylesBuilder = (props: LayoutElementPropsStyles) => BuildedCode

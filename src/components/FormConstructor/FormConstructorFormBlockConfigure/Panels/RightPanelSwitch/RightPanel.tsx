@@ -3,6 +3,7 @@ import {
   getRightPanelState,
   getRightPanelType,
   RightPanelType,
+  getSelectedView,
 } from '../../../store'
 import css from './styles.module.css'
 
@@ -17,12 +18,17 @@ const rightPanelConfig: Record<RightPanelType, FC> = {
 }
 
 export const RightPanelSwitch = () => {
-  const rightPanelState = useAppSelector(getRightPanelState)
+  const rightPanelVisible = useAppSelector(getRightPanelState)
   const rightPanelMode = useAppSelector(getRightPanelType)
+  // Признак был ли выбран Layout
+  const isViewTypeLayout = useAppSelector(getSelectedView)?.elementType === 'Layout'
 
-  const RightPanelContent = rightPanelConfig[rightPanelMode]
+  // Выбранный компонент в правой части
+  const RightPanelContent = isViewTypeLayout
+    ? rightPanelConfig[rightPanelMode]
+    : rightPanelConfig['Settings']
 
-  return rightPanelState ? (
+  return rightPanelVisible ? (
     <div className={css.rightPanelContainer}>
       <RightPanelHeader />
       <RightPanelContent />
