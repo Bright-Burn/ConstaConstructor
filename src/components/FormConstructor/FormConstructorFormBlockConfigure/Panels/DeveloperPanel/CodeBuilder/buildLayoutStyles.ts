@@ -1,4 +1,4 @@
-import { LayoutElementPropsStyles, LayoutElementStyles, UnionProps } from '../../../../coreTypes'
+import { LayoutElementPropsStyles, LayoutElementStyles } from '../../../../coreTypes'
 import { spacingStyles } from './classNameMapping'
 import { BuildedCode, LayoutStylesBuilder } from './types'
 
@@ -10,7 +10,7 @@ import { BuildedCode, LayoutStylesBuilder } from './types'
 export const buildLayoutStyles: LayoutStylesBuilder = props => {
   const buildedCode: BuildedCode = {
     cssCode: buildCssCode(props.styles || null, props.className || null),
-    jsxCode: `<Layout \n${buildConstaProps(props)}\n/>`,
+    jsxCode: `<Layout \n${buildConstaProps(props)}/>`,
   }
 
   return buildedCode
