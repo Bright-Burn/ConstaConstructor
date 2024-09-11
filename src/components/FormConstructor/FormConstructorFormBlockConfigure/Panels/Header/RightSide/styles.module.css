@@ -1,0 +1,19 @@
+.container {
+    height: 136px;
+    width: 600px;
+    background-color: var(--color-bg-default);
+    border-radius: 0.5rem;
+    padding: var(--space-xs);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modalHeight {
+    height: 136px;
+    min-height: 136px;
+}
