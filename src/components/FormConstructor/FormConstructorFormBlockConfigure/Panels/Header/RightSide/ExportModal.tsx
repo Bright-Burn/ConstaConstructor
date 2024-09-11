@@ -1,0 +1,43 @@
+import { useState } from 'react'
+import { IconClose } from '@consta/icons/IconClose'
+import { Button } from '@consta/uikit/Button'
+import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
+import { Modal } from '@consta/uikit/Modal'
+import { TextField } from '@consta/uikit/TextField'
+
+import styles from './styles.module.css'
+
+interface IExportModal {
+  onClose: () => void
+  isOpen: boolean
+}
+type exportType = 'json' | 'html'
+const exportItems: exportType[] = ['json', 'html']
+export const ExportModal: React.FC<IExportModal> = ({ isOpen, onClose }) => {
+  const [exportType, setExportType] = useState<exportType>('json')
+  const onChangeExportType = (value: 'json' | 'html') => {
+    setExportType(value)
+  }
+  return (
+    <Modal isOpen={isOpen} className={styles.modalHeight} onClickOutside={onClose} onEsc={onClose}>
+      <div className={styles.container}>
+        <div className={styles.title}>
+          Export{' '}
+          <Button onlyIcon={true} iconLeft={IconClose} view="ghost" size="xs" onClick={onClose} />
+        </div>
+        <TextField size="xs" withClearButton={true} />
+        <ChoiceGroup
+          items={exportItems}
+          name="exportType"
+          getItemLabel={(item: string) => item}
+          value={exportType}
+          size="xs"
+          onChange={onChangeExportType}
+        />
+        <div>
+          <Button label="Save" size="xs" />
+        </div>
+      </div>
+    </Modal>
+  )
+}
