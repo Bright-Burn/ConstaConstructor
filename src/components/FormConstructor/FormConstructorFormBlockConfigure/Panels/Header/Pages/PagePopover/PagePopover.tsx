@@ -13,14 +13,7 @@ import type { IPagePopover } from './types'
 
 import styles from '../styles.module.css'
 
-export const PagePopover: FC<IPagePopover> = ({
-  selectedPageId,
-  isNameEdited,
-  pages,
-  setNewPageName,
-  changePage,
-  changeIsNameEdited,
-}) => {
+export const PagePopover: FC<IPagePopover> = ({ selectedPageId, pages, changePage }) => {
   const [isPopoverOpened, setPopoverOpened] = useState<boolean>(false)
   const anchorRef = useRef<HTMLButtonElement>(null)
   const dispatch = useAppDispatch()
@@ -61,7 +54,6 @@ export const PagePopover: FC<IPagePopover> = ({
                 <Card key={page.id} shadow={false} className={styles.popoverPageBlock} form="round">
                   <PageButton
                     changePage={changePage}
-                    changeIsNameEdited={changeIsNameEdited}
                     index={index}
                     page={page}
                     isSelectedPage={selectedPageId === page.id}

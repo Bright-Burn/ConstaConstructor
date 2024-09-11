@@ -35,10 +35,6 @@ export const Pages = () => {
     pageName && dispatch(changePageName(pageName))
   }
 
-  const changeIsNameEdited = () => {
-    setIsNameEdited(!isNameEdited)
-  }
-
   const visiblePages = pages.slice(0, 7)
   const pagesUnderPopover = pages.slice(7)
 
@@ -49,7 +45,6 @@ export const Pages = () => {
           return (
             <PageButton
               changePage={changePage}
-              changeIsNameEdited={changeIsNameEdited}
               index={index}
               page={page}
               isSelectedPage={selectedPageId === page.id}
@@ -60,12 +55,9 @@ export const Pages = () => {
         })}
         <div className={styles.divider} />
         <PagePopover
-          isNameEdited={isNameEdited}
           selectedPageId={selectedPageId}
           pages={pagesUnderPopover}
-          setNewPageName={setNewPageName}
           changePage={changePage}
-          changeIsNameEdited={changeIsNameEdited}
         />
       </div>
     </div>

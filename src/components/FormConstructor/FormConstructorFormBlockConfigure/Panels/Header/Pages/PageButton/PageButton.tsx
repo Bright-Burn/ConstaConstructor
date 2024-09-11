@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import { IconClose } from '@consta/icons/IconClose'
-import { IconEdit } from '@consta/icons/IconEdit'
 import { Button } from '@consta/uikit/Button'
 
 import { deletePage as deletePageAction, useAppDispatch } from '../../../../../store'
@@ -9,18 +8,8 @@ import type { IPageButton } from './types'
 
 import styles from '../styles.module.css'
 
-export const PageButton: FC<IPageButton> = ({
-  isSelectedPage,
-  pageId,
-  page,
-  changePage,
-  changeIsNameEdited,
-}) => {
+export const PageButton: FC<IPageButton> = ({ isSelectedPage, pageId, page, changePage }) => {
   const dispatch = useAppDispatch()
-
-  const changeValueName = () => {
-    changeIsNameEdited()
-  }
 
   const deletePage = (pageId: string) => {
     dispatch(deletePageAction(pageId))
@@ -39,7 +28,7 @@ export const PageButton: FC<IPageButton> = ({
       />
       <Button
         iconLeft={IconClose}
-        view="clear"
+        view={isSelectedPage ? 'ghost' : 'clear'}
         size="xs"
         form="brick"
         onlyIcon={true}
