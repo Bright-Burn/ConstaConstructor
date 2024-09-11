@@ -1,10 +1,12 @@
+export type { RightPanelType } from './types'
+export { RightPanelsSwitch } from './types'
 export {
   onSetViewMode,
+  setRightPanelMode,
   toggleComponentsStructurePanel,
   toggleGrid,
   togglePanels,
   toggleSettingsPanelState,
-  setRightPanelMode,
 } from './viewerActions'
 export {
   checkIsGridVisible,
@@ -14,4 +16,3 @@ export {
   getRightPanelType,
 } from './viewerSelectors'
 export { ViewerSlice } from './viewerSlice'
-export { RightPanelType, RightPanelsSwitch } from './types'

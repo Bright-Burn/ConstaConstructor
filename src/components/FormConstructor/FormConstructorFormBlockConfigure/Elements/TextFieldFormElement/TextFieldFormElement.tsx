@@ -3,10 +3,10 @@ import { TextField } from '@consta/uikit/TextField'
 
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
+import { getIsFilledClassName } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ITextFieldFormElement } from './types'
-import { getIsFilledClassName } from '../../../utils'
 
 export const TextFieldFormElement: FC<ITextFieldFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props

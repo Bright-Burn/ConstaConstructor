@@ -1,16 +1,18 @@
+import type { FC } from 'react'
+
+import type { RightPanelType } from '../../../store'
 import {
-  useAppSelector,
   getRightPanelState,
   getRightPanelType,
-  RightPanelType,
   getSelectedView,
+  useAppSelector,
 } from '../../../store'
-import css from './styles.module.css'
+import { FormConstructorFormBlockConfigure } from '../../FormConstructorFormBlockConfigure'
 
 import { OpenRightPaneButton } from './OpenRightPaneButton'
-import { FC } from 'react'
-import { FormConstructorFormBlockConfigure } from '../../FormConstructorFormBlockConfigure'
 import { RightPanelHeader } from './RightPanelHeader'
+
+import css from './styles.module.css'
 
 const rightPanelConfig: Record<RightPanelType, FC> = {
   DeveloperPanel: () => <FormConstructorFormBlockConfigure.DeveloperPanel />,

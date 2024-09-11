@@ -3,10 +3,10 @@ import { Button } from '@consta/uikit/Button'
 
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
+import { getIsFilledClassName } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IButtonFormElement } from './types'
-import { getIsFilledClassName } from '../../../utils'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   // const [buttonProps] = useState<ButtonProps>()

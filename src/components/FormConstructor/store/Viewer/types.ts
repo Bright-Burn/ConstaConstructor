@@ -1,4 +1,4 @@
-import { Values } from '../../utils'
+import type { Values } from '../../utils'
 
 export type ViewerSliceState = {
   isGridVisible: boolean

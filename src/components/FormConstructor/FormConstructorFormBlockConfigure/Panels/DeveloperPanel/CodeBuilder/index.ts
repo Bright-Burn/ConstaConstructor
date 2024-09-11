@@ -1,2 +1,2 @@
 export { buildLayoutStyles } from './buildLayoutStyles'
-export { BuildedCode } from './types'
+export type { BuildedCode } from './types'

@@ -1,4 +1,4 @@
-export const spacingStyles = {
+export const spacingStyles: Record<string, string> = {
   // Отступы справа
   'p-r-3xs': 'padding-right: 2px;',
   'p-r-2xs': 'padding-right: 4px;',

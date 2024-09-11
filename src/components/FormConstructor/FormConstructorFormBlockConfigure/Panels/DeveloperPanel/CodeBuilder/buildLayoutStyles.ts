@@ -1,6 +1,7 @@
-import { LayoutElementPropsStyles, LayoutElementStyles } from '../../../../coreTypes'
+import type { LayoutElementPropsStyles, LayoutElementStyles } from '../../../../coreTypes'
+
 import { spacingStyles } from './classNameMapping'
-import { BuildedCode, LayoutStylesBuilder } from './types'
+import type { BuildedCode, LayoutStylesBuilder } from './types'
 
 /**
  * Строит код выбранного компонента
@@ -19,25 +20,26 @@ export const buildLayoutStyles: LayoutStylesBuilder = props => {
 const buildConstaProps = (obj: LayoutElementPropsStyles): string => {
   const props = obj.constaProps
   let resultString = ''
-  for (let key in props) {
-    const value = props[key]
-    typeof value != 'string'
+  Object.entries(props).forEach(([key, value]) => {
+    typeof value !== 'string'
       ? (resultString += `${key}={${value}}\n`)
       : (resultString += `${key}={'${value}'}\n`)
-  }
+  })
+
   return resultString
 }
 
 const buildCssCode = (styles: LayoutElementStyles | null, classNames: string | null) => {
-  let resultString = ''
+  let resultString = '{'
   const upperCaseRegex = /[A-Z]/g
 
-  for (let key in styles) {
-    const value = styles[key]
-    const newKey = key.replace(upperCaseRegex, match => {
-      return `-${match.toLocaleLowerCase()}`
+  if (styles) {
+    Object.entries(styles).forEach(([key, value]) => {
+      const newKey = key.replace(upperCaseRegex, match => {
+        return `-${match.toLocaleLowerCase()}`
+      })
+      resultString += `${newKey}: ${value}\n`
     })
-    resultString += `${newKey}: ${value}\n`
   }
 
   classNames?.split(' ').forEach(className => {
@@ -46,5 +48,5 @@ const buildCssCode = (styles: LayoutElementStyles | null, classNames: string | n
     }
   })
 
-  return resultString
+  return `${resultString}}`
 }

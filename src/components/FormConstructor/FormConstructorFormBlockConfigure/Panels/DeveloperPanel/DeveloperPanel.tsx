@@ -1,8 +1,11 @@
-import { FC } from 'react'
-import { CodeText } from './CodeText'
-import styles from './styles.module.css'
+import type { FC } from 'react'
+
 import { getSelectedViewPropsSelector, useAppSelector } from '../../../store'
+
 import { buildLayoutStyles } from './CodeBuilder'
+import { CodeText } from './CodeText'
+
+import styles from './styles.module.css'
 
 export const DeveloperPanel: FC = () => {
   const selectedViewProps = useAppSelector(getSelectedViewPropsSelector)

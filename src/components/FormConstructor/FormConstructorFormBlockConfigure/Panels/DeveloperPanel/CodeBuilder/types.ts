@@ -1,4 +1,4 @@
-import { LayoutElementPropsStyles } from '../../../../coreTypes'
+import type { LayoutElementPropsStyles } from '../../../../coreTypes'
 
 export type BuildedCode = {
   jsxCode: string

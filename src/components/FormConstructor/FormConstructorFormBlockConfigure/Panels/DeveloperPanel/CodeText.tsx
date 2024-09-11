@@ -1,8 +1,10 @@
-import { FC } from 'react'
-import { CodeTextProps } from './types'
-import styles from './styles.module.css'
+import type { FC } from 'react'
 import { IconCopy } from '@consta/icons/IconCopy'
 import { Button } from '@consta/uikit/Button'
+
+import type { CodeTextProps } from './types'
+
+import styles from './styles.module.css'
 
 export const CodeText: FC<CodeTextProps> = ({ text, label }) => {
   const onCopyClick = async () => {

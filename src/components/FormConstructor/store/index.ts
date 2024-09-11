@@ -60,18 +60,18 @@ export {
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'
 export { useAppDispatch, useAppSelector } from './setupStore'
+export type { RightPanelType } from './Viewer'
 export {
   checkIsGridVisible,
   checkViewMode,
   getComponentsStructurePanelState,
   getRightPanelState,
-  onSetViewMode,
   getRightPanelType,
+  onSetViewMode,
+  RightPanelsSwitch,
+  setRightPanelMode,
   toggleComponentsStructurePanel,
   toggleGrid,
   togglePanels,
   toggleSettingsPanelState,
-  setRightPanelMode,
-  RightPanelType,
-  RightPanelsSwitch,
 } from './Viewer'

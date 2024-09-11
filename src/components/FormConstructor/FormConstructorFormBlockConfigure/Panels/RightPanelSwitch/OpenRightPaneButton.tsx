@@ -1,7 +1,9 @@
+import type { FC } from 'react'
 import { IconArrowLeft } from '@consta/icons/IconArrowLeft'
 import { Button } from '@consta/uikit/Button'
-import { FC } from 'react'
-import { useAppDispatch, togglePanels } from '../../../store'
+
+import { togglePanels, useAppDispatch } from '../../../store'
+
 import css from './styles.module.css'
 
 export const OpenRightPaneButton: FC = () => {

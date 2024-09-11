@@ -1,6 +1,6 @@
 import type { AppDispatch } from '../setupStore'
-import { RightPanelType } from './types'
 
+import type { RightPanelType } from './types'
 import { ViewerSlice } from './viewerSlice'
 
 const {

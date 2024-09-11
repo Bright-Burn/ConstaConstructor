@@ -1,17 +1,19 @@
 import { IconClose } from '@consta/icons/IconClose'
 import { Button } from '@consta/uikit/Button'
 import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
+
 import {
-  useAppSelector,
   getRightPanelType,
-  useAppDispatch,
-  togglePanels,
-  setRightPanelMode,
   getSelectedView,
+  setRightPanelMode,
+  togglePanels,
+  useAppDispatch,
+  useAppSelector,
 } from '../../../store'
 import { RightPanelsSwitch } from '../../../store/Viewer/types'
+
 import css from './styles.module.css'
-import { Text } from '@consta/uikit/Text'
 
 export const RightPanelHeader = () => {
   const rightPaneType = useAppSelector(getRightPanelType)

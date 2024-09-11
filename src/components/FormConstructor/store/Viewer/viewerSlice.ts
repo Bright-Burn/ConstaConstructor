@@ -1,6 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-import { RightPanelsSwitch, RightPanelType, ViewerSliceState } from './types'
+
+import type { RightPanelType, ViewerSliceState } from './types'
+import { RightPanelsSwitch } from './types'
 
 const initialState: ViewerSliceState = {
   isGridVisible: true,
