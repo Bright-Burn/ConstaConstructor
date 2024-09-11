@@ -5,6 +5,10 @@
     white-space: pre-wrap;
 }
 
+.code_dark {
+    background-color: #606b5a;
+}
+
 .code_pane {
     overflow-y: auto;
     gap: 1.2rem

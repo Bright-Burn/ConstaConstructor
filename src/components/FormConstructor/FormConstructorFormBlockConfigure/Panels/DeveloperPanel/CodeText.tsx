@@ -5,8 +5,11 @@ import { Button } from '@consta/uikit/Button'
 import type { CodeTextProps } from './types'
 
 import styles from './styles.module.css'
+import { useTheme } from '../../../utils'
 
 export const CodeText: FC<CodeTextProps> = ({ text, label }) => {
+  const theme = useTheme()
+
   const onCopyClick = async () => {
     try {
       await navigator.clipboard.writeText(text)
@@ -21,7 +24,10 @@ export const CodeText: FC<CodeTextProps> = ({ text, label }) => {
         <p className="p-b-xs">{label}</p>
         <Button size="xs" onlyIcon={true} view="ghost" iconLeft={IconCopy} onClick={onCopyClick} />
       </div>
-      <p className={`p-l-xs p-r-xs p-b-xs p-t-xs ${styles.code}`}>{text}</p>
+      <p
+        className={`p-l-xs p-r-xs p-b-xs p-t-xs ${styles.code} ${theme === 'dark' ? styles.code_dark : ''}`}>
+        {text}
+      </p>
     </div>
   ) : null
 }
