@@ -1,0 +1,43 @@
+.pagesBlock {
+  height: 33px;
+  padding: var(--space-xs);
+  overflow: hidden;
+}
+
+.pageBlock {
+  display: flex;
+  align-items: center;
+  margin: 0.2rem;
+}
+
+.popoverPageBlock {
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-s);
+}
+
+.pages {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.iconGrid {
+  margin-right: var(--space-s);
+}
+.pageContainer:hover {
+  background-color: var(--color-bg-ghost);
+}
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+.divider {
+  border-right: 1px solid var(--color-bg-border);
+  height: 12px;
+  margin-left: var(--space-xs);
+  margin-right: var(--space-xs);
+}
