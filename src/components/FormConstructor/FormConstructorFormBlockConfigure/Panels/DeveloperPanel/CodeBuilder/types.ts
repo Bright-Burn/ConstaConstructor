@@ -5,4 +5,7 @@ export type BuildedCode = {
   cssCode: string
 }
 
-export type LayoutStylesBuilder = (props: LayoutElementPropsStyles) => BuildedCode
+export type LayoutStylesBuilder = (
+  componentName: string,
+  props: LayoutElementPropsStyles,
+) => BuildedCode

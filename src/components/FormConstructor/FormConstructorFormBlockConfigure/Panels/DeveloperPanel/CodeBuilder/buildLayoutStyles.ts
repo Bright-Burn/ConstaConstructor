@@ -5,18 +5,24 @@ import type { BuildedCode, LayoutStylesBuilder } from './types'
 
 /**
  * Строит код выбранного компонента
+ * @param componentName Наименование компонента
  * @param props Пропсы(настройки) выбранного компонента
  * @returns Сгенерированный код компонента
  */
-export const buildLayoutStyles: LayoutStylesBuilder = props => {
+export const buildLayoutStyles: LayoutStylesBuilder = (componentName, props) => {
   const buildedCode: BuildedCode = {
-    cssCode: buildCssCode(props.styles || null, props.className || null),
+    cssCode: buildCssCode(componentName, props.styles || null, props.className || null),
     jsxCode: `<Layout \n${buildConstaProps(props)}/>`,
   }
 
   return buildedCode
 }
 
+/**
+ * Строит стили из дизайн системы для элемента
+ * @param obj Оъект стилей
+ * @returns
+ */
 const buildConstaProps = (obj: LayoutElementPropsStyles): string => {
   const props = obj.constaProps
   let resultString = ''
@@ -29,8 +35,19 @@ const buildConstaProps = (obj: LayoutElementPropsStyles): string => {
   return resultString
 }
 
-const buildCssCode = (styles: LayoutElementStyles | null, classNames: string | null) => {
-  let resultString = '{'
+/**
+ * Строит css стили
+ * @param componentName Наименование комопнента
+ * @param styles Стили
+ * @param classNames classname
+ * @returns
+ */
+const buildCssCode = (
+  componentName: string,
+  styles: LayoutElementStyles | null,
+  classNames: string | null,
+) => {
+  let resultString = `.${componentName} {\n`
   const upperCaseRegex = /[A-Z]/g
 
   if (styles) {
