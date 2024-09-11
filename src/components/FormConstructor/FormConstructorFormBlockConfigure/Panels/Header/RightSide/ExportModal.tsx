@@ -3,6 +3,7 @@ import { IconClose } from '@consta/icons/IconClose'
 import { Button } from '@consta/uikit/Button'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Modal } from '@consta/uikit/Modal'
+import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import styles from './styles.module.css'
@@ -22,7 +23,9 @@ export const ExportModal: React.FC<IExportModal> = ({ isOpen, onClose }) => {
     <Modal isOpen={isOpen} className={styles.modalHeight} onClickOutside={onClose} onEsc={onClose}>
       <div className={styles.container}>
         <div className={styles.title}>
-          Export{' '}
+          <Text view="primary" size="xs">
+            Export{' '}
+          </Text>
           <Button onlyIcon={true} iconLeft={IconClose} view="ghost" size="xs" onClick={onClose} />
         </div>
         <TextField size="xs" withClearButton={true} />
@@ -32,6 +35,7 @@ export const ExportModal: React.FC<IExportModal> = ({ isOpen, onClose }) => {
           getItemLabel={(item: string) => item}
           value={exportType}
           size="xs"
+          view="ghost"
           onChange={onChangeExportType}
         />
         <div>
