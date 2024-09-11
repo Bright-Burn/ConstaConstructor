@@ -21,7 +21,7 @@ export const PageButton: FC<IPageButton> = ({ isSelectedPage, pageId, page, chan
         view={isSelectedPage ? 'ghost' : 'clear'}
         label={page.name}
         size="xs"
-        form="brick"
+        form="defaultBrick"
         onClick={() => {
           changePage(pageId)
         }}
@@ -30,7 +30,7 @@ export const PageButton: FC<IPageButton> = ({ isSelectedPage, pageId, page, chan
         iconLeft={IconClose}
         view={isSelectedPage ? 'ghost' : 'clear'}
         size="xs"
-        form="brick"
+        form="brickDefault"
         onlyIcon={true}
         onClick={() => {
           deletePage(pageId)
