@@ -7,5 +7,4 @@ export type IPageButton = {
   index: number
   page: PageOfLayout
   changePage: (pageId: string) => void
-  changeIsNameEdited: () => void
 }
