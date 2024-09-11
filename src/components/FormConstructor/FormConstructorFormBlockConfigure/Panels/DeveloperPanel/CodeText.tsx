@@ -6,6 +6,7 @@ import type { CodeTextProps } from './types'
 
 import styles from './styles.module.css'
 import { useTheme } from '../../../utils'
+import { Text } from '@consta/uikit/Text'
 
 export const CodeText: FC<CodeTextProps> = ({ text, label }) => {
   const theme = useTheme()
@@ -20,8 +21,10 @@ export const CodeText: FC<CodeTextProps> = ({ text, label }) => {
   }
   return text.length ? (
     <div>
-      <div className="container-row space-between">
-        <p className="p-b-xs">{label}</p>
+      <div className="container-row space-between space-center m-b-xs">
+        <Text size="xs" view="secondary">
+          {label}
+        </Text>
         <Button size="xs" onlyIcon={true} view="ghost" iconLeft={IconCopy} onClick={onCopyClick} />
       </div>
       <p

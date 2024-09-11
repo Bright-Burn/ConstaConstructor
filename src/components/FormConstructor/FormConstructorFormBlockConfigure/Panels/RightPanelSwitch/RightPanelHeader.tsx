@@ -37,7 +37,7 @@ export const RightPanelHeader = () => {
   return (
     <div className={css.rightPanelTitle}>
       <div className="container-row">
-        <Text size="xs" className="m-r-xs">
+        <Text size="xs" view="primary" className="m-r-xs">
           {text}
         </Text>
         {isViewTypeLayout ? <Switch checked={isCheked} size="s" onChange={onCheck} /> : null}
