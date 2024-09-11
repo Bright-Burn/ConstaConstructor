@@ -19,7 +19,7 @@ export const ComponentItems = () => {
         size="xs"
         leftSide={IconSearchStroked}
         placeholder="component name"
-        className="m-b-xs p-l-xs p-r-xs"
+        className="m-b-xs "
         onChange={onSearch}
       />
       <div className={styles.componentItems}>

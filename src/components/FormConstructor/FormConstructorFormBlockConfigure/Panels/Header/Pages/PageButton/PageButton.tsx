@@ -7,6 +7,8 @@ import { deletePage as deletePageAction, useAppDispatch } from '../../../../../s
 
 import type { IPageButton } from './types'
 
+import styles from '../styles.module.css'
+
 export const PageButton: FC<IPageButton> = ({
   isSelectedPage,
   pageId,
@@ -25,7 +27,7 @@ export const PageButton: FC<IPageButton> = ({
   }
 
   return (
-    <>
+    <div className={styles.pageContainer}>
       <Button
         view={isSelectedPage ? 'ghost' : 'clear'}
         label={page.name}
@@ -35,30 +37,16 @@ export const PageButton: FC<IPageButton> = ({
           changePage(pageId)
         }}
       />
-      {!!isSelectedPage && (
-        <>
-          <Button
-            iconLeft={IconEdit}
-            view="ghost"
-            size="xs"
-            form="brick"
-            onlyIcon={true}
-            onClick={() => {
-              changeValueName()
-            }}
-          />
-          <Button
-            iconLeft={IconClose}
-            view="ghost"
-            size="xs"
-            form="brick"
-            onlyIcon={true}
-            onClick={() => {
-              deletePage(pageId)
-            }}
-          />
-        </>
-      )}
-    </>
+      <Button
+        iconLeft={IconClose}
+        view="clear"
+        size="xs"
+        form="brick"
+        onlyIcon={true}
+        onClick={() => {
+          deletePage(pageId)
+        }}
+      />
+    </div>
   )
 }

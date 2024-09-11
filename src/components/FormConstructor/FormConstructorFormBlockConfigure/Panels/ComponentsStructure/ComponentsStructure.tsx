@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { IconArrowRight } from '@consta/icons/IconArrowRight'
+import { IconClose } from '@consta/icons/IconClose'
 import { Button } from '@consta/uikit/Button'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Tabs } from '@consta/uikit/Tabs'
+import { Text } from '@consta/uikit/Text'
 
 import {
   checkViewMode,
@@ -12,6 +14,8 @@ import {
   useAppSelector,
 } from '../../../store'
 
+import { componentCards } from './ComponentItems/content'
+import { PageName } from './PageName/PageName'
 import { BaseComponents } from './BaseComponents'
 import { ComponentsGrid } from './ComponentGrid'
 import { ComponentItems } from './ComponentItems'
@@ -46,8 +50,18 @@ export const ComponentsStructure = () => {
   if (isViewMode) {
     return null
   }
+  console.log('L53 componentsStructurePanelState ===', componentsStructurePanelState)
   return componentsStructurePanelState ? (
     <div className={styles.componentStructure}>
+      <div className={styles.toggleContainer}>
+        <Text weight="light" size="xs" view="primary">
+          Project
+        </Text>
+        <Button onlyIcon={true} iconLeft={IconClose} size="xs" view="ghost" onClick={togglePanel} />
+      </div>
+      <div className="m-b-xs  m-t-xs">
+        <PageName />
+      </div>
       <ChoiceGroup
         items={choiceItems}
         className="m-b-xs"

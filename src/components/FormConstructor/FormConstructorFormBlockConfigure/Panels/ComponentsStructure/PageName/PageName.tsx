@@ -5,31 +5,33 @@ import { Button } from '@consta/uikit/Button'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
+import { usePageName } from './PageService'
+
 import style from '../../Header/Header.module.css'
 
-interface IProjectName {
-  projectName: string | null
-  onChangeProjectName: (value: string | null) => void
-}
-export const ProjectName: React.FC<IProjectName> = ({ onChangeProjectName, projectName }) => {
-  const [isEditingProjectName, setIsEditingProjectName] = useState(false)
+export const PageName: React.FC = () => {
+  const [isEditingPageName, setIsEditingPageName] = useState(false)
+  const { onChangePageName, projectName, onSubmitPageName } = usePageName()
+
   const onStartEditing = () => {
-    setIsEditingProjectName(true)
+    setIsEditingPageName(true)
   }
   const onEndEditing = () => {
-    setIsEditingProjectName(false)
+    onSubmitPageName()
+    setIsEditingPageName(false)
   }
 
   return (
     <div className={`${style.projectName} container-row`}>
-      {isEditingProjectName ? (
+      {isEditingPageName ? (
         <>
           {' '}
           <TextField
+            className="m-r-2xs"
             size="xs"
             value={projectName}
             type="text"
-            onChange={onChangeProjectName}
+            onChange={onChangePageName}
           />{' '}
           <Button
             view="clear"

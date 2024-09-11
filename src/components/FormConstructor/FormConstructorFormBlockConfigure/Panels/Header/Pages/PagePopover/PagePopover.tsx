@@ -8,7 +8,6 @@ import { Popover } from '@consta/uikit/Popover'
 
 import { addNewPage, useAppDispatch } from '../../../../../store'
 import { PageButton } from '../PageButton'
-import { PageEdit } from '../PageEdit'
 
 import type { IPagePopover } from './types'
 
@@ -60,23 +59,15 @@ export const PagePopover: FC<IPagePopover> = ({
             {pages.map((page, index) => {
               return (
                 <Card key={page.id} shadow={false} className={styles.popoverPageBlock} form="round">
-                  {selectedPageId === page.id && isNameEdited ? (
-                    <PageEdit
-                      defaultPageName={page.name}
-                      isSelectedPage={selectedPageId === page.id}
-                      setNewPageName={setNewPageName}
-                    />
-                  ) : (
-                    <PageButton
-                      changePage={changePage}
-                      changeIsNameEdited={changeIsNameEdited}
-                      index={index}
-                      page={page}
-                      isSelectedPage={selectedPageId === page.id}
-                      pageId={page.id}
-                      pageName={page.name}
-                    />
-                  )}
+                  <PageButton
+                    changePage={changePage}
+                    changeIsNameEdited={changeIsNameEdited}
+                    index={index}
+                    page={page}
+                    isSelectedPage={selectedPageId === page.id}
+                    pageId={page.id}
+                    pageName={page.name}
+                  />
                 </Card>
               )
             })}

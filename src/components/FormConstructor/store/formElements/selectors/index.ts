@@ -5,6 +5,7 @@ export {
   getInstanceProps,
   getSelectedViewPropsSelector,
 } from './instanceSelectors'
+export { getPages, getSelectedPageName } from './pageSelectors'
 export {
   getViewInfoDict,
   getViewInfoLabelByIdSelector,
