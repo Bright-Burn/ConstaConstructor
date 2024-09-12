@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { cnRcTree } from '@consta/rc-tree-adapter/RcTree'
 import { rcTreeAdapter } from '@consta/rc-tree-adapter/rcTreeAdapter'
 import RCTree from 'rc-tree'
@@ -13,6 +13,7 @@ import {
   useAppSelector,
 } from '../../../../../store'
 
+import { customNode } from './CustomNode'
 import type { ITree } from './types'
 
 export const Tree: FC<ITree> = ({ data }) => {
@@ -65,8 +66,9 @@ export const Tree: FC<ITree> = ({ data }) => {
       expandedKeys={expandedKeys}
       defaultExpandAll={true}
       onSelect={onSelect}
-      onExpand={onExpand}
-    />
+      onExpand={onExpand}>
+      {data.map(node => customNode({ ...node }))}
+    </RCTree>
   )
 }
 
