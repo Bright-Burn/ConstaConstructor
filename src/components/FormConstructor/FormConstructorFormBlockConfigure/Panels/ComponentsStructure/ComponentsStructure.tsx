@@ -3,7 +3,6 @@ import { IconArrowRight } from '@consta/icons/IconArrowRight'
 import { IconClose } from '@consta/icons/IconClose'
 import { Button } from '@consta/uikit/Button'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
-import { Tabs } from '@consta/uikit/Tabs'
 import { Text } from '@consta/uikit/Text'
 
 import {
@@ -14,14 +13,11 @@ import {
   useAppSelector,
 } from '../../../store'
 
-import { componentCards } from './ComponentItems/content'
-import { PageName } from './PageName/PageName'
 import { BaseComponents } from './BaseComponents'
-import { ComponentsGrid } from './ComponentGrid'
 import { ComponentItems } from './ComponentItems'
 import { ComponentTree } from './ComponentTree'
-import { choiceItems, componentsTabItems, EChoiceItems } from './content'
-import type { ComponentsTabItem } from './types'
+import { choiceItems, EChoiceItems } from './content'
+import { PageName } from './PageName'
 
 import styles from './styles.module.css'
 
