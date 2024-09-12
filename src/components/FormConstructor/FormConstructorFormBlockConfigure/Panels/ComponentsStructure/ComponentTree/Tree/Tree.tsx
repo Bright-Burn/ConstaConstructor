@@ -13,7 +13,7 @@ import {
   useAppSelector,
 } from '../../../../../store'
 
-import { customNode } from './CustomNode'
+import { Title } from './CustomNode'
 import type { ITree } from './types'
 
 export const Tree: FC<ITree> = ({ data }) => {
@@ -65,9 +65,10 @@ export const Tree: FC<ITree> = ({ data }) => {
       selectedKeys={[selectedView?.elementId ?? '']}
       expandedKeys={expandedKeys}
       defaultExpandAll={true}
+      titleRender={Title}
       onSelect={onSelect}
       onExpand={onExpand}>
-      {data.map(node => customNode({ ...node }))}
+      {/*{data.map(node => customNode({ ...node }))}*/}
     </RCTree>
   )
 }

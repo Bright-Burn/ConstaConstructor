@@ -2,8 +2,6 @@ import React from 'react'
 import { Text } from '@consta/uikit/Text'
 import { TreeNode } from 'rc-tree'
 
-import type { Node } from './Tree'
-
 import styles from './styles.module.css'
 export type Node = {
   key: string
@@ -13,8 +11,8 @@ export type Node = {
   disableCheckbox?: boolean
 }
 
-const Title: React.FC<{ element: string }> = ({ element }) => {
-  if (element === 'Layout') {
+export const Title: React.FC<Node> = ({ title }) => {
+  if (title === 'Layout') {
     return (
       <div className={styles.treeNode}>
         <svg
@@ -30,7 +28,7 @@ const Title: React.FC<{ element: string }> = ({ element }) => {
           />
         </svg>
         <Text size="xs" view="primary" className="m-l-2xs">
-          {element}
+          {title}
         </Text>
       </div>
     )
@@ -50,20 +48,8 @@ const Title: React.FC<{ element: string }> = ({ element }) => {
         />
       </svg>
       <Text size="xs" view="primary" className="m-l-2xs">
-        {element}
+        {title}
       </Text>
     </div>
-  )
-}
-
-export const customNode = (params: Node) => {
-  const { title, key, visible = true, children, disableCheckbox } = params
-  return (
-    <TreeNode
-      key={key}
-      title={<Title element={title} />}
-      disableCheckbox={disableCheckbox || !visible}>
-      {!!children && !!visible && children.map(node => customNode({ ...node }))}
-    </TreeNode>
   )
 }
