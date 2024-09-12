@@ -43,7 +43,7 @@ export const BaseComponents: FC = () => {
     <div className={styles.baseComponentsPanel}>
       <div className={styles.buttonsSaveLoad}>
         <Text view="secondary" size="xs">
-          Импортировать компонент
+          Downloads
         </Text>
         <FileField id="loader" multiple={true} onChange={onChange}>
           {props => (

@@ -31,6 +31,7 @@ import type {
   UnionProps,
 } from '../../../coreTypes'
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../coreTypes'
+import { NotFound } from '../../../SharedComponents'
 import { getSelectedView, getSelectedViewPropsSelector, useAppSelector } from '../../../store'
 import { isElementProps } from '../../../utils'
 
@@ -53,7 +54,6 @@ import { InformerSettings } from './InformerSettings'
 import { LabelSetting } from './LabelSetting'
 import { LayoutSettings } from './LayoutSettings'
 import { ListSettings } from './ListSettings'
-import { NotFound } from './NotFound'
 import { RadioButtonSettings } from './RadioButtonSettings'
 import { SelectSettings } from './SelectSettings'
 import { SwitchSettings } from './SwitchSettings'
