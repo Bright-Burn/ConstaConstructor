@@ -6,6 +6,8 @@ import { Modal } from '@consta/uikit/Modal'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
+import { useProject } from '../headerServices'
+
 import styles from './styles.module.css'
 
 interface IExportModal {
@@ -16,8 +18,18 @@ type exportType = 'json' | 'html'
 const exportItems: exportType[] = ['json', 'html']
 export const ExportModal: React.FC<IExportModal> = ({ isOpen, onClose }) => {
   const [exportType, setExportType] = useState<exportType>('json')
+  const [projectName, setProjectName] = useState<string>('Новый проект')
+  const { saveToHtml, onSaveProject } = useProject()
   const onChangeExportType = (value: 'json' | 'html') => {
     setExportType(value)
+  }
+  const onSave = () => {
+    if (exportType === 'json') onSaveProject(projectName)
+    else saveToHtml(projectName)
+    onClose()
+  }
+  const onChangeProjectName = (value: string | null) => {
+    setProjectName(value ?? '')
   }
   return (
     <Modal isOpen={isOpen} className={styles.modalHeight} onClickOutside={onClose} onEsc={onClose}>
@@ -28,7 +40,12 @@ export const ExportModal: React.FC<IExportModal> = ({ isOpen, onClose }) => {
           </Text>
           <Button onlyIcon={true} iconLeft={IconClose} view="ghost" size="xs" onClick={onClose} />
         </div>
-        <TextField size="xs" withClearButton={true} />
+        <TextField
+          size="xs"
+          withClearButton={true}
+          value={projectName}
+          onChange={onChangeProjectName}
+        />
         <ChoiceGroup
           items={exportItems}
           name="exportType"
@@ -39,7 +56,7 @@ export const ExportModal: React.FC<IExportModal> = ({ isOpen, onClose }) => {
           onChange={onChangeExportType}
         />
         <div>
-          <Button label="Save" size="xs" />
+          <Button label="Save" size="xs" onClick={onSave} />
         </div>
       </div>
     </Modal>

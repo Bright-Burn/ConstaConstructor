@@ -6,9 +6,9 @@ import { Modal } from '@consta/uikit/Modal'
 import { MainIcon } from '../../../../../Icons'
 import { checkViewMode, useAppSelector } from '../../../store'
 
-import { RightSide } from './RightSide/RightSide'
 import { HotKeyPaneNote } from './Help'
 import { Pages } from './Pages'
+import { RightSide } from './RightSide'
 
 import style from './Header.module.css'
 

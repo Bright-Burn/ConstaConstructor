@@ -16,7 +16,7 @@ import { ExportModal } from './ExportModal'
 
 export const RightSide = () => {
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false)
-  const { onDownloadProject, saveToHtml, onSaveProject } = useProject()
+  const { onDownloadProject } = useProject()
   const theme = useTheme()
 
   const toggleTheme = () => {
@@ -63,22 +63,7 @@ export const RightSide = () => {
           />
         )}
       </FileField>
-      <Button
-        label="export"
-        className="m-r-xs"
-        view="primary"
-        size="xs"
-        onClick={onToggleExportModal}
-      />
-      <Button
-        label="json"
-        iconLeft={IconUpload}
-        className="m-r-xs"
-        view="primary"
-        size="xs"
-        onClick={onSaveProject}
-      />
-      <Button label="html" view="primary" size="xs" iconLeft={IconUpload} onClick={saveToHtml} />
+      <Button label="export" view="primary" size="xs" onClick={onToggleExportModal} />
       <ExportModal isOpen={isExportModalOpen} onClose={onToggleExportModal} />
     </div>
   )

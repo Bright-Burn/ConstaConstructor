@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { JsonHelper } from '../../../../../helpers'
 import type { FormConstructorToSave } from '../../../projectSaveLoad'
 import {
@@ -12,7 +10,6 @@ import { readFile } from '../../../utils'
 
 export const useProject = () => {
   const dispatch = useAppDispatch()
-  const [projectName, setProjectName] = useState<string | null>('Новый проект')
 
   const onDownloadProject = (e: DragEvent | React.ChangeEvent) => {
     const target = e.target as EventTarget & HTMLInputElement
@@ -27,15 +24,12 @@ export const useProject = () => {
     }
   }
 
-  const onSaveProject = () => {
-    //TODO почему то тут стоит проверка на null, по идее название проекта ведь должно быть всегда
-    if (projectName) dispatch(saveProjectToFile({ name: projectName, description: '' }))
+  const onSaveProject = (projectName: string) => {
+    dispatch(saveProjectToFile({ name: projectName, description: '' }))
   }
-  const onChangeProjectName = (value: string | null) => {
-    setProjectName(value)
+
+  const saveToHtml = (projectName: string) => {
+    dispatch(saveProjectToHTML({ name: projectName, description: '' }))
   }
-  const saveToHtml = () => {
-    if (projectName) dispatch(saveProjectToHTML({ name: projectName, description: '' }))
-  }
-  return { onDownloadProject, onSaveProject, onChangeProjectName, projectName, saveToHtml }
+  return { onDownloadProject, onSaveProject, saveToHtml }
 }
