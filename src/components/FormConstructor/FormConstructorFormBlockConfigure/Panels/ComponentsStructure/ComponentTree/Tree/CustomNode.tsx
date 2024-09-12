@@ -56,14 +56,14 @@ const Title: React.FC<{ element: string }> = ({ element }) => {
   )
 }
 
-export const customNode = (params: Node & { handleClick: (key: string) => void }) => {
-  const { title, key, visible = true, children, disableCheckbox, handleClick } = params
+export const customNode = (params: Node) => {
+  const { title, key, visible = true, children, disableCheckbox } = params
   return (
     <TreeNode
       key={key}
       title={<Title element={title} />}
       disableCheckbox={disableCheckbox || !visible}>
-      {!!children && !!visible && children.map(node => customNode({ handleClick, ...node }))}
+      {!!children && !!visible && children.map(node => customNode({ ...node }))}
     </TreeNode>
   )
 }
