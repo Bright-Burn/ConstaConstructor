@@ -1,6 +1,10 @@
 .commentTree {
   flex-grow: 1;
-  overflow-y: auto;
-  overflow-x: auto;
+  width: fit-content;
   margin: 0.2rem;
+}
+.scrollContainer {
+  overflow: auto;
+  width: 223px;
+  flex-grow: 1;
 }
