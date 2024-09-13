@@ -1,3 +1,4 @@
+import { LayoutElementProps, LayoutElementStyles } from '../../../../coreTypes'
 import { buildConstaPropsCommon, ConstaPropsStyles } from './buildConstaPropsCommon'
 import { buildCssCodeCommon, CssCodeStyles } from './buildCssCodeCommon'
 
@@ -10,14 +11,12 @@ import type { BuildedCode, LayoutStylesBuilder } from './types'
  * @returns Сгенерированный код компонента
  */
 export const buildLayoutStyles: LayoutStylesBuilder = (componentName, props) => {
-  const propsStyles: CssCodeStyles = {}
   const constaProps: ConstaPropsStyles = {}
+  let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
   if (props.styles) {
-    Object.entries(props.styles).forEach(([key, value]) => {
-      propsStyles[key] = value
-    })
+    propsStyles = layoutCssToCommon(props.styles)
   }
 
   // Преобразуем к типу аргумента функции билдера
@@ -31,4 +30,24 @@ export const buildLayoutStyles: LayoutStylesBuilder = (componentName, props) => 
   }
 
   return buildedCode
+}
+
+/**
+ * Собирает из пропсов Layout объект со свойствами, имеющиемеся в css - подготовительный этап для сборки в валидный css
+ * @param styles Объект стилей Layout
+ * @returns
+ */
+const layoutCssToCommon = (styles: LayoutElementStyles): CssCodeStyles => {
+  const propsStyles: CssCodeStyles = {}
+
+  for (let [key, value] of Object.entries(styles)) {
+    // Игнорируем свойство borderSide пока нет правильной реализации, и нет возможности устаналивать border с определенной стороны
+    if (key === 'borderSide') {
+      continue
+    }
+
+    propsStyles[key] = value
+  }
+
+  return propsStyles
 }
