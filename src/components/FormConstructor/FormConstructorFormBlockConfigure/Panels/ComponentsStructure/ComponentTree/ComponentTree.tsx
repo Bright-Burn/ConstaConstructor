@@ -18,10 +18,11 @@ export const ComponentTree = () => {
   const allElementsMap = useAppSelector(getFormElAsMap)
   const selectedPageId = useAppSelector(getSelectedPageId)
   const viewsInfoStruct = useAppSelector(getViewInfoDict)
-  console.count('tree')
   return (
-    <div className={styles.commentTree}>
-      <Tree data={getTree(allElementsMap, allElements, selectedPageId, viewsInfoStruct)} />
+    <div className={styles.scrollContainer}>
+      <div className={styles.commentTree}>
+        <Tree data={getTree(allElementsMap, allElements, selectedPageId, viewsInfoStruct)} />
+      </div>
     </div>
   )
 }

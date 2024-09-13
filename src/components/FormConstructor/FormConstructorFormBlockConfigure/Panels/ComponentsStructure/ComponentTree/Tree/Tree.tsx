@@ -67,9 +67,8 @@ export const Tree: FC<ITree> = ({ data }) => {
       defaultExpandAll={true}
       titleRender={Title}
       onSelect={onSelect}
-      onExpand={onExpand}>
-      {/*{data.map(node => customNode({ ...node }))}*/}
-    </RCTree>
+      onExpand={onExpand}
+    />
   )
 }
 
