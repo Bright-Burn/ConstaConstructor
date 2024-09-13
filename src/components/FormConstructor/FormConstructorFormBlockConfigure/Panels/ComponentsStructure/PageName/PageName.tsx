@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { IconCheck } from '@consta/icons/IconCheck'
 import { IconEdit } from '@consta/icons/IconEdit'
 import { Button } from '@consta/uikit/Button'
@@ -7,7 +7,7 @@ import { TextField } from '@consta/uikit/TextField'
 
 import { usePageName } from './PageService'
 
-import style from '../../Header/Header.module.css'
+import style from './styles.module.css'
 
 export const PageName: React.FC = () => {
   const [isEditingPageName, setIsEditingPageName] = useState(false)

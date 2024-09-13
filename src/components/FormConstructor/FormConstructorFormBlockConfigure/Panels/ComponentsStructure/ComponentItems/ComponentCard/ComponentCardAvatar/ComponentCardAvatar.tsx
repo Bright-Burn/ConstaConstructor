@@ -1,14 +1,11 @@
 import type { FC } from 'react'
 import uuid from 'react-uuid'
-import { Text } from '@consta/uikit/Text'
 
 import type { IFormElementAvatar } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
-
-import styles from '../styles.module.css'
 
 export const ComponentCardAvatar: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()

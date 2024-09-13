@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import { IconDownload } from '@consta/icons/IconDownload'
 import { IconMoon } from '@consta/icons/IconMoon'
 import { IconSun } from '@consta/icons/IconSun'
-import { IconUpload } from '@consta/icons/IconUpload'
 import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
 import { Switch } from '@consta/uikit/Switch'

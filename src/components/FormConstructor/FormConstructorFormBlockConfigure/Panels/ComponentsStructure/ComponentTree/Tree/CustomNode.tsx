@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text } from '@consta/uikit/Text'
-import { TreeNode } from 'rc-tree'
 
 import styles from './styles.module.css'
 export type Node = {

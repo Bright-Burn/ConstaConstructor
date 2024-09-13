@@ -1,38 +1,17 @@
-import { useState } from 'react'
-import { Card } from '@consta/uikit/Card'
-import { Switch } from '@consta/uikit/Switch'
-import { Text } from '@consta/uikit/Text'
-
-import {
-  changeActivePage,
-  changePageName,
-  checkIsGridVisible,
-  getPages,
-  toggleGrid,
-  useAppDispatch,
-  useAppSelector,
-} from '../../../../store'
+import { changeActivePage, getPages, useAppDispatch, useAppSelector } from '../../../../store'
 
 import { PageButton } from './PageButton'
 import { PagePopover } from './PagePopover'
-import type { PagesProps } from './types'
 
-import style from '../Header.module.css'
 import styles from './styles.module.css'
 
 export const Pages = () => {
   const pages = useAppSelector(getPages)
-  const [isNameEdited, setIsNameEdited] = useState<boolean>(false)
   const { selectedPageId } = useAppSelector(state => state.formConstructor)
   const dispatch = useAppDispatch()
 
   const changePage = (pageId: string) => {
     dispatch(changeActivePage(pageId))
-  }
-
-  const setNewPageName = (pageName: string | null) => {
-    setIsNameEdited(!isNameEdited)
-    pageName && dispatch(changePageName(pageName))
   }
 
   const visiblePages = pages.slice(0, 7)
@@ -44,6 +23,7 @@ export const Pages = () => {
         {visiblePages.map((page, index) => {
           return (
             <PageButton
+              key={page.id}
               changePage={changePage}
               index={index}
               page={page}
