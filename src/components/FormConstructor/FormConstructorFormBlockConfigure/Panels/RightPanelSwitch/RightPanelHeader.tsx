@@ -6,17 +6,17 @@ import { Text } from '@consta/uikit/Text'
 import {
   getRightPanelType,
   getSelectedView,
+  RightPanelsSwitch,
   setRightPanelMode,
   togglePanels,
   useAppDispatch,
   useAppSelector,
 } from '../../../store'
-import { RightPanelsSwitch } from '../../../store/Viewer/types'
 
 import css from './styles.module.css'
 
 export const RightPanelHeader = () => {
-  const rightPaneType = useAppSelector(getRightPanelType)
+  const rightPanelType = useAppSelector(getRightPanelType)
   // Признак был ли выбран Layout
   const isViewTypeLayout = useAppSelector(getSelectedView)?.elementType === 'Layout'
   const dispatch = useAppDispatch()
@@ -31,8 +31,8 @@ export const RightPanelHeader = () => {
     dispatch(setRightPanelMode(mode))
   }
 
-  const text = rightPaneType === RightPanelsSwitch.DeveloperPanel ? 'Разработка' : 'Настройки'
-  const isCheked = rightPaneType === RightPanelsSwitch.DeveloperPanel
+  const text = rightPanelType === RightPanelsSwitch.DeveloperPanel ? 'Разработка' : 'Настройки'
+  const isCheked = rightPanelType === RightPanelsSwitch.DeveloperPanel
 
   return (
     <div className={css.rightPanelTitle}>

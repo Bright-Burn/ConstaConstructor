@@ -1,12 +1,8 @@
 .code {
-    background-color: #967969;
+    background-color: var(--color-bg-default);
     border-radius: 10px;
     word-break: normal;
     white-space: pre-wrap;
-}
-
-.code_dark {
-    background-color: #606b5a;
 }
 
 .code_pane {

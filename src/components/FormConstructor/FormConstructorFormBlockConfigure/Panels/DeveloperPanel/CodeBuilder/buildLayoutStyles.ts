@@ -1,6 +1,6 @@
-import type { LayoutElementPropsStyles, LayoutElementStyles } from '../../../../coreTypes'
+import { buildConstaPropsCommon, ConstaPropsStyles } from './buildConstaPropsCommon'
+import { buildCssCodeCommon, CssCodeStyles } from './buildCssCodeCommon'
 
-import { spacingStyles } from './classNameMapping'
 import type { BuildedCode, LayoutStylesBuilder } from './types'
 
 /**
@@ -10,60 +10,25 @@ import type { BuildedCode, LayoutStylesBuilder } from './types'
  * @returns Сгенерированный код компонента
  */
 export const buildLayoutStyles: LayoutStylesBuilder = (componentName, props) => {
-  const buildedCode: BuildedCode = {
-    cssCode: buildCssCode(componentName, props.styles || null, props.className || null),
-    jsxCode: `<Layout \n${buildConstaProps(props)}/>`,
-  }
+  const propsStyles: CssCodeStyles = {}
+  const constaProps: ConstaPropsStyles = {}
 
-  return buildedCode
-}
-
-/**
- * Строит стили из дизайн системы для элемента
- * @param obj Оъект стилей
- * @returns
- */
-const buildConstaProps = (obj: LayoutElementPropsStyles): string => {
-  const props = obj.constaProps
-  let resultString = ''
-  Object.entries(props).forEach(([key, value]) => {
-    typeof value !== 'string'
-      ? (resultString += `${key}={${value}}\n`)
-      : (resultString += `${key}={'${value}'}\n`)
-  })
-
-  return resultString
-}
-
-/**
- * Строит css стили
- * @param componentName Наименование комопнента
- * @param styles Стили
- * @param classNames classname
- * @returns
- */
-const buildCssCode = (
-  componentName: string,
-  styles: LayoutElementStyles | null,
-  classNames: string | null,
-) => {
-  let resultString = `.${componentName} {\n`
-  const upperCaseRegex = /[A-Z]/g
-
-  if (styles) {
-    Object.entries(styles).forEach(([key, value]) => {
-      const newKey = key.replace(upperCaseRegex, match => {
-        return `-${match.toLocaleLowerCase()}`
-      })
-      resultString += `${newKey}: ${value}\n`
+  // Преобразуем к типу аргумента функции билдера
+  if (props.styles) {
+    Object.entries(props.styles).forEach(([key, value]) => {
+      propsStyles[key] = value
     })
   }
 
-  classNames?.split(' ').forEach(className => {
-    if (className in spacingStyles) {
-      resultString += `${spacingStyles[className]}\n`
-    }
+  // Преобразуем к типу аргумента функции билдера
+  Object.entries(props.constaProps).forEach(([key, value]) => {
+    constaProps[key] = value
   })
 
-  return `${resultString}}`
+  const buildedCode: BuildedCode = {
+    cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
+    jsxCode: `<Layout \n${buildConstaPropsCommon(constaProps)}/>`,
+  }
+
+  return buildedCode
 }
