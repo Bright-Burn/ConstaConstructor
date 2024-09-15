@@ -2,9 +2,6 @@ import { spacingStyles } from './classNameMapping'
 
 export type CssCodeStyles = Record<string, string>
 
-// Список свойств, которые должны браться из переменных окуржения
-const varProperties = new Set(['background-color', 'border-color'])
-
 /**
  * Строит css стили
  * @param componentName Наименование комопнента
@@ -26,12 +23,7 @@ export const buildCssCodeCommon = (
     })
 
     if (value != null) {
-      if (varProperties.has(newKey)) {
-        resultString += `${newKey}: var(--${value});\n`
-      } else {
-        const stringEnding = isPixelValidString(value) ? 'px;\n' : ';\n'
-        resultString += `${newKey}: ${value}` + stringEnding
-      }
+      resultString += `${newKey}: ${value};\n`
     }
   })
 
@@ -42,8 +34,4 @@ export const buildCssCodeCommon = (
   })
 
   return `${resultString}}`
-}
-
-function isPixelValidString(value: string) {
-  return /^-?\d+$/.test(value)
 }

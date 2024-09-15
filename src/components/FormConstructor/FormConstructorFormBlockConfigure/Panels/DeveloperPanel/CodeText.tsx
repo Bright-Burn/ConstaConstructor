@@ -3,8 +3,6 @@ import { IconCopy } from '@consta/icons/IconCopy'
 import { Button } from '@consta/uikit/Button'
 import { Text } from '@consta/uikit/Text'
 
-import { useTheme } from '../../../utils'
-
 import type { CodeTextProps } from './types'
 
 import styles from './styles.module.css'
