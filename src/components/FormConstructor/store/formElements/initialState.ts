@@ -25,7 +25,6 @@ export const initialLayout: ILayoutElement = {
       styles: {
         alignItems: 'normal',
         justifyContent: 'start',
-        borderSide: 'borderAll',
         borderStyle: 'dotted',
         borderWidth: 'thin',
       },

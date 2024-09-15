@@ -29,7 +29,6 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
           styles: {
             alignItems: 'normal',
             justifyContent: 'start',
-            borderSide: 'borderAll',
             borderStyle: 'hidden',
             borderWidth: 'thin',
           },

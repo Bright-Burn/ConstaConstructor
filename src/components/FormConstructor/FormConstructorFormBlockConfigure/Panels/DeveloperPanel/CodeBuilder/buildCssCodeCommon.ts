@@ -2,6 +2,9 @@ import { spacingStyles } from './classNameMapping'
 
 export type CssCodeStyles = Record<string, string>
 
+// Список свойств, которые должны браться из переменных окуржения
+const varProperties = new Set(['background-color', 'border-color'])
+
 /**
  * Строит css стили
  * @param componentName Наименование комопнента
@@ -17,19 +20,17 @@ export const buildCssCodeCommon = (
   let resultString = `.${componentName} {\n`
   const upperCaseRegex = /[A-Z]/g
 
-  if (styles) {
-    Object.entries(styles).forEach(([key, value]) => {
-      const newKey = key.replace(upperCaseRegex, match => {
-        return `-${match.toLocaleLowerCase()}`
-      })
-
-      if (newKey === 'background-color') {
-        resultString += `${newKey}: var(--${value});\n`
-      } else {
-        resultString += `${newKey}: ${value};\n`
-      }
+  Object.entries(styles).forEach(([key, value]) => {
+    const newKey = key.replace(upperCaseRegex, match => {
+      return `-${match.toLocaleLowerCase()}`
     })
-  }
+
+    if (varProperties.has(newKey)) {
+      resultString += `${newKey}: var(--${value});\n`
+    } else {
+      resultString += `${newKey}: ${value};\n`
+    }
+  })
 
   classNames?.split(' ').forEach(className => {
     if (className in spacingStyles) {

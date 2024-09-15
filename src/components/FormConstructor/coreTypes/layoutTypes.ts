@@ -32,13 +32,6 @@ export type BorderStyle =
   | 'outset'
 
 export type BorderWidth = 'inherit' | 'initial' | 'revert' | 'unset' | 'thin' | 'medium' | 'thick'
-export type BorderSide =
-  | 'borderAll'
-  | 'borderLeft'
-  | 'borderRight'
-  | 'borderTop'
-  | 'borderBottom'
-  | 'borderNone'
 
 export type LayoutPropDirection = 'row' | 'column'
 
@@ -65,7 +58,6 @@ export interface LayoutElementStyles {
   borderWidth?: BorderWidth
   borderColor?: ConstaColor
   alignItems?: AlignItems
-  borderSide?: BorderSide
   overflowX?: (typeof overflowX)[number]
   overflowY?: (typeof overflowY)[number]
   borderLeftWidth?: string

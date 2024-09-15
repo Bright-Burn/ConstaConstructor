@@ -35,7 +35,6 @@ const getStyles = (styles: LayoutElementStyles | undefined) => {
     flexWrap: styles?.flexWrap,
     flexBasis: 0,
     alignItems: styles?.alignItems,
-    borderSide: styles?.borderSide,
     backgroundColor: `var(--${styles?.backgroundColor})`,
     overflowX: styles?.overflowX,
     overflowY: styles?.overflowY,

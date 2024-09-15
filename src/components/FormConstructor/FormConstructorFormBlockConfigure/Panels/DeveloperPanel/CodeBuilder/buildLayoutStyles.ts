@@ -1,7 +1,10 @@
-import { LayoutElementProps, LayoutElementStyles } from '../../../../coreTypes'
-import { buildConstaPropsCommon, ConstaPropsStyles } from './buildConstaPropsCommon'
-import { buildCssCodeCommon, CssCodeStyles } from './buildCssCodeCommon'
+import type { LayoutElementStyles } from '../../../../coreTypes'
+import { LayoutElementProps } from '../../../../coreTypes'
 
+import type { ConstaPropsStyles } from './buildConstaPropsCommon'
+import { buildConstaPropsCommon } from './buildConstaPropsCommon'
+import type { CssCodeStyles } from './buildCssCodeCommon'
+import { buildCssCodeCommon } from './buildCssCodeCommon'
 import type { BuildedCode, LayoutStylesBuilder } from './types'
 
 /**
@@ -40,12 +43,7 @@ export const buildLayoutStyles: LayoutStylesBuilder = (componentName, props) => 
 const layoutCssToCommon = (styles: LayoutElementStyles): CssCodeStyles => {
   const propsStyles: CssCodeStyles = {}
 
-  for (let [key, value] of Object.entries(styles)) {
-    // Игнорируем свойство borderSide пока нет правильной реализации, и нет возможности устаналивать border с определенной стороны
-    if (key === 'borderSide') {
-      continue
-    }
-
+  for (const [key, value] of Object.entries(styles)) {
     propsStyles[key] = value
   }
 
