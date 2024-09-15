@@ -25,10 +25,13 @@ export const buildCssCodeCommon = (
       return `-${match.toLocaleLowerCase()}`
     })
 
-    if (varProperties.has(newKey)) {
-      resultString += `${newKey}: var(--${value});\n`
-    } else {
-      resultString += `${newKey}: ${value};\n`
+    if (value != null) {
+      if (varProperties.has(newKey)) {
+        resultString += `${newKey}: var(--${value});\n`
+      } else {
+        const stringEnding = isPixelValidString(value) ? 'px;\n' : ';\n'
+        resultString += `${newKey}: ${value}` + stringEnding
+      }
     }
   })
 
@@ -39,4 +42,8 @@ export const buildCssCodeCommon = (
   })
 
   return `${resultString}}`
+}
+
+function isPixelValidString(value: string) {
+  return /^-?\d+$/.test(value)
 }
