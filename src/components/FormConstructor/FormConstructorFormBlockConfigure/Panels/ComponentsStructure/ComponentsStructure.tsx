@@ -16,25 +16,14 @@ import {
 import { BaseComponents } from './BaseComponents'
 import { ComponentItems } from './ComponentItems'
 import { ComponentTree } from './ComponentTree'
-import { choiceItems, EChoiceItems } from './content'
+import { ChoiceItems, choiceItems } from './content'
 import { PageName } from './PageName'
 
 import styles from './styles.module.css'
 
 export const ComponentsStructure = () => {
-  const [structureView, setStructureView] = useState<EChoiceItems>(EChoiceItems.Components)
+  const [structureView, setStructureView] = useState<keyof typeof ChoiceItems>('Components')
   const isViewMode = useAppSelector(checkViewMode)
-
-  // const getTabContentRenderer = () => {
-  //   switch (structureView) {
-  //     case componentsTabItems[0]:
-  //       return <ComponentsGrid />
-  //     case componentsTabItems[1]:
-  //       return <ComponentItems />
-  //     case componentsTabItems[2]:
-  //       return <BaseComponents />
-  //   }
-  // }
 
   const dispatch = useAppDispatch()
   const componentsStructurePanelState = useAppSelector(getComponentsStructurePanelState)
@@ -46,7 +35,7 @@ export const ComponentsStructure = () => {
   if (isViewMode) {
     return null
   }
-  console.log('L53 componentsStructurePanelState ===', componentsStructurePanelState)
+
   return componentsStructurePanelState ? (
     <div className={styles.componentStructure}>
       <div className={styles.toggleContainer}>
@@ -68,7 +57,7 @@ export const ComponentsStructure = () => {
         view="ghost"
         onChange={setStructureView}
       />
-      {EChoiceItems.Components === structureView ? (
+      {ChoiceItems.Components === structureView ? (
         <>
           <ComponentItems /> <BaseComponents />
         </>
