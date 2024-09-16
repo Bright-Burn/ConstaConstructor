@@ -26,12 +26,6 @@ export const UpdateBaseComponentButton: FC<{ baseComponent: IBaseComponent }> = 
   }
 
   return updateAvailable ? (
-    <Button
-      iconLeft={IconCheck}
-      className="m-r-xs"
-      view="ghost"
-      size="xs"
-      onClick={onButtonUpdateClick}
-    />
+    <Button iconLeft={IconCheck} view="ghost" size="xs" onClick={onButtonUpdateClick} />
   ) : null
 }

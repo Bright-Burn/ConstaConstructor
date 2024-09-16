@@ -13,15 +13,21 @@ import {
   useBaseComponentsSelector,
 } from '../../../../store'
 import { readFile } from '../../../../utils'
+import { componentCards } from '../ComponentItems/content'
 
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 
 import styles from './styles.module.css'
-
-export const BaseComponents: FC = () => {
+interface BaseComponentsProps {
+  searchValue: string
+}
+export const BaseComponents: FC<BaseComponentsProps> = ({ searchValue }) => {
   const { baseComponents } = useBaseComponentsSelector(state => state.baseComponents)
-
   const dispatch = useBaseComponentsDispatch()
+
+  const filteredCards = baseComponents.filter(component =>
+    component.name.toLowerCase().includes(searchValue.toLowerCase()),
+  )
 
   const onChange = (e: DragEvent | React.ChangeEvent) => {
     const target = e.target as EventTarget & HTMLInputElement
@@ -59,7 +65,7 @@ export const BaseComponents: FC = () => {
         </FileField>
       </div>
       <div className={styles.baseComponents}>
-        <BaseComponentCardsList baseComponents={baseComponents} />
+        <BaseComponentCardsList baseComponents={filteredCards} />
       </div>
     </div>
   )

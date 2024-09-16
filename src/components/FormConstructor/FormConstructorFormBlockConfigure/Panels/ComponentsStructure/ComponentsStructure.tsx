@@ -22,6 +22,8 @@ import { PageName } from './PageName'
 import styles from './styles.module.css'
 
 export const ComponentsStructure = () => {
+  const [searchValue, setSearchValue] = useState<string>('')
+
   const [structureView, setStructureView] = useState<keyof typeof ChoiceItems>('Components')
   const isViewMode = useAppSelector(checkViewMode)
 
@@ -30,6 +32,9 @@ export const ComponentsStructure = () => {
 
   const togglePanel = () => {
     dispatch(toggleComponentsStructurePanel())
+  }
+  const onSearch = (value: string | null) => {
+    setSearchValue(value ?? '')
   }
 
   if (isViewMode) {
@@ -59,7 +64,8 @@ export const ComponentsStructure = () => {
       />
       {ChoiceItems.Components === structureView ? (
         <>
-          <ComponentItems /> <BaseComponents />
+          <ComponentItems searchValue={searchValue} onSearch={onSearch} />{' '}
+          <BaseComponents searchValue={searchValue} />
         </>
       ) : (
         <ComponentTree />
