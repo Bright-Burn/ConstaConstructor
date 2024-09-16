@@ -22,7 +22,7 @@ export const buildCssCodeCommon = (
       return `-${match.toLocaleLowerCase()}`
     })
 
-    if (value != null) {
+    if (value !== null) {
       resultString += `${newKey}: ${value};\n`
     }
   })

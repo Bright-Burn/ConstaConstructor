@@ -1,4 +1,4 @@
-export type ConstaPropsStyles = Partial<Record<string, string | number>>
+export type ConstaPropsStyles = Record<string, string>
 
 /**
  * Строит стили из дизайн системы для элемента
