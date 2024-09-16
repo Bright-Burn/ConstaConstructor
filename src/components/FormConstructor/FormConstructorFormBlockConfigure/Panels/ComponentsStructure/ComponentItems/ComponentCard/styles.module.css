@@ -1,11 +1,14 @@
 .componentCard {
   flex: 1;
-  border-radius: 0.5rem;
-  border: 1px solid var(--color-bg-border);
+  display: flex;
+  align-items: center;
   min-height: 24px;
   max-height: 24px;
 }
-
+.componentCard:hover {
+  background-color: var(--color-control-bg-ghost);
+  cursor: pointer;
+}
 .paddingText {
   padding-left: var(--space-2xs);
 }

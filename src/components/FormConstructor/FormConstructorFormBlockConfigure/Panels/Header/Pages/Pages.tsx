@@ -20,8 +20,8 @@ export const Pages = () => {
     dispatch(changeActivePage(pageId))
   }
   // 7 - количество видимых страниц по умолчанию. Мб стоит подумать как это сделать более изящно
-  const visiblePages = pages.slice(0, 7)
-  const pagesUnderPopover = pages.slice(7)
+  const visiblePages = pages.slice(0, 13)
+  const pagesUnderPopover = pages.slice(13)
 
   return (
     <div className={`container-row space-center ${styles.pagesBlock}`}>
