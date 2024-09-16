@@ -19,7 +19,7 @@ export const buildLayoutStyles: LayoutStylesBuilder = (componentName, props) => 
 
   // Преобразуем к типу аргумента функции билдера
   if (props.styles) {
-    propsStyles = layoutCssToCommon(props.styles)
+    propsStyles = layoutCssToCodeStyles(props.styles)
   }
 
   // Преобразуем к типу аргумента функции билдера
@@ -43,15 +43,17 @@ const varProperties = new Set(['backgroundColor', 'borderColor'])
  * @param styles Объект стилей Layout
  * @returns
  */
-const layoutCssToCommon = (styles: LayoutElementStyles): CssCodeStyles => {
+const layoutCssToCodeStyles = (styles: LayoutElementStyles): CssCodeStyles => {
   const propsStyles: CssCodeStyles = {}
 
   for (const [key, value] of Object.entries(styles)) {
-    if (varProperties.has(key)) {
-      propsStyles[key] = `var(--${value})`
-    } else {
-      const preparedValue = isPixelValidString(value) ? `${value}px` : value
-      propsStyles[key] = preparedValue
+    if (value != null) {
+      if (varProperties.has(key)) {
+        propsStyles[key] = `var(--${value})`
+      } else {
+        const preparedValue = isPixelValidString(value) ? `${value}px` : value
+        propsStyles[key] = preparedValue
+      }
     }
   }
 
