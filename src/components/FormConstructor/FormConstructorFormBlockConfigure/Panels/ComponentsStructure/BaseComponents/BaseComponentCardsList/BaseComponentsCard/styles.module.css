@@ -1,9 +1,12 @@
 .componentCard {
   display: flex;
-  flex-direction: column;
-  border-radius: 0.5rem;
-  border: 1px solid var(--color-bg-border);
+  align-items: center;
+}
+.componentCardContainer {
+  display: flex;
   min-height: 24px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .text {

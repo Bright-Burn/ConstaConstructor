@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { IconSearchStroked } from '@consta/icons/IconSearchStroked'
 import { TextField } from '@consta/uikit/TextField'
 
@@ -7,11 +7,11 @@ import { componentCards } from './content'
 
 import styles from './styles.module.css'
 
-export const ComponentItems = () => {
-  const [searchValue, setSearchValue] = useState<string>('')
-  const onSearch = (value: string | null) => {
-    setSearchValue(value ?? '')
-  }
+interface ComponentItemsProps {
+  onSearch: (value: string | null) => void
+  searchValue: string
+}
+export const ComponentItems: React.FC<ComponentItemsProps> = ({ onSearch, searchValue }) => {
   const filteredCards = componentCards.filter(component =>
     component.name.toLowerCase().includes(searchValue.toLowerCase()),
   )

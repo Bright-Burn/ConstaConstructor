@@ -3,6 +3,7 @@ import React from 'react'
 import { Text } from '@consta/uikit/Text'
 
 import { setDraggableBaseComponent, useBaseComponentsDispatch } from '../../../../../../store'
+import { ElementsIcon, LayoutIcon } from '../../../ElementIcons'
 
 import type { IBaseComponentCard } from './types'
 import { UpdateBaseComponentButton } from './UpdateBaseComponentButton'
@@ -20,9 +21,16 @@ export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
   }
 
   return (
-    <div className={styles.componentCard} draggable={true} onDragStart={onDragFormElementStart}>
+    <div
+      className={styles.componentCardContainer}
+      draggable={true}
+      onDragStart={onDragFormElementStart}>
+      <div className={styles.componentCard}>
+        <ElementsIcon />
+
+        <Text className={styles.text}>{baseComponent.description}</Text>
+      </div>
       <UpdateBaseComponentButton baseComponent={baseComponent} />
-      <Text className={styles.text}>{baseComponent.description}</Text>
     </div>
   )
 }
