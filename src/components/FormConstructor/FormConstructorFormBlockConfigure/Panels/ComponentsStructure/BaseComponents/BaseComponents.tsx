@@ -13,7 +13,6 @@ import {
   useBaseComponentsSelector,
 } from '../../../../store'
 import { readFile } from '../../../../utils'
-import { componentCards } from '../ComponentItems/content'
 
 import { BaseComponentCardsList } from './BaseComponentCardsList'
 
