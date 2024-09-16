@@ -35,7 +35,7 @@ export const buildLayoutStyles: LayoutStylesBuilder = (componentName, props) => 
   return buildedCode
 }
 
-// Список свойств, которые должны браться из переменных окуржения
+// Список свойств, значения которых, которые должны браться из переменных окуржения
 const varProperties = new Set(['backgroundColor', 'borderColor'])
 
 /**

@@ -188,7 +188,7 @@ export const useItemsHandlers = (
     }
 
     newProps.props.styles = { ...newProps.props.styles }
-    newProps.props.styles.borderColor = value
+    newProps.props.styles.borderColor = value === 'Null' ? undefined : value
 
     onDispatch(selectedView, newProps)
   }
@@ -200,7 +200,7 @@ export const useItemsHandlers = (
     }
 
     newProps.props.styles = { ...newProps.props.styles }
-    newProps.props.styles.backgroundColor = color
+    newProps.props.styles.backgroundColor = color === 'Null' ? undefined : color
 
     onDispatch(selectedView, newProps)
   }
