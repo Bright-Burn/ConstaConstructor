@@ -1,12 +1,12 @@
 import type { FC } from 'react'
 
-import { useAppSelector } from '../../../store'
+import { getSelectedPageId, useAppSelector } from '../../../store'
 import { DroppableLayer } from '../../DroppableLayer'
 
 import styles from './styles.module.css'
 
 export const FormBlock: FC = () => {
-  const { selectedPageId } = useAppSelector(state => state.formConstructor)
+  const selectedPageId = useAppSelector(getSelectedPageId)
 
   return (
     <div className={styles.formBlockContainer}>

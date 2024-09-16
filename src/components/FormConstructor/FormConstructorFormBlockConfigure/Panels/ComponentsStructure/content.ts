@@ -11,8 +11,8 @@ export const componentsTabItems: ComponentsTabItem[] = [
     label: 'Загрузки',
   },
 ]
-export enum EChoiceItems {
-  Tree = 'Tree',
-  Components = 'Components',
-}
-export const choiceItems: EChoiceItems[] = [EChoiceItems.Tree, EChoiceItems.Components]
+export const ChoiceItems = {
+  Tree: 'Tree',
+  Components: 'Components',
+} as const
+export const choiceItems: (keyof typeof ChoiceItems)[] = ['Components', 'Tree']

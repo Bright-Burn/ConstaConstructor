@@ -10,17 +10,16 @@ import {
 export const usePageName = () => {
   const dispatch = useAppDispatch()
   const selectedPageName = useAppSelector(getSelectedPageName)
-  const [name, setName] = useState<string | null | undefined>(selectedPageName)
+  const [name, setName] = useState<string>(selectedPageName ?? '')
   useEffect(() => {
-    setName(selectedPageName)
+    setName(selectedPageName ?? '')
   }, [selectedPageName])
+
   const onChangePageName = (value: string | null) => {
-    setName(value)
+    setName(value ?? '')
   }
   const onSubmitPageName = () => {
-    dispatch(changePageName(name ?? ''))
-
-    // dispatch(setPageName(name || 'Новый проект'))
+    dispatch(changePageName(name))
   }
   return { onChangePageName, projectName: name, onSubmitPageName }
 }

@@ -1,4 +1,10 @@
-import { changeActivePage, getPages, useAppDispatch, useAppSelector } from '../../../../store'
+import {
+  changeActivePage,
+  getPages,
+  getSelectedPageId,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../store'
 
 import { PageButton } from './PageButton'
 import { PagePopover } from './PagePopover'
@@ -7,13 +13,13 @@ import styles from './styles.module.css'
 
 export const Pages = () => {
   const pages = useAppSelector(getPages)
-  const { selectedPageId } = useAppSelector(state => state.formConstructor)
+  const selectedPageId = useAppSelector(getSelectedPageId)
   const dispatch = useAppDispatch()
 
   const changePage = (pageId: string) => {
     dispatch(changeActivePage(pageId))
   }
-
+  // 7 - количество видимых страниц по умолчанию. Мб стоит подумать как это сделать более изящно
   const visiblePages = pages.slice(0, 7)
   const pagesUnderPopover = pages.slice(7)
 

@@ -12,6 +12,9 @@ export const ComponentItems = () => {
   const onSearch = (value: string | null) => {
     setSearchValue(value ?? '')
   }
+  const filteredCards = componentCards.filter(component =>
+    component.name.toLowerCase().includes(searchValue.toLowerCase()),
+  )
   return (
     <>
       <TextField
@@ -23,20 +26,18 @@ export const ComponentItems = () => {
         onChange={onSearch}
       />
       <div className={styles.componentItems}>
-        {componentCards
-          .filter(component => component.name.toLowerCase().includes(searchValue.toLowerCase()))
-          .map(cc => {
-            return (
-              <ComponentCard
-                key={cc.id}
-                id={cc.id}
-                name={cc.name}
-                formElementType={cc.formElementType}
-                groupElementType={cc.groupElementType}
-                isOuter={cc.isOuter}
-              />
-            )
-          })}
+        {filteredCards.map(cc => {
+          return (
+            <ComponentCard
+              key={cc.id}
+              id={cc.id}
+              name={cc.name}
+              formElementType={cc.formElementType}
+              groupElementType={cc.groupElementType}
+              isOuter={cc.isOuter}
+            />
+          )
+        })}
       </div>
     </>
   )
