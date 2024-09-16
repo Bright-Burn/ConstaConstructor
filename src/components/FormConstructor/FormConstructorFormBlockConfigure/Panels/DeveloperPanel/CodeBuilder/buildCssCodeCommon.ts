@@ -22,9 +22,7 @@ export const buildCssCodeCommon = (
       return `-${match.toLocaleLowerCase()}`
     })
 
-    if (value !== null) {
-      resultString += `${newKey}: ${value};\n`
-    }
+    resultString += `${newKey}: ${value};\n`
   })
 
   classNames?.split(' ').forEach(className => {

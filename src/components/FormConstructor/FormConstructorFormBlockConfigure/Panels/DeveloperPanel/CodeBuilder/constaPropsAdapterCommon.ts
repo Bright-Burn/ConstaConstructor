@@ -2,8 +2,7 @@ import type { UnionProps } from '../../../../coreTypes'
 
 import type { ConstaPropsStyles } from './buildConstaPropsCommon'
 
-// @ts-ignore
-// Временное решение, убрать игнор, когда у всех компонентов появится constaProps
+// @ts-expect-error Временное решение, убрать игнор, когда у всех компонентов появится constaProps
 export const constaPropsAdapterCommon = (props: UnionProps['props']['constaProps']) => {
   const constaProps: ConstaPropsStyles = {}
 
@@ -11,7 +10,7 @@ export const constaPropsAdapterCommon = (props: UnionProps['props']['constaProps
   Object.entries(props).forEach(([key, value]) => {
     if (Array.isArray(value)) {
       constaProps[key] = ''
-    } else if (value !== null && value !== undefined) {
+    } else if (value !== null && value !== undefined && typeof value !== 'object') {
       constaProps[key] = `${value}`
     }
   })

@@ -8,13 +8,16 @@ import type { CodeTextProps } from './types'
 import styles from './styles.module.css'
 
 export const CodeText: FC<CodeTextProps> = ({ text, label }) => {
-  const onCopyClick = async () => {
-    try {
-      await navigator.clipboard.writeText(text)
-      console.log('Copied to clipboard:', text)
-    } catch (error) {
-      console.error('Unable to copy to clipboard:', error)
+  const onCopyClick = () => {
+    const clickAsync = async () => {
+      try {
+        await navigator.clipboard.writeText(text)
+        console.log('Copied to clipboard:', text)
+      } catch (error) {
+        console.error('Unable to copy to clipboard:', error)
+      }
     }
+    clickAsync()
   }
   return text.length ? (
     <div>
