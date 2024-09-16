@@ -3,7 +3,6 @@ import { IconQuestion } from '@consta/icons/IconQuestion'
 import { Button } from '@consta/uikit/Button'
 import { Modal } from '@consta/uikit/Modal'
 
-import { MainIcon } from '../../../../../Icons'
 import { checkViewMode, useAppSelector } from '../../../store'
 
 import { HotKeyPaneNote } from './Help'
@@ -29,8 +28,6 @@ export const Header: React.FC = () => {
   return (
     <div className={`${style.headerContainer} container-row`}>
       <div className="container-row align-center ">
-        <MainIcon />
-        <div className={style.divider} />
         <Button
           view="clear"
           iconRight={IconQuestion}

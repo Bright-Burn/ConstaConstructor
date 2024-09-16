@@ -6,10 +6,3 @@
   padding: var(--space-2xs) var(--space-xs);
   border-bottom: 1px solid var(--color-bg-border);
 }
-
-.divider {
-  border-right: 1px solid var(--color-bg-border);
-  height: 12px;
-  margin-left: var(--space-2xs);
-  margin-right: var(--space-2xs);
-}
