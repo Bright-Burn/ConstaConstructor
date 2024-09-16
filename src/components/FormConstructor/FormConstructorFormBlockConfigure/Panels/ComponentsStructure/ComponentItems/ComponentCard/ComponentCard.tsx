@@ -2,6 +2,7 @@ import type { FC } from 'react'
 
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../../../coreTypes'
 import { SwitchComponent } from '../../../../SwitchComponent'
+import { ElementsIcon, LayoutIcon } from '../../ElementIcons'
 
 import { ComponentCardAvatar } from './ComponentCardAvatar'
 import { ComponentCardAvatarGroup } from './ComponentCardAvatarGroup'
@@ -40,6 +41,7 @@ export const ComponentCard: FC<IComponentCard> = ({
   const testValue = formElementType || groupElementType
   return (
     <div className={styles.componentCard}>
+      {formElementType ? <ElementsIcon /> : <LayoutIcon />}
       {testValue ? (
         <SwitchComponent testValue={testValue}>
           <ComponentCardLayout isOuter={isOuter} name={name} value={FormGroupsDictTypes.Layout} />

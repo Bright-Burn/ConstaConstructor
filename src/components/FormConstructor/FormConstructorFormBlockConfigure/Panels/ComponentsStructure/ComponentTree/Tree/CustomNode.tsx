@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text } from '@consta/uikit/Text'
 
-import { ElementsIcon, LayoutIcon } from './NodeIcons'
+import { ElementsIcon, LayoutIcon } from '../../ElementIcons'
 
 import styles from './styles.module.css'
 export type Node = {
