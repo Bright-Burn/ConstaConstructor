@@ -48,8 +48,8 @@ const layoutCssToCodeStyles = (styles: LayoutElementStyles): CssCodeStyles => {
 
   for (const [key, value] of Object.entries(styles)) {
     // В старых макетах в занчение по умолчания для borderСolor и backgroundColor устанавливается строка Null, для того, чтобы строка Null не попадала в генерацию кода
-    // После создания адаптера и написание кастомного Layout можно будет убрать данную проверку
-    if (value != null && value != 'Null') {
+    // После создания адаптера и написание кастомного Layout можно будет убрать данную проверку, как и проверку borderSide
+    if (value != null && value != 'Null' && key != 'borderSide') {
       if (varProperties.has(key)) {
         propsStyles[key] = `var(--${value})`
       } else {
