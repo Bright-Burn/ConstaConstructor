@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IconSearchStroked } from '@consta/icons/IconSearchStroked'
 import { TextField } from '@consta/uikit/TextField'
 

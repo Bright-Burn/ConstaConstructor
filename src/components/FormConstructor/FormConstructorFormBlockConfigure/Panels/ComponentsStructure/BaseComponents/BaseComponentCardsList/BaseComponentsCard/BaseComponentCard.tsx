@@ -3,7 +3,7 @@ import React from 'react'
 import { Text } from '@consta/uikit/Text'
 
 import { setDraggableBaseComponent, useBaseComponentsDispatch } from '../../../../../../store'
-import { ElementsIcon, LayoutIcon } from '../../../ElementIcons'
+import { ElementsIcon } from '../../../ElementIcons'
 
 import type { IBaseComponentCard } from './types'
 import { UpdateBaseComponentButton } from './UpdateBaseComponentButton'
