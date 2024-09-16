@@ -91,7 +91,6 @@ export type { IFormElementInformer, InformerElement, InformerElementProps } from
 export type { BrandInformerElementProps } from './informerTypes'
 export type { FormInstance, InstanceManager, UnionProps } from './instance'
 export type {
-  BorderSide,
   BorderStyle,
   BorderWidth,
   LayoutElementProps,

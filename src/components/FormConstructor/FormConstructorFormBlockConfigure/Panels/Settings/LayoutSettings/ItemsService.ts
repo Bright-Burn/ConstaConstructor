@@ -3,7 +3,6 @@ import type { LayoutPropHorizontalAlign, LayoutPropVerticalAlign } from '@consta
 import type { ConstaColor } from '../../../../../ConstaPalette'
 import type {
   AlignItems,
-  BorderSide,
   BorderStyle,
   BrandLayoutElementPropsStyles,
   IselectedView,
@@ -182,18 +181,6 @@ export const useItemsHandlers = (
     onDispatch(selectedView, newProps)
   }
 
-  const onChangeBorderSide = (value: BorderSide | null) => {
-    const newProps: BrandLayoutElementPropsStyles = {
-      props: { ...selectedViewProps },
-      type: 'Layout',
-    }
-
-    newProps.props.styles = { ...newProps.props.styles }
-    newProps.props.styles.borderSide = value ? value : undefined
-
-    onDispatch(selectedView, newProps)
-  }
-
   const onChangeBorderColor = (value: ConstaColor) => {
     const newProps: BrandLayoutElementPropsStyles = {
       props: { ...selectedViewProps },
@@ -201,7 +188,7 @@ export const useItemsHandlers = (
     }
 
     newProps.props.styles = { ...newProps.props.styles }
-    newProps.props.styles.borderColor = value
+    newProps.props.styles.borderColor = value === 'Null' ? undefined : value
 
     onDispatch(selectedView, newProps)
   }
@@ -213,7 +200,7 @@ export const useItemsHandlers = (
     }
 
     newProps.props.styles = { ...newProps.props.styles }
-    newProps.props.styles.backgroundColor = color
+    newProps.props.styles.backgroundColor = color === 'Null' ? undefined : color
 
     onDispatch(selectedView, newProps)
   }
@@ -268,7 +255,6 @@ export const useItemsHandlers = (
     onChangeWrap,
     onChangeBorderWidth,
     onChangeBorderStyle,
-    onChangeBorderSide,
     onChangeBorderColor,
     onChangeVerticalAligment,
     onChangeDirection,

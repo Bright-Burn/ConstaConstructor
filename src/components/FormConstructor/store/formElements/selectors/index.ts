@@ -3,7 +3,7 @@ export {
   formInstanceSelector,
   formInstancesSelector,
   getInstanceProps,
-  getselectedViewPropsSelector,
+  getSelectedViewPropsSelector,
 } from './instanceSelectors'
 export {
   getViewInfoDict,

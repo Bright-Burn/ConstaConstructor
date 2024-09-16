@@ -45,7 +45,7 @@ export {
   getInstanceProps,
   getSelectedPageId,
   getSelectedView,
-  getselectedViewPropsSelector,
+  getSelectedViewPropsSelector,
   getSiblingsCount,
   getViewInfoDict,
   getViewInfoLabelByIdSelector,

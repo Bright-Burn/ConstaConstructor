@@ -8,7 +8,7 @@ import type {
 } from '../../../../coreTypes'
 import {
   getSelectedView,
-  getselectedViewPropsSelector,
+  getSelectedViewPropsSelector,
   setInstanceProps,
   useAppDispatch,
   useAppSelector,
@@ -17,7 +17,7 @@ import {
 export const useMarginHandlers = () => {
   const selectedView = useAppSelector(getSelectedView)
   const dispatch = useAppDispatch()
-  const selectedViewProps = useAppSelector(getselectedViewPropsSelector)
+  const selectedViewProps = useAppSelector(getSelectedViewPropsSelector)
 
   if (!selectedViewProps) {
     return {

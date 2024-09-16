@@ -31,7 +31,7 @@ import type {
   UnionProps,
 } from '../../../coreTypes'
 import { FormElementDictTypes, FormGroupsDictTypes } from '../../../coreTypes'
-import { getSelectedView, getselectedViewPropsSelector, useAppSelector } from '../../../store'
+import { getSelectedView, getSelectedViewPropsSelector, useAppSelector } from '../../../store'
 import { isElementProps } from '../../../utils'
 
 import { AvatarGroupSettings } from './AvatarGroupSettings'
@@ -463,7 +463,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
 
 export const SettingPanelQualifier: FC = () => {
   const selectedView = useAppSelector(getSelectedView)
-  const selectedViewProps = useAppSelector(getselectedViewPropsSelector)
+  const selectedViewProps = useAppSelector(getSelectedViewPropsSelector)
 
   return selectedView && selectedViewProps ? (
     <div className={styles.elementSettings}>

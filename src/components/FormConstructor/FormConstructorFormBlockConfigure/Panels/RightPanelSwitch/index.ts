@@ -1,0 +1,1 @@
+export { RightPanelSwitch } from './RightPanel'

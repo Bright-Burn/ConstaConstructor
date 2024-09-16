@@ -3,7 +3,6 @@ import { IconEyeClose } from '@consta/icons/IconEyeClose'
 
 import type {
   AlignItems,
-  BorderSide,
   BorderStyle,
   BorderWidth,
   JustifyContentProps,
@@ -15,20 +14,14 @@ import {
   AlignPositionEnd,
   AlignPositionNormal,
   AlignPositionStart,
-  BorderAll,
-  BorderBottom,
   BorderDashed,
   BorderDott,
   BorderDouble,
   BorderGroove,
   BorderInset,
-  BorderLeft,
-  BorderNone,
   BorderOutset,
   BorderRidge,
-  BorderRight,
   BorderSolid,
-  BorderTop,
   JustifyPositionCenter,
   JustifyPositionEnd,
   JustifyPositionSpaceAround,
@@ -41,7 +34,6 @@ type directionType = { name: LayoutPropDirection }
 type borderStyleType = { name: BorderStyle; icon: IconComponent }
 type justifyContentType = { name: JustifyContentProps; icon: IconComponent }
 type alignItemsType = { name: AlignItems; icon: IconComponent }
-type borderSideType = { name: BorderSide; icon: IconComponent }
 
 export const directionDict: Record<LayoutPropDirection, directionType> = {
   column: { name: 'column' },
@@ -74,15 +66,6 @@ export const alignItemsDict: Record<AlignItems, alignItemsType> = {
   center: { name: 'center', icon: AlignPositionCenter },
   start: { name: 'start', icon: AlignPositionStart },
   end: { name: 'end', icon: AlignPositionEnd },
-}
-
-export const borderSideDict: Record<BorderSide, borderSideType> = {
-  borderNone: { name: 'borderNone', icon: BorderNone },
-  borderLeft: { name: 'borderLeft', icon: BorderLeft },
-  borderRight: { name: 'borderRight', icon: BorderRight },
-  borderTop: { name: 'borderTop', icon: BorderTop },
-  borderBottom: { name: 'borderBottom', icon: BorderBottom },
-  borderAll: { name: 'borderAll', icon: BorderAll },
 }
 
 export const directions: directionType[] = [{ name: 'column' }, { name: 'row' }]
@@ -120,13 +103,5 @@ export const alignItems: alignItemsType[] = [
   { name: 'end', icon: AlignPositionEnd },
 ]
 
-export const borderSide: borderSideType[] = [
-  { name: 'borderNone', icon: BorderNone },
-  { name: 'borderLeft', icon: BorderLeft },
-  { name: 'borderRight', icon: BorderRight },
-  { name: 'borderTop', icon: BorderTop },
-  { name: 'borderBottom', icon: BorderBottom },
-  { name: 'borderAll', icon: BorderAll },
-]
 export type overflowType = 'inherit' | 'scroll' | 'hidden' | 'auto'
 export const overflow: overflowType[] = ['inherit', 'scroll', 'hidden', 'auto']

@@ -1,0 +1,11 @@
+.code {
+    background-color: var(--color-bg-default);
+    border-radius: 10px;
+    word-break: normal;
+    white-space: pre-wrap;
+}
+
+.code_pane {
+    overflow-y: auto;
+    gap: 1.2rem
+}

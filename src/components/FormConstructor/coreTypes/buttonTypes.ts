@@ -16,8 +16,6 @@ import type {
 export type ButtonAction = 'none' | 'ButtonModal'
 
 export interface ButtonProps extends BaseProps, Props {
-  action: ButtonAction
-  activeAction?: boolean
   icon?: IconNames
   iconR?: IconNames
   filled?: boolean

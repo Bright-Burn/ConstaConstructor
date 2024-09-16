@@ -20,7 +20,6 @@ export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
       props: {
         props: {
           size: 'm',
-          action: 'none',
           disabled: false,
           label: 'Кнопка',
           view: 'primary',

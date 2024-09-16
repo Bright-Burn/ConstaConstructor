@@ -1,4 +1,6 @@
 export { ComponentsStructure } from './ComponentsStructure'
+export { DeveloperPanel } from './DeveloperPanel'
 export { FormBlock } from './FormBlock'
 export { Header } from './Header'
+export { RightPanelSwitch } from './RightPanelSwitch'
 export { Settings } from './Settings'

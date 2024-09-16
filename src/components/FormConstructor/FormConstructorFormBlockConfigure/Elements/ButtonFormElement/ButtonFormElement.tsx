@@ -3,6 +3,7 @@ import { Button } from '@consta/uikit/Button'
 
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
+import { getIsFilledClassName } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IButtonFormElement } from './types'
@@ -35,7 +36,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
           parentElementId={element.id}
           elementTypeUsage={ElementTypes.FormElement}
           elementType={FormElementDictTypes.Button}
-          className={isFilled ? 'container-row flex-grow-1' : ''}>
+          className={getIsFilledClassName(isFilled)}>
           <Button
             {...props}
             style={{ flexGrow: isFilled ? 1 : 0 }}

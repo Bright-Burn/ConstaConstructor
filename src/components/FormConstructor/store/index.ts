@@ -36,7 +36,7 @@ export {
   getInstanceProps,
   getSelectedPageId,
   getSelectedView,
-  getselectedViewPropsSelector,
+  getSelectedViewPropsSelector,
   getSiblingsCount,
   getViewInfoDict,
   getViewInfoLabelByIdSelector,
@@ -60,12 +60,16 @@ export {
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'
 export { useAppDispatch, useAppSelector } from './setupStore'
+export type { RightPanelType } from './Viewer'
 export {
   checkIsGridVisible,
   checkViewMode,
   getComponentsStructurePanelState,
-  getSettingsPanelState,
+  getRightPanelState,
+  getRightPanelType,
   onSetViewMode,
+  RightPanelsSwitch,
+  setRightPanelMode,
   toggleComponentsStructurePanel,
   toggleGrid,
   togglePanels,
