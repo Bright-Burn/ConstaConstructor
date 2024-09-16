@@ -3,13 +3,11 @@ import type { ButtonPropForm, ButtonPropSize, ButtonPropView } from '@consta/uik
 
 import type {
   BrandButtonProps,
-  ButtonAction,
   ButtonElement,
   ButtonProps,
   IconNames,
   IselectedView,
 } from '../../../../coreTypes'
-import { buttonActionsActive } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: ButtonElement) => {

@@ -1,5 +1,6 @@
-import { UnionProps } from '../../../../coreTypes'
-import { ConstaPropsStyles } from './buildConstaPropsCommon'
+import type { UnionProps } from '../../../../coreTypes'
+
+import type { ConstaPropsStyles } from './buildConstaPropsCommon'
 
 // @ts-ignore
 // Временное решение, убрать игнор, когда у всех компонентов появится constaProps
