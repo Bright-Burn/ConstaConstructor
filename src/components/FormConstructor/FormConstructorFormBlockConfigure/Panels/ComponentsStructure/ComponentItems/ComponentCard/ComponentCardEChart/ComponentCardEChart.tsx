@@ -7,8 +7,6 @@ import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
 import type { IComponetCardElement } from '../types'
 
-import styles from '../styles.module.css'
-
 export const ComponentCardEChart: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
