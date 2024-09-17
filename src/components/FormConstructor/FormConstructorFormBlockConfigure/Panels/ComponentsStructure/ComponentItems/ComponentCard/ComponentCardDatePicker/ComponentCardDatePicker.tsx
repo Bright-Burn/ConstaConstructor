@@ -38,9 +38,5 @@ export const ComponentCardDatePicker: FC<IComponetCardElement> = ({ name }) => {
     dispatch(setDraggableElement({ element: newDatePicker }))
   }
 
-  return (
-    <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={name} />
-    </div>
-  )
+  return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }

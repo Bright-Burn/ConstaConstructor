@@ -40,8 +40,10 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
   }
   const fullName = isOuter ? `${name} out` : `${name} in`
   return (
-    <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={fullName} />
-    </div>
+    <CardLabel
+      label={fullName}
+      isGroupIcon={true}
+      onStartDragComponentCard={onStartDragComponentCard}
+    />
   )
 }

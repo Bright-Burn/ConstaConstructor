@@ -8,7 +8,10 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.componentCardContainer:hover {
+  background-color: var(--color-control-bg-ghost);
+  cursor: pointer;
+}
 .text {
   padding-left: var(--space-2xs);
 }
