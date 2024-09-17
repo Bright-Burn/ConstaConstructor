@@ -1,7 +1,7 @@
 .componentCard {
   flex: 1;
   display: flex;
-  align-items: center;
+
   min-height: 24px;
   max-height: 24px;
 }
@@ -11,4 +11,9 @@
 }
 .paddingText {
   padding-left: var(--space-2xs);
+}
+.labelContainer {
+  flex-grow: 1;
+  align-items: center;
+  display: flex;
 }

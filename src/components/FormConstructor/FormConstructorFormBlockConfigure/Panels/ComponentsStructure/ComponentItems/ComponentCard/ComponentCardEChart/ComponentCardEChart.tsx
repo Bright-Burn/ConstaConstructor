@@ -26,9 +26,5 @@ export const ComponentCardEChart: FC<IComponetCardElement> = ({ name }) => {
     dispatch(setDraggableElement({ element: newEChart }))
   }
 
-  return (
-    <div draggable={true} className={styles.cardHeight} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={name} />
-    </div>
-  )
+  return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }

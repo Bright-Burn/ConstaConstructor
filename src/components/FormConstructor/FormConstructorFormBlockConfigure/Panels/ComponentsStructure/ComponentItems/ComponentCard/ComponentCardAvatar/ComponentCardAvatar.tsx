@@ -27,9 +27,5 @@ export const ComponentCardAvatar: FC<IComponetCardElement> = ({ name }) => {
     dispatch(setDraggableElement({ element: newAvatar }))
   }
 
-  return (
-    <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={name} />
-    </div>
-  )
+  return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }

@@ -31,9 +31,5 @@ export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
     dispatch(setDraggableElement({ element: newInformer }))
   }
 
-  return (
-    <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={name} />
-    </div>
-  )
+  return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }

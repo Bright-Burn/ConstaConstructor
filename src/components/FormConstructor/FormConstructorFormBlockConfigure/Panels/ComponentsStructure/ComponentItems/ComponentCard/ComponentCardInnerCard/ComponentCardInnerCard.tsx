@@ -38,8 +38,10 @@ export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
   }
 
   return (
-    <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={name} />
-    </div>
+    <CardLabel
+      label={name}
+      isGroupIcon={true}
+      onStartDragComponentCard={onStartDragComponentCard}
+    />
   )
 }

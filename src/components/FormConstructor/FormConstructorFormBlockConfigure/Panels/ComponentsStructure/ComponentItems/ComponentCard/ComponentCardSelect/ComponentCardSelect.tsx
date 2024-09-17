@@ -55,9 +55,5 @@ export const ComponentCardSelect: FC<IComponetCardElement> = ({ name }) => {
     dispatch(setDraggableElement({ element: newSelect }))
   }
 
-  return (
-    <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={name} />
-    </div>
-  )
+  return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }

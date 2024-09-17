@@ -30,9 +30,5 @@ export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
     dispatch(setDraggableElement({ element: newSwitch }))
   }
 
-  return (
-    <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={name} />
-    </div>
-  )
+  return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }

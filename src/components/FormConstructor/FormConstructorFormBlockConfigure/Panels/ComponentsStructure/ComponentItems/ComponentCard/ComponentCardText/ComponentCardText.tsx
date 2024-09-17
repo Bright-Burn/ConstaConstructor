@@ -29,9 +29,5 @@ export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
     dispatch(setDraggableElement({ element: newText }))
   }
 
-  return (
-    <div draggable={true} onDragStart={onStartDragComponentCard}>
-      <CardLabel label={name} />
-    </div>
-  )
+  return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }
