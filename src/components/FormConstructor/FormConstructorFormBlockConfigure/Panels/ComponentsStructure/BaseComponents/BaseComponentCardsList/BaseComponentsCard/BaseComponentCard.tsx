@@ -28,7 +28,9 @@ export const BaseComponentsCard: FC<IBaseComponentCard> = baseComponent => {
       <div className={styles.componentCard}>
         <ElementsIcon />
 
-        <Text className={styles.text}>{baseComponent.description}</Text>
+        <Text className={styles.text} size="xs" view="primary">
+          {baseComponent.description}
+        </Text>
       </div>
       <UpdateBaseComponentButton baseComponent={baseComponent} />
     </div>

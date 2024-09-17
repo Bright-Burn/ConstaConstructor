@@ -31,7 +31,7 @@ export const RightPanelHeader = () => {
     dispatch(setRightPanelMode(mode))
   }
 
-  const text = rightPanelType === RightPanelsSwitch.DeveloperPanel ? 'Разработка' : 'Настройки'
+  const text = rightPanelType === RightPanelsSwitch.DeveloperPanel ? 'DevMode' : 'Settings'
   const isCheked = rightPanelType === RightPanelsSwitch.DeveloperPanel
 
   return (

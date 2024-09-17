@@ -20,7 +20,7 @@ export const CardLabel: React.FC<CardLabelType> = ({
     <div draggable={true} className={styles.labelContainer} onDragStart={onStartDragComponentCard}>
       {isGroupIcon ? <LayoutIcon /> : <ElementsIcon />}
 
-      <Text className={styles.paddingText} view="primary">
+      <Text className={styles.paddingText} view="primary" size="xs">
         {label}
       </Text>
     </div>
