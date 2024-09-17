@@ -45,7 +45,7 @@ export const ComponentsStructure = () => {
     <div className={styles.componentStructure}>
       <div className={styles.toggleContainer}>
         <Text weight="light" size="xs" view="primary">
-          Project
+          Page
         </Text>
         <Button onlyIcon={true} iconLeft={IconClose} size="xs" view="ghost" onClick={togglePanel} />
       </div>

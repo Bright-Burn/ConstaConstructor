@@ -32,7 +32,7 @@ export const SaveModal: React.FC<ISaveModal> = ({ onCloseModal, isModalOpen }) =
   return (
     <Modal isOpen={isModalOpen} className={style.saveModal} onClickOutside={onCloseModal}>
       <div className={style.saveModalContainer}>
-        <Text>Export as component</Text>
+        <Text view="primary">Export as component</Text>
         <TextField
           size="xs"
           form="default"
