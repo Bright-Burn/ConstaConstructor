@@ -1,13 +1,14 @@
-import type { LayoutElementStyles } from '../../../../coreTypes'
+import type { LayoutElementStyles } from '../../../../../coreTypes'
+import type { ConstaPropsStyles } from '../buildConstaPropsCommon'
+import { buildConstaPropsCommon } from '../buildConstaPropsCommon'
+import type { CssCodeStyles } from '../buildCssCodeCommon'
+import { buildCssCodeCommon } from '../buildCssCodeCommon'
+import { constaPropsAdapterCommon } from '../constaPropsAdapterCommon'
+import { varProperties } from '../customPropertiesCommon'
+import { isPixelValidString } from '../isPixelValidString'
+import type { BuildedCode } from '../types'
 
-import type { ConstaPropsStyles } from './buildConstaPropsCommon'
-import { buildConstaPropsCommon } from './buildConstaPropsCommon'
-import type { CssCodeStyles } from './buildCssCodeCommon'
-import { buildCssCodeCommon } from './buildCssCodeCommon'
-import { constaPropsAdapterCommon } from './constaPropsAdapterCommon'
-import { varProperties } from './customPropertiesCommon'
-import { isPixelValidString } from './isPixelValidString'
-import type { BuildedCode, LayoutStylesBuilder } from './types'
+import type { LayoutStylesBuilder } from './types'
 
 /**
  * Строит код выбранного компонента
@@ -15,7 +16,7 @@ import type { BuildedCode, LayoutStylesBuilder } from './types'
  * @param props Пропсы(настройки) выбранного компонента
  * @returns Сгенерированный код компонента
  */
-export const buildLayoutStyles: LayoutStylesBuilder = (componentName, props) => {
+export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера

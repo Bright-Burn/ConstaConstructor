@@ -7,7 +7,8 @@ import {
   useAppSelector,
 } from '../../../store'
 
-import { buildLayoutStyles } from './CodeBuilder'
+import type { BuildedCode } from './CodeBuilder'
+import { codeBuilders } from './CodeBuilder'
 import { CodeText } from './CodeText'
 
 import styles from './styles.module.css'
@@ -16,11 +17,19 @@ export const DeveloperPanel: FC = () => {
   const selectedView = useAppSelector(getSelectedView)
   const selectedViewProps = useAppSelector(getSelectedViewPropsSelector)
   const viewLabel = useAppSelector(getViewInfoLabelByIdSelector(selectedView?.elementId || ''))
+  let code: BuildedCode | null = null
 
-  const code =
-    selectedViewProps?.type === 'Layout'
-      ? buildLayoutStyles(viewLabel, selectedViewProps.props)
-      : undefined
+  if (selectedViewProps) {
+    switch (selectedViewProps.type) {
+      case 'Layout': {
+        const buildFunc = codeBuilders[selectedViewProps.type]
+        if (buildFunc) {
+          code = buildFunc(viewLabel, selectedViewProps)
+        }
+        break
+      }
+    }
+  }
 
   return code ? (
     <div className={`container-column p-r-xs flex-grow-1 p-t-xs ${styles.code_pane}`}>
