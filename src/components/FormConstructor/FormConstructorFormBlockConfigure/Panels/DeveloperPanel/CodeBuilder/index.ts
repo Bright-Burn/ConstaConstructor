@@ -1,2 +1,2 @@
 export { codeBuilders } from './buildCode'
-export type { BuildedCode } from './types'
+export type { GeneratedCode } from './types'

@@ -1,10 +1,10 @@
 import type { AllElementTypes, UnionProps } from '../../../coreTypes'
 
-import type { BuildedCode } from './CodeBuilder'
+import type { GeneratedCode } from './CodeBuilder'
 import { codeBuilders } from './CodeBuilder'
 
 export const getCode = (selectedViewProps: UnionProps, viewLabel: string) => {
-  let code: BuildedCode | null = null
+  let code: GeneratedCode | null = null
 
   switch (selectedViewProps.type) {
     case 'Layout': {

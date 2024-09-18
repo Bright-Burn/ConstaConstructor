@@ -1,6 +1,6 @@
 import type { AllElementTypes, FormInstance } from '../../../../coreTypes'
 
-export type BuildedCode = {
+export type GeneratedCode = {
   jsxCode: string
   cssCode: string
 }
@@ -8,7 +8,7 @@ export type BuildedCode = {
 export type GenericBuildeFunc<T extends AllElementTypes> = (
   componentName: string,
   props: FormInstance<T>['props'],
-) => BuildedCode
+) => GeneratedCode
 
 export type CodeBuilder = {
   [T in AllElementTypes]?: GenericBuildeFunc<T>
