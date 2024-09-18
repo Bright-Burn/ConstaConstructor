@@ -8,6 +8,7 @@ import {
   useAppSelector,
 } from '../../../store'
 import { FormConstructorFormBlockConfigure } from '../../FormConstructorFormBlockConfigure'
+import { codeElements } from '../DeveloperPanel'
 
 import { OpenRightPaneButton } from './OpenRightPaneButton'
 import { RightPanelHeader } from './RightPanelHeader'
@@ -23,10 +24,11 @@ export const RightPanelSwitch = () => {
   const rightPanelVisible = useAppSelector(getRightPanelState)
   const rightPanelMode = useAppSelector(getRightPanelType)
   // Признак был ли выбран Layout
-  const isViewTypeLayout = useAppSelector(getSelectedView)?.elementType === 'Layout'
+  const selectedElementType = useAppSelector(getSelectedView)?.elementType
+  const developPanelAvailable = selectedElementType && codeElements.has(selectedElementType)
 
   // Выбранный компонент в правой части
-  const RightPanelContent = isViewTypeLayout
+  const RightPanelContent = developPanelAvailable
     ? rightPanelConfig[rightPanelMode]
     : rightPanelConfig['Settings']
 
