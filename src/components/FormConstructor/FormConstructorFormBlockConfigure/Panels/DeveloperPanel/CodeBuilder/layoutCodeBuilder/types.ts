@@ -1,7 +1,7 @@
 import type { LayoutElementPropsStyles } from '../../../../../coreTypes'
-import type { BuildedCode } from '../types'
+import type { GeneratedCode } from '../types'
 
 export type LayoutStylesBuilder = (
   componentName: string,
   props: LayoutElementPropsStyles,
-) => BuildedCode
+) => GeneratedCode

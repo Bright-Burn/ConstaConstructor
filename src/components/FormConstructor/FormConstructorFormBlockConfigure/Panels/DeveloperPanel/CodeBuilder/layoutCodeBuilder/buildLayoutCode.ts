@@ -6,7 +6,7 @@ import { buildCssCodeCommon } from '../buildCssCodeCommon'
 import { constaPropsAdapterCommon } from '../constaPropsAdapterCommon'
 import { varProperties } from '../customPropertiesCommon'
 import { isPixelValidString } from '../isPixelValidString'
-import type { BuildedCode } from '../types'
+import type { GeneratedCode } from '../types'
 
 import type { LayoutStylesBuilder } from './types'
 
@@ -27,7 +27,7 @@ export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
   // Преобразуем к типу аргумента функции билдера
   const constaProps: ConstaPropsStyles = constaPropsAdapterCommon(props.constaProps)
 
-  const builtCode: BuildedCode = {
+  const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
     jsxCode: `<Layout \n${buildConstaPropsCommon(constaProps)}/>`,
   }

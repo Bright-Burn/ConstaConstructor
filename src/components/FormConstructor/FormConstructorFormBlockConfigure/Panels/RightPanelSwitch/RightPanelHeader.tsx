@@ -12,13 +12,15 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../../store'
+import { codeElements } from '../DeveloperPanel'
 
 import css from './styles.module.css'
 
 export const RightPanelHeader = () => {
   const rightPanelType = useAppSelector(getRightPanelType)
   // Признак был ли выбран Layout
-  const isViewTypeLayout = useAppSelector(getSelectedView)?.elementType === 'Layout'
+  const selectedElementType = useAppSelector(getSelectedView)?.elementType
+  const developPanelAvailable = selectedElementType && codeElements.has(selectedElementType)
   const dispatch = useAppDispatch()
 
   const toggaleRightPane = () => {
@@ -40,7 +42,7 @@ export const RightPanelHeader = () => {
         <Text size="xs" view="primary" className="m-r-xs">
           {text}
         </Text>
-        {isViewTypeLayout ? <Switch checked={isCheked} size="s" onChange={onCheck} /> : null}
+        {developPanelAvailable ? <Switch checked={isCheked} size="s" onChange={onCheck} /> : null}
       </div>
       <Button
         onlyIcon={true}
