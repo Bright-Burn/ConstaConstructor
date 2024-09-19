@@ -7,7 +7,6 @@ export const constaPropsAdapterCommon = (props: UnionProps['props']['constaProps
   const constaProps: ConstaPropsStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
-  //
   Object.entries(props).forEach(([key, value]) => {
     if (Array.isArray(value)) {
       constaProps[key] = ''
