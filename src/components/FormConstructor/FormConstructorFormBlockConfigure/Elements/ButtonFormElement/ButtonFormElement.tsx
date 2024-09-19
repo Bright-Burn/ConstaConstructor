@@ -12,27 +12,23 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   //логика для заполнения элемента
-  const isFilled = props?.styles.filled || false
+  const isFilled = props?.styles?.filled || false
 
   const buttonConstaProps = props?.constaProps
   const buttonStyles = props?.styles
 
-  return (
-    <>
-      {props ? (
-        <SelectableLayer
-          parentElementId={element.id}
-          elementTypeUsage={ElementTypes.FormElement}
-          elementType={FormElementDictTypes.Button}
-          className={getIsFilledClassName(isFilled)}>
-          <Button
-            {...buttonConstaProps}
-            style={{ flexGrow: isFilled ? 1 : 0 }}
-            iconLeft={buttonStyles?.icon ? Icons[buttonStyles.icon] : undefined}
-            iconRight={buttonStyles?.iconR ? Icons[buttonStyles.iconR] : undefined}
-          />
-        </SelectableLayer>
-      ) : null}
-    </>
-  )
+  return props ? (
+    <SelectableLayer
+      parentElementId={element.id}
+      elementTypeUsage={ElementTypes.FormElement}
+      elementType={FormElementDictTypes.Button}
+      className={getIsFilledClassName(isFilled)}>
+      <Button
+        {...buttonConstaProps}
+        style={{ flexGrow: isFilled ? 1 : 0 }}
+        iconLeft={buttonStyles?.icon ? Icons[buttonStyles.icon] : undefined}
+        iconRight={buttonStyles?.iconR ? Icons[buttonStyles.iconR] : undefined}
+      />
+    </SelectableLayer>
+  ) : null
 }

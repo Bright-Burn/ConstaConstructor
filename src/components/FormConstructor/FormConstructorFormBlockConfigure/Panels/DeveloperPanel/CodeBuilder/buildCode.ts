@@ -1,4 +1,4 @@
-import { buildButtonCode } from './buttonCodeBuilder/buildButtonCode'
+import { buildButtonCode } from './buttonCodeBuilder'
 import { buildLayoutCode } from './layoutCodeBuilder'
 import type { CodeBuilder } from './types'
 

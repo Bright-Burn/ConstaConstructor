@@ -26,7 +26,7 @@ export type ButtonProps = BaseProps & {
   // Типы дизайн системы
   constaProps: Props
   // Кастомные стили
-  styles: {
+  styles?: {
     icon?: IconNames
     iconR?: IconNames
     filled?: boolean

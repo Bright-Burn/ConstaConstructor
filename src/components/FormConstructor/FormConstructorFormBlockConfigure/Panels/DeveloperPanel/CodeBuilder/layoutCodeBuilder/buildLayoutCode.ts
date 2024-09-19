@@ -11,7 +11,7 @@ import type { GeneratedCode } from '../types'
 import type { LayoutStylesBuilder } from './types'
 
 /**
- * Строит код выбранного компонента
+ * Строит код выбранного компонента - Layout
  * @param componentName Наименование компонента
  * @param props Пропсы(настройки) выбранного компонента
  * @returns Сгенерированный код компонента
