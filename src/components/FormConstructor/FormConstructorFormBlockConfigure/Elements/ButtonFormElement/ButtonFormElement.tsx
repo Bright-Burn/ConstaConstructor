@@ -27,8 +27,8 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         className={className}
         {...buttonConstaProps}
         style={{ flexGrow: isFilled ? 1 : 0 }}
-        iconLeft={buttonConstaProps?.icon ? Icons[buttonConstaProps.icon] : undefined}
-        iconRight={buttonConstaProps?.iconR ? Icons[buttonConstaProps.iconR] : undefined}
+        iconLeft={buttonConstaProps?.iconLeft ? Icons[buttonConstaProps.iconLeft] : undefined}
+        iconRight={buttonConstaProps?.iconRight ? Icons[buttonConstaProps.iconRight] : undefined}
       />
     </SelectableLayer>
   ) : null

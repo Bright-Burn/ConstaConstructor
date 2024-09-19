@@ -64,7 +64,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
       props: structuredClone(selectedViewProps),
       type: 'Button',
     }
-    newProps.props.styles.icon = value ? value : undefined
+    newProps.props.constaProps.iconLeft = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
@@ -73,7 +73,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
       props: structuredClone(selectedViewProps),
       type: 'Button',
     }
-    newProps.props.styles.iconR = value ? value : undefined
+    newProps.props.constaProps.iconRight = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
@@ -100,8 +100,8 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
       loading: selectedViewProps.constaProps.loading,
       iconRight: selectedViewProps.constaProps.iconRight,
       onlyIcon: selectedViewProps.constaProps.onlyIcon,
-      icon: selectedViewProps.styles.icon,
-      iconR: selectedViewProps.styles.iconR,
+      icon: selectedViewProps.constaProps.iconLeft,
+      iconR: selectedViewProps.constaProps.iconRight,
     },
   }
 }

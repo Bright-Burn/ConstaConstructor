@@ -37,8 +37,8 @@ export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
 
 /**
  * Собирает из пропсов Layout объект со свойствами, имеющиемеся в css - подготовительный этап для сборки в валидный css
- * @param styles Объект стилей Layout
  * @returns
+ * @param styles Объект стилей Layout
  */
 const layoutCssToCodeStyles = (styles: LayoutElementStyles): CssCodeStyles => {
   const propsStyles: CssCodeStyles = {}

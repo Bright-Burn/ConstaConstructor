@@ -11,14 +11,7 @@ export const constaPropsAdapterCommon = (props: UnionProps['props']['constaProps
     if (Array.isArray(value)) {
       constaProps[key] = ''
     } else if (value !== null && value !== undefined) {
-      if (
-        typeof value === 'boolean' ||
-        typeof value === 'string' ||
-        typeof value === 'number' ||
-        typeof value === 'object'
-      ) {
-        constaProps[key] = value
-      }
+      constaProps[key] = value
     }
   })
   return constaProps

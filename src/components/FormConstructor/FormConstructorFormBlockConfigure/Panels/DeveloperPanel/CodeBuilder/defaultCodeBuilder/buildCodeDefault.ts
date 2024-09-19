@@ -14,7 +14,7 @@ import type { DefaultCodeBuilder } from './types'
  * @param props Пропсы(настройки) выбранного компонента
  * @returns Сгенерированный код компонента
  */
-export const buildCodeDefault: DefaultCodeBuilder = (componentName, JsxName, props) => {
+export const buildCodeDefault: DefaultCodeBuilder = (componentName, jsxName, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
@@ -30,7 +30,7 @@ export const buildCodeDefault: DefaultCodeBuilder = (componentName, JsxName, pro
 
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
-    jsxCode: `<${JsxName} \n${buildConstaPropsCommon(constaProps)}/>`,
+    jsxCode: `<${jsxName} \n${buildConstaPropsCommon(constaProps)}/>`,
   }
 
   return builtCode
