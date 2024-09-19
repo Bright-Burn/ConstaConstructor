@@ -15,10 +15,22 @@ import type {
 ///  | 'RightSidebar' | 'LeftSidebar'
 export type ButtonAction = 'none' | 'ButtonModal'
 
-export interface ButtonProps extends BaseProps, Props {
+// Тип для адаптера
+export interface ButtonProps_Deprecated extends BaseProps, Props {
   icon?: IconNames
   iconR?: IconNames
   filled?: boolean
+}
+
+export type ButtonProps = BaseProps & {
+  // Типы дизайн системы
+  constaProps: Props
+  // Кастомные стили
+  styles: {
+    icon?: IconNames
+    iconR?: IconNames
+    filled?: boolean
+  }
 }
 
 export type BrandButtonProps = BrandProps<ButtonProps, 'Button'>

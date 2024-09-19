@@ -23,10 +23,8 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
   function onFilledChange(value: fillType | null): void {
     const isFilled = value === 'filled'
     if (isElementProps<BrandButtonProps>(props, props.type)) {
-      const newProps: BrandButtonProps = {
-        props: { ...props.props, filled: isFilled },
-        type: props.type,
-      }
+      const newProps: BrandButtonProps = { ...props }
+      newProps.props.styles.filled = value === 'filled'
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandTextFieldProps>(props, props.type)) {
       const newProps: BrandTextFieldProps = {
@@ -48,7 +46,11 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
       dispatch(setInstanceProps(elementId, newProps))
     }
   }
-  const filledValue = props.props.filled ? 'filled' : 'default'
+
+  // Когда пропс будут стандартезированны, тогда не будет условий
+  const filled = props.type === 'Button' ? props.props.styles.filled : props.props.filled
+
+  const filledValue = filled ? 'filled' : 'default'
 
   return (
     <div className={style.choiceGroup}>

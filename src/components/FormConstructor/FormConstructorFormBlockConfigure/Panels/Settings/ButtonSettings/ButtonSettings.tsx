@@ -96,7 +96,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({ selectedViewProps, sele
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.icon}
-            disabled={!selectedViewProps.props.onlyIcon}
+            disabled={!selectedViewProps.props.constaProps.onlyIcon}
             label="iconLeft"
             onChangeIcon={onChangeIcon}
           />
@@ -104,7 +104,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({ selectedViewProps, sele
         <div className={styles.rowSettings}>
           <IconSelectConsta
             selectedIcon={itemsProps.iconR}
-            disabled={!selectedViewProps.props.onlyIcon}
+            disabled={!selectedViewProps.props.constaProps.onlyIcon}
             label="iconRight"
             onChangeIcon={onChangeIconR}
           />

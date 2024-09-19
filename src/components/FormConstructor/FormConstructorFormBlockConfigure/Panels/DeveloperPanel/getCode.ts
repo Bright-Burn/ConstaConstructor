@@ -14,9 +14,16 @@ export const getCode = (selectedViewProps: UnionProps, viewLabel: string) => {
       }
       break
     }
+    case 'Button': {
+      const buildFunc = codeBuilders[selectedViewProps.type]
+      if (buildFunc) {
+        code = buildFunc(viewLabel, selectedViewProps)
+      }
+      break
+    }
   }
   return code
 }
 
 // Элементы для которых реализована панель разработчика
-export const codeElements: Set<AllElementTypes> = new Set(['Layout'])
+export const codeElements: Set<AllElementTypes> = new Set(['Layout', 'Button'])

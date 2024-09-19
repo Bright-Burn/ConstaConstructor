@@ -9,25 +9,13 @@ import { SelectableLayer } from '../../SelectableLayer'
 import type { IButtonFormElement } from './types'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
-  // const [buttonProps] = useState<ButtonProps>()
-  // const [openViewer, setOpenViewer] = useState<boolean>(false)
-  // const [buttonGroup] = useState<IButtonActionElement>()
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  // const onCloseViewer = () => {
-  //   setOpenViewer(false)
-  // }
   //логика для заполнения элемента
-  const isFilled = props?.filled || false
-  // const getActionViwer = () => {
-  //   if (buttonGroup && buttonProps && buttonProps.action !== 'none') {
-  //     const Viewer = FormGroupsDict[buttonProps.action]
-  //     return (
-  //       <Viewer buttonGroup={buttonGroup} openViewer={openViewer} onCloseViewer={onCloseViewer} />
-  //     )
-  //   }
-  //   return null
-  // }
+  const isFilled = props?.styles.filled || false
+
+  const buttonConstaProps = props?.constaProps
+  const buttonStyles = props?.styles
 
   return (
     <>
@@ -38,15 +26,13 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
           elementType={FormElementDictTypes.Button}
           className={getIsFilledClassName(isFilled)}>
           <Button
-            {...props}
+            {...buttonConstaProps}
             style={{ flexGrow: isFilled ? 1 : 0 }}
-            iconLeft={props.icon ? Icons[props.icon] : undefined}
-            iconRight={props.iconR ? Icons[props.iconR] : undefined}
-            // onClick={onButtonClick}
+            iconLeft={buttonStyles?.icon ? Icons[buttonStyles.icon] : undefined}
+            iconRight={buttonStyles?.iconR ? Icons[buttonStyles.iconR] : undefined}
           />
         </SelectableLayer>
       ) : null}
-      {/* {getActionViwer()} */}
     </>
   )
 }
