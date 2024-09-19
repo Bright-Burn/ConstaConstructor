@@ -1,4 +1,4 @@
-export type ConstaPropsStyles = Record<string, string>
+export type ConstaPropsStyles = Record<string, string | number | boolean | object>
 
 /**
  * Строит стили из дизайн системы для элемента

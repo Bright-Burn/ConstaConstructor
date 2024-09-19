@@ -27,7 +27,7 @@ export const LayoutBorderSettings: React.FC<LayoutSettingsType> = ({
         Border
       </Text>
       <ChoiceGroup
-        value={borderStyleDict[itemsProps.styles?.borderStyle || 'hidden']}
+        value={borderStyleDict[itemsProps.styles.borderStyle || 'hidden']}
         items={borderStyle}
         getItemLabel={label => label.name}
         name="BorderStyle"
@@ -39,14 +39,14 @@ export const LayoutBorderSettings: React.FC<LayoutSettingsType> = ({
         }}
       />
       <LayoutPalette
-        color={itemsProps.styles?.borderColor}
+        color={itemsProps.styles.borderColor}
         size="xs"
         onChangeColor={onChangeBorderColor}
       />
       <div className={styles.rowSettings}>
         <TextField
           className={styles.widthFlex}
-          value={itemsProps.styles?.borderTopWidth || '0'}
+          value={itemsProps.styles.borderTopWidth || '0'}
           type="number"
           leftSide="T"
           size="xs"
@@ -63,7 +63,7 @@ export const LayoutBorderSettings: React.FC<LayoutSettingsType> = ({
       <div className={styles.rowSettings}>
         <TextField
           className={styles.widthFlex}
-          value={itemsProps.styles?.borderLeftWidth || '0'}
+          value={itemsProps.styles.borderLeftWidth || '0'}
           type="number"
           leftSide="L"
           size="xs"
@@ -80,7 +80,7 @@ export const LayoutBorderSettings: React.FC<LayoutSettingsType> = ({
       <div className={styles.rowSettings}>
         <TextField
           className={styles.widthFlex}
-          value={itemsProps.styles?.borderRightWidth || '0'}
+          value={itemsProps.styles.borderRightWidth || '0'}
           type="number"
           leftSide="R"
           size="xs"
@@ -97,7 +97,7 @@ export const LayoutBorderSettings: React.FC<LayoutSettingsType> = ({
       <div className={styles.rowSettings}>
         <TextField
           className={styles.widthFlex}
-          value={itemsProps.styles?.borderBottomWidth || '0'}
+          value={itemsProps.styles.borderBottomWidth || '0'}
           type="number"
           leftSide="B"
           size="xs"

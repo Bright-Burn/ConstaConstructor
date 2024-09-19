@@ -10,8 +10,15 @@ export const constaPropsAdapterCommon = (props: UnionProps['props']['constaProps
   Object.entries(props).forEach(([key, value]) => {
     if (Array.isArray(value)) {
       constaProps[key] = ''
-    } else if (value !== null && value !== undefined && typeof value !== 'object') {
-      constaProps[key] = `${value}`
+    } else if (value !== null && value !== undefined) {
+      if (
+        typeof value === 'boolean' ||
+        typeof value === 'string' ||
+        typeof value === 'number' ||
+        typeof value === 'object'
+      ) {
+        constaProps[key] = value
+      }
     }
   })
   return constaProps

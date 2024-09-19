@@ -1,2 +1,2 @@
-export { codeBuilders } from './buildCode'
+export { codeBuilders, codeElements } from './buildCode'
 export type { GeneratedCode } from './types'

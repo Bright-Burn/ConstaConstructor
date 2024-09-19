@@ -24,11 +24,12 @@ export interface ButtonProps_Deprecated extends BaseProps, Props {
 
 export type ButtonProps = BaseProps & {
   // Типы дизайн системы
-  constaProps: Props
-  // Кастомные стили
-  styles?: {
+  constaProps: {
     icon?: IconNames
     iconR?: IconNames
+  } & Props
+  // Кастомные стили
+  styles: {
     filled?: boolean
   }
 }

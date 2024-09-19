@@ -74,7 +74,7 @@ export interface LayoutElementStyles {
 export type LayoutElementPropsStyles = OmitInstanceId<
   BaseProps & {
     constaProps: LayoutElementProps
-    styles?: LayoutElementStyles
+    styles: LayoutElementStyles
   }
 >
 

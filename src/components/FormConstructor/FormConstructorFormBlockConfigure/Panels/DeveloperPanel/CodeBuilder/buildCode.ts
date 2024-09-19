@@ -6,6 +6,9 @@ import type { CodeBuilder } from './types'
  * Общий билдер для генерации кода
  */
 export const codeBuilders: CodeBuilder = {
-  Layout: (name, props) => buildLayoutCode(name, props.props),
-  Button: (name, props) => buildCodeDefault(name, props.props),
-}
+  Layout: (componentLabel, props) => buildLayoutCode(componentLabel, props.props),
+  Button: (componentLabel, props) => buildCodeDefault(componentLabel, 'Button', props.props),
+} as const
+
+// Элементы для которых реализована панель разработчика
+export const codeElements: Set<string> = new Set(Object.keys(codeBuilders))

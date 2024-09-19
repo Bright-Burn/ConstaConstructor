@@ -23,7 +23,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
   function onFilledChange(value: fillType | null): void {
     const isFilled = value === 'filled'
     if (isElementProps<BrandButtonProps>(props, props.type)) {
-      const newProps: BrandButtonProps = { ...props }
+      const newProps: BrandButtonProps = structuredClone(props)
       newProps.props.styles.filled = value === 'filled'
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandTextFieldProps>(props, props.type)) {

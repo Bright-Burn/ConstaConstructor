@@ -6,7 +6,7 @@ export type GeneratedCode = {
 }
 
 export type GenericBuildeFunc<T extends AllElementTypes> = (
-  componentName: string,
+  componentLabel: string,
   props: FormInstance<T>['props'],
 ) => GeneratedCode
 
