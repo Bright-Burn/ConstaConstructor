@@ -1,6 +1,4 @@
-import type { IFormConstructor } from '../../../../coreTypes'
-import type { FormConstructorToSave } from '../../../../projectSaveLoad'
-import type { RootState } from '../../../setupStore'
+import type { IFormConstructor } from '../../../coreTypes'
 import {
   instanceAdapter,
   selectInstanceAll,
@@ -8,7 +6,9 @@ import {
   selectViewInfoAll,
   viewAdapter,
   viewInfoAdapter,
-} from '../../adapters'
+} from '../../formElements'
+import type { RootState } from '../../setupStore'
+import type { FormConstructorToSave } from '../types'
 
 /**
  * Формирует объект для сохраенения из текущего состояния
@@ -24,8 +24,8 @@ export const formConstructorToSave = (state: RootState): FormConstructorToSave =
     numberOfPages: formConstructor.numberOfPages,
     pages: formConstructor.pages,
     selectedPageId: formConstructor.selectedPageId,
-    allElements: views,
-    elementInstances: instances,
+    views,
+    instances,
     viewInfos,
   }
 
@@ -40,8 +40,8 @@ export const formConstructorSaveToState = (save: FormConstructorToSave): IFormCo
   const elementInstances = instanceAdapter.getInitialState()
   const viewInfos = viewInfoAdapter.getInitialState()
 
-  const newAllElements = viewAdapter.addMany(allElements, save.allElements)
-  const newElementInstances = instanceAdapter.addMany(elementInstances, save.elementInstances)
+  const newAllElements = viewAdapter.addMany(allElements, save.views)
+  const newElementInstances = instanceAdapter.addMany(elementInstances, save.instances)
   const newInfos = viewInfoAdapter.addMany(viewInfos, save.viewInfos || [])
 
   const formConstructor: IFormConstructor = {

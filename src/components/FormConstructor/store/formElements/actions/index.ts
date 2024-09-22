@@ -17,9 +17,9 @@ export type {
   UpdateBaseComponentPayload,
 } from './payloads'
 export {
-  loadProjectFromFile,
   loadProjectFromStorage,
-  saveBaseComponent,
+  loadProjectFromString,
+  saveBaseComponentToFile,
   saveProjectToFile,
   saveProjectToHTML,
 } from './saveLoadActions'

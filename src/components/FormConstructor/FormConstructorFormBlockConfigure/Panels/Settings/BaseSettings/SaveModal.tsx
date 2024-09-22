@@ -6,7 +6,7 @@ import { TextField } from '@consta/uikit/TextField'
 
 import {
   getSelectedView,
-  saveBaseComponent,
+  saveBaseComponentToFile,
   useAppDispatch,
   useAppSelector,
 } from '../../../../store'
@@ -25,7 +25,7 @@ export const SaveModal: React.FC<ISaveModal> = ({ onCloseModal, isModalOpen }) =
   }
   const onSaveModule = () => {
     if (selectedView && moduleName) {
-      dispatch(saveBaseComponent(selectedView.elementId, moduleName))
+      dispatch(saveBaseComponentToFile(selectedView.elementId, moduleName))
     }
   }
 

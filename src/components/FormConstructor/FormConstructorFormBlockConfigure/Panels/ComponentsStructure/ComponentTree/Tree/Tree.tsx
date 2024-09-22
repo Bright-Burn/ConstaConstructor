@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cnRcTree } from '@consta/rc-tree-adapter/RcTree'
 import { rcTreeAdapter } from '@consta/rc-tree-adapter/rcTreeAdapter'
 import RCTree from 'rc-tree'

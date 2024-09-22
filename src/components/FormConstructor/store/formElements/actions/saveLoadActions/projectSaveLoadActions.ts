@@ -1,13 +1,19 @@
-import type { FormConstructorToSave, SaveProjectIntent } from '../../../../projectSaveLoad'
-import { ProjectSaveWays, saveProjectData } from '../../../../projectSaveLoad'
+import { JsonHelper } from '../../../../../../helpers'
+import type { FormConstructorToSave, SaveProjectIntent } from '../../../projectSaveLoad'
+import {
+  formConstructorSaveToState,
+  formConstructorToSave,
+  parseProjectString,
+  ProjectSaveWays,
+  saveProject,
+} from '../../../projectSaveLoad'
 import type { AppDispatch, RootState } from '../../../setupStore'
 import { ViewerSlice } from '../../../Viewer'
 import { formConstructorSlice } from '../../formElementsSlice'
 import type { SaveNewProject } from '../payloads'
 
-import { formConstructorSaveToState, formConstructorToSave } from './saveAdapters'
-
-export const loadProjectFromFile = (project: FormConstructorToSave) => (dispatch: AppDispatch) => {
+export const loadProjectFromString = (json: string) => (dispatch: AppDispatch) => {
+  const project = parseProjectString(json)
   dispatch(formConstructorSlice.actions.repalceState(formConstructorSaveToState(project)))
 }
 
@@ -27,7 +33,7 @@ export const saveProjectToFile =
       saveWay: ProjectSaveWays.FILE,
       project: formConstructorToSave(state),
     }
-    saveProjectData(intent)
+    saveProject(intent)
   }
 
 export const saveProjectToHTML =
@@ -40,5 +46,5 @@ export const saveProjectToHTML =
       saveWay: ProjectSaveWays.HTML,
       project: formConstructorToSave(state),
     }
-    saveProjectData(intent)
+    saveProject(intent)
   }

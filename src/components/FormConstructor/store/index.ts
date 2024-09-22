@@ -1,7 +1,8 @@
-export type { BaseComponentSerializable, IBaseComponent } from './baseComponentsItems'
+export type { IBaseComponent } from './baseComponentsItems'
 export {
   addBaseElement,
   getDraggedBaseComponent,
+  loadBaseComponentFromJson,
   setDraggableBaseComponent,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
@@ -43,11 +44,11 @@ export {
   getViewInfoDict,
   getViewInfoLabelByIdSelector,
   insertNewElements,
-  loadProjectFromFile,
   loadProjectFromStorage,
+  loadProjectFromString,
   reorderFormElement,
   sameInstanceElementsIdsSelector,
-  saveBaseComponent,
+  saveBaseComponentToFile,
   saveProjectToFile,
   saveProjectToHTML,
   setDraggableElement,

@@ -5,10 +5,8 @@ import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
 import { Text } from '@consta/uikit/Text'
 
-import { JsonHelper } from '../../../../../../helpers'
-import type { BaseComponentSerializable } from '../../../../store'
 import {
-  addBaseElement,
+  loadBaseComponentFromJson,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../../../store'
@@ -36,9 +34,7 @@ export const BaseComponents: FC<BaseComponentsProps> = ({ searchValue }) => {
 
       filesArray.forEach(file => {
         readFile(file).then(json => {
-          //TODO сделать проверку типов
-          const baseComponent: BaseComponentSerializable = JsonHelper.parse(json)
-          dispatch(addBaseElement(baseComponent))
+          dispatch(loadBaseComponentFromJson(json))
         })
       })
     }
