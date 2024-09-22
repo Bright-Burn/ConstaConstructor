@@ -7,7 +7,6 @@ export {
   formConstructorSaveToState,
   formConstructorToSave,
   saveProject,
-  saveProjectToHtml,
   parseProjectString,
 } from './project'
 export type { BaseComponentToSave, FormConstructorToSave, SaveProjectIntent } from './types'
