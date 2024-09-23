@@ -1,6 +1,5 @@
 export type { IBaseComponent } from './baseComponentsItems'
 export {
-  addBaseElement,
   getDraggedBaseComponent,
   loadBaseComponentFromJson,
   setDraggableBaseComponent,

@@ -11,30 +11,29 @@ export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
   const dispatch = useAppDispatch()
 
   const onStartDragComponentCard = () => {
+    const initButton: IFormElementButton = {
+      id: uuid(),
+      type: FormElementDictTypes.Button,
+      order: 1,
+      props: {
+        props: {
+          constaProps: {
+            size: 'm',
+            disabled: false,
+            label: 'Кнопка',
+            view: 'primary',
+            form: 'default',
+            width: 'default',
+          },
+          className: '',
+          styles: {},
+          baseProps: {},
+        },
+        type: 'Button',
+      },
+    }
     dispatch(setDraggableElement({ element: initButton }))
   }
 
   return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
-}
-
-const initButton: IFormElementButton = {
-  id: uuid(),
-  type: FormElementDictTypes.Button,
-  order: 1,
-  props: {
-    props: {
-      constaProps: {
-        size: 'm',
-        disabled: false,
-        label: 'Кнопка',
-        view: 'primary',
-        form: 'default',
-        width: 'default',
-      },
-      className: '',
-      styles: {},
-      baseProps: {},
-    },
-    type: 'Button',
-  },
 }

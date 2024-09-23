@@ -43,7 +43,7 @@ export const addNewView =
     const changeLinksCountPayloads: ChangeElementLinkCountPayload[] = []
     // Массив для хранения новых инстансов
     const formInstances: FormInstance<AllElementTypes>[] = []
-
+    console.log(addPayloads)
     addPayloads.forEach(payload => {
       //Новый порядковый номер - количество всех дочерних элементов в слое + 1
       const order = getSiblingsCount(getState(), payload.newParentElementId) + 1
