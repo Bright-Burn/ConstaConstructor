@@ -1,5 +1,5 @@
 import { JsonHelper } from '../../../../../helpers'
-import { BaseComponentToSave } from '../types'
+import type { BaseComponentToSave } from '../types'
 
 /**
  * Парсит строку в промежуточную структуру сериализуеммого базового компонента

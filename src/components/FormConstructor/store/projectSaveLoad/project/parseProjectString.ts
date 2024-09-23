@@ -1,5 +1,6 @@
 import { JsonHelper } from '../../../../../helpers'
-import { FormConstructorToSave } from '../types'
+import type { FormConstructorToSave } from '../types'
+import { versionAdapter } from '../versionAdapter'
 
 /**
  * Парсит строку в промежуточную структуру сериализуеммого проекта
@@ -10,6 +11,11 @@ export const parseProjectString = (projectString: string) => {
   //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
   const parsedFile = JsonHelper.parse(projectString)
   // Здесь будет использоваться адаптер для поддержания версии проекта для переезда на новые пропсы
-  const project = parsedFile.project as FormConstructorToSave
-  return project
+  const project = parsedFile.project
+  if (project?.projectVersion === undefined) {
+    console.info('Run adapter')
+    return versionAdapter(project)
+  }
+
+  return project as FormConstructorToSave
 }

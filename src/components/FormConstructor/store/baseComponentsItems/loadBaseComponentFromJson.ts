@@ -1,9 +1,7 @@
-import {
-  baseComponentSaveToState,
-  parseBaseComponentString,
-  type BaseComponentToSave,
-} from '../projectSaveLoad'
+import type { BaseComponentToSave } from '../projectSaveLoad'
+import { baseComponentSaveToState, parseBaseComponentString } from '../projectSaveLoad'
 import type { AppDispatch } from '../setupStore'
+
 import { baseComponentsSlice } from './baseComponentsSlices'
 
 export const loadBaseComponentFromJson = (json: string) => (dispatch: AppDispatch) => {

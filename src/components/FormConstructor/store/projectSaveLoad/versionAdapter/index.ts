@@ -1,0 +1,1 @@
+export { versionAdapter } from './versionAdapter'

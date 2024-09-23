@@ -1,4 +1,4 @@
-import { SaveProjectIntent } from '../types'
+import type { SaveProjectIntent } from '../types'
 
 export const saveProjectToHtml = (projData: SaveProjectIntent) => {
   const css = Array.from(document.styleSheets)

@@ -1,13 +1,13 @@
 export {
   baseComponentSaveToState,
-  saveBaseComponent,
   parseBaseComponentString,
+  saveBaseComponent,
 } from './baseComponents'
 export {
   formConstructorSaveToState,
   formConstructorToSave,
-  saveProject,
   parseProjectString,
+  saveProject,
 } from './project'
 export type { BaseComponentToSave, FormConstructorToSave, SaveProjectIntent } from './types'
 export { ProjectSaveWays } from './types'

@@ -10,6 +10,9 @@ import {
 import type { RootState } from '../../setupStore'
 import type { FormConstructorToSave } from '../types'
 
+// Временная информация о версии выгрузки, пока осуществляется переезд на новый тип пропсов, каждый обновленный тип +1
+export const PROJECT_VERSION = '1'
+
 /**
  * Формирует объект для сохраенения из текущего состояния
  */
@@ -20,6 +23,7 @@ export const formConstructorToSave = (state: RootState): FormConstructorToSave =
   const formConstructor = state.formConstructor
 
   const toSave: FormConstructorToSave = {
+    projectVersion: PROJECT_VERSION,
     instanceManager: formConstructor.instanceManager,
     numberOfPages: formConstructor.numberOfPages,
     pages: formConstructor.pages,
