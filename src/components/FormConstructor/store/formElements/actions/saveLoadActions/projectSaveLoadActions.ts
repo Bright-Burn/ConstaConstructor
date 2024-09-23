@@ -1,5 +1,4 @@
-import { JsonHelper } from '../../../../../../helpers'
-import type { FormConstructorToSave, SaveProjectIntent } from '../../../projectSaveLoad'
+import type { SaveProjectIntent } from '../../../projectSaveLoad'
 import {
   formConstructorSaveToState,
   formConstructorToSave,
@@ -17,11 +16,11 @@ export const loadProjectFromString = (json: string) => (dispatch: AppDispatch) =
   dispatch(formConstructorSlice.actions.repalceState(formConstructorSaveToState(project)))
 }
 
-export const loadProjectFromStorage =
-  (project: FormConstructorToSave) => (dispatch: AppDispatch) => {
-    dispatch(formConstructorSlice.actions.repalceState(formConstructorSaveToState(project)))
-    dispatch(ViewerSlice.actions.showGrid(false))
-  }
+export const loadProjectFromStorage = (projectString: string) => (dispatch: AppDispatch) => {
+  const savedProject = parseProjectString(projectString)
+  dispatch(formConstructorSlice.actions.repalceState(formConstructorSaveToState(savedProject)))
+  dispatch(ViewerSlice.actions.showGrid(false))
+}
 
 export const saveProjectToFile =
   (project: SaveNewProject) => (dispatch: AppDispatch, getState: () => RootState) => {
