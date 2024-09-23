@@ -15,13 +15,6 @@ import type {
 ///  | 'RightSidebar' | 'LeftSidebar'
 export type ButtonAction = 'none' | 'ButtonModal'
 
-// Тип для адаптера
-export interface ButtonProps_Deprecated extends BaseProps, Props {
-  icon?: IconNames
-  iconR?: IconNames
-  filled?: boolean
-}
-
 export type ButtonProps = BaseProps & {
   // Типы дизайн системы
   constaProps: Omit<Props, 'iconLeft' | 'iconRight'> & {

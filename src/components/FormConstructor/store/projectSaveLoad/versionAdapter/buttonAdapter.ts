@@ -1,6 +1,6 @@
 import type { ButtonProps } from '../../../coreTypes'
-// Такой импорт не является ошибкой, поскольку весь адаптер будет удален после полного переезда на новые пропсы
-import type { ButtonProps_Deprecated } from '../../../coreTypes/buttonTypes'
+
+import type { ButtonProps_Deprecated } from './deprecatedTypes'
 
 // Тип адаптера для кнопки
 export type ButtonAdapterType = (deprecated: ButtonProps_Deprecated) => ButtonProps

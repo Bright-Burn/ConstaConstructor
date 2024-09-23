@@ -1,8 +1,9 @@
 import { PROJECT_VERSION } from '../project'
-import type { FormConstructorToSave, FormConstructorToSave_Deprecated } from '../types'
+import type { FormConstructorToSave } from '../types'
 
 import type { ButtonAdapterType } from './buttonAdapter'
 import { buttonAdapter } from './buttonAdapter'
+import type { FormConstructorToSave_Deprecated } from './deprecatedTypes'
 
 type TypeAdapter = {
   Button: ButtonAdapterType
@@ -13,11 +14,11 @@ const typeAdapterDict: TypeAdapter = {
   Button: buttonAdapter,
 }
 
-// Тип глобалдьного адаптера для структуры проекта.
-// Адаптер переводит из типа Deprecated типа FormConstructorToSave_Deprecated в  актуальный FormConstructorToSave
+// Тип глобального адаптера для структуры проекта.
+// Адаптер переводит из типа Deprecated типа FormConstructorToSave_Deprecated в актуальный FormConstructorToSave
 type VersionAdapter = (parsedProject: FormConstructorToSave_Deprecated) => FormConstructorToSave
 
-// По умолчанию считаем, что parsedProject на самом деле не соответствует типу FormConstructorToSave
+// По умолчанию считаем, что parsedProject соответствует типу FormConstructorToSave_Deprecated
 export const versionAdapter: VersionAdapter = parsedProject => {
   const adaptedInstances = parsedProject.elementInstances.map(instance => {
     if (instance.props.type === 'Button') {
