@@ -20,11 +20,11 @@ export const useProject = () => {
   }
 
   const onSaveProject = (projectName: string) => {
-    dispatch(saveProjectToFile({ name: projectName, description: '' }))
+    dispatch(saveProjectToFile({ name: projectName }))
   }
 
   const saveToHtml = (projectName: string) => {
-    dispatch(saveProjectToHTML({ name: projectName, description: '' }))
+    dispatch(saveProjectToHTML({ name: projectName }))
   }
   return { onDownloadProject, onSaveProject, saveToHtml }
 }

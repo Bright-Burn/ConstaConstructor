@@ -21,11 +21,11 @@ export type ProjectSaveWays = Values<typeof ProjectSaveWays>
 interface ProjectData {
   project: FormConstructorToSave
   name: string
-  description: string
 }
 
-export interface SaveProjectIntent extends ProjectData {
+export interface SaveProjectIntent {
   saveWay: ProjectSaveWays
+  data: ProjectData
 }
 
 export type SaveBaseComponentIntent = {

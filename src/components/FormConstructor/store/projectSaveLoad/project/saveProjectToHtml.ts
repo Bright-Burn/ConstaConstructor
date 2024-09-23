@@ -1,6 +1,6 @@
 import type { SaveProjectIntent } from '../types'
 
-export const saveProjectToHtml = (projData: SaveProjectIntent) => {
+export const saveProjectToHtml = (intent: SaveProjectIntent) => {
   const css = Array.from(document.styleSheets)
     .map(styleSheet =>
       Array.from(styleSheet.cssRules)
@@ -35,7 +35,7 @@ export const saveProjectToHtml = (projData: SaveProjectIntent) => {
         <div class='Theme Theme_color_gpnDefault Theme_control_gpnDefault Theme_font_gpnDefault Theme_size_gpnDefault Theme_space_gpnDefault Theme_shadow_gpnDefault'>
           <div id='root'></div>
         </div>
-        <div style='display: none' id='loaded_data'>${JSON.stringify(projData)}</div>
+        <div style='display: none' id='loaded_data'>${JSON.stringify(intent.data)}</div>
         </body>
         </html>`
 
@@ -59,7 +59,7 @@ export const saveProjectToHtml = (projData: SaveProjectIntent) => {
       const url = URL.createObjectURL(content)
       const tagA = document.createElement('a')
       tagA.href = url
-      tagA.download = `${projData.name}.zip`
+      tagA.download = `${intent.data.name}.zip`
       tagA.click()
 
       // Освобождаем URL

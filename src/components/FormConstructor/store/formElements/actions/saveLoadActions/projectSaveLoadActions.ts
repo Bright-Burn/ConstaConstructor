@@ -27,10 +27,11 @@ export const saveProjectToFile =
     const state = getState()
 
     const intent: SaveProjectIntent = {
-      description: project.description,
-      name: project.name,
       saveWay: ProjectSaveWays.FILE,
-      project: formConstructorToSave(state),
+      data: {
+        name: project.name,
+        project: formConstructorToSave(state),
+      },
     }
     saveProject(intent)
   }
@@ -40,10 +41,11 @@ export const saveProjectToHTML =
     const state = getState()
 
     const intent: SaveProjectIntent = {
-      description: project.description,
-      name: project.name,
       saveWay: ProjectSaveWays.HTML,
-      project: formConstructorToSave(state),
+      data: {
+        name: project.name,
+        project: formConstructorToSave(state),
+      },
     }
     saveProject(intent)
   }

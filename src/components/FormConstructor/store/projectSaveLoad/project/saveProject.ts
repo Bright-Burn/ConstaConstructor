@@ -20,12 +20,12 @@ export const saveProject = (saveIntent: SaveProjectIntent) => {
   }
 }
 
-const saveToStorage = (data: SaveProjectIntent) => {
-  localStorage.setItem(data.name, JSON.stringify(data))
+const saveToStorage = (saveIntent: SaveProjectIntent) => {
+  localStorage.setItem(saveIntent.data.name, JSON.stringify(saveIntent.data))
 }
 
-const saveFile = (projData: SaveProjectIntent) => {
+const saveFile = (saveIntent: SaveProjectIntent) => {
   // @ts-expect-error неправильная анотация типов в библиотеке beautify
-  const fileData = jsonBeautify(projData, null, 2)
-  saveToFile(fileData, `${projData.name}_ConstaConstructor.json`)
+  const fileData = jsonBeautify(saveIntent.data, null, 2)
+  saveToFile(fileData, `${saveIntent.data.name}_ConstaConstructor.json`)
 }
