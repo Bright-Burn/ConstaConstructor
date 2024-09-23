@@ -24,7 +24,9 @@ type ButtonSettingsType = {
 export const ButtonSettings: FC<ButtonSettingsType> = ({ selectedViewProps, selectedView }) => {
   const {
     itemsProps,
-    onChangeSwitch,
+    onChangeDisabled,
+    onChangeLoading,
+    onChangeOnlyIcon,
     onChangeIcon,
     onChangeIconR,
     onChangeLabel,
@@ -73,13 +75,13 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({ selectedViewProps, sele
           checked={itemsProps.loading ?? false}
           label="loading"
           size="xs"
-          onChange={onChangeSwitch('loading')}
+          onChange={onChangeLoading}
         />
         <Switch
           checked={itemsProps.disabled ?? false}
           label="disabled"
           size="xs"
-          onChange={onChangeSwitch('disabled')}
+          onChange={onChangeDisabled}
         />
         <TextField
           leftSide="label"
@@ -113,7 +115,7 @@ export const ButtonSettings: FC<ButtonSettingsType> = ({ selectedViewProps, sele
           checked={itemsProps.onlyIcon}
           label="onlyIcon"
           size="xs"
-          onChange={onChangeSwitch('onlyIcon')}
+          onChange={onChangeOnlyIcon}
         />
         <Select
           getItemKey={(item: string) => item}

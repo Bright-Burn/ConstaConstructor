@@ -45,19 +45,35 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     onDispatch(selectedView, newProps)
   }
 
-  const onChangeSwitch =
-    (propsName: keyof ButtonProps['constaProps']) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const checked = event.target.checked
-      const newProps: BrandButtonProps = {
-        props: {
-          ...selectedViewProps,
-          [propsName]: checked,
-        },
-        type: 'Button',
-      }
-      onDispatch(selectedView, newProps)
+  const onChangeLoading = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked
+    const newProps: BrandButtonProps = {
+      props: structuredClone(selectedViewProps),
+      type: 'Button',
     }
+    newProps.props.constaProps.loading = checked
+    onDispatch(selectedView, newProps)
+  }
+
+  const onChangeDisabled = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked
+    const newProps: BrandButtonProps = {
+      props: structuredClone(selectedViewProps),
+      type: 'Button',
+    }
+    newProps.props.constaProps.disabled = checked
+    onDispatch(selectedView, newProps)
+  }
+
+  const onChangeOnlyIcon = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked
+    const newProps: BrandButtonProps = {
+      props: structuredClone(selectedViewProps),
+      type: 'Button',
+    }
+    newProps.props.constaProps.onlyIcon = checked
+    onDispatch(selectedView, newProps)
+  }
 
   const onChangeIcon = (value: IconNames | null) => {
     const newProps: BrandButtonProps = {
@@ -82,7 +98,9 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
   }
 
   return {
-    onChangeSwitch,
+    onChangeOnlyIcon,
+    onChangeDisabled,
+    onChangeLoading,
     onChangeIcon,
     onChangeIconR,
     onChangeLabel,
