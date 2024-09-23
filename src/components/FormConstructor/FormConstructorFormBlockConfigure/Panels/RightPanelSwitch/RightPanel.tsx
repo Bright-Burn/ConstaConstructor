@@ -2,6 +2,7 @@ import type { FC } from 'react'
 
 import type { RightPanelType } from '../../../store'
 import {
+  checkViewMode,
   getRightPanelState,
   getRightPanelType,
   getSelectedView,
@@ -25,6 +26,11 @@ export const RightPanelSwitch = () => {
   const rightPanelMode = useAppSelector(getRightPanelType)
   // Признак был ли выбран Layout
   const selectedElementType = useAppSelector(getSelectedView)?.elementType
+  const isViewMode = useAppSelector(checkViewMode)
+
+  if (isViewMode) {
+    return null
+  }
   const developPanelAvailable = selectedElementType && codeElements.has(selectedElementType)
 
   // Выбранный компонент в правой части

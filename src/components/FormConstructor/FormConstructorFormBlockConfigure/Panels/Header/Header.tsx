@@ -20,10 +20,6 @@ export const Header: React.FC = () => {
   const onNotesClose = () => {
     setShowNotes(false)
   }
-  const isViewMode = useAppSelector(checkViewMode)
-  if (isViewMode) {
-    return null
-  }
 
   return (
     <div className={`${style.headerContainer} container-row`}>
