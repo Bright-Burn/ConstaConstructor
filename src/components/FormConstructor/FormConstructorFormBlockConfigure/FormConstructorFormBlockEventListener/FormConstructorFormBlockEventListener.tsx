@@ -1,7 +1,6 @@
 import type { FC, ReactNode } from 'react'
 import { useEffect } from 'react'
 
-import { JsonHelper } from '../../../../helpers'
 import {
   clearSameInstanceIds,
   copyFormElementLink,

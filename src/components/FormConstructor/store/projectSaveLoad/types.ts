@@ -52,7 +52,4 @@ export type FormConstructorToSave = Pick<
 /**
  * Тип для сохранения и загрузки базового компонента
  */
-export type BaseComponentToSave = Pick<
-  IBaseComponent,
-  'id' | 'name' | 'description' | 'viewInfos' | 'instances' | 'views'
->
+export type BaseComponentToSave = IBaseComponent

@@ -6,7 +6,7 @@ import { FileField } from '@consta/uikit/FileField'
 import { Text } from '@consta/uikit/Text'
 
 import {
-  loadBaseComponentFromJson,
+  loadBaseComponentFromString,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from '../../../../store'
@@ -34,7 +34,7 @@ export const BaseComponents: FC<BaseComponentsProps> = ({ searchValue }) => {
 
       filesArray.forEach(file => {
         readFile(file).then(json => {
-          dispatch(loadBaseComponentFromJson(json))
+          dispatch(loadBaseComponentFromString(json))
         })
       })
     }

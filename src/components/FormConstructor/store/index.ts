@@ -1,7 +1,7 @@
 export type { IBaseComponent } from './baseComponentsItems'
 export {
   getDraggedBaseComponent,
-  loadBaseComponentFromJson,
+  loadBaseComponentFromString,
   setDraggableBaseComponent,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,

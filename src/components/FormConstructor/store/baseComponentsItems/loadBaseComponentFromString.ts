@@ -4,7 +4,7 @@ import type { AppDispatch } from '../setupStore'
 
 import { baseComponentsSlice } from './baseComponentsSlices'
 
-export const loadBaseComponentFromJson = (json: string) => (dispatch: AppDispatch) => {
+export const loadBaseComponentFromString = (json: string) => (dispatch: AppDispatch) => {
   // Добавить проверку типов
   const baseComponentToSave: BaseComponentToSave = parseBaseComponentString(json)
 

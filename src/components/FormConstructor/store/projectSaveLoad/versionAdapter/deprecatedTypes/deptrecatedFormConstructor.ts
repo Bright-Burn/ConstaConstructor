@@ -1,15 +1,11 @@
-import type { Props } from '@consta/uikit/Button'
-
 import type {
   AllElementTypes,
-  BaseProps,
   FormInstance,
-  IconNames,
   IFormConstructor,
   IFormElement,
   IGroupElement,
   ViewInfo,
-} from '../../../coreTypes'
+} from '../../../../coreTypes'
 
 // Устарелывый тип макетов
 export type FormConstructorToSave_Deprecated = Pick<
@@ -22,11 +18,4 @@ export type FormConstructorToSave_Deprecated = Pick<
   elementInstances: FormInstance<AllElementTypes>[]
   /*Сохраняем списом*/
   viewInfos: ViewInfo[]
-}
-
-// Устарелывый тип для кнопки
-export interface ButtonProps_Deprecated extends BaseProps, Props {
-  icon?: IconNames
-  iconR?: IconNames
-  filled?: boolean
 }
