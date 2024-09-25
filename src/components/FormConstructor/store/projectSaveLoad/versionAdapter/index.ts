@@ -1,1 +1,2 @@
-export { versionAdapter } from './versionAdapter'
+export { baseComponentVersionAdapter } from './baseComponentVersionAdapter'
+export { projectVersionAdapter } from './projectVersionAdapter'

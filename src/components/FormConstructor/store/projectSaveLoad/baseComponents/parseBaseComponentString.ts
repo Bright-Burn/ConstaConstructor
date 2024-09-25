@@ -1,5 +1,6 @@
 import { JsonHelper } from '../../../../../helpers'
 import type { BaseComponentToSave } from '../types'
+import { baseComponentVersionAdapter } from '../versionAdapter'
 
 /**
  * Парсит строку в промежуточную структуру сериализуеммого базового компонента
@@ -8,7 +9,12 @@ import type { BaseComponentToSave } from '../types'
  */
 export const parseBaseComponentString = (json: string) => {
   //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-  const baseComponent: BaseComponentToSave = JsonHelper.parse(json)
-  // Здесь будет использоваться адаптер для поддержания версии выгрузки проекта для переезда на новые пропсы при необходимости
-  return baseComponent
+  const baseComponent = JsonHelper.parse(json)
+  // Здесь будет использоваться адаптер для поддержания версии проекта для переезда на новые пропсы
+  if (baseComponent?.projectVersion === undefined) {
+    console.info('Run adapter base component')
+    return baseComponentVersionAdapter(baseComponent)
+  }
+
+  return baseComponent as BaseComponentToSave
 }
