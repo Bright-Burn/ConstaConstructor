@@ -23,7 +23,10 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
     field: keyof BadgeProps['constaProps'],
   ) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedViewProps, [field]: value },
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, [field]: value },
+      },
       type: 'Badge',
     }
 
@@ -34,7 +37,10 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
     (propsName: keyof BadgeProps['constaProps']) =>
     (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandBadgeProps = {
-        props: { ...selectedViewProps, [propsName]: checked.target.checked },
+        props: {
+          ...selectedViewProps,
+          constaProps: { ...selectedViewProps.constaProps, [propsName]: checked.target.checked },
+        },
         type: 'Badge',
       }
 
@@ -43,28 +49,34 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
 
   const onChangeIconLeft = (value: IconNames | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, iconLeft: value ? value : undefined },
+      },
       type: 'Badge',
     }
-    newProps.props.constaProps.iconLeft = value ? value : undefined
 
     onDispatch(selectedView, newProps)
   }
   const onChangeIconRight = (value: IconNames | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, iconRight: value ? value : undefined },
+      },
       type: 'Badge',
     }
-    newProps.props.constaProps.iconRight = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
   const handleOnChangeLabel = (value: string | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, label: value || undefined },
+      },
       type: 'Badge',
     }
-    newProps.props.constaProps.label = value || undefined
 
     onDispatch(selectedView, newProps)
   }

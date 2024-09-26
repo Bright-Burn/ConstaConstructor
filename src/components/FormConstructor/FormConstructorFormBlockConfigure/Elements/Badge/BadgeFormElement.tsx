@@ -13,6 +13,10 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const className = props?.className
   const badgeConstaProps = props?.constaProps
 
+  if (!badgeConstaProps) {
+    return null
+  }
+
   return (
     <SelectableLayer
       parentElementId={element.id}
@@ -21,8 +25,8 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
       <Badge
         className={className}
         {...badgeConstaProps}
-        iconLeft={badgeConstaProps?.iconLeft ? Icons[badgeConstaProps.iconLeft] : undefined}
-        iconRight={badgeConstaProps?.iconRight ? Icons[badgeConstaProps.iconRight] : undefined}
+        iconLeft={badgeConstaProps.iconLeft ? Icons[badgeConstaProps.iconLeft] : undefined}
+        iconRight={badgeConstaProps.iconRight ? Icons[badgeConstaProps.iconRight] : undefined}
       />
     </SelectableLayer>
   )

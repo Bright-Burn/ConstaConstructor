@@ -13,9 +13,7 @@ type ProjectVersionAdapter = (
 // По умолчанию считаем, что parsedProject соответствует типу FormConstructorToSave_Deprecated
 export const projectVersionAdapter: ProjectVersionAdapter = parsedProject => {
   const adaptedInstances = parsedProject.elementInstances.map(instanceAdapter)
-
-  // Перемапливаем поля для корректного сохранения FormConstructorToSave
-  return {
+  const toSave: FormConstructorToSave = {
     instanceManager: parsedProject.instanceManager,
     instances: adaptedInstances,
     numberOfPages: parsedProject.numberOfPages,
@@ -25,4 +23,7 @@ export const projectVersionAdapter: ProjectVersionAdapter = parsedProject => {
     viewInfos: parsedProject.viewInfos,
     views: parsedProject.allElements,
   }
+
+  // Перемапливаем поля для корректного сохранения FormConstructorToSave
+  return toSave
 }
