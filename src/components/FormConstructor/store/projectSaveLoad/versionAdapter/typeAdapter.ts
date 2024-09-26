@@ -1,4 +1,5 @@
-import { badgeAdapter, BadgeAdapter } from './badgeAdapter'
+import type { BadgeAdapter } from './badgeAdapter'
+import { badgeAdapter } from './badgeAdapter'
 import type { ButtonAdapterType } from './buttonAdapter'
 import { buttonAdapter } from './buttonAdapter'
 

@@ -1,5 +1,6 @@
-import { BadgeProps } from '../../../coreTypes'
-import { BadgeProps_Deprecated } from './deprecatedTypes'
+import type { BadgeProps } from '../../../coreTypes'
+
+import type { BadgeProps_Deprecated } from './deprecatedTypes'
 
 export type BadgeAdapter = (
   buttonInstanceId: string,

@@ -1,5 +1,11 @@
-import { BadgePropSize, BadgePropView, BadgePropStatus, BadgePropForm } from '@consta/uikit/Badge'
-import { IconNames, BaseProps } from '../../../../coreTypes'
+import type {
+  BadgePropForm,
+  BadgePropSize,
+  BadgePropStatus,
+  BadgePropView,
+} from '@consta/uikit/Badge'
+
+import type { BaseProps, IconNames } from '../../../../coreTypes'
 
 export type BadgeProps_Deprecated = {
   size?: BadgePropSize
