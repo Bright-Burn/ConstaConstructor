@@ -14,82 +14,100 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
   const dispatch = useAppDispatch()
   const onChangeLabel = (value: string) => {
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, label: value },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.label = value
     onDispatch(selectedView, newProps)
   }
   const onChangeSize = (value: ButtonPropSize) => {
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, size: value },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.size = value
     onDispatch(selectedView, newProps)
   }
   const onChangeView = (value: ButtonPropView) => {
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, view: value },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.view = value
     onDispatch(selectedView, newProps)
   }
   const onChangeForm = (value: ButtonPropForm) => {
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, form: value },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.form = value
     onDispatch(selectedView, newProps)
   }
 
   const onChangeLoading = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, loading: checked },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.loading = checked
     onDispatch(selectedView, newProps)
   }
 
   const onChangeDisabled = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, disabled: checked },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.disabled = checked
     onDispatch(selectedView, newProps)
   }
 
   const onChangeOnlyIcon = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, onlyIcon: checked },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.onlyIcon = checked
     onDispatch(selectedView, newProps)
   }
 
   const onChangeIcon = (value: IconNames | null) => {
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, iconLeft: value ? value : undefined },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.iconLeft = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
   const onChangeIconR = (value: IconNames | null) => {
     const newProps: BrandButtonProps = {
-      props: structuredClone(selectedViewProps),
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, iconRight: value ? value : undefined },
+      },
       type: 'Button',
     }
-    newProps.props.constaProps.iconRight = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
@@ -110,7 +128,6 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     itemsProps: {
       size: selectedViewProps.constaProps.size,
       view: selectedViewProps.constaProps.view,
-      // action: selectedViewProps.action,
       label: selectedViewProps.constaProps.label,
       disabled: selectedViewProps.constaProps.disabled,
       iconLeft: selectedViewProps.constaProps.iconLeft,
