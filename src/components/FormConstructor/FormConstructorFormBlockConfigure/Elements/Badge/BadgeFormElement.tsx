@@ -10,15 +10,19 @@ import type { IBadgeFormElement } from './types'
 export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
+  const className = props?.className
+  const badgeConstaProps = props?.constaProps
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Badge}>
       <Badge
-        {...props}
-        iconLeft={props?.iconLeft ? Icons[props.iconLeft] : undefined}
-        iconRight={props?.iconRight ? Icons[props.iconRight] : undefined}
+        className={className}
+        {...badgeConstaProps}
+        iconLeft={badgeConstaProps?.iconLeft ? Icons[badgeConstaProps.iconLeft] : undefined}
+        iconRight={badgeConstaProps?.iconRight ? Icons[badgeConstaProps.iconRight] : undefined}
       />
     </SelectableLayer>
   )

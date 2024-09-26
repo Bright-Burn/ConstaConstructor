@@ -12,18 +12,21 @@ export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
 
   const onStartDragComponentCard = () => {
     const newBadge: IFormElementBadge = {
-      id: uuid(),
       type: FormElementDictTypes.Badge,
+      id: uuid(),
       order: 1,
       props: {
         props: {
-          label: 'Badge',
-          form: 'default',
-          size: 's',
-          status: 'success',
-          view: 'filled',
-          className: '',
+          constaProps: {
+            label: 'Badge',
+            form: 'default',
+            size: 's',
+            status: 'success',
+            view: 'filled',
+          },
           baseProps: {},
+          className: '',
+          styles: {},
         },
         type: 'Badge',
       },

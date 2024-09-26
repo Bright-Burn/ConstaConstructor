@@ -53,7 +53,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedViewProps, select
         getItemKey={(item: string) => item}
         getItemLabel={(item: string) => item}
         items={views}
-        value={selectedViewProps.view}
+        value={selectedViewProps.constaProps.view}
         size="xs"
         renderValue={({ item }) => getValueForSelect({ item, label: 'view' })}
         onChange={value => {
@@ -67,7 +67,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedViewProps, select
         items={forms}
         placeholder="forms"
         size="xs"
-        value={selectedViewProps.form}
+        value={selectedViewProps.constaProps.form}
         renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeField(value, 'form')
@@ -97,7 +97,7 @@ export const BadgeSettings: FC<BadgeSettingsType> = ({ selectedViewProps, select
       <div className={styles.rowSettings}>
         <IconSelectConsta
           label="iconRight"
-          selectedIcon={selectedViewProps.iconRight}
+          selectedIcon={selectedViewProps.constaProps.iconRight}
           onChangeIcon={onChangeIconRight}
         />
       </div>

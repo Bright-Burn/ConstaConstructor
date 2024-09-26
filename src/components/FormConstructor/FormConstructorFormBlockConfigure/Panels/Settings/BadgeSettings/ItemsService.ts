@@ -20,7 +20,7 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
 
   const onChangeField = (
     value: BadgePropSize | BadgePropView | BadgePropStatus | BadgePropForm | null,
-    field: keyof BadgeProps,
+    field: keyof BadgeProps['constaProps'],
   ) => {
     const newProps: BrandBadgeProps = {
       props: { ...selectedViewProps, [field]: value },
@@ -31,7 +31,8 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
   }
 
   const onChangeSwitch =
-    (propsName: keyof BadgeProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof BadgeProps['constaProps']) =>
+    (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandBadgeProps = {
         props: { ...selectedViewProps, [propsName]: checked.target.checked },
         type: 'Badge',
@@ -45,7 +46,7 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
       props: { ...selectedViewProps },
       type: 'Badge',
     }
-    newProps.props.iconLeft = value ? value : undefined
+    newProps.props.constaProps.iconLeft = value ? value : undefined
 
     onDispatch(selectedView, newProps)
   }
@@ -54,7 +55,7 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
       props: { ...selectedViewProps },
       type: 'Badge',
     }
-    newProps.props.iconRight = value ? value : undefined
+    newProps.props.constaProps.iconRight = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
@@ -63,7 +64,7 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
       props: { ...selectedViewProps },
       type: 'Badge',
     }
-    newProps.props.label = value || undefined
+    newProps.props.constaProps.label = value || undefined
 
     onDispatch(selectedView, newProps)
   }
@@ -79,13 +80,13 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
     onChangeField,
     onChangeIconRight,
     itemsProps: {
-      size: selectedViewProps.size,
-      view: selectedViewProps.view,
-      form: selectedViewProps.form,
-      label: selectedViewProps.label,
-      minified: selectedViewProps.minified,
-      status: selectedViewProps.status,
-      iconLeft: selectedViewProps.iconLeft,
+      size: selectedViewProps.constaProps.size,
+      view: selectedViewProps.constaProps.view,
+      form: selectedViewProps.constaProps.form,
+      label: selectedViewProps.constaProps.label,
+      minified: selectedViewProps.constaProps.minified,
+      status: selectedViewProps.constaProps.status,
+      iconLeft: selectedViewProps.constaProps.iconLeft,
     },
   }
 }

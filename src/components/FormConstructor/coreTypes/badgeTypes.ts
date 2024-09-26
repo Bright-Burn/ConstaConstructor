@@ -15,7 +15,7 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type BadgeProps = {
+export type BadgeProps_Deprecated = {
   size?: BadgePropSize
   view?: BadgePropView
   status?: BadgePropStatus
@@ -25,6 +25,22 @@ export type BadgeProps = {
   children?: never
   iconLeft?: IconNames
   iconRight?: IconNames
+} & BaseProps
+
+export type BadgeProps = {
+  // Типы дизайн системы
+  constaProps: {
+    size?: BadgePropSize
+    view?: BadgePropView
+    status?: BadgePropStatus
+    form?: BadgePropForm
+    minified?: boolean
+    iconLeft?: IconNames
+    iconRight?: IconNames
+    label?: string
+  }
+  // Кастомные стили
+  styles: {}
 } & BaseProps
 
 export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>
