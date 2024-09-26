@@ -8,7 +8,7 @@ export type BadgeAdapter = (
 ) => BadgeProps
 
 export const badgeAdapter: BadgeAdapter = (id, deprecated) => {
-  console.info(`Run adapter for Button instance with id=${id}`)
+  console.info(`Run adapter for Badge instance with id=${id}`)
 
   const props: BadgeProps = {
     baseProps: deprecated.baseProps,
