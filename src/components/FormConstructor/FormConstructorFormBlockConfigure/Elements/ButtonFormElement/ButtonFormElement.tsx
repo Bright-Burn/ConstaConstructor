@@ -17,7 +17,11 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const buttonConstaProps = props?.constaProps
   const className = props?.className
 
-  return props ? (
+  if (!buttonConstaProps) {
+    return null
+  }
+
+  return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
@@ -27,9 +31,9 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
         className={className}
         {...buttonConstaProps}
         style={{ flexGrow: isFilled ? 1 : 0 }}
-        iconLeft={buttonConstaProps?.iconLeft ? Icons[buttonConstaProps.iconLeft] : undefined}
-        iconRight={buttonConstaProps?.iconRight ? Icons[buttonConstaProps.iconRight] : undefined}
+        iconLeft={buttonConstaProps.iconLeft ? Icons[buttonConstaProps.iconLeft] : undefined}
+        iconRight={buttonConstaProps.iconRight ? Icons[buttonConstaProps.iconRight] : undefined}
       />
     </SelectableLayer>
-  ) : null
+  )
 }

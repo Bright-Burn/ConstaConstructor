@@ -16,15 +16,19 @@ import type {
 } from './types'
 
 export type BadgeProps = {
-  size?: BadgePropSize
-  view?: BadgePropView
-  status?: BadgePropStatus
-  form?: BadgePropForm
-  minified?: boolean
-  label?: string
-  children?: never
-  iconLeft?: IconNames
-  iconRight?: IconNames
+  // Типы дизайн системы
+  constaProps: {
+    size?: BadgePropSize
+    view?: BadgePropView
+    status?: BadgePropStatus
+    form?: BadgePropForm
+    minified?: boolean
+    iconLeft?: IconNames
+    iconRight?: IconNames
+    label?: string
+  }
+  // Кастомные стили
+  styles: {}
 } & BaseProps
 
 export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>

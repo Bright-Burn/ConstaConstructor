@@ -3,13 +3,13 @@ import type { ButtonProps } from '../../../coreTypes'
 import type { ButtonProps_Deprecated } from './deprecatedTypes'
 
 // Тип адаптера для кнопки
-export type ButtonAdapterType = (
+export type ButtonAdapter = (
   buttonInstanceId: string,
   deprecated: ButtonProps_Deprecated,
 ) => ButtonProps
 
 // Адаптер для кнопки
-export const buttonAdapter: ButtonAdapterType = (id, deprecated) => {
+export const buttonAdapter: ButtonAdapter = (id, deprecated) => {
   console.info(`Run adapter for Button instance with id=${id}`)
   const newButtonProps: ButtonProps = {
     // filled в поле styles
