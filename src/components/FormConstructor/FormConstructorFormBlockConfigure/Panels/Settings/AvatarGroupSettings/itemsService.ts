@@ -34,7 +34,7 @@ export const useItemsHandlers = (
         ...selectedViewProps,
         constaProps: {
           ...selectedViewProps.constaProps,
-          visibleCount: visibleCount,
+          visibleCount,
         },
       },
       type: 'AvatarGroup',

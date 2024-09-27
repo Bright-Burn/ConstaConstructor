@@ -27,11 +27,11 @@ export const AvatarGroupFormElement: FC<IAvatarGroupElement> = ({ element }) => 
       elementType={FormElementDictTypes.AvatarGroup}>
       <AvatarGroup
         className={avatarGroupClassName}
-        items={avatarGroupProps?.items}
-        size={avatarGroupProps?.size}
-        form={avatarGroupProps?.form}
-        monochrome={avatarGroupProps?.monochrome}
-        visibleCount={avatarGroupProps?.visibleCount}
+        items={avatarGroupProps.items}
+        size={avatarGroupProps.size}
+        form={avatarGroupProps.form}
+        monochrome={avatarGroupProps.monochrome}
+        visibleCount={avatarGroupProps.visibleCount}
       />
     </SelectableLayer>
   )

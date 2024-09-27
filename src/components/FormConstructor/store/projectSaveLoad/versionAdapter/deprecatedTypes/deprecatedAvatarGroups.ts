@@ -1,5 +1,6 @@
-import { BaseProps } from '../../../../coreTypes'
-import { AvatarProps_Deprecated } from './deprecatedAvatar'
+import type { BaseProps } from '../../../../coreTypes'
+
+import type { AvatarProps_Deprecated } from './deprecatedAvatar'
 
 export type AvatarGroupProps_Deprecated = {
   items?: AvatarProps_Deprecated[]

@@ -1,5 +1,6 @@
-import { AvatarProps } from '../../../coreTypes'
-import { AvatarProps_Deprecated } from './deprecatedTypes'
+import type { AvatarProps } from '../../../coreTypes'
+
+import type { AvatarProps_Deprecated } from './deprecatedTypes'
 
 export type AvatarAdapter = (
   buttonInstanceId: string,

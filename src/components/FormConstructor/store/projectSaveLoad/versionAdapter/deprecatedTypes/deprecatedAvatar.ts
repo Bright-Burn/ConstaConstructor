@@ -1,4 +1,4 @@
-import { BaseProps } from '../../../../coreTypes'
+import type { BaseProps } from '../../../../coreTypes'
 
 export type AvatarProps_Deprecated = {
   name?: string

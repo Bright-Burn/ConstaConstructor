@@ -1,6 +1,6 @@
+export type { AvatarProps_Deprecated } from './deprecatedAvatar'
+export type { AvatarGroupProps_Deprecated } from './deprecatedAvatarGroups'
 export type { BadgeProps_Deprecated } from './deprecatedBadge'
 export type { BaseComponentToSave_Deprecated } from './deprecatedBaseComponent'
 export type { ButtonProps_Deprecated } from './deprecatedButtonTypes'
 export type { FormConstructorToSave_Deprecated } from './deptrecatedFormConstructor'
-export { AvatarProps_Deprecated } from './deprecatedAvatar'
-export { AvatarGroupProps_Deprecated } from './deprecatedAvatarGroups'
