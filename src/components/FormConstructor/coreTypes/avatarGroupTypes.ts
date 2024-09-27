@@ -9,7 +9,13 @@ import type {
 } from './types'
 
 export type AvatarGroupProps = {
-  constaProps: {}
+  constaProps: {
+    items: AvatarProps['constaProps'][]
+    visibleCount?: number | 'auto'
+    size?: 's' | 'm' | 'xs' | 'l'
+    form?: 'round' | 'brick' | 'default'
+    monochrome?: boolean
+  }
   styles: {}
 } & BaseProps
 

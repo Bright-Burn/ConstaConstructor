@@ -28,7 +28,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
   return (
     <div className={styles.settingsContainer}>
       <Switch
-        checked={selectedViewProps.visibleCount === 'auto'}
+        checked={selectedViewProps.constaProps.visibleCount === 'auto'}
         size="xs"
         label="Visible count auto"
         onChange={onChangeVisibleCount}
@@ -36,11 +36,11 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
       <TextField
         size="xs"
         type="number"
-        disabled={selectedViewProps.visibleCount === 'auto'}
+        disabled={selectedViewProps.constaProps.visibleCount === 'auto'}
         value={
-          typeof selectedViewProps.visibleCount !== 'number'
+          typeof selectedViewProps.constaProps.visibleCount !== 'number'
             ? '4'
-            : String(selectedViewProps.visibleCount)
+            : String(selectedViewProps.constaProps.visibleCount)
         }
         onChange={handleChangeVisibleCount}
       />
@@ -50,7 +50,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
         items={sizes}
         placeholder="Size"
         size="xs"
-        value={selectedViewProps.size}
+        value={selectedViewProps.constaProps.size}
         renderValue={({ item }) => getValueForSelect({ item, label: 'size' })}
         onChange={value => {
           onChangeSize(value)
@@ -62,7 +62,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
         items={form}
         placeholder="Form"
         size="xs"
-        value={selectedViewProps.form}
+        value={selectedViewProps.constaProps.form}
         renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeForm(value)
@@ -70,7 +70,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
       />
 
       <Switch
-        checked={selectedViewProps.monochrome}
+        checked={selectedViewProps.constaProps.monochrome}
         size="xs"
         label="Monochrome"
         onChange={onChangeMonochrome}

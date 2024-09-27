@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import uuid from 'react-uuid'
 
-import type { IFormElementAvatarGroup } from '../../../../../../coreTypes'
+import type { AvatarProps, IFormElementAvatarGroup } from '../../../../../../coreTypes'
 import { FormElementDictTypes } from '../../../../../../coreTypes'
 import { setDraggableElement, useAppDispatch } from '../../../../../../store'
 import { CardLabel } from '../CardLabel'
@@ -17,38 +17,10 @@ export const ComponentCardAvatarGroup: FC<IComponetCardElement> = ({ name }) => 
       order: 1,
       props: {
         props: {
-          items: [
-            {
-              name: 'Геннадий Морозов',
-              url: '',
-              className: '',
-              baseProps: {},
-            },
-            {
-              name: 'Аркадий Лушко',
-              url: '',
-              className: '',
-              baseProps: {},
-            },
-            {
-              name: 'Аркадий Лушко',
-              url: '',
-              className: '',
-              baseProps: {},
-            },
-            {
-              name: 'Георгий Калинин',
-              url: '',
-              className: '',
-              baseProps: {},
-            },
-            {
-              name: 'Виталий Алтуфьев',
-              url: '',
-              className: '',
-              baseProps: {},
-            },
-          ],
+          constaProps: {
+            items: defaultAvatarProps,
+          },
+          styles: {},
           className: '',
           baseProps: {},
         },
@@ -61,3 +33,21 @@ export const ComponentCardAvatarGroup: FC<IComponetCardElement> = ({ name }) => 
 
   return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }
+
+const defaultAvatarProps: AvatarProps['constaProps'][] = [
+  {
+    name: 'Геннадий Морозов',
+  },
+  {
+    name: 'Аркадий Лушко',
+  },
+  {
+    name: 'Аркадий Лушко',
+  },
+  {
+    name: 'Георгий Калинин',
+  },
+  {
+    name: 'Виталий Алтуфьев',
+  },
+]

@@ -18,7 +18,10 @@ export const useItemsHandlers = (
 
   const onChangeSize = (size: (typeof sizes)[number] | null) => {
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedViewProps, size: size || undefined },
+      props: {
+        ...selectedViewProps,
+        constaProps: { ...selectedViewProps.constaProps, size: size || undefined },
+      },
       type: 'AvatarGroup',
     }
 
@@ -27,7 +30,13 @@ export const useItemsHandlers = (
   const onChangeVisibleCount = (event: ChangeEvent<HTMLInputElement> | null) => {
     const visibleCount = event?.target.checked ? 'auto' : 4
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedViewProps, visibleCount },
+      props: {
+        ...selectedViewProps,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          visibleCount: visibleCount,
+        },
+      },
       type: 'AvatarGroup',
     }
 
@@ -35,7 +44,13 @@ export const useItemsHandlers = (
   }
   const handleChangeVisibleCount = (visibleCount: string | null) => {
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedViewProps, visibleCount: visibleCount ? +visibleCount : undefined },
+      props: {
+        ...selectedViewProps,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          visibleCount: visibleCount ? +visibleCount : undefined,
+        },
+      },
       type: 'AvatarGroup',
     }
 
@@ -43,7 +58,13 @@ export const useItemsHandlers = (
   }
   const onChangeForm = (forms: (typeof form)[number] | null) => {
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedViewProps, form: forms || undefined },
+      props: {
+        ...selectedViewProps,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          form: forms || undefined,
+        },
+      },
       type: 'AvatarGroup',
     }
 
@@ -52,7 +73,13 @@ export const useItemsHandlers = (
 
   const onChangeMonochrome = (monochrome: ChangeEvent<HTMLInputElement> | null) => {
     const newProps: BrandAvatarGroupProps = {
-      props: { ...selectedViewProps, monochrome: monochrome?.target.checked || undefined },
+      props: {
+        ...selectedViewProps,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          monochrome: monochrome?.target.checked || undefined,
+        },
+      },
       type: 'AvatarGroup',
     }
 
