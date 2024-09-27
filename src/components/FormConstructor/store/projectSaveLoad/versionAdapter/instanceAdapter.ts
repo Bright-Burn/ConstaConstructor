@@ -27,6 +27,24 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
         props: { ...instance.props, props: newProps },
       }
     }
+    case 'Avatar': {
+      // Получаем адаптер функцию для кнопки
+      const adapterFunc = typeAdapterDict[instance.props.type]
+      const newProps = adapterFunc(instance.id, instance.props.props)
+      return {
+        ...instance,
+        props: { ...instance.props, props: newProps },
+      }
+    }
+    case 'AvatarGroup': {
+      // Получаем адаптер функцию для кнопки
+      const adapterFunc = typeAdapterDict[instance.props.type]
+      const newProps = adapterFunc(instance.id, instance.props.props)
+      return {
+        ...instance,
+        props: { ...instance.props, props: newProps },
+      }
+    }
   }
   return instance
 }

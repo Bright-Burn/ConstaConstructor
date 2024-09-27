@@ -9,6 +9,9 @@ export const codeBuilders: CodeBuilder = {
   Layout: (componentLabel, props) => buildLayoutCode(componentLabel, props.props),
   Button: (componentLabel, props) => buildCodeDefault(componentLabel, 'Button', props.props),
   Badge: (componentLabel, props) => buildCodeDefault(componentLabel, 'Badge', props.props),
+  Avatar: (componentLabel, props) => buildCodeDefault(componentLabel, 'Avatar', props.props),
+  AvatarGroup: (componentLabel, props) =>
+    buildCodeDefault(componentLabel, 'AvatarGroup', props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика

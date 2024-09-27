@@ -8,12 +8,16 @@ import type {
 } from './types'
 
 export type AvatarProps = {
-  name?: string
-  size?: 's' | 'm' | 'xs' | 'l'
-  form?: 'round' | 'brick' | 'default'
-  monochrome?: boolean
-  url?: string
+  constaProps: {
+    name?: string
+    size?: 's' | 'm' | 'xs' | 'l'
+    form?: 'round' | 'brick' | 'default'
+    monochrome?: boolean
+    url?: string
+  }
+  styles: {}
 } & BaseProps
+
 export type BrandAvatarProps = BrandProps<AvatarProps, 'Avatar'>
 
 export type AvatarElement = ConcreteSelectedView<typeof FormElementDictTypes.Avatar>

@@ -17,8 +17,10 @@ export const ComponentCardAvatar: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          className: '',
           baseProps: {},
+          className: '',
+          constaProps: {},
+          styles: {},
         },
         type: 'Avatar',
       },

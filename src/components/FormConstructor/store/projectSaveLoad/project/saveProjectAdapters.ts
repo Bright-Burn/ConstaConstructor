@@ -11,7 +11,7 @@ import type { RootState } from '../../setupStore'
 import type { FormConstructorToSave } from '../types'
 
 // Временная информация о версии выгрузки, пока осуществляется переезд на новый тип пропсов, каждый обновленный тип +1
-export const PROJECT_VERSION = '2'
+export const PROJECT_VERSION = '4'
 
 /**
  * Формирует объект для сохраенения из текущего состояния
