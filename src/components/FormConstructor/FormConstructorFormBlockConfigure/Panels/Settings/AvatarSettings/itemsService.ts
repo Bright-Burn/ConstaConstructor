@@ -15,7 +15,13 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
 
   const onChangeName = (name: string | null) => {
     const newProps: BrandAvatarProps = {
-      props: { ...selectedViewProps, name: name || undefined },
+      props: {
+        ...selectedViewProps,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          name: name || undefined,
+        },
+      },
       type: 'Avatar',
     }
 
@@ -23,7 +29,13 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
   }
   const onChangeSize = (size: (typeof sizes)[number] | null) => {
     const newProps: BrandAvatarProps = {
-      props: { ...selectedViewProps, size: size || undefined },
+      props: {
+        ...selectedViewProps,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          size: size || undefined,
+        },
+      },
       type: 'Avatar',
     }
 
@@ -31,7 +43,13 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
   }
   const onChangeForm = (forms: (typeof form)[number] | null) => {
     const newProps: BrandAvatarProps = {
-      props: { ...selectedViewProps, form: forms || undefined },
+      props: {
+        ...selectedViewProps,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          form: forms || undefined,
+        },
+      },
       type: 'Avatar',
     }
 
@@ -41,7 +59,10 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
     const newProps: BrandAvatarProps = {
       props: {
         ...selectedViewProps,
-        url: image?.target.checked ? './assets/avatar.jpg' : undefined,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          url: image?.target.checked ? './assets/avatar.jpg' : undefined,
+        },
       },
       type: 'Avatar',
     }
@@ -50,7 +71,13 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
   }
   const onChangeMonochrome = (monochrome: ChangeEvent<HTMLInputElement> | null) => {
     const newProps: BrandAvatarProps = {
-      props: { ...selectedViewProps, monochrome: monochrome?.target.checked || undefined },
+      props: {
+        ...selectedViewProps,
+        constaProps: {
+          ...selectedViewProps.constaProps,
+          monochrome: monochrome?.target.checked || undefined,
+        },
+      },
       type: 'Avatar',
     }
 

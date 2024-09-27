@@ -18,16 +18,22 @@ type AvatarSettingsType = {
 export const AvatarSettings: FC<AvatarSettingsType> = ({ selectedViewProps, selectedView }) => {
   const { onChangeName, onChangeSize, onChangeForm, onChangeMonochrome, onChangeImage } =
     useItemsHandlers(selectedViewProps, selectedView)
+
   return (
     <div className={styles.settingsContainer}>
-      <TextField size="xs" leftSide="Name" value={selectedViewProps.name} onChange={onChangeName} />
+      <TextField
+        size="xs"
+        leftSide="Name"
+        value={selectedViewProps.constaProps.name}
+        onChange={onChangeName}
+      />
       <Select
         getItemKey={(item: string) => item}
         getItemLabel={(item: string) => item}
         items={sizes}
         placeholder="Size"
         size="xs"
-        value={selectedViewProps.size}
+        value={selectedViewProps.constaProps.size}
         renderValue={({ item }) => getValueForSelect({ item, label: 'size' })}
         onChange={value => {
           onChangeSize(value)
@@ -39,20 +45,20 @@ export const AvatarSettings: FC<AvatarSettingsType> = ({ selectedViewProps, sele
         items={form}
         placeholder="Form"
         size="xs"
-        value={selectedViewProps.form}
+        value={selectedViewProps.constaProps.form}
         renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeForm(value)
         }}
       />
       <Switch
-        checked={!!selectedViewProps.url}
+        checked={!!selectedViewProps.constaProps.url}
         size="xs"
         label="With image"
         onChange={onChangeImage}
       />
       <Switch
-        checked={selectedViewProps.monochrome}
+        checked={selectedViewProps.constaProps.monochrome}
         size="xs"
         label="Monochrome"
         onChange={onChangeMonochrome}
