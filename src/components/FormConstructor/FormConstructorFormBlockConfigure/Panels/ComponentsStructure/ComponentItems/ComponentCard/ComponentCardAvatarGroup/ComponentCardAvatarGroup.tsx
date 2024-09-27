@@ -36,18 +36,18 @@ export const ComponentCardAvatarGroup: FC<IComponetCardElement> = ({ name }) => 
 
 const defaultAvatarProps: AvatarProps['constaProps'][] = [
   {
-    name: 'Геннадий Морозов',
+    name: 'Роланд Дискейн',
   },
   {
-    name: 'Аркадий Лушко',
+    name: 'Эдди Дин',
   },
   {
-    name: 'Аркадий Лушко',
+    name: 'Сюзанна Дискейн',
   },
   {
-    name: 'Георгий Калинин',
+    name: 'Джейк Чеймберз',
   },
   {
-    name: 'Виталий Алтуфьев',
+    name: 'Катбер Олгуд',
   },
 ]
