@@ -8,11 +8,11 @@ import type { InstanceProps } from './instanceProps'
 import type {
   BrandProps,
   ConcreteSelectedView,
-  DeepWriteable,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
 } from './types'
+import { IconNames } from './iconTypes'
 
 export type DefaultItemBreadcrumbsType = DefaultItem & { labelIcon?: string }
 
@@ -21,6 +21,7 @@ type UiLibProps = {
   fitMode: BreadcrumbPropFitMode
   size: BreadcrumbPropSize
   lastItemIsLink?: boolean
+  icon?: IconNames
 }
 
 export type BreadcrumbProps = InstanceProps<UiLibProps, {}>

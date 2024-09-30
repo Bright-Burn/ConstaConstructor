@@ -8,13 +8,13 @@ import type {
   BrandBreadcrumbsProps,
   BreadcrumbProps,
   BreadcrumbsFormElement,
-  DeepWriteable,
+  IconNames,
   IselectedView,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
-  selectedViewProps: DeepWriteable<BreadcrumbProps>,
+  selectedViewProps: BreadcrumbProps,
   selectedView: BreadcrumbsFormElement,
 ) => {
   const dispatch = useAppDispatch()
@@ -25,7 +25,7 @@ export const useItemsHandlers = (
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandBreadcrumbsProps = {
-        props: { ...selectedViewProps },
+        props: structuredClone(selectedViewProps),
         type: 'BreadcrumbsFormElement',
       }
 
@@ -47,48 +47,69 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeItems = (items: DeepWriteable<DefaultItem[]>) => {
+  const onChangeItems = (items: DefaultItem[]) => {
     const newProps: BrandBreadcrumbsProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, items: [...items] },
+      },
       type: 'BreadcrumbsFormElement',
     }
 
-    newProps.props.uiLibProps.items = [...items]
     onDispatch(selectedView, newProps)
   }
 
   const onChangeSize = (value: BreadcrumbPropSize | null) => {
     if (value) {
       const newProps: BrandBreadcrumbsProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, size: value },
+        },
         type: 'BreadcrumbsFormElement',
       }
 
-      newProps.props.uiLibProps.size = value
       onDispatch(selectedView, newProps)
     }
   }
 
   const onChangeLastItemLink = (value: boolean) => {
     const newProps: BrandBreadcrumbsProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, lastItemIsLink: value },
+      },
       type: 'BreadcrumbsFormElement',
     }
 
-    newProps.props.uiLibProps.lastItemIsLink = value
     onDispatch(selectedView, newProps)
   }
 
   const onChangeFitMode = (value: BreadcrumbPropFitMode | null) => {
     if (value) {
       const newProps: BrandBreadcrumbsProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, fitMode: value },
+        },
         type: 'BreadcrumbsFormElement',
       }
 
-      newProps.props.uiLibProps.fitMode = value
       onDispatch(selectedView, newProps)
     }
+  }
+
+  const onChangeIcon = (value: IconNames | null) => {
+    const newProps: BrandBreadcrumbsProps = {
+      props: {
+        ...selectedViewProps,
+        styles: {
+          icon: value ? value : undefined,
+        },
+      },
+      type: 'BreadcrumbsFormElement',
+    }
+    onDispatch(selectedView, newProps)
   }
 
   return {
@@ -97,7 +118,9 @@ export const useItemsHandlers = (
     onChangeFitMode,
     onChangeLastItemLink,
     onChangeItems,
+    onChangeIcon,
     itemsProps: {
+      icon: selectedViewProps.uiLibProps.icon,
       items: selectedViewProps.uiLibProps.items,
       size: selectedViewProps.uiLibProps.size,
       fitMode: selectedViewProps.uiLibProps.fitMode,

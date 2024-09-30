@@ -191,5 +191,3 @@ export interface IFormConstructor extends IHistory {
 interface IHistory {
   history: any
 }
-
-export type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> }

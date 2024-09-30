@@ -1,4 +1,4 @@
-import type { AllElementTypes, ButtonProps, FormInstance } from '../../../coreTypes'
+import type { AllElementTypes, FormInstance } from '../../../coreTypes'
 
 import { typeAdapterDict } from './typeAdapter'
 
@@ -10,7 +10,6 @@ import { typeAdapterDict } from './typeAdapter'
 export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
   switch (instance.props.type) {
     case 'Button': {
-      // Получаем адаптер функцию для кнопки
       const adapterFunc = typeAdapterDict[instance.props.type]
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
@@ -19,7 +18,6 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
       }
     }
     case 'Badge': {
-      // Получаем адаптер функцию для кнопки
       const adapterFunc = typeAdapterDict[instance.props.type]
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
@@ -28,7 +26,6 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
       }
     }
     case 'Avatar': {
-      // Получаем адаптер функцию для кнопки
       const adapterFunc = typeAdapterDict[instance.props.type]
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
@@ -37,7 +34,6 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
       }
     }
     case 'AvatarGroup': {
-      // Получаем адаптер функцию для кнопки
       const adapterFunc = typeAdapterDict[instance.props.type]
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
@@ -46,9 +42,8 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
       }
     }
     case 'BreadcrumbsFormElement': {
-      // Получаем адаптер функцию для кнопки
       const adapterFunc = typeAdapterDict[instance.props.type]
-      // @ts-ignore - считаем, что подставляется тип deprecated
+      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,

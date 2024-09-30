@@ -3,7 +3,7 @@ import type { UnionProps } from '../../../../coreTypes'
 import type { ConstaPropsStyles } from './buildConstaPropsCommon'
 
 // @ts-expect-error Временное решение, убрать игнор, когда у всех компонентов появится constaProps
-export const constaPropsAdapterCommon = (props: UnionProps['props']['constaProps']) => {
+export const constaPropsAdapterCommon = (props: UnionProps['props']['uiLibProps']) => {
   const constaProps: ConstaPropsStyles = {}
 
   // Преобразуем к типу аргумента функции билдера

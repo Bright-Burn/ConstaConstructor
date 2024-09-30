@@ -152,7 +152,6 @@ export type {
   AllElementTypes,
   BaseProps,
   BrandProps,
-  DeepWriteable,
   DraggbleElement,
   FormElementTypes,
   FormElementUnion,
