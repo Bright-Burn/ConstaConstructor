@@ -5,6 +5,7 @@ import type { Values } from '../utils'
 import type { IFormElementAvatar } from './avatartTypes'
 import type { IFormElementBadge } from './badgeTypes'
 import type { BaseTypes } from './basePropsTypes'
+import type { IFormElementBreadcrumbs } from './breadcrumbsTypes'
 import type { IButtonActionElement, IFormElementButton } from './buttonTypes'
 import type { BrandCardElementPropsStyles } from './cardTypes'
 import type { IFormElementCheckbox } from './checkboxTypes'
@@ -26,7 +27,6 @@ import type { IFormElementTextField } from './textFieldTypes'
 import type { IFormElementText } from './textTypes'
 import type { IFormElementUser } from './userTypes'
 import type { ViewInfo } from './viewInfo'
-import { IFormElementBreadcrumbs } from './breadcrumbsTypes'
 
 // Существует два типа элементов, элементы формы и группирующие панели
 // например Layout - пока только один, но если в консте будет что еще группирующие, то будем расширять FormGroupsType

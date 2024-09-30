@@ -12,7 +12,7 @@ export const avatarAdapter: AvatarAdapter = (id, deprecated) => {
   const avatarProps: AvatarProps = {
     baseProps: deprecated.baseProps,
     className: deprecated.className,
-    constaProps: {
+    uiLibProps: {
       form: deprecated.form,
       monochrome: deprecated.monochrome,
       name: deprecated.name,

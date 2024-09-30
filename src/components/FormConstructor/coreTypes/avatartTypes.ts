@@ -1,6 +1,5 @@
-import { InstanceProps } from './instanceProps'
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,

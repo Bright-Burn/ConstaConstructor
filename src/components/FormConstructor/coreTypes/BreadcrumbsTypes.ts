@@ -4,8 +4,8 @@ import type {
   DefaultItem,
 } from '@consta/uikit/Breadcrumbs'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   DeepWriteable,
@@ -13,7 +13,6 @@ import type {
   IFormElement,
   OmitInstanceId,
 } from './types'
-import { InstanceProps } from './instanceProps'
 
 export type DefaultItemBreadcrumbsType = DefaultItem & { labelIcon?: string }
 

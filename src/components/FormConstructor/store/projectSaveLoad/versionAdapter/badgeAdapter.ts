@@ -14,7 +14,7 @@ export const badgeAdapter: BadgeAdapter = (id, deprecated) => {
     baseProps: deprecated.baseProps,
     className: deprecated.className,
     styles: {},
-    constaProps: {
+    uiLibProps: {
       form: deprecated.form,
       iconLeft: deprecated.iconLeft,
       iconRight: deprecated.iconRight,

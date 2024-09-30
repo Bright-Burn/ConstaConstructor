@@ -14,7 +14,7 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   //логика для заполнения элемента
   const isFilled = props?.styles.filled || false
 
-  const buttonConstaProps = props?.constaProps
+  const buttonConstaProps = props?.uiLibProps
   const className = props?.className
 
   if (!buttonConstaProps) {

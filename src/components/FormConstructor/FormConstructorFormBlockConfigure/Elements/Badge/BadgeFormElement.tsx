@@ -11,7 +11,7 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   const className = props?.className
-  const badgeConstaProps = props?.constaProps
+  const badgeConstaProps = props?.uiLibProps
 
   if (!badgeConstaProps) {
     return null

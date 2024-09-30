@@ -1,6 +1,7 @@
 import type { Props } from '@consta/uikit/Button'
 
 import type { IconNames } from './iconTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
   BaseProps,
   BrandProps,
@@ -11,7 +12,6 @@ import type {
   IGroupElement,
   OmitInstanceId,
 } from './types'
-import { InstanceProps } from './instanceProps'
 
 ///  | 'RightSidebar' | 'LeftSidebar'
 export type ButtonAction = 'none' | 'ButtonModal'

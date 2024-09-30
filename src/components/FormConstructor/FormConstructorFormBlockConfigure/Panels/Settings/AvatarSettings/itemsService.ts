@@ -17,8 +17,8 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
     const newProps: BrandAvatarProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           name: name || undefined,
         },
       },
@@ -31,8 +31,8 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
     const newProps: BrandAvatarProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           size: size || undefined,
         },
       },
@@ -45,8 +45,8 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
     const newProps: BrandAvatarProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           form: forms || undefined,
         },
       },
@@ -59,8 +59,8 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
     const newProps: BrandAvatarProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           url: image?.target.checked ? './assets/avatar.jpg' : undefined,
         },
       },
@@ -73,8 +73,8 @@ export const useItemsHandlers = (selectedViewProps: AvatarProps, selectedView: A
     const newProps: BrandAvatarProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           monochrome: monochrome?.target.checked || undefined,
         },
       },

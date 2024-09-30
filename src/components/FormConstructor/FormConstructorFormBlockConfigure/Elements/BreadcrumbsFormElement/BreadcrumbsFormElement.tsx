@@ -10,7 +10,7 @@ import type { IBreadcrumbsFormElement } from './types'
 export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  const breadcrumbsConstaProps = props?.constaProps
+  const breadcrumbsConstaProps = props?.uiLibProps
   const className = props?.className
 
   if (!breadcrumbsConstaProps) {

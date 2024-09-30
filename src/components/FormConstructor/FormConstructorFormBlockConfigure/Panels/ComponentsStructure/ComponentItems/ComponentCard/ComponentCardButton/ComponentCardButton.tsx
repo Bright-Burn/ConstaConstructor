@@ -17,7 +17,7 @@ export const ComponentCardButton: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          constaProps: {
+          uiLibProps: {
             size: 'm',
             disabled: false,
             label: 'Кнопка',

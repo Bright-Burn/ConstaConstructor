@@ -20,7 +20,7 @@ export const useItemsHandlers = (
     const newProps: BrandAvatarGroupProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, size: size || undefined },
+        uiLibProps: { ...selectedViewProps.uiLibProps, size: size || undefined },
       },
       type: 'AvatarGroup',
     }
@@ -32,8 +32,8 @@ export const useItemsHandlers = (
     const newProps: BrandAvatarGroupProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           visibleCount,
         },
       },
@@ -46,8 +46,8 @@ export const useItemsHandlers = (
     const newProps: BrandAvatarGroupProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           visibleCount: visibleCount ? +visibleCount : undefined,
         },
       },
@@ -60,8 +60,8 @@ export const useItemsHandlers = (
     const newProps: BrandAvatarGroupProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           form: forms || undefined,
         },
       },
@@ -75,8 +75,8 @@ export const useItemsHandlers = (
     const newProps: BrandAvatarGroupProps = {
       props: {
         ...selectedViewProps,
-        constaProps: {
-          ...selectedViewProps.constaProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
           monochrome: monochrome?.target.checked || undefined,
         },
       },

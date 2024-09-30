@@ -10,7 +10,7 @@ import type { IAvatarGroupElement } from './types'
 export const AvatarGroupFormElement: FC<IAvatarGroupElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  const avatarGroupProps = props?.constaProps
+  const avatarGroupProps = props?.uiLibProps
   const className = props?.className
 
   if (!avatarGroupProps) {

@@ -9,7 +9,7 @@ import type { IAvatarElement } from './types'
 
 export const AvatarFormElement: FC<IAvatarElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
-  const avatarProps = props?.constaProps
+  const avatarProps = props?.uiLibProps
   const className = props?.className
 
   if (!avatarProps) {

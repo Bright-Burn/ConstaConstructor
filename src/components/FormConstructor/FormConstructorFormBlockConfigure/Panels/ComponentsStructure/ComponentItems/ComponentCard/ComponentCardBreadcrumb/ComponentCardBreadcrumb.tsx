@@ -19,7 +19,7 @@ export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          constaProps: {
+          uiLibProps: {
             items: pagesSubMenu,
             size: 'm',
             fitMode: 'dropdown',

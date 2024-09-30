@@ -6,6 +6,7 @@ import type {
 } from '@consta/uikit/Badge'
 
 import type { IconNames } from './iconTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
   BrandProps,
   ConcreteSelectedView,
@@ -13,7 +14,6 @@ import type {
   IFormElement,
   OmitInstanceId,
 } from './types'
-import { InstanceProps } from './instanceProps'
 
 type UiLibProps = {
   size?: BadgePropSize

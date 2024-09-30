@@ -19,7 +19,7 @@ export const buttonAdapter: ButtonAdapter = (id, deprecated) => {
     baseProps: deprecated.baseProps,
     className: deprecated.className,
     // Свойства ui библиотеки вынесены отдельно
-    constaProps: {
+    uiLibProps: {
       iconLeft: deprecated.icon,
       iconRight: deprecated.iconR,
       disabled: deprecated.disabled,

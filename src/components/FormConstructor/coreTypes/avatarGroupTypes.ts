@@ -1,7 +1,6 @@
 import type { AvatarProps } from './avatartTypes'
-import { InstanceProps } from './instanceProps'
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -10,7 +9,7 @@ import type {
 } from './types'
 
 type UiLibProps = {
-  items: AvatarProps['constaProps'][]
+  items: AvatarProps['uiLibProps'][]
   visibleCount?: number | 'auto'
   size?: 's' | 'm' | 'xs' | 'l'
   form?: 'round' | 'brick' | 'default'

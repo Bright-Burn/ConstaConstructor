@@ -29,7 +29,7 @@ export const useItemsHandlers = (
         type: 'BreadcrumbsFormElement',
       }
 
-      let itemsProps = [...newProps.props.constaProps.items]
+      let itemsProps = [...newProps.props.uiLibProps.items]
       const currentLength = itemsProps.length
 
       if (Number(value) > currentLength) {
@@ -42,7 +42,7 @@ export const useItemsHandlers = (
         }
       }
 
-      newProps.props.constaProps.items = itemsProps
+      newProps.props.uiLibProps.items = itemsProps
       onDispatch(selectedView, newProps)
     }
   }
@@ -53,7 +53,7 @@ export const useItemsHandlers = (
       type: 'BreadcrumbsFormElement',
     }
 
-    newProps.props.constaProps.items = [...items]
+    newProps.props.uiLibProps.items = [...items]
     onDispatch(selectedView, newProps)
   }
 
@@ -64,7 +64,7 @@ export const useItemsHandlers = (
         type: 'BreadcrumbsFormElement',
       }
 
-      newProps.props.constaProps.size = value
+      newProps.props.uiLibProps.size = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -75,7 +75,7 @@ export const useItemsHandlers = (
       type: 'BreadcrumbsFormElement',
     }
 
-    newProps.props.constaProps.lastItemIsLink = value
+    newProps.props.uiLibProps.lastItemIsLink = value
     onDispatch(selectedView, newProps)
   }
 
@@ -86,7 +86,7 @@ export const useItemsHandlers = (
         type: 'BreadcrumbsFormElement',
       }
 
-      newProps.props.constaProps.fitMode = value
+      newProps.props.uiLibProps.fitMode = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -98,10 +98,10 @@ export const useItemsHandlers = (
     onChangeLastItemLink,
     onChangeItems,
     itemsProps: {
-      items: selectedViewProps.constaProps.items,
-      size: selectedViewProps.constaProps.size,
-      fitMode: selectedViewProps.constaProps.fitMode,
-      lastItemIsLink: selectedViewProps.constaProps.lastItemIsLink,
+      items: selectedViewProps.uiLibProps.items,
+      size: selectedViewProps.uiLibProps.size,
+      fitMode: selectedViewProps.uiLibProps.fitMode,
+      lastItemIsLink: selectedViewProps.uiLibProps.lastItemIsLink,
     },
   }
 }
