@@ -4,7 +4,7 @@ import { avatarAdapter } from './avatarAdapter'
 import type { AvatarGroupProps_Deprecated } from './deprecatedTypes'
 
 export type AvatarGroupAdapter = (
-  buttonInstanceId: string,
+  instanceId: string,
   deprecated: AvatarGroupProps_Deprecated,
 ) => AvatarGroupProps
 

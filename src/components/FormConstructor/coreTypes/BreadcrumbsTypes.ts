@@ -25,10 +25,7 @@ type UiLibProps = {
 
 export type BreadcrumbProps = InstanceProps<UiLibProps, {}>
 
-export type BrandBreadcrumbsProps = BrandProps<
-  DeepWriteable<BreadcrumbProps>,
-  'BreadcrumbsFormElement'
->
+export type BrandBreadcrumbsProps = BrandProps<BreadcrumbProps, 'BreadcrumbsFormElement'>
 
 export type BreadcrumbsFormElement = ConcreteSelectedView<
   typeof FormElementDictTypes.BreadcrumbsForm

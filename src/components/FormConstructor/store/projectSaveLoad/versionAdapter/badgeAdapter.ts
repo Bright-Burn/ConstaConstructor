@@ -2,10 +2,7 @@ import type { BadgeProps } from '../../../coreTypes'
 
 import type { BadgeProps_Deprecated } from './deprecatedTypes'
 
-export type BadgeAdapter = (
-  buttonInstanceId: string,
-  deprecated: BadgeProps_Deprecated,
-) => BadgeProps
+export type BadgeAdapter = (instanceId: string, deprecated: BadgeProps_Deprecated) => BadgeProps
 
 export const badgeAdapter: BadgeAdapter = (id, deprecated) => {
   console.info(`Run adapter for Badge instance with id=${id}`)

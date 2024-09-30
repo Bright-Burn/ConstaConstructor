@@ -1,4 +1,4 @@
-import type { AllElementTypes, FormInstance } from '../../../coreTypes'
+import type { AllElementTypes, ButtonProps, FormInstance } from '../../../coreTypes'
 
 import { typeAdapterDict } from './typeAdapter'
 
@@ -39,6 +39,16 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     case 'AvatarGroup': {
       // Получаем адаптер функцию для кнопки
       const adapterFunc = typeAdapterDict[instance.props.type]
+      const newProps = adapterFunc(instance.id, instance.props.props)
+      return {
+        ...instance,
+        props: { ...instance.props, props: newProps },
+      }
+    }
+    case 'BreadcrumbsFormElement': {
+      // Получаем адаптер функцию для кнопки
+      const adapterFunc = typeAdapterDict[instance.props.type]
+      // @ts-ignore - считаем, что подставляется тип deprecated
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,

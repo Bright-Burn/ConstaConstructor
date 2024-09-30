@@ -4,6 +4,7 @@ import type { AvatarGroupAdapter } from './avatarGroupAdapter'
 import { avatarGroupAdapter } from './avatarGroupAdapter'
 import type { BadgeAdapter } from './badgeAdapter'
 import { badgeAdapter } from './badgeAdapter'
+import { BreadCrumbsAdapter, breadCrumbsAdapter } from './breadCrumbsAdapter'
 import type { ButtonAdapter } from './buttonAdapter'
 import { buttonAdapter } from './buttonAdapter'
 
@@ -12,6 +13,7 @@ export type TypeAdapter = {
   Badge: BadgeAdapter
   Avatar: AvatarAdapter
   AvatarGroup: AvatarGroupAdapter
+  BreadcrumbsFormElement: BreadCrumbsAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -20,4 +22,5 @@ export const typeAdapterDict: TypeAdapter = {
   Badge: badgeAdapter,
   Avatar: avatarAdapter,
   AvatarGroup: avatarGroupAdapter,
+  BreadcrumbsFormElement: breadCrumbsAdapter,
 }
