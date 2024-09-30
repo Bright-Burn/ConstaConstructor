@@ -19,11 +19,14 @@ export const ComponentCardBreadcrumb: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          items: pagesSubMenu,
-          size: 'm',
-          fitMode: 'dropdown',
-          className: '',
+          constaProps: {
+            items: pagesSubMenu,
+            size: 'm',
+            fitMode: 'dropdown',
+          },
+          styles: {},
           baseProps: {},
+          className: '',
         },
         type: 'BreadcrumbsFormElement',
       },

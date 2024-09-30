@@ -1,4 +1,5 @@
 import type { AvatarProps } from './avatartTypes'
+import { InstanceProps } from './instanceProps'
 import type {
   BaseProps,
   BrandProps,
@@ -8,16 +9,15 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type AvatarGroupProps = {
-  constaProps: {
-    items: AvatarProps['constaProps'][]
-    visibleCount?: number | 'auto'
-    size?: 's' | 'm' | 'xs' | 'l'
-    form?: 'round' | 'brick' | 'default'
-    monochrome?: boolean
-  }
-  styles: {}
-} & BaseProps
+type UiLibProps = {
+  items: AvatarProps['constaProps'][]
+  visibleCount?: number | 'auto'
+  size?: 's' | 'm' | 'xs' | 'l'
+  form?: 'round' | 'brick' | 'default'
+  monochrome?: boolean
+}
+
+export type AvatarGroupProps = InstanceProps<UiLibProps, {}>
 
 export type BrandAvatarGroupProps = BrandProps<AvatarGroupProps, 'AvatarGroup'>
 

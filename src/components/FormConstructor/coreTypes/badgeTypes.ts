@@ -7,29 +7,26 @@ import type {
 
 import type { IconNames } from './iconTypes'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
   IFormElement,
   OmitInstanceId,
 } from './types'
+import { InstanceProps } from './instanceProps'
 
-export type BadgeProps = {
-  // Типы дизайн системы
-  constaProps: {
-    size?: BadgePropSize
-    view?: BadgePropView
-    status?: BadgePropStatus
-    form?: BadgePropForm
-    minified?: boolean
-    iconLeft?: IconNames
-    iconRight?: IconNames
-    label?: string
-  }
-  // Кастомные стили
-  styles: {}
-} & BaseProps
+type UiLibProps = {
+  size?: BadgePropSize
+  view?: BadgePropView
+  status?: BadgePropStatus
+  form?: BadgePropForm
+  minified?: boolean
+  iconLeft?: IconNames
+  iconRight?: IconNames
+  label?: string
+}
+
+export type BadgeProps = InstanceProps<UiLibProps, {}>
 
 export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>
 

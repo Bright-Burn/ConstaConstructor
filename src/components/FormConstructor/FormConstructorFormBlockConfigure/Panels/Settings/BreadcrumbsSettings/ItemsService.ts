@@ -29,7 +29,7 @@ export const useItemsHandlers = (
         type: 'BreadcrumbsFormElement',
       }
 
-      let itemsProps = [...newProps.props.items]
+      let itemsProps = [...newProps.props.constaProps.items]
       const currentLength = itemsProps.length
 
       if (Number(value) > currentLength) {
@@ -42,7 +42,7 @@ export const useItemsHandlers = (
         }
       }
 
-      newProps.props.items = itemsProps
+      newProps.props.constaProps.items = itemsProps
       onDispatch(selectedView, newProps)
     }
   }
@@ -53,7 +53,7 @@ export const useItemsHandlers = (
       type: 'BreadcrumbsFormElement',
     }
 
-    newProps.props.items = [...items]
+    newProps.props.constaProps.items = [...items]
     onDispatch(selectedView, newProps)
   }
 
@@ -64,7 +64,7 @@ export const useItemsHandlers = (
         type: 'BreadcrumbsFormElement',
       }
 
-      newProps.props.size = value
+      newProps.props.constaProps.size = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -75,7 +75,7 @@ export const useItemsHandlers = (
       type: 'BreadcrumbsFormElement',
     }
 
-    newProps.props.lastItemIsLink = value
+    newProps.props.constaProps.lastItemIsLink = value
     onDispatch(selectedView, newProps)
   }
 
@@ -86,7 +86,7 @@ export const useItemsHandlers = (
         type: 'BreadcrumbsFormElement',
       }
 
-      newProps.props.fitMode = value
+      newProps.props.constaProps.fitMode = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -98,10 +98,10 @@ export const useItemsHandlers = (
     onChangeLastItemLink,
     onChangeItems,
     itemsProps: {
-      items: selectedViewProps.items,
-      size: selectedViewProps.size,
-      fitMode: selectedViewProps.fitMode,
-      lastItemIsLink: selectedViewProps.lastItemIsLink,
+      items: selectedViewProps.constaProps.items,
+      size: selectedViewProps.constaProps.size,
+      fitMode: selectedViewProps.constaProps.fitMode,
+      lastItemIsLink: selectedViewProps.constaProps.lastItemIsLink,
     },
   }
 }

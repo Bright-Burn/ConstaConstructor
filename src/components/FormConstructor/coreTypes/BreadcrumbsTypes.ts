@@ -13,15 +13,18 @@ import type {
   IFormElement,
   OmitInstanceId,
 } from './types'
+import { InstanceProps } from './instanceProps'
 
 export type DefaultItemBreadcrumbsType = DefaultItem & { labelIcon?: string }
 
-export type BreadcrumbProps = {
+type UiLibProps = {
   items: DefaultItemBreadcrumbsType[]
   fitMode: BreadcrumbPropFitMode
   size: BreadcrumbPropSize
   lastItemIsLink?: boolean
-} & BaseProps
+}
+
+export type BreadcrumbProps = InstanceProps<UiLibProps, {}>
 
 export type BrandBreadcrumbsProps = BrandProps<
   DeepWriteable<BreadcrumbProps>,

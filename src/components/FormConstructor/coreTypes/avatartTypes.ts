@@ -1,3 +1,4 @@
+import { InstanceProps } from './instanceProps'
 import type {
   BaseProps,
   BrandProps,
@@ -7,16 +8,15 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type AvatarProps = {
-  constaProps: {
-    name?: string
-    size?: 's' | 'm' | 'xs' | 'l'
-    form?: 'round' | 'brick' | 'default'
-    monochrome?: boolean
-    url?: string
-  }
-  styles: {}
-} & BaseProps
+type UiLibProps = {
+  name?: string
+  size?: 's' | 'm' | 'xs' | 'l'
+  form?: 'round' | 'brick' | 'default'
+  monochrome?: boolean
+  url?: string
+}
+
+export type AvatarProps = InstanceProps<UiLibProps, {}>
 
 export type BrandAvatarProps = BrandProps<AvatarProps, 'Avatar'>
 

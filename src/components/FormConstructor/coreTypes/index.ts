@@ -27,7 +27,7 @@ export type {
   BreadcrumbProps,
   BreadcrumbsFormElement,
   IFormElementBreadcrumbs,
-} from './BreadcrumbsTypes'
+} from './breadcrumbsTypes'
 export type {
   ButtonAction,
   ButtonElement,
