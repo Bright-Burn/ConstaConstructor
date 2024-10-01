@@ -6,6 +6,8 @@ import type { GenericAdapter } from './genericAdapter'
 export type CardAdapter = GenericAdapter<CardProps_Deprecated, CardProps>
 
 export const cardAdapter: CardAdapter = (id, deprecated) => {
+  console.info(`Run adapter for Card instance with id=${id}`)
+
   return {
     baseProps: deprecated.baseProps,
     className: deprecated.className,
