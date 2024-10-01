@@ -106,7 +106,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
         </Text>
       </div>
       <ChoiceGroup
-        value={directionDict[itemsProps.constaProps.direction || 'row']}
+        value={directionDict[itemsProps.uiLibProps.direction || 'row']}
         items={directions}
         getItemLabel={label => label.name}
         name="ChoiceGroupExample"
@@ -124,7 +124,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
       />
       <TextField
         className={styles.widthFlex}
-        value={`${itemsProps.constaProps.flex}`}
+        value={`${itemsProps.uiLibProps.flex}`}
         type="number"
         leftSide="flex"
         size="xs"

@@ -25,7 +25,7 @@ export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
   }
 
   // Преобразуем к типу аргумента функции билдера
-  const constaProps: UiLibProps = constaPropsAdapterCommon(props.constaProps)
+  const constaProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
 
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),

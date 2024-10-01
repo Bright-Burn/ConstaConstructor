@@ -8,6 +8,7 @@ import type { BreadCrumbsAdapter } from './breadCrumbsAdapter'
 import { breadCrumbsAdapter } from './breadCrumbsAdapter'
 import type { ButtonAdapter } from './buttonAdapter'
 import { buttonAdapter } from './buttonAdapter'
+import { layoutAdapter, LayoutAdapter } from './layoutAdapter'
 
 export type TypeAdapter = {
   Button: ButtonAdapter
@@ -15,6 +16,7 @@ export type TypeAdapter = {
   Avatar: AvatarAdapter
   AvatarGroup: AvatarGroupAdapter
   BreadcrumbsFormElement: BreadCrumbsAdapter
+  Layout: LayoutAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -24,4 +26,5 @@ export const typeAdapterDict: TypeAdapter = {
   Avatar: avatarAdapter,
   AvatarGroup: avatarGroupAdapter,
   BreadcrumbsFormElement: breadCrumbsAdapter,
+  Layout: layoutAdapter,
 }
