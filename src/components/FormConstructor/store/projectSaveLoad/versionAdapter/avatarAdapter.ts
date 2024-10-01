@@ -1,8 +1,9 @@
 import type { AvatarProps } from '../../../coreTypes'
 
 import type { AvatarProps_Deprecated } from './deprecatedTypes'
+import type { GenericAdapter } from './genericAdapter'
 
-export type AvatarAdapter = (instanceId: string, deprecated: AvatarProps_Deprecated) => AvatarProps
+export type AvatarAdapter = GenericAdapter<AvatarProps_Deprecated, AvatarProps>
 
 export const avatarAdapter: AvatarAdapter = (id, deprecated) => {
   console.log(`Run avatar adapter with id=${id}`)

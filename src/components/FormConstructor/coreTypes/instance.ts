@@ -1,12 +1,12 @@
 import type { BrandAvatarGroupProps } from './avatarGroupTypes'
 import type { BrandAvatarProps } from './avatartTypes'
 import type { BrandBadgeProps } from './badgeTypes'
-import type { BrandBreadcrumbsProps } from './breadcrumbsTypes'
 import type { BrandButtonGroupProps, BrandButtonProps } from './buttonTypes'
-import type { BrandCardElementPropsStyles } from './cardTypes'
+import type { BrandCardPropsStyles } from './cardTypes'
 import type { BrandCheckboxProps } from './checkboxTypes'
 import type { BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
 import type { BrandComboboxProps } from './comboBoxTypes'
+import type { BrandBreadcrumbsProps } from './crumbsTypes'
 import type { BrandDataTimeProps } from './dataTimeTypes'
 import type { BrandDatePickerProps } from './datePickerTypes'
 import type { BrandEChartProps } from './echarts'
@@ -72,7 +72,7 @@ export type FormInstance<T extends AllElementTypes> = {
                                             : T extends 'Layout'
                                               ? BrandLayoutElementPropsStyles
                                               : emptyObj & T extends 'Card'
-                                                ? BrandCardElementPropsStyles
+                                                ? BrandCardPropsStyles
                                                 : emptyObj & T extends 'EChart'
                                                   ? BrandEChartProps
                                                   : emptyObj & T extends 'ButtonModal'

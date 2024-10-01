@@ -23,13 +23,6 @@ export {
   paddingsTop,
 } from './basePropsTypes'
 export type {
-  BrandBreadcrumbsProps,
-  BreadcrumbProps,
-  BreadcrumbsFormElement,
-  DefaultItemBreadcrumbsType,
-  IFormElementBreadcrumbs,
-} from './breadcrumbsTypes'
-export type {
   ButtonAction,
   ButtonElement,
   ButtonGroupProps,
@@ -40,8 +33,8 @@ export type {
 } from './buttonTypes'
 export type { BrandButtonGroupProps, BrandButtonProps, ButtonGroupElement } from './buttonTypes'
 export { buttonActions, buttonActionsActive } from './buttonTypes'
-export type { CardElementProps, CardElementPropsStyles, CardElementStyles } from './cardTypes'
-export type { BrandCardElementPropsStyles, CardElement } from './cardTypes'
+export type { CardElementStyles, CardProps } from './cardTypes'
+export type { BrandCardPropsStyles, CardElement } from './cardTypes'
 export type { CheckboxElement, CheckboxProps, IFormElementCheckbox } from './checkboxTypes'
 export type { BrandCheckboxProps } from './checkboxTypes'
 export type {
@@ -61,6 +54,13 @@ export type {
   ComboBoxStyles,
   IFormElementComboBox,
 } from './comboBoxTypes'
+export type {
+  BrandBreadcrumbsProps,
+  BreadcrumbProps,
+  BreadcrumbsFormElement,
+  DefaultItemBreadcrumbsType,
+  IFormElementBreadcrumbs,
+} from './crumbsTypes'
 export type {
   BrandDataTimeProps,
   DataTimeElement,
