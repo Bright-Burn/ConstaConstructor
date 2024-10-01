@@ -2,11 +2,9 @@ import type { AvatarGroupProps } from '../../../coreTypes'
 
 import { avatarAdapter } from './avatarAdapter'
 import type { AvatarGroupProps_Deprecated } from './deprecatedTypes'
+import type { GenericAdapter } from './genericAdapter'
 
-export type AvatarGroupAdapter = (
-  instanceId: string,
-  deprecated: AvatarGroupProps_Deprecated,
-) => AvatarGroupProps
+export type AvatarGroupAdapter = GenericAdapter<AvatarGroupProps_Deprecated, AvatarGroupProps>
 
 export const avatarGroupAdapter: AvatarGroupAdapter = (id, deprecated) => {
   console.log(`Run avatar group adapter with id=${id}`)

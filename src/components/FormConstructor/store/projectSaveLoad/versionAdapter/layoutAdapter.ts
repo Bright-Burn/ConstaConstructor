@@ -1,10 +1,12 @@
-import { LayoutElementPropsStyles } from '../../../coreTypes'
-import { LayoutElementPropsStyles_Deprecated } from './deprecatedTypes'
+import type { LayoutElementPropsStyles } from '../../../coreTypes'
 
-export type LayoutAdapter = (
-  instanceId: string,
-  deprecated: LayoutElementPropsStyles_Deprecated,
-) => LayoutElementPropsStyles
+import type { LayoutElementPropsStyles_Deprecated } from './deprecatedTypes'
+import type { GenericAdapter } from './genericAdapter'
+
+export type LayoutAdapter = GenericAdapter<
+  LayoutElementPropsStyles_Deprecated,
+  LayoutElementPropsStyles
+>
 
 export const layoutAdapter: LayoutAdapter = (id, deprecated) => {
   console.log(`Run layout adapter with id=${id}`)

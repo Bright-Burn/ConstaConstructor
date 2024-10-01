@@ -1,8 +1,8 @@
-import {
-  OmitInstanceId,
+import type {
   BaseProps,
   LayoutElementProps,
   LayoutElementStyles,
+  OmitInstanceId,
 } from '../../../../coreTypes'
 
 export type LayoutElementPropsStyles_Deprecated = OmitInstanceId<

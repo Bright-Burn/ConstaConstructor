@@ -5,12 +5,12 @@ import type { Values } from '../utils'
 import type { IFormElementAvatar } from './avatartTypes'
 import type { IFormElementBadge } from './badgeTypes'
 import type { BaseTypes } from './basePropsTypes'
-import type { IFormElementBreadcrumbs } from './breadcrumbsTypes'
 import type { IButtonActionElement, IFormElementButton } from './buttonTypes'
-import type { BrandCardElementPropsStyles } from './cardTypes'
+import type { BrandCardPropsStyles } from './cardTypes'
 import type { IFormElementCheckbox } from './checkboxTypes'
 import type { IFormElementChoiceGroup } from './ChoiceGroupTypes'
 import type { IFormElementComboBox } from './comboBoxTypes'
+import type { IFormElementBreadcrumbs } from './crumbsTypes'
 import type { IFormElementDataTime } from './dataTimeTypes'
 import type { IFormElementDatePicker } from './datePickerTypes'
 import type { IFormElementIcon } from './iconTypes'
@@ -108,7 +108,7 @@ export interface IUnion {
 
 export type ICardElement = OmitInstanceId<
   IGroupElement & {
-    props: BrandCardElementPropsStyles
+    props: BrandCardPropsStyles
   }
 >
 
