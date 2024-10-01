@@ -1,4 +1,4 @@
-export type ConstaPropsStyles = Record<string, string | number | boolean | object>
+export type UiLibProps = Record<string, string | number | boolean | object>
 
 // Нименования свойств в значении которых может быть иконка начинаются с Icon
 const IconPrefix = 'icon'
@@ -8,7 +8,7 @@ const IconPrefix = 'icon'
  * @param obj Оъект стилей
  * @returns
  */
-export const buildConstaPropsCommon = (props: ConstaPropsStyles): string => {
+export const buildConstaPropsCommon = (props: UiLibProps): string => {
   let resultString = ''
   Object.entries(props).forEach(([key, value]) => {
     typeof value !== 'string' || key.startsWith(IconPrefix)

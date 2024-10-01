@@ -4,20 +4,18 @@ import { avatarAdapter } from './avatarAdapter'
 import type { AvatarGroupProps_Deprecated } from './deprecatedTypes'
 
 export type AvatarGroupAdapter = (
-  buttonInstanceId: string,
+  instanceId: string,
   deprecated: AvatarGroupProps_Deprecated,
 ) => AvatarGroupProps
 
 export const avatarGroupAdapter: AvatarGroupAdapter = (id, deprecated) => {
   console.log(`Run avatar group adapter with id=${id}`)
-  const adaptedItemsProps = (deprecated.items || []).map(
-    item => avatarAdapter(id, item).constaProps,
-  )
+  const adaptedItemsProps = (deprecated.items || []).map(item => avatarAdapter(id, item).uiLibProps)
 
   const avatarProps: AvatarGroupProps = {
     baseProps: deprecated.baseProps,
     className: deprecated.className,
-    constaProps: {
+    uiLibProps: {
       form: deprecated.form,
       monochrome: deprecated.monochrome,
       size: deprecated.size,

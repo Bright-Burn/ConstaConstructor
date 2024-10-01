@@ -26,8 +26,9 @@ export type {
   BrandBreadcrumbsProps,
   BreadcrumbProps,
   BreadcrumbsFormElement,
+  DefaultItemBreadcrumbsType,
   IFormElementBreadcrumbs,
-} from './BreadcrumbsTypes'
+} from './breadcrumbsTypes'
 export type {
   ButtonAction,
   ButtonElement,
@@ -152,7 +153,6 @@ export type {
   AllElementTypes,
   BaseProps,
   BrandProps,
-  DeepWriteable,
   DraggbleElement,
   FormElementTypes,
   FormElementUnion,

@@ -1,7 +1,7 @@
 import type { BrandAvatarGroupProps } from './avatarGroupTypes'
 import type { BrandAvatarProps } from './avatartTypes'
 import type { BrandBadgeProps } from './badgeTypes'
-import type { BrandBreadcrumbsProps } from './BreadcrumbsTypes'
+import type { BrandBreadcrumbsProps } from './breadcrumbsTypes'
 import type { BrandButtonGroupProps, BrandButtonProps } from './buttonTypes'
 import type { BrandCardElementPropsStyles } from './cardTypes'
 import type { BrandCheckboxProps } from './checkboxTypes'

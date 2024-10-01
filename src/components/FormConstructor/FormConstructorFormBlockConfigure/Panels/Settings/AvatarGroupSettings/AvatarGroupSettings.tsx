@@ -28,7 +28,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
   return (
     <div className={styles.settingsContainer}>
       <Switch
-        checked={selectedViewProps.constaProps.visibleCount === 'auto'}
+        checked={selectedViewProps.uiLibProps.visibleCount === 'auto'}
         size="xs"
         label="Visible count auto"
         onChange={onChangeVisibleCount}
@@ -36,11 +36,11 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
       <TextField
         size="xs"
         type="number"
-        disabled={selectedViewProps.constaProps.visibleCount === 'auto'}
+        disabled={selectedViewProps.uiLibProps.visibleCount === 'auto'}
         value={
-          typeof selectedViewProps.constaProps.visibleCount !== 'number'
+          typeof selectedViewProps.uiLibProps.visibleCount !== 'number'
             ? '4'
-            : String(selectedViewProps.constaProps.visibleCount)
+            : String(selectedViewProps.uiLibProps.visibleCount)
         }
         onChange={handleChangeVisibleCount}
       />
@@ -50,7 +50,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
         items={sizes}
         placeholder="Size"
         size="xs"
-        value={selectedViewProps.constaProps.size}
+        value={selectedViewProps.uiLibProps.size}
         renderValue={({ item }) => getValueForSelect({ item, label: 'size' })}
         onChange={value => {
           onChangeSize(value)
@@ -62,7 +62,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
         items={form}
         placeholder="Form"
         size="xs"
-        value={selectedViewProps.constaProps.form}
+        value={selectedViewProps.uiLibProps.form}
         renderValue={({ item }) => getValueForSelect({ item, label: 'form' })}
         onChange={value => {
           onChangeForm(value)
@@ -70,7 +70,7 @@ export const AvatarGroupSettings: FC<AvatarGroupSettingsType> = ({
       />
 
       <Switch
-        checked={selectedViewProps.constaProps.monochrome}
+        checked={selectedViewProps.uiLibProps.monochrome}
         size="xs"
         label="Monochrome"
         onChange={onChangeMonochrome}

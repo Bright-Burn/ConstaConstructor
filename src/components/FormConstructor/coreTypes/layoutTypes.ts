@@ -9,6 +9,7 @@ import type {
   FormGroupsDictTypes,
   OmitInstanceId,
 } from './types'
+import { InstanceProps } from './instanceProps'
 
 // Нет возможности использовать тип импортированный из консты, как это сделано с типом ButtonElementProps, так как нет возможности создать State, содержащий поле типа HTMLElement
 // В будущем решим эту проблему, пока что описал вручную
@@ -71,12 +72,7 @@ export interface LayoutElementStyles {
   transform?: string
 }
 
-export type LayoutElementPropsStyles = OmitInstanceId<
-  BaseProps & {
-    constaProps: LayoutElementProps
-    styles: LayoutElementStyles
-  }
->
+export type LayoutElementPropsStyles = InstanceProps<LayoutElementProps, LayoutElementStyles>
 
 export type BrandLayoutElementPropsStyles = BrandProps<LayoutElementPropsStyles, 'Layout'>
 

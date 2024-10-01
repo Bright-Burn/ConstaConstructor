@@ -17,7 +17,7 @@ export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          constaProps: {
+          uiLibProps: {
             label: 'Badge',
             form: 'default',
             size: 's',

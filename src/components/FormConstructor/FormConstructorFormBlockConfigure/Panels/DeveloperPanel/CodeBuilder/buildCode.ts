@@ -12,6 +12,8 @@ export const codeBuilders: CodeBuilder = {
   Avatar: (componentLabel, props) => buildCodeDefault(componentLabel, 'Avatar', props.props),
   AvatarGroup: (componentLabel, props) =>
     buildCodeDefault(componentLabel, 'AvatarGroup', props.props),
+  BreadcrumbsFormElement: (componentLabel, props) =>
+    buildCodeDefault(componentLabel, 'Breadcrumbs', props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика

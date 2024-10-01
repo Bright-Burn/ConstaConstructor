@@ -1,6 +1,7 @@
 import type { Props } from '@consta/uikit/Button'
 
 import type { IconNames } from './iconTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
   BaseProps,
   BrandProps,
@@ -15,17 +16,15 @@ import type {
 ///  | 'RightSidebar' | 'LeftSidebar'
 export type ButtonAction = 'none' | 'ButtonModal'
 
-export type ButtonProps = BaseProps & {
-  // Типы дизайн системы
-  constaProps: Omit<Props, 'iconLeft' | 'iconRight'> & {
-    iconLeft?: IconNames
-    iconRight?: IconNames
-  }
-  // Кастомные стили
-  styles: {
-    filled?: boolean
-  }
+type UiLibProps = Omit<Props, 'iconLeft' | 'iconRight'> & {
+  iconLeft?: IconNames
+  iconRight?: IconNames
 }
+type CustomStyles = {
+  filled?: boolean
+}
+
+export type ButtonProps = InstanceProps<UiLibProps, CustomStyles>
 
 export type BrandButtonProps = BrandProps<ButtonProps, 'Button'>
 

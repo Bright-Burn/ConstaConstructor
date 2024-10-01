@@ -1,4 +1,4 @@
-import type { ConstaPropsStyles } from '../buildConstaPropsCommon'
+import type { UiLibProps } from '../buildConstaPropsCommon'
 import { buildConstaPropsCommon } from '../buildConstaPropsCommon'
 import type { CssCodeStyles } from '../buildCssCodeCommon'
 import { buildCssCodeCommon } from '../buildCssCodeCommon'
@@ -26,11 +26,11 @@ export const buildCodeDefault: DefaultCodeBuilder = (componentName, jsxName, pro
 
   // Преобразуем к типу аргумента функции билдера
   // @ts-expect-error Временное решение, убрать игнор, когда у всех компонентов появится constaProps
-  const constaProps: ConstaPropsStyles = constaPropsAdapterCommon(props.constaProps)
+  const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
 
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
-    jsxCode: `<${jsxName} \n${buildConstaPropsCommon(constaProps)}/>`,
+    jsxCode: `<${jsxName} \n${buildConstaPropsCommon(uiLibProps)}/>`,
   }
 
   return builtCode

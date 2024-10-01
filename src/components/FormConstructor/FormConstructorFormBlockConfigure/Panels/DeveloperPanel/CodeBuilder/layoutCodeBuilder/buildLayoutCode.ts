@@ -1,5 +1,5 @@
 import type { LayoutElementStyles } from '../../../../../coreTypes'
-import type { ConstaPropsStyles } from '../buildConstaPropsCommon'
+import type { UiLibProps } from '../buildConstaPropsCommon'
 import { buildConstaPropsCommon } from '../buildConstaPropsCommon'
 import type { CssCodeStyles } from '../buildCssCodeCommon'
 import { buildCssCodeCommon } from '../buildCssCodeCommon'
@@ -25,7 +25,7 @@ export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
   }
 
   // Преобразуем к типу аргумента функции билдера
-  const constaProps: ConstaPropsStyles = constaPropsAdapterCommon(props.constaProps)
+  const constaProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
 
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),

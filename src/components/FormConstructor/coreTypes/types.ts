@@ -5,7 +5,7 @@ import type { Values } from '../utils'
 import type { IFormElementAvatar } from './avatartTypes'
 import type { IFormElementBadge } from './badgeTypes'
 import type { BaseTypes } from './basePropsTypes'
-import type { IFormElementBreadcrumbs } from './BreadcrumbsTypes'
+import type { IFormElementBreadcrumbs } from './breadcrumbsTypes'
 import type { IButtonActionElement, IFormElementButton } from './buttonTypes'
 import type { BrandCardElementPropsStyles } from './cardTypes'
 import type { IFormElementCheckbox } from './checkboxTypes'
@@ -191,5 +191,3 @@ export interface IFormConstructor extends IHistory {
 interface IHistory {
   history: any
 }
-
-export type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> }

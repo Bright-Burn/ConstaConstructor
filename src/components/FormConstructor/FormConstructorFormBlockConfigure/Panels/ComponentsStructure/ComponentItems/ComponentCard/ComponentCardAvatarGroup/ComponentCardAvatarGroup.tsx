@@ -17,7 +17,7 @@ export const ComponentCardAvatarGroup: FC<IComponetCardElement> = ({ name }) => 
       order: 1,
       props: {
         props: {
-          constaProps: {
+          uiLibProps: {
             items: defaultAvatarProps,
           },
           styles: {},
@@ -34,7 +34,7 @@ export const ComponentCardAvatarGroup: FC<IComponetCardElement> = ({ name }) => 
   return <CardLabel label={name} onStartDragComponentCard={onStartDragComponentCard} />
 }
 
-const defaultAvatarProps: AvatarProps['constaProps'][] = [
+const defaultAvatarProps: AvatarProps['uiLibProps'][] = [
   {
     name: 'Роланд Дискейн',
   },

@@ -16,7 +16,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, label: value },
+        uiLibProps: { ...selectedViewProps.uiLibProps, label: value },
       },
       type: 'Button',
     }
@@ -26,7 +26,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, size: value },
+        uiLibProps: { ...selectedViewProps.uiLibProps, size: value },
       },
       type: 'Button',
     }
@@ -36,7 +36,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, view: value },
+        uiLibProps: { ...selectedViewProps.uiLibProps, view: value },
       },
       type: 'Button',
     }
@@ -46,7 +46,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, form: value },
+        uiLibProps: { ...selectedViewProps.uiLibProps, form: value },
       },
       type: 'Button',
     }
@@ -58,7 +58,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, loading: checked },
+        uiLibProps: { ...selectedViewProps.uiLibProps, loading: checked },
       },
       type: 'Button',
     }
@@ -70,7 +70,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, disabled: checked },
+        uiLibProps: { ...selectedViewProps.uiLibProps, disabled: checked },
       },
       type: 'Button',
     }
@@ -82,7 +82,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, onlyIcon: checked },
+        uiLibProps: { ...selectedViewProps.uiLibProps, onlyIcon: checked },
       },
       type: 'Button',
     }
@@ -93,7 +93,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, iconLeft: value ? value : undefined },
+        uiLibProps: { ...selectedViewProps.uiLibProps, iconLeft: value ? value : undefined },
       },
       type: 'Button',
     }
@@ -104,7 +104,7 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     const newProps: BrandButtonProps = {
       props: {
         ...selectedViewProps,
-        constaProps: { ...selectedViewProps.constaProps, iconRight: value ? value : undefined },
+        uiLibProps: { ...selectedViewProps.uiLibProps, iconRight: value ? value : undefined },
       },
       type: 'Button',
     }
@@ -126,17 +126,17 @@ export const useItemsHandlers = (selectedViewProps: ButtonProps, selectedView: B
     onChangeView,
     onChangeForm,
     itemsProps: {
-      size: selectedViewProps.constaProps.size,
-      view: selectedViewProps.constaProps.view,
-      label: selectedViewProps.constaProps.label,
-      disabled: selectedViewProps.constaProps.disabled,
-      iconLeft: selectedViewProps.constaProps.iconLeft,
-      form: selectedViewProps.constaProps.form,
-      loading: selectedViewProps.constaProps.loading,
-      iconRight: selectedViewProps.constaProps.iconRight,
-      onlyIcon: selectedViewProps.constaProps.onlyIcon,
-      icon: selectedViewProps.constaProps.iconLeft,
-      iconR: selectedViewProps.constaProps.iconRight,
+      size: selectedViewProps.uiLibProps.size,
+      view: selectedViewProps.uiLibProps.view,
+      label: selectedViewProps.uiLibProps.label,
+      disabled: selectedViewProps.uiLibProps.disabled,
+      iconLeft: selectedViewProps.uiLibProps.iconLeft,
+      form: selectedViewProps.uiLibProps.form,
+      loading: selectedViewProps.uiLibProps.loading,
+      iconRight: selectedViewProps.uiLibProps.iconRight,
+      onlyIcon: selectedViewProps.uiLibProps.onlyIcon,
+      icon: selectedViewProps.uiLibProps.iconLeft,
+      iconR: selectedViewProps.uiLibProps.iconRight,
     },
   }
 }

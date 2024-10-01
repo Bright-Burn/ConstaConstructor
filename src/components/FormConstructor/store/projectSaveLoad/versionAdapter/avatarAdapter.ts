@@ -2,17 +2,14 @@ import type { AvatarProps } from '../../../coreTypes'
 
 import type { AvatarProps_Deprecated } from './deprecatedTypes'
 
-export type AvatarAdapter = (
-  buttonInstanceId: string,
-  deprecated: AvatarProps_Deprecated,
-) => AvatarProps
+export type AvatarAdapter = (instanceId: string, deprecated: AvatarProps_Deprecated) => AvatarProps
 
 export const avatarAdapter: AvatarAdapter = (id, deprecated) => {
   console.log(`Run avatar adapter with id=${id}`)
   const avatarProps: AvatarProps = {
     baseProps: deprecated.baseProps,
     className: deprecated.className,
-    constaProps: {
+    uiLibProps: {
       form: deprecated.form,
       monochrome: deprecated.monochrome,
       name: deprecated.name,

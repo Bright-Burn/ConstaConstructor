@@ -5,7 +5,6 @@ import { codeBuilders } from './CodeBuilder'
 
 export const getCode = (selectedViewProps: UnionProps, viewLabel: string) => {
   let code: GeneratedCode | null = null
-
   switch (selectedViewProps.type) {
     case 'Layout': {
       const buildFunc = codeBuilders[selectedViewProps.type]
@@ -36,6 +35,13 @@ export const getCode = (selectedViewProps: UnionProps, viewLabel: string) => {
       break
     }
     case 'AvatarGroup': {
+      const buildFunc = codeBuilders[selectedViewProps.type]
+      if (buildFunc) {
+        code = buildFunc(viewLabel, selectedViewProps)
+      }
+      break
+    }
+    case 'BreadcrumbsFormElement': {
       const buildFunc = codeBuilders[selectedViewProps.type]
       if (buildFunc) {
         code = buildFunc(viewLabel, selectedViewProps)
