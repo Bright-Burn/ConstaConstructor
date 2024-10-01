@@ -7,7 +7,7 @@ export const baseComponentSaveToState = (el: BaseComponentToSave): IBaseComponen
     id: el.id,
     instances: el.instances,
     name: el.name,
-    viewInfos: el.viewInfos || [],
+    viewInfos: el.viewInfos,
     views: el.views,
   }
 }

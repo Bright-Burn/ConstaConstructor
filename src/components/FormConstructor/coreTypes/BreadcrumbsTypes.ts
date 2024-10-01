@@ -4,6 +4,7 @@ import type {
   DefaultItem,
 } from '@consta/uikit/Breadcrumbs'
 
+import type { IconNames } from './iconTypes'
 import type { InstanceProps } from './instanceProps'
 import type {
   BrandProps,
@@ -12,16 +13,14 @@ import type {
   IFormElement,
   OmitInstanceId,
 } from './types'
-import { IconNames } from './iconTypes'
 
-export type DefaultItemBreadcrumbsType = DefaultItem & { labelIcon?: string }
+export type DefaultItemBreadcrumbsType = Omit<DefaultItem, 'icon'> & { icon?: IconNames }
 
 type UiLibProps = {
   items: DefaultItemBreadcrumbsType[]
   fitMode: BreadcrumbPropFitMode
   size: BreadcrumbPropSize
   lastItemIsLink?: boolean
-  icon?: IconNames
 }
 
 export type BreadcrumbProps = InstanceProps<UiLibProps, {}>

@@ -1,5 +1,6 @@
-import { BreadcrumbProps } from '../../../coreTypes'
-import { BreadcrumbProps_Deprecated } from './deprecatedTypes'
+import type { BreadcrumbProps } from '../../../coreTypes'
+
+import type { BreadcrumbProps_Deprecated } from './deprecatedTypes'
 
 export type BreadCrumbsAdapter = (
   instanceId: string,
@@ -15,7 +16,9 @@ export const breadCrumbsAdapter: BreadCrumbsAdapter = (id, deprecated) => {
     styles: {},
     uiLibProps: {
       fitMode: deprecated.fitMode,
-      items: deprecated.items,
+      items: deprecated.items.map(item => {
+        return { ...item, icon: undefined }
+      }),
       size: deprecated.size,
       lastItemIsLink: deprecated.lastItemIsLink,
     },

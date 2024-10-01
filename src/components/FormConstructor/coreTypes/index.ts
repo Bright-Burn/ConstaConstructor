@@ -26,6 +26,7 @@ export type {
   BrandBreadcrumbsProps,
   BreadcrumbProps,
   BreadcrumbsFormElement,
+  DefaultItemBreadcrumbsType,
   IFormElementBreadcrumbs,
 } from './breadcrumbsTypes'
 export type {

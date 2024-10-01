@@ -1,7 +1,9 @@
 import type { FC } from 'react'
+import type { DefaultItem } from '@consta/uikit/Breadcrumbs'
 import { Breadcrumbs } from '@consta/uikit/Breadcrumbs'
 
-import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
+import type { DefaultItemBreadcrumbsType } from '../../../coreTypes'
+import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
@@ -22,7 +24,27 @@ export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element })
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.BreadcrumbsForm}>
-      <Breadcrumbs className={className} {...breadcrumbsConstaProps} />
+      <Breadcrumbs
+        className={className}
+        size={breadcrumbsConstaProps.size}
+        fitMode={breadcrumbsConstaProps.fitMode}
+        lastItemIsLink={breadcrumbsConstaProps.lastItemIsLink}
+        items={breadcrumbsConstaProps.items.map(itemAdapter)}
+      />
     </SelectableLayer>
   )
+}
+
+/**
+ * Адаптер для элементов хлебных крошек
+ * @param item Элемент хлебных крошек
+ * @returns
+ */
+const itemAdapter = (item: DefaultItemBreadcrumbsType): DefaultItem => {
+  return {
+    label: item.label,
+    href: item.href,
+    icon: item.icon ? Icons[item.icon] : undefined,
+    subMenu: item.subMenu,
+  }
 }

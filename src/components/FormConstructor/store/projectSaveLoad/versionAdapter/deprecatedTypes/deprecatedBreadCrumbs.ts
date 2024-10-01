@@ -1,7 +1,6 @@
 import type { BreadcrumbPropFitMode, BreadcrumbPropSize } from '@consta/uikit/Breadcrumbs'
 
-import type { BaseProps } from '../../../../coreTypes'
-import type { DefaultItemBreadcrumbsType } from '../../../../coreTypes/breadcrumbsTypes'
+import type { BaseProps, DefaultItemBreadcrumbsType } from '../../../../coreTypes'
 
 export type BreadcrumbProps_Deprecated = {
   items: DefaultItemBreadcrumbsType[]

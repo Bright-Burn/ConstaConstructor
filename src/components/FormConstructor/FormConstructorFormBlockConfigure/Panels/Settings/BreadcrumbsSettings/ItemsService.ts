@@ -1,13 +1,10 @@
-import type {
-  BreadcrumbPropFitMode,
-  BreadcrumbPropSize,
-  DefaultItem,
-} from '@consta/uikit/Breadcrumbs'
+import type { BreadcrumbPropFitMode, BreadcrumbPropSize } from '@consta/uikit/Breadcrumbs'
 
 import type {
   BrandBreadcrumbsProps,
   BreadcrumbProps,
   BreadcrumbsFormElement,
+  DefaultItemBreadcrumbsType,
   IconNames,
   IselectedView,
 } from '../../../../coreTypes'
@@ -16,6 +13,7 @@ import { setInstanceProps, useAppDispatch } from '../../../../store'
 export const useItemsHandlers = (
   selectedViewProps: BreadcrumbProps,
   selectedView: BreadcrumbsFormElement,
+  selectedPageIndex: number,
 ) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedView: IselectedView, newProps: BrandBreadcrumbsProps) => {
@@ -47,7 +45,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeItems = (items: DefaultItem[]) => {
+  const onChangeItems = (items: DefaultItemBreadcrumbsType[]) => {
     const newProps: BrandBreadcrumbsProps = {
       props: {
         ...selectedViewProps,
@@ -100,16 +98,23 @@ export const useItemsHandlers = (
   }
 
   const onChangeIcon = (value: IconNames | null) => {
-    const newProps: BrandBreadcrumbsProps = {
-      props: {
-        ...selectedViewProps,
-        styles: {
-          icon: value ? value : undefined,
+    const itemsLenght = selectedViewProps.uiLibProps.items.length
+    if (selectedPageIndex <= itemsLenght) {
+      const items = [...selectedViewProps.uiLibProps.items]
+
+      items[selectedPageIndex] = {
+        ...items[selectedPageIndex],
+        icon: value || undefined,
+      }
+      const newProps: BrandBreadcrumbsProps = {
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, items },
         },
-      },
-      type: 'BreadcrumbsFormElement',
+        type: 'BreadcrumbsFormElement',
+      }
+      onDispatch(selectedView, newProps)
     }
-    onDispatch(selectedView, newProps)
   }
 
   return {
@@ -120,7 +125,6 @@ export const useItemsHandlers = (
     onChangeItems,
     onChangeIcon,
     itemsProps: {
-      icon: selectedViewProps.uiLibProps.icon,
       items: selectedViewProps.uiLibProps.items,
       size: selectedViewProps.uiLibProps.size,
       fitMode: selectedViewProps.uiLibProps.fitMode,

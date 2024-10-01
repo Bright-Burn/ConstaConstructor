@@ -5,14 +5,13 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { BreadcrumbProps, BreadcrumbsFormElement, IconNames } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
+import type { BreadcrumbProps, BreadcrumbsFormElement } from '../../../../coreTypes'
+import { IconSelectConsta } from '../IconsSelect'
 
 import { fitMode, sizes } from './BreadcrumbsConstants'
 import { useItemsHandlers } from './ItemsService'
 
 import styles from './styles.module.css'
-import { IconSelectConsta } from '../IconsSelect'
 
 type BreadcrumbSettingsType = {
   selectedViewProps: BreadcrumbProps
@@ -23,6 +22,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
   selectedViewProps,
   selectedView,
 }) => {
+  const [selectedPageIndex, setSelectedPageIndex] = useState<number>(0)
+
   const {
     itemsProps,
     onChangeItemsCount,
@@ -31,9 +32,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
     onChangeFitMode,
     onChangeLastItemLink,
     onChangeIcon,
-  } = useItemsHandlers(selectedViewProps, selectedView)
-
-  const [selectedPageIndex, setSelectedPageIndex] = useState<number>(0)
+  } = useItemsHandlers(selectedViewProps, selectedView, selectedPageIndex)
 
   const pageLabels = itemsProps.items.map(item => {
     return item.label
@@ -131,7 +130,7 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
         }}
       />
       <IconSelectConsta
-        selectedIcon={itemsProps.icon}
+        selectedIcon={itemsProps.items[selectedPageIndex]?.icon}
         label="iconRight"
         onChangeIcon={onChangeIcon}
       />
