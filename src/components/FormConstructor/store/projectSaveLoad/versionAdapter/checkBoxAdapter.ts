@@ -1,6 +1,6 @@
 import type { CheckboxProps } from '../../../coreTypes'
 
-import type { CheckboxProps_Deprecated } from './deprecatedTypes/deprecatedCheckbox'
+import type { CheckboxProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
 export type CheckBoxAdapter = GenericAdapter<CheckboxProps_Deprecated, CheckboxProps>
