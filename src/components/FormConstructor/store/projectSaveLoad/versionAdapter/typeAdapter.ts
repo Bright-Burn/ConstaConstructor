@@ -10,6 +10,8 @@ import type { ButtonAdapter } from './buttonAdapter'
 import { buttonAdapter } from './buttonAdapter'
 import type { CardAdapter } from './cardAdapter'
 import { cardAdapter } from './cardAdapter'
+import type { CheckBoxAdapter } from './checkBoxAdapter'
+import { checkBoxAdapter } from './checkBoxAdapter'
 import type { LayoutAdapter } from './layoutAdapter'
 import { layoutAdapter } from './layoutAdapter'
 
@@ -21,6 +23,7 @@ export type TypeAdapter = {
   BreadcrumbsFormElement: BreadCrumbsAdapter
   Layout: LayoutAdapter
   Card: CardAdapter
+  Checkbox: CheckBoxAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -32,4 +35,5 @@ export const typeAdapterDict: TypeAdapter = {
   BreadcrumbsFormElement: breadCrumbsAdapter,
   Layout: layoutAdapter,
   Card: cardAdapter,
+  Checkbox: checkBoxAdapter,
 }
