@@ -48,7 +48,10 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
   }
 
   // Когда пропс будут стандартезированны, тогда не будет условий
-  const filled = props.type === 'Button' ? props.props.styles.filled : props.props.filled
+  const filled =
+    props.type === 'Button' || props.type === 'ComboBox'
+      ? props.props.styles.filled
+      : props.props.filled
 
   const filledValue = filled ? 'filled' : 'default'
 
