@@ -9,7 +9,11 @@ export const constaPropsAdapterCommon = (props: UnionProps['props']['uiLibProps'
   // Преобразуем к типу аргумента функции билдера
   Object.entries(props).forEach(([key, value]) => {
     if (Array.isArray(value)) {
-      uiLibProps[key] = ''
+      // Если массив, то устанавливаем пустой массив
+      uiLibProps[key] = []
+    } else if (typeof value === 'object') {
+      // Если объект, то устанавливаем пустой объект
+      uiLibProps[key] = {}
     } else if (value !== null && value !== undefined) {
       uiLibProps[key] = value
     }

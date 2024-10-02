@@ -12,6 +12,8 @@ import type { CardAdapter } from './cardAdapter'
 import { cardAdapter } from './cardAdapter'
 import type { CheckBoxAdapter } from './checkBoxAdapter'
 import { checkBoxAdapter } from './checkBoxAdapter'
+import type { ComboboxAdaper } from './comboboxAdapter'
+import { comboboxAdapter } from './comboboxAdapter'
 import type { LayoutAdapter } from './layoutAdapter'
 import { layoutAdapter } from './layoutAdapter'
 
@@ -24,6 +26,7 @@ export type TypeAdapter = {
   Layout: LayoutAdapter
   Card: CardAdapter
   Checkbox: CheckBoxAdapter
+  ComboBox: ComboboxAdaper
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -36,4 +39,5 @@ export const typeAdapterDict: TypeAdapter = {
   Layout: layoutAdapter,
   Card: cardAdapter,
   Checkbox: checkBoxAdapter,
+  ComboBox: comboboxAdapter,
 }

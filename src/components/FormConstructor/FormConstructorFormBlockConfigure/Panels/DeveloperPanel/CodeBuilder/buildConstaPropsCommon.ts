@@ -12,7 +12,9 @@ export const buildConstaPropsCommon = (props: UiLibProps): string => {
   let resultString = ''
   Object.entries(props).forEach(([key, value]) => {
     typeof value !== 'string' || key.startsWith(IconPrefix)
-      ? (resultString += `${key}={${value}}\n`)
+      ? typeof value === 'object'
+        ? (resultString += `${key}={${JSON.stringify(value)}}\n`)
+        : (resultString += `${key}={${value}}\n`)
       : (resultString += `${key}={'${value}'}\n`)
   })
 
