@@ -108,6 +108,9 @@ export const useItemsHandlers = (
       },
       type: 'ComboBox',
     }
+    if (field === 'value') {
+      console.log(value)
+    }
     if (field === 'label' && value === true) {
       newProps.props.uiLibProps.label = 'Заголовок'
     }
