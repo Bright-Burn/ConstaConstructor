@@ -40,9 +40,9 @@ export type { BrandCheckboxProps } from './checkboxTypes'
 export type {
   BrandOwnChoiceGroupProps,
   ChoiceGroupElement,
+  ChoiceGroupProps,
   IFormElementChoiceGroup,
   MultipleChoiceGroupProps,
-  OwnChoiceGroupProps,
   SingleChoiceGroupProps,
 } from './ChoiceGroupTypes'
 export type { ChoiceGroupItem } from './ChoiceGroupTypes'
