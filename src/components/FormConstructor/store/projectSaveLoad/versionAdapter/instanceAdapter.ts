@@ -86,6 +86,15 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
         props: { ...instance.props, props: newProps },
       }
     }
+    case 'ChoiceGroup': {
+      const adapterFunc = typeAdapterDict[instance.props.type]
+      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      const newProps = adapterFunc(instance.id, instance.props.props)
+      return {
+        ...instance,
+        props: { ...instance.props, props: newProps },
+      }
+    }
   }
   return instance
 }

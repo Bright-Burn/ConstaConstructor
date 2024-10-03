@@ -15,8 +15,8 @@ import { TextField } from '@consta/uikit/TextField'
 import type {
   ChoiceGroupElement,
   ChoiceGroupItem,
+  ChoiceGroupProps,
   IconNames,
-  OwnChoiceGroupProps,
 } from '../../../../coreTypes'
 import { Icons, icons } from '../../../../coreTypes'
 
@@ -26,7 +26,7 @@ import { formArray, sizeArray, viewArray, widthArray } from './types'
 import styles from './styles.module.css'
 
 type ChoiceGroupSettingsType = {
-  selectedViewProps: OwnChoiceGroupProps
+  selectedViewProps: ChoiceGroupProps
   selectedView: ChoiceGroupElement
 }
 
@@ -70,7 +70,9 @@ export const ChoiceGroupSettings: FC<ChoiceGroupSettingsType> = ({
   }
 
   const onChangeSelectedItem = (value: ChoiceGroupItem | null) => {
-    if (value) setSelectedItemIndex(itemsProps.items.findIndex(i => i.label === value.label))
+    if (value) {
+      setSelectedItemIndex(itemsProps.items.findIndex(i => i.label === value.label))
+    }
   }
 
   return (
