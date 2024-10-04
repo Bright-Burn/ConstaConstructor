@@ -15,7 +15,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
 
   const comboBoxUiLib = props?.uiLibProps
   const className = props?.className
-  const comboBoxStyles = { flexGrow: isFilled ? 1 : 0, ...props?.styles }
+  const styles = { flexGrow: isFilled ? 1 : 0, ...props?.styles }
 
   if (!comboBoxUiLib) {
     return null
@@ -29,7 +29,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
       elementType={FormElementDictTypes.ComboBox}>
       <Combobox
         {...comboBoxUiLib}
-        style={comboBoxStyles}
+        style={styles}
         className={className}
         items={comboBoxUiLib.items}
         groups={comboBoxUiLib.groupsActive ? comboBoxUiLib.groups : undefined}

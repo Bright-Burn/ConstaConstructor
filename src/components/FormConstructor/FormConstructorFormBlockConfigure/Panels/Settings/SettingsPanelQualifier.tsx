@@ -11,8 +11,8 @@ import type {
   BrandCardPropsStyles,
   BrandCheckboxProps,
   BrandComboboxProps,
-  BrandDataTimeProps,
   BrandDatePickerProps,
+  BrandDateTimeProps,
   BrandEChartProps,
   BrandIconProps,
   BrandInformerElementProps,
@@ -349,7 +349,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
       )
     }
     case FormElementDictTypes.DataTime: {
-      if (!isElementProps<BrandDataTimeProps>(selectedViewProps, 'DataTime')) {
+      if (!isElementProps<BrandDateTimeProps>(selectedViewProps, 'DataTime')) {
         return
       }
       const element = {

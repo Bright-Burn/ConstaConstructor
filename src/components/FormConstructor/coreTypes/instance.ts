@@ -7,7 +7,7 @@ import type { BrandCheckboxProps } from './checkboxTypes'
 import type { BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
 import type { BrandComboboxProps } from './comboBoxTypes'
 import type { BrandBreadcrumbsProps } from './crumbsTypes'
-import type { BrandDataTimeProps } from './dataTimeTypes'
+import type { BrandDateTimeProps } from './dataTimeTypes'
 import type { BrandDatePickerProps } from './datePickerTypes'
 import type { BrandEChartProps } from './echarts'
 import type { BrandIconProps } from './iconTypes'
@@ -56,7 +56,7 @@ export type FormInstance<T extends AllElementTypes> = {
                             : emptyObj & T extends 'SelectForm'
                               ? BrandSelectProps
                               : emptyObj & T extends 'DataTime'
-                                ? BrandDataTimeProps
+                                ? BrandDateTimeProps
                                 : emptyObj & T extends 'User'
                                   ? BrandUserProps
                                   : emptyObj & T extends 'Icon'

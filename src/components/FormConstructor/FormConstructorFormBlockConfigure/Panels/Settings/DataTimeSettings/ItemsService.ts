@@ -1,23 +1,23 @@
 import type { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
 
-import type { BrandDataTimeProps, DataTimeElement, DataTimeProps } from '../../../../coreTypes'
+import type { BrandDateTimeProps, DataTimeElement, DateTimeProps } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 export const useItemsHandlers = (
-  selectedViewProps: DataTimeProps,
+  selectedViewProps: DateTimeProps,
   selectedView: DataTimeElement,
 ) => {
   const dispatch = useAppDispatch()
-  const onDispatch = (selectedView: DataTimeElement, newProps: BrandDataTimeProps) => {
+  const onDispatch = (selectedView: DataTimeElement, newProps: BrandDateTimeProps) => {
     dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
 
   const onChangeItemsCount = (value: string | null) => {
-    const newProps: BrandDataTimeProps = {
-      props: { ...selectedViewProps },
+    const newProps: BrandDateTimeProps = {
+      props: { ...selectedViewProps, uiLibProps: { ...selectedViewProps.uiLibProps } },
       type: 'DataTime',
     }
-    let itemsProps: Date[] = newProps.props.events
+    let itemsProps: Date[] = newProps.props.uiLibProps.events
     const currentLength = itemsProps.length
     if (currentLength && Number(value) > currentLength) {
       for (let i = currentLength; i < Number(value); i++) {
@@ -31,16 +31,22 @@ export const useItemsHandlers = (
     if (Number(value) === 1 && itemsProps.length === 0) {
       itemsProps = [...itemsProps, new Date()]
     }
-    newProps.props.events = itemsProps
+    newProps.props.uiLibProps.events = itemsProps
     onDispatch(selectedView, newProps)
   }
 
   const onChangeField = (
     value: DateTimePropView | DateTimePropType | Date | null | number | Date[],
-    field: keyof DataTimeProps,
+    field: keyof DateTimeProps['uiLibProps'],
   ) => {
-    const newProps: BrandDataTimeProps = {
-      props: { ...selectedViewProps, [field]: value },
+    const newProps: BrandDateTimeProps = {
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          [field]: value,
+        },
+      },
       type: 'DataTime',
     }
     onDispatch(selectedView, newProps)
@@ -50,14 +56,14 @@ export const useItemsHandlers = (
     onChangeItemsCount,
     onChangeField,
     itemsProps: {
-      type: selectedViewProps.type,
-      view: selectedViewProps.view,
-      minDate: selectedViewProps.minDate,
-      maxDate: selectedViewProps.maxDate,
-      multiplicityHours: selectedViewProps.multiplicityHours,
-      multiplicityMinutes: selectedViewProps.multiplicityMinutes,
-      multiplicitySeconds: selectedViewProps.multiplicitySeconds,
-      events: selectedViewProps.events,
+      type: selectedViewProps.uiLibProps.type,
+      view: selectedViewProps.uiLibProps.view,
+      minDate: selectedViewProps.uiLibProps.minDate,
+      maxDate: selectedViewProps.uiLibProps.maxDate,
+      multiplicityHours: selectedViewProps.uiLibProps.multiplicityHours,
+      multiplicityMinutes: selectedViewProps.uiLibProps.multiplicityMinutes,
+      multiplicitySeconds: selectedViewProps.uiLibProps.multiplicitySeconds,
+      events: selectedViewProps.uiLibProps.events,
     },
   }
 }
