@@ -1,3 +1,4 @@
+export type { DatePickerProps_Deprecated } from './datePicker'
 export type { AvatarProps_Deprecated } from './deprecatedAvatar'
 export type { AvatarGroupProps_Deprecated } from './deprecatedAvatarGroups'
 export type { BadgeProps_Deprecated } from './deprecatedBadge'

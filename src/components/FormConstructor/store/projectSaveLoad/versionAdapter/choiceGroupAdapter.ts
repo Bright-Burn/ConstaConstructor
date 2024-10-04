@@ -1,4 +1,5 @@
-import { ChoiceGroupProps } from '../../../coreTypes'
+import type { ChoiceGroupProps } from '../../../coreTypes'
+
 import type { ChoiceGroupProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
