@@ -61,9 +61,9 @@ export type {
   IFormElementBreadcrumbs,
 } from './crumbsTypes'
 export type {
-  BrandDataTimeProps,
+  BrandDateTimeProps,
   DataTimeElement,
-  DataTimeProps,
+  DateTimeProps,
   IFormElementDataTime,
 } from './dataTimeTypes'
 export type {

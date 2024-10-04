@@ -13,7 +13,7 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
 
   const datePickerUiLib = props?.uiLibProps
   const className = props?.className
-  const comboBoxStyles = props?.styles || {}
+  const styles = props?.styles || {}
 
   if (!datePickerUiLib) {
     return null
@@ -27,7 +27,7 @@ export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) =
       <DatePicker
         {...datePickerUiLib}
         className={className}
-        style={comboBoxStyles}
+        style={styles}
         renderAdditionalControls={() =>
           datePickerUiLib.withAdditionalControls && (
             <>

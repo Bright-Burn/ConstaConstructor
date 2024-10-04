@@ -21,6 +21,7 @@ export const codeBuilders: CodeBuilder = {
     buildCodeDefault(componentLabel, 'ChoiceGroup', props.props),
   DatePicker: (componentLabel, props) =>
     buildCodeDefault(componentLabel, 'DatePicker', props.props),
+  DataTime: (componentLabel, props) => buildCodeDefault(componentLabel, 'DateTime', props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика

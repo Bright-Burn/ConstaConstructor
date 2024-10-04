@@ -18,6 +18,8 @@ import type { ComboboxAdaper } from './comboboxAdapter'
 import { comboboxAdapter } from './comboboxAdapter'
 import type { DatePickerAdapter } from './datePickerAdpter'
 import { datePickerAdapter } from './datePickerAdpter'
+import type { DateTimeAdapter } from './dateTimeAdapter'
+import { dateTimeAdapter } from './dateTimeAdapter'
 import type { LayoutAdapter } from './layoutAdapter'
 import { layoutAdapter } from './layoutAdapter'
 
@@ -33,6 +35,7 @@ export type TypeAdapter = {
   ComboBox: ComboboxAdaper
   ChoiceGroup: ChoiceGroupAdapter
   DatePicker: DatePickerAdapter
+  DataTime: DateTimeAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -48,4 +51,5 @@ export const typeAdapterDict: TypeAdapter = {
   ComboBox: comboboxAdapter,
   ChoiceGroup: choiceGroupAdapter,
   DatePicker: datePickerAdapter,
+  DataTime: dateTimeAdapter,
 }
