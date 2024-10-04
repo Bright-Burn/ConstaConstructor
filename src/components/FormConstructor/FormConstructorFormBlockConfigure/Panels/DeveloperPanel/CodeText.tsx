@@ -25,7 +25,7 @@ export const CodeText: FC<CodeTextProps> = ({ text, label }) => {
         <Text size="xs" view="secondary">
           {label}
         </Text>
-        <Button size="xs" onlyIcon={true} view="ghost" iconLeft={IconCopy} onClick={onCopyClick} />
+        <Button size="xs" label={'copy'} view="ghost" iconRight={IconCopy} onClick={onCopyClick} />
       </div>
       <Text className={`p-l-xs p-r-xs p-b-xs p-t-xs ${styles.code}`} view="primary">
         {text}

@@ -21,8 +21,8 @@ export const DeveloperPanel: FC = () => {
 
   return code ? (
     <div className={`container-column p-r-xs flex-grow-1 p-t-xs ${styles.code_pane}`}>
-      <CodeText text={code.cssCode} label="Css стили" />
-      <CodeText text={code.jsxCode} label="Стили дизайн системы" />
+      <CodeText text={code.cssCode} label="Css" />
+      <CodeText text={code.jsxCode} label="Дизайн система" />
     </div>
   ) : null
 }
