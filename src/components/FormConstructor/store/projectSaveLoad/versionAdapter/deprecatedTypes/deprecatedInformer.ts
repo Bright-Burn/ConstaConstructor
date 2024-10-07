@@ -1,6 +1,7 @@
-import { IconComponent } from '@consta/icons/Icon'
-import { InformerPropView, InformerPropStatus, InformerPropSize } from '@consta/uikit/Informer'
-import { BaseProps } from '../../../../coreTypes'
+import type { IconComponent } from '@consta/icons/Icon'
+import type { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
+
+import type { BaseProps } from '../../../../coreTypes'
 
 type Props_Deprecated = {
   view?: InformerPropView

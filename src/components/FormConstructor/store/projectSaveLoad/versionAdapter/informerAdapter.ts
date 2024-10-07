@@ -1,6 +1,7 @@
-import { InformerElementProps } from '../../../coreTypes'
-import { InformerElementProps_Deprecated } from './deprecatedTypes'
-import { GenericAdapter } from './genericAdapter'
+import type { InformerElementProps } from '../../../coreTypes'
+
+import type { InformerElementProps_Deprecated } from './deprecatedTypes'
+import type { GenericAdapter } from './genericAdapter'
 
 export type InformerAdapter = GenericAdapter<InformerElementProps_Deprecated, InformerElementProps>
 
