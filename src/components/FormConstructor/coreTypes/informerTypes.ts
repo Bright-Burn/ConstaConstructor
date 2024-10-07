@@ -9,16 +9,19 @@ import type {
   IFormElement,
   OmitInstanceId,
 } from './types'
+import { InstanceProps } from './instanceProps'
+import { IconNames } from './iconTypes'
 
-export type Props = {
+type UiLibProps = {
   view?: InformerPropView
   status?: InformerPropStatus
-  icon?: IconComponent
+  icon?: IconNames
   label?: string
   title?: string
   size?: InformerPropSize
 }
-export type InformerElementProps = Props & BaseProps
+
+export type InformerElementProps = InstanceProps<UiLibProps, {}>
 
 export type InformerElement = ConcreteSelectedView<typeof FormElementDictTypes.Informer>
 
