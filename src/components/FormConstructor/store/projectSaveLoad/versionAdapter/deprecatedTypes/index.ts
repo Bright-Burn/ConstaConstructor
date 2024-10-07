@@ -13,5 +13,6 @@ export type {
 } from './deprecatedChoiceGroup'
 export type { ComboboxProps_Deprecated } from './deprecatedComboBox'
 export type { DateTimeProps_Deprecated } from './deprecatedDateTimeProps'
+export type { InformerElementProps_Deprecated } from './deprecatedInformer'
 export type { LayoutElementPropsStyles_Deprecated } from './deprecatedLayout'
 export type { FormConstructorToSave_Deprecated } from './deptrecatedFormConstructor'

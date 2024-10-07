@@ -20,6 +20,8 @@ import type { DatePickerAdapter } from './datePickerAdpter'
 import { datePickerAdapter } from './datePickerAdpter'
 import type { DateTimeAdapter } from './dateTimeAdapter'
 import { dateTimeAdapter } from './dateTimeAdapter'
+import type { InformerAdapter } from './informerAdapter'
+import { informerAdapter } from './informerAdapter'
 import type { LayoutAdapter } from './layoutAdapter'
 import { layoutAdapter } from './layoutAdapter'
 
@@ -36,6 +38,7 @@ export type TypeAdapter = {
   ChoiceGroup: ChoiceGroupAdapter
   DatePicker: DatePickerAdapter
   DataTime: DateTimeAdapter
+  Informer: InformerAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -52,4 +55,5 @@ export const typeAdapterDict: TypeAdapter = {
   ChoiceGroup: choiceGroupAdapter,
   DatePicker: datePickerAdapter,
   DataTime: dateTimeAdapter,
+  Informer: informerAdapter,
 }
