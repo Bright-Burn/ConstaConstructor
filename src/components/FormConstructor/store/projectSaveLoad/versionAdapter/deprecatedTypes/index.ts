@@ -7,7 +7,10 @@ export type { BreadcrumbProps_Deprecated } from './deprecatedBreadCrumbs'
 export type { ButtonProps_Deprecated } from './deprecatedButtonTypes'
 export type { CardProps_Deprecated } from './deprecatedCard'
 export type { CheckboxProps_Deprecated } from './deprecatedCheckbox'
-export type { ChoiceGroupProps_Deprecated } from './deprecatedChoiceGroup'
+export type {
+  ChoiceGroupProps_Deprecated,
+  MultipleChoiceGroupProps_Deprecated,
+} from './deprecatedChoiceGroup'
 export type { ComboboxProps_Deprecated } from './deprecatedComboBox'
 export type { DateTimeProps_Deprecated } from './deprecatedDateTimeProps'
 export type { LayoutElementPropsStyles_Deprecated } from './deprecatedLayout'
