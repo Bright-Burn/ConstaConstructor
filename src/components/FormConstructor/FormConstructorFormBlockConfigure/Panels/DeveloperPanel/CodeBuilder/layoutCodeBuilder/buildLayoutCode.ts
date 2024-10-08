@@ -25,11 +25,11 @@ export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
   }
 
   // Преобразуем к типу аргумента функции билдера
-  const constaProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
+  const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
 
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
-    jsxCode: `<Layout \n${buildConstaPropsCommon(constaProps)}/>`,
+    jsxCode: `<Layout \n${buildConstaPropsCommon(uiLibProps)}/>`,
   }
 
   return builtCode
