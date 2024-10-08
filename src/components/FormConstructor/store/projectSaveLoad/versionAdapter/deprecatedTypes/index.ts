@@ -1,4 +1,3 @@
-export type { DatePickerProps_Deprecated } from './datePicker'
 export type { AvatarProps_Deprecated } from './deprecatedAvatar'
 export type { AvatarGroupProps_Deprecated } from './deprecatedAvatarGroups'
 export type { BadgeProps_Deprecated } from './deprecatedBadge'
@@ -12,8 +11,10 @@ export type {
   MultipleChoiceGroupProps_Deprecated,
 } from './deprecatedChoiceGroup'
 export type { ComboboxProps_Deprecated } from './deprecatedComboBox'
+export type { DatePickerProps_Deprecated } from './deprecatedDatePicker'
 export type { DateTimeProps_Deprecated } from './deprecatedDateTimeProps'
 export type { InformerElementProps_Deprecated } from './deprecatedInformer'
 export type { LayoutElementPropsStyles_Deprecated } from './deprecatedLayout'
 export type { ListProps_Deprecated } from './deprecatedList'
+export type { RadioButtonProps_Deprecated } from './deprecatedRadioButtonProps'
 export type { FormConstructorToSave_Deprecated } from './deptrecatedFormConstructor'

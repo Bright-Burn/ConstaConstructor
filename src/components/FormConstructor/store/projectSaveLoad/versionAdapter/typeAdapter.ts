@@ -26,6 +26,8 @@ import type { LayoutAdapter } from './layoutAdapter'
 import { layoutAdapter } from './layoutAdapter'
 import type { ListAdapter } from './listAdapter'
 import { listAdapter } from './listAdapter'
+import type { RadioButtonAdapter } from './radioButtonAdapter'
+import { radioButtonAdapter } from './radioButtonAdapter'
 
 export type TypeAdapter = {
   Button: ButtonAdapter
@@ -42,6 +44,7 @@ export type TypeAdapter = {
   DataTime: DateTimeAdapter
   Informer: InformerAdapter
   List: ListAdapter
+  RadioButton: RadioButtonAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -60,4 +63,5 @@ export const typeAdapterDict: TypeAdapter = {
   DataTime: dateTimeAdapter,
   Informer: informerAdapter,
   List: listAdapter,
+  RadioButton: radioButtonAdapter,
 }

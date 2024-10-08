@@ -1,9 +1,12 @@
-import { UiLibProps, buildConstaPropsCommon } from '../buildConstaPropsCommon'
-import { CssCodeStyles, buildCssCodeCommon } from '../buildCssCodeCommon'
+import type { UiLibProps } from '../buildConstaPropsCommon'
+import { buildConstaPropsCommon } from '../buildConstaPropsCommon'
+import type { CssCodeStyles } from '../buildCssCodeCommon'
+import { buildCssCodeCommon } from '../buildCssCodeCommon'
 import { constaPropsAdapterCommon } from '../constaPropsAdapterCommon'
 import { propsCssToCodeStyles } from '../propsToCssCode'
-import { GeneratedCode } from '../types'
-import { LayoutStylesBuilder } from './types'
+import type { GeneratedCode } from '../types'
+
+import type { LayoutStylesBuilder } from './types'
 
 export const listCodeBuilder: LayoutStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
@@ -16,15 +19,16 @@ export const listCodeBuilder: LayoutStylesBuilder = (componentName, props) => {
   // Преобразуем к типу аргумента функции билдера
   const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
   const jsxCode = props.uiLibProps.withListBox
-    ? `<ListBox ${uiLibProps.form ? `form={${uiLibProps.form}}` : ''}` +
-      `${uiLibProps.shadow ? `shadow={${uiLibProps.shadow}}` : ''}` +
-      `${uiLibProps.border ? `border={${uiLibProps.border}}` : ''}>\n` +
-      `<Layout \n${buildConstaPropsCommon(uiLibProps)}/>\n</ListBox>`
+    ? `<ListBox ${uiLibProps.form ? `form={${uiLibProps.form}}` : ''}${uiLibProps.shadow}`
+      ? `shadow={${uiLibProps.shadow}}`
+      : '' +
+        `${uiLibProps.border ? `border={${uiLibProps.border}}` : ''}>\n` +
+        `<Layout \n${buildConstaPropsCommon(uiLibProps)}/>\n</ListBox>`
     : `<Layout \n${buildConstaPropsCommon(uiLibProps)}/>`
 
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
-    jsxCode: jsxCode,
+    jsxCode,
   }
 
   return builtCode
