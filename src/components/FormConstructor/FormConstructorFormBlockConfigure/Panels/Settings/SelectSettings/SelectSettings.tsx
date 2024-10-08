@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
@@ -56,10 +56,11 @@ export const SelectSettings: FC<SelectSettingsType> = ({ selectedViewProps, sele
     onChangeItems(newLines)
   }
   useLayoutEffect(() => {
-    const comboboxStyles = selectedViewProps.style
+    const comboboxStyles = selectedViewProps.styles
 
-    setWidthValue(comboboxStyles?.maxWidth.replaceAll('px', '') || '')
-  }, [selectedViewProps.style])
+    setWidthValue(comboboxStyles.maxWidth?.replaceAll('px', '') || '')
+  }, [selectedViewProps])
+
   return (
     <div className={styles.SelectSettings}>
       <div className={styles.rowSettings}>

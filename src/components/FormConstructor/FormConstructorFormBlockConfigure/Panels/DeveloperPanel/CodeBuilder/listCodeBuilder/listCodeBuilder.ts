@@ -8,7 +8,7 @@ import type { GeneratedCode } from '../types'
 
 import type { LayoutStylesBuilder } from './types'
 
-export const listCodeBuilder: LayoutStylesBuilder = (componentName, props) => {
+export const buildListCode: LayoutStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
