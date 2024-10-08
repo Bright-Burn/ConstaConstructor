@@ -23,8 +23,10 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
   function onFilledChange(value: fillType | null): void {
     const isFilled = value === 'filled'
     if (isElementProps<BrandButtonProps>(props, props.type)) {
-      const newProps: BrandButtonProps = structuredClone(props)
-      newProps.props.styles.filled = value === 'filled'
+      const newProps: BrandButtonProps = {
+        type: 'Button',
+        props: { ...props.props, styles: { ...props.props.styles, filled: value === 'filled' } },
+      }
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandTextFieldProps>(props, props.type)) {
       const newProps: BrandTextFieldProps = {
@@ -40,8 +42,8 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandSelectProps>(props, props.type)) {
       const newProps: BrandSelectProps = {
-        props: { ...props.props, filled: isFilled },
-        type: props.type,
+        type: 'SelectForm',
+        props: { ...props.props, styles: { ...props.props.styles, filled: value === 'filled' } },
       }
       dispatch(setInstanceProps(elementId, newProps))
     }
@@ -49,7 +51,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
 
   // Когда пропс будут стандартезированны, тогда не будет условий
   const filled =
-    props.type === 'Button' || props.type === 'ComboBox'
+    props.type === 'Button' || props.type === 'ComboBox' || props.type === 'SelectForm'
       ? props.props.styles.filled
       : props.props.filled
 

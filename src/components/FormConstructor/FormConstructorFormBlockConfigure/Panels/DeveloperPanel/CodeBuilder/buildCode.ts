@@ -1,6 +1,6 @@
-import { listCodeBuilder } from './listCodeBuilder/listCodeBuilder'
 import { buildCodeDefault } from './defaultCodeBuilder'
 import { buildLayoutCode } from './layoutCodeBuilder'
+import { buildListCode } from './listCodeBuilder'
 import type { CodeBuilder } from './types'
 
 /**
@@ -24,8 +24,9 @@ export const codeBuilders: CodeBuilder = {
     buildCodeDefault(componentLabel, 'DatePicker', props.props),
   DataTime: (componentLabel, props) => buildCodeDefault(componentLabel, 'DateTime', props.props),
   Informer: (componentLabel, props) => buildCodeDefault(componentLabel, 'Informer', props.props),
-  List: (componentLabel, props) => listCodeBuilder(componentLabel, props.props),
+  List: (componentLabel, props) => buildListCode(componentLabel, props.props),
   RadioButton: (componentLabel, props) => buildCodeDefault(componentLabel, 'Radio', props.props),
+  SelectForm: (componentLabel, props) => buildCodeDefault(componentLabel, 'Select', props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика
