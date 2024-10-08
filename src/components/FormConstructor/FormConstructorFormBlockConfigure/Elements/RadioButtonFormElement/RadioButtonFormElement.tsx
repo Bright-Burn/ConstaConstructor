@@ -10,12 +10,15 @@ import type { IRadioButtonFormElement } from './types'
 export const RadioButtonFormElement: FC<IRadioButtonFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
+  const uiLibProps = props?.uiLibProps
+  const className = props?.className
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.RadioButton}>
-      <Radio {...props} />
+      <Radio {...uiLibProps} className={className} />
     </SelectableLayer>
   )
 }

@@ -21,10 +21,12 @@ export const useItemsHandlers = (
   const onChangeView = (value: RadioPropView | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, view: value },
+        },
         type: 'RadioButton',
       }
-      newProps.props.view = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -32,10 +34,12 @@ export const useItemsHandlers = (
   const onChangeSize = (value: RadioPropSize | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, size: value },
+        },
         type: 'RadioButton',
       }
-      newProps.props.size = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -43,31 +47,42 @@ export const useItemsHandlers = (
   const onChangeAlign = (value: RadioPropAlign | null) => {
     if (value) {
       const newProps: BrandRadioButtonProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, align: value },
+        },
         type: 'RadioButton',
       }
-      newProps.props.align = value
       onDispatch(selectedView, newProps)
     }
   }
 
-  const onChangeField = (propsName: keyof RadioButtonProps) => (value: string | null) => {
-    const newProps: BrandRadioButtonProps = {
-      props: {
-        ...selectedViewProps,
-        [propsName]: value,
-      },
-      type: 'RadioButton',
-    }
-    onDispatch(selectedView, newProps)
-  }
-
-  const onChangeSwitch =
-    (propsName: keyof RadioButtonProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeField =
+    (propsName: keyof RadioButtonProps['uiLibProps']) => (value: string | null) => {
       const newProps: BrandRadioButtonProps = {
         props: {
           ...selectedViewProps,
-          [propsName]: checked,
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            [propsName]: value,
+          },
+        },
+        type: 'RadioButton',
+      }
+      onDispatch(selectedView, newProps)
+    }
+
+  const onChangeSwitch =
+    (propsName: keyof RadioButtonProps['uiLibProps']) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = event.target.checked
+      const newProps: BrandRadioButtonProps = {
+        props: {
+          ...selectedViewProps,
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            [propsName]: checked,
+          },
         },
         type: 'RadioButton',
       }
@@ -75,10 +90,12 @@ export const useItemsHandlers = (
     }
   const onChangeChacked = (checked: boolean) => {
     const newProps: BrandRadioButtonProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, checked },
+      },
       type: 'RadioButton',
     }
-    newProps.props.checked = checked
     onDispatch(selectedView, newProps)
   }
 
@@ -90,12 +107,12 @@ export const useItemsHandlers = (
     onChangeSwitch,
     onChangeChacked,
     itemsProps: {
-      checked: selectedViewProps.checked,
-      size: selectedViewProps.size,
-      view: selectedViewProps.view,
-      align: selectedViewProps.align,
-      label: selectedViewProps.label,
-      disabled: selectedViewProps.disabled,
+      checked: selectedViewProps.uiLibProps.checked,
+      size: selectedViewProps.uiLibProps.size,
+      view: selectedViewProps.uiLibProps.view,
+      align: selectedViewProps.uiLibProps.align,
+      label: selectedViewProps.uiLibProps.label,
+      disabled: selectedViewProps.uiLibProps.disabled,
     },
   }
 }
