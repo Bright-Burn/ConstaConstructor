@@ -50,7 +50,7 @@ export const useItemsHandlers = (selectedViewProps: TabsProps, selectedView: Tab
       const newProps: BrandTabsElementProps = {
         props: {
           ...selectedViewProps,
-          uiLibProps: { ...selectedViewProps.uiLibProps, value: value },
+          uiLibProps: { ...selectedViewProps.uiLibProps, value },
         },
         type: 'Tabs',
       }

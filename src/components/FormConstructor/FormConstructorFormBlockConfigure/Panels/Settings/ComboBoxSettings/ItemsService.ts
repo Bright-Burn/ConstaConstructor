@@ -136,7 +136,7 @@ export const useItemsHandlers = (
       newProps.props.styles.minWidth = `${newValue}px`
       onDispatch(selectedView, newProps)
     } else {
-      newProps.props.styles.maxWidth = ''
+      newProps.props.styles.maxWidth = undefined
       newProps.props.styles.minWidth = ''
       onDispatch(selectedView, newProps)
     }

@@ -1,6 +1,7 @@
-import { IconComponent, IconPropSize } from '@consta/icons/Icon'
-import { TabsPropSize, TabsPropView, TabsPropLinePosition } from '@consta/uikit/Tabs'
-import { IconNames } from '../../../../coreTypes'
+import type { IconComponent, IconPropSize } from '@consta/icons/Icon'
+import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
+
+import type { IconNames } from '../../../../coreTypes'
 
 export type FitMode = 'dropdown' | 'scroll'
 

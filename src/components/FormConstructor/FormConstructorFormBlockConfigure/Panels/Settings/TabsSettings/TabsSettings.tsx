@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { IconNames, TabsElement, TabsProps } from '../../../../coreTypes'
@@ -12,7 +13,6 @@ import { useItemsHandlers } from './ItemsService'
 import { linePositionArray, sizeArray } from './types'
 
 import style from './styles.module.css'
-import { Text } from '@consta/uikit/Text'
 
 type TabsSettingsType = {
   selectedViewProps: TabsProps

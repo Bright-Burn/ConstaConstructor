@@ -19,11 +19,10 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
     return null
   }
 
-  const getItemLeftIcon = (item: TabItemType) =>
-    item?.leftIcon ? Icons[item?.leftIcon] : undefined
+  const getItemLeftIcon = (item: TabItemType) => (item.leftIcon ? Icons[item.leftIcon] : undefined)
 
   const getItemRightIcon = (item: TabItemType) =>
-    item?.rightIcon ? Icons[item?.rightIcon] : undefined
+    item.rightIcon ? Icons[item.rightIcon] : undefined
 
   return (
     <SelectableLayer

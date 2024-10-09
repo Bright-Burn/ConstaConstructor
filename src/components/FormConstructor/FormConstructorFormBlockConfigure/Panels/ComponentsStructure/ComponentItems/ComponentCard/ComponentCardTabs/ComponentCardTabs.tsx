@@ -29,7 +29,9 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
             fitMode: 'dropdown',
             size: 'm',
           },
-          styles: {},
+          styles: {
+            width: '200px',
+          },
           className: '',
           baseProps: {},
         },

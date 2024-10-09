@@ -2,6 +2,7 @@ import type { IconPropSize } from '@consta/icons/Icon'
 import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 
 import type { IconNames } from './iconTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
   BrandProps,
   ConcreteSelectedView,
@@ -9,7 +10,6 @@ import type {
   IFormElement,
   OmitInstanceId,
 } from './types'
-import { InstanceProps } from './instanceProps'
 
 export type FitMode = 'dropdown' | 'scroll'
 
