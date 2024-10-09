@@ -29,6 +29,7 @@ export const codeBuilders: CodeBuilder = {
   SelectForm: (componentLabel, props) => buildCodeDefault(componentLabel, 'Select', props.props),
   Switch: (componentLabel, props) => buildCodeDefault(componentLabel, 'Switch', props.props),
   Tabs: (componentLabel, props) => buildCodeDefault(componentLabel, 'Tabs', props.props),
+  Tag: (componentLabel, props) => buildCodeDefault(componentLabel, 'Tag', props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика

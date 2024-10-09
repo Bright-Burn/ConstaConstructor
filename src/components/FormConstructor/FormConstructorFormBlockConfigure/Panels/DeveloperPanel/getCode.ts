@@ -132,6 +132,13 @@ export const getCode = (selectedViewProps: UnionProps, viewLabel: string) => {
       }
       break
     }
+    case 'Tag': {
+      const buildFunc = codeBuilders[selectedViewProps.type]
+      if (buildFunc) {
+        code = buildFunc(viewLabel, selectedViewProps)
+      }
+      break
+    }
   }
   return code
 }

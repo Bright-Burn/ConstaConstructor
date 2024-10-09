@@ -1,6 +1,7 @@
 import type { TagBasePropSize } from '@consta/uikit/TagBase'
 
 import type { IconNames } from './iconTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
   BaseProps,
   BrandProps,
@@ -23,7 +24,7 @@ export declare const tagBasePropGroupStringValue: readonly [
 ]
 export declare type TagBasePropGroup = (typeof tagBasePropGroupStringValue)[number]
 
-export type TagProps = {
+type UiLibProps = {
   label: string
   size?: TagBasePropSize
   mode: 'info' | 'button' | 'check' | 'cancel' | 'link'
@@ -31,7 +32,9 @@ export type TagProps = {
   group?: TagBasePropGroup
   Icon?: boolean
   icon?: IconNames
-} & BaseProps
+}
+
+export type TagProps = InstanceProps<UiLibProps, {}>
 
 export type BrandTagProps = BrandProps<TagProps, 'Tag'>
 
