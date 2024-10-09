@@ -1,21 +1,21 @@
 import type { FC } from 'react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { IconNames, TabsElement, TabsElementProps } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
+import type { IconNames, TabsElement, TabsProps } from '../../../../coreTypes'
 import { IconSelectConsta } from '../IconsSelect'
 
 import { useItemsHandlers } from './ItemsService'
 import { linePositionArray, sizeArray } from './types'
 
 import style from './styles.module.css'
+import { Text } from '@consta/uikit/Text'
 
 type TabsSettingsType = {
-  selectedViewProps: TabsElementProps
+  selectedViewProps: TabsProps
   selectedView: TabsElement
 }
 
@@ -28,6 +28,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
     onChangeLinePosition,
     onChangeSize,
     onChangeSwitch,
+    onChangeWidth,
   } = useItemsHandlers(selectedViewProps, selectedView)
   const [isOpen, setOpen] = useState<boolean>(false)
 
@@ -40,7 +41,12 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
 
   const onTabDisabledEdit = (value: boolean, index: number) => {
     const newTabs = [...itemsProps.items]
-    newTabs[index] = { ...newTabs[index], disabledIcon: value, iconLeft: undefined }
+    newTabs[index] = {
+      ...newTabs[index],
+      disabledIcon: value,
+      leftIcon: undefined,
+      rightIcon: undefined,
+    }
     onChangeItems(newTabs)
   }
 
@@ -49,13 +55,24 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
     if (value !== null) {
       newTabs[index] = {
         ...newTabs[index],
-        iconLeft: Icons[value],
-        labelIconLeft: value,
+        leftIcon: value,
       }
     }
     onChangeItems(newTabs)
   }
 
+  const onTabIconEditRight = (value: IconNames | null, index: number) => {
+    const newTabs = [...itemsProps.items]
+    if (value !== null) {
+      newTabs[index] = {
+        ...newTabs[index],
+        rightIcon: value,
+      }
+    }
+    onChangeItems(newTabs)
+  }
+
+  const width = selectedViewProps.styles.width?.replaceAll('px', '') || ''
   return (
     <div className={style.gapSetting}>
       <div className={style.rowSettings}>
@@ -108,6 +125,19 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
           onChange={onChangeActiveItem}
         />
       </div>
+      <div className={`${style.rowSettings} align-center`}>
+        <TextField
+          value={width}
+          type="number"
+          size="xs"
+          leftSide="Width"
+          min="0"
+          onChange={value => {
+            onChangeWidth(value)
+          }}
+        />
+        <Text size="xs">px</Text>
+      </div>
       <Collapse
         size="xs"
         label="Название табов"
@@ -138,11 +168,19 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
                   }}
                 />
                 <IconSelectConsta
-                  selectedIcon={tab.labelIconLeft}
+                  selectedIcon={tab.leftIcon}
                   disabled={!!tab.disabledIcon}
                   label="icon"
                   onChangeIcon={value => {
                     onTabIconEditLeft(value, index)
+                  }}
+                />
+                <IconSelectConsta
+                  selectedIcon={tab.rightIcon}
+                  disabled={!!tab.disabledIcon}
+                  label="icon"
+                  onChangeIcon={value => {
+                    onTabIconEditRight(value, index)
                   }}
                 />
               </div>

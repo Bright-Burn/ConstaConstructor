@@ -21,14 +21,17 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          view: 'clear',
+          uiLibProps: {
+            view: 'clear',
+            value: items[0],
+            items,
+            linePosition: 'top',
+            fitMode: 'dropdown',
+            size: 'm',
+          },
+          styles: {},
           className: '',
           baseProps: {},
-          value: items[0],
-          items,
-          linePosition: 'top',
-          fitMode: 'dropdown',
-          size: 'm',
         },
         type: 'Tabs',
       },

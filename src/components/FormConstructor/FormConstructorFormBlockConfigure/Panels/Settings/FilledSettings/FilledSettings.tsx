@@ -43,7 +43,13 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
     } else if (isElementProps<BrandSelectProps>(props, props.type)) {
       const newProps: BrandSelectProps = {
         type: 'SelectForm',
-        props: { ...props.props, styles: { ...props.props.styles, filled: value === 'filled' } },
+        props: {
+          ...props.props,
+          styles: {
+            ...props.props.styles,
+            filled: value === 'filled',
+          },
+        },
       }
       dispatch(setInstanceProps(elementId, newProps))
     }
