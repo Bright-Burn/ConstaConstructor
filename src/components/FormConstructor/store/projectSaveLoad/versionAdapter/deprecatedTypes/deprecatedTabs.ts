@@ -1,7 +1,7 @@
 import type { IconComponent, IconPropSize } from '@consta/icons/Icon'
 import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/uikit/Tabs'
 
-import type { IconNames } from '../../../../coreTypes'
+import type { BaseProps, IconNames } from '../../../../coreTypes'
 
 export type FitMode = 'dropdown' | 'scroll'
 
@@ -29,4 +29,5 @@ export type TabsProps_Deprecated = {
       linePosition: Extract<TabsPropLinePosition, 'left' | 'right'>
       fitMode?: never
     }
-)
+) &
+  BaseProps

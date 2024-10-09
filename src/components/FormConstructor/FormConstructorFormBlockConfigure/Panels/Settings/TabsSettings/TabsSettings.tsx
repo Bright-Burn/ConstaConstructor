@@ -7,13 +7,13 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import type { IconNames, TabsElement, TabsProps } from '../../../../coreTypes'
+import { FilledSettings } from '../FilledSettings'
 import { IconSelectConsta } from '../IconsSelect'
 
 import { useItemsHandlers } from './ItemsService'
 import { linePositionArray, sizeArray } from './types'
 
 import style from './styles.module.css'
-import { FilledSettings } from '../FilledSettings'
 
 type TabsSettingsType = {
   selectedViewProps: TabsProps

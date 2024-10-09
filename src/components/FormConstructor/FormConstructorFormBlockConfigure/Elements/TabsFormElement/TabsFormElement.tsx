@@ -4,10 +4,10 @@ import { Tabs } from '@consta/uikit/Tabs'
 import type { TabItemType } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
+import { getIsFilledClassName } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ITabsFormElement } from './types'
-import { getIsFilledClassName } from '../../../utils'
 
 export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
@@ -18,9 +18,9 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
     return null
   }
 
-  const className = props?.className
-  const isFilled = props?.styles.filled || false
-  const styles = { flexGrow: isFilled ? 1 : 0, ...props?.styles }
+  const className = props.className
+  const isFilled = props.styles.filled || false
+  const styles = { flexGrow: isFilled ? 1 : 0, ...props.styles }
 
   const getItemLeftIcon = (item: TabItemType) => (item.leftIcon ? Icons[item.leftIcon] : undefined)
 
