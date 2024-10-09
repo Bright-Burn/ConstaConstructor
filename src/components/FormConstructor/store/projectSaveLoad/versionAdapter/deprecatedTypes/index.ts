@@ -21,4 +21,5 @@ export type { SelectProps_Deprecated, SelectStyles_Deprecated } from './deprecat
 export type { SwitchProps_Deprecated } from './deprecatedSwitch'
 export type { TabsProps_Deprecated } from './deprecatedTabs'
 export type { TagProps_Deprecated } from './deprecatedTags'
+export type { TextProps_Deprecated } from './deprecatedText'
 export type { FormConstructorToSave_Deprecated } from './deptrecatedFormConstructor'

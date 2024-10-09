@@ -20,7 +20,7 @@ import type { BrandSwitchProps } from './SwitchTypes'
 import type { BrandTabsElementProps } from './tabsTypes'
 import type { BrandTagProps } from './tagTypes'
 import type { BrandTextFieldProps } from './textFieldTypes'
-import type { BrandTextElementProps } from './textTypes'
+import type { BrandTextProps } from './textTypes'
 import type { AllElementTypes, FormElementTypes, FormGroupsTypes } from './types'
 import type { BrandUserProps } from './userTypes'
 type emptyObj = Record<string, never>
@@ -40,7 +40,7 @@ export type FormInstance<T extends AllElementTypes> = {
             : emptyObj & T extends 'Checkbox'
               ? BrandCheckboxProps
               : emptyObj & T extends 'Text'
-                ? BrandTextElementProps
+                ? BrandTextProps
                 : emptyObj & T extends 'TextField'
                   ? BrandTextFieldProps
                   : emptyObj & T extends 'List'

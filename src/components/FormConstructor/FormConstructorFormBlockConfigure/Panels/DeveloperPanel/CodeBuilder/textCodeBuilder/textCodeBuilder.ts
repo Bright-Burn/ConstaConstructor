@@ -1,3 +1,4 @@
+import type { TextProps } from '../../../../../coreTypes'
 import type { UiLibProps } from '../buildConstaPropsCommon'
 import { buildConstaPropsCommon } from '../buildConstaPropsCommon'
 import type { CssCodeStyles } from '../buildCssCodeCommon'
@@ -6,9 +7,9 @@ import { constaPropsAdapterCommon } from '../constaPropsAdapterCommon'
 import { propsCssToCodeStyles } from '../propsToCssCode'
 import type { GeneratedCode } from '../types'
 
-import type { ListStylesBuilder } from './types'
+export type TextStylesBuilder = (componentName: string, props: TextProps) => GeneratedCode
 
-export const buildListCode: ListStylesBuilder = (componentName, props) => {
+export const textCodeBuilder: TextStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
@@ -18,17 +19,12 @@ export const buildListCode: ListStylesBuilder = (componentName, props) => {
 
   // Преобразуем к типу аргумента функции билдера
   const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
-  const jsxCode = props.uiLibProps.withListBox
-    ? `<ListBox ${uiLibProps.form ? `form={${uiLibProps.form}}` : ''}${uiLibProps.shadow}`
-      ? `shadow={${uiLibProps.shadow}}`
-      : '' +
-        `${uiLibProps.border ? `border={${uiLibProps.border}}` : ''}>\n` +
-        `<Layout \n${buildConstaPropsCommon(uiLibProps)}/>\n</ListBox>`
-    : `<Layout \n${buildConstaPropsCommon(uiLibProps)}/>`
+  delete uiLibProps['content']
 
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
-    jsxCode,
+    jsxCode:
+      `<Text ${buildConstaPropsCommon(uiLibProps)}/>\n${props.uiLibProps.content}\n` + '</Text>',
   }
 
   return builtCode

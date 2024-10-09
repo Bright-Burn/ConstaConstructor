@@ -12,8 +12,8 @@ import type {
 
 import type { ConstaColor } from '../../ConstaPalette'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -21,19 +21,19 @@ import type {
   OmitInstanceId,
 } from './types'
 
-type TextContent = { content: string }
-
 export type AlignTextType = { name: TextPropAlign; icon: IconComponent }
 
-export type textDecorationType = {
-  name?: 'underline' | 'uppercase' | 'italic'
+type TextPropTransform = 'underline' | 'uppercase' | 'italic'
+
+export type TextDecorationType = {
+  name?: TextPropTransform
   icon?: IconComponent
 }
 
-export type TextElementProps = {
+type UiLibProps = {
   size?: TextPropSize
   view?: TextPropView
-  align?: AlignTextType
+  align?: TextPropAlign
   cursor?: 'pointer'
   decoration?: 'underline'
   display?: TextPropDisplay
@@ -45,20 +45,22 @@ export type TextElementProps = {
   weight?: TextPropWeight
   width?: 'default'
   truncate?: boolean
-  transformText: textDecorationType
-  style?: TextlementStyles
-} & BaseProps &
-  TextContent
+  transformText?: TextPropTransform
+  content: string
+}
+
+type Styles = {
+  color: ConstaColor | undefined
+}
+
+export type TextProps = InstanceProps<UiLibProps, Styles>
 
 export type TextElement = ConcreteSelectedView<typeof FormElementDictTypes.Text>
 
-export type BrandTextElementProps = BrandProps<TextElementProps, 'Text'>
+export type BrandTextProps = BrandProps<TextProps, 'Text'>
 
 export type IFormElementText = OmitInstanceId<
   IFormElement & {
-    props: BrandTextElementProps
+    props: BrandTextProps
   }
 >
-export type TextlementStyles = {
-  color: ConstaColor | undefined
-}

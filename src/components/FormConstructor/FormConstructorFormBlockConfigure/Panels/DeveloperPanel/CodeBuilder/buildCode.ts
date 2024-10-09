@@ -1,6 +1,7 @@
 import { buildCodeDefault } from './defaultCodeBuilder'
 import { buildLayoutCode } from './layoutCodeBuilder'
 import { buildListCode } from './listCodeBuilder'
+import { textCodeBuilder } from './textCodeBuilder'
 import type { CodeBuilder } from './types'
 
 /**
@@ -30,6 +31,7 @@ export const codeBuilders: CodeBuilder = {
   Switch: (componentLabel, props) => buildCodeDefault(componentLabel, 'Switch', props.props),
   Tabs: (componentLabel, props) => buildCodeDefault(componentLabel, 'Tabs', props.props),
   Tag: (componentLabel, props) => buildCodeDefault(componentLabel, 'Tag', props.props),
+  Text: (componentLabel, props) => textCodeBuilder(componentLabel, props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика

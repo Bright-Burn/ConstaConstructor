@@ -6,6 +6,8 @@ import type { GenericAdapter } from './genericAdapter'
 export type SelectAdapter = GenericAdapter<SelectProps_Deprecated, SelectProps>
 
 export const selectAdapter: SelectAdapter = (id, deprecated) => {
+  console.log(`Run Select adapter with id=${id}`)
+
   return {
     baseProps: deprecated.baseProps,
     className: deprecated.className,

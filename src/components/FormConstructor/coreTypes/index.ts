@@ -134,12 +134,11 @@ export type {
 } from './textFieldTypes'
 export type {
   AlignTextType,
-  BrandTextElementProps,
+  BrandTextProps,
   IFormElementText,
-  textDecorationType,
+  TextDecorationType,
   TextElement,
-  TextElementProps,
-  TextlementStyles,
+  TextProps,
 } from './textTypes'
 export type {
   AllElementTypes,

@@ -24,8 +24,8 @@ import type {
   BrandSwitchProps,
   BrandTabsElementProps,
   BrandTagProps,
-  BrandTextElementProps,
   BrandTextFieldProps,
+  BrandTextProps,
   BrandUserProps,
   IselectedView,
   UnionProps,
@@ -98,7 +98,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
       )
     }
     case FormElementDictTypes.Text: {
-      if (!isElementProps<BrandTextElementProps>(selectedViewProps, 'Text')) {
+      if (!isElementProps<BrandTextProps>(selectedViewProps, 'Text')) {
         return
       }
       const element = {
