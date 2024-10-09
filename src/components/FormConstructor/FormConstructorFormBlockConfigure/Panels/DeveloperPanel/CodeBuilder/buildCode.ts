@@ -28,6 +28,7 @@ export const codeBuilders: CodeBuilder = {
   RadioButton: (componentLabel, props) => buildCodeDefault(componentLabel, 'Radio', props.props),
   SelectForm: (componentLabel, props) => buildCodeDefault(componentLabel, 'Select', props.props),
   Switch: (componentLabel, props) => buildCodeDefault(componentLabel, 'Switch', props.props),
+  Tabs: (componentLabel, props) => buildCodeDefault(componentLabel, 'Tabs', props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика

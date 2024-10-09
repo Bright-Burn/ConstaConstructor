@@ -123,13 +123,7 @@ export type {
 } from './selectTypes'
 export type { IFormElementSwitch, SwitchElement, SwitchProps } from './SwitchTypes'
 export type { BrandSwitchProps } from './SwitchTypes'
-export type {
-  IFormElementTabs,
-  tabItemType,
-  TabsElement,
-  TabsElementProps,
-  TabsProps,
-} from './tabsTypes'
+export type { IFormElementTabs, TabItemType, TabsElement, TabsProps } from './tabsTypes'
 export type { BrandTabsElementProps } from './tabsTypes'
 export type { BrandTagProps, IFormElementTagProps, TagElement, TagProps } from './tagTypes'
 export type {
