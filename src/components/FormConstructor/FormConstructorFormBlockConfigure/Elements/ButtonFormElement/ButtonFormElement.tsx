@@ -14,10 +14,10 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   //логика для заполнения элемента
   const isFilled = props?.styles.filled || false
 
-  const buttonConstaProps = props?.uiLibProps
+  const uiLibProps = props?.uiLibProps
   const className = props?.className
 
-  if (!buttonConstaProps) {
+  if (!uiLibProps) {
     return null
   }
 
@@ -29,10 +29,10 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
       className={getIsFilledClassName(isFilled)}>
       <Button
         className={className}
-        {...buttonConstaProps}
+        {...uiLibProps}
         style={{ flexGrow: isFilled ? 1 : 0 }}
-        iconLeft={buttonConstaProps.iconLeft ? Icons[buttonConstaProps.iconLeft] : undefined}
-        iconRight={buttonConstaProps.iconRight ? Icons[buttonConstaProps.iconRight] : undefined}
+        iconLeft={uiLibProps.iconLeft ? Icons[uiLibProps.iconLeft] : undefined}
+        iconRight={uiLibProps.iconRight ? Icons[uiLibProps.iconRight] : undefined}
       />
     </SelectableLayer>
   )

@@ -30,6 +30,8 @@ import type { RadioButtonAdapter } from './radioButtonAdapter'
 import { radioButtonAdapter } from './radioButtonAdapter'
 import type { SelectAdapter } from './selectAdapter'
 import { selectAdapter } from './selectAdapter'
+import type { SwitchAdapter } from './switchAdapter'
+import { switchAdapter } from './switchAdapter'
 
 export type TypeAdapter = {
   Button: ButtonAdapter
@@ -48,6 +50,7 @@ export type TypeAdapter = {
   List: ListAdapter
   RadioButton: RadioButtonAdapter
   SelectForm: SelectAdapter
+  Switch: SwitchAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -68,4 +71,5 @@ export const typeAdapterDict: TypeAdapter = {
   List: listAdapter,
   RadioButton: radioButtonAdapter,
   SelectForm: selectAdapter,
+  Switch: switchAdapter,
 }

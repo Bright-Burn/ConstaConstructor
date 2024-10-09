@@ -12,10 +12,10 @@ import type { IBreadcrumbsFormElement } from './types'
 export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  const breadcrumbsConstaProps = props?.uiLibProps
+  const uiLibProps = props?.uiLibProps
   const className = props?.className
 
-  if (!breadcrumbsConstaProps) {
+  if (!uiLibProps) {
     return null
   }
 
@@ -26,10 +26,10 @@ export const BreadcrumbsFormElement: FC<IBreadcrumbsFormElement> = ({ element })
       elementType={FormElementDictTypes.BreadcrumbsForm}>
       <Breadcrumbs
         className={className}
-        size={breadcrumbsConstaProps.size}
-        fitMode={breadcrumbsConstaProps.fitMode}
-        lastItemIsLink={breadcrumbsConstaProps.lastItemIsLink}
-        items={breadcrumbsConstaProps.items.map(itemAdapter)}
+        size={uiLibProps.size}
+        fitMode={uiLibProps.fitMode}
+        lastItemIsLink={uiLibProps.lastItemIsLink}
+        items={uiLibProps.items.map(itemAdapter)}
       />
     </SelectableLayer>
   )

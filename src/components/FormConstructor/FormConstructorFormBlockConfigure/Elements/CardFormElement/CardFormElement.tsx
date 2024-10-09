@@ -13,11 +13,11 @@ import styles from './styles.module.css'
 export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  const cardProps = props?.uiLibProps
+  const uiLibProps = props?.uiLibProps
   const className = props?.className
   const propsStyles = props?.styles
 
-  if (!cardProps) {
+  if (!uiLibProps) {
     return null
   }
 
@@ -27,7 +27,7 @@ export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormGroupsDictTypes.Card}>
       <Card
-        {...cardProps}
+        {...uiLibProps}
         className={`${className} ${styles.body}`}
         style={{ ...(propsStyles || {}), display: 'flex' }}>
         <div className={styles.cardContent}>

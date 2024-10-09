@@ -11,9 +11,9 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   const className = props?.className
-  const badgeConstaProps = props?.uiLibProps
+  const uiLibProps = props?.uiLibProps
 
-  if (!badgeConstaProps) {
+  if (!uiLibProps) {
     return null
   }
 
@@ -24,9 +24,9 @@ export const BadgeFormElement: FC<IBadgeFormElement> = ({ element }) => {
       elementType={FormElementDictTypes.Badge}>
       <Badge
         className={className}
-        {...badgeConstaProps}
-        iconLeft={badgeConstaProps.iconLeft ? Icons[badgeConstaProps.iconLeft] : undefined}
-        iconRight={badgeConstaProps.iconRight ? Icons[badgeConstaProps.iconRight] : undefined}
+        {...uiLibProps}
+        iconLeft={uiLibProps.iconLeft ? Icons[uiLibProps.iconLeft] : undefined}
+        iconRight={uiLibProps.iconRight ? Icons[uiLibProps.iconRight] : undefined}
       />
     </SelectableLayer>
   )
