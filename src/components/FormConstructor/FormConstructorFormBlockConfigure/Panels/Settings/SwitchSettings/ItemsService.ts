@@ -68,7 +68,10 @@ export const useItemsHandlers = (selectedViewProps: SwitchProps, selectedView: S
     (propsName: keyof SwitchProps['uiLibProps']) =>
     (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandSwitchProps = {
-        props: { ...selectedViewProps, [propsName]: checked.target.checked },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, [propsName]: checked.target.checked },
+        },
         type: 'Switch',
       }
       onDispatch(selectedView, newProps)
