@@ -5,10 +5,9 @@ import { buildCssCodeCommon } from '../buildCssCodeCommon'
 import { constaPropsAdapterCommon } from '../constaPropsAdapterCommon'
 import { propsCssToCodeStyles } from '../propsToCssCode'
 import type { GeneratedCode } from '../types'
+import { ListStylesBuilder } from './types'
 
-import type { LayoutStylesBuilder } from './types'
-
-export const buildListCode: LayoutStylesBuilder = (componentName, props) => {
+export const buildListCode: ListStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера

@@ -25,7 +25,6 @@ export const textAdapter: TextAdapter = (id, deprecated) => {
       lineHeight: deprecated.lineHeight,
       size: deprecated.size,
       spacing: deprecated.spacing,
-      style: deprecated.style,
       transform: deprecated.transform,
       truncate: deprecated.truncate,
       view: deprecated.view,
