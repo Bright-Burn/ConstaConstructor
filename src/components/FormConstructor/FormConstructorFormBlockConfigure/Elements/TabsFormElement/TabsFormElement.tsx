@@ -7,17 +7,20 @@ import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ITabsFormElement } from './types'
+import { getIsFilledClassName } from '../../../utils'
 
 export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
   const uiLibProps = props?.uiLibProps
-  const className = props?.className
-  const styles = props?.styles
 
   if (!uiLibProps) {
     return null
   }
+
+  const className = props?.className
+  const isFilled = props?.styles.filled || false
+  const styles = { flexGrow: isFilled ? 1 : 0, ...props?.styles }
 
   const getItemLeftIcon = (item: TabItemType) => (item.leftIcon ? Icons[item.leftIcon] : undefined)
 
@@ -28,6 +31,7 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
+      className={getIsFilledClassName(isFilled)}
       elementType={FormElementDictTypes.Tabs}>
       {props ? (
         <Tabs

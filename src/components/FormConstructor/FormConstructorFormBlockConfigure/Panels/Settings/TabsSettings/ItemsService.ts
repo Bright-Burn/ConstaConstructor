@@ -152,10 +152,12 @@ export const useItemsHandlers = (selectedViewProps: TabsProps, selectedView: Tab
     }
     newProps.props.styles = { ...newProps.props.styles }
     if (value && value !== '0') {
-      newProps.props.styles.width = `${value}px`
+      newProps.props.styles.maxWidth = `${value}px`
+      newProps.props.styles.minWidth = `${value}px`
       onDispatch(selectedView, newProps)
     } else {
-      newProps.props.styles.width = undefined
+      newProps.props.styles.maxWidth = undefined
+      newProps.props.styles.minWidth = undefined
       onDispatch(selectedView, newProps)
     }
   }

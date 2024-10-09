@@ -13,6 +13,7 @@ import { useItemsHandlers } from './ItemsService'
 import { linePositionArray, sizeArray } from './types'
 
 import style from './styles.module.css'
+import { FilledSettings } from '../FilledSettings'
 
 type TabsSettingsType = {
   selectedViewProps: TabsProps
@@ -72,7 +73,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
     onChangeItems(newTabs)
   }
 
-  const width = selectedViewProps.styles.width?.replaceAll('px', '') || ''
+  const width = selectedViewProps.styles.maxWidth?.replaceAll('px', '') || ''
   return (
     <div className={style.gapSetting}>
       <div className={style.rowSettings}>
@@ -137,6 +138,12 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
           }}
         />
         <Text size="xs">px</Text>
+      </div>
+      <div className={style.rowSettings}>
+        <FilledSettings
+          elementId={selectedView.elementId}
+          props={{ props: selectedViewProps, type: 'Tabs' }}
+        />
       </div>
       <Collapse
         size="xs"

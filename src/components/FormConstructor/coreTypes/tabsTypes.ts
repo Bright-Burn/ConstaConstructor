@@ -43,7 +43,9 @@ type UiLibProps = {
 )
 
 type CustomStyles = {
-  width?: string
+  minWidth?: string
+  maxWidth?: string
+  filled?: boolean
 }
 
 export type TabsProps = InstanceProps<UiLibProps, CustomStyles>
