@@ -15,7 +15,7 @@ export const textAdapter: TextAdapter = (id, deprecated) => {
     },
     uiLibProps: {
       content: deprecated.content,
-      transformText: deprecated.transformText,
+      transformText: deprecated.transformText.name,
       align: deprecated.align?.name,
       cursor: deprecated.cursor,
       decoration: deprecated.decoration,

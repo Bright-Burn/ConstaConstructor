@@ -20,7 +20,7 @@ export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
           uiLibProps: {
             content: 'Text',
             size: 's',
-            transformText: {},
+            transformText: undefined,
           },
           styles: {
             color: undefined,

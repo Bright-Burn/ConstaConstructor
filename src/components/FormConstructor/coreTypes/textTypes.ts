@@ -23,8 +23,10 @@ import type {
 
 export type AlignTextType = { name: TextPropAlign; icon: IconComponent }
 
+type TextPropTransform = 'underline' | 'uppercase' | 'italic'
+
 export type TextDecorationType = {
-  name?: 'underline' | 'uppercase' | 'italic'
+  name?: TextPropTransform
   icon?: IconComponent
 }
 
@@ -43,7 +45,7 @@ type UiLibProps = {
   weight?: TextPropWeight
   width?: 'default'
   truncate?: boolean
-  transformText: TextDecorationType
+  transformText?: TextPropTransform
   content: string
 }
 

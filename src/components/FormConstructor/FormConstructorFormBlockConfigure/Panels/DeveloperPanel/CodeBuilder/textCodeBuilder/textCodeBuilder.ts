@@ -1,9 +1,11 @@
-import { TextProps } from '../../../../../coreTypes'
-import { buildConstaPropsCommon, UiLibProps } from '../buildConstaPropsCommon'
-import { buildCssCodeCommon, CssCodeStyles } from '../buildCssCodeCommon'
+import type { TextProps } from '../../../../../coreTypes'
+import type { UiLibProps } from '../buildConstaPropsCommon'
+import { buildConstaPropsCommon } from '../buildConstaPropsCommon'
+import type { CssCodeStyles } from '../buildCssCodeCommon'
+import { buildCssCodeCommon } from '../buildCssCodeCommon'
 import { constaPropsAdapterCommon } from '../constaPropsAdapterCommon'
 import { propsCssToCodeStyles } from '../propsToCssCode'
-import { GeneratedCode } from '../types'
+import type { GeneratedCode } from '../types'
 
 export type TextStylesBuilder = (componentName: string, props: TextProps) => GeneratedCode
 
@@ -22,10 +24,7 @@ export const textCodeBuilder: TextStylesBuilder = (componentName, props) => {
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
     jsxCode:
-      `<Text ${buildConstaPropsCommon(uiLibProps)}/>\n` +
-      props.uiLibProps.content +
-      '\n' +
-      '</Text>',
+      `<Text ${buildConstaPropsCommon(uiLibProps)}/>\n${props.uiLibProps.content}\n` + '</Text>',
   }
 
   return builtCode

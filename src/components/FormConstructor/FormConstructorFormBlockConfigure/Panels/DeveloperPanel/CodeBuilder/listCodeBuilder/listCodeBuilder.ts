@@ -5,7 +5,8 @@ import { buildCssCodeCommon } from '../buildCssCodeCommon'
 import { constaPropsAdapterCommon } from '../constaPropsAdapterCommon'
 import { propsCssToCodeStyles } from '../propsToCssCode'
 import type { GeneratedCode } from '../types'
-import { ListStylesBuilder } from './types'
+
+import type { ListStylesBuilder } from './types'
 
 export const buildListCode: ListStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
