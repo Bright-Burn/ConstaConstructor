@@ -33,16 +33,14 @@ export const TabsFormElement: FC<ITabsFormElement> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       className={getIsFilledClassName(isFilled)}
       elementType={FormElementDictTypes.Tabs}>
-      {props ? (
-        <Tabs
-          {...uiLibProps}
-          className={className}
-          style={styles}
-          getItemLeftIcon={getItemLeftIcon}
-          getItemRightIcon={getItemRightIcon}
-          onChange={() => {}}
-        />
-      ) : null}
+      <Tabs
+        {...uiLibProps}
+        className={className}
+        style={styles}
+        getItemLeftIcon={getItemLeftIcon}
+        getItemRightIcon={getItemRightIcon}
+        onChange={() => {}}
+      />
     </SelectableLayer>
   )
 }

@@ -30,7 +30,8 @@ export const ComponentCardTabs: FC<IComponetCardElement> = ({ name }) => {
             size: 'm',
           },
           styles: {
-            width: '200px',
+            maxWidth: '200px',
+            minWidth: '200px',
           },
           className: '',
           baseProps: {},
