@@ -10,10 +10,10 @@ import type { IAvatarGroupElement } from './types'
 export const AvatarGroupFormElement: FC<IAvatarGroupElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  const avatarGroupProps = props?.uiLibProps
+  const uiLibProps = props?.uiLibProps
   const className = props?.className
 
-  if (!avatarGroupProps) {
+  if (!uiLibProps) {
     return null
   }
 
@@ -27,11 +27,11 @@ export const AvatarGroupFormElement: FC<IAvatarGroupElement> = ({ element }) => 
       elementType={FormElementDictTypes.AvatarGroup}>
       <AvatarGroup
         className={avatarGroupClassName}
-        items={avatarGroupProps.items}
-        size={avatarGroupProps.size}
-        form={avatarGroupProps.form}
-        monochrome={avatarGroupProps.monochrome}
-        visibleCount={avatarGroupProps.visibleCount}
+        items={uiLibProps.items}
+        size={uiLibProps.size}
+        form={uiLibProps.form}
+        monochrome={uiLibProps.monochrome}
+        visibleCount={uiLibProps.visibleCount}
       />
     </SelectableLayer>
   )

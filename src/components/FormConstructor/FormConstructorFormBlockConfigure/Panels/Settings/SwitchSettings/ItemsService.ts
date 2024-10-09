@@ -17,10 +17,12 @@ export const useItemsHandlers = (selectedViewProps: SwitchProps, selectedView: S
   const onChangeView = (value: SwitchPropView | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, view: value },
+        },
         type: 'Switch',
       }
-      newProps.props.view = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -28,10 +30,12 @@ export const useItemsHandlers = (selectedViewProps: SwitchProps, selectedView: S
   const onChangeSize = (value: SwitchPropSize | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, size: value },
+        },
         type: 'Switch',
       }
-      newProps.props.size = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -39,24 +43,30 @@ export const useItemsHandlers = (selectedViewProps: SwitchProps, selectedView: S
   const onChangeAlign = (value: SwitchPropAlign | null) => {
     if (value) {
       const newProps: BrandSwitchProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, align: value },
+        },
         type: 'Switch',
       }
-      newProps.props.align = value
       onDispatch(selectedView, newProps)
     }
   }
 
-  const onChangeField = (propsName: keyof SwitchProps) => (value: string | null) => {
+  const onChangeField = (propsName: keyof SwitchProps['uiLibProps']) => (value: string | null) => {
     const newProps: BrandSwitchProps = {
-      props: { ...selectedViewProps, [propsName]: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, [propsName]: value },
+      },
       type: 'Switch',
     }
     onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
-    (propsName: keyof SwitchProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof SwitchProps['uiLibProps']) =>
+    (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandSwitchProps = {
         props: { ...selectedViewProps, [propsName]: checked.target.checked },
         type: 'Switch',
@@ -71,12 +81,12 @@ export const useItemsHandlers = (selectedViewProps: SwitchProps, selectedView: S
     onChangeField,
     onChangeSwitch,
     itemsProps: {
-      size: selectedViewProps.size,
-      view: selectedViewProps.view,
-      align: selectedViewProps.align,
-      label: selectedViewProps.label,
-      disabled: selectedViewProps.disabled,
-      checked: selectedViewProps.checked,
+      size: selectedViewProps.uiLibProps.size,
+      view: selectedViewProps.uiLibProps.view,
+      align: selectedViewProps.uiLibProps.align,
+      label: selectedViewProps.uiLibProps.label,
+      disabled: selectedViewProps.uiLibProps.disabled,
+      checked: selectedViewProps.uiLibProps.checked,
     },
   }
 }

@@ -13,11 +13,11 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   //логика для заполнения элемента
   const isFilled = props?.styles.filled || false
 
-  const comboBoxUiLib = props?.uiLibProps
+  const uiLibProps = props?.uiLibProps
   const className = props?.className
   const styles = { flexGrow: isFilled ? 1 : 0, ...props?.styles }
 
-  if (!comboBoxUiLib) {
+  if (!uiLibProps) {
     return null
   }
 
@@ -28,11 +28,11 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ComboBox}>
       <Combobox
-        {...comboBoxUiLib}
+        {...uiLibProps}
         style={styles}
         className={className}
-        items={comboBoxUiLib.items}
-        groups={comboBoxUiLib.groupsActive ? comboBoxUiLib.groups : undefined}
+        items={uiLibProps.items}
+        groups={uiLibProps.groupsActive ? uiLibProps.groups : undefined}
         getItemKey={item => item.label}
         getItemLabel={item => item.label}
         getItemGroupKey={item => item.group}

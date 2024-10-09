@@ -10,10 +10,10 @@ import type { IInformerFormElement } from './types'
 export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  const informerUiLibProps = props?.uiLibProps
+  const uiLibProps = props?.uiLibProps
   const className = props?.className
 
-  if (!informerUiLibProps) {
+  if (!uiLibProps) {
     return null
   }
 
@@ -23,13 +23,13 @@ export const InformerFormElement: FC<IInformerFormElement> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Informer}>
       <Informer
-        label={informerUiLibProps.label}
-        title={informerUiLibProps.title}
-        view={informerUiLibProps.view}
-        size={informerUiLibProps.size}
-        status={informerUiLibProps.status}
+        label={uiLibProps.label}
+        title={uiLibProps.title}
+        view={uiLibProps.view}
+        size={uiLibProps.size}
+        status={uiLibProps.status}
         className={className}
-        icon={informerUiLibProps.icon ? Icons[informerUiLibProps.icon] : undefined}
+        icon={uiLibProps.icon ? Icons[uiLibProps.icon] : undefined}
       />
     </SelectableLayer>
   )

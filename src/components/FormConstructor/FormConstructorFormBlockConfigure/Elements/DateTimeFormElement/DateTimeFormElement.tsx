@@ -13,11 +13,11 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
 
   const [timeValue, setTimeValue] = useState<Date>()
 
-  const dataTimeUiLib = props?.uiLibProps
+  const uiLibProps = props?.uiLibProps
   const className = props?.className
   const styles = props?.styles || {}
 
-  if (!dataTimeUiLib) {
+  if (!uiLibProps) {
     return null
   }
 
@@ -27,13 +27,13 @@ export const DataTimeFormElement: FC<IDataTimeFormElement> = ({ element }) => {
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.DataTime}>
       <DateTime
-        {...dataTimeUiLib}
+        {...uiLibProps}
         style={styles}
         value={timeValue}
         className={className}
-        multiplicityHours={props ? Number(dataTimeUiLib.multiplicityHours) : undefined}
-        multiplicityMinutes={props ? Number(dataTimeUiLib.multiplicityMinutes) : undefined}
-        multiplicitySeconds={props ? Number(dataTimeUiLib.multiplicitySeconds) : undefined}
+        multiplicityHours={props ? Number(uiLibProps.multiplicityHours) : undefined}
+        multiplicityMinutes={props ? Number(uiLibProps.multiplicityMinutes) : undefined}
+        multiplicitySeconds={props ? Number(uiLibProps.multiplicitySeconds) : undefined}
         onChange={setTimeValue}
       />
     </SelectableLayer>

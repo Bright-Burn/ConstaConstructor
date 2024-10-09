@@ -1,7 +1,7 @@
 import type { SwitchPropAlign, SwitchPropSize, SwitchPropView } from '@consta/uikit/Switch'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -9,14 +9,15 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type SwitchProps = {
+type UiLibProps = {
   size?: SwitchPropSize
   view?: SwitchPropView
   align?: SwitchPropAlign
   label?: string
   checked?: boolean
   disabled?: boolean
-} & BaseProps
+}
+export type SwitchProps = InstanceProps<UiLibProps, {}>
 
 export type BrandSwitchProps = BrandProps<SwitchProps, 'Switch'>
 

@@ -10,12 +10,27 @@ import type { ISwitchFormElement } from './types'
 export const SwitchFormElement: FC<ISwitchFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
+  const uiLibProps = props?.uiLibProps
+  const className = props?.className
+
+  if (!uiLibProps) {
+    return null
+  }
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Switch}>
-      <Switch {...props} checked={props?.checked} />
+      <Switch
+        className={className}
+        checked={uiLibProps.checked}
+        disabled={uiLibProps.disabled}
+        align={uiLibProps.align}
+        label={uiLibProps.label}
+        size={uiLibProps.size}
+        view={uiLibProps.view}
+      />
     </SelectableLayer>
   )
 }
