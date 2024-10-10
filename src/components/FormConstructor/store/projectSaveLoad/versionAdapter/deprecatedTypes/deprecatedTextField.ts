@@ -7,17 +7,9 @@ import type {
   TextFieldPropView,
 } from '@consta/uikit/TextField'
 
-import type { InstanceProps } from './instanceProps'
-import type {
-  BaseProps,
-  BrandProps,
-  ConcreteSelectedView,
-  FormElementDictTypes,
-  IFormElement,
-  OmitInstanceId,
-} from './types'
+import type { BaseProps } from '../../../../coreTypes'
 
-type UiLibProps = {
+export type TextFieldProps_Deprecated = {
   type?: string
   form?: TextFieldPropForm
   status?: TextFieldPropStatus
@@ -36,20 +28,6 @@ type UiLibProps = {
   incrementButtons?: boolean
   max?: number | string
   min?: number | string
-} & TextFieldPropsTextareaType<string>
-
-type Styles = {
   filled?: boolean
-}
-
-export type TextFieldProps = InstanceProps<UiLibProps, Styles>
-
-export type BrandTextFieldProps = BrandProps<TextFieldProps, 'TextField'>
-
-export type TextFieldElement = ConcreteSelectedView<typeof FormElementDictTypes.TextField>
-
-export type IFormElementTextField = OmitInstanceId<
-  IFormElement & {
-    props: BrandTextFieldProps
-  }
->
+} & BaseProps &
+  TextFieldPropsTextareaType<string>

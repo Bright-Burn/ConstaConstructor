@@ -32,6 +32,7 @@ export const codeBuilders: CodeBuilder = {
   Tabs: (componentLabel, props) => buildCodeDefault(componentLabel, 'Tabs', props.props),
   Tag: (componentLabel, props) => buildCodeDefault(componentLabel, 'Tag', props.props),
   Text: (componentLabel, props) => textCodeBuilder(componentLabel, props.props),
+  TextField: (componentLabel, props) => buildCodeDefault(componentLabel, 'TextField', props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика

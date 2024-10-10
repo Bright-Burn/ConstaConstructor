@@ -7,6 +7,7 @@ import type {
   BrandSelectProps,
   BrandTabsElementProps,
   BrandTextFieldProps,
+  BrandTextProps,
   BrandUserProps,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
@@ -27,12 +28,6 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
       const newProps: BrandButtonProps = {
         type: 'Button',
         props: { ...props.props, styles: { ...props.props.styles, filled: value === 'filled' } },
-      }
-      dispatch(setInstanceProps(elementId, newProps))
-    } else if (isElementProps<BrandTextFieldProps>(props, 'Text')) {
-      const newProps: BrandTextFieldProps = {
-        props: { ...props.props, filled: isFilled },
-        type: props.type,
       }
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandUserProps>(props, 'User')) {
@@ -77,6 +72,18 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
         },
       }
       dispatch(setInstanceProps(elementId, newProps))
+    } else if (isElementProps<BrandTextFieldProps>(props, 'TextField')) {
+      const newProps: BrandTextFieldProps = {
+        type: 'TextField',
+        props: {
+          ...props.props,
+          styles: {
+            ...props.props.styles,
+            filled: value === 'filled',
+          },
+        },
+      }
+      dispatch(setInstanceProps(elementId, newProps))
     }
   }
 
@@ -85,7 +92,8 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
     props.type === 'Button' ||
     props.type === 'ComboBox' ||
     props.type === 'SelectForm' ||
-    props.type === 'Tabs'
+    props.type === 'Tabs' ||
+    props.type === 'TextField'
       ? props.props.styles.filled
       : props.props.filled
 
