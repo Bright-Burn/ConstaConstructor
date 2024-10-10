@@ -38,6 +38,8 @@ import type { TagsAdapter } from './tagsAdapter'
 import { tagsAdapter } from './tagsAdapter'
 import type { TextAdapter } from './textAdapter'
 import { textAdapter } from './textAdapter'
+import type { TextFieldAdapter } from './textFieldAdapter'
+import { textFieldAdapter } from './textFieldAdapter'
 
 export type TypeAdapter = {
   Button: ButtonAdapter
@@ -60,6 +62,7 @@ export type TypeAdapter = {
   Tabs: TabsAdapter
   Tag: TagsAdapter
   Text: TextAdapter
+  TextField: TextFieldAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -84,4 +87,5 @@ export const typeAdapterDict: TypeAdapter = {
   Tabs: tabsAdapter,
   Tag: tagsAdapter,
   Text: textAdapter,
+  TextField: textFieldAdapter,
 }

@@ -7,6 +7,7 @@ import type {
   BrandSelectProps,
   BrandTabsElementProps,
   BrandTextFieldProps,
+  BrandTextProps,
   BrandUserProps,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
@@ -22,22 +23,16 @@ import style from './styles.module.css'
 export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props }) => {
   const dispatch = useAppDispatch()
   function onFilledChange(value: fillType | null): void {
-    const isFilled = value === 'filled'
+    const filledValue = value === 'filled' ? true : undefined
     if (isElementProps<BrandButtonProps>(props, 'Button')) {
       const newProps: BrandButtonProps = {
         type: 'Button',
-        props: { ...props.props, styles: { ...props.props.styles, filled: value === 'filled' } },
-      }
-      dispatch(setInstanceProps(elementId, newProps))
-    } else if (isElementProps<BrandTextFieldProps>(props, 'Text')) {
-      const newProps: BrandTextFieldProps = {
-        props: { ...props.props, filled: isFilled },
-        type: props.type,
+        props: { ...props.props, styles: { ...props.props.styles, filled: filledValue } },
       }
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandUserProps>(props, 'User')) {
       const newProps: BrandUserProps = {
-        props: { ...props.props, filled: isFilled },
+        props: { ...props.props, filled: filledValue },
         type: props.type,
       }
       dispatch(setInstanceProps(elementId, newProps))
@@ -48,7 +43,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
-            filled: value === 'filled',
+            filled: filledValue,
           },
         },
       }
@@ -60,7 +55,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
-            filled: value === 'filled',
+            filled: filledValue,
           },
         },
       }
@@ -72,7 +67,19 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
-            filled: value === 'filled',
+            filled: filledValue,
+          },
+        },
+      }
+      dispatch(setInstanceProps(elementId, newProps))
+    } else if (isElementProps<BrandTextFieldProps>(props, 'TextField')) {
+      const newProps: BrandTextFieldProps = {
+        type: 'TextField',
+        props: {
+          ...props.props,
+          styles: {
+            ...props.props.styles,
+            filled: filledValue,
           },
         },
       }
@@ -85,7 +92,8 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
     props.type === 'Button' ||
     props.type === 'ComboBox' ||
     props.type === 'SelectForm' ||
-    props.type === 'Tabs'
+    props.type === 'Tabs' ||
+    props.type === 'TextField'
       ? props.props.styles.filled
       : props.props.filled
 

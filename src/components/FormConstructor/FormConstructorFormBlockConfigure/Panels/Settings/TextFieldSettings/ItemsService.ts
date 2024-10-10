@@ -12,30 +12,48 @@ export const useItemsHandlers = (
 ) => {
   const dispatch = useAppDispatch()
 
-  const onChangeTextField = (propsName: keyof TextFieldProps) => (value: string | null) => {
-    const newProps: BrandTextFieldProps = {
-      props: { ...selectedViewProps, [propsName]: value },
-      type: 'TextField',
+  const onChangeTextField =
+    (propsName: keyof TextFieldProps['uiLibProps']) => (value: string | null) => {
+      const newProps: BrandTextFieldProps = {
+        props: {
+          ...selectedViewProps,
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            [propsName]: value,
+          },
+        },
+        type: 'TextField',
+      }
+
+      onDispatch(selectedView, newProps)
     }
 
-    onDispatch(selectedView, newProps)
-  }
-
   const onChangeSwitch =
-    (propsName: keyof TextFieldProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof TextFieldProps['uiLibProps']) =>
+    (check: React.ChangeEvent<HTMLInputElement>) => {
       const checked = check.target.checked
       const newProps: BrandTextFieldProps = {
-        props: { ...selectedViewProps, [propsName]: checked },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            [propsName]: checked,
+          },
+        },
         type: 'TextField',
       }
       if (propsName === 'label' && checked) {
-        newProps.props.label = 'Заголовок'
+        newProps.props.uiLibProps.label = 'Заголовок'
       }
       if (propsName === 'caption' && checked) {
-        newProps.props.caption = 'Подпись'
+        newProps.props.uiLibProps.caption = 'Подпись'
       }
-      if (propsName === 'maxLength' && checked) {
-        newProps.props.maxLength = 1
+      if (propsName === 'maxLength') {
+        if (checked) {
+          newProps.props.uiLibProps.maxLength = 1
+        } else {
+          newProps.props.uiLibProps.maxLength = undefined
+        }
       }
 
       onDispatch(selectedView, newProps)
@@ -47,27 +65,27 @@ export const useItemsHandlers = (
     onChangeTextField,
     onChangeSwitch,
     itemsProps: {
-      caption: selectedViewProps.caption,
-      disabled: selectedViewProps.disabled,
-      form: selectedViewProps.form,
-      incrementButtons: selectedViewProps.incrementButtons,
-      label: selectedViewProps.label,
-      labelPosition: selectedViewProps.labelPosition,
-      max: selectedViewProps.max,
-      maxLength: selectedViewProps.maxLength,
-      maxRows: selectedViewProps.maxRows,
-      min: selectedViewProps.min,
-      minRows: selectedViewProps.minRows,
-      placeholder: selectedViewProps.placeholder,
-      size: selectedViewProps.size,
-      required: selectedViewProps.required,
-      rows: selectedViewProps.rows,
-      status: selectedViewProps.status,
-      step: selectedViewProps.step,
-      type: selectedViewProps.type,
-      value: selectedViewProps.value,
-      view: selectedViewProps.view,
-      withClearButton: selectedViewProps.withClearButton,
+      caption: selectedViewProps.uiLibProps.caption,
+      disabled: selectedViewProps.uiLibProps.disabled,
+      form: selectedViewProps.uiLibProps.form,
+      incrementButtons: selectedViewProps.uiLibProps.incrementButtons,
+      label: selectedViewProps.uiLibProps.label,
+      labelPosition: selectedViewProps.uiLibProps.labelPosition,
+      max: selectedViewProps.uiLibProps.max,
+      maxLength: selectedViewProps.uiLibProps.maxLength,
+      maxRows: selectedViewProps.uiLibProps.maxRows,
+      min: selectedViewProps.uiLibProps.min,
+      minRows: selectedViewProps.uiLibProps.minRows,
+      placeholder: selectedViewProps.uiLibProps.placeholder,
+      size: selectedViewProps.uiLibProps.size,
+      required: selectedViewProps.uiLibProps.required,
+      rows: selectedViewProps.uiLibProps.rows,
+      status: selectedViewProps.uiLibProps.status,
+      step: selectedViewProps.uiLibProps.step,
+      type: selectedViewProps.uiLibProps.type,
+      value: selectedViewProps.uiLibProps.value,
+      view: selectedViewProps.uiLibProps.view,
+      withClearButton: selectedViewProps.uiLibProps.withClearButton,
     },
   }
 }
