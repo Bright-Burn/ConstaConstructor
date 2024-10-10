@@ -35,9 +35,6 @@ export const useMarginHandlers = () => {
   const onChangemarginLeft = (value: (typeof marginLeft)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
-      if ('constaProps' in newProps.props) {
-        newProps.props.constaProps = { ...newProps.props.constaProps }
-      }
 
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
@@ -57,9 +54,6 @@ export const useMarginHandlers = () => {
   const onChangemarginRight = (value: (typeof marginRight)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
-      if ('constaProps' in newProps.props) {
-        newProps.props.constaProps = { ...newProps.props.constaProps }
-      }
 
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
@@ -78,9 +72,6 @@ export const useMarginHandlers = () => {
   const onChangemarginTop = (value: (typeof marginTop)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
-      if ('constaProps' in newProps.props) {
-        newProps.props.constaProps = { ...newProps.props.constaProps }
-      }
 
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
@@ -99,9 +90,6 @@ export const useMarginHandlers = () => {
   const onChangemarginBottom = (value: (typeof marginBottom)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
-      if ('constaProps' in newProps.props) {
-        newProps.props.constaProps = { ...newProps.props.constaProps }
-      }
 
       newProps.props.baseProps = {
         ...newProps.props.baseProps,

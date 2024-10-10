@@ -17,7 +17,10 @@ export const useItemsHandlers = (
     const newProps: BrandInformerElementProps = {
       props: {
         ...selectedViewProps,
-        title: value,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          title: value,
+        },
       },
       type: 'Informer',
     }
@@ -27,7 +30,10 @@ export const useItemsHandlers = (
     const newProps: BrandInformerElementProps = {
       props: {
         ...selectedViewProps,
-        label: value,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          label: value,
+        },
       },
       type: 'Informer',
     }
@@ -35,12 +41,15 @@ export const useItemsHandlers = (
   }
   const onChangeField = (
     value: InformerPropSize | InformerPropView | InformerPropStatus | null,
-    field: keyof InformerElementProps,
+    field: keyof InformerElementProps['uiLibProps'],
   ) => {
     const newProps: BrandInformerElementProps = {
       props: {
         ...selectedViewProps,
-        [field]: value,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          [field]: value,
+        },
       },
       type: 'Informer',
     }
@@ -56,12 +65,12 @@ export const useItemsHandlers = (
     onChangeTitle,
     onChangeLabel,
     itemsProps: {
-      size: selectedViewProps.size,
-      view: selectedViewProps.view,
-      icon: selectedViewProps.icon,
-      label: selectedViewProps.label,
-      title: selectedViewProps.title,
-      status: selectedViewProps.status,
+      size: selectedViewProps.uiLibProps.size,
+      view: selectedViewProps.uiLibProps.view,
+      icon: selectedViewProps.uiLibProps.icon,
+      label: selectedViewProps.uiLibProps.label,
+      title: selectedViewProps.uiLibProps.title,
+      status: selectedViewProps.uiLibProps.status,
     },
   }
 }

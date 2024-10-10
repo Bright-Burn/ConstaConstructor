@@ -25,7 +25,7 @@ export const LayoutRadiusSettings: React.FC<LayoutSettingsType> = ({
       <div className={styles.rowSettings}>
         <TextField
           className={styles.widthFlex}
-          value={itemsProps.styles?.borderTopLeftRadius || '0'}
+          value={itemsProps.styles.borderTopLeftRadius || '0'}
           type="number"
           leftSide="TL"
           size="xs"
@@ -42,7 +42,7 @@ export const LayoutRadiusSettings: React.FC<LayoutSettingsType> = ({
       <div className={styles.rowSettings}>
         <TextField
           className={styles.widthFlex}
-          value={itemsProps.styles?.borderTopRightRadius || '0'}
+          value={itemsProps.styles.borderTopRightRadius || '0'}
           type="number"
           leftSide="TR"
           size="xs"
@@ -58,7 +58,7 @@ export const LayoutRadiusSettings: React.FC<LayoutSettingsType> = ({
       <div className={styles.rowSettings}>
         <TextField
           className={styles.widthFlex}
-          value={itemsProps.styles?.borderBottomRightRadius || '0'}
+          value={itemsProps.styles.borderBottomRightRadius || '0'}
           type="number"
           leftSide="BR"
           size="xs"
@@ -75,7 +75,7 @@ export const LayoutRadiusSettings: React.FC<LayoutSettingsType> = ({
       <div className={styles.rowSettings}>
         <TextField
           className={styles.widthFlex}
-          value={itemsProps.styles?.borderBottomLeftRadius || '0'}
+          value={itemsProps.styles.borderBottomLeftRadius || '0'}
           type="number"
           leftSide="BL"
           size="xs"

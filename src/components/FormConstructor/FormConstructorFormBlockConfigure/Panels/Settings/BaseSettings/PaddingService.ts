@@ -36,9 +36,6 @@ export const usePaddingHandlers = () => {
   const onChangePaddingLeft = (value: (typeof paddingsLeft)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
-      if ('constaProps' in newProps.props) {
-        newProps.props.constaProps = { ...newProps.props.constaProps }
-      }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
         padding: { ...(newProps.props.baseProps.padding ?? {}), paddingLeft: value },
@@ -57,9 +54,6 @@ export const usePaddingHandlers = () => {
   const onChangePaddingRight = (value: (typeof paddingsRight)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
-      if ('constaProps' in newProps.props) {
-        newProps.props.constaProps = { ...newProps.props.constaProps }
-      }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
         padding: { ...(newProps.props.baseProps.padding ?? {}), paddingRight: value },
@@ -78,9 +72,6 @@ export const usePaddingHandlers = () => {
   const onChangePaddingTop = (value: (typeof paddingsTop)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
-      if ('constaProps' in newProps.props) {
-        newProps.props.constaProps = { ...newProps.props.constaProps }
-      }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
         padding: { ...(newProps.props.baseProps.padding ?? {}), paddingTop: value },
@@ -99,9 +90,6 @@ export const usePaddingHandlers = () => {
   const onChangePaddingBottom = (value: (typeof paddingsBottom)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
-      if ('constaProps' in newProps.props) {
-        newProps.props.constaProps = { ...newProps.props.constaProps }
-      }
       newProps.props.baseProps = {
         ...newProps.props.baseProps,
         padding: { ...(newProps.props.baseProps.padding ?? {}), paddingBottom: value },

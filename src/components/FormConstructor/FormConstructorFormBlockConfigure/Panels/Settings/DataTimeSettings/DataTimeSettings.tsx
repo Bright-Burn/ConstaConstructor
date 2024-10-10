@@ -8,7 +8,7 @@ import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { DataTimeElement, DataTimeProps } from '../../../../coreTypes'
+import type { DataTimeElement, DateTimeProps } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
 import { typeArray, viewArray } from './types'
@@ -16,7 +16,7 @@ import { typeArray, viewArray } from './types'
 import styles from './styles.module.css'
 
 type DataTimeSettingsType = {
-  selectedViewProps: DataTimeProps
+  selectedViewProps: DateTimeProps
   selectedView: DataTimeElement
 }
 

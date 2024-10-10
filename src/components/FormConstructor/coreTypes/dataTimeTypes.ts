@@ -1,7 +1,7 @@
 import type { DateTimePropType, DateTimePropView } from '@consta/uikit/DateTime'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -9,7 +9,7 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type DataTimeProps = {
+type UiLibPrps = {
   type?: DateTimePropType
   view?: DateTimePropView
   minDate?: Date | undefined
@@ -19,14 +19,16 @@ export type DataTimeProps = {
   multiplicityMinutes: number
   multiplicitySeconds: number
   events: Date[]
-} & BaseProps
+}
 
-export type BrandDataTimeProps = BrandProps<DataTimeProps, 'DataTime'>
+export type DateTimeProps = InstanceProps<UiLibPrps, {}>
+
+export type BrandDateTimeProps = BrandProps<DateTimeProps, 'DataTime'>
 
 export type DataTimeElement = ConcreteSelectedView<typeof FormElementDictTypes.DataTime>
 
 export type IFormElementDataTime = OmitInstanceId<
   IFormElement & {
-    props: BrandDataTimeProps
+    props: BrandDateTimeProps
   }
 >

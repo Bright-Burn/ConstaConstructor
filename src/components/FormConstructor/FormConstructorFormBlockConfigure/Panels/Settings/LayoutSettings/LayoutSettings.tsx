@@ -51,8 +51,8 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
   useLayoutEffect(() => {
     const layoutProps = itemsProps.selectedViewProps
 
-    setHeightValue(layoutProps.styles?.maxHeight?.replaceAll('px', '') || '0')
-    setWidthValue(layoutProps.styles?.maxWidth?.replaceAll('px', '') || '0')
+    setHeightValue(layoutProps.styles.maxHeight?.replaceAll('px', '') || '0')
+    setWidthValue(layoutProps.styles.maxWidth?.replaceAll('px', '') || '0')
   }, [itemsProps.selectedViewProps])
 
   return (
@@ -91,7 +91,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
       </div>
       <div className={styles.rowSettings}>
         <TextField
-          value={itemsProps.styles?.transform}
+          value={itemsProps.styles.transform}
           type="number"
           leftSide="Rotate"
           size="xs"
@@ -106,7 +106,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
         </Text>
       </div>
       <ChoiceGroup
-        value={directionDict[itemsProps.constaProps.direction || 'row']}
+        value={directionDict[itemsProps.uiLibProps.direction || 'row']}
         items={directions}
         getItemLabel={label => label.name}
         name="ChoiceGroupExample"
@@ -117,14 +117,14 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
         }}
       />
       <Switch
-        checked={selectedViewProps.styles?.flexWrap === 'wrap'}
+        checked={selectedViewProps.styles.flexWrap === 'wrap'}
         size="xs"
         label="wrap"
         onChange={onChangeWrap}
       />
       <TextField
         className={styles.widthFlex}
-        value={`${itemsProps.constaProps.flex}`}
+        value={`${itemsProps.uiLibProps.flex}`}
         type="number"
         leftSide="flex"
         size="xs"
@@ -137,7 +137,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
         getItemLabel={label => label.name}
         items={justifyContentProps}
         renderValue={({ item }) => getValueForSelect({ item: item.name, label: 'J-C' })}
-        value={justifyContentDict[itemsProps.styles?.justifyContent || 'start']}
+        value={justifyContentDict[itemsProps.styles.justifyContent || 'start']}
         onChange={value => {
           onChangeJustifyContent(value?.name)
         }}
@@ -148,7 +148,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
         getItemLabel={label => label.name}
         items={alignItems}
         renderValue={({ item }) => getValueForSelect({ item: item.name, label: 'Align' })}
-        value={alignItemsDict[itemsProps.styles?.alignItems || 'start']}
+        value={alignItemsDict[itemsProps.styles.alignItems || 'start']}
         onChange={value => {
           onChangeAlignItems(value?.name)
         }}
@@ -160,7 +160,7 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
         items={overflow}
         placeholder="OverflowY"
         renderValue={({ item }) => getValueForSelect({ item, label: 'OverflowY' })}
-        value={itemsProps.styles?.overflowY}
+        value={itemsProps.styles.overflowY}
         onChange={value => {
           onChangeOverflow(value, 'Y')
         }}
@@ -172,13 +172,13 @@ export const LayoutSettings: FC<LayoutSettingsType> = ({ selectedViewProps, sele
         items={overflow}
         placeholder="OverflowX"
         renderValue={({ item }) => getValueForSelect({ item, label: 'OverflowX' })}
-        value={itemsProps.styles?.overflowX}
+        value={itemsProps.styles.overflowX}
         onChange={value => {
           onChangeOverflow(value, 'X')
         }}
       />
       <LayoutPalette
-        color={itemsProps.styles?.backgroundColor}
+        color={itemsProps.styles.backgroundColor}
         size="xs"
         placeholder="Bg"
         onChangeColor={onChangeBackroundColor}

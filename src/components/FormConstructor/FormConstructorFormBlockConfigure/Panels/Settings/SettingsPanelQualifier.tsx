@@ -8,11 +8,11 @@ import type {
   BrandBreadcrumbsProps,
   BrandButtonGroupProps,
   BrandButtonProps,
-  BrandCardElementPropsStyles,
+  BrandCardPropsStyles,
   BrandCheckboxProps,
   BrandComboboxProps,
-  BrandDataTimeProps,
   BrandDatePickerProps,
+  BrandDateTimeProps,
   BrandEChartProps,
   BrandIconProps,
   BrandInformerElementProps,
@@ -24,8 +24,8 @@ import type {
   BrandSwitchProps,
   BrandTabsElementProps,
   BrandTagProps,
-  BrandTextElementProps,
   BrandTextFieldProps,
+  BrandTextProps,
   BrandUserProps,
   IselectedView,
   UnionProps,
@@ -98,7 +98,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
       )
     }
     case FormElementDictTypes.Text: {
-      if (!isElementProps<BrandTextElementProps>(selectedViewProps, 'Text')) {
+      if (!isElementProps<BrandTextProps>(selectedViewProps, 'Text')) {
         return
       }
       const element = {
@@ -161,7 +161,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
       )
     }
     case FormGroupsDictTypes.Card: {
-      if (!isElementProps<BrandCardElementPropsStyles>(selectedViewProps, 'Card')) {
+      if (!isElementProps<BrandCardPropsStyles>(selectedViewProps, 'Card')) {
         return
       }
       const element = {
@@ -349,7 +349,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
       )
     }
     case FormElementDictTypes.DataTime: {
-      if (!isElementProps<BrandDataTimeProps>(selectedViewProps, 'DataTime')) {
+      if (!isElementProps<BrandDateTimeProps>(selectedViewProps, 'DataTime')) {
         return
       }
       const element = {

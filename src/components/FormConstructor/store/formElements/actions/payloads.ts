@@ -24,7 +24,6 @@ export type AddElementsWithInstancesPayload = {
 
 export interface SaveNewProject {
   name: string
-  description: string
 }
 
 export interface AddNewElementPayload {

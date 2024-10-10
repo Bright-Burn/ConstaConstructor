@@ -1,23 +1,11 @@
-import {
+export { setDraggableBaseComponent } from './baseComponentsActions'
+export { getDraggedBaseComponent } from './baseComponentsSelectors'
+export {
   baseComponentsReducer,
   baseComponentsSlice,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
 } from './baseComponentsSlices'
-import type { AddBaseComponent, SetDraggableBaseComponent } from './payload'
-import type { BaseComponentSerializable, IBaseComponent, IBaseComponentsItems } from './types'
-
-export {
-  type AddBaseComponent,
-  type BaseComponentSerializable,
-  baseComponentsReducer,
-  baseComponentsSlice,
-  type IBaseComponent,
-  type IBaseComponentsItems,
-  type SetDraggableBaseComponent,
-  useBaseComponentsDispatch,
-  useBaseComponentsSelector,
-}
-
-export { addBaseElement, setDraggableBaseComponent } from './baseComponentsActions'
-export { getDraggedBaseComponent } from './baseComponentsSelectors'
+export { loadBaseComponentFromString } from './loadBaseComponentFromString'
+export type { AddBaseComponent, SetDraggableBaseComponent } from './payload'
+export type { IBaseComponent, IBaseComponentsItems } from './types'

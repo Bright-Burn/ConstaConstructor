@@ -3,8 +3,11 @@ import { Select } from '@consta/uikit/Select'
 
 import type {
   BrandButtonProps,
+  BrandComboboxProps,
   BrandSelectProps,
+  BrandTabsElementProps,
   BrandTextFieldProps,
+  BrandTextProps,
   BrandUserProps,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
@@ -19,36 +22,82 @@ import style from './styles.module.css'
 /*Компонент нуждается в перепроетировании*/
 export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props }) => {
   const dispatch = useAppDispatch()
-
   function onFilledChange(value: fillType | null): void {
-    const isFilled = value === 'filled'
-    if (isElementProps<BrandButtonProps>(props, props.type)) {
+    const filledValue = value === 'filled' ? true : undefined
+    if (isElementProps<BrandButtonProps>(props, 'Button')) {
       const newProps: BrandButtonProps = {
-        props: { ...props.props, filled: isFilled },
-        type: props.type,
+        type: 'Button',
+        props: { ...props.props, styles: { ...props.props.styles, filled: filledValue } },
       }
       dispatch(setInstanceProps(elementId, newProps))
-    } else if (isElementProps<BrandTextFieldProps>(props, props.type)) {
-      const newProps: BrandTextFieldProps = {
-        props: { ...props.props, filled: isFilled },
-        type: props.type,
-      }
-      dispatch(setInstanceProps(elementId, newProps))
-    } else if (isElementProps<BrandUserProps>(props, props.type)) {
+    } else if (isElementProps<BrandUserProps>(props, 'User')) {
       const newProps: BrandUserProps = {
-        props: { ...props.props, filled: isFilled },
+        props: { ...props.props, filled: filledValue },
         type: props.type,
       }
       dispatch(setInstanceProps(elementId, newProps))
-    } else if (isElementProps<BrandSelectProps>(props, props.type)) {
+    } else if (isElementProps<BrandSelectProps>(props, 'SelectForm')) {
       const newProps: BrandSelectProps = {
-        props: { ...props.props, filled: isFilled },
-        type: props.type,
+        type: 'SelectForm',
+        props: {
+          ...props.props,
+          styles: {
+            ...props.props.styles,
+            filled: filledValue,
+          },
+        },
+      }
+      dispatch(setInstanceProps(elementId, newProps))
+    } else if (isElementProps<BrandComboboxProps>(props, 'ComboBox')) {
+      const newProps: BrandComboboxProps = {
+        type: 'ComboBox',
+        props: {
+          ...props.props,
+          styles: {
+            ...props.props.styles,
+            filled: filledValue,
+          },
+        },
+      }
+      dispatch(setInstanceProps(elementId, newProps))
+    } else if (isElementProps<BrandTabsElementProps>(props, 'Tabs')) {
+      const newProps: BrandTabsElementProps = {
+        type: 'Tabs',
+        props: {
+          ...props.props,
+          styles: {
+            ...props.props.styles,
+            filled: filledValue,
+          },
+        },
+      }
+      dispatch(setInstanceProps(elementId, newProps))
+    } else if (isElementProps<BrandTextFieldProps>(props, 'TextField')) {
+      const newProps: BrandTextFieldProps = {
+        type: 'TextField',
+        props: {
+          ...props.props,
+          styles: {
+            ...props.props.styles,
+            filled: filledValue,
+          },
+        },
       }
       dispatch(setInstanceProps(elementId, newProps))
     }
   }
-  const filledValue = props.props.filled ? 'filled' : 'default'
+
+  // Когда пропс будут стандартезированны, тогда не будет условий
+  const filled =
+    props.type === 'Button' ||
+    props.type === 'ComboBox' ||
+    props.type === 'SelectForm' ||
+    props.type === 'Tabs' ||
+    props.type === 'TextField'
+      ? props.props.styles.filled
+      : props.props.filled
+
+  const filledValue = filled ? 'filled' : 'default'
 
   return (
     <div className={style.choiceGroup}>
