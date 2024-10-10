@@ -23,16 +23,16 @@ import style from './styles.module.css'
 export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props }) => {
   const dispatch = useAppDispatch()
   function onFilledChange(value: fillType | null): void {
-    const isFilled = value === 'filled'
+    const filledValue = value === 'filled' ? true : undefined
     if (isElementProps<BrandButtonProps>(props, 'Button')) {
       const newProps: BrandButtonProps = {
         type: 'Button',
-        props: { ...props.props, styles: { ...props.props.styles, filled: value === 'filled' } },
+        props: { ...props.props, styles: { ...props.props.styles, filled: filledValue } },
       }
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandUserProps>(props, 'User')) {
       const newProps: BrandUserProps = {
-        props: { ...props.props, filled: isFilled },
+        props: { ...props.props, filled: filledValue },
         type: props.type,
       }
       dispatch(setInstanceProps(elementId, newProps))
@@ -43,7 +43,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
-            filled: value === 'filled',
+            filled: filledValue,
           },
         },
       }
@@ -55,7 +55,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
-            filled: value === 'filled',
+            filled: filledValue,
           },
         },
       }
@@ -67,7 +67,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
-            filled: value === 'filled',
+            filled: filledValue,
           },
         },
       }
@@ -79,7 +79,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
-            filled: value === 'filled',
+            filled: filledValue,
           },
         },
       }
