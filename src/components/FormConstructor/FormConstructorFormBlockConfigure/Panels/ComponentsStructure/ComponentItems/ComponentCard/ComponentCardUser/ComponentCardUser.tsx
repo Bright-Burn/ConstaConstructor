@@ -17,14 +17,17 @@ export const ComponentCardUser: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          view: 'clear',
-          width: 'default',
-          size: 'm',
-          status: undefined,
-          name: 'Имя Фамилия',
-          info: 'Сегодня на Почтамтской',
+          uiLibProps: {
+            view: 'clear',
+            width: 'default',
+            size: 'm',
+            status: undefined,
+            name: 'Имя Фамилия',
+            info: 'Сегодня на Почтамтской',
+          },
           className: '',
           baseProps: {},
+          styles: {},
         },
         type: 'User',
       },
