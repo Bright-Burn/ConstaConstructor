@@ -7,51 +7,94 @@ export const useItemsHandlers = (selectedViewProps: UserProps, selectedView: Use
 
   const onChangeSize = (value: sizeType) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedViewProps, size: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          size: value,
+        },
+      },
       type: 'User',
     }
     onDispatch(selectedView, newProps)
   }
   const onChangeView = (value: viewsType) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedViewProps, view: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          view: value,
+        },
+      },
       type: 'User',
     }
     onDispatch(selectedView, newProps)
   }
   const onChangeStatus = (value: statusType) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedViewProps, status: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          status: value,
+        },
+      },
       type: 'User',
     }
     onDispatch(selectedView, newProps)
   }
   const onChangeAvatarUrl = (value: string) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedViewProps, avatarUrl: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          avatarUrl: value,
+        },
+      },
       type: 'User',
     }
     onDispatch(selectedView, newProps)
   }
   const onChangeName = (value: string) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedViewProps, name: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          name: value,
+        },
+      },
       type: 'User',
     }
     onDispatch(selectedView, newProps)
   }
   const onChangeInfo = (value: string) => {
     const newProps: BrandUserProps = {
-      props: { ...selectedViewProps, info: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          info: value,
+        },
+      },
       type: 'User',
     }
     onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
-    (propsName: keyof UserProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof UserProps['uiLibProps']) =>
+    (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandUserProps = {
-        props: { ...selectedViewProps, [propsName]: checked.target.checked },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            [propsName]: checked.target.checked,
+          },
+        },
         type: 'User',
       }
       onDispatch(selectedView, newProps)
@@ -69,16 +112,16 @@ export const useItemsHandlers = (selectedViewProps: UserProps, selectedView: Use
     onChangeView,
     onChangeSwitch,
     itemsProps: {
-      avatarUrl: selectedViewProps.avatarUrl,
-      checked: selectedViewProps.checked,
-      info: selectedViewProps.info,
-      name: selectedViewProps.name,
-      onlyAvatar: selectedViewProps.onlyAvatar,
-      size: selectedViewProps.size,
-      status: selectedViewProps.status,
-      view: selectedViewProps.view,
-      width: selectedViewProps.width,
-      withArrow: selectedViewProps.withArrow,
+      avatarUrl: selectedViewProps.uiLibProps.avatarUrl,
+      checked: selectedViewProps.uiLibProps.checked,
+      info: selectedViewProps.uiLibProps.info,
+      name: selectedViewProps.uiLibProps.name,
+      onlyAvatar: selectedViewProps.uiLibProps.onlyAvatar,
+      size: selectedViewProps.uiLibProps.size,
+      status: selectedViewProps.uiLibProps.status,
+      view: selectedViewProps.uiLibProps.view,
+      width: selectedViewProps.uiLibProps.width,
+      withArrow: selectedViewProps.uiLibProps.withArrow,
     },
   }
 }

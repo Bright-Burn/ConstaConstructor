@@ -7,7 +7,6 @@ import type {
   BrandSelectProps,
   BrandTabsElementProps,
   BrandTextFieldProps,
-  BrandTextProps,
   BrandUserProps,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
@@ -32,7 +31,13 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
       dispatch(setInstanceProps(elementId, newProps))
     } else if (isElementProps<BrandUserProps>(props, 'User')) {
       const newProps: BrandUserProps = {
-        props: { ...props.props, filled: filledValue },
+        props: {
+          ...props.props,
+          styles: {
+            ...props.props.styles,
+            filled: filledValue,
+          },
+        },
         type: props.type,
       }
       dispatch(setInstanceProps(elementId, newProps))
@@ -88,14 +93,7 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
   }
 
   // Когда пропс будут стандартезированны, тогда не будет условий
-  const filled =
-    props.type === 'Button' ||
-    props.type === 'ComboBox' ||
-    props.type === 'SelectForm' ||
-    props.type === 'Tabs' ||
-    props.type === 'TextField'
-      ? props.props.styles.filled
-      : props.props.filled
+  const filled = props.props.styles.filled
 
   const filledValue = filled ? 'filled' : 'default'
 
