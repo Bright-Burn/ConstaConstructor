@@ -20,6 +20,8 @@ import type { DatePickerAdapter } from './datePickerAdpter'
 import { datePickerAdapter } from './datePickerAdpter'
 import type { DateTimeAdapter } from './dateTimeAdapter'
 import { dateTimeAdapter } from './dateTimeAdapter'
+import type { EchartsAdapter } from './echartsAdapter'
+import { echartAdapter } from './echartsAdapter'
 import type { IconAdapter } from './iconAdapter'
 import { iconAdapter } from './iconAdapter'
 import type { InformerAdapter } from './informerAdapter'
@@ -69,6 +71,7 @@ export type TypeAdapter = {
   TextField: TextFieldAdapter
   User: UserAdapter
   Icon: IconAdapter
+  EChart: EchartsAdapter
 }
 
 // Адаптер для старых макетов, сюда подключаются адаптеры для конкретных элементов
@@ -96,4 +99,5 @@ export const typeAdapterDict: TypeAdapter = {
   TextField: textFieldAdapter,
   User: userAdapter,
   Icon: iconAdapter,
+  EChart: echartAdapter,
 }
