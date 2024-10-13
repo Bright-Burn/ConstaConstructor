@@ -10,16 +10,24 @@ import type { IIconFormElement } from './types'
 
 export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
+
+  const uiLibProps = props?.uiLibProps
+  const className = props?.className
+
+  if (!uiLibProps) {
+    return null
+  }
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Icon}>
-      {!!props &&
-        React.createElement(Icons[props.icons], {
-          ...props,
-          style: getStyles(props.style),
-        })}
+      {React.createElement(Icons[props.uiLibProps.icons], {
+        ...uiLibProps,
+        className,
+        style: getStyles(props.styles),
+      })}
     </SelectableLayer>
   )
 }
