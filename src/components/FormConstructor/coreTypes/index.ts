@@ -80,6 +80,7 @@ export type {
 } from './echarts'
 export type {
   BrandIconProps,
+  ConstaIconProps,
   IconElement,
   IconElementStyles,
   IconNames,

@@ -17,11 +17,14 @@ export const ComponentCardIcon: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          view: 'primary',
-          size: 'm',
-          className: '',
-          icons: 'IconAlert',
+          uiLibProps: {
+            view: 'primary',
+            size: 'm',
+            icons: 'IconAlert',
+          },
           baseProps: {},
+          className: '',
+          styles: {},
         },
         type: 'Icon',
       },

@@ -1,4 +1,7 @@
+import { Icons } from '../../../../coreTypes'
+
 import { buildCodeDefault } from './defaultCodeBuilder'
+import { buildIconCode } from './iconCodeBuilder'
 import { buildLayoutCode } from './layoutCodeBuilder'
 import { buildListCode } from './listCodeBuilder'
 import { textCodeBuilder } from './textCodeBuilder'
@@ -34,6 +37,7 @@ export const codeBuilders: CodeBuilder = {
   Text: (componentLabel, props) => textCodeBuilder(componentLabel, props.props),
   TextField: (componentLabel, props) => buildCodeDefault(componentLabel, 'TextField', props.props),
   User: (componentLabel, props) => buildCodeDefault(componentLabel, 'User', props.props),
+  Icon: (componentLabel, props) => buildIconCode(componentLabel, props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика
