@@ -1,6 +1,7 @@
 import { Icons } from '../../../../coreTypes'
 
 import { buildCodeDefault } from './defaultCodeBuilder'
+import { buildEchartsCode } from './echartsCodeBuilder'
 import { buildIconCode } from './iconCodeBuilder'
 import { buildLayoutCode } from './layoutCodeBuilder'
 import { buildListCode } from './listCodeBuilder'
@@ -38,6 +39,7 @@ export const codeBuilders: CodeBuilder = {
   TextField: (componentLabel, props) => buildCodeDefault(componentLabel, 'TextField', props.props),
   User: (componentLabel, props) => buildCodeDefault(componentLabel, 'User', props.props),
   Icon: (componentLabel, props) => buildIconCode(componentLabel, props.props),
+  EChart: (componentLabel, props) => buildEchartsCode(componentLabel, props.props),
 } as const
 
 // Элементы для которых реализована панель разработчика

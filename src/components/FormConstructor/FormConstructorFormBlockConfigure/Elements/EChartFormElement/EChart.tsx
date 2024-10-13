@@ -16,8 +16,9 @@ import type { IEChartFormElement } from './types'
 export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
   const theme = useTheme()
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
-  const width = props?.width
-  const height = props?.height
+  const width = props?.styles.width
+  const height = props?.styles.height
+  const className = props?.className
   const ref = React.useRef(null)
   const chartRef = React.useRef<EChartsType | null>(null)
 
@@ -28,7 +29,7 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
     chartRef.current?.dispose()
     const myChart = init(ref.current, theme)
     chartRef.current = myChart
-    if (props?.options === '') {
+    if (props?.uiLibProps.options === '') {
       myChart.setOption({
         title: {
           text: 'ECharts Getting Started Example',
@@ -46,23 +47,23 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
           },
         ],
       })
-    } else if (props?.options) {
-      setNewOptions(props.options)
+    } else if (props?.uiLibProps.options) {
+      setNewOptions(props.uiLibProps.options)
     }
   }, [theme])
 
   useEffect(() => {
     chartRef.current?.resize({
-      width: props?.width ?? 400,
-      height: props?.height ?? 400,
+      width: props?.styles.width ?? 400,
+      height: props?.styles.height ?? 400,
     })
-  }, [props?.height, props?.width])
+  }, [props?.styles.height, props?.styles.width])
 
   useEffect(() => {
-    if (props?.options) {
-      setNewOptions(props.options)
+    if (props?.uiLibProps.options) {
+      setNewOptions(props.uiLibProps.options)
     }
-  }, [props?.options])
+  }, [props?.uiLibProps.options])
 
   const setNewOptions = (optionsJSON: string) => {
     try {
@@ -79,7 +80,11 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.EChart}>
-      <div ref={ref} style={{ width: width ?? '400px', height: height ?? '400px' }} />
+      <div
+        ref={ref}
+        className={className}
+        style={{ width: width ?? '400px', height: height ?? '400px' }}
+      />
     </SelectableLayer>
   )
 }

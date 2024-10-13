@@ -10,29 +10,38 @@ export const useItemsHandlers = (selectedViewProps: EChartProps, selectedViewId:
   const onDispatch = (selectedViewId: string, newProps: BrandEChartProps) => {
     dispatch(setInstanceProps(selectedViewId, newProps))
   }
+
   const onChangeHeight = (value: string | null) => {
     const newProps: BrandEChartProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        styles: {
+          ...selectedViewProps.styles,
+        },
+      },
       type: 'EChart',
     }
-    newProps.props = { ...newProps.props }
 
     const newValue = Number(value)
 
-    newProps.props.height = value != null ? newValue : 1
+    newProps.props.styles.height = value != null ? newValue : 1
     onDispatch(selectedViewId, newProps)
   }
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandEChartProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        styles: {
+          ...selectedViewProps.styles,
+        },
+      },
       type: 'EChart',
     }
-    newProps.props = { ...newProps.props }
 
     const newValue = Number(value)
 
-    newProps.props.width = value != null ? newValue : 1
+    newProps.props.styles.width = value != null ? newValue : 1
     onDispatch(selectedViewId, newProps)
   }
   const onDownload = (event: DragEvent | React.ChangeEvent) => {
@@ -41,11 +50,15 @@ export const useItemsHandlers = (selectedViewProps: EChartProps, selectedViewId:
       const file = target.files[0]
       readFile(file).then(json => {
         const newProps: BrandEChartProps = {
-          props: { ...selectedViewProps },
+          props: {
+            ...selectedViewProps,
+            uiLibProps: {
+              ...selectedViewProps.uiLibProps,
+              options: json,
+            },
+          },
           type: 'EChart',
         }
-        newProps.props = { ...newProps.props }
-        newProps.props.options = json
         onDispatch(selectedViewId, newProps)
       })
     }

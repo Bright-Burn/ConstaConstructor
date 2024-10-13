@@ -16,7 +16,15 @@ export const ComponentCardEChart: FC<IComponetCardElement> = ({ name }) => {
       type: FormElementDictTypes.EChart,
       order: 1,
       props: {
-        props: { options: '', className: '', baseProps: {}, height: 400, width: 500 },
+        props: {
+          uiLibProps: { options: '' },
+          className: '',
+          baseProps: {},
+          styles: {
+            height: 400,
+            width: 500,
+          },
+        },
         type: 'EChart',
       },
     }

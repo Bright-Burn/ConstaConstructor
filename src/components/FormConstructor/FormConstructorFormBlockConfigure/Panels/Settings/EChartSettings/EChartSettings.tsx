@@ -27,7 +27,7 @@ export const EChartSettings: FC<EChartSettingsType> = ({ selectedViewProps, sele
       <div className={styles.rowSettings}>
         <TextField
           className={styles.flexGrow}
-          value={selectedViewProps.height.toString()}
+          value={selectedViewProps.styles.height.toString()}
           type="number"
           leftSide="H"
           size="xs"
@@ -41,7 +41,7 @@ export const EChartSettings: FC<EChartSettingsType> = ({ selectedViewProps, sele
       <div className={styles.rowSettings}>
         <TextField
           className={styles.flexGrow}
-          value={selectedViewProps.width.toString()}
+          value={selectedViewProps.styles.width.toString()}
           type="number"
           leftSide="W"
           size="xs"

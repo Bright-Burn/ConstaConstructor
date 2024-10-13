@@ -13,6 +13,7 @@ export type {
 export type { ComboboxProps_Deprecated } from './deprecatedComboBox'
 export type { DatePickerProps_Deprecated } from './deprecatedDatePicker'
 export type { DateTimeProps_Deprecated } from './deprecatedDateTimeProps'
+export type { EChartProps_Deprecated } from './deprecatedEcharts'
 export type { IconProps_Deprecated } from './deprecatedIcon'
 export type { InformerElementProps_Deprecated } from './deprecatedInformer'
 export type { LayoutElementPropsStyles_Deprecated } from './deprecatedLayout'
