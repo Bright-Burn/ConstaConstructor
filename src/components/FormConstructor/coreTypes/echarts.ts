@@ -12,8 +12,8 @@ type UiLibProps = {
 }
 
 type Styles = {
-  width: number
-  height: number
+  width?: string
+  height?: string
 }
 
 export type EChartProps = InstanceProps<UiLibProps, Styles>

@@ -1,5 +1,4 @@
 import type { FC } from 'react'
-import React from 'react'
 import { IconDownload } from '@consta/icons/IconDownload'
 import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
@@ -22,12 +21,15 @@ export const EChartSettings: FC<EChartSettingsType> = ({ selectedViewProps, sele
     selectedViewProps,
     selectedViewId,
   )
+  const height = selectedViewProps.styles.height?.replaceAll('px', '') || '0'
+  const width = selectedViewProps.styles.width?.replaceAll('px', '') || '0'
+
   return (
     <div className={styles.layoutSettings}>
       <div className={styles.rowSettings}>
         <TextField
           className={styles.flexGrow}
-          value={selectedViewProps.styles.height.toString()}
+          value={height}
           type="number"
           leftSide="H"
           size="xs"
@@ -41,7 +43,7 @@ export const EChartSettings: FC<EChartSettingsType> = ({ selectedViewProps, sele
       <div className={styles.rowSettings}>
         <TextField
           className={styles.flexGrow}
-          value={selectedViewProps.styles.width.toString()}
+          value={width}
           type="number"
           leftSide="W"
           size="xs"

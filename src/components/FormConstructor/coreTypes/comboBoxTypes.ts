@@ -8,7 +8,6 @@ import type {
 import type { InstanceProps } from './instanceProps'
 import type { PropForm } from './selectTypes'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,

@@ -152,11 +152,6 @@ export type FormElementUnion =
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
 export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
 
-export interface BaseProps {
-  className: string
-  baseProps: BaseTypes
-}
-
 export interface IselectedView {
   elementId: string
   elementType: AllElementTypes

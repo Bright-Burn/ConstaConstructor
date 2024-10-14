@@ -3,11 +3,6 @@ import type { BreadcrumbProps } from '../../../coreTypes'
 import type { BreadcrumbProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
-// export type BreadCrumbsAdapter = (
-//   instanceId: string,
-//   deprecated: BreadcrumbProps_Deprecated,
-// ) => BreadcrumbProps
-
 export type BreadCrumbsAdapter = GenericAdapter<BreadcrumbProps_Deprecated, BreadcrumbProps>
 
 export const breadCrumbsAdapter: BreadCrumbsAdapter = (id, deprecated) => {

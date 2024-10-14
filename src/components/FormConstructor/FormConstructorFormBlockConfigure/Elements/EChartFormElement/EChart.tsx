@@ -54,8 +54,8 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
 
   useEffect(() => {
     chartRef.current?.resize({
-      width: props?.styles.width ?? 400,
-      height: props?.styles.height ?? 400,
+      width: Number(props?.styles.width?.replaceAll('px', '') || '0'),
+      height: Number(props?.styles.height?.replaceAll('px', '') || '0'),
     })
   }, [props?.styles.height, props?.styles.width])
 
@@ -80,11 +80,7 @@ export const EChartFormElement: FC<IEChartFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.EChart}>
-      <div
-        ref={ref}
-        className={className}
-        style={{ width: width ?? '400px', height: height ?? '400px' }}
-      />
+      <div ref={ref} className={className} style={{ width, height }} />
     </SelectableLayer>
   )
 }

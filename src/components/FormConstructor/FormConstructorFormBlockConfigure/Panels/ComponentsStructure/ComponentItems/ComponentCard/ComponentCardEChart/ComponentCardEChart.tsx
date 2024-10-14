@@ -21,8 +21,8 @@ export const ComponentCardEChart: FC<IComponetCardElement> = ({ name }) => {
           className: '',
           baseProps: {},
           styles: {
-            height: 400,
-            width: 500,
+            height: '400px',
+            width: '400px',
           },
         },
         type: 'EChart',

@@ -91,6 +91,7 @@ export { Icons, icons, IconsGroup } from './iconTypes'
 export type { IFormElementInformer, InformerElement, InformerElementProps } from './informerTypes'
 export type { BrandInformerElementProps } from './informerTypes'
 export type { FormInstance, InstanceManager, UnionProps } from './instance'
+export type { BaseProps } from './instanceProps'
 export type {
   BorderStyle,
   BorderWidth,
@@ -143,7 +144,6 @@ export type {
 } from './textTypes'
 export type {
   AllElementTypes,
-  BaseProps,
   BrandProps,
   DraggbleElement,
   FormElementTypes,

@@ -2,7 +2,6 @@ import type { UserPropSize, UserPropStatus, UserPropView, UserPropWidth } from '
 
 import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,

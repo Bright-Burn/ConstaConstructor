@@ -1,9 +1,8 @@
 import type { Props } from '@consta/uikit/Button'
 
 import type { IconNames } from './iconTypes'
-import type { InstanceProps } from './instanceProps'
+import type { BaseProps, InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,

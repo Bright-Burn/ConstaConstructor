@@ -12,8 +12,8 @@ export const echartAdapter: EchartsAdapter = (id, deprecated) => {
     baseProps: deprecated.baseProps,
     className: deprecated.className,
     styles: {
-      height: deprecated.height,
-      width: deprecated.width,
+      height: `${deprecated.height}px`,
+      width: `${deprecated.width}px`,
     },
     uiLibProps: {
       options: deprecated.options,

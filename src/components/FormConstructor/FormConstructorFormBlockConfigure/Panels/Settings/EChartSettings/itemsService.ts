@@ -13,36 +13,42 @@ export const useItemsHandlers = (selectedViewProps: EChartProps, selectedViewId:
 
   const onChangeHeight = (value: string | null) => {
     const newProps: BrandEChartProps = {
-      props: {
-        ...selectedViewProps,
-        styles: {
-          ...selectedViewProps.styles,
-        },
-      },
+      props: { ...selectedViewProps },
       type: 'EChart',
     }
+    newProps.props.styles = { ...newProps.props.styles }
 
-    const newValue = Number(value)
-
-    newProps.props.styles.height = value != null ? newValue : 1
-    onDispatch(selectedViewId, newProps)
+    if (value && value !== '0') {
+      let newValue = value
+      if (value.startsWith('0')) {
+        newValue = newValue.replace('0', '')
+      }
+      newProps.props.styles.height = `${newValue}px`
+      onDispatch(selectedViewId, newProps)
+    } else {
+      newProps.props.styles.height = undefined
+      onDispatch(selectedViewId, newProps)
+    }
   }
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandEChartProps = {
-      props: {
-        ...selectedViewProps,
-        styles: {
-          ...selectedViewProps.styles,
-        },
-      },
+      props: { ...selectedViewProps },
       type: 'EChart',
     }
+    newProps.props.styles = { ...newProps.props.styles }
 
-    const newValue = Number(value)
-
-    newProps.props.styles.width = value != null ? newValue : 1
-    onDispatch(selectedViewId, newProps)
+    if (value && value !== '0') {
+      let newValue = value
+      if (value.startsWith('0')) {
+        newValue = newValue.replace('0', '')
+      }
+      newProps.props.styles.width = `${newValue}px`
+      onDispatch(selectedViewId, newProps)
+    } else {
+      newProps.props.styles.width = undefined
+      onDispatch(selectedViewId, newProps)
+    }
   }
   const onDownload = (event: DragEvent | React.ChangeEvent) => {
     const target = event.target as EventTarget & HTMLInputElement
