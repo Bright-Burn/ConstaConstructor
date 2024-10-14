@@ -17,7 +17,7 @@ type UiLibProps = {
   checked?: boolean
   disabled?: boolean
 }
-export type SwitchProps = InstanceProps<UiLibProps, {}>
+export type SwitchProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandSwitchProps = BrandProps<SwitchProps, 'Switch'>
 

@@ -3,7 +3,6 @@ import type { TagBasePropSize } from '@consta/uikit/TagBase'
 import type { IconNames } from './iconTypes'
 import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -34,7 +33,7 @@ type UiLibProps = {
   icon?: IconNames
 }
 
-export type TagProps = InstanceProps<UiLibProps, {}>
+export type TagProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandTagProps = BrandProps<TagProps, 'Tag'>
 

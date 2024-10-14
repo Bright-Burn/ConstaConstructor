@@ -1,5 +1,4 @@
 import type { ConstaIconProps, IconProps } from '../../../../../coreTypes'
-import { Icons } from '../../../../../coreTypes'
 import type { UiLibProps } from '../buildConstaPropsCommon'
 import { buildConstaPropsCommon } from '../buildConstaPropsCommon'
 import type { CssCodeStyles } from '../buildCssCodeCommon'
@@ -13,9 +12,7 @@ export const buildIconCode: IconCodeBuilder = (componentLabel, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
-  if (props.styles) {
-    propsStyles = propsCssToCodeStyles(props.styles)
-  }
+  propsStyles = propsCssToCodeStyles(props.styles)
 
   // Преобразуем к типу аргумента функции билдера
   const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)

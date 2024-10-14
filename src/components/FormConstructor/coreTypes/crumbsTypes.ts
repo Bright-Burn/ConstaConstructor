@@ -23,7 +23,7 @@ type UiLibProps = {
   lastItemIsLink?: boolean
 }
 
-export type BreadcrumbProps = InstanceProps<UiLibProps, {}>
+export type BreadcrumbProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandBreadcrumbsProps = BrandProps<BreadcrumbProps, 'BreadcrumbsFormElement'>
 

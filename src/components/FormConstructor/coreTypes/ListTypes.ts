@@ -27,7 +27,7 @@ type UiLibProps = {
   disabled?: boolean
 }
 
-export type ListProps = InstanceProps<UiLibProps, {}>
+export type ListProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandListProps = BrandProps<ListProps, 'List'>
 

@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import type { IconPropSize, IconPropView } from '@consta/icons/Icon'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'

@@ -1,5 +1,3 @@
-import { Icons } from '../../../../coreTypes'
-
 import { buildCodeDefault } from './defaultCodeBuilder'
 import { buildEchartsCode } from './echartsCodeBuilder'
 import { buildIconCode } from './iconCodeBuilder'

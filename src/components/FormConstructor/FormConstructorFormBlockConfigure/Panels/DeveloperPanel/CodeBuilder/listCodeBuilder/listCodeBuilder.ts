@@ -12,9 +12,7 @@ export const buildListCode: ListStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
-  if (props.styles) {
-    propsStyles = propsCssToCodeStyles(props.styles)
-  }
+  propsStyles = propsCssToCodeStyles(props.styles)
 
   // Преобразуем к типу аргумента функции билдера
   const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)

@@ -19,7 +19,7 @@ export type UiLibProps = {
   intermediate?: boolean
 }
 
-export type CheckboxProps = InstanceProps<UiLibProps, {}>
+export type CheckboxProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandCheckboxProps = BrandProps<CheckboxProps, 'Checkbox'>
 

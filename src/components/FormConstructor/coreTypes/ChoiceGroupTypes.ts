@@ -9,7 +9,6 @@ import type {
 import type { IconNames } from './iconTypes'
 import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -44,7 +43,10 @@ export type SingleChoiceGroupProps = ChoiceGroupPropsGeneric<ChoiceGroupItem>
 
 export type MultipleChoiceGroupProps = ChoiceGroupPropsGeneric<ChoiceGroupItem, true>
 
-export type ChoiceGroupProps = InstanceProps<SingleChoiceGroupProps | MultipleChoiceGroupProps, {}>
+export type ChoiceGroupProps = InstanceProps<
+  SingleChoiceGroupProps | MultipleChoiceGroupProps,
+  Record<string, never>
+>
 
 export type BrandOwnChoiceGroupProps = BrandProps<ChoiceGroupProps, 'ChoiceGroup'>
 

@@ -20,9 +20,7 @@ export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
-  if (props.styles) {
-    propsStyles = layoutCssToCodeStyles(props.styles)
-  }
+  propsStyles = layoutCssToCodeStyles(props.styles)
 
   // Преобразуем к типу аргумента функции билдера
   const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)

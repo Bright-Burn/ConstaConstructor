@@ -15,7 +15,7 @@ type UiLibProps = {
   url?: string
 }
 
-export type AvatarProps = InstanceProps<UiLibProps, {}>
+export type AvatarProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandAvatarProps = BrandProps<AvatarProps, 'Avatar'>
 

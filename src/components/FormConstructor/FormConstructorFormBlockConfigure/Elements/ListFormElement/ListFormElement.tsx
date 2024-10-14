@@ -1,7 +1,6 @@
 import type { FC } from 'react'
 import { List, ListBox } from '@consta/uikit/ListCanary'
 
-import type { ItemList } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
 import { SelectableLayer } from '../../SelectableLayer'

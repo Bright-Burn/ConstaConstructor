@@ -9,7 +9,7 @@ import type {
   OmitInstanceId,
 } from './types'
 
-type UiLibPrps = {
+type UiLibProps = {
   type?: DateTimePropType
   view?: DateTimePropView
   minDate?: Date | undefined
@@ -21,7 +21,7 @@ type UiLibPrps = {
   events: Date[]
 }
 
-export type DateTimeProps = InstanceProps<UiLibPrps, {}>
+export type DateTimeProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandDateTimeProps = BrandProps<DateTimeProps, 'DataTime'>
 

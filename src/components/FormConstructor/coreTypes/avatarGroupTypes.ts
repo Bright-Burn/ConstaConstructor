@@ -16,7 +16,7 @@ type UiLibProps = {
   monochrome?: boolean
 }
 
-export type AvatarGroupProps = InstanceProps<UiLibProps, {}>
+export type AvatarGroupProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandAvatarGroupProps = BrandProps<AvatarGroupProps, 'AvatarGroup'>
 

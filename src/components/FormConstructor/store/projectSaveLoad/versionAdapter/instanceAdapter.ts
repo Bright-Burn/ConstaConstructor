@@ -43,7 +43,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'BreadcrumbsFormElement': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -52,7 +52,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Layout': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -61,7 +61,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Card': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -70,7 +70,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Checkbox': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -79,7 +79,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'ComboBox': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -88,7 +88,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'ChoiceGroup': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -97,7 +97,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'DatePicker': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -106,7 +106,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'DataTime': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -115,7 +115,6 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Informer': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -124,7 +123,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'List': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -133,7 +132,6 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'RadioButton': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -142,7 +140,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'SelectForm': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -151,7 +149,6 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Switch': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -160,7 +157,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Tabs': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -169,7 +166,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Tag': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -178,7 +175,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Text': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -187,7 +184,6 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'TextField': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -196,7 +192,6 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'User': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -205,7 +200,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'Icon': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,
@@ -214,7 +209,7 @@ export const instanceAdapter = (instance: FormInstance<AllElementTypes>) => {
     }
     case 'EChart': {
       const adapterFunc = typeAdapterDict[instance.props.type]
-      //@ts-ignore По умолчанию ожидаем что instance.props.props - Deprecated тип
+      //@ts-expect-error По умолчанию ожидаем что instance.props.props - Deprecated тип
       const newProps = adapterFunc(instance.id, instance.props.props)
       return {
         ...instance,

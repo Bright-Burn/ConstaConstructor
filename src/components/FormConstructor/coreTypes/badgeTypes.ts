@@ -26,7 +26,7 @@ type UiLibProps = {
   label?: string
 }
 
-export type BadgeProps = InstanceProps<UiLibProps, {}>
+export type BadgeProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>
 

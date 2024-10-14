@@ -40,7 +40,6 @@ import { AvatarSettings } from './AvatarSettings'
 import { BadgeSettings } from './BadgeSettings'
 import { BaseSettings } from './BaseSettings'
 import { BreadcrumbsSettings } from './BreadcrumbsSettings'
-import { ButtonModuleSettings } from './ButtonModalSettings'
 import { ButtonSettings } from './ButtonSettings'
 import { CardSettings } from './CardSettings'
 import { CheckboxSettings } from './CheckboxSettings'
@@ -174,19 +173,6 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
           <CardSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
-      )
-    }
-    case FormGroupsDictTypes.ButtonModal: {
-      if (!isElementProps<BrandButtonGroupProps>(selectedViewProps, 'ButtonModal')) {
-        return
-      }
-      const element = {
-        elementId: selectedView.elementId,
-        elementType: selectedView.elementType,
-      }
-
-      return (
-        <ButtonModuleSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
       )
     }
     case FormElementDictTypes.Tabs: {
