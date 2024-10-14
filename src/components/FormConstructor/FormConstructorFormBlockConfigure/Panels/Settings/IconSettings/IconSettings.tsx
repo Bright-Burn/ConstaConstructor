@@ -81,8 +81,11 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedViewProps, selected
       const newProps: BrandIconProps = {
         props: {
           ...selectedViewProps,
-          styles: { ...selectedViewProps.styles, color: value || undefined },
-          uiLibProps: { ...selectedViewProps.uiLibProps, view: undefined },
+          styles: { ...selectedViewProps.styles, color: value == 'Null' ? undefined : value },
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            view: value == 'Null' ? selectedViewProps.uiLibProps.view : undefined,
+          },
         },
         type: 'Icon',
       }

@@ -47,7 +47,14 @@ export const useItemsHandlers = (selectedViewProps: TextProps, selectedView: Tex
   const onChangeColor = (value: ConstaColor | null) => {
     if (value) {
       const newProps: BrandTextProps = {
-        props: { ...selectedViewProps, styles: { ...selectedViewProps.styles, color: value } },
+        props: {
+          ...selectedViewProps,
+          styles: { ...selectedViewProps.styles, color: value == 'Null' ? undefined : value },
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            view: value == 'Null' ? selectedViewProps.uiLibProps.view : undefined,
+          },
+        },
         type: 'Text',
       }
       onDispatch(selectedView, newProps)

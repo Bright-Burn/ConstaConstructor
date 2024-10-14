@@ -32,7 +32,7 @@ export const IconFormElement: FC<IIconFormElement> = ({ element }) => {
   )
 }
 const getStyles = (styles: IconElementStyles | undefined) => {
-  if (!styles) return {}
+  if (!styles || !styles.color) return {}
   const style = {
     color: `var(--${styles.color})`,
   }

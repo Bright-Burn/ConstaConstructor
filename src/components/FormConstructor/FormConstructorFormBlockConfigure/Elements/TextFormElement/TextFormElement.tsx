@@ -32,7 +32,7 @@ export const TextFormElement: FC<ITextFormElement> = ({ element }) => {
   )
 }
 const getStyles = (styles: TextProps['styles'] | undefined) => {
-  if (!styles) return {}
+  if (!styles || !styles.color) return {}
   const style = {
     color: `var(--${styles.color})`,
   }
