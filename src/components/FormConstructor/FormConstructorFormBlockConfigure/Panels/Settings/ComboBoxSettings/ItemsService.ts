@@ -17,6 +17,7 @@ export const useItemsHandlers = (
   const onDispatch = (selectedView: IselectedView, newProps: BrandComboboxProps) => {
     dispatch(setInstanceProps(selectedView.elementId, newProps))
   }
+
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandComboboxProps = {
@@ -38,6 +39,7 @@ export const useItemsHandlers = (
       onDispatch(selectedView, newProps)
     }
   }
+
   const onChangeItems = (items: comboboxItemType[]) => {
     const newProps: BrandComboboxProps = {
       props: {
@@ -58,6 +60,7 @@ export const useItemsHandlers = (
     }
     onDispatch(selectedView, newProps)
   }
+
   const onChangeLabel = (label: string) => {
     const newProps: BrandComboboxProps = {
       props: {
@@ -68,6 +71,7 @@ export const useItemsHandlers = (
     }
     onDispatch(selectedView, newProps)
   }
+
   const onChangePlaceholder = (placeholder: string) => {
     const newProps: BrandComboboxProps = {
       props: {
@@ -78,6 +82,7 @@ export const useItemsHandlers = (
     }
     onDispatch(selectedView, newProps)
   }
+
   const onChangeCaption = (caption: string) => {
     const newProps: BrandComboboxProps = {
       props: {
@@ -88,6 +93,7 @@ export const useItemsHandlers = (
     }
     onDispatch(selectedView, newProps)
   }
+
   const onChangeSwitch =
     (propsName: keyof ComboboxProps['uiLibProps']) =>
     (checked: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,25 +106,31 @@ export const useItemsHandlers = (
       }
       onDispatch(selectedView, newProps)
     }
+
   const onChangeField = (value: ValueType, field: keyof ComboboxProps['uiLibProps']) => {
-    const newProps: BrandComboboxProps = {
+    let newProps: BrandComboboxProps = {
       props: {
         ...selectedViewProps,
-        uiLibProps: { ...selectedViewProps.uiLibProps, [field]: value },
+        uiLibProps: { ...selectedViewProps.uiLibProps },
       },
       type: 'ComboBox',
     }
-    if (field === 'value') {
-      console.log(value)
-    }
     if (field === 'label' && value === true) {
       newProps.props.uiLibProps.label = 'Заголовок'
-    }
-    if (field === 'caption' && value === true) {
+    } else if (field === 'caption' && value === true) {
       newProps.props.uiLibProps.caption = 'Подпись'
+    } else {
+      newProps = {
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, [field]: value },
+        },
+        type: 'ComboBox',
+      }
     }
     onDispatch(selectedView, newProps)
   }
+
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandComboboxProps = {
       props: {

@@ -85,18 +85,7 @@ export const useItemsHandlers = (selectedViewProps: TabsProps, selectedView: Tab
       onDispatch(selectedView, newProps)
     }
   }
-  const onChangeView = (value: TabsPropView | null) => {
-    if (value) {
-      const newProps: BrandTabsElementProps = {
-        props: {
-          ...selectedViewProps,
-          uiLibProps: { ...selectedViewProps.uiLibProps, view: value },
-        },
-        type: 'Tabs',
-      }
-      onDispatch(selectedView, newProps)
-    }
-  }
+
   const onChangeSize = (value: TabsPropSize | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
@@ -126,24 +115,21 @@ export const useItemsHandlers = (selectedViewProps: TabsProps, selectedView: Tab
     }
   }
 
-  const onChangeSwitch =
-    (propsName: keyof TabsProps['uiLibProps']) => (check: React.ChangeEvent<HTMLInputElement>) => {
-      const checked = check.target.checked
-      const newProps: BrandTabsElementProps = {
-        props: {
-          ...selectedViewProps,
-          uiLibProps: { ...selectedViewProps.uiLibProps, [propsName]: checked },
+  const onChangeView = (check: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = check.target.checked
+
+    const newProps: BrandTabsElementProps = {
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          view: checked ? 'bordered' : 'clear',
         },
-        type: 'Tabs',
-      }
-      if (propsName === 'view' && checked) {
-        onChangeView('bordered')
-      }
-      if (propsName === 'view' && !checked) {
-        onChangeView(null)
-      }
-      onDispatch(selectedView, newProps)
+      },
+      type: 'Tabs',
     }
+    onDispatch(selectedView, newProps)
+  }
 
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandTabsElementProps = {
@@ -170,7 +156,6 @@ export const useItemsHandlers = (selectedViewProps: TabsProps, selectedView: Tab
     onChangeView,
     onChangeSize,
     onChangeFitMode,
-    onChangeSwitch,
     onChangeWidth,
     itemsProps: {
       items: selectedViewProps.uiLibProps.items,

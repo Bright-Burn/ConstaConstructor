@@ -78,21 +78,30 @@ export const useItemsHandlers = (selectedViewProps: TextProps, selectedView: Tex
   const onChangeSwitch =
     (propsName: keyof TextProps['uiLibProps']) => (check: React.ChangeEvent<HTMLInputElement>) => {
       const checked = check.target.checked
-      const newProps: BrandTextProps = {
+      let newProps: BrandTextProps = {
         props: {
           ...selectedViewProps,
           uiLibProps: {
             ...selectedViewProps.uiLibProps,
-            [propsName]: checked,
           },
         },
         type: 'Text',
       }
       if (propsName === 'font') {
         newProps.props.uiLibProps.font = checked ? 'mono' : 'primary'
-      }
-      if (propsName === 'cursor') {
+      } else if (propsName === 'cursor') {
         newProps.props.uiLibProps.cursor = checked ? 'pointer' : undefined
+      } else {
+        newProps = {
+          props: {
+            ...selectedViewProps,
+            uiLibProps: {
+              ...selectedViewProps.uiLibProps,
+              [propsName]: checked,
+            },
+          },
+          type: 'Text',
+        }
       }
 
       onDispatch(selectedView, newProps)

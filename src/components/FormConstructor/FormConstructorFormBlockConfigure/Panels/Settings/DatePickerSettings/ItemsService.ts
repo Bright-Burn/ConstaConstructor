@@ -77,18 +77,25 @@ export const useItemsHandlers = (
       onDispatch(selectedView, newProps)
     }
   const onChangeField = (value: ValueType, field: keyof DatePickerProps['uiLibProps']) => {
-    const newProps: BrandDatePickerProps = {
+    let newProps: BrandDatePickerProps = {
       props: {
         ...selectedViewProps,
-        uiLibProps: { ...selectedViewProps.uiLibProps, [field]: value },
+        uiLibProps: { ...selectedViewProps.uiLibProps },
       },
       type: 'DatePicker',
     }
     if (field === 'label' && value === true) {
       newProps.props.uiLibProps.label = 'Заголовок'
-    }
-    if (field === 'caption' && value === true) {
+    } else if (field === 'caption' && value === true) {
       newProps.props.uiLibProps.caption = 'Подпись'
+    } else {
+      newProps = {
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, [field]: value },
+        },
+        type: 'DatePicker',
+      }
     }
     onDispatch(selectedView, newProps)
   }

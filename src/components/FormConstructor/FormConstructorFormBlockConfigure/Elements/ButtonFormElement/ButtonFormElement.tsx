@@ -3,10 +3,10 @@ import { Button } from '@consta/uikit/Button'
 
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
-import { getIsFilledClassName } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IButtonFormElement } from './types'
+import { getFilledFlexClassName, getFilledFlexStyle } from '../../../utils'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
@@ -26,11 +26,11 @@ export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Button}
-      className={getIsFilledClassName(isFilled)}>
+      className={getFilledFlexClassName(isFilled)}>
       <Button
         className={className}
         {...uiLibProps}
-        style={{ flexGrow: isFilled ? 1 : 0 }}
+        style={getFilledFlexStyle(isFilled)}
         iconLeft={uiLibProps.iconLeft ? Icons[uiLibProps.iconLeft] : undefined}
         iconRight={uiLibProps.iconRight ? Icons[uiLibProps.iconRight] : undefined}
       />

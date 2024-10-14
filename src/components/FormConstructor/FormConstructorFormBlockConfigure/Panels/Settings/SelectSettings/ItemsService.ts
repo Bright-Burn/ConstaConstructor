@@ -108,21 +108,29 @@ export const useItemsHandlers = (selectedViewProps: SelectProps, selectedView: S
     }
 
   const onChangeField = (value: ValueType, field: keyof SelectProps['uiLibProps']) => {
-    const newProps: BrandSelectProps = {
+    let newProps: BrandSelectProps = {
       props: {
         ...selectedViewProps,
-        uiLibProps: { ...selectedViewProps.uiLibProps, [field]: value },
+        uiLibProps: { ...selectedViewProps.uiLibProps },
       },
       type: 'SelectForm',
     }
     if (field === 'label' && value === true) {
       newProps.props.uiLibProps.label = 'Заголовок'
-    }
-    if (field === 'caption' && value === true) {
+    } else if (field === 'caption' && value === true) {
       newProps.props.uiLibProps.caption = 'Подпись'
+    } else {
+      newProps = {
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, [field]: value },
+        },
+        type: 'SelectForm',
+      }
     }
     onDispatch(selectedView, newProps)
   }
+
   const onChangeWidth = (value: string | null) => {
     const newProps: BrandSelectProps = {
       props: { ...selectedViewProps, styles: { ...selectedViewProps.styles } },

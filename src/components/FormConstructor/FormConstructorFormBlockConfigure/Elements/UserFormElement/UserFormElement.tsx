@@ -3,7 +3,7 @@ import { User } from '@consta/uikit/User'
 
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
-import { getIsFilledClassName } from '../../../utils'
+import { getFilledFlexClassName, getFilledFlexStyle } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IUserFormElement } from './types'
@@ -26,8 +26,8 @@ export const UserFormElement: FC<IUserFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.User}
-      className={getIsFilledClassName(isFilled)}>
-      <User className={className} {...uiLibProps} style={{ flexGrow: isFilled ? 1 : 0 }} />
+      className={getFilledFlexClassName(isFilled)}>
+      <User className={className} {...uiLibProps} style={getFilledFlexStyle(isFilled)} />
     </SelectableLayer>
   )
 }

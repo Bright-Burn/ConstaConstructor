@@ -3,7 +3,7 @@ import { Combobox } from '@consta/uikit/Combobox'
 
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
-import { getIsFilledClassName } from '../../../utils'
+import { getFilledFlexClassName, getFilledFlexStyle } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IComboBoxFormElement } from './types'
@@ -15,7 +15,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
 
   const uiLibProps = props?.uiLibProps
   const className = props?.className
-  const styles = { flexGrow: isFilled ? 1 : 0, ...props?.styles }
+  const styles = { ...getFilledFlexStyle(isFilled), ...props?.styles }
 
   if (!uiLibProps) {
     return null
@@ -24,7 +24,7 @@ export const ComboBoxFormElement: FC<IComboBoxFormElement> = ({ element }) => {
   return (
     <SelectableLayer
       parentElementId={element.id}
-      className={getIsFilledClassName(isFilled)}
+      className={getFilledFlexClassName(isFilled)}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ComboBox}>
       <Combobox

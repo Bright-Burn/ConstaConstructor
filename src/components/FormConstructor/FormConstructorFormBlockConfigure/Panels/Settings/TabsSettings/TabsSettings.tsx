@@ -28,8 +28,8 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
     onChangeItems,
     onChangeLinePosition,
     onChangeSize,
-    onChangeSwitch,
     onChangeWidth,
+    onChangeView,
   } = useItemsHandlers(selectedViewProps, selectedView)
   const [isOpen, setOpen] = useState<boolean>(false)
 
@@ -104,7 +104,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
         size="xs"
         checked={itemsProps.view === 'clear' ? false : !!itemsProps.view}
         label="С бордером"
-        onChange={onChangeSwitch('view')}
+        onChange={onChangeView}
       />
       <div className={style.rowSettings}>
         <TextField

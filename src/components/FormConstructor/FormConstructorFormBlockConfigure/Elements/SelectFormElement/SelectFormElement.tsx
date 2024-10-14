@@ -4,7 +4,7 @@ import { Select } from '@consta/uikit/Select'
 import type { selectitemType } from '../../../coreTypes'
 import { ElementTypes, FormElementDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
-import { getIsFilledClassName } from '../../../utils'
+import { getFilledFlexClassName, getFilledFlexStyle } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { ISelectFormElement } from './types'
@@ -18,7 +18,7 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
   const uiLibProps = props?.uiLibProps
   const className = props?.className
   const styles = props?.styles
-  const comboBoxStyles = { flexGrow: isFilled ? 1 : 0, ...styles }
+  const comboBoxStyles = { ...getFilledFlexStyle(isFilled), ...styles }
 
   if (!uiLibProps) {
     return null
@@ -29,7 +29,7 @@ export const SelectFormElement: FC<ISelectFormElement> = ({ element }) => {
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Select}
-      className={getIsFilledClassName(isFilled)}>
+      className={getFilledFlexClassName(isFilled)}>
       <Select
         className={className}
         {...uiLibProps}
