@@ -1,7 +1,7 @@
 import type {
   BrandComboboxProps,
   ComboBoxElement,
-  comboboxItemType,
+  ComboboxItemType,
   ComboboxProps,
   IselectedView,
 } from '../../../../coreTypes'
@@ -40,7 +40,7 @@ export const useItemsHandlers = (
     }
   }
 
-  const onChangeItems = (items: comboboxItemType[]) => {
+  const onChangeItems = (items: ComboboxItemType[]) => {
     const newProps: BrandComboboxProps = {
       props: {
         ...selectedViewProps,

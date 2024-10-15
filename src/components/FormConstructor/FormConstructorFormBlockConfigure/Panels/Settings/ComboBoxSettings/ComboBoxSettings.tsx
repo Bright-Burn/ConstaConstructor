@@ -8,7 +8,7 @@ import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { ComboBoxElement, comboboxItemType, ComboboxProps } from '../../../../coreTypes'
+import type { ComboBoxElement, ComboboxItemType, ComboboxProps } from '../../../../coreTypes'
 import { FilledSettings } from '../FilledSettings'
 
 import { useItemsHandlers } from './ItemsService'
@@ -222,7 +222,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({ selectedViewProps, 
           multiple={true}
           label="Активный элемент"
           size="xs"
-          getItemKey={(key: comboboxItemType) => key.id}
+          getItemKey={(key: ComboboxItemType) => key.id}
           value={Array.isArray(itemsProps.value) ? itemsProps.value : undefined}
           items={itemsProps.items}
           onChange={value => {
@@ -233,7 +233,7 @@ export const ComboBoxSettings: FC<ComboBoxSettingsType> = ({ selectedViewProps, 
         <Select
           label="Активный элемент"
           size="xs"
-          getItemKey={(key: comboboxItemType) => key.id}
+          getItemKey={(key: ComboboxItemType) => key.id}
           value={Array.isArray(itemsProps.value) ? undefined : itemsProps.value}
           items={itemsProps.items}
           onChange={value => {

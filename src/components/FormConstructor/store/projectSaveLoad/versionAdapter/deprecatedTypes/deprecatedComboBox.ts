@@ -5,11 +5,11 @@ import type {
   TextFieldPropView,
 } from '@consta/uikit/TextField'
 
-import type { BaseProps, comboboxItemType, PropForm } from '../../../../coreTypes'
+import type { BaseProps, ComboboxItemType, PropForm } from '../../../../coreTypes'
 
 export type ComboboxProps_Deprecated = {
-  items: comboboxItemType[]
-  value?: comboboxItemType[] | comboboxItemType | null
+  items: ComboboxItemType[]
+  value?: ComboboxItemType[] | ComboboxItemType | null
   disabled?: boolean
   size?: TextFieldPropSize
   view?: TextFieldPropView

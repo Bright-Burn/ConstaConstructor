@@ -15,15 +15,15 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type comboboxItemType = {
+export type ComboboxItemType = {
   label: string
   id: number
   group?: string
 }
 
 type UiLibProps = {
-  items: comboboxItemType[]
-  value?: comboboxItemType[] | comboboxItemType | null
+  items: ComboboxItemType[]
+  value?: ComboboxItemType[] | ComboboxItemType | null
   disabled?: boolean
   size?: TextFieldPropSize
   view?: TextFieldPropView

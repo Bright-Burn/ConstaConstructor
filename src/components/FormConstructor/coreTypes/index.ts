@@ -45,7 +45,7 @@ export type { ChoiceGroupItem } from './ChoiceGroupTypes'
 export type {
   BrandComboboxProps,
   ComboBoxElement,
-  comboboxItemType,
+  ComboboxItemType,
   ComboboxProps,
   IFormElementComboBox,
 } from './comboBoxTypes'

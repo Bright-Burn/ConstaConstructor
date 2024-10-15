@@ -5,7 +5,7 @@ import type {
   TextFieldPropView,
 } from '@consta/uikit/TextField'
 
-import type { comboboxItemType, PropForm } from '../../../../coreTypes'
+import type { ComboboxItemType, PropForm } from '../../../../coreTypes'
 
 export type ValueType =
   | TextFieldPropStatus
@@ -16,8 +16,8 @@ export type ValueType =
   | 'left'
   | boolean
   | null
-  | comboboxItemType
-  | comboboxItemType[]
+  | ComboboxItemType
+  | ComboboxItemType[]
 
 export const viewArray: TextFieldPropView[] = ['default', 'clear']
 
