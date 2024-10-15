@@ -3,10 +3,10 @@ import { Button } from '@consta/uikit/Button'
 
 import { ElementTypes, FormElementDictTypes, Icons } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
+import { getFilledFlexClassName, getFilledFlexStyle } from '../../../utils'
 import { SelectableLayer } from '../../SelectableLayer'
 
 import type { IButtonFormElement } from './types'
-import { getFilledFlexClassName, getFilledFlexStyle } from '../../../utils'
 
 export const ButtonFormElement: FC<IButtonFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props

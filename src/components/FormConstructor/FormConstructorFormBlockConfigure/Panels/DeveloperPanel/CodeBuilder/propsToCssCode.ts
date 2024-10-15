@@ -4,7 +4,6 @@ import type { CssCodeStyles } from './buildCssCodeCommon'
 import { varProperties } from './customPropertiesCommon'
 import { isPixelValidString } from './isPixelValidString'
 
-// @ts-expect-error Временное решение, убрать игнор, когда у всех компонентов появится поле styles в кастомных пропсах
 export const propsCssToCodeStyles = (props: UnionProps['props']['styles']): CssCodeStyles => {
   const propsStyles: CssCodeStyles = {}
 

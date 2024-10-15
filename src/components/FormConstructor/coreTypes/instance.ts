@@ -1,7 +1,7 @@
 import type { BrandAvatarGroupProps } from './avatarGroupTypes'
 import type { BrandAvatarProps } from './avatartTypes'
 import type { BrandBadgeProps } from './badgeTypes'
-import type { BrandButtonGroupProps, BrandButtonProps } from './buttonTypes'
+import type { BrandButtonProps } from './buttonTypes'
 import type { BrandCardPropsStyles } from './cardTypes'
 import type { BrandCheckboxProps } from './checkboxTypes'
 import type { BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
@@ -75,9 +75,7 @@ export type FormInstance<T extends AllElementTypes> = {
                                                 ? BrandCardPropsStyles
                                                 : emptyObj & T extends 'EChart'
                                                   ? BrandEChartProps
-                                                  : emptyObj & T extends 'ButtonModal'
-                                                    ? BrandButtonGroupProps
-                                                    : never
+                                                  : never
 }
 
 export type UnionProps =

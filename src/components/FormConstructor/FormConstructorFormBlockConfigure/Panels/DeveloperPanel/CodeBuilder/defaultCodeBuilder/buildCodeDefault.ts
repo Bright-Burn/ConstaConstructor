@@ -18,11 +18,9 @@ export const buildCodeDefault: DefaultCodeBuilder = (componentName, jsxName, pro
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
-  // @ts-expect-error Временное решение, убрать игнор, когда у всех компонентов появится styles
   propsStyles = propsCssToCodeStyles(props.styles)
 
   // Преобразуем к типу аргумента функции билдера
-  // @ts-expect-error Временное решение, убрать игнор, когда у всех компонентов появится constaProps
   const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
 
   const builtCode: GeneratedCode = {

@@ -4,8 +4,7 @@ import type { Values } from '../utils'
 
 import type { IFormElementAvatar } from './avatartTypes'
 import type { IFormElementBadge } from './badgeTypes'
-import type { BaseTypes } from './basePropsTypes'
-import type { IButtonActionElement, IFormElementButton } from './buttonTypes'
+import type { IFormElementButton } from './buttonTypes'
 import type { BrandCardPropsStyles } from './cardTypes'
 import type { IFormElementCheckbox } from './checkboxTypes'
 import type { IFormElementChoiceGroup } from './ChoiceGroupTypes'
@@ -42,7 +41,6 @@ export type ElementTypes = Values<typeof ElementTypes>
 export const FormGroupsDictTypes = {
   Layout: 'Layout',
   Card: 'Card',
-  ButtonModal: 'ButtonModal',
 } as const
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
@@ -150,7 +148,7 @@ export type FormElementUnion =
   | IFormElementAvatar
 
 // По мере добавление новых группирующих элементов сюда будем добавлять новые объединения
-export type GroupElementUnion = ILayoutElement | ICardElement | IButtonActionElement
+export type GroupElementUnion = ILayoutElement | ICardElement
 
 export interface IselectedView {
   elementId: string

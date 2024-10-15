@@ -6,7 +6,6 @@ import type {
   BrandAvatarProps,
   BrandBadgeProps,
   BrandBreadcrumbsProps,
-  BrandButtonGroupProps,
   BrandButtonProps,
   BrandCardPropsStyles,
   BrandCheckboxProps,
