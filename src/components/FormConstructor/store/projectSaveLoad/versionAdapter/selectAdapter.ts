@@ -13,8 +13,8 @@ export const selectAdapter: SelectAdapter = (id, deprecated) => {
     className: deprecated.className,
     styles: {
       filled: deprecated.filled,
-      maxWidth: deprecated.style?.maxWidth,
-      minWidth: deprecated.style?.minWidth,
+      maxWidth: deprecated.filled ? undefined : deprecated.style?.maxWidth,
+      minWidth: deprecated.filled ? undefined : deprecated.style?.minWidth,
     },
     uiLibProps: {
       groups: deprecated.groups,

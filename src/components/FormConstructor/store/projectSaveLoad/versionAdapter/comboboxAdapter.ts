@@ -10,9 +10,9 @@ export const comboboxAdapter: ComboboxAdaper = (id, deprecated) => {
     baseProps: deprecated.baseProps,
     className: deprecated.className,
     styles: {
-      maxWidth: deprecated.style?.maxWidth,
-      minWidth: deprecated.style?.minWidth,
       filled: deprecated.filled,
+      maxWidth: deprecated.filled ? undefined : deprecated.style?.maxWidth,
+      minWidth: deprecated.filled ? undefined : deprecated.style?.minWidth,
     },
     uiLibProps: {
       groups: deprecated.groups,
