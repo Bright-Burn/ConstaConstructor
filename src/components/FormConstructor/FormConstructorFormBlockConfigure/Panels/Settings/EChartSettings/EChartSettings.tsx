@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { IconDownload } from '@consta/icons/IconDownload'
+import { IconUpload } from '@consta/icons/IconUpload'
 import { Button } from '@consta/uikit/Button'
 import { FileField } from '@consta/uikit/FileField'
 import { Text } from '@consta/uikit/Text'
@@ -17,7 +18,7 @@ type EChartSettingsType = {
 }
 
 export const EChartSettings: FC<EChartSettingsType> = ({ selectedViewProps, selectedViewId }) => {
-  const { onDownload, onChangeWidth, onChangeHeight } = useItemsHandlers(
+  const { onDownload, onChangeWidth, onChangeHeight, onUpload } = useItemsHandlers(
     selectedViewProps,
     selectedViewId,
   )
@@ -67,6 +68,15 @@ export const EChartSettings: FC<EChartSettingsType> = ({ selectedViewProps, sele
             />
           )}
         </FileField>
+        <Button
+          className="m-l-s"
+          label="upload"
+          view="secondary"
+          iconLeft={IconUpload}
+          size="xs"
+          disabled={!selectedViewProps.uiLibProps.options}
+          onClick={onUpload}
+        />
       </div>
     </div>
   )

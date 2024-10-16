@@ -1,10 +1,17 @@
 import type React from 'react'
 
 import type { BrandEChartProps, EChartProps } from '../../../../coreTypes'
-import { setInstanceProps, useAppDispatch } from '../../../../store'
-import { readFile } from '../../../../utils'
+import {
+  getViewInfoLabelByIdSelector,
+  setInstanceProps,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../store'
+import { readFile, saveToFile } from '../../../../utils'
 
 export const useItemsHandlers = (selectedViewProps: EChartProps, selectedViewId: string) => {
+  const label = useAppSelector(getViewInfoLabelByIdSelector(selectedViewId))
+
   const dispatch = useAppDispatch()
 
   const onDispatch = (selectedViewId: string, newProps: BrandEChartProps) => {
@@ -69,9 +76,15 @@ export const useItemsHandlers = (selectedViewProps: EChartProps, selectedViewId:
       })
     }
   }
+
+  const onUpload = () => {
+    saveToFile(selectedViewProps.uiLibProps.options, label || 'EChart')
+  }
+
   return {
-    onChangeHeight,
     onChangeWidth,
+    onChangeHeight,
     onDownload,
+    onUpload,
   }
 }
