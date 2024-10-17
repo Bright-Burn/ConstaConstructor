@@ -1,5 +1,6 @@
 import type { BreadcrumbProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { BreadcrumbProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const breadCrumbsAdapter: BreadCrumbsAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {},
     uiLibProps: {
       fitMode: deprecated.fitMode,

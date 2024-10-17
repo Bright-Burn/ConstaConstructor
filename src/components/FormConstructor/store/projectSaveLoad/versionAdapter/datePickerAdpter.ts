@@ -1,5 +1,6 @@
 import type { DatePickerProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { DatePickerProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -30,7 +31,7 @@ export const datePickerAdapter: DatePickerAdapter = (id, deprecated) => {
       withAdditionalControls: deprecated.withAdditionalControls,
       withClearButton: deprecated.withClearButton,
     },
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {},
   }
 }

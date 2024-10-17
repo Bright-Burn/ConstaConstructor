@@ -1,5 +1,6 @@
 import type { TextProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { TextProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -9,7 +10,7 @@ export const textAdapter: TextAdapter = (id, deprecated) => {
   console.log(`Run Text adapter with id=${id}`)
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {
       color: deprecated.style?.color,
     },

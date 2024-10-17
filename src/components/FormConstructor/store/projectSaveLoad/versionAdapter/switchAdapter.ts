@@ -1,5 +1,6 @@
 import type { SwitchProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { SwitchProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const switchAdapter: SwitchAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {},
     uiLibProps: {
       align: deprecated.align,

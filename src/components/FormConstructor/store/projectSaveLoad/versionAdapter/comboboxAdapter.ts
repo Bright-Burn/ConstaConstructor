@@ -1,5 +1,6 @@
 import type { ComboboxProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { ComboboxProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -8,7 +9,7 @@ export const comboboxAdapter: ComboboxAdaper = (id, deprecated) => {
   console.log(`Run adapter for ComboBox instance with ${id}`)
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {
       filled: deprecated.filled,
       maxWidth: deprecated.filled ? undefined : deprecated.style?.maxWidth,

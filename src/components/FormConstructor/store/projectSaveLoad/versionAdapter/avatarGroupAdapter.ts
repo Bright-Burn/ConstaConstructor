@@ -1,6 +1,7 @@
 import type { AvatarGroupProps } from '../../../coreTypes'
 
 import { avatarAdapter } from './avatarAdapter'
+import { classNameAdapter } from './classNameAdapter'
 import type { AvatarGroupProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -12,7 +13,7 @@ export const avatarGroupAdapter: AvatarGroupAdapter = (id, deprecated) => {
 
   const avatarProps: AvatarGroupProps = {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     uiLibProps: {
       form: deprecated.form,
       monochrome: deprecated.monochrome,

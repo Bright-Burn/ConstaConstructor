@@ -1,5 +1,6 @@
 import type { LayoutElementPropsStyles } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { LayoutElementPropsStyles_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -13,7 +14,7 @@ export const layoutAdapter: LayoutAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: deprecated.styles,
     uiLibProps: deprecated.constaProps,
   }

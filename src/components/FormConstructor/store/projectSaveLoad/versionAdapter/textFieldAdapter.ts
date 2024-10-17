@@ -1,5 +1,6 @@
 import type { TextFieldProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { TextFieldProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const textFieldAdapter: TextFieldAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {
       filled: deprecated.filled,
     },

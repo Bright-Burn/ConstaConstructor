@@ -4,6 +4,7 @@ import type {
   SingleChoiceGroupProps,
 } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type {
   ChoiceGroupProps_Deprecated,
   MultipleChoiceGroupProps_Deprecated,
@@ -48,7 +49,7 @@ export const choiceGroupAdapter: ChoiceGroupAdapter = (id, deprecated) => {
   return {
     uiLibProps: props,
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {},
   }
 }

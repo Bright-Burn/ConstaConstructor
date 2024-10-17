@@ -1,5 +1,6 @@
 import type { IconProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { IconProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const iconAdapter: IconAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {
       color: deprecated.style?.color,
     },

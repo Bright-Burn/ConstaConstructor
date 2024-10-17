@@ -1,5 +1,6 @@
 import type { ListProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { ListProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const listAdapter: ListAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {},
     uiLibProps: {
       items: deprecated.items,

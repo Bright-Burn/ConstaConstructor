@@ -1,5 +1,6 @@
 import type { BadgeProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { BadgeProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const badgeAdapter: BadgeAdapter = (id, deprecated) => {
 
   const props: BadgeProps = {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {},
     uiLibProps: {
       form: deprecated.form,

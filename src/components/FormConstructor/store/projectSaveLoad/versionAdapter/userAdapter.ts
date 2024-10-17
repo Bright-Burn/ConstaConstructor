@@ -1,5 +1,6 @@
 import type { UserProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { UserProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -9,7 +10,7 @@ export const userAdapter: UserAdapter = (id, deprecated) => {
   console.log(`Run User adapter with id=${id}`)
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {
       filled: deprecated.filled,
     },

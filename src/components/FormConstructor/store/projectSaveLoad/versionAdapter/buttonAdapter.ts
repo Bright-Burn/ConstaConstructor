@@ -1,5 +1,6 @@
 import type { ButtonProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { ButtonProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -15,7 +16,7 @@ export const buttonAdapter: ButtonAdapter = (id, deprecated) => {
       filled: deprecated.filled,
     },
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     // Свойства ui библиотеки вынесены отдельно
     uiLibProps: {
       iconLeft: deprecated.icon,

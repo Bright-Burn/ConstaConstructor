@@ -1,5 +1,6 @@
 import type { TabsProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { TabsProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const tabsAdapter: TabsAdapter = (id, deprecated) => {
   if (deprecated.fitMode) {
     return {
       baseProps: deprecated.baseProps,
-      className: deprecated.className,
+      className: classNameAdapter(deprecated.className),
       styles: {},
       uiLibProps: {
         size: deprecated.size,
@@ -26,7 +27,7 @@ export const tabsAdapter: TabsAdapter = (id, deprecated) => {
   }
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {},
     uiLibProps: {
       size: deprecated.size,

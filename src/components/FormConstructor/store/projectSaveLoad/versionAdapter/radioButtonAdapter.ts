@@ -1,5 +1,6 @@
 import type { RadioButtonProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { RadioButtonProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const radioButtonAdapter: RadioButtonAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {},
     uiLibProps: {
       align: deprecated.align,

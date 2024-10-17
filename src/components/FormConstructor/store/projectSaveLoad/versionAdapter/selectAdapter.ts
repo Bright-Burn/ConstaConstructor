@@ -1,5 +1,6 @@
 import type { SelectProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { SelectProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const selectAdapter: SelectAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {
       filled: deprecated.filled,
       maxWidth: deprecated.filled ? undefined : deprecated.style?.maxWidth,

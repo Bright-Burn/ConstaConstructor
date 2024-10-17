@@ -1,5 +1,6 @@
 import type { EChartProps } from '../../../coreTypes'
 
+import { classNameAdapter } from './classNameAdapter'
 import type { EChartProps_Deprecated } from './deprecatedTypes'
 import type { GenericAdapter } from './genericAdapter'
 
@@ -10,7 +11,7 @@ export const echartAdapter: EchartsAdapter = (id, deprecated) => {
 
   return {
     baseProps: deprecated.baseProps,
-    className: deprecated.className,
+    className: classNameAdapter(deprecated.className),
     styles: {
       height: `${deprecated.height}px`,
       width: `${deprecated.width}px`,
