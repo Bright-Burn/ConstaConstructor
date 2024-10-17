@@ -14,6 +14,8 @@ import {
   useAppSelector,
 } from '../../../../store'
 
+import { buildClassName } from './buildClassName'
+
 export const useMarginHandlers = () => {
   const selectedView = useAppSelector(getSelectedView)
   const dispatch = useAppDispatch()
@@ -40,17 +42,13 @@ export const useMarginHandlers = () => {
         ...newProps.props.baseProps,
         margin: { ...(newProps.props.baseProps.margin ?? {}), marginLeft: value },
       }
-      const prevPadding = newProps.props.baseProps.padding
-        ? Object.values(newProps.props.baseProps.padding).join(' ')
-        : ''
-      const prevMargin = newProps.props.baseProps.margin
-        ? Object.values({ ...newProps.props.baseProps.margin, marginLeft: '' }).join(' ')
-        : ''
-      newProps.props.className = `${prevPadding} ${prevMargin} ${value}`
+
+      newProps.props.className = buildClassName(newProps.props.baseProps)
 
       onDispatch(selectedView, newProps)
     }
   }
+
   const onChangemarginRight = (value: (typeof marginRight)[number] | null) => {
     if (selectedView && value != null) {
       const newProps: UnionProps = structuredClone(selectedViewProps)
@@ -59,13 +57,9 @@ export const useMarginHandlers = () => {
         ...newProps.props.baseProps,
         margin: { ...(newProps.props.baseProps.margin ?? {}), marginRight: value },
       }
-      const prevPadding = newProps.props.baseProps.padding
-        ? Object.values(newProps.props.baseProps.padding).join(' ')
-        : ''
-      const prevMargin = newProps.props.baseProps.margin
-        ? Object.values({ ...newProps.props.baseProps.margin, marginRight: '' }).join(' ')
-        : ''
-      newProps.props.className = `${prevPadding} ${prevMargin}  ${value}`
+
+      newProps.props.className = buildClassName(newProps.props.baseProps)
+
       onDispatch(selectedView, newProps)
     }
   }
@@ -77,13 +71,8 @@ export const useMarginHandlers = () => {
         ...newProps.props.baseProps,
         margin: { ...(newProps.props.baseProps.margin ?? {}), marginTop: value },
       }
-      const prevPadding = newProps.props.baseProps.padding
-        ? Object.values(newProps.props.baseProps.padding).join(' ')
-        : ''
-      const prevMargin = newProps.props.baseProps.margin
-        ? Object.values({ ...newProps.props.baseProps.margin, marginTop: '' }).join(' ')
-        : ''
-      newProps.props.className = `${prevPadding} ${prevMargin}  ${value}`
+
+      newProps.props.className = buildClassName(newProps.props.baseProps)
       onDispatch(selectedView, newProps)
     }
   }
@@ -95,13 +84,8 @@ export const useMarginHandlers = () => {
         ...newProps.props.baseProps,
         margin: { ...(newProps.props.baseProps.margin ?? {}), marginBottom: value },
       }
-      const prevPadding = newProps.props.baseProps.padding
-        ? Object.values(newProps.props.baseProps.padding).join(' ')
-        : ''
-      const prevMargin = newProps.props.baseProps.margin
-        ? Object.values({ ...newProps.props.baseProps.margin, marginBottom: '' }).join(' ')
-        : ''
-      newProps.props.className = `${prevPadding} ${prevMargin}  ${value}`
+
+      newProps.props.className = buildClassName(newProps.props.baseProps)
       onDispatch(selectedView, newProps)
     }
   }
