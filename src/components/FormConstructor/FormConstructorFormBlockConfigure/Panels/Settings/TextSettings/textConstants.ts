@@ -6,7 +6,7 @@ import { IconItalic } from '@consta/icons/IconItalic'
 import { IconType } from '@consta/icons/IconType'
 import type { TextPropLineHeight, TextPropSize, TextPropView } from '@consta/uikit/Text'
 
-import type { AlignTextType, textDecorationType } from '../../../../coreTypes'
+import type { AlignTextType, TextDecorationType } from '../../../../coreTypes'
 
 export const sizes: TextPropSize[] = [
   'm',
@@ -42,7 +42,7 @@ export const textAlign: AlignTextType[] = [
   { name: 'right', icon: IconAlignRight },
 ]
 
-export const transformText: textDecorationType[] = [
+export const transformText: TextDecorationType[] = [
   { name: 'underline', icon: IconColorText },
   { name: 'uppercase', icon: IconType },
   { name: 'italic', icon: IconItalic },

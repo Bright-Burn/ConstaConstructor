@@ -17,14 +17,17 @@ export const ComponentCardCheckbox: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          checked: false,
-          size: 's',
-          view: 'primary',
-          align: 'center',
-          disabled: false,
-          label: 'Checkbox',
+          uiLibProps: {
+            checked: false,
+            size: 's',
+            view: 'primary',
+            align: 'center',
+            disabled: false,
+            label: 'Checkbox',
+          },
           className: '',
           baseProps: {},
+          styles: {},
         },
         type: 'Checkbox',
       },

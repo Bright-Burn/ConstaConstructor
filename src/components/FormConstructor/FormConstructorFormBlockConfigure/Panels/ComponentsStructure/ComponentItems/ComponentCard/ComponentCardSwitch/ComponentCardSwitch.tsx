@@ -17,10 +17,13 @@ export const ComponentCardSwitch: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          size: 'm',
-          view: 'primary',
-          align: 'center',
-          label: 'Это переключатель',
+          uiLibProps: {
+            size: 'm',
+            view: 'primary',
+            align: 'center',
+            label: 'Это переключатель',
+          },
+          styles: {},
           className: '',
           baseProps: {},
         },

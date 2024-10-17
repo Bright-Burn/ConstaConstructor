@@ -20,27 +20,41 @@ export const useItemsHandlers = (selectedViewProps: TagProps, selectedView: TagE
 
   const onChangeSize = (value: TagBasePropSize | null) => {
     const newProps: BrandTagProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          size: value || undefined,
+        },
+      },
       type: 'Tag',
     }
-    newProps.props.size = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
   const onChangeMode = (value: TagBasePropMode | null) => {
     const newProps: BrandTagProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          mode: value ? value : 'info',
+        },
+      },
       type: 'Tag',
     }
-    newProps.props.mode = value ? value : 'info'
+
     onDispatch(selectedView, newProps)
   }
 
-  const onChangeField = (propsName: keyof TagProps) => (value: string | null) => {
+  const onChangeField = (propsName: keyof TagProps['uiLibProps']) => (value: string | null) => {
     const newProps: BrandTagProps = {
       props: {
         ...selectedViewProps,
-        [propsName]: value,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          [propsName]: value,
+        },
       },
       type: 'Tag',
     }
@@ -49,19 +63,27 @@ export const useItemsHandlers = (selectedViewProps: TagProps, selectedView: TagE
 
   const onChangeGroup = (value: TagBasePropGroup | null) => {
     const newProps: BrandTagProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          group: value ? value : undefined,
+        },
+      },
       type: 'Tag',
     }
-    newProps.props.group = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
   const onChangeSwitch =
-    (propsName: keyof TagProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof TagProps['uiLibProps']) => (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandTagProps = {
         props: {
           ...selectedViewProps,
-          [propsName]: checked.target.checked,
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            [propsName]: checked.target.checked,
+          },
         },
         type: 'Tag',
       }
@@ -70,10 +92,15 @@ export const useItemsHandlers = (selectedViewProps: TagProps, selectedView: TagE
 
   const onChangeIcon = (value: IconNames | null) => {
     const newProps: BrandTagProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          icon: value ? value : undefined,
+        },
+      },
       type: 'Tag',
     }
-    newProps.props.icon = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
@@ -85,12 +112,12 @@ export const useItemsHandlers = (selectedViewProps: TagProps, selectedView: TagE
     onChangeSwitch,
     onChangeIcon,
     itemsProps: {
-      label: selectedViewProps.label,
-      size: selectedViewProps.size,
-      mode: selectedViewProps.mode,
-      group: selectedViewProps.group,
-      iconSwitch: selectedViewProps.Icon,
-      icon: selectedViewProps.icon,
+      label: selectedViewProps.uiLibProps.label,
+      size: selectedViewProps.uiLibProps.size,
+      mode: selectedViewProps.uiLibProps.mode,
+      group: selectedViewProps.uiLibProps.group,
+      iconSwitch: selectedViewProps.uiLibProps.Icon,
+      icon: selectedViewProps.uiLibProps.icon,
     },
   }
 }

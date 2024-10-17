@@ -18,11 +18,16 @@ export const buildCssCodeCommon = (
   const upperCaseRegex = /[A-Z]/g
 
   Object.entries(styles).forEach(([key, value]) => {
-    const newKey = key.replace(upperCaseRegex, match => {
-      return `-${match.toLocaleLowerCase()}`
-    })
+    // Обрабатываем кастомные свойства
+    if (customFileds.has(key)) {
+      resultString += `${customFiledsDict[key]};\n`
+    } else {
+      const newKey = key.replace(upperCaseRegex, match => {
+        return `-${match.toLocaleLowerCase()}`
+      })
 
-    resultString += `${newKey}: ${value};\n`
+      resultString += `${newKey}: ${value};\n`
+    }
   })
 
   classNames?.split(' ').forEach(className => {
@@ -33,3 +38,10 @@ export const buildCssCodeCommon = (
 
   return `${resultString}}`
 }
+
+// Ключ значение кастомных свойств
+const customFiledsDict: Record<string, string> = {
+  filled: 'flex-grow: 1',
+}
+
+const customFileds = new Set(Object.keys(customFiledsDict))

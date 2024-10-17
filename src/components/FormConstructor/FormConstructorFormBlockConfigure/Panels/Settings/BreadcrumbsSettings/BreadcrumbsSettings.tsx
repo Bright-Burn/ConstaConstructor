@@ -1,18 +1,12 @@
 import type { FC } from 'react'
-import React, { useState } from 'react'
-import type { IconComponent } from '@consta/icons/Icon'
+import { useState } from 'react'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type {
-  BreadcrumbProps,
-  BreadcrumbsFormElement,
-  DeepWriteable,
-  IconNames,
-} from '../../../../coreTypes'
-import { Icons, icons } from '../../../../coreTypes'
+import type { BreadcrumbProps, BreadcrumbsFormElement } from '../../../../coreTypes'
+import { IconSelectConsta } from '../IconsSelect'
 
 import { fitMode, sizes } from './BreadcrumbsConstants'
 import { useItemsHandlers } from './ItemsService'
@@ -20,7 +14,7 @@ import { useItemsHandlers } from './ItemsService'
 import styles from './styles.module.css'
 
 type BreadcrumbSettingsType = {
-  selectedViewProps: DeepWriteable<BreadcrumbProps>
+  selectedViewProps: BreadcrumbProps
   selectedView: BreadcrumbsFormElement
 }
 
@@ -28,6 +22,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
   selectedViewProps,
   selectedView,
 }) => {
+  const [selectedPageIndex, setSelectedPageIndex] = useState<number>(0)
+
   const {
     itemsProps,
     onChangeItemsCount,
@@ -35,9 +31,8 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
     onChangeSize,
     onChangeFitMode,
     onChangeLastItemLink,
-  } = useItemsHandlers(selectedViewProps, selectedView)
-
-  const [selectedPageIndex, setSelectedPageIndex] = useState<number>(0)
+    onChangeIcon,
+  } = useItemsHandlers(selectedViewProps, selectedView, selectedPageIndex)
 
   const pageLabels = itemsProps.items.map(item => {
     return item.label
@@ -47,25 +42,6 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
     const newPage = [...itemsProps.items]
     if (!value) newPage[index] = { ...newPage[index], label: '' }
     else newPage[index] = { ...newPage[index], label: value }
-    onChangeItems(newPage)
-  }
-
-  // TODO убрать когда избавимся от DeepWriteable
-  const iconComponentToDeepWriteable = (x: IconComponent) => x as DeepWriteable<IconComponent>
-
-  const checkValueIsIconNames = (value: string): value is IconNames => {
-    return value in Icons
-  }
-
-  const onPageIconEditLeft = (value: string | null, index: number) => {
-    const newPage = [...itemsProps.items]
-    if (value !== null && checkValueIsIconNames(value)) {
-      newPage[index] = {
-        ...newPage[index],
-        labelIcon: value,
-        icon: iconComponentToDeepWriteable(Icons[value]),
-      }
-    }
     onChangeItems(newPage)
   }
 
@@ -153,36 +129,10 @@ export const BreadcrumbsSettings: FC<BreadcrumbSettingsType> = ({
           onPageLabelEdit(value, selectedPageIndex)
         }}
       />
-      <Select
-        className={styles.iconAlign}
-        getItemKey={(item: string) => item}
-        getItemLabel={(item: string) => item}
-        items={icons}
-        size="xs"
-        placeholder="Icon"
-        value={itemsProps.items[selectedPageIndex]?.labelIcon}
-        renderValue={({ item }) => (
-          <div className={styles.selectRenderValue}>
-            <Text view="ghost" className="p-r-xs">
-              Icon
-            </Text>
-            {item}
-          </div>
-        )}
-        renderItem={({ item, active, onClick, onMouseEnter }) => (
-          <div
-            className={styles.icon}
-            role="option"
-            aria-selected={active}
-            onMouseEnter={onMouseEnter}
-            onClick={onClick}>
-            {checkValueIsIconNames(item) && React.createElement(Icons[item], { size: 'xs' })}
-            <Text size="xs">{item}</Text>
-          </div>
-        )}
-        onChange={value => {
-          onPageIconEditLeft(value, selectedPageIndex)
-        }}
+      <IconSelectConsta
+        selectedIcon={itemsProps.items[selectedPageIndex]?.icon}
+        label="iconRight"
+        onChangeIcon={onChangeIcon}
       />
     </div>
   )

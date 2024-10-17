@@ -2,15 +2,15 @@ import type {
   BrandOwnChoiceGroupProps,
   ChoiceGroupElement,
   ChoiceGroupItem,
+  ChoiceGroupProps,
   IselectedView,
-  OwnChoiceGroupProps,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { ValueType } from './types'
 
 export const useItemsHandlers = (
-  selectedViewProps: OwnChoiceGroupProps,
+  selectedViewProps: ChoiceGroupProps,
   selectedView: ChoiceGroupElement,
 ) => {
   const dispatch = useAppDispatch()
@@ -21,11 +21,7 @@ export const useItemsHandlers = (
 
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
-      const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedViewProps },
-        type: 'ChoiceGroup',
-      }
-      let itemsProps = [...newProps.props.items]
+      let itemsProps = [...selectedViewProps.uiLibProps.items]
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
@@ -41,7 +37,13 @@ export const useItemsHandlers = (
           itemsProps.pop()
         }
       }
-      newProps.props.items = itemsProps
+      const newProps: BrandOwnChoiceGroupProps = {
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, items: itemsProps },
+        },
+        type: 'ChoiceGroup',
+      }
       onDispatch(selectedView, newProps)
     }
   }
@@ -51,13 +53,19 @@ export const useItemsHandlers = (
       props: { ...selectedViewProps },
       type: 'ChoiceGroup',
     }
-    newProps.props.items = [...items]
+    newProps.props.uiLibProps.items = [...items]
     onDispatch(selectedView, newProps)
   }
 
-  const onChangeField = (value: ValueType, field: keyof OwnChoiceGroupProps) => {
+  const onChangeField = (value: ValueType, field: keyof ChoiceGroupProps['uiLibProps']) => {
     const newProps: BrandOwnChoiceGroupProps = {
-      props: { ...selectedViewProps, [field]: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          [field]: value,
+        },
+      },
       type: 'ChoiceGroup',
     }
 
@@ -65,9 +73,13 @@ export const useItemsHandlers = (
   }
 
   const onChangeSwitch =
-    (propsName: keyof OwnChoiceGroupProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof ChoiceGroupProps['uiLibProps']) =>
+    (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandOwnChoiceGroupProps = {
-        props: { ...selectedViewProps, [propsName]: checked.target.checked },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, [propsName]: checked.target.checked },
+        },
         type: 'ChoiceGroup',
       }
       onDispatch(selectedView, newProps)
@@ -79,15 +91,15 @@ export const useItemsHandlers = (
     onChangeField,
     onChangeSwitch,
     itemsProps: {
-      items: selectedViewProps.items,
-      value: selectedViewProps.value,
-      size: selectedViewProps.size,
-      view: selectedViewProps.view,
-      form: selectedViewProps.form,
-      multiple: selectedViewProps.multiple,
-      onlyIcon: selectedViewProps.onlyIcon,
-      disabled: selectedViewProps.disabled,
-      width: selectedViewProps.width,
+      items: selectedViewProps.uiLibProps.items,
+      value: selectedViewProps.uiLibProps.value,
+      size: selectedViewProps.uiLibProps.size,
+      view: selectedViewProps.uiLibProps.view,
+      form: selectedViewProps.uiLibProps.form,
+      multiple: selectedViewProps.uiLibProps.multiple,
+      onlyIcon: selectedViewProps.uiLibProps.onlyIcon,
+      disabled: selectedViewProps.uiLibProps.disabled,
+      width: selectedViewProps.uiLibProps.width,
     },
   }
 }

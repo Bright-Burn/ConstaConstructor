@@ -9,10 +9,10 @@ export const useItemsHandlers = (selectedViewProps: ListProps, selectedView: Lis
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandListProps = {
-        props: { ...selectedViewProps },
+        props: { ...selectedViewProps, uiLibProps: { ...selectedViewProps.uiLibProps } },
         type: 'List',
       }
-      let itemsProps = [...newProps.props.items]
+      let itemsProps = [...newProps.props.uiLibProps.items]
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
@@ -26,14 +26,17 @@ export const useItemsHandlers = (selectedViewProps: ListProps, selectedView: Lis
           itemsProps.pop()
         }
       }
-      newProps.props.items = itemsProps
+      newProps.props.uiLibProps.items = itemsProps
       onDispatch(selectedView, newProps)
     }
   }
 
-  const onChangeField = (value: ValueType, field: keyof ListProps) => {
+  const onChangeField = (value: ValueType, field: keyof ListProps['uiLibProps']) => {
     const newProps: BrandListProps = {
-      props: { ...selectedViewProps, [field]: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, [field]: value },
+      },
       type: 'List',
     }
 
@@ -41,9 +44,13 @@ export const useItemsHandlers = (selectedViewProps: ListProps, selectedView: Lis
   }
 
   const onChangeSwitch =
-    (propsName: keyof ListProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof ListProps['uiLibProps']) =>
+    (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandListProps = {
-        props: { ...selectedViewProps, [propsName]: checked },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, [propsName]: checked },
+        },
         type: 'List',
       }
 
@@ -58,12 +65,12 @@ export const useItemsHandlers = (selectedViewProps: ListProps, selectedView: Lis
     onChangeSwitch,
     onChangeItemsCount,
     itemsProps: {
-      activeItem: selectedViewProps.value,
-      items: selectedViewProps.items,
-      form: selectedViewProps.form,
-      size: selectedViewProps.size,
-      innerOffset: selectedViewProps.innerOffset,
-      withListBox: selectedViewProps.withListBox,
+      activeItem: selectedViewProps.uiLibProps.value,
+      items: selectedViewProps.uiLibProps.items,
+      form: selectedViewProps.uiLibProps.form,
+      size: selectedViewProps.uiLibProps.size,
+      innerOffset: selectedViewProps.uiLibProps.innerOffset,
+      withListBox: selectedViewProps.uiLibProps.withListBox,
     },
   }
 }

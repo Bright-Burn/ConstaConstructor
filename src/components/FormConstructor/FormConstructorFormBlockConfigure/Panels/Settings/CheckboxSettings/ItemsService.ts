@@ -15,17 +15,29 @@ export const useItemsHandlers = (
   const dispatch = useAppDispatch()
   const onChangeLabel = (value: string) => {
     const newProps: BrandCheckboxProps = {
-      props: { ...selectedViewProps, label: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          label: value,
+        },
+      },
       type: 'Checkbox',
     }
     onDispatch(selectedView, newProps)
   }
   const onChangeField = (
     value: CheckboxPropSize | CheckboxPropView | CheckboxPropAlign | boolean | null,
-    field: keyof CheckboxProps,
+    field: keyof CheckboxProps['uiLibProps'],
   ) => {
     const newProps: BrandCheckboxProps = {
-      props: { ...selectedViewProps, [field]: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          [field]: value,
+        },
+      },
       type: 'Checkbox',
     }
 
@@ -33,9 +45,16 @@ export const useItemsHandlers = (
   }
 
   const onChangeSwitch =
-    (propsName: keyof CheckboxProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof CheckboxProps['uiLibProps']) =>
+    (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandCheckboxProps = {
-        props: { ...selectedViewProps, [propsName]: checked.target.checked },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            [propsName]: checked.target.checked,
+          },
+        },
         type: 'Checkbox',
       }
       onDispatch(selectedView, newProps)
@@ -50,13 +69,13 @@ export const useItemsHandlers = (
     onChangeSwitch,
     onChangeLabel,
     itemsProps: {
-      align: selectedViewProps.align,
-      view: selectedViewProps.view,
-      checked: selectedViewProps.checked,
-      disabled: selectedViewProps.disabled,
-      label: selectedViewProps.label,
-      size: selectedViewProps.size,
-      intermediate: selectedViewProps.intermediate,
+      align: selectedViewProps.uiLibProps.align,
+      view: selectedViewProps.uiLibProps.view,
+      checked: selectedViewProps.uiLibProps.checked,
+      disabled: selectedViewProps.uiLibProps.disabled,
+      label: selectedViewProps.uiLibProps.label,
+      size: selectedViewProps.uiLibProps.size,
+      intermediate: selectedViewProps.uiLibProps.intermediate,
     },
   }
 }

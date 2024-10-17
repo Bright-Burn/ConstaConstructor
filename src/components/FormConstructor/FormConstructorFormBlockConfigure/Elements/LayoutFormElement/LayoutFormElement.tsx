@@ -14,7 +14,7 @@ export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
 
   const style = getStyles(props?.styles)
   return (
-    <Layout className={props?.className} {...props?.constaProps} style={style}>
+    <Layout className={props?.className} {...props?.uiLibProps} style={style}>
       <SelectableLayer
         parentElementId={element.id}
         elementType={FormGroupsDictTypes.Layout}

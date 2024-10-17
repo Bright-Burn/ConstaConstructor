@@ -1,6 +1,6 @@
 import type { AvatarProps } from './avatartTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -8,13 +8,16 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type AvatarGroupProps = {
-  items?: AvatarProps[]
+type UiLibProps = {
+  items: AvatarProps['uiLibProps'][]
   visibleCount?: number | 'auto'
   size?: 's' | 'm' | 'xs' | 'l'
   form?: 'round' | 'brick' | 'default'
   monochrome?: boolean
-} & BaseProps
+}
+
+export type AvatarGroupProps = InstanceProps<UiLibProps, Record<string, never>>
+
 export type BrandAvatarGroupProps = BrandProps<AvatarGroupProps, 'AvatarGroup'>
 
 export type AvatarGroupElement = ConcreteSelectedView<typeof FormElementDictTypes.AvatarGroup>

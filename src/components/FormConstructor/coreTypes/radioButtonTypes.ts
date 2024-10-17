@@ -1,7 +1,7 @@
 import type { RadioPropAlign, RadioPropSize, RadioPropView } from '@consta/uikit/Radio'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -9,14 +9,16 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type RadioButtonProps = {
+type UiLibProps = {
   size?: RadioPropSize
   view?: RadioPropView
   align?: RadioPropAlign
   label?: string
   disabled?: boolean
   checked?: boolean
-} & BaseProps
+}
+
+export type RadioButtonProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandRadioButtonProps = BrandProps<RadioButtonProps, 'RadioButton'>
 

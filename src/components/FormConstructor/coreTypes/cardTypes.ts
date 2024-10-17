@@ -1,15 +1,11 @@
 import type { Props } from '@consta/uikit/Card'
 
-import type { BaseProps, BrandProps, ConcreteSelectedView, FormGroupsDictTypes } from './types'
+import type { InstanceProps } from './instanceProps'
+import type { BrandProps, ConcreteSelectedView, FormGroupsDictTypes } from './types'
 
-export type CardElementProps = Props
+export type CardProps = InstanceProps<Props, CardElementStyles>
 
-export interface CardElementPropsStyles extends BaseProps {
-  constaProps: CardElementProps
-  styles?: CardElementStyles
-}
-
-export type BrandCardElementPropsStyles = BrandProps<CardElementPropsStyles, 'Card'>
+export type BrandCardPropsStyles = BrandProps<CardProps, 'Card'>
 
 export type CardElement = ConcreteSelectedView<typeof FormGroupsDictTypes.Card>
 

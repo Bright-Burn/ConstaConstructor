@@ -6,8 +6,8 @@ import type {
 } from '@consta/uikit/Badge'
 
 import type { IconNames } from './iconTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -15,17 +15,18 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type BadgeProps = {
+type UiLibProps = {
   size?: BadgePropSize
   view?: BadgePropView
   status?: BadgePropStatus
   form?: BadgePropForm
   minified?: boolean
-  label?: string
-  children?: never
   iconLeft?: IconNames
   iconRight?: IconNames
-} & BaseProps
+  label?: string
+}
+
+export type BadgeProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandBadgeProps = BrandProps<BadgeProps, 'Badge'>
 

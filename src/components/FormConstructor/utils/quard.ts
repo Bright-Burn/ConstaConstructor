@@ -5,7 +5,6 @@ export function isElementProps<T extends UnionProps>(
   type: AllElementTypes,
 ): element is T {
   if (!element) return false
-
   return element.type === type
 }
 

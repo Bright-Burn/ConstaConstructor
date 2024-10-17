@@ -1,13 +1,13 @@
 import type { BrandAvatarGroupProps } from './avatarGroupTypes'
 import type { BrandAvatarProps } from './avatartTypes'
 import type { BrandBadgeProps } from './badgeTypes'
-import type { BrandBreadcrumbsProps } from './BreadcrumbsTypes'
-import type { BrandButtonGroupProps, BrandButtonProps } from './buttonTypes'
-import type { BrandCardElementPropsStyles } from './cardTypes'
+import type { BrandButtonProps } from './buttonTypes'
+import type { BrandCardPropsStyles } from './cardTypes'
 import type { BrandCheckboxProps } from './checkboxTypes'
 import type { BrandOwnChoiceGroupProps } from './ChoiceGroupTypes'
 import type { BrandComboboxProps } from './comboBoxTypes'
-import type { BrandDataTimeProps } from './dataTimeTypes'
+import type { BrandBreadcrumbsProps } from './crumbsTypes'
+import type { BrandDateTimeProps } from './dataTimeTypes'
 import type { BrandDatePickerProps } from './datePickerTypes'
 import type { BrandEChartProps } from './echarts'
 import type { BrandIconProps } from './iconTypes'
@@ -20,7 +20,7 @@ import type { BrandSwitchProps } from './SwitchTypes'
 import type { BrandTabsElementProps } from './tabsTypes'
 import type { BrandTagProps } from './tagTypes'
 import type { BrandTextFieldProps } from './textFieldTypes'
-import type { BrandTextElementProps } from './textTypes'
+import type { BrandTextProps } from './textTypes'
 import type { AllElementTypes, FormElementTypes, FormGroupsTypes } from './types'
 import type { BrandUserProps } from './userTypes'
 type emptyObj = Record<string, never>
@@ -40,7 +40,7 @@ export type FormInstance<T extends AllElementTypes> = {
             : emptyObj & T extends 'Checkbox'
               ? BrandCheckboxProps
               : emptyObj & T extends 'Text'
-                ? BrandTextElementProps
+                ? BrandTextProps
                 : emptyObj & T extends 'TextField'
                   ? BrandTextFieldProps
                   : emptyObj & T extends 'List'
@@ -56,7 +56,7 @@ export type FormInstance<T extends AllElementTypes> = {
                             : emptyObj & T extends 'SelectForm'
                               ? BrandSelectProps
                               : emptyObj & T extends 'DataTime'
-                                ? BrandDataTimeProps
+                                ? BrandDateTimeProps
                                 : emptyObj & T extends 'User'
                                   ? BrandUserProps
                                   : emptyObj & T extends 'Icon'
@@ -72,12 +72,10 @@ export type FormInstance<T extends AllElementTypes> = {
                                             : T extends 'Layout'
                                               ? BrandLayoutElementPropsStyles
                                               : emptyObj & T extends 'Card'
-                                                ? BrandCardElementPropsStyles
+                                                ? BrandCardPropsStyles
                                                 : emptyObj & T extends 'EChart'
                                                   ? BrandEChartProps
-                                                  : emptyObj & T extends 'ButtonModal'
-                                                    ? BrandButtonGroupProps
-                                                    : never
+                                                  : never
 }
 
 export type UnionProps =
