@@ -48,6 +48,8 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
+            maxWidth: undefined,
+            minWidth: undefined,
             filled: filledValue,
           },
         },
@@ -60,6 +62,8 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
+            maxWidth: undefined,
+            minWidth: undefined,
             filled: filledValue,
           },
         },
@@ -72,6 +76,8 @@ export const FilledSettings: React.FC<FilledSettingsType> = ({ elementId, props 
           ...props.props,
           styles: {
             ...props.props.styles,
+            maxWidth: undefined,
+            minWidth: undefined,
             filled: filledValue,
           },
         },

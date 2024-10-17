@@ -144,6 +144,7 @@ export const useItemsHandlers = (selectedViewProps: SelectProps, selectedView: S
       }
       newProps.props.styles.maxWidth = `${newValue}px`
       newProps.props.styles.minWidth = `${newValue}px`
+      newProps.props.styles.filled = undefined
     } else {
       newProps.props.styles.maxWidth = ''
       newProps.props.styles.minWidth = ''
