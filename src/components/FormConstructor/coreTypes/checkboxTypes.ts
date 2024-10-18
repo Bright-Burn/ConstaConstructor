@@ -1,7 +1,7 @@
 import type { CheckboxPropAlign, CheckboxPropSize, CheckboxPropView } from '@consta/uikit/Checkbox'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -9,7 +9,7 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type CheckboxProps = {
+export type UiLibProps = {
   checked: boolean
   size?: CheckboxPropSize
   view?: CheckboxPropView
@@ -17,7 +17,9 @@ export type CheckboxProps = {
   disabled?: boolean
   label?: string
   intermediate?: boolean
-} & BaseProps
+}
+
+export type CheckboxProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandCheckboxProps = BrandProps<CheckboxProps, 'Checkbox'>
 

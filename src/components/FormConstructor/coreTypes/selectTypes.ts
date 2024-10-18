@@ -4,8 +4,8 @@ import type {
   TextFieldPropView,
 } from '@consta/uikit/TextField'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -33,9 +33,7 @@ export type PropForm =
   | 'clearBrick'
   | 'clearClear'
 
-type TextContent = { content: string }
-
-export type SelectProps = {
+type UiLibProps = {
   disabled?: boolean
   size?: TextFieldPropSize
   view?: TextFieldPropView
@@ -52,11 +50,15 @@ export type SelectProps = {
   dropdownForm?: 'brick' | 'default' | 'round'
   groups: string[]
   groupsActive?: boolean
+}
+type CustomStyles = {
+  maxWidth?: string
+  minWidth?: string
   filled?: boolean
-  style?: SelectStyles
-} & BaseProps &
-  TextContent
-export type SelectStyles = { maxWidth: string; minWidth: string }
+}
+
+export type SelectProps = InstanceProps<UiLibProps, CustomStyles>
+
 export type BrandSelectProps = BrandProps<SelectProps, 'SelectForm'>
 
 export type SelectElement = ConcreteSelectedView<typeof FormElementDictTypes.Select>

@@ -34,11 +34,14 @@ export const ComponentCardList: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          size: 's',
-          innerOffset: 'normal',
+          uiLibProps: {
+            size: 's',
+            innerOffset: 'normal',
+            items,
+          },
+          styles: {},
           className: '',
           baseProps: {},
-          items,
         },
         type: 'List',
       },

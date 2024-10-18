@@ -2,6 +2,7 @@ import type {
   BrandButtonProps,
   BrandComboboxProps,
   BrandSelectProps,
+  BrandTabsElementProps,
   BrandTextFieldProps,
   BrandUserProps,
 } from '../../../../coreTypes'
@@ -19,3 +20,4 @@ export type FilledProps =
   | BrandButtonProps
   | BrandSelectProps
   | BrandComboboxProps
+  | BrandTabsElementProps

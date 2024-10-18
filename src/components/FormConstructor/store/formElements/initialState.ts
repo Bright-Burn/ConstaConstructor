@@ -16,7 +16,7 @@ export const initialLayout: ILayoutElement = {
   order: 1,
   props: {
     props: {
-      constaProps: {
+      uiLibProps: {
         flex: 1,
         direction: 'row',
         horizontalAlign: 'left',

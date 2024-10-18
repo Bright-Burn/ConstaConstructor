@@ -17,14 +17,17 @@ export const ComponentCardDataTime: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          type: 'date',
-          view: 'classic',
+          uiLibProps: {
+            events,
+            multiplicityHours: 1,
+            multiplicityMinutes: 1,
+            multiplicitySeconds: 1,
+            type: 'date',
+            view: 'classic',
+          },
           className: '',
           baseProps: {},
-          events,
-          multiplicityHours: 1,
-          multiplicityMinutes: 1,
-          multiplicitySeconds: 1,
+          styles: {},
         },
         type: 'DataTime',
       },

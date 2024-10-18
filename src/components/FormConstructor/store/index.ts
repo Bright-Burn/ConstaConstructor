@@ -1,7 +1,7 @@
-export type { BaseComponentSerializable, IBaseComponent } from './baseComponentsItems'
+export type { IBaseComponent } from './baseComponentsItems'
 export {
-  addBaseElement,
   getDraggedBaseComponent,
+  loadBaseComponentFromString,
   setDraggableBaseComponent,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
@@ -43,11 +43,11 @@ export {
   getViewInfoDict,
   getViewInfoLabelByIdSelector,
   insertNewElements,
-  loadProjectFromFile,
   loadProjectFromStorage,
+  loadProjectFromString,
   reorderFormElement,
   sameInstanceElementsIdsSelector,
-  saveBaseComponent,
+  saveBaseComponentToFile,
   saveProjectToFile,
   saveProjectToHTML,
   setDraggableElement,
@@ -58,6 +58,7 @@ export {
   setViewToCopyId,
   updateBaseComponentAction,
   updateOrders,
+  draggableElementSelector,
 } from './formElements'
 export { popHistoryElement } from './history'
 export { type AppDispatch, type AppStore, type RootState, store } from './setupStore'

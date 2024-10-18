@@ -6,13 +6,12 @@ import type {
   BrandAvatarProps,
   BrandBadgeProps,
   BrandBreadcrumbsProps,
-  BrandButtonGroupProps,
   BrandButtonProps,
-  BrandCardElementPropsStyles,
+  BrandCardPropsStyles,
   BrandCheckboxProps,
   BrandComboboxProps,
-  BrandDataTimeProps,
   BrandDatePickerProps,
+  BrandDateTimeProps,
   BrandEChartProps,
   BrandIconProps,
   BrandInformerElementProps,
@@ -24,8 +23,8 @@ import type {
   BrandSwitchProps,
   BrandTabsElementProps,
   BrandTagProps,
-  BrandTextElementProps,
   BrandTextFieldProps,
+  BrandTextProps,
   BrandUserProps,
   IselectedView,
   UnionProps,
@@ -40,7 +39,6 @@ import { AvatarSettings } from './AvatarSettings'
 import { BadgeSettings } from './BadgeSettings'
 import { BaseSettings } from './BaseSettings'
 import { BreadcrumbsSettings } from './BreadcrumbsSettings'
-import { ButtonModuleSettings } from './ButtonModalSettings'
 import { ButtonSettings } from './ButtonSettings'
 import { CardSettings } from './CardSettings'
 import { CheckboxSettings } from './CheckboxSettings'
@@ -98,7 +96,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
       )
     }
     case FormElementDictTypes.Text: {
-      if (!isElementProps<BrandTextElementProps>(selectedViewProps, 'Text')) {
+      if (!isElementProps<BrandTextProps>(selectedViewProps, 'Text')) {
         return
       }
       const element = {
@@ -161,7 +159,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
       )
     }
     case FormGroupsDictTypes.Card: {
-      if (!isElementProps<BrandCardElementPropsStyles>(selectedViewProps, 'Card')) {
+      if (!isElementProps<BrandCardPropsStyles>(selectedViewProps, 'Card')) {
         return
       }
       const element = {
@@ -174,19 +172,6 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
           <CardSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
           <BaseSettings />
         </>
-      )
-    }
-    case FormGroupsDictTypes.ButtonModal: {
-      if (!isElementProps<BrandButtonGroupProps>(selectedViewProps, 'ButtonModal')) {
-        return
-      }
-      const element = {
-        elementId: selectedView.elementId,
-        elementType: selectedView.elementType,
-      }
-
-      return (
-        <ButtonModuleSettings selectedViewProps={selectedViewProps.props} selectedView={element} />
       )
     }
     case FormElementDictTypes.Tabs: {
@@ -349,7 +334,7 @@ const getSettingsPanel = (selectedViewProps: UnionProps, selectedView: Iselected
       )
     }
     case FormElementDictTypes.DataTime: {
-      if (!isElementProps<BrandDataTimeProps>(selectedViewProps, 'DataTime')) {
+      if (!isElementProps<BrandDateTimeProps>(selectedViewProps, 'DataTime')) {
         return
       }
       const element = {

@@ -17,13 +17,16 @@ export const ComponentCardInformer: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          label: 'Informer',
-          title: 'Title',
-          size: 's',
-          status: 'success',
-          view: 'filled',
+          uiLibProps: {
+            label: 'Informer',
+            title: 'Title',
+            size: 's',
+            status: 'success',
+            view: 'filled',
+          },
           className: '',
           baseProps: {},
+          styles: {},
         },
         type: 'Informer',
       },

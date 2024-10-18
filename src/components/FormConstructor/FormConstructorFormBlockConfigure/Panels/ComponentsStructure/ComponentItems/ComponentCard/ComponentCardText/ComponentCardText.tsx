@@ -17,11 +17,16 @@ export const ComponentCardText: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          content: 'Text',
-          size: 's',
+          uiLibProps: {
+            content: 'Text',
+            size: 's',
+            transformText: undefined,
+          },
+          styles: {
+            color: undefined,
+          },
           className: '',
           baseProps: {},
-          transformText: {},
         },
         type: 'Text',
       },

@@ -1,12 +1,13 @@
 import type { FC } from 'react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Collapse } from '@consta/uikit/Collapse'
 import { Select } from '@consta/uikit/Select'
 import { Switch } from '@consta/uikit/Switch'
+import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
-import type { IconNames, TabsElement, TabsElementProps } from '../../../../coreTypes'
-import { Icons } from '../../../../coreTypes'
+import type { IconNames, TabsElement, TabsProps } from '../../../../coreTypes'
+import { FilledSettings } from '../FilledSettings'
 import { IconSelectConsta } from '../IconsSelect'
 
 import { useItemsHandlers } from './ItemsService'
@@ -15,7 +16,7 @@ import { linePositionArray, sizeArray } from './types'
 import style from './styles.module.css'
 
 type TabsSettingsType = {
-  selectedViewProps: TabsElementProps
+  selectedViewProps: TabsProps
   selectedView: TabsElement
 }
 
@@ -27,7 +28,8 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
     onChangeItems,
     onChangeLinePosition,
     onChangeSize,
-    onChangeSwitch,
+    onChangeWidth,
+    onChangeView,
   } = useItemsHandlers(selectedViewProps, selectedView)
   const [isOpen, setOpen] = useState<boolean>(false)
 
@@ -40,7 +42,12 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
 
   const onTabDisabledEdit = (value: boolean, index: number) => {
     const newTabs = [...itemsProps.items]
-    newTabs[index] = { ...newTabs[index], disabledIcon: value, iconLeft: undefined }
+    newTabs[index] = {
+      ...newTabs[index],
+      disabledIcon: value,
+      leftIcon: undefined,
+      rightIcon: undefined,
+    }
     onChangeItems(newTabs)
   }
 
@@ -49,13 +56,24 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
     if (value !== null) {
       newTabs[index] = {
         ...newTabs[index],
-        iconLeft: Icons[value],
-        labelIconLeft: value,
+        leftIcon: value,
       }
     }
     onChangeItems(newTabs)
   }
 
+  const onTabIconEditRight = (value: IconNames | null, index: number) => {
+    const newTabs = [...itemsProps.items]
+    if (value !== null) {
+      newTabs[index] = {
+        ...newTabs[index],
+        rightIcon: value,
+      }
+    }
+    onChangeItems(newTabs)
+  }
+
+  const width = selectedViewProps.styles.maxWidth?.replaceAll('px', '') || ''
   return (
     <div className={style.gapSetting}>
       <div className={style.rowSettings}>
@@ -86,7 +104,7 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
         size="xs"
         checked={itemsProps.view === 'clear' ? false : !!itemsProps.view}
         label="С бордером"
-        onChange={onChangeSwitch('view')}
+        onChange={onChangeView}
       />
       <div className={style.rowSettings}>
         <TextField
@@ -106,6 +124,25 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
           items={itemsProps.items}
           value={itemsProps.activeItem}
           onChange={onChangeActiveItem}
+        />
+      </div>
+      <div className={`${style.rowSettings} align-center`}>
+        <TextField
+          value={width}
+          type="number"
+          size="xs"
+          leftSide="Width"
+          min="0"
+          onChange={value => {
+            onChangeWidth(value)
+          }}
+        />
+        <Text size="xs">px</Text>
+      </div>
+      <div className={style.rowSettings}>
+        <FilledSettings
+          elementId={selectedView.elementId}
+          props={{ props: selectedViewProps, type: 'Tabs' }}
         />
       </div>
       <Collapse
@@ -138,11 +175,19 @@ export const TabsSettings: FC<TabsSettingsType> = ({ selectedViewProps, selected
                   }}
                 />
                 <IconSelectConsta
-                  selectedIcon={tab.labelIconLeft}
+                  selectedIcon={tab.leftIcon}
                   disabled={!!tab.disabledIcon}
                   label="icon"
                   onChangeIcon={value => {
                     onTabIconEditLeft(value, index)
+                  }}
+                />
+                <IconSelectConsta
+                  selectedIcon={tab.rightIcon}
+                  disabled={!!tab.disabledIcon}
+                  label="icon"
+                  onChangeIcon={value => {
+                    onTabIconEditRight(value, index)
                   }}
                 />
               </div>

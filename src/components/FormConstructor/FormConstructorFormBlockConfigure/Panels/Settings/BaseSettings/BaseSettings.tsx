@@ -40,6 +40,7 @@ export const BaseSettings = () => {
     onChangePaddingRight,
     onChangePaddingTop,
   } = usePaddingHandlers()
+
   const {
     marginProps,
     onChangemarginBottom,
@@ -47,6 +48,7 @@ export const BaseSettings = () => {
     onChangemarginRight,
     onChangemarginTop,
   } = useMarginHandlers()
+
   return (
     <>
       <div className={style.baseContainer}>

@@ -8,7 +8,7 @@ import { Text } from '@consta/uikit/Text'
 import { TextField } from '@consta/uikit/TextField'
 
 import { LayoutPalette } from '../../../../../ConstaPalette'
-import type { textDecorationType, TextElement, TextElementProps } from '../../../../coreTypes'
+import type { TextDecorationType, TextElement, TextProps } from '../../../../coreTypes'
 
 import { useItemsHandlers } from './ItemsService'
 import {
@@ -24,13 +24,15 @@ import {
 import styles from './styles.module.css'
 
 type TextSettingsType = {
-  selectedProps: TextElementProps
+  selectedProps: TextProps
   selectedView: TextElement
 }
+
 type colorSelectorType = 'view' | 'styleColor'
 const colorSelectors: colorSelectorType[] = ['view', 'styleColor']
+
 export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedView }) => {
-  const [refactorValue, setRefactorValue] = useState<textDecorationType[] | null>([])
+  const [refactorValue, setRefactorValue] = useState<TextDecorationType[] | null>([])
   const [isOpen, setOpen] = useState<boolean>(false)
   const [colorSelector, setColorSelector] = useState<colorSelectorType>('view')
   const {
@@ -43,7 +45,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedView
     onChangeView,
   } = useItemsHandlers(selectedProps, selectedView)
 
-  const onRefactorValueLabelEdit = (value: textDecorationType[] | null) => {
+  const onRefactorValueLabelEdit = (value: TextDecorationType[] | null) => {
     setRefactorValue(value)
     if (value) {
       onChangeItems(value)
@@ -55,6 +57,9 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedView
   const onChangeColorSelector = (value: colorSelectorType) => {
     setColorSelector(value)
   }
+
+  const alignItemValue = textAlign.find(elem => elem.name === itemsProps.align)
+
   return (
     <div className={styles.textSettings}>
       <TextField
@@ -82,7 +87,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedView
             Выравнивание
           </Text>
           <ChoiceGroup
-            value={itemsProps.align}
+            value={alignItemValue}
             items={textAlign}
             getItemLabel={item => item.name}
             size="xs"
@@ -90,7 +95,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedView
             onlyIcon={true}
             name="ChoiceGroupExample"
             onChange={value => {
-              onChangeField(value, 'align')
+              onChangeField(value.name, 'align')
             }}
           />
         </div>
@@ -126,7 +131,7 @@ export const TextSettings: FC<TextSettingsType> = ({ selectedProps, selectedView
           onChange={onChangeView}
         />
       ) : (
-        <LayoutPalette color={selectedProps.style?.color} size="xs" onChangeColor={onChangeColor} />
+        <LayoutPalette color={selectedProps.styles.color} size="xs" onChangeColor={onChangeColor} />
       )}
       <Collapse
         size="xs"

@@ -6,13 +6,12 @@ import type {
 import type {
   TextFieldPropSize,
   TextFieldPropStatus,
-  TextFieldPropsTextareaType,
   TextFieldPropView,
 } from '@consta/uikit/TextField'
 
+import type { InstanceProps } from './instanceProps'
 import type { PropForm } from './selectTypes'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -20,7 +19,7 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type DatePickerProps = {
+type UiLibProps = {
   type?: DatePickerPropType
   form?: PropForm
   status?: TextFieldPropStatus
@@ -39,8 +38,9 @@ export type DatePickerProps = {
   dropdownForm?: DatePickerPropDropdownForm
   events: Date[]
   value?: Date
-} & BaseProps &
-  TextFieldPropsTextareaType<string>
+}
+
+export type DatePickerProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandDatePickerProps = BrandProps<DatePickerProps, 'DatePicker'>
 

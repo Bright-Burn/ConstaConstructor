@@ -23,3 +23,4 @@ export {
   getSiblingsCount,
   sameInstanceElementsIdsSelector,
 } from './viewSelectors'
+export { draggableElementSelector } from './draggableElementSelector'

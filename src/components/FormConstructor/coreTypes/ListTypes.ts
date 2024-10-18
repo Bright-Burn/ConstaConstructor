@@ -1,7 +1,7 @@
 import type { ListPropForm, ListPropInnerOffset, ListPropSize } from '@consta/uikit/ListCanary'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -15,14 +15,19 @@ export type ItemList = {
   disabled: boolean
 }
 
-export type ListProps = {
+type UiLibProps = {
   items: ItemList[]
   value?: ItemList | null
   size?: ListPropSize
   withListBox?: boolean
   innerOffset?: ListPropInnerOffset
   form?: ListPropForm
-} & BaseProps
+  shadow?: boolean
+  border?: boolean
+  disabled?: boolean
+}
+
+export type ListProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type BrandListProps = BrandProps<ListProps, 'List'>
 

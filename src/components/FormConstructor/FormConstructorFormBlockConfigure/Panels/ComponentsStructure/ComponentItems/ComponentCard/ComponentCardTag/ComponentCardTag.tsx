@@ -17,10 +17,13 @@ export const ComponentCardTag: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          size: 'm',
-          label: 'Рисунок',
-          mode: 'link',
-          checked: false,
+          uiLibProps: {
+            size: 'm',
+            label: 'Рисунок',
+            mode: 'link',
+            checked: false,
+          },
+          styles: {},
           className: '',
           baseProps: {},
         },

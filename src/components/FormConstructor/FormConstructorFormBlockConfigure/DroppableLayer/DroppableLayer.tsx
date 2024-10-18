@@ -6,6 +6,7 @@ import type { AddNewElementPayload } from '../../store'
 import {
   addBaseComponent,
   addNewView,
+  draggableElementSelector,
   getElementsOnLayer,
   setDraggableElement,
   updateOrders,
@@ -22,7 +23,7 @@ import styles from './styles.module.css'
 /// DroppableLayer - компонент в кторый можно что то перенести
 export const DroppableLayer: FC<IDroppableLayer> = ({ parentElementId, outerParentId }) => {
   /// Id уровня (для самой формы id любой, для каждого layout элемента - id layout элемента)
-  const { draggableElement } = useAppSelector(state => state.formConstructor)
+  const draggableElement = useAppSelector(draggableElementSelector)
 
   const elementsOnLayer = useAppSelector(getElementsOnLayer(parentElementId))
   //TODO Удалить как во все старые макеты добавится свойство order/

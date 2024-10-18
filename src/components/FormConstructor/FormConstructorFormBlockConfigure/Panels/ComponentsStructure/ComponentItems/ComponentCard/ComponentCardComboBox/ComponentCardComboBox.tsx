@@ -34,16 +34,18 @@ export const ComponentCardComboBox: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          size: 'm',
-          placeholder: 'Выберите из списка',
-          caption: 'Подпись',
-          label: 'Заголовок',
-          view: 'default',
-          groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
+          uiLibProps: {
+            size: 'm',
+            placeholder: 'Выберите из списка',
+            caption: 'Подпись',
+            label: 'Заголовок',
+            view: 'default',
+            groups: ['Первая группа', 'Вторая группа', 'Третья группа'],
+            items,
+          },
           className: '',
           baseProps: {},
-          items,
-          style: {
+          styles: {
             maxWidth: '200px',
             minWidth: '200px',
           },
