@@ -61,4 +61,5 @@ export {
   getViewInfoLabelByIdSelector,
   getViewInfosByIds,
   sameInstanceElementsIdsSelector,
+  draggableElementSelector,
 } from './selectors'
