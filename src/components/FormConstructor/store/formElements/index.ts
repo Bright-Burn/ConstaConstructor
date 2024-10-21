@@ -41,6 +41,7 @@ export {
 } from './adapters'
 export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
 export {
+  draggableElementSelector,
   elementToCopyIdSelector,
   formInstancePropsSelector,
   formInstanceSelector,
@@ -61,5 +62,4 @@ export {
   getViewInfoLabelByIdSelector,
   getViewInfosByIds,
   sameInstanceElementsIdsSelector,
-  draggableElementSelector,
 } from './selectors'

@@ -1,3 +1,4 @@
+export { draggableElementSelector } from './draggableElementSelector'
 export {
   formInstancePropsSelector,
   formInstanceSelector,
@@ -23,4 +24,3 @@ export {
   getSiblingsCount,
   sameInstanceElementsIdsSelector,
 } from './viewSelectors'
-export { draggableElementSelector } from './draggableElementSelector'

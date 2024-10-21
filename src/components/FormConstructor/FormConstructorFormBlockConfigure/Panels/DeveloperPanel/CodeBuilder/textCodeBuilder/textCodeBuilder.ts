@@ -22,7 +22,7 @@ export const textCodeBuilder: TextStylesBuilder = (componentName, props) => {
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
     jsxCode:
-      `<Text ${buildConstaPropsCommon(uiLibProps)}/>\n${props.uiLibProps.content}\n` + '</Text>',
+      `<Text ${buildConstaPropsCommon(uiLibProps)}>${props.uiLibProps.content}\n` + '</Text>',
   }
 
   return builtCode
