@@ -16,6 +16,8 @@ import {
   togglePanels,
   useAppDispatch,
   useAppSelector,
+  useVirtualization,
+  virtualizationSelector,
 } from '../../store'
 
 import css from './styles.module.css'
@@ -27,6 +29,7 @@ interface Props {
 export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch()
   const selectedView = useAppSelector(getSelectedView)
+  const virtualization = useAppSelector(virtualizationSelector)
 
   useEffect(() => {
     const loadedData = document.getElementById('loaded_data')
@@ -155,6 +158,22 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [selectedView])
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const { code, ctrlKey, shiftKey, altKey } = e
+      e.preventDefault()
+      if (code === 'KeyO' && ctrlKey && shiftKey && altKey) {
+        dispatch(useVirtualization(!virtualization))
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [virtualization])
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {

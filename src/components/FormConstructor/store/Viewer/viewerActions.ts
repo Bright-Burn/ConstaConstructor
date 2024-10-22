@@ -37,5 +37,6 @@ export const toggleSettingsPanelState = () => (dispatch: AppDispatch) => {
 }
 
 export const useVirtualization = (useVirtualization: boolean) => (dispatch: AppDispatch) => {
+  alert(`Virtualization ${useVirtualization ? 'On' : 'Off'}`)
   dispatch(setUseVirtualization(useVirtualization))
 }

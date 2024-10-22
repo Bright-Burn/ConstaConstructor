@@ -9,7 +9,7 @@ const initialState: ViewerSliceState = {
   isViewMode: false,
   componentsStructurePanelState: true,
   rightPanelState: true,
-  useVirtualization: true,
+  useVirtualization: false,
   rightPanelType: RightPanelsSwitch.Settings,
 }
 

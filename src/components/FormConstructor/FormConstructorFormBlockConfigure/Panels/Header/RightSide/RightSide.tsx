@@ -6,14 +6,7 @@ import { FileField } from '@consta/uikit/FileField'
 import { Switch } from '@consta/uikit/Switch'
 import { Text } from '@consta/uikit/Text'
 
-import {
-  checkIsGridVisible,
-  toggleGrid,
-  useAppDispatch,
-  useAppSelector,
-  useVirtualization,
-  virtualizationSelector,
-} from '../../../../store'
+import { checkIsGridVisible, toggleGrid, useAppDispatch, useAppSelector } from '../../../../store'
 import { localStorageObserver, useTheme } from '../../../../utils'
 import { useProject } from '../headerServices'
 
@@ -23,7 +16,6 @@ export const RightSide = () => {
   const [isExportModalOpen, setIsExportModalOpen] = useState<boolean>(false)
   const { onDownloadProject } = useProject()
   const theme = useTheme()
-  const virtualization = useAppSelector(virtualizationSelector)
 
   const toggleTheme = () => {
     localStorageObserver.setItem(
@@ -42,18 +34,8 @@ export const RightSide = () => {
     setIsExportModalOpen(!isExportModalOpen)
   }
 
-  const onClickUseVirtualization = () => {
-    dispatch(useVirtualization(!virtualization))
-  }
-
   return (
     <div className="container-row">
-      <Switch
-        label="Virtualization"
-        checked={virtualization}
-        size="xs"
-        onChange={onClickUseVirtualization}
-      />
       <Button
         onlyIcon={true}
         iconLeft={theme === 'dark' ? IconMoon : IconSun}
