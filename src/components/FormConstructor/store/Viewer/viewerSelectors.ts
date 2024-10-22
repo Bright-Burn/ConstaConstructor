@@ -9,3 +9,4 @@ export const getRightPanelType = (state: RootState) => getViewer(state).rightPan
 export const getRightPanelState = (state: RootState) => getViewer(state).rightPanelState
 export const checkIsGridVisible = (state: RootState) => getViewer(state).isGridVisible
 export const checkViewMode = (state: RootState) => getViewer(state).isViewMode
+export const virtualizationSelector = (state: RootState) => getViewer(state).useVirtualization

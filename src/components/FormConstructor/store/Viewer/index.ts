@@ -7,6 +7,7 @@ export {
   toggleGrid,
   togglePanels,
   toggleSettingsPanelState,
+  useVirtualization,
 } from './viewerActions'
 export {
   checkIsGridVisible,
@@ -14,5 +15,6 @@ export {
   getComponentsStructurePanelState,
   getRightPanelState,
   getRightPanelType,
+  virtualizationSelector,
 } from './viewerSelectors'
 export { ViewerSlice } from './viewerSlice'

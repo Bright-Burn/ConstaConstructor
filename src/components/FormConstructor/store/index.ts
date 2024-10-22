@@ -77,4 +77,6 @@ export {
   toggleGrid,
   togglePanels,
   toggleSettingsPanelState,
+  useVirtualization,
+  virtualizationSelector,
 } from './Viewer'

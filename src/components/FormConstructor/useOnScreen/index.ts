@@ -1,1 +1,1 @@
-export { useOnScreen } from './useOnScreen'
+export { OnScreenLayer } from './OnScreenLayer'

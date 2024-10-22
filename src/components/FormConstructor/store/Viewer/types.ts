@@ -5,7 +5,7 @@ export type ViewerSliceState = {
   isViewMode: boolean
   componentsStructurePanelState: boolean
   rightPanelState: boolean
-
+  useVirtualization: boolean
   rightPanelType: RightPanelType
 }
 
