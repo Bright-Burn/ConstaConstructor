@@ -9,7 +9,7 @@ const initialState: ViewerSliceState = {
   isViewMode: false,
   componentsStructurePanelState: true,
   rightPanelState: true,
-
+  useVirtualization: false,
   rightPanelType: RightPanelsSwitch.Settings,
 }
 
@@ -17,6 +17,9 @@ export const ViewerSlice = createSlice({
   name: 'Viewer',
   initialState,
   reducers: {
+    setUseVirtualization: (state, action: PayloadAction<boolean>) => {
+      state.useVirtualization = action.payload
+    },
     showGrid: (state, action: PayloadAction<boolean | undefined>) => {
       state.isGridVisible = action.payload !== undefined ? action.payload : !state.isGridVisible
     },

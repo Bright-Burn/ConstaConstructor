@@ -5,6 +5,7 @@ import { ViewerSlice } from './viewerSlice'
 
 const {
   toggleComponentsStructurePanel: toggleComponentsStructurePanelAction,
+  setUseVirtualization,
   togglePanelsByHotkey,
   toggleSettingsPanelState: toggleSettingsPanelStateAction,
   showGrid,
@@ -33,4 +34,9 @@ export const toggleComponentsStructurePanel = () => (dispatch: AppDispatch) => {
 
 export const toggleSettingsPanelState = () => (dispatch: AppDispatch) => {
   dispatch(toggleSettingsPanelStateAction())
+}
+
+export const useVirtualization = (useVirtualization: boolean) => (dispatch: AppDispatch) => {
+  alert(`Virtualization ${useVirtualization ? 'On' : 'Off'}`)
+  dispatch(setUseVirtualization(useVirtualization))
 }

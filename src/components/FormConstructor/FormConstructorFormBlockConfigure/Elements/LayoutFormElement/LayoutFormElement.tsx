@@ -1,9 +1,11 @@
 import type { FC } from 'react'
+import { useRef } from 'react'
 import { Layout } from '@consta/uikit/Layout'
 
 import type { LayoutElementStyles } from '../../../coreTypes'
 import { ElementTypes, FormGroupsDictTypes } from '../../../coreTypes'
 import { formInstancePropsSelector, useAppSelector } from '../../../store'
+import { OnScreenLayer } from '../../../useOnScreen'
 import { DroppableLayer } from '../../DroppableLayer'
 import { SelectableLayer } from '../../SelectableLayer'
 
@@ -11,16 +13,20 @@ import type { ILayoutFormElement } from './types'
 
 export const LayoutFormElement: FC<ILayoutFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
+  const ref = useRef<HTMLDivElement>(null)
 
   const style = getStyles(props?.styles)
+
   return (
-    <Layout className={props?.className} {...props?.uiLibProps} style={style}>
-      <SelectableLayer
-        parentElementId={element.id}
-        elementType={FormGroupsDictTypes.Layout}
-        elementTypeUsage={ElementTypes.FormGroups}>
-        <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />
-      </SelectableLayer>
+    <Layout ref={ref} className={props?.className} {...props?.uiLibProps} style={style}>
+      <OnScreenLayer reference={ref}>
+        <SelectableLayer
+          parentElementId={element.id}
+          elementType={FormGroupsDictTypes.Layout}
+          elementTypeUsage={ElementTypes.FormGroups}>
+          <DroppableLayer parentElementId={element.id} outerParentId={element.parentId} />
+        </SelectableLayer>
+      </OnScreenLayer>
     </Layout>
   )
 }

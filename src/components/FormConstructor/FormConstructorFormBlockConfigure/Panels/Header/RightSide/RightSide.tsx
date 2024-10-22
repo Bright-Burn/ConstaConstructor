@@ -33,6 +33,7 @@ export const RightSide = () => {
   const onToggleExportModal = () => {
     setIsExportModalOpen(!isExportModalOpen)
   }
+
   return (
     <div className="container-row">
       <Button
