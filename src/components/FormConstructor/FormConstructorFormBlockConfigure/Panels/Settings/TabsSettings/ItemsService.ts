@@ -3,18 +3,15 @@ import type { TabsPropLinePosition, TabsPropSize, TabsPropView } from '@consta/u
 import type {
   BrandTabsElementProps,
   IselectedView,
-  tabItemType,
+  TabItemType,
   TabsElement,
-  TabsElementProps,
+  TabsProps,
 } from '../../../../coreTypes'
 import { setInstanceProps, useAppDispatch } from '../../../../store'
 
 import type { FitMode } from './types'
 
-export const useItemsHandlers = (
-  selectedViewProps: TabsElementProps,
-  selectedView: TabsElement,
-) => {
+export const useItemsHandlers = (selectedViewProps: TabsProps, selectedView: TabsElement) => {
   const dispatch = useAppDispatch()
   const onDispatch = (selectedView: IselectedView, newProps: BrandTabsElementProps) => {
     dispatch(setInstanceProps(selectedView.elementId, newProps))
@@ -23,10 +20,17 @@ export const useItemsHandlers = (
   const onChangeItemsCount = (value: string | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            items: [...selectedViewProps.uiLibProps.items],
+          },
+        },
         type: 'Tabs',
       }
-      let itemsProps = [...newProps.props.items]
+
+      let itemsProps = newProps.props.uiLibProps.items
       const currentLength = itemsProps.length
       if (Number(value) > currentLength) {
         for (let i = currentLength; i < Number(value); i++) {
@@ -37,85 +41,113 @@ export const useItemsHandlers = (
           itemsProps.pop()
         }
       }
-      newProps.props.items = itemsProps
+      newProps.props.uiLibProps.items = itemsProps
       onDispatch(selectedView, newProps)
     }
   }
-  const onChangeActiveItem = (value: tabItemType | null) => {
+  const onChangeActiveItem = (value: TabItemType | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, value },
+        },
         type: 'Tabs',
       }
-      newProps.props.value = value
       onDispatch(selectedView, newProps)
     }
   }
-  const onChangeItems = (items: tabItemType[]) => {
+  const onChangeItems = (items: TabItemType[]) => {
     const newProps: BrandTabsElementProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, items: [...items], value: items[0] },
+      },
       type: 'Tabs',
     }
-    newProps.props.items = [...items]
-    newProps.props.value = items[0]
     onDispatch(selectedView, newProps)
   }
   const onChangeLinePosition = (value: TabsPropLinePosition | null) => {
     if (value) {
+      const newUiLibProps = { ...selectedViewProps.uiLibProps }
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: newUiLibProps,
+        },
         type: 'Tabs',
       }
-      newProps.props.linePosition = value
+      if ((typeof newUiLibProps.fitMode === 'string' && value === 'bottom') || value === 'top') {
+        newProps.props.uiLibProps.linePosition = value
+      } else if (value === 'left' || value === 'right') {
+        newProps.props.uiLibProps.linePosition = value
+      }
       onDispatch(selectedView, newProps)
     }
   }
-  const onChangeView = (value: TabsPropView | null) => {
-    if (value) {
-      const newProps: BrandTabsElementProps = {
-        props: { ...selectedViewProps },
-        type: 'Tabs',
-      }
-      newProps.props.view = value
-      onDispatch(selectedView, newProps)
-    }
-  }
+
   const onChangeSize = (value: TabsPropSize | null) => {
     if (value) {
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, size: value },
+        },
         type: 'Tabs',
       }
-      newProps.props.size = value
       onDispatch(selectedView, newProps)
     }
   }
   const onChangeFitMode = (value: FitMode | null) => {
     if (value) {
+      const newUiLibProps: TabsProps['uiLibProps'] = {
+        ...selectedViewProps.uiLibProps,
+        linePosition: undefined,
+      }
       const newProps: BrandTabsElementProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...newUiLibProps, fitMode: value },
+        },
         type: 'Tabs',
       }
-      newProps.props.fitMode = value
       onDispatch(selectedView, newProps)
     }
   }
 
-  const onChangeSwitch =
-    (propsName: keyof TabsElementProps) => (check: React.ChangeEvent<HTMLInputElement>) => {
-      const checked = check.target.checked
-      const newProps: BrandTabsElementProps = {
-        props: { ...selectedViewProps, [propsName]: checked },
-        type: 'Tabs',
-      }
-      if (propsName === 'view' && checked) {
-        onChangeView('bordered')
-      }
-      if (propsName === 'view' && !checked) {
-        onChangeView(null)
-      }
+  const onChangeView = (check: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = check.target.checked
+
+    const newProps: BrandTabsElementProps = {
+      props: {
+        ...selectedViewProps,
+        uiLibProps: {
+          ...selectedViewProps.uiLibProps,
+          view: checked ? 'bordered' : 'clear',
+        },
+      },
+      type: 'Tabs',
+    }
+    onDispatch(selectedView, newProps)
+  }
+
+  const onChangeWidth = (value: string | null) => {
+    const newProps: BrandTabsElementProps = {
+      props: { ...selectedViewProps },
+      type: 'Tabs',
+    }
+    newProps.props.styles = { ...newProps.props.styles }
+    if (value && value !== '0') {
+      newProps.props.styles.maxWidth = `${value}px`
+      newProps.props.styles.minWidth = `${value}px`
+      newProps.props.styles.filled = undefined
+      onDispatch(selectedView, newProps)
+    } else {
+      newProps.props.styles.maxWidth = undefined
+      newProps.props.styles.minWidth = undefined
       onDispatch(selectedView, newProps)
     }
+  }
 
   return {
     onChangeItemsCount,
@@ -125,14 +157,14 @@ export const useItemsHandlers = (
     onChangeView,
     onChangeSize,
     onChangeFitMode,
-    onChangeSwitch,
+    onChangeWidth,
     itemsProps: {
-      items: selectedViewProps.items,
-      activeItem: selectedViewProps.value,
-      linePosition: selectedViewProps.linePosition,
-      view: selectedViewProps.view,
-      size: selectedViewProps.size,
-      fitMode: selectedViewProps.fitMode,
+      items: selectedViewProps.uiLibProps.items,
+      activeItem: selectedViewProps.uiLibProps.value,
+      linePosition: selectedViewProps.uiLibProps.linePosition,
+      view: selectedViewProps.uiLibProps.view,
+      size: selectedViewProps.uiLibProps.size,
+      fitMode: selectedViewProps.uiLibProps.fitMode,
     },
   }
 }

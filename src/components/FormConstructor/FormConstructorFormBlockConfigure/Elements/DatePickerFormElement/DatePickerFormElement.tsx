@@ -11,15 +11,25 @@ import type { IDatePickerFormElement } from './types'
 export const DatePickerFormElement: FC<IDatePickerFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
+  const uiLibProps = props?.uiLibProps
+  const className = props?.className
+  const styles = props?.styles || {}
+
+  if (!uiLibProps) {
+    return null
+  }
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.DatePicker}>
       <DatePicker
-        {...props}
+        {...uiLibProps}
+        className={className}
+        style={styles}
         renderAdditionalControls={() =>
-          props?.withAdditionalControls && (
+          uiLibProps.withAdditionalControls && (
             <>
               <Button label="Кнопка" />
               <Button label="Кнопка" />

@@ -7,7 +7,6 @@ import {
   AvatarGroupFormElement,
   BadgeFormElement,
   BreadcrumbsFormElement,
-  ButtonActionModal,
   ButtonFormElement,
   CardFormElement,
   CheckboxFormElement,
@@ -53,7 +52,6 @@ export const FormGroupsDict: Record<FormGroupsTypes | FormElementTypes, FC<any>>
   BreadcrumbsFormElement,
   User: UserFormElement,
   Icon: IconFormElement,
-  ButtonModal: ButtonActionModal,
   Tag: TagFormElement,
   ChoiceGroup: ChoiceGroupFormElement,
 }

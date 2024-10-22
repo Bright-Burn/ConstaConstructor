@@ -15,13 +15,6 @@ export type IBaseComponent = {
   viewInfos: ViewInfo[]
 }
 
-export type BaseComponentSerializable = Pick<
-  IBaseComponent,
-  'id' | 'name' | 'description' | 'viewInfos' | 'instances'
-> & {
-  childrenElementList: (IFormElement | IGroupElement)[]
-}
-
 export interface IBaseComponentsItems {
   baseComponents: IBaseComponent[]
   draggableBaseComponent: IBaseComponent | null

@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import type { IconPropSize, IconPropView } from '@consta/icons/Icon'
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup'
 import { Select } from '@consta/uikit/Select'
@@ -36,10 +36,12 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedViewProps, selected
   const onChangeSize = (value: IconPropSize | null) => {
     if (value) {
       const newProps: BrandIconProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, size: value },
+        },
         type: 'Icon',
       }
-      newProps.props.size = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -47,12 +49,13 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedViewProps, selected
   const onChangeView = (value: IconPropView | null) => {
     if (value) {
       const newProps: BrandIconProps = {
-        props: { ...selectedViewProps },
-
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, view: value },
+          styles: {},
+        },
         type: 'Icon',
       }
-      delete newProps.props.style
-      newProps.props.view = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -60,10 +63,12 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedViewProps, selected
   const onChangeIcon = (value: IconNames | null) => {
     if (value) {
       const newProps: BrandIconProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, icons: value },
+        },
         type: 'Icon',
       }
-      newProps.props.icons = value
       onDispatch(selectedView, newProps)
     }
   }
@@ -74,10 +79,16 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedViewProps, selected
   const onChangeColor = (value: ConstaColor | null) => {
     if (value) {
       const newProps: BrandIconProps = {
-        props: { ...selectedViewProps },
+        props: {
+          ...selectedViewProps,
+          styles: { ...selectedViewProps.styles, color: value == 'Null' ? undefined : value },
+          uiLibProps: {
+            ...selectedViewProps.uiLibProps,
+            view: value == 'Null' ? selectedViewProps.uiLibProps.view : undefined,
+          },
+        },
         type: 'Icon',
       }
-      newProps.props.style = { ...newProps.props.style, color: value }
 
       onDispatch(selectedView, newProps)
     }
@@ -94,13 +105,17 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedViewProps, selected
           items={sizes}
           label="Размер"
           size="xs"
-          value={props.size}
+          value={props.uiLibProps.size}
           onChange={value => {
             onChangeSize(value)
           }}
         />
       </div>
-      <IconSelectConsta selectedIcon={props.icons} label="Icon" onChangeIcon={onChangeIcon} />
+      <IconSelectConsta
+        selectedIcon={props.uiLibProps.icons}
+        label="Icon"
+        onChangeIcon={onChangeIcon}
+      />
       <ChoiceGroup
         name="ColorSelector"
         size="xs"
@@ -116,13 +131,13 @@ export const IconSettings: FC<IconSettingsType> = ({ selectedViewProps, selected
           items={views}
           label="Вид"
           size="xs"
-          value={props.view}
+          value={props.uiLibProps.view}
           onChange={value => {
             onChangeView(value)
           }}
         />
       ) : (
-        <LayoutPalette color={props.style?.color} size="xs" onChangeColor={onChangeColor} />
+        <LayoutPalette color={props.styles.color} size="xs" onChangeColor={onChangeColor} />
       )}
     </div>
   )

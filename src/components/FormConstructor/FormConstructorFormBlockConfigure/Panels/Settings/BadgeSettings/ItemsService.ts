@@ -20,10 +20,13 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
 
   const onChangeField = (
     value: BadgePropSize | BadgePropView | BadgePropStatus | BadgePropForm | null,
-    field: keyof BadgeProps,
+    field: keyof BadgeProps['uiLibProps'],
   ) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedViewProps, [field]: value },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, [field]: value },
+      },
       type: 'Badge',
     }
 
@@ -31,9 +34,13 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
   }
 
   const onChangeSwitch =
-    (propsName: keyof BadgeProps) => (checked: React.ChangeEvent<HTMLInputElement>) => {
+    (propsName: keyof BadgeProps['uiLibProps']) =>
+    (checked: React.ChangeEvent<HTMLInputElement>) => {
       const newProps: BrandBadgeProps = {
-        props: { ...selectedViewProps, [propsName]: checked.target.checked },
+        props: {
+          ...selectedViewProps,
+          uiLibProps: { ...selectedViewProps.uiLibProps, [propsName]: checked.target.checked },
+        },
         type: 'Badge',
       }
 
@@ -42,28 +49,34 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
 
   const onChangeIconLeft = (value: IconNames | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, iconLeft: value ? value : undefined },
+      },
       type: 'Badge',
     }
-    newProps.props.iconLeft = value ? value : undefined
 
     onDispatch(selectedView, newProps)
   }
   const onChangeIconRight = (value: IconNames | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, iconRight: value ? value : undefined },
+      },
       type: 'Badge',
     }
-    newProps.props.iconRight = value ? value : undefined
     onDispatch(selectedView, newProps)
   }
 
   const handleOnChangeLabel = (value: string | null) => {
     const newProps: BrandBadgeProps = {
-      props: { ...selectedViewProps },
+      props: {
+        ...selectedViewProps,
+        uiLibProps: { ...selectedViewProps.uiLibProps, label: value || undefined },
+      },
       type: 'Badge',
     }
-    newProps.props.label = value || undefined
 
     onDispatch(selectedView, newProps)
   }
@@ -79,13 +92,13 @@ export const useItemsHandlers = (selectedViewProps: BadgeProps, selectedView: Ba
     onChangeField,
     onChangeIconRight,
     itemsProps: {
-      size: selectedViewProps.size,
-      view: selectedViewProps.view,
-      form: selectedViewProps.form,
-      label: selectedViewProps.label,
-      minified: selectedViewProps.minified,
-      status: selectedViewProps.status,
-      iconLeft: selectedViewProps.iconLeft,
+      size: selectedViewProps.uiLibProps.size,
+      view: selectedViewProps.uiLibProps.view,
+      form: selectedViewProps.uiLibProps.form,
+      label: selectedViewProps.uiLibProps.label,
+      minified: selectedViewProps.uiLibProps.minified,
+      status: selectedViewProps.uiLibProps.status,
+      iconLeft: selectedViewProps.uiLibProps.iconLeft,
     },
   }
 }

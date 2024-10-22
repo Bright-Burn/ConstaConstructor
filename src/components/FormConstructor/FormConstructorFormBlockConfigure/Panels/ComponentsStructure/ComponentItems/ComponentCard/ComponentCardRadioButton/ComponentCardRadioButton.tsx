@@ -17,13 +17,16 @@ export const ComponentCardRadioButton: FC<IComponetCardElement> = ({ name }) => 
       order: 1,
       props: {
         props: {
-          checked: false,
-          size: 'm',
-          view: 'primary',
-          align: 'center',
-          label: 'Это радиокнопка',
+          uiLibProps: {
+            checked: false,
+            size: 'm',
+            view: 'primary',
+            align: 'center',
+            label: 'Это радиокнопка',
+          },
           className: '',
           baseProps: {},
+          styles: {},
         },
         type: 'RadioButton',
       },

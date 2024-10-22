@@ -1,7 +1,7 @@
-export { saveBaseComponent } from './baseComponentSaveLoad'
+export { saveBaseComponentToFile } from './baseComponentSaveLoad'
 export {
-  loadProjectFromFile,
   loadProjectFromStorage,
+  loadProjectFromString,
   saveProjectToFile,
   saveProjectToHTML,
 } from './projectSaveLoadActions'

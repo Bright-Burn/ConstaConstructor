@@ -1,5 +1,5 @@
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -7,11 +7,17 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type EChartProps = {
+type UiLibProps = {
   options: string
-  width: number
-  height: number
-} & BaseProps
+}
+
+type Styles = {
+  width?: string
+  height?: string
+}
+
+export type EChartProps = InstanceProps<UiLibProps, Styles>
+
 export type BrandEChartProps = BrandProps<EChartProps, 'EChart'>
 
 export type EChartFormElement = ConcreteSelectedView<typeof FormElementDictTypes.EChart>

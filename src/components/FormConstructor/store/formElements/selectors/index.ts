@@ -1,3 +1,4 @@
+export { draggableElementSelector } from './draggableElementSelector'
 export {
   formInstancePropsSelector,
   formInstanceSelector,

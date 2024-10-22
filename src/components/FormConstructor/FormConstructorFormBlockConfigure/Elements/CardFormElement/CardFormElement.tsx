@@ -13,19 +13,27 @@ import styles from './styles.module.css'
 export const CardFormElement: FC<ICardFormElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  return props ? (
+  const uiLibProps = props?.uiLibProps
+  const className = props?.className
+  const propsStyles = props?.styles
+
+  if (!uiLibProps) {
+    return null
+  }
+
+  return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormGroupsDictTypes.Card}>
       <Card
-        {...props.constaProps}
-        className={`${props.className} ${styles.body}`}
-        style={{ ...props.styles, display: 'flex' }}>
+        {...uiLibProps}
+        className={`${className} ${styles.body}`}
+        style={{ ...(propsStyles || {}), display: 'flex' }}>
         <div className={styles.cardContent}>
           <DroppableLayer parentElementId={element.id} />
         </div>
       </Card>
     </SelectableLayer>
-  ) : null
+  )
 }

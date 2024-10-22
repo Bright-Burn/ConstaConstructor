@@ -1,5 +1,5 @@
 import type { LayoutElementStyles } from '../../../../../coreTypes'
-import type { ConstaPropsStyles } from '../buildConstaPropsCommon'
+import type { UiLibProps } from '../buildConstaPropsCommon'
 import { buildConstaPropsCommon } from '../buildConstaPropsCommon'
 import type { CssCodeStyles } from '../buildCssCodeCommon'
 import { buildCssCodeCommon } from '../buildCssCodeCommon'
@@ -11,7 +11,7 @@ import type { GeneratedCode } from '../types'
 import type { LayoutStylesBuilder } from './types'
 
 /**
- * Строит код выбранного компонента
+ * Строит код выбранного компонента - Layout
  * @param componentName Наименование компонента
  * @param props Пропсы(настройки) выбранного компонента
  * @returns Сгенерированный код компонента
@@ -20,16 +20,14 @@ export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
   let propsStyles: CssCodeStyles = {}
 
   // Преобразуем к типу аргумента функции билдера
-  if (props.styles) {
-    propsStyles = layoutCssToCodeStyles(props.styles)
-  }
+  propsStyles = layoutCssToCodeStyles(props.styles)
 
   // Преобразуем к типу аргумента функции билдера
-  const constaProps: ConstaPropsStyles = constaPropsAdapterCommon(props.constaProps)
+  const uiLibProps: UiLibProps = constaPropsAdapterCommon(props.uiLibProps)
 
   const builtCode: GeneratedCode = {
     cssCode: buildCssCodeCommon(componentName, propsStyles, props.className || ''),
-    jsxCode: `<Layout \n${buildConstaPropsCommon(constaProps)}/>`,
+    jsxCode: `<Layout \n${buildConstaPropsCommon(uiLibProps)}/>`,
   }
 
   return builtCode
@@ -37,8 +35,8 @@ export const buildLayoutCode: LayoutStylesBuilder = (componentName, props) => {
 
 /**
  * Собирает из пропсов Layout объект со свойствами, имеющиемеся в css - подготовительный этап для сборки в валидный css
- * @param styles Объект стилей Layout
  * @returns
+ * @param styles Объект стилей Layout
  */
 const layoutCssToCodeStyles = (styles: LayoutElementStyles): CssCodeStyles => {
   const propsStyles: CssCodeStyles = {}

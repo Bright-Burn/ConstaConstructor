@@ -28,12 +28,15 @@ export const ComponentCardChoiceGroup: FC<IComponetCardElement> = ({ name }) => 
       order: 1,
       props: {
         props: {
-          size: 'm',
-          name: 'ChoiceGroupExample',
-          items,
-          width: 'default',
+          uiLibProps: {
+            size: 'm',
+            name: 'ChoiceGroupExample',
+            items,
+            width: 'default',
+          },
           className: '',
           baseProps: {},
+          styles: {},
         },
         type: 'ChoiceGroup',
       },

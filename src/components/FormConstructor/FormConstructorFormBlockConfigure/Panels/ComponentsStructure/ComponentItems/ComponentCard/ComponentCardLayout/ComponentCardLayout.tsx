@@ -18,7 +18,7 @@ export const ComponentCardLayout: FC<IComponetCardElement> = ({ name, isOuter })
       order: 1,
       props: {
         props: {
-          constaProps: {
+          uiLibProps: {
             flex: 1,
             direction: 'row',
             horizontalAlign: 'left',

@@ -1,7 +1,7 @@
 import type { UserPropSize, UserPropStatus, UserPropView, UserPropWidth } from '@consta/uikit/User'
 
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -9,7 +9,11 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type UserProps = {
+type Styles = {
+  filled?: boolean
+}
+
+type UiLibProps = {
   view?: UserPropView
   width?: UserPropWidth
   size?: UserPropSize
@@ -20,8 +24,9 @@ export type UserProps = {
   withArrow?: boolean
   onlyAvatar?: boolean
   checked?: boolean
-  filled?: boolean
-} & BaseProps
+}
+
+export type UserProps = InstanceProps<UiLibProps, Styles>
 
 export type BrandUserProps = BrandProps<UserProps, 'User'>
 

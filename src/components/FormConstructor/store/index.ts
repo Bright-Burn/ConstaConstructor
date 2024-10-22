@@ -1,7 +1,7 @@
-export type { BaseComponentSerializable, IBaseComponent } from './baseComponentsItems'
+export type { IBaseComponent } from './baseComponentsItems'
 export {
-  addBaseElement,
   getDraggedBaseComponent,
+  loadBaseComponentFromString,
   setDraggableBaseComponent,
   useBaseComponentsDispatch,
   useBaseComponentsSelector,
@@ -24,6 +24,7 @@ export {
   copyFormElementLink,
   deletePage,
   deleteView,
+  draggableElementSelector,
   elementToCopyIdSelector,
   formInstancePropsSelector,
   formInstanceSelector,
@@ -43,11 +44,11 @@ export {
   getViewInfoDict,
   getViewInfoLabelByIdSelector,
   insertNewElements,
-  loadProjectFromFile,
   loadProjectFromStorage,
+  loadProjectFromString,
   reorderFormElement,
   sameInstanceElementsIdsSelector,
-  saveBaseComponent,
+  saveBaseComponentToFile,
   saveProjectToFile,
   saveProjectToHTML,
   setDraggableElement,

@@ -17,12 +17,13 @@ export const DeveloperPanel: FC = () => {
   const selectedViewProps = useAppSelector(getSelectedViewPropsSelector)
   const viewLabel = useAppSelector(getViewInfoLabelByIdSelector(selectedView?.elementId || ''))
 
-  const code = selectedViewProps ? getCode(selectedViewProps, viewLabel) : null
+  const code = selectedViewProps ? getCode(selectedViewProps, viewLabel || '') : null
 
   return code ? (
     <div className={`container-column p-r-xs flex-grow-1 p-t-xs ${styles.code_pane}`}>
-      <CodeText text={code.cssCode} label="Css стили" />
-      <CodeText text={code.jsxCode} label="Стили дизайн системы" />
+      <CodeText text={code.cssCode} label="Css" />
+      <CodeText text={code.jsxCode} label="Дизайн система" />
+      {/* <ClassNameCode text={className} /> */}
     </div>
   ) : null
 }

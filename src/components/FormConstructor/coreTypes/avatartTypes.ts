@@ -1,5 +1,5 @@
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -7,13 +7,16 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type AvatarProps = {
+type UiLibProps = {
   name?: string
   size?: 's' | 'm' | 'xs' | 'l'
   form?: 'round' | 'brick' | 'default'
   monochrome?: boolean
   url?: string
-} & BaseProps
+}
+
+export type AvatarProps = InstanceProps<UiLibProps, Record<string, never>>
+
 export type BrandAvatarProps = BrandProps<AvatarProps, 'Avatar'>
 
 export type AvatarElement = ConcreteSelectedView<typeof FormElementDictTypes.Avatar>

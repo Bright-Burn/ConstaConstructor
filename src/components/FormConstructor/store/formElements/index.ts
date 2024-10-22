@@ -16,10 +16,10 @@ export {
   deletePage,
   deleteView,
   insertNewElements,
-  loadProjectFromFile,
   loadProjectFromStorage,
+  loadProjectFromString,
   reorderFormElement,
-  saveBaseComponent,
+  saveBaseComponentToFile,
   saveProjectToFile,
   saveProjectToHTML,
   setDraggableElement,
@@ -31,8 +31,17 @@ export {
   updateBaseComponentAction,
   updateOrders,
 } from './actions'
+export {
+  instanceAdapter,
+  selectInstanceAll,
+  selectViewAll,
+  selectViewInfoAll,
+  viewAdapter,
+  viewInfoAdapter,
+} from './adapters'
 export { formConstructorReducer, formConstructorSlice } from './formElementsSlice'
 export {
+  draggableElementSelector,
   elementToCopyIdSelector,
   formInstancePropsSelector,
   formInstanceSelector,

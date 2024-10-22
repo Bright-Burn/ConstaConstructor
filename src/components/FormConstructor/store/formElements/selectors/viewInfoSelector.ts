@@ -18,7 +18,7 @@ export const getViewInfoLabelByIdSelector = (viewId: string) => (state: RootStat
   if (view) {
     return getViewInfoLabelText(view, viewInfo || null)
   }
-  return ''
+  return null
 }
 
 export const getViewInfoDict = (state: RootState) => selectViewInfoEntities(state)

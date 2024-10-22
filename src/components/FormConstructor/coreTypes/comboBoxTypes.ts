@@ -5,9 +5,9 @@ import type {
   TextFieldPropView,
 } from '@consta/uikit/TextField'
 
+import type { InstanceProps } from './instanceProps'
 import type { PropForm } from './selectTypes'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -15,15 +15,15 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type comboboxItemType = {
+export type ComboboxItemType = {
   label: string
   id: number
   group?: string
 }
 
-export type ComboboxProps = {
-  items: comboboxItemType[]
-  value?: comboboxItemType[] | comboboxItemType | null
+type UiLibProps = {
+  items: ComboboxItemType[]
+  value?: ComboboxItemType[] | ComboboxItemType | null
   disabled?: boolean
   size?: TextFieldPropSize
   view?: TextFieldPropView
@@ -39,10 +39,15 @@ export type ComboboxProps = {
   groups: string[]
   groupsActive?: boolean
   dropdownForm?: DatePickerPropDropdownForm
+}
+type ComboboxPropsStyles = {
+  maxWidth?: string
+  minWidth?: string
   filled?: boolean
-  style?: ComboBoxStyles
-} & BaseProps
-export type ComboBoxStyles = { maxWidth: string; minWidth: string }
+}
+
+export type ComboboxProps = InstanceProps<UiLibProps, ComboboxPropsStyles>
+
 export type BrandComboboxProps = BrandProps<ComboboxProps, 'ComboBox'>
 
 export type ComboBoxElement = ConcreteSelectedView<typeof FormElementDictTypes.ComboBox>

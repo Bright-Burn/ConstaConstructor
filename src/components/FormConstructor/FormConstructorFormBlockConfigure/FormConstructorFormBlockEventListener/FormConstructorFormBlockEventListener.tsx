@@ -1,7 +1,6 @@
 import type { FC, ReactNode } from 'react'
 import { useEffect } from 'react'
 
-import { JsonHelper } from '../../../../helpers'
 import {
   clearSameInstanceIds,
   copyFormElementLink,
@@ -33,10 +32,8 @@ export const FormConstructorFormBlockEventListener: FC<Props> = ({ children }) =
     const loadedData = document.getElementById('loaded_data')
 
     if (loadedData) {
-      //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-      const parsedFile: any = JsonHelper.parse(loadedData.innerHTML)
       dispatch(onSetViewMode())
-      dispatch(loadProjectFromStorage(parsedFile.project))
+      dispatch(loadProjectFromStorage(loadedData.innerHTML))
     }
   }, [])
 

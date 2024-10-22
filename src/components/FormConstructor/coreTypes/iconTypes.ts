@@ -29,8 +29,8 @@ import {
   WeatherIcon,
   WellIcon,
 } from './icons'
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -40,12 +40,13 @@ import type {
 
 export type IconNames = string
 
-export type IconProps = {
+export type ConstaIconProps = {
   size?: IconPropSize
   view?: IconPropView
   icons: IconNames
-  style?: IconElementStyles
-} & BaseProps
+}
+
+export type IconProps = InstanceProps<ConstaIconProps, IconElementStyles>
 
 export type IFormElementIcon = OmitInstanceId<
   IFormElement & {
@@ -115,5 +116,5 @@ export const IconsGroup: Record<string, string[]> = {
 } as const
 
 export type IconElementStyles = {
-  color: ConstaColor | undefined
+  color?: ConstaColor
 }

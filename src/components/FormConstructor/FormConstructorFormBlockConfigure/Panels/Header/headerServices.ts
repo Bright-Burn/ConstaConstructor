@@ -1,7 +1,5 @@
-import { JsonHelper } from '../../../../../helpers'
-import type { FormConstructorToSave } from '../../../projectSaveLoad'
 import {
-  loadProjectFromFile,
+  loadProjectFromString,
   saveProjectToFile,
   saveProjectToHTML,
   useAppDispatch,
@@ -16,20 +14,17 @@ export const useProject = () => {
     if (target.files) {
       const file = target.files[0]
       readFile(file).then(json => {
-        //TODO надо сделать проверку рантайм, что файл соответствует нашему контракту!
-        const parsedFile = JsonHelper.parse(json)
-        const project = parsedFile.project as FormConstructorToSave
-        dispatch(loadProjectFromFile(project))
+        dispatch(loadProjectFromString(json))
       })
     }
   }
 
   const onSaveProject = (projectName: string) => {
-    dispatch(saveProjectToFile({ name: projectName, description: '' }))
+    dispatch(saveProjectToFile({ name: projectName }))
   }
 
   const saveToHtml = (projectName: string) => {
-    dispatch(saveProjectToHTML({ name: projectName, description: '' }))
+    dispatch(saveProjectToHTML({ name: projectName }))
   }
   return { onDownloadProject, onSaveProject, saveToHtml }
 }

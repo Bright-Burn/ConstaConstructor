@@ -18,7 +18,7 @@ export const ComponentCardInnerCard: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          constaProps: {
+          uiLibProps: {
             verticalSpace: 'm',
             horizontalSpace: 'm',
             status: undefined,

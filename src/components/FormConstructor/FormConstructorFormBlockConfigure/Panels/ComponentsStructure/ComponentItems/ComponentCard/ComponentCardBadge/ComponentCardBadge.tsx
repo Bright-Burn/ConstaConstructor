@@ -17,13 +17,16 @@ export const ComponentCardBadge: FC<IComponetCardElement> = ({ name }) => {
       order: 1,
       props: {
         props: {
-          label: 'Badge',
-          form: 'default',
-          size: 's',
-          status: 'success',
-          view: 'filled',
-          className: '',
+          uiLibProps: {
+            label: 'Badge',
+            form: 'default',
+            size: 's',
+            status: 'success',
+            view: 'filled',
+          },
           baseProps: {},
+          className: '',
+          styles: {},
         },
         type: 'Badge',
       },

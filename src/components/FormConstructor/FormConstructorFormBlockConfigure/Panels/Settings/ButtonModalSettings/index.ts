@@ -1,1 +1,0 @@
-export { ButtonModuleSettings } from './ButtonModalSettings'

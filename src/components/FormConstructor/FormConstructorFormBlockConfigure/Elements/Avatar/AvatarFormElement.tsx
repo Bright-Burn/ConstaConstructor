@@ -10,12 +10,19 @@ import type { IAvatarElement } from './types'
 export const AvatarFormElement: FC<IAvatarElement> = ({ element }) => {
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
+  const uiLibProps = props?.uiLibProps
+  const className = props?.className
+
+  if (!uiLibProps) {
+    return null
+  }
+
   return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.Avatar}>
-      <Avatar {...props} />
+      <Avatar className={className} {...uiLibProps} />
     </SelectableLayer>
   )
 }

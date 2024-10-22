@@ -29,11 +29,11 @@ export const useItemsHandlers = (
       props: { ...selectedViewProps },
       type: 'Layout',
     }
-    newProps.props.constaProps = { ...newProps.props.constaProps }
+    newProps.props.uiLibProps = { ...newProps.props.uiLibProps }
 
     const newValue = Number(value)
 
-    newProps.props.constaProps['flex'] = value != null ? newValue : 1
+    newProps.props.uiLibProps['flex'] = value != null ? newValue : 1
     onDispatch(selectedView, newProps)
   }
 
@@ -42,9 +42,9 @@ export const useItemsHandlers = (
       props: { ...selectedViewProps },
       type: 'Layout',
     }
-    newProps.props.constaProps = { ...newProps.props.constaProps }
+    newProps.props.uiLibProps = { ...newProps.props.uiLibProps }
 
-    newProps.props.constaProps.direction = value
+    newProps.props.uiLibProps.direction = value
 
     onDispatch(selectedView, newProps)
   }
@@ -63,9 +63,9 @@ export const useItemsHandlers = (
       props: { ...selectedViewProps },
       type: 'Layout',
     }
-    newProps.props.constaProps = { ...newProps.props.constaProps }
+    newProps.props.uiLibProps = { ...newProps.props.uiLibProps }
 
-    newProps.props.constaProps.verticalAlign = value
+    newProps.props.uiLibProps.verticalAlign = value
     onDispatch(selectedView, newProps)
   }
 
@@ -75,9 +75,9 @@ export const useItemsHandlers = (
       type: 'Layout',
     }
 
-    newProps.props.constaProps = { ...newProps.props.constaProps }
+    newProps.props.uiLibProps = { ...newProps.props.uiLibProps }
 
-    newProps.props.constaProps.horizontalAlign = value
+    newProps.props.uiLibProps.horizontalAlign = value
     onDispatch(selectedView, newProps)
   }
 
@@ -263,7 +263,7 @@ export const useItemsHandlers = (
     onChangeBorderRadius,
     onChangeRotate,
     itemsProps: {
-      constaProps: selectedViewProps.constaProps,
+      uiLibProps: selectedViewProps.uiLibProps,
       styles: selectedViewProps.styles,
       selectedViewProps,
     },

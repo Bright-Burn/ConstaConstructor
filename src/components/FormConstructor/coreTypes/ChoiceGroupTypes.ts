@@ -7,8 +7,8 @@ import type {
 } from '@consta/uikit/ChoiceGroup'
 
 import type { IconNames } from './iconTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -19,7 +19,7 @@ import type {
 type ChoiceGroupPropValue<ITEM, MULTIPLE extends boolean> =
   | (MULTIPLE extends true ? ITEM[] : ITEM)
   | null
-type ChoiceGroupProps<ITEM, MULTIPLE extends boolean = false> = {
+type ChoiceGroupPropsGeneric<ITEM, MULTIPLE extends boolean = false> = {
   items: ITEM[]
   view?: ChoiceGroupPropView
   size?: ChoiceGroupPropSize
@@ -31,11 +31,24 @@ type ChoiceGroupProps<ITEM, MULTIPLE extends boolean = false> = {
   onlyIcon?: boolean
   width: ChoiceGroupPropWidth
 }
-export type SingleChoiceGroupProps = ChoiceGroupProps<ChoiceGroupItem> & BaseProps
 
-export type MultipleChoiceGroupProps = ChoiceGroupProps<ChoiceGroupItem, true> & BaseProps
+export type ChoiceGroupItem = {
+  label: string
+  icon?: IconComponent
+  labelIcon?: IconNames
+  disabled?: boolean
+}
 
-export type OwnChoiceGroupProps = SingleChoiceGroupProps | MultipleChoiceGroupProps
+export type SingleChoiceGroupProps = ChoiceGroupPropsGeneric<ChoiceGroupItem>
+
+export type MultipleChoiceGroupProps = ChoiceGroupPropsGeneric<ChoiceGroupItem, true>
+
+export type ChoiceGroupProps = InstanceProps<
+  SingleChoiceGroupProps | MultipleChoiceGroupProps,
+  Record<string, never>
+>
+
+export type BrandOwnChoiceGroupProps = BrandProps<ChoiceGroupProps, 'ChoiceGroup'>
 
 export type IFormElementChoiceGroup = OmitInstanceId<
   IFormElement & {
@@ -44,12 +57,3 @@ export type IFormElementChoiceGroup = OmitInstanceId<
 >
 
 export type ChoiceGroupElement = ConcreteSelectedView<typeof FormElementDictTypes.ChoiceGroup>
-
-export type BrandOwnChoiceGroupProps = BrandProps<OwnChoiceGroupProps, 'ChoiceGroup'>
-
-export type ChoiceGroupItem = {
-  label: string
-  icon?: IconComponent
-  labelIcon?: IconNames
-  disabled?: boolean
-}

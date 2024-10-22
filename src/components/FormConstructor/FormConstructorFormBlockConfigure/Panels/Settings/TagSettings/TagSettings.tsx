@@ -29,7 +29,6 @@ export const TagSettings: FC<TagSettingsType> = ({ selectedViewProps, selectedVi
     onChangeSwitch,
     onChangeIcon,
   } = useItemsHandlers(selectedViewProps, selectedView)
-  console.log('L32 itemsProps.iconSwitch ===', itemsProps.iconSwitch)
   return (
     <div className={styles.tagSettings}>
       <TextField

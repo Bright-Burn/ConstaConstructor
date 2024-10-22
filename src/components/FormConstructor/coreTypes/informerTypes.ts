@@ -1,8 +1,8 @@
-import type { IconComponent } from '@consta/icons/Icon'
 import type { InformerPropSize, InformerPropStatus, InformerPropView } from '@consta/uikit/Informer'
 
+import type { IconNames } from './iconTypes'
+import type { InstanceProps } from './instanceProps'
 import type {
-  BaseProps,
   BrandProps,
   ConcreteSelectedView,
   FormElementDictTypes,
@@ -10,15 +10,16 @@ import type {
   OmitInstanceId,
 } from './types'
 
-export type Props = {
+type UiLibProps = {
   view?: InformerPropView
   status?: InformerPropStatus
-  icon?: IconComponent
+  icon?: IconNames
   label?: string
   title?: string
   size?: InformerPropSize
 }
-export type InformerElementProps = Props & BaseProps
+
+export type InformerElementProps = InstanceProps<UiLibProps, Record<string, never>>
 
 export type InformerElement = ConcreteSelectedView<typeof FormElementDictTypes.Informer>
 

@@ -9,32 +9,41 @@ import { SelectableLayer } from '../../SelectableLayer'
 import type { IChoiceGroupFormElement } from './types'
 
 export const ChoiceGroupFormElement: FC<IChoiceGroupFormElement> = ({ element }) => {
-  const checkMultiple = (
-    props: SingleChoiceGroupProps | MultipleChoiceGroupProps,
-  ): props is MultipleChoiceGroupProps => Array.isArray(props.value)
-
   const props = useAppSelector(formInstancePropsSelector(element.instanceId, element.type))?.props
 
-  return props ? (
+  const uiLibProps = props?.uiLibProps
+  const styles = props?.styles
+
+  if (!uiLibProps) {
+    return null
+  }
+
+  return (
     <SelectableLayer
       parentElementId={element.id}
       elementTypeUsage={ElementTypes.FormElement}
       elementType={FormElementDictTypes.ChoiceGroup}>
-      {checkMultiple(props) ? (
+      {checkMultiple(uiLibProps) ? (
         <ChoiceGroup
-          {...props}
-          items={props.items}
-          name={props.name}
-          value={props.value}
+          {...uiLibProps}
+          className={props.className}
           getItemIcon={item => (item.labelIcon ? Icons[item.labelIcon] : undefined)}
           getItemLabel={item => item.label}
+          style={styles}
         />
       ) : (
         <ChoiceGroup
-          {...props}
+          {...uiLibProps}
+          className={props.className}
           getItemIcon={item => (item.labelIcon ? Icons[item.labelIcon] : undefined)}
+          getItemLabel={item => item.label}
+          style={styles}
         />
       )}
     </SelectableLayer>
-  ) : null
+  )
 }
+
+const checkMultiple = (
+  props: SingleChoiceGroupProps | MultipleChoiceGroupProps,
+): props is MultipleChoiceGroupProps => props.multiple === true
